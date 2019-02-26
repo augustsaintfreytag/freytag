@@ -1,0 +1,10 @@
+{
+  "name": "folio-freytag",
+  "version": "0.1.0",
+  "description": "Personal portfolio and work showcase page for August S. Freytag, concept designer, filmmaker, developer, analogue photographer.",
+  "main": "index.js",
+  "repository": "git@gitlab.com:apricum/freytag.git",
+  "author": "August S. Freytag <night@apricummedia.com>",
+  "license": "UNLICENSED",
+  "private": true
+}
