@@ -1,0 +1,91 @@
+$textColor: #333;
+$textColorLight: #666;
+
+body {
+	font-family: "paralucent-text";
+	color: $textColor;
+	font-weight: 200;
+	padding: 0;
+	margin: 0;
+}
+
+// Text
+
+h1, h2, h3, h4 {
+	font-family: "paralucent";
+}
+
+// Case & Wrap
+
+.case {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+
+	> .wrap {
+		width: 100%;
+		padding: 0;
+	}
+}
+
+// Structure (Header, Main, Footer)
+
+header {
+	margin: 0 0 10px 0;
+	padding: 25px 50px;
+	background: #fff;
+	
+	// Elements
+
+	.branding {
+		h1 {
+			font-size: 3em;
+			font-weight: 700;
+			text-transform: uppercase;
+			margin: 0 0 5px 0;
+		}
+
+		.tagline {
+			font-weight: 300;
+			font-size: 0.9em;
+			color: $textColorLight;
+			margin: 0;
+		}
+	}
+	
+}
+
+// Box Couple
+
+.box-couple {
+	$boxCoupleLight: #fafafa;
+	$boxCoupleLightText: #f0f0f0;
+	$boxCoupleDark: rgb(170, 104, 255);
+	$boxCoupleDarkText: $textColor;
+	
+	width: 100%;
+	display: flex;
+
+	> div {
+		flex: auto;
+		padding: 120px 80px;
+		max-height: 100%;
+	}
+
+	> div:first-child {
+		background: $boxCoupleDark;
+		color: $boxCoupleLightText;
+		flex-basis: 60%;
+		box-sizing: border-box;
+		padding-right: 200px;
+	}
+
+	> div:last-child {
+		align-self: center;
+		background: $boxCoupleLight;
+		color: $boxCoupleDarkText;
+		flex-basis: 40%;
+		height: 70%;
+		transform: translateX(-100px);
+	}
+}
