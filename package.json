@@ -14,6 +14,7 @@
 		"generate": "nuxt-ts generate"
 	},
 	"dependencies": {
+		"axios": "^0.18.0",
 		"node-sass": "^4.11.0",
 		"nuxt-ts-edge": "latest",
 		"sass-loader": "^7.1.0",
