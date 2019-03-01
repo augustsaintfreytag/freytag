@@ -1,0 +1,30 @@
+version: "3"
+
+services:
+
+  app:
+    image: node:latest
+    volumes:
+      - ./nuxt.config.ts:/var/app/nuxt.config.ts:cached
+      - ./package.json:/var/app/package.json:cached
+      - ./tsconfig.json:/var/app/tsconfig.json:cached
+      - ./vue-shim.d.ts:/var/app/vue-shim.d.ts:cached
+      - ./yarn.lock:/var/app/yarn.lock:cached
+      - ./assets:/var/app/assets:cached
+      - ./components:/var/app/components:cached
+      - ./layouts:/var/app/layouts:cached
+      - ./pages:/var/app/pages:cached
+      - data-app-build:/var/lib/nuxt
+    command: "bash -c 'cd /var/app && yarn && yarn dev'"
+    stdin_open: true
+    tty: true
+    environment:
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - "3000:3000"
+      - "9229:9229"
+
+volumes:
+  data-app-build:
+    driver: local
