@@ -9,7 +9,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "nuxt-ts",
-		"inspect-dev": "node --inspect node_modules/.bin/nuxt-ts",
+		"inspect-dev": "node --inspect=0.0.0.0:9229 node_modules/.bin/nuxt-ts",
 		"build": "nuxt-ts build",
 		"start": "nuxt-ts start",
 		"generate": "nuxt-ts generate"
