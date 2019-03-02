@@ -34,7 +34,7 @@ services:
         COCKPIT_SESSION_NAME: cockpit
         COCKPIT_SALT: "4F47B1B2-5603-4D5F-9190-0EF9BE925D07"
     ports:
-    - "8080:80"
+      - "8090:80"
 
 volumes:
   data-cockpit:
