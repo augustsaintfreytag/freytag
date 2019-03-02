@@ -1,14 +1,34 @@
 <template>
-	<nuxt />
+	<div class="case">
+		<div class="wrap">
+			<header-component />
+			<main>
+				<nuxt />
+			</main>
+			<footer-component />
+		</div>
+	</div>
 </template>
 
 <style lang="scss">
+	@import "~/assets/style/fonts.scss";
+	@import "~/assets/style/base.scss";
 </style>
 
 <script lang="ts">
 	import { Component, Vue } from "vue-property-decorator"
+	import HeaderComponent from "~/components/header/header.vue"
+	import FooterComponent from "~/components/footer/footer.vue"
 
-	@Component
-	export default class HeaderComponent extends Vue {}
+	@Component({
+		components: {
+			HeaderComponent,
+			FooterComponent
+		}
+	})
+	export default class DefaultLayout extends Vue {
+
+	}
 </script>
+
 
