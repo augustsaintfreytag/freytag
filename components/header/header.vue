@@ -1,5 +1,5 @@
 <template>
-	<header>
+	<header class="inset">
 		<div class="branding">
 			<h1>{{ content.headerPrimaryTitle }}</h1>
 			<section class="tagline">{{ content.headerPrimaryOccupations }}</section>
