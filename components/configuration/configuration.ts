@@ -5,9 +5,9 @@ export namespace Configuration {
 
 	export function cmsHost(): URL {
 		if (process.server) {
-			return "http://cockpit/"
+			return "cockpit"
 		} else {
-			return "http://127.0.0.1:8090/"
+			return "127.0.0.1:8090"
 		}
 	}
 
