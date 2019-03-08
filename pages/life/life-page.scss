@@ -1,0 +1,67 @@
+ul.life-events {
+	> li {
+		margin-bottom: 5px;
+	}
+}
+
+.life-event {
+
+	display: flex;
+	width: 100%;
+
+	> * {
+		flex: auto;
+		max-width: 280px;
+		padding-right: 25px;
+		box-sizing: border-box;
+
+		&.event-text {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+	}
+
+	// Blip
+
+	.blip {
+		$blipHeight: 15px;
+		$blipParentWidth: $blipHeight + 15px;
+
+		flex: 0 $blipParentWidth;
+		height: min-content;
+		padding-top: 7px;
+		padding-right: 10px;
+
+		&:before {
+			content: " ";
+			display: block;
+			height: $blipHeight;
+			width: $blipHeight;
+			border-radius: 100%;
+			background: rgb(38, 95, 202);
+		}
+	}
+
+	// Title
+
+	> h2 {
+		margin: 0;
+	}
+
+	// Time
+
+	.time {
+	}
+
+	// Format
+
+	.format {
+	}
+
+	// Role
+
+	.role {
+	}
+
+}
