@@ -21,6 +21,13 @@ export default class CockpitDataAccess {
 		}
 	}
 
+	// Typed Fetch
+
+	static async recordsInCollection(collection: string): Promise<CockpitResponse> {
+		const route = `api/collections/get/${collection}`
+		return await CockpitDataAccess.data(route)
+	}
+
 	// Preparation
 
 	private static preparedUrl(route: string): Url {
