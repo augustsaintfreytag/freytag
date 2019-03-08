@@ -1,5 +1,5 @@
 <template>
-	<span>
+	<section class="index-page">
 		<section class="box-couple" v-for="index in 5" :key="index">
 		<div>
 			<h2>
@@ -12,7 +12,7 @@
 		</div>
 		<div>CONTENT!</div>
 	</section>
-	</span>
+	</section>
 </template>
 
 <style lang="scss" src="./index-page.scss">
