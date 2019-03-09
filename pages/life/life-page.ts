@@ -6,7 +6,26 @@ namespace LifePageData {
 
 	export async function updateLife(data: any): Promise<void> {
 		try {
-			data.vitaEvents = await CockpitDataProvider.vitaEvents()
+			let events = await CockpitDataProvider.vitaEvents()
+			const sortingKey = "dateStarted"
+			const sortingKeySecondary = "dateEnded"
+
+			events = events.sort((a: Vita.Event, b: Vita.Event) => {
+				const aValue = a[sortingKey] || a[sortingKeySecondary] || 0
+				const bValue = b[sortingKey] || b[sortingKeySecondary] || 0
+
+				if (aValue < bValue) {
+					return -1
+				}
+				
+				if(aValue > bValue) {
+					return 1
+				}
+
+				return 0
+			})
+
+			data.vitaEvents = events
 		} catch (err) {
 			console.error(`Did not get results. ${err}`)
 		}
