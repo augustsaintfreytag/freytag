@@ -9,6 +9,10 @@ ul.life-events {
 		margin-bottom: $interItemSpace / 2;
 		padding-bottom: $interItemSpace / 2;
 		border-bottom: 1px solid #f0f0f0;
+
+		> .header {
+			margin-bottom: $interItemSpace / 4;
+		}
 	}
 }
 
