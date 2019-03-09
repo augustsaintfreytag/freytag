@@ -1,67 +1,82 @@
+@import "~/assets/style/values.scss";
+
 ul.life-events {
+	list-style: none;
+	padding: 0;
+
 	> li {
-		margin-bottom: 5px;
+		$interItemSpace: 20px;
+		margin-bottom: $interItemSpace / 2;
+		padding-bottom: $interItemSpace / 2;
+		border-bottom: 1px solid #f0f0f0;
 	}
 }
 
 .life-event {
-
-	display: flex;
 	width: 100%;
 
-	> * {
-		flex: auto;
-		max-width: 280px;
-		padding-right: 25px;
-		box-sizing: border-box;
+	$blipHeight: 14px;
+	$blipPadding: 10px;
 
-		&.event-text {
+	> .header {
+		display: flex;
+		margin-bottom: 4px;
+
+		> * {
+			flex: auto;
+		}
+
+		.blip {
+			flex: 0 $blipHeight;
+			height: min-content;
+			padding-top: 4px;
+			padding-right: $blipPadding;
+	
+			&:before {
+				content: " ";
+				display: block;
+				height: $blipHeight;
+				width: $blipHeight;
+				border-radius: 100%;
+				background: rgb(38, 95, 202);
+			}
+		}
+
+		.name {
+			margin: 0;
+			font-weight: 500;
+			font-size: 1.15em;
+		}
+	}
+
+	> .details {
+		display: flex;
+		padding-left: $blipHeight + $blipPadding;
+
+		> * {
+			flex: auto;
+			width: 300px;
+			padding-right: 25px;
+			box-sizing: border-box;
+		}
+
+		.time {
+			max-width: 160px;
+		}
+
+		.format {
+			max-width: 210px;
+		}
+
+		// Text Content
+
+		> div {
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
+			font-size: 1em;
+			font-family: "paralucent";
+			font-weight: 300;
 		}
 	}
-
-	// Blip
-
-	.blip {
-		$blipHeight: 15px;
-		$blipParentWidth: $blipHeight + 15px;
-
-		flex: 0 $blipParentWidth;
-		height: min-content;
-		padding-top: 7px;
-		padding-right: 10px;
-
-		&:before {
-			content: " ";
-			display: block;
-			height: $blipHeight;
-			width: $blipHeight;
-			border-radius: 100%;
-			background: rgb(38, 95, 202);
-		}
-	}
-
-	// Title
-
-	> h2 {
-		margin: 0;
-	}
-
-	// Time
-
-	.time {
-	}
-
-	// Format
-
-	.format {
-	}
-
-	// Role
-
-	.role {
-	}
-
 }
