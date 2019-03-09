@@ -1,17 +1,19 @@
 @import "~/assets/style/values.scss";
 
 body {
-	font-family: "paralucent-text";
+	font-family: "paralucent";
 	color: $textColor;
 	font-weight: 200;
 	padding: 0;
 	margin: 0;
+	font-size: 1em;
 }
 
 // Text
 
 h1, h2, h3, h4 {
 	font-family: "paralucent";
+	font-weight: 700;
 }
 
 // Case & Wrap
