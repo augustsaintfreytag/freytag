@@ -36,7 +36,7 @@ export default class LifePage extends Vue {
 		if(event.dateStarted && event.dateEnded) {
 			return `${this.formattedDate(event.dateStarted)} – ${this.formattedDate(event.dateEnded)}`
 		} else if(event.dateStarted && !event.dateEnded) {
-			return `${this.formattedDate(event.dateStarted)} – PRESENT`
+			return `${this.formattedDate(event.dateStarted)} – PRS.`
 		} else if(event.dateEnded) {
 			return this.formattedDate(event.dateEnded)
 		}
