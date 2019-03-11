@@ -130,6 +130,21 @@ const data: LifePageData = {
 })
 export default class LifePage extends Vue {
 
+	// Events
+
+	didToggleSorting(sortingMode: string): void {
+		const data = this.$data as LifePageData
+
+		if (!sortingMode) {
+			return
+		}
+
+		LifePageMapper.toggleSortingMode(data, sortingMode)
+		LifePageMapper.mapSortedLifeEvents(data)
+	}
+
+	// Date
+
 	formattedDateRange(event: Vita.Event): string {
 		if(event.dateStarted && event.dateEnded) {
 			return `${this.formattedDate(event.dateStarted)} – ${this.formattedDate(event.dateEnded)}`
