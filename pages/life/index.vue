@@ -1,9 +1,6 @@
 <template>
 	<section class="life-page inset">
 		<div class="life-events-header">
-			<div class="debug">
-				<div>Sorting mode: {{ lifeSortingMode }} / Sorting reversed: {{ lifeSortingIsReversed }}</div>
-			</div>
 			<div class="details">
 				<div
 					v-for="element in [
