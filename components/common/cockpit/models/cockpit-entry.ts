@@ -1,4 +1,4 @@
-import { UUID } from "~/components/library/uuid"
+import { UUID } from "~/components/common/library/uuid"
 
 export interface CockpitEntry {
 	_id: UUID

@@ -3,8 +3,8 @@ import path from "path"
 
 import CockpitResponse from "../models/cockpit-response"
 import CockpitError from "../library/cockpit-error"
-import { Configuration } from "~/components/configuration/configuration"
-import { Url } from "~/components/library/url"
+import { Configuration } from "~/components/common/configuration/configuration"
+import { Url } from "~/components/common/library/url"
 
 export default class CockpitDataAccess {
 

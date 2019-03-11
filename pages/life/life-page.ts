@@ -1,6 +1,6 @@
 import { Component, Vue } from "vue-property-decorator"
-import CockpitDataProvider from "~/components/cockpit/providers/cockpit-data-provider"
-import { Vita } from "~/components/cockpit/models/vita-event"
+import CockpitDataProvider from "~/components/common/cockpit/providers/cockpit-data-provider"
+import { Vita } from "~/components/common/cockpit/models/vita-event"
 
 namespace LifePageData {
 
