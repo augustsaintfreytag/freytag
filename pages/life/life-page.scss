@@ -1,4 +1,57 @@
 @import "~/assets/style/values.scss";
+@import "~/assets/style/life-kinds.scss";
+
+// Uniformity Rules
+
+.life-events-header, .life-events {
+	max-width: 1400px;
+}
+
+// Life Events Header
+
+.life-events-header {
+	margin-bottom: 25px;
+
+	.details {
+		> div {
+			span {
+				color: $textColorVeryLight;
+				user-select: none;
+			}
+
+			.sort-switch {
+				display: inline-block;
+				box-sizing: border-box;
+				padding-left: 4px;
+				visibility: hidden;
+				
+				svg {
+					position: relative;
+					top: 2px;
+					$width: 15px;
+					height: $width;
+					width: $width;
+				}
+			}
+
+			&.sortable {
+				cursor: pointer;
+			}
+
+			&.active {
+				.sort-switch {
+					visibility: visible;
+				}
+			}
+
+			&.reversed {
+				.sort-switch svg {
+					transform: rotateZ(180deg);
+				}
+			}
+		}
+	}
+}
 
 // Life Events in Context
 
