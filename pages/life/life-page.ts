@@ -23,7 +23,7 @@ namespace LifePageData {
 				}
 
 				return 0
-			})
+			}).reverse()
 
 			data.vitaEvents = events
 		} catch (err) {
