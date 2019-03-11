@@ -1,5 +1,7 @@
 @import "~/assets/style/values.scss";
 
+// Life Events in Context
+
 ul.life-events {
 	list-style: none;
 	padding: 0;
@@ -16,7 +18,9 @@ ul.life-events {
 	}
 }
 
-.life-event {
+// Individual Life Event
+
+.life-event, .life-events-header {
 	width: 100%;
 
 	$blipHeight: 14px;
@@ -50,6 +54,9 @@ ul.life-events {
 			margin: 0;
 			font-weight: 500;
 			font-size: 1.15em;
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
 		}
 	}
 
