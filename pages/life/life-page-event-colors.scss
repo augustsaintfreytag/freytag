@@ -1,0 +1,26 @@
+@import "~/assets/style/life-kinds.scss";
+
+.life-page {
+	// Life Event Colors
+
+	@each $key, $color in $lifeKindColor {
+		.kind-#{$key} {
+			.blip:before {
+				background: $color;
+				border-color: transparent;
+			}
+
+			.blip.active-indicator:before {
+				background: transparent;
+				border-color: $color;
+			}
+		}
+
+		.kind-#{$key}.active {
+			.blip.active-indicator:before {
+				background: $color;
+				border-color: transparent;
+			}
+		}
+	}
+}

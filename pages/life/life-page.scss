@@ -1,5 +1,5 @@
 @import "~/assets/style/values.scss";
-@import "~/assets/style/life-kinds.scss";
+@import "./life-page-event-colors.scss";
 
 // Page
 
@@ -187,29 +187,6 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 				font-size: 1em;
 				font-family: "paralucent";
 				font-weight: 300;
-			}
-		}
-	}
-
-	// Life Event Colors
-
-	@each $key, $color in $lifeKindColor {
-		.kind-#{$key} {
-			.blip:before {
-				background: $color;
-				border-color: transparent;
-			}
-
-			.blip.active-indicator:before {
-				background: transparent;
-				border-color: $color;
-			}
-		}
-
-		.kind-#{$key}.active {
-			.blip.active-indicator:before {
-				background: $color;
-				border-color: transparent;
 			}
 		}
 	}
