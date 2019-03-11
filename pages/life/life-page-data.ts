@@ -6,6 +6,7 @@ type Data = Record<string, any>
 
 export interface LifePageData extends Data {
 
+	lifeFilter: string|undefined
 	lifeSortingMode: LifePageMapper.SortingMode
 	lifeSortingIsReversed: boolean
 

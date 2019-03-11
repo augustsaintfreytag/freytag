@@ -10,6 +10,7 @@ export namespace LifePageMapper {
 	}
 	
 	export type SortingMode = string
+	export type Filter = string
 
 	export const sortingOptions: {[key: string]: SortingKeyPair|undefined} = {
 		time: {primary: "dateEnded", secondary: "dateStarted"},
@@ -27,8 +28,14 @@ export namespace LifePageMapper {
 	// Direct Mapping
 
 	export function mapSortedLifeEvents(data: LifePageData) {
-		const sortedLifeEvents = sortedLifeEventsWithMode(data.unsortedLifeEvents, data.lifeSortingMode, data.lifeSortingIsReversed)
-		data.lifeEvents = sortedLifeEvents
+		let events = data.unsortedLifeEvents
+
+		if (data.lifeFilter) {
+			events = filteredLifeEventsWithOptions(events, {filter: data.lifeFilter})
+		}
+
+		events = sortedLifeEventsWithMode(events, data.lifeSortingMode, data.lifeSortingIsReversed)
+		data.lifeEvents = events
 	}
 
 	// Sorting Modes
@@ -41,6 +48,10 @@ export namespace LifePageMapper {
 
 		data.lifeSortingMode = mode
 		data.lifeSortingIsReversed = false
+	}
+
+	export function toggleFilter(data: LifePageData, filter: Filter) {
+		data.lifeFilter = filter
 	}
 
 	export function toggleSortingMode(data: LifePageData, mode: SortingMode) {
@@ -63,12 +74,18 @@ export namespace LifePageMapper {
 		return sortedLifeEventsWithOptions(events, {sortingKeyPair: options, sortingReversed: reversed})
 	}
 
+	function filteredLifeEventsWithOptions(events: Vita.Event[], options: {filter: Filter}): Vita.Event[] {
+		return events.filter(event => {
+			return event.kind === options.filter
+		})
+	}
+
 	function sortedLifeEventsWithOptions(events: Vita.Event[], options: {sortingKeyPair: SortingKeyPair, sortingReversed: boolean}): Vita.Event[] {
 		const sortingKeyPrimary = options.sortingKeyPair.primary
 		const sortingKeySecondary = options.sortingKeyPair.secondary || options.sortingKeyPair.primary
 
 		type LifeEventDictionary = {[key: string]: any}
-		
+
 		events = events.sort((a: LifeEventDictionary, b: LifeEventDictionary) => {
 			const aValue = a[sortingKeyPrimary] || a[sortingKeySecondary] || ""
 			const bValue = b[sortingKeyPrimary] || b[sortingKeySecondary] || ""

@@ -4,6 +4,7 @@ import { LifePageData } from "./life-page-data"
 import { LifePageMapper } from "./life-page-mapper"
 
 const data: LifePageData = {
+	lifeFilter: undefined,
 	lifeSortingMode: "time",
 	lifeSortingIsReversed: false,
 	unsortedLifeEvents: [],
