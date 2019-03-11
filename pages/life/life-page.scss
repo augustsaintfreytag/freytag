@@ -1,166 +1,216 @@
 @import "~/assets/style/values.scss";
 @import "~/assets/style/life-kinds.scss";
 
-// Uniformity Rules
+// Page
 
-.life-events-header, .life-events {
-	max-width: 1400px;
-}
+$blipHeight: 14px;
+$blipPadding: 10px;
+$pageInsetHorizontal: $insetHorizontal - $blipHeight;
 
-// Life Events Header
+.life-page {
+	// Uniformity Rules
 
-.life-events-header {
-	margin-bottom: 25px;
+	.life-events-header, .life-events {
+		max-width: 1500px;
+	}
 
-	.details {
-		> div {
-			span {
-				color: $textColorVeryLight;
-				user-select: none;
-			}
+	// Life Events Filter
 
-			.sort-switch {
+	.life-events-filter {
+		$filterBlipHeight: 18px;
+		$filterBlipPadding: 5px;
+		$filterInterItemSpacing: 25px;
+
+		display: flex;
+		margin-bottom: 50px;
+		// padding-left: $blipHeight + $blipPadding;
+
+		& > div {
+			margin-right: $filterInterItemSpacing;
+			cursor: pointer;
+
+			.blip {
 				display: inline-block;
-				box-sizing: border-box;
-				padding-left: 4px;
-				visibility: hidden;
-				
-				svg {
-					position: relative;
-					top: 2px;
-					$width: 15px;
-					height: $width;
-					width: $width;
+				padding-right: $filterBlipPadding;
+
+				&:before {
+					content: " ";
+					display: block;
+					height: $filterBlipHeight;
+					width: $filterBlipHeight;
+					border-radius: 100%;
+					box-sizing: border-box;
+					border-width: 3px;
+					border-style: solid;
 				}
 			}
-
-			&.sortable {
-				cursor: pointer;
+		
+			.name {
+				display: inline-block;
+				font-size: 1.5em;
+				font-weight: 500;
 			}
+		}
+	}
 
-			&.active {
+	// Life Events Header
+
+	.life-events-header {
+		margin-bottom: 25px;
+
+		.details {
+			> div {
+				span {
+					color: $textColorVeryLight;
+					user-select: none;
+				}
+
 				.sort-switch {
-					visibility: visible;
+					display: inline-block;
+					box-sizing: border-box;
+					padding-left: 4px;
+					visibility: hidden;
+					
+					svg {
+						position: relative;
+						top: 2px;
+						$width: 15px;
+						height: $width;
+						width: $width;
+					}
 				}
-			}
 
-			&.reversed {
-				.sort-switch svg {
-					transform: rotateZ(180deg);
+				&.sortable {
+					cursor: pointer;
+				}
+
+				&.active {
+					.sort-switch {
+						visibility: visible;
+					}
+				}
+
+				&.reversed {
+					.sort-switch svg {
+						transform: rotateZ(180deg);
+					}
 				}
 			}
 		}
 	}
-}
 
-// Life Events in Context
+	// Life Events in Context
 
-ul.life-events {
-	list-style: none;
-	padding: 0;
+	ul.life-events {
+		list-style: none;
+		padding: 0;
 
-	> li {
-		$interItemSpace: 20px;
-		margin-bottom: $interItemSpace / 2;
-		padding-bottom: $interItemSpace / 2;
-		border-bottom: 1px solid #f0f0f0;
+		> li {
+			$interItemSpace: 20px;
+			margin-bottom: $interItemSpace / 2;
+			padding-bottom: $interItemSpace / 2;
+			border-bottom: 1px solid #f0f0f0;
+
+			> .header {
+				margin-bottom: $interItemSpace / 4;
+			}
+		}
+	}
+
+	// Individual Life Event
+
+	.life-event, .life-events-header {
+		width: 100%;
 
 		> .header {
-			margin-bottom: $interItemSpace / 4;
-		}
-	}
-}
+			display: flex;
+			margin-bottom: 4px;
 
-// Individual Life Event
+			> * {
+				flex: auto;
+			}
 
-.life-event, .life-events-header {
-	width: 100%;
+			.blip {
+				flex: 0 $blipHeight;
+				height: min-content;
+				padding-top: 4px;
+				padding-right: $blipPadding;
+		
+				&:before {
+					content: " ";
+					display: block;
+					height: $blipHeight;
+					width: $blipHeight;
+					border-radius: 100%;
+				}
+			}
 
-	$blipHeight: 14px;
-	$blipPadding: 10px;
-
-	> .header {
-		display: flex;
-		margin-bottom: 4px;
-
-		> * {
-			flex: auto;
-		}
-
-		.blip {
-			flex: 0 $blipHeight;
-			height: min-content;
-			padding-top: 4px;
-			padding-right: $blipPadding;
-	
-			&:before {
-				content: " ";
-				display: block;
-				height: $blipHeight;
-				width: $blipHeight;
-				border-radius: 100%;
-				background: rgb(38, 95, 202);
+			.name {
+				margin: 0;
+				font-weight: 500;
+				font-size: 1.15em;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
 			}
 		}
 
-		.name {
-			margin: 0;
-			font-weight: 500;
-			font-size: 1.15em;
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
+		> .details {
+			display: flex;
+			padding-left: $blipHeight + $blipPadding;
+
+			> * {
+				flex: auto;
+				width: 300px;
+				padding-right: 25px;
+				box-sizing: border-box;
+			}
+
+			.time {
+				max-width: 160px;
+			}
+
+			.format {
+				max-width: 180px;
+			}
+
+			.role {
+				max-width: 240px;
+			}
+
+			// Text Content
+
+			> div {
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				font-size: 1em;
+				font-family: "paralucent";
+				font-weight: 300;
+			}
 		}
 	}
 
-	> .details {
-		display: flex;
-		padding-left: $blipHeight + $blipPadding;
+	// Life Event Colors
 
-		> * {
-			flex: auto;
-			width: 300px;
-			padding-right: 25px;
-			box-sizing: border-box;
+	@each $key, $color in $lifeKindColor {
+		.kind-#{$key} {
+			.blip:before {
+				background: $color;
+				border-color: transparent;
+			}
+
+			.blip.active-indicator:before {
+				background: transparent;
+				border-color: $color;
+			}
 		}
 
-		.time {
-			max-width: 160px;
+		.kind-#{$key}.active {
+			.blip.active-indicator:before {
+				background: $color;
+				border-color: transparent;
+			}
 		}
-
-		.format {
-			max-width: 210px;
-		}
-
-		// Text Content
-
-		> div {
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			font-size: 1em;
-			font-family: "paralucent";
-			font-weight: 300;
-		}
-	}
-}
-
-// Life Event Colors
-
-.life-event {
-	&.kind-life .header .blip:before {
-		background: map-get($lifeKindColor, "life");
-	}
-	&.kind-education .header .blip:before {
-		background: map-get($lifeKindColor, "education");
-	}
-	&.kind-film .header .blip:before {
-		background: map-get($lifeKindColor, "film");
-	}
-	&.kind-artwork .header .blip:before {
-		background: map-get($lifeKindColor, "artwork");
-	}
-	&.kind-development .header .blip:before {
-		background: map-get($lifeKindColor, "development");
 	}
 }
