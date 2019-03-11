@@ -2,18 +2,6 @@ import { Component, Vue } from "vue-property-decorator"
 import CockpitDataProvider from "~/components/common/cockpit/providers/cockpit-data-provider"
 import { Vita } from "~/components/common/cockpit/models/vita-event"
 
-type Data = Record<string, any>
-
-interface LifePageData extends Data {
-
-	lifeSortingMode: LifePageMapper.SortingMode
-	lifeSortingIsReversed: boolean
-
-	unsortedLifeEvents: Vita.Event[]
-	lifeEvents: Vita.Event[]
-
-}
-
 namespace LifePageMapper {
 
 	interface SortingKeyPair {
@@ -106,6 +94,7 @@ namespace LifePageMapper {
 	}
 
 }
+import { LifePageData } from "./life-page-data"
 
 const data: LifePageData = {
 	lifeSortingMode: "time",
