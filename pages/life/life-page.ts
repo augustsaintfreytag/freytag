@@ -106,19 +106,23 @@ namespace LifePageMapper {
 	}
 
 }
+
+const data: LifePageData = {
+	lifeSortingMode: "time",
+	lifeSortingIsReversed: false,
+	unsortedLifeEvents: [],
+	lifeEvents: []
 }
 
 @Component({
-	
+
 	data() {
-		return {
-			vitaEvents: []
-		}
+		return data
 	},
 
 	async asyncData() {
-		const data: any = {}
-		await LifePageData.updateLife(data)
+		await LifePageMapper.updateLifeEvents(data)
+		LifePageMapper.mapSortedLifeEvents(data)
 
 		return data
 	}
