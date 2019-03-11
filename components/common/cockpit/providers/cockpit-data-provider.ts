@@ -1,13 +1,13 @@
-import { Vita } from "../models/vita-event"
+import { Vita as Life } from "../models/vita-event"
 import CockpitDataAccess from "./cockpit-data-access"
 
 export default class CockpitDataProvider {
 
-	static async vitaEvents(): Promise<Vita.Event[]> {
+	static async lifeEvents(): Promise<Life.Event[]> {
 		const response = await CockpitDataAccess.recordsInCollection("vita")
 		return response.entries.map(entry => {
-			const storedVitaEvent = entry as Vita.EventEntry
-			return new Vita.Event(storedVitaEvent)
+			const storedLifeEvent = entry as Life.EventEntry
+			return new Life.Event(storedLifeEvent)
 		})
 	}
 
