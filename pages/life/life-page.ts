@@ -64,7 +64,7 @@ export default class LifePage extends Vue {
 	}
 
 	formattedDate(date: Date): string {
-		return `${this.formattedMonth(date.getDate() + 1)}/${date.getFullYear()}`
+		return `${this.formattedMonth(date.getMonth() + 1)}/${date.getFullYear()}`
 	}
 
 	formattedMonth(month: number): string {
