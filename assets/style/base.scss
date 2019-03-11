@@ -16,6 +16,16 @@ h1, h2, h3, h4 {
 	font-weight: 700;
 }
 
+// Elements
+
+button {
+	appearance: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	outline: none;
+}
+
 // Case & Wrap
 
 .case {
