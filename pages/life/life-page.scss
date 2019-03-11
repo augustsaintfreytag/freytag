@@ -91,3 +91,23 @@ ul.life-events {
 		}
 	}
 }
+
+// Life Event Colors
+
+.life-event {
+	&.kind-life .header .blip:before {
+		background: map-get($lifeKindColor, "life");
+	}
+	&.kind-education .header .blip:before {
+		background: map-get($lifeKindColor, "education");
+	}
+	&.kind-film .header .blip:before {
+		background: map-get($lifeKindColor, "film");
+	}
+	&.kind-artwork .header .blip:before {
+		background: map-get($lifeKindColor, "artwork");
+	}
+	&.kind-development .header .blip:before {
+		background: map-get($lifeKindColor, "development");
+	}
+}
