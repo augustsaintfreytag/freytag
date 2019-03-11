@@ -1,21 +1,32 @@
 <template>
 	<section class="life-page inset">
+		<div class="life-events-filter">
+			<div 
+				v-for="definition in eventToggleDefinitions" :key="definition.identifier"
+				v-bind:class="[
+					definition.identifier,
+					(definition.filter ? `kind-${definition.filter.toLowerCase()}` : 'kind-all'),
+					{ active: (lifeFilter === definition.filter) }
+				]"
+				v-on:click="didToggleFilter(definition.filter)"
+			>
+				<div class="blip active-indicator"></div>
+				<div class="name">{{ definition.name }}</div>
+			</div>
+		</div>
 		<div class="life-events-header">
 			<div class="details">
 				<div
-					v-for="element in [
-						{className: 'time', name: 'Span', sortable: true},
-						{className: 'format', name: 'Format', sortable: true},
-						{className: 'role', name: 'Role', sortable: false},
-						{className: 'location', name: 'Location', sortable: false},
-						{className: 'context', name: 'Context', sortable: false}
-					]" 
-					:key="element.className" 
-					v-bind:class="[element.className, { sortable: element.sortable, reversed: lifeSortingIsReversed, active: (lifeSortingMode === element.className) }]" 
-					v-on:click="didToggleSorting(element.className)"
-					v-bind:data-sorting-kind="element.className"
+					v-for="definition in eventHeaderDefinitions" :key="definition.identifier"
+					v-bind:class="[definition.identifier, {
+						sortable: definition.sortable, 
+						reversed: lifeSortingIsReversed, 
+						active: (lifeSortingMode === definition.identifier) 
+					}]"
+					v-on:click="didToggleSorting(definition.identifier)"
+					v-bind:data-sorting-kind="definition.identifier"
 				>
-					<span>{{ element.name }}</span>
+					<span>{{ definition.name }}</span>
 					<div class="sort-switch">
 						<svg class="icon">
 							<use xlink:href="#sorting-switch"></use>

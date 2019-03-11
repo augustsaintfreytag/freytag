@@ -22,6 +22,30 @@ const data: LifePageData = {
 		LifePageMapper.mapSortedLifeEvents(data)
 
 		return data
+	},
+
+	computed: {
+		eventToggleDefinitions: () => {
+			return [
+				{identifier: "all", name: "All", filter: undefined},
+				{identifier: "life", name: "Life", filter: "Life"},
+				{identifier: "education", name: "Education", filter: "Education"},
+				{identifier: "film", name: "Film", filter: "Film"},
+				{identifier: "development", name: "Development", filter: "Development"},
+				{identifier: "artwork", name: "Artwork", filter: "Artwork"},
+				{identifier: "photography", name: "Photography", filter: "Photography"}
+			]
+		},
+
+		eventHeaderDefinitions: () => {
+			return [
+				{identifier: "time", name: "Span", sortable: true},
+				{identifier: "format", name: "Format", sortable: true},
+				{identifier: "role", name: "Role", sortable: false},
+				{identifier: "location", name: "Location", sortable: false},
+				{identifier: "context", name: "Context", sortable: false}
+			]
+		}
 	}
 
 })
