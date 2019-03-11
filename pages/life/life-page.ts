@@ -7,8 +7,8 @@ namespace LifePageData {
 	export async function updateLife(data: any): Promise<void> {
 		try {
 			let events = await CockpitDataProvider.vitaEvents()
-			const sortingKey = "dateStarted"
-			const sortingKeySecondary = "dateEnded"
+			const sortingKey = "dateEnded"
+			const sortingKeySecondary = "dateStarted"
 
 			events = events.sort((a: Vita.Event, b: Vita.Event) => {
 				const aValue = a[sortingKey] || a[sortingKeySecondary] || 0
