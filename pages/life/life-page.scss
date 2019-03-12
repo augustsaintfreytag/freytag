@@ -28,6 +28,7 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 		& > div {
 			margin-right: $filterInterItemSpacing;
 			cursor: pointer;
+			user-select: none;
 
 			.blip {
 				display: inline-block;
@@ -60,9 +61,11 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 
 		.details {
 			> div {
+				cursor: default;
+				user-select: none;
+
 				span {
 					color: $textColorVeryLight;
-					user-select: none;
 				}
 
 				.sort-switch {
