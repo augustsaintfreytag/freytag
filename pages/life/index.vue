@@ -8,7 +8,7 @@
 					(definition.filter ? `kind-${definition.filter.toLowerCase()}` : 'kind-all'),
 					{ active: (lifeFilter === definition.filter) }
 				]"
-				v-on:click="didToggleFilter(definition.filter)"
+				v-on:click="didToggleFilter($event, definition.filter)"
 			>
 				<div class="blip active-indicator"></div>
 				<div class="name">{{ definition.name }}</div>
@@ -23,7 +23,7 @@
 						reversed: lifeSortingIsReversed, 
 						active: (lifeSortingMode === definition.identifier) 
 					}]"
-					v-on:click="didToggleSorting(definition.identifier)"
+					v-on:click="didToggleSorting($event, definition.identifier)"
 					v-bind:data-sorting-kind="definition.identifier"
 				>
 					<span>{{ definition.name }}</span>

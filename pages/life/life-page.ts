@@ -53,14 +53,14 @@ export default class LifePage extends Vue {
 
 	// Events
 
-	didToggleFilter(filter: string) {
+	didToggleFilter(_event: MouseEvent, filter: string) {
 		const data = this.$data as LifePageData
 
 		LifePageMapper.toggleFilter(data, filter)
 		LifePageMapper.mapSortedLifeEvents(data)
 	}
 
-	didToggleSorting(sortingMode: string) {
+	didToggleSorting(_event: MouseEvent, sortingMode: string) {
 		const data = this.$data as LifePageData
 
 		if (!sortingMode) {
