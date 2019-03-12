@@ -104,9 +104,9 @@ export namespace LifePageMapper {
 		// Events are already reversed by default, no action required.
 
 		if (options.sortingReversed) {
-			return events
-		} else {
 			return events.reverse()
+		} else {
+			return events
 		}
 	}
 
