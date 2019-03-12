@@ -38,15 +38,15 @@
 		<ul class="life-events">
 			<li v-bind:class="`life-event kind-${lifeEvent.kind.toLowerCase()}`" v-for="lifeEvent in lifeEvents" :key="lifeEvent.index">
 				<div class="header">
-					<div class="blip"></div>
+					<div class="blip" v-bind:title="lifeEvent.kind"></div>
 					<h2 class="name">{{ lifeEvent.name }}</h2>
 				</div>
 				<div class="details">
 					<div class="time">{{ formattedDateRange(lifeEvent) }}</div>
 					<div class="format">{{ lifeEvent.format }}</div>
-					<div class="role">{{ lifeEvent.role }}</div>
-					<div class="location">{{ lifeEvent.location }}</div>
-					<div class="context">{{ lifeEvent.context }}</div>
+					<div class="role" v-bind:title="lifeEvent.role">{{ lifeEvent.role }}</div>
+					<div class="location" v-bind:title="lifeEvent.location">{{ lifeEvent.location }}</div>
+					<div class="context" v-bind:title="lifeEvent.context">{{ lifeEvent.context }}</div>
 				</div>
 			</li>
 		</ul>
