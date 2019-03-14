@@ -1,13 +1,15 @@
 @import "~/assets/style/values.scss";
 
-body {
-	font-family: "paralucent";
-	font-display: auto;
-	color: $textColor;
-	font-weight: 300;
+html, body {
 	padding: 0;
 	margin: 0;
+}
+
+body {
+	font-family: "paralucent", sans-serif;
+	font-weight: 300;
 	font-size: $fontSizeDefault;
+	color: $textColor;
 }
 
 // Text
@@ -37,7 +39,7 @@ a, a:link, a:active, a:visited, a:hover {
 
 .case {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 
 	> .wrap {
 		display: flex;
