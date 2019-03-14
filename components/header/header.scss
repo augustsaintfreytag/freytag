@@ -39,6 +39,10 @@ header {
 			text-transform: uppercase;
 			padding: 0 20px 0 0;
 
+			&:last-child {
+				padding-right: 0;
+			}
+
 			&.nuxt-link-exact-active {
 				opacity: 0.25;
 			}
