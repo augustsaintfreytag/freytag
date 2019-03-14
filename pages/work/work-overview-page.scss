@@ -1,0 +1,50 @@
+@import "~/assets/style/values.scss";
+@import "~/assets/style/mixins/blip-element.scss";
+@import "~/assets/style/life-kind-colors.scss";
+
+.work-overview-page {
+
+	.work-overview {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: auto;
+		grid-gap: 15px;
+
+		> .work-item {
+			.image-holder {
+				height: 400px;
+				background: #efefef;
+			}
+
+			.item-data {
+				$blipSize: 14px;
+				$blipPadding: 8px;
+				$childDividerSpacing: 15px;
+
+				display: flex;
+				margin: 18px 0 6px 0;
+				font-size: $fontSizeLabelDefault;
+
+				> * {
+					flex: 0;
+					min-width: fit-content;
+				}
+
+				.blip {
+					flex: 0 $blipSize;
+					@include blipElement($blipSize);
+					padding-top: 4px;
+					padding-right: $blipPadding;
+				}
+
+				.format {
+					&:after {
+						content: "|";
+						padding: 0 $childDividerSpacing;
+					}
+				}
+			}
+		}
+	}
+
+}
