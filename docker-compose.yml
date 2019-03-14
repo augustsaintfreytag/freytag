@@ -1,0 +1,41 @@
+version: "3"
+
+services:
+
+  app:
+    image: node:latest
+    volumes:
+      - ./nuxt.config.ts:/var/app/nuxt.config.ts:cached
+      - ./package.json:/var/app/package.json:cached
+      - ./tsconfig.json:/var/app/tsconfig.json:cached
+      - ./vue-shim.d.ts:/var/app/vue-shim.d.ts:cached
+      - ./yarn.lock:/var/app/yarn.lock:cached
+      - ./assets:/var/app/assets:cached
+      - ./components:/var/app/components:cached
+      - ./layouts:/var/app/layouts:cached
+      - ./pages:/var/app/pages:cached
+      - data-app-build:/var/lib/nuxt
+    command: "bash -c 'cd /var/app && yarn && yarn inspect-dev'"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=80
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - "8080:80"
+      - "9229:9229"
+
+  cockpit:
+    image: agentejo/cockpit:latest
+    volumes:
+      - data-cockpit:/var/www/html/storage
+    environment:
+        COCKPIT_SESSION_NAME: cockpit
+        COCKPIT_SALT: "4F47B1B2-5603-4D5F-9190-0EF9BE925D07"
+    ports:
+      - "8090:80"
+
+volumes:
+  data-cockpit:
+    driver: local
+  data-app-build:
+    driver: local

@@ -1,0 +1,196 @@
+@import "~/assets/style/values.scss";
+@import "./life-page-event-colors.scss";
+
+// Page
+
+$blipHeight: 14px;
+$blipPadding: 10px;
+$pageInsetHorizontal: $insetHorizontal - $blipHeight;
+
+.life-page {
+	// Uniformity Rules
+
+	.life-events-header, .life-events {
+		max-width: 1700px;
+	}
+
+	// Life Events Filter
+
+	.life-events-filter {
+		$filterBlipHeight: 18px;
+		$filterBlipPadding: 5px;
+		$filterInterItemSpacing: 25px;
+
+		display: flex;
+		margin-bottom: 50px;
+		// padding-left: $blipHeight + $blipPadding;
+
+		& > div {
+			margin-right: $filterInterItemSpacing;
+			cursor: pointer;
+			user-select: none;
+
+			.blip {
+				display: inline-block;
+				padding-right: $filterBlipPadding;
+
+				&:before {
+					content: " ";
+					display: block;
+					height: $filterBlipHeight;
+					width: $filterBlipHeight;
+					border-radius: 100%;
+					box-sizing: border-box;
+					border-width: 3px;
+					border-style: solid;
+				}
+			}
+		
+			.name {
+				display: inline-block;
+				font-size: 1.5em;
+				font-weight: 500;
+			}
+		}
+	}
+
+	// Life Events Header
+
+	.life-events-header {
+		margin-bottom: 25px;
+
+		.details {
+			> div {
+				cursor: default;
+				user-select: none;
+
+				span {
+					color: $textColorVeryLight;
+				}
+
+				.sort-switch {
+					display: inline-block;
+					box-sizing: border-box;
+					padding-left: 4px;
+					visibility: hidden;
+					
+					svg {
+						position: relative;
+						top: 2px;
+						$width: 15px;
+						height: $width;
+						width: $width;
+					}
+				}
+
+				&.sortable {
+					cursor: pointer;
+				}
+
+				&.active {
+					.sort-switch {
+						visibility: visible;
+					}
+				}
+
+				&.reversed {
+					.sort-switch svg {
+						transform: rotateZ(180deg);
+					}
+				}
+			}
+		}
+	}
+
+	// Life Events in Context
+
+	ul.life-events {
+		list-style: none;
+		padding: 0;
+
+		> li {
+			$interItemSpace: 20px;
+			margin-bottom: $interItemSpace / 2;
+			padding-bottom: $interItemSpace / 2;
+			border-bottom: 1px solid #f0f0f0;
+
+			> .header {
+				margin-bottom: $interItemSpace / 4;
+			}
+		}
+	}
+
+	// Individual Life Event
+
+	.life-event, .life-events-header {
+		width: 100%;
+
+		> .header {
+			display: flex;
+			margin-bottom: 4px;
+
+			> * {
+				flex: auto;
+			}
+
+			.blip {
+				flex: 0 $blipHeight;
+				height: min-content;
+				padding-top: 4px;
+				padding-right: $blipPadding;
+		
+				&:before {
+					content: " ";
+					display: block;
+					height: $blipHeight;
+					width: $blipHeight;
+					border-radius: 100%;
+				}
+			}
+
+			.name {
+				margin: 0;
+				font-weight: 500;
+				font-size: 1.15em;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+		}
+
+		> .details {
+			display: flex;
+			padding-left: $blipHeight + $blipPadding;
+
+			> * {
+				flex: auto;
+				width: 300px;
+				padding-right: 25px;
+				box-sizing: border-box;
+			}
+
+			.time {
+				max-width: 160px;
+			}
+
+			.format {
+				max-width: 180px;
+			}
+
+			.role {
+				max-width: 240px;
+			}
+
+			// Text Content
+
+			> div {
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				font-size: 1em;
+				font-family: "paralucent";
+				font-weight: 300;
+			}
+		}
+	}
+}

@@ -1,0 +1,62 @@
+@import "~/assets/style/values.scss";
+
+body {
+	font-family: "paralucent";
+	color: $textColor;
+	font-weight: 300;
+	padding: 0;
+	margin: 0;
+	font-size: 1em;
+}
+
+// Text
+
+h1, h2, h3, h4 {
+	font-family: "paralucent";
+	font-weight: 700;
+}
+
+// Elements
+
+button {
+	appearance: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	outline: none;
+}
+
+// Case & Wrap
+
+.case {
+	display: flex;
+	justify-content: space-around;
+
+	> .wrap {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		min-height: 100vh;
+		padding: 0;
+	
+		> header {
+			flex: 0 auto;
+		}
+	
+		> main {
+			flex: auto;
+		}
+	
+		> footer {
+			flex: 0 auto;
+		}
+	}
+}
+
+main {
+	padding: 0 0 $insetVertical 0;
+}
+
+.inset {
+	padding: $insetVertical $insetHorizontal;
+}

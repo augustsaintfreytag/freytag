@@ -1,10 +1,27 @@
 {
-  "name": "folio-freytag",
-  "version": "0.1.0",
-  "description": "Personal portfolio and work showcase page for August S. Freytag, concept designer, filmmaker, developer, analogue photographer.",
-  "main": "index.js",
-  "repository": "git@gitlab.com:apricum/freytag.git",
-  "author": "August S. Freytag <night@apricummedia.com>",
-  "license": "UNLICENSED",
-  "private": true
+	"name": "folio-freytag",
+	"version": "0.1.0",
+	"description": "Personal portfolio and work showcase page for August S. Freytag, concept designer, filmmaker, developer, analogue photographer.",
+	"main": "index.js",
+	"repository": "git@gitlab.com:apricum/freytag.git",
+	"author": "August S. Freytag <night@apricummedia.com>",
+	"license": "UNLICENSED",
+	"private": true,
+	"scripts": {
+		"dev": "nuxt-ts",
+		"inspect-dev": "node --inspect=0.0.0.0:9229 node_modules/.bin/nuxt-ts",
+		"build": "nuxt-ts build",
+		"start": "nuxt-ts start",
+		"generate": "nuxt-ts generate"
+	},
+	"dependencies": {
+		"axios": "^0.18.0",
+		"node-sass": "^4.11.0",
+		"nuxt-ts-edge": "latest",
+		"sass-loader": "^7.1.0",
+		"vue-property-decorator": "^7.3.0"
+	},
+	"devDependencies": {
+		"@types/node": "^11.9.5"
+	}
 }

@@ -1,0 +1,12 @@
+{
+  "extends": "@nuxt/typescript-edge",
+  "compilerOptions": {
+    "baseUrl": ".",
+    "experimentalDecorators": true,
+    "noUnusedLocals": false,
+    "types": [
+      "@types/node",
+      "@nuxt/vue-app-edge"
+    ]
+  }
+}
