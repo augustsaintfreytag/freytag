@@ -48,7 +48,7 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 		
 			.name {
 				display: inline-block;
-				font-size: 1.5em;
+				font-size: $fontSizeLabelBold;
 				font-weight: 500;
 			}
 		}
@@ -151,7 +151,7 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 			.name {
 				margin: 0;
 				font-weight: 500;
-				font-size: 1.15em;
+				font-size: $fontSizeLabelDefault;
 				overflow: hidden;
 				white-space: nowrap;
 				text-overflow: ellipsis;
@@ -187,7 +187,6 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 				overflow: hidden;
 				white-space: nowrap;
 				text-overflow: ellipsis;
-				font-size: 1em;
 				font-family: "paralucent";
 				font-weight: 300;
 			}

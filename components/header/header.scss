@@ -8,14 +8,13 @@ header {
 	> * {
 		flex: auto;
 		justify-content: space-between;
-		// align-items: space-inbetween;
 	}
 
 	// Elements
 
 	.branding {
 		h1 {
-			font-size: 3em;
+			font-size: $fontSizeHeadingDefault;
 			font-weight: 700;
 			text-transform: uppercase;
 			margin: 0 0 5px 0;
@@ -23,7 +22,7 @@ header {
 
 		.tagline {
 			font-weight: 300;
-			font-size: 0.9em;
+			font-size: $fontSizeTaglineDefault;
 			color: $textColorLight;
 			margin: 0;
 		}
