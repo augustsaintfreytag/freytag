@@ -1,9 +1,16 @@
 @import "~/assets/style/values.scss";
 
 header {
+	display: flex;
 	margin: 0 0 10px 0;
 	background: #fff;
 	
+	> * {
+		flex: auto;
+		justify-content: space-between;
+		// align-items: space-inbetween;
+	}
+
 	// Elements
 
 	.branding {
@@ -19,6 +26,23 @@ header {
 			font-size: 0.9em;
 			color: $textColorLight;
 			margin: 0;
+		}
+	}
+
+	nav {
+		flex: 0;
+		display: flex;
+
+		> div {
+			flex: auto;
+			font-weight: 700;
+			font-size: 1.25em;
+			text-transform: uppercase;
+			padding: 0 20px 0 0;
+
+			&.nuxt-link-exact-active {
+				opacity: 0.25;
+			}
 		}
 	}
 }
