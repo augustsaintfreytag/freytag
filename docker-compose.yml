@@ -16,8 +16,6 @@ services:
       - ./pages:/var/app/pages:cached
       - data-app-build:/var/lib/nuxt
     command: "bash -c 'cd /var/app && yarn && yarn inspect-dev'"
-    stdin_open: true
-    tty: true
     environment:
       - HOST=0.0.0.0
       - PORT=80

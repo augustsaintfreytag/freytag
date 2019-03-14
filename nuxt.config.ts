@@ -1,6 +1,5 @@
 export default {
 	dev: true,
-	mode: "spa",
 	buildDir: "/var/lib/nuxt/build",
 	build: {
 		extend (config: any, keys: any) {
