@@ -26,15 +26,22 @@
 				font-size: $fontSizeLabelDefault;
 
 				> * {
-					flex: 0;
-					min-width: fit-content;
+					flex: auto;
+					max-width: fit-content;
 				}
 
 				.blip {
 					flex: 0 $blipSize;
-					@include blipElement($blipSize);
 					padding-top: 4px;
 					padding-right: $blipPadding;
+
+					@include blipElement($blipSize);
+				}
+
+				.format, .contents {
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
 				}
 
 				.format {
@@ -42,6 +49,12 @@
 						content: "|";
 						padding: 0 $childDividerSpacing;
 					}
+				}
+			}
+
+			.item-name {
+				h2 {
+					padding-right: 20px;
 				}
 			}
 		}
