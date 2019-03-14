@@ -26,6 +26,11 @@ button {
 	outline: none;
 }
 
+a, a:link, a:active, a:visited, a:hover {
+	text-decoration: unset;
+	color: unset;
+}
+
 // Case & Wrap
 
 .case {
