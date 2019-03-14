@@ -1,6 +1,7 @@
 <template>
-	<h1>OVERVIEW PAGE</h1>
+	<span>OVERVIEW PAGE</span>
 </template>
 
-<style lang="scss">
-</style>
+<style lang="scss" src="./work-overview-page.scss"></style>
+
+<script lang="ts" src="./work-overview-page.ts"></script>
