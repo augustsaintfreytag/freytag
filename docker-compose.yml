@@ -2,6 +2,15 @@ version: "3"
 
 services:
 
+  proxy:
+    image: nginx:latest
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf:cached
+    ports:
+      - "8080:8080"
+      - "9229:9229"
+      - "8090:8090"
+
   app:
     image: node:latest
     volumes:
@@ -20,9 +29,6 @@ services:
       - HOST=0.0.0.0
       - PORT=80
       - CHOKIDAR_USEPOLLING=true
-    ports:
-      - "8080:80"
-      - "9229:9229"
 
   cockpit:
     image: agentejo/cockpit:latest
@@ -31,8 +37,6 @@ services:
     environment:
         COCKPIT_SESSION_NAME: cockpit
         COCKPIT_SALT: "4F47B1B2-5603-4D5F-9190-0EF9BE925D07"
-    ports:
-      - "8090:80"
 
 volumes:
   data-cockpit:
