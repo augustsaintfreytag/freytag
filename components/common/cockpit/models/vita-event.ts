@@ -1,7 +1,10 @@
+import { Conversion } from "../providers/conversion"
 import { CockpitEntry } from "./cockpit-response"
 import { Kind } from "./kind"
 
 export namespace Vita {
+
+	// Live Model
 
 	export class Event {
 
@@ -21,8 +24,8 @@ export namespace Vita {
 			this.name = event.name
 			this.kind = event.kind as Kind
 			this.format = event.format || undefined
-			this.dateStarted = date(event.dateStarted)
-			this.dateEnded = date(event.dateEnded)
+			this.dateStarted = Conversion.date(event.dateStarted)
+			this.dateEnded = Conversion.date(event.dateEnded)
 			this.role = event.role || undefined
 			this.context = event.context || undefined
 			this.location = event.location || undefined
@@ -46,18 +49,6 @@ export namespace Vita {
 		location: string
 		description: string
 
-	}
-
-	// Conversion
-
-	function date(string: string): Date|undefined {
-		const date = new Date(string)
-		
-		if (isNaN(date.getDate())) {
-			return undefined
-		}
-
-		return date
 	}
 
 }
