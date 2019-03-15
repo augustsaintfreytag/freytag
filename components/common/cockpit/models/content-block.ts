@@ -37,7 +37,7 @@ export namespace Content {
 
 			this.form = (entry.form as Form) || undefined
 			this.imageContents = (entry.imageContents || []).map(imageContentEntry => {
-				return new Image.Content(imageContentEntry)
+				return new Image.Content(imageContentEntry.value)
 			})
 		}
 
