@@ -14,7 +14,7 @@ export namespace Work {
 		description: string|undefined
 		titleImage: Image.Content|undefined
 		event: Vita.Event|undefined
-		blocks: Content.Block[]
+		blocks?: Content.Block[]
 
 		constructor(entry: ItemEntry) {
 			this.display = entry.display
@@ -45,16 +45,6 @@ export namespace Work {
 			}).filter(model => { return model !== undefined }) as Content.Block[]
 		}
 
-	}
-
-	type AnyClass = { new(...args: any[]): any }
-
-	function instantiatedModel<T extends AnyClass>(Model: T, entry: any|undefined): T|undefined {
-		if (!entry) {
-			return undefined
-		}
-
-		return new Model(entry)
 	}
 
 	// Stored Model
