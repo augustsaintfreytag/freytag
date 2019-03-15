@@ -5,16 +5,28 @@ import CockpitResponse from "../models/cockpit-response"
 import CockpitError from "../library/cockpit-error"
 import { Configuration } from "~/components/common/configuration/configuration"
 import { Url } from "~/components/common/library/url"
+import CockpitRequestOptions from "../models/cockpit-request-options";
 
-export default class CockpitDataAccess {
+export namespace CockpitDataAccess {
+
+	type AnyRequestObject = {[key: string]: any}
+
+	// Constants
+
+	const defaultOptions: AnyRequestObject = {
+		populate: 1,
+		filter: { display: true }
+	}
 
 	// General Fetch
 
-	static async data(route: string): Promise<CockpitResponse> {
-		const url = CockpitDataAccess.preparedUrl(route)
+	export async function data(route: string, requestOptions?: CockpitRequestOptions): Promise<CockpitResponse> {
+		const url = preparedUrl(route)
 
 		try {
-			const serverResponse = await axios.get(url)
+			const options = preparedOptions(defaultOptions, requestOptions || {})
+			const serverResponse = await axios.post(url, options)
+
 			return serverResponse.data as CockpitResponse
 		} catch (err) {
 			throw new CockpitError(`Could not get response from cockpit. ${err}`)
@@ -23,14 +35,14 @@ export default class CockpitDataAccess {
 
 	// Typed Fetch
 
-	static async recordsInCollection(collection: string): Promise<CockpitResponse> {
+	export async function recordsInCollection(collection: string, requestOptions?: CockpitRequestOptions): Promise<CockpitResponse> {
 		const route = `api/collections/get/${collection}`
-		return await CockpitDataAccess.data(route)
+		return await data(route, requestOptions)
 	}
 
 	// Preparation
 
-	private static preparedUrl(route: string): Url {
+	function preparedUrl(route: string): Url {
 		const token = Configuration.cmsToken()
 		const host = Configuration.cmsHost()
 		

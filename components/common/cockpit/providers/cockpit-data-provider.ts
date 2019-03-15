@@ -1,5 +1,5 @@
 import { Vita as Life } from "../models/vita-event"
-import CockpitDataAccess from "./cockpit-data-access"
+import { CockpitDataAccess } from "./cockpit-data-access"
 
 export default class CockpitDataProvider {
 
