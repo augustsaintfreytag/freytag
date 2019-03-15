@@ -1,5 +1,5 @@
 <template>
-	<section class="work-page">
+	<section class="work-pages work-detail-page">
 		<section class="introducer">
 			<div class="image-holder"></div>
 			<div class="title-holder">
