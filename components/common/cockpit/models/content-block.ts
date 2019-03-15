@@ -43,6 +43,18 @@ export namespace Content {
 
 	}
 
+	export class VideoVimeoBlock implements Block {
+
+		form: Form|undefined
+		videoCode: string|undefined
+
+		constructor(entry: BlockEntry) {
+			this.form = entry.form as Form
+			this.videoCode = entry.videoCode || undefined
+		}
+
+	}
+
 	export enum Form {
 
 		TextQuote = "Text (Quote)",
