@@ -24,4 +24,18 @@ export default class CockpitDataProvider {
 			return new Work.Item(storedWorkItem)
 		})
 	}
+
+	static async workItem(id: UUID): Promise<Work.Item|undefined> {
+		const response = await CockpitDataAccess.recordsInCollection("work", {
+			filter: { _id: id }
+		})
+
+		if (response.entries.length !== 1) {
+			return undefined
+		}
+
+		const storedWorkItem = response.entries[0] as Work.ItemEntry
+		return new Work.Item(storedWorkItem)
+	}
+
 }
