@@ -36,5 +36,21 @@ export default class CockpitDataAccess {
 		
 		return `http://${path.join(host, route)}?token=${token}`
 	}
+
+	function preparedOptions(baseOptions: AnyRequestObject, requestOptions: AnyRequestObject): AnyRequestObject {
+		const mergedOptions = baseOptions
+		
+		for (const key in requestOptions) {
+			const value = requestOptions[key]
+			
+			if (typeof value === "object" && value !== null) {
+				mergedOptions[key] = preparedOptions(mergedOptions[key] || {}, value)
+			} else {
+				mergedOptions[key] = value
+			}
+		}
+
+		return mergedOptions
+	}
 	
 }
