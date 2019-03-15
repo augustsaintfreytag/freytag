@@ -1,5 +1,5 @@
 import { CockpitEntry } from "./cockpit-response"
-import { Url } from "../../library/url"
+import { Image } from "./image"
 
 export namespace Content {
 
@@ -56,35 +56,12 @@ export namespace Content {
 
 	export interface BlockEntry extends CockpitEntry {
 
-		form: string
+		form: string|Form
 		identifierItem: string
 		identifierGroup: string
 		textContent: string
 		imageContents: Image.ContentEntry[]|undefined
-		videoCode: string|undefined
-
-	}
-
-	// Image Submodel
-
-	export namespace Image {
-
-		export interface ContentEntry {
-
-			field: {type: string, label: string}
-			value: {path: string}
-	
-		}
-
-		export class Content {
-
-			path: Url|undefined
-			
-			constructor(entry: ContentEntry) {
-				this.path = entry.value.path || undefined
-			}
-
-		}
+		videoCode: string
 
 	}
 
