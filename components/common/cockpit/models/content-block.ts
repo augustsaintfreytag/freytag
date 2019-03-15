@@ -72,9 +72,18 @@ export namespace Content {
 		identifierItem: string
 		identifierGroup: string
 		textContent: string
-		imageContents: Image.ContentEntry[]|undefined
+		imageContents: BlockRepeatedImageEntry[]|undefined
 		videoCode: string
 
 	}
+
+	export interface BlockRepeatedEntry<ValueObject> {
+
+		field: {type: string, label: string}
+		value: ValueObject
+
+	}
+
+	export type BlockRepeatedImageEntry = BlockRepeatedEntry<Image.ContentEntry>
 
 }
