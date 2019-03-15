@@ -1,5 +1,5 @@
-import { UUID } from "~/components/common/library/uuid"
 import { CockpitEntry } from "./cockpit-response"
+import { Kind } from "./kind"
 
 export namespace Vita {
 
@@ -29,12 +29,6 @@ export namespace Vita {
 			this.description = event.description || undefined
 		}
 	
-	}
-
-	export enum Kind {
-		Work = "Work",
-		Life = "Life",
-		Education = "Education"
 	}
 
 	// Stored Model
