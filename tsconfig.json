@@ -1,5 +1,4 @@
 {
-  "extends": "@nuxt/typescript-edge",
   "compilerOptions": {
     "baseUrl": ".",
     "experimentalDecorators": true,
@@ -7,6 +6,28 @@
     "types": [
       "@types/node",
       "@nuxt/vue-app-edge"
-    ]
+    ],
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": [
+      "esnext",
+      "esnext.asynciterable",
+      "dom"
+    ],
+    "esModuleInterop": true,
+    "allowJs": true,
+    "sourceMap": true,
+    "strict": true,
+    "noImplicitAny": false,
+    "noEmit": true,
+    "paths": {
+      "~/*": [
+        "./*"
+      ],
+      "@/*": [
+        "./*"
+      ]
+    }
   }
 }
