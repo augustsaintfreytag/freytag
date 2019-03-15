@@ -1,7 +1,7 @@
-import { CockpitEntry } from "./cockpit-response"
 import { Vita } from "./vita-event"
 import { Image } from "./image"
 import { Content } from "./content-block";
+import { CockpitEntry } from "./cockpit-entry"
 
 export namespace Work {
 

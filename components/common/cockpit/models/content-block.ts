@@ -1,5 +1,5 @@
-import { CockpitEntry } from "./cockpit-response"
 import { Image } from "./image"
+import { CockpitEntry } from "./cockpit-entry"
 
 export namespace Content {
 

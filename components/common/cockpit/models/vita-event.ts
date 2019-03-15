@@ -1,6 +1,6 @@
 import { Conversion } from "../providers/conversion"
-import { CockpitEntry } from "./cockpit-response"
 import { Kind } from "./kind"
+import { CockpitEntry } from "./cockpit-entry"
 
 export namespace Vita {
 
