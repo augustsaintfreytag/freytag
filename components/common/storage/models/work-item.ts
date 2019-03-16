@@ -1,7 +1,7 @@
+import { Image } from "../../cockpit/models/image"
+import { CockpitEntry } from "../../cockpit/models/cockpit-entry"
+import { Content } from "./content-block"
 import { Vita } from "./vita-event"
-import { Image } from "./image"
-import { Content } from "./content-block";
-import { CockpitEntry } from "./cockpit-entry"
 import MetaData from "./meta-data"
 
 export namespace Work {

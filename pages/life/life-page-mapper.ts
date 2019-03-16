@@ -1,5 +1,5 @@
 import CockpitDataProvider from "~/components/common/cockpit/providers/cockpit-data-provider"
-import { Vita } from "~/components/common/cockpit/models/vita-event"
+import { Vita } from "~/components/common/storage/models/vita-event"
 import { LifePageData } from "./life-page-data"
 
 export namespace LifePageMapper {
