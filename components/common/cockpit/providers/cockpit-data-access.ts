@@ -43,10 +43,11 @@ export namespace CockpitDataAccess {
 	// Preparation
 
 	function preparedUrl(route: string): Url {
+		const protocol = Configuration.cmsProtocol()
 		const token = Configuration.cmsToken()
 		const host = Configuration.cmsHost()
 		
-		return `http://${path.join(host, route)}?token=${token}`
+		return `${protocol}://${path.join(host, route)}?token=${token}`
 	}
 
 	function preparedOptions(baseOptions: AnyRequestObject, requestOptions: AnyRequestObject): AnyRequestObject {

@@ -2,12 +2,17 @@ export namespace Configuration {
 
 	type APIToken = string
 	type URL = string
+	type Protocol = string
+
+	export function cmsProtocol(): Protocol {
+		return "http"
+	}
 
 	export function cmsHost(): URL {
 		if (process.server) {
 			return "cockpit"
 		} else {
-			return "127.0.0.1:8090"
+			return "cockpit.intra"
 		}
 	}
 
