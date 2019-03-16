@@ -27,7 +27,7 @@ const data: LifePageData = {
 	computed: {
 		eventToggleDefinitions: () => {
 			return [
-				{identifier: "all", name: "All", filter: undefined},
+				{identifier: "all", name: "All"},
 				{identifier: "life", name: "Life", filter: "Life"},
 				{identifier: "education", name: "Education", filter: "Education"},
 				{identifier: "film", name: "Film", filter: "Film"},
