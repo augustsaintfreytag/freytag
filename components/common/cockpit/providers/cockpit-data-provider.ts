@@ -15,9 +15,7 @@ export default class CockpitDataProvider {
 	}
 
 	static async workItems(): Promise<Work.Item[]> {
-		const response = await CockpitDataAccess.recordsInCollection("work", {
-			fields: { blocks: 0 }
-		})
+		const response = await CockpitDataAccess.recordsInCollection("work")
 
 		return response.entries.map(entry => {
 			const storedWorkItem = entry as Work.ItemEntry
