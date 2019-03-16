@@ -1,15 +1,18 @@
 <template>
 	<section class="work-overview-page">
 		<section class="work-overview inset">
-			<section class="work-item kind-blip-colored kind-all">
+			<section class="work-item kind-blip-colored kind-all" 
+				v-for="workItem in workItems" :key="workItem.meta.id"
+				v-bind:class="workItem.event && workItem.event.kind ? `kind-${workItem.event.kind.toLowerCase()}` : ''"
+			>
 				<div class="image-holder"></div>
 				<div class="item-data">
-					<div class="blip kind-life"></div>
-					<div class="format">Photographic Series</div>
-					<div class="contents">7 samples</div>
+					<div class="blip"></div>
+					<div class="format">{{ workItem.event && workItem.event.format ? workItem.event.format : "Publication" }}</div>
+					<div class="contents">{{ workItem.numberOfSamples === 1 ? "1 sample" : `${workItem.numberOfSamples} samples` }}</div>
 				</div>
 				<div class="item-name">
-					<h2>There I Was (Children in Suits)</h2>
+					<h2>{{ workItem.name }}</h2>
 				</div>
 			</section>
 		</section>
