@@ -1,6 +1,6 @@
-import { UUID } from "../../library/uuid"
-import { CockpitEntry } from "../../cockpit/models/cockpit-entry"
+import { UUID } from "~/components/common/library/uuid"
 import { ConversionProvider } from "~/components/common/cockpit/providers/conversion-provider"
+import { CockpitEntry } from "~/components/common/cockpit/models/cockpit-entry"
 
 export default class MetaData {
 	

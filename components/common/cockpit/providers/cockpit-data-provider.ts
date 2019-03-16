@@ -1,7 +1,7 @@
 import { Vita } from "../../storage/models/vita-event"
 import { CockpitDataAccess } from "./cockpit-data-access"
 import { Work } from "../../storage/models/work-item"
-import { UUID } from "../../library/uuid"
+import { UUID } from "~/components/common/library/uuid"
 
 export default class CockpitDataProvider {
 

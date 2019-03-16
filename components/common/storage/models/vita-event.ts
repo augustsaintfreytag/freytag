@@ -1,7 +1,7 @@
-import MetaData from "./meta-data"
 import { ConversionProvider } from "~/components/common/cockpit/providers/conversion-provider"
+import { CockpitEntry } from "~/components/common/cockpit/models/cockpit-entry"
 import { Kind } from "../library/kind"
-import { CockpitEntry } from "../../cockpit/models/cockpit-entry"
+import MetaData from "./meta-data"
 
 export namespace Vita {
 

@@ -1,5 +1,5 @@
-import { Image } from "../../cockpit/models/image"
-import { CockpitEntry } from "../../cockpit/models/cockpit-entry"
+import { Image } from "~/components/common/cockpit/models/image"
+import { CockpitEntry } from "~/components/common/cockpit/models/cockpit-entry"
 import MetaData from "./meta-data"
 
 export namespace Content {
