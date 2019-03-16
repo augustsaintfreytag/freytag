@@ -1,4 +1,4 @@
-export namespace Conversion {
+export namespace ConversionProvider {
 
 	export function dateFromString(string: string): Date|undefined {
 		const date = new Date(string)

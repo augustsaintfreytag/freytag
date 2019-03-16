@@ -1,5 +1,5 @@
 import MetaData from "./meta-data"
-import { Conversion } from "../../cockpit/providers/conversion"
+import { ConversionProvider } from "~/components/common/cockpit/providers/conversion-provider"
 import { Kind } from "../library/kind"
 import { CockpitEntry } from "../../cockpit/models/cockpit-entry"
 
@@ -26,8 +26,8 @@ export namespace Vita {
 			this.name = event.name
 			this.kind = event.kind as Kind
 			this.format = event.format || undefined
-			this.dateStarted = Conversion.dateFromString(event.dateStarted)
-			this.dateEnded = Conversion.dateFromString(event.dateEnded)
+			this.dateStarted = ConversionProvider.dateFromString(event.dateStarted)
+			this.dateEnded = ConversionProvider.dateFromString(event.dateEnded)
 			this.role = event.role || undefined
 			this.context = event.context || undefined
 			this.location = event.location || undefined

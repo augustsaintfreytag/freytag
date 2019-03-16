@@ -1,6 +1,6 @@
 import { UUID } from "../../library/uuid"
-import { Conversion } from "../../cockpit/providers/conversion"
 import { CockpitEntry } from "../../cockpit/models/cockpit-entry"
+import { ConversionProvider } from "~/components/common/cockpit/providers/conversion-provider"
 
 export default class MetaData {
 	
@@ -18,11 +18,11 @@ export default class MetaData {
 		this.editor = entry._mby
 
 		if (entry._created) {
-			this.created = Conversion.dateFromTimestamp(entry._created)
+			this.created = ConversionProvider.dateFromTimestamp(entry._created)
 		}
 
 		if (entry._modified) {
-			this.modified = Conversion.dateFromTimestamp(entry._modified)
+			this.modified = ConversionProvider.dateFromTimestamp(entry._modified)
 		}
 	}
 
