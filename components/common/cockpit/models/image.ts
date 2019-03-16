@@ -1,4 +1,4 @@
-import { Url } from "../../library/url"
+import { Url } from "~/components/common/library/url"
 
 export namespace Image {
 

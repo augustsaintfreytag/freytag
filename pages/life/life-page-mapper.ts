@@ -1,31 +1,29 @@
 import CockpitDataProvider from "~/components/common/cockpit/providers/cockpit-data-provider"
-import { Vita } from "~/components/common/cockpit/models/vita-event"
+import { Vita } from "~/components/common/storage/models/vita-event"
+import { SortingProvider } from "~/components/common/storage/providers/sorting-provider"
 import { LifePageData } from "./life-page-data"
 
 export namespace LifePageMapper {
-
-	interface SortingKeyPair {
-		primary: string
-		secondary: string|undefined
-	}
 	
 	export type SortingMode = string
 	export type Filter = string
 
-	export const sortingOptions: {[key: string]: SortingKeyPair|undefined} = {
+	export const sortingOptions: {[key: string]: SortingProvider.KeyPair|undefined} = {
 		time: {primary: "dateEnded", secondary: "dateStarted"},
 		format: {primary: "format", secondary: undefined}
 	}
 
+	// Fetching
+
 	export async function updateLifeEvents(data: LifePageData): Promise<void> {
 		try {
 			data.unsortedLifeEvents = await CockpitDataProvider.lifeEvents()
-		} catch (err) {
-			console.error(`Did not get results. ${err}`)
+		} catch (error) {
+			console.error(`Could not fetch life events. ${error}`)
 		}
 	}
 
-	// Direct Mapping
+	// Mapping
 
 	export function mapSortedLifeEvents(data: LifePageData) {
 		let events = data.unsortedLifeEvents
@@ -80,34 +78,8 @@ export namespace LifePageMapper {
 		})
 	}
 
-	function sortedLifeEventsWithOptions(events: Vita.Event[], options: {sortingKeyPair: SortingKeyPair, sortingReversed: boolean}): Vita.Event[] {
-		const sortingKeyPrimary = options.sortingKeyPair.primary
-		const sortingKeySecondary = options.sortingKeyPair.secondary || options.sortingKeyPair.primary
-
-		type LifeEventDictionary = {[key: string]: any}
-
-		events = events.sort((a: LifeEventDictionary, b: LifeEventDictionary) => {
-			const aValue = a[sortingKeyPrimary] || a[sortingKeySecondary] || ""
-			const bValue = b[sortingKeyPrimary] || b[sortingKeySecondary] || ""
-
-			if (aValue < bValue) {
-				return -1
-			}
-			
-			if(aValue > bValue) {
-				return 1
-			}
-
-			return 0
-		})
-
-		// Events are already reversed by default, no action required.
-
-		if (options.sortingReversed) {
-			return events.reverse()
-		} else {
-			return events
-		}
+	function sortedLifeEventsWithOptions(events: Vita.Event[], options: {sortingKeyPair: SortingProvider.KeyPair, sortingReversed: boolean}): Vita.Event[] {
+		return SortingProvider.sortedModels(events, options)
 	}
 
 }

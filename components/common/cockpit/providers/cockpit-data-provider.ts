@@ -1,16 +1,16 @@
-import { Vita as Life } from "../models/vita-event"
+import { Vita } from "../../storage/models/vita-event"
 import { CockpitDataAccess } from "./cockpit-data-access"
-import { Work } from "../models/work-item"
-import { UUID } from "../../library/uuid"
+import { Work } from "../../storage/models/work-item"
+import { UUID } from "~/components/common/library/uuid"
 
 export default class CockpitDataProvider {
 
-	static async lifeEvents(): Promise<Life.Event[]> {
+	static async lifeEvents(): Promise<Vita.Event[]> {
 		const response = await CockpitDataAccess.recordsInCollection("vita")
 
 		return response.entries.map(entry => {
-			const storedLifeEvent = entry as Life.EventEntry
-			return new Life.Event(storedLifeEvent)
+			const storedLifeEvent = entry as Vita.EventEntry
+			return new Vita.Event(storedLifeEvent)
 		})
 	}
 

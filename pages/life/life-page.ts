@@ -1,5 +1,5 @@
 import { Component, Vue } from "vue-property-decorator"
-import { Vita } from "~/components/common/cockpit/models/vita-event"
+import { Vita } from "~/components/common/storage/models/vita-event"
 import { LifePageData } from "./life-page-data"
 import { LifePageMapper } from "./life-page-mapper"
 
