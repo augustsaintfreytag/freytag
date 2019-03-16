@@ -15,7 +15,8 @@ export namespace Work {
 		description: string|undefined
 		titleImage: Image.Content|undefined
 		event: Vita.Event|undefined
-		blocks?: Content.Block[]
+		blocks: Content.Block[]
+		numberOfSamples: number
 		meta: MetaData
 
 		constructor(entry: ItemEntry) {
@@ -45,6 +46,16 @@ export namespace Work {
 						return undefined
 				}
 			}).filter(model => { return model !== undefined }) as Content.Block[]
+			
+			this.numberOfSamples = this.blocks.reduce((count: number, block: Content.Block) => {
+				if (block instanceof Content.ImageColumnsBlock) {
+					count += block.imageContents.length
+				} else if (block instanceof Content.VideoVimeoBlock) {
+					count += 1
+				}
+
+				return count
+			}, 0)
 
 			this.meta = new MetaData(entry)
 		}
