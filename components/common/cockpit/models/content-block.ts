@@ -1,13 +1,15 @@
 import { Image } from "./image"
 import { CockpitEntry } from "./cockpit-entry"
+import MetaData from "./meta-data"
 
 export namespace Content {
 
-	// Live Model
+	// Live Models
 
 	export interface Block {
 
 		form: Form|undefined
+		meta: MetaData
 
 	}
 
@@ -15,10 +17,12 @@ export namespace Content {
 
 		form: Form|undefined
 		textContent: string|undefined
+		meta: MetaData
 
 		constructor(entry: BlockEntry) {
 			this.form = (entry.form as Form) || undefined
 			this.textContent = entry.textContent || undefined
+			this.meta = new MetaData(entry)
 		}
 
 	}
@@ -29,6 +33,7 @@ export namespace Content {
 
 		form: Form|undefined
 		imageContents: Image.Content[]
+		meta: MetaData
 
 		constructor(entry: BlockEntry) {
 			if (entry.form !== Form.ImageColumns) {
@@ -39,6 +44,7 @@ export namespace Content {
 			this.imageContents = (entry.imageContents || []).map(imageContentEntry => {
 				return new Image.Content(imageContentEntry.value)
 			})
+			this.meta = new MetaData(entry)
 		}
 
 	}
@@ -47,10 +53,12 @@ export namespace Content {
 
 		form: Form|undefined
 		videoCode: string|undefined
+		meta: MetaData
 
 		constructor(entry: BlockEntry) {
 			this.form = entry.form as Form
 			this.videoCode = entry.videoCode || undefined
+			this.meta = new MetaData(entry)
 		}
 
 	}
@@ -64,7 +72,7 @@ export namespace Content {
 
 	}
 
-	// Stored Model
+	// Stored Models
 
 	export interface BlockEntry extends CockpitEntry {
 
