@@ -2,6 +2,7 @@ import { Vita } from "./vita-event"
 import { Image } from "./image"
 import { Content } from "./content-block";
 import { CockpitEntry } from "./cockpit-entry"
+import MetaData from "./meta-data"
 
 export namespace Work {
 
@@ -15,6 +16,7 @@ export namespace Work {
 		titleImage: Image.Content|undefined
 		event: Vita.Event|undefined
 		blocks?: Content.Block[]
+		meta: MetaData
 
 		constructor(entry: ItemEntry) {
 			this.display = entry.display
@@ -43,6 +45,8 @@ export namespace Work {
 						return undefined
 				}
 			}).filter(model => { return model !== undefined }) as Content.Block[]
+
+			this.meta = new MetaData(entry)
 		}
 
 	}
