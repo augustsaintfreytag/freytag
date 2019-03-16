@@ -11,9 +11,15 @@
 		grid-gap: 15px;
 
 		> .work-item {
-			.image-holder {
-				height: 400px;
+			.image-holder {	
 				background: #efefef;
+				overflow: hidden;
+				height: 400px;
+
+				img {
+					min-width: 100%;
+					height: 100%;
+				}
 			}
 
 			.item-data {
