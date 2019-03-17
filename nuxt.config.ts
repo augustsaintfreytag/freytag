@@ -9,5 +9,6 @@ export default {
 				config.devtool = "eval-source-map"
 			}
 		}
-	}
+	},
+	plugins: ["~/plugins/paths.ts"]
 }
