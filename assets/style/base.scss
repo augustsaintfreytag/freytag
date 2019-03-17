@@ -3,6 +3,9 @@
 html, body {
 	padding: 0;
 	margin: 0;
+
+	// TODO: Mobile layouts and special handling.
+	min-width: 1050px;
 }
 
 body {
@@ -60,6 +63,12 @@ a, a:link, a:active, a:visited, a:hover {
 			flex: 0 auto;
 		}
 	}
+}
+
+.inset {
+	max-width: 1300px;
+	margin-left: auto;
+	margin-right: auto;
 }
 
 main {
