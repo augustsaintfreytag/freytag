@@ -1,38 +1,14 @@
 import { Component, Vue } from "vue-property-decorator"
-import { UUID } from "~/components/common/library/uuid"
-import { Work } from "~/components/common/storage/models/work-item"
-import CockpitDataProvider from "~/components/common/cockpit/providers/cockpit-data-provider"
 import { DateFormatter } from "~/components/common/storage/providers/date-formatter"
+import { WorkDetailPageData } from "./work-detail-page-data"
+import { WorkDetailPageMapper } from "./work-detail-page-mapper"
+import { Content } from "~/components/common/storage/models/content-block"
 
-
-interface WorkDetailPageData {
-
-	workItemId: UUID|undefined
-	workItem: Work.Item|undefined
-
-}
 
 const data: WorkDetailPageData = {
 
-	workItemId: undefined,
-	workItem: undefined
-
-}
-
-namespace WorkDetailPageMapper {
-
-	export async function updateWorkItem(data: WorkDetailPageData) {
-		if (!data.workItemId) {
-			return
 		}
 
-		try {
-			const workItem = await CockpitDataProvider.workItemById(data.workItemId)
-			data.workItem = workItem
-		} catch (error) {
-			console.error(`Could not fetch active work item. ${error}`)
-		}
-	}
 
 }
 
