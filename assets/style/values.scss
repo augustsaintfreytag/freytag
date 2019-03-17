@@ -5,17 +5,23 @@ $insetHorizontal: 50px;
 
 // Colors
 
-$textColor: #414141;
+$textColor: #4f4f4f;
 $textColorLight: #6F6F6F;
 $textColorVeryLight: #AAA;
 
+$textColorHeading: #3a3a3a;
+
+// Text
+
+$textLineHeightParagraph: 1.75;
+
 // Sizes
 
-$fontSizeDefault: 1em;
-$fontSizeTaglineDefault: 0.9em;
+$fontSizeDefault: 0.95em;
+$fontSizeTaglineDefault: 1em;
 
-$fontSizeLabelDefault: 1.15em;
-$fontSizeLabelBold: 1.5em;
+$fontSizeLabelDefault: 1.25em;
+$fontSizeLabelBold: 1.6em;
 
-$fontSizeHeadingDefault: 3em;
-$fontSizeHeadingBold: 3.25em;
+$fontSizeHeadingDefault: 3.1em;
+$fontSizeHeadingBold: 3.5em;
