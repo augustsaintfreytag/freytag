@@ -4,6 +4,8 @@ header {
 	display: flex;
 	margin-bottom: 10px;
 	background: #fff;
+	box-sizing: border-box;
+	width: 100%;
 	
 	> * {
 		flex: auto;
@@ -32,6 +34,7 @@ header {
 	nav {
 		flex: 0;
 		display: flex;
+		margin-top: 5px;
 
 		$activeOpacity: 0.25;
 
