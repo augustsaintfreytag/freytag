@@ -1,5 +1,5 @@
 import { Component, Vue } from "vue-property-decorator"
-import { Content } from "~/components/common/storage/models/content-block";
+import { Content } from "~/components/common/storage/models/content-block"
 
 @Component({
 
