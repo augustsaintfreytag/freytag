@@ -1,0 +1,16 @@
+@import "~/assets/style/values.scss";
+
+.text-column-block {
+
+	p {
+		margin: 0;
+		font-size: $fontSizeLabelDefault;
+		text-align: left;
+		color: $textColorLight;
+		line-height: $textLineHeightParagraph;
+
+		columns: auto 2;
+		column-gap: 50px;
+	}
+
+}
