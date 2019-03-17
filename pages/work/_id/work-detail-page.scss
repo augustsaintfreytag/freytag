@@ -53,6 +53,8 @@
 	}
 
 	section.introduction {
+		$contentInset: 100px;
+
 		display: flex;
 		margin-top: 50px;
 		margin-bottom: 50px;
@@ -65,6 +67,11 @@
 			table {
 				border-collapse: collapse;
 				border: none;
+
+				td {
+					vertical-align: top;
+					padding-right: $contentInset;
+				}
 
 				.label, .text {
 					padding-bottom: 8px;
@@ -85,6 +92,7 @@
 
 		.description {
 			line-height: $textLineHeightParagraph;
+			padding-left: $contentInset;
 		}
 	}
 
