@@ -1,12 +1,18 @@
 @import "~/assets/style/values.scss";
 
-body {
-	font-family: "paralucent";
-	color: $textColor;
-	font-weight: 300;
+html, body {
 	padding: 0;
 	margin: 0;
-	font-size: 1em;
+
+	// TODO: Mobile layouts and special handling.
+	min-width: 1050px;
+}
+
+body {
+	font-family: "paralucent", sans-serif;
+	font-weight: 300;
+	font-size: $fontSizeDefault;
+	color: $textColor;
 }
 
 // Text
@@ -14,6 +20,7 @@ body {
 h1, h2, h3, h4 {
 	font-family: "paralucent";
 	font-weight: 700;
+	margin: 0;
 }
 
 // Elements
@@ -26,11 +33,16 @@ button {
 	outline: none;
 }
 
+a, a:link, a:active, a:visited, a:hover {
+	text-decoration: unset;
+	color: unset;
+}
+
 // Case & Wrap
 
 .case {
 	display: flex;
-	justify-content: space-around;
+	justify-content: space-between;
 
 	> .wrap {
 		display: flex;
@@ -53,10 +65,22 @@ button {
 	}
 }
 
+.inset {
+	max-width: 1300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 main {
 	padding: 0 0 $insetVertical 0;
 }
 
 .inset {
 	padding: $insetVertical $insetHorizontal;
+}
+
+.covering {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
 }

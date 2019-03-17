@@ -1,7 +1,11 @@
-import { UUID } from "~/components/common/library/uuid"
-import { CockpitEntry } from "./cockpit-response"
+import { ConversionProvider } from "~/components/common/cockpit/providers/conversion-provider"
+import { CockpitEntry } from "~/components/common/cockpit/models/cockpit-entry"
+import { Kind } from "../library/kind"
+import MetaData from "./meta-data"
 
 export namespace Vita {
+
+	// Live Model
 
 	export class Event {
 
@@ -15,26 +19,22 @@ export namespace Vita {
 		context: string|undefined
 		location: string|undefined
 		description: string|undefined
+		meta: MetaData
 	
 		constructor(event: EventEntry) {
 			this.display = event.display
 			this.name = event.name
 			this.kind = event.kind as Kind
 			this.format = event.format || undefined
-			this.dateStarted = date(event.dateStarted)
-			this.dateEnded = date(event.dateEnded)
+			this.dateStarted = ConversionProvider.dateFromString(event.dateStarted)
+			this.dateEnded = ConversionProvider.dateFromString(event.dateEnded)
 			this.role = event.role || undefined
 			this.context = event.context || undefined
 			this.location = event.location || undefined
 			this.description = event.description || undefined
+			this.meta = new MetaData(event)
 		}
 	
-	}
-
-	export enum Kind {
-		Work = "Work",
-		Life = "Life",
-		Education = "Education"
 	}
 
 	// Stored Model
@@ -52,18 +52,6 @@ export namespace Vita {
 		location: string
 		description: string
 
-	}
-
-	// Conversion
-
-	function date(string: string): Date|undefined {
-		const date = new Date(string)
-		
-		if (isNaN(date.getDate())) {
-			return undefined
-		}
-
-		return date
 	}
 
 }

@@ -1,16 +1,9 @@
 <template>
 	<footer>
-		Footer here.
-	</footer>	
+	</footer>
 </template>
 
-<script lang="ts">
-	import { Component, Vue } from "vue-property-decorator"
+<style lang="scss" src="./footer.scss"></style>
 
-	@Component
-	export default class FooterComponent extends Vue {}
-</script>
-
-<style lang="scss">
-</style>
+<script lang="ts" src="./footer.ts"></script>
 

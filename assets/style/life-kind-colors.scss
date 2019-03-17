@@ -1,10 +1,18 @@
-@import "~/assets/style/life-kinds.scss";
+$lifeKindColor: (
 
-.life-page {
-	// Life Event Colors
+	all: #c3d8e6,
+	life: #FFE760,
+	education: #B784BC,
+	film: #2922E8,
+	artwork: #4ECCCE,
+	photography: #BFBC74,
+	development: #7799D8
 
-	@each $key, $color in $lifeKindColor {
-		.kind-#{$key} {
+);
+
+@each $key, $color in $lifeKindColor {
+	.kind-blip-colored {
+		&.kind-#{$key} {
 			.blip:before {
 				background: $color;
 				border-color: transparent;
@@ -16,7 +24,7 @@
 			}
 		}
 
-		.kind-#{$key}.active {
+		&.kind-#{$key}.active {
 			.blip.active-indicator:before {
 				background: $color;
 				border-color: transparent;

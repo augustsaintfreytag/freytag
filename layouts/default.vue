@@ -1,16 +1,14 @@
 <template>
-	<span>
-		<div class="case">
-			<div class="wrap">
-				<header-component />
-				<main>
-					<nuxt />
-				</main>
-				<footer-component />
-			</div>
+	<div class="case">
+		<div class="wrap">
+			<header-component />
+			<main>
+				<nuxt />
+			</main>
+			<footer-component />
 		</div>
 		<sprite-set />
-	</span>
+	</div>
 </template>
 
 <style lang="scss">

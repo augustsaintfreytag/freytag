@@ -2,6 +2,7 @@
 	<section class="life-page inset">
 		<div class="life-events-filter">
 			<div 
+				class="kind-blip-colored"
 				v-for="definition in eventToggleDefinitions" :key="definition.identifier"
 				v-bind:class="[
 					definition.identifier,
@@ -36,7 +37,7 @@
 			</div>
 		</div>
 		<ul class="life-events">
-			<li v-bind:class="`life-event kind-${lifeEvent.kind.toLowerCase()}`" v-for="lifeEvent in lifeEvents" :key="lifeEvent.index">
+			<li class="kind-blip-colored" v-bind:class="`life-event kind-${lifeEvent.kind.toLowerCase()}`" v-for="lifeEvent in lifeEvents" :key="lifeEvent.index">
 				<div class="header">
 					<div class="blip" v-bind:title="lifeEvent.kind"></div>
 					<h2 class="name">{{ lifeEvent.name }}</h2>

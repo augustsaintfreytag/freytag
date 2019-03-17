@@ -1,3 +1,6 @@
+import { CockpitEntry } from "./cockpit-entry"
+import { CockpitFieldDefinition } from "./cockpit-field-definition"
+
 export default interface CockpitResponse {
 
 	total: number,
@@ -5,14 +8,3 @@ export default interface CockpitResponse {
 	entries: CockpitEntry[]
 
 }
-
-export interface CockpitFieldDefinition {
-
-	type: string
-	localize: boolean
-	name: string
-	options: any[]
-
-}
-
-export type CockpitEntry = any

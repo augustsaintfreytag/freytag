@@ -1,13 +1,14 @@
 @import "~/assets/style/values.scss";
-@import "./life-page-event-colors.scss";
-
-// Page
-
-$blipHeight: 14px;
-$blipPadding: 10px;
-$pageInsetHorizontal: $insetHorizontal - $blipHeight;
+@import "~/assets/style/mixins/blip-element.scss";
+@import "~/assets/style/life-kind-colors.scss";
 
 .life-page {
+	// Values
+
+	$blipSize: 14px;
+	$blipPadding: 10px;
+	$pageInsetHorizontal: $insetHorizontal - $blipSize;
+
 	// Uniformity Rules
 
 	.life-events-header, .life-events {
@@ -17,13 +18,13 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 	// Life Events Filter
 
 	.life-events-filter {
-		$filterBlipHeight: 18px;
+		$filterBlipSize: 18px;
 		$filterBlipPadding: 5px;
 		$filterInterItemSpacing: 25px;
 
 		display: flex;
 		margin-bottom: 50px;
-		// padding-left: $blipHeight + $blipPadding;
+		// padding-left: $blipSize + $blipPadding;
 
 		& > div {
 			margin-right: $filterInterItemSpacing;
@@ -37,8 +38,8 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 				&:before {
 					content: " ";
 					display: block;
-					height: $filterBlipHeight;
-					width: $filterBlipHeight;
+					height: $filterBlipSize;
+					width: $filterBlipSize;
 					border-radius: 100%;
 					box-sizing: border-box;
 					border-width: 3px;
@@ -48,7 +49,7 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 		
 			.name {
 				display: inline-block;
-				font-size: 1.5em;
+				font-size: $fontSizeLabelBold;
 				font-weight: 500;
 			}
 		}
@@ -69,6 +70,8 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 				}
 
 				.sort-switch {
+					$size: 15px;
+
 					display: inline-block;
 					box-sizing: border-box;
 					padding-left: 4px;
@@ -77,9 +80,8 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 					svg {
 						position: relative;
 						top: 2px;
-						$width: 15px;
-						height: $width;
-						width: $width;
+						height: $size;
+						width: $size;
 					}
 				}
 
@@ -134,24 +136,18 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 			}
 
 			.blip {
-				flex: 0 $blipHeight;
+				flex: 0 $blipSize;
 				height: min-content;
 				padding-top: 4px;
 				padding-right: $blipPadding;
-		
-				&:before {
-					content: " ";
-					display: block;
-					height: $blipHeight;
-					width: $blipHeight;
-					border-radius: 100%;
-				}
+
+				@include blipElement($blipSize);
 			}
 
 			.name {
 				margin: 0;
 				font-weight: 500;
-				font-size: 1.15em;
+				font-size: $fontSizeLabelDefault;
 				overflow: hidden;
 				white-space: nowrap;
 				text-overflow: ellipsis;
@@ -160,7 +156,7 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 
 		> .details {
 			display: flex;
-			padding-left: $blipHeight + $blipPadding;
+			padding-left: $blipSize + $blipPadding;
 
 			> * {
 				flex: auto;
@@ -187,7 +183,6 @@ $pageInsetHorizontal: $insetHorizontal - $blipHeight;
 				overflow: hidden;
 				white-space: nowrap;
 				text-overflow: ellipsis;
-				font-size: 1em;
 				font-family: "paralucent";
 				font-weight: 300;
 			}
