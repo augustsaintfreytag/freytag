@@ -5,9 +5,18 @@ services:
   proxy:
     image: nginx:latest
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:cached
+      - data-challenges:/usr/share/nginx/html/challenges
+      - data-certificates:/var/lib/letsencrypt
+      - ./server/nginx/${NGINX_CONF_NAME}:/etc/nginx/nginx.conf:cached
     ports:
       - "80:80"
+
+  certbot:
+    image: certbot/certbot:latest
+    volumes:
+      - data-challenges:/usr/share/nginx/html/challenges
+      - data-certificates:/var/lib/letsencrypt
+      - ./server/renewal:/etc/letsencrypt/renewal:cached
 
   app:
     image: node:latest
@@ -41,4 +50,8 @@ volumes:
   data-cockpit:
     driver: local
   data-app-build:
+    driver: local
+  data-challenges:
+    driver: local
+  data-certificates:
     driver: local
