@@ -69,3 +69,9 @@ main {
 .inset {
 	padding: $insetVertical $insetHorizontal;
 }
+
+.covering {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+}
