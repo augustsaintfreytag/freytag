@@ -4,11 +4,22 @@ import { WorkDetailPageData } from "./work-detail-page-data"
 import { WorkDetailPageMapper } from "./work-detail-page-mapper"
 import { Content } from "~/components/common/storage/models/content-block"
 
+import ImageColumnsBlockComponent from "~/components/content-blocks/image-columns-block/image-columns-block.vue"
+import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-block/text-quote-block.vue"
 
 const data: WorkDetailPageData = {
 
+	types: {
+		Form: {
+			ImageColumns: Content.Form.ImageColumns,
+			TextColumn: Content.Form.TextColumn,
+			TextQuote: Content.Form.TextQuote,
+			VideoVimeo: Content.Form.VideoVimeo
 		}
+	},
 
+	workItemId: undefined,
+	workItem: undefined,
 
 }
 
@@ -20,7 +31,7 @@ const data: WorkDetailPageData = {
 
 		if (!data.workItem) {
 			if (data.workItemId) {
-				throw { statusCode: 404, message: `Work with id '${data.workItemId}' could not be found.`}
+				throw { statusCode: 404, message: `Work with id '${data.workItemId}' could not be fetched.`}
 			} else {
 				throw { statusCode: 404, message: `Missing work id.` }
 			}
@@ -50,6 +61,11 @@ const data: WorkDetailPageData = {
 				{name: "Role", value: event.role}
 			]
 		}
+	},
+
+	components: {
+		TextQuoteBlockComponent,
+		ImageColumnsBlockComponent
 	}
 
 })

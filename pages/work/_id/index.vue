@@ -28,7 +28,10 @@
 				{{ workItem.description }}
 			</section>
 		</section>
-		<image-columns-block-component />
+		<span v-for="contentBlock in workItem.blocks" :key="contentBlock.meta.id">
+			<image-columns-block-component v-if="contentBlock.form === types.Form.ImageColumns" :contentBlock="contentBlock" />
+			<text-quote-block-component v-if="contentBlock.form === types.Form.TextQuote" :contentBlock="contentBlock" />
+		</span>
 	</section>
 </template>
 
