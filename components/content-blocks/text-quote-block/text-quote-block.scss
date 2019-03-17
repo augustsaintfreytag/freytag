@@ -1,0 +1,15 @@
+@import "~/assets/style/values.scss";
+
+.text-quote-block {
+
+	p {
+		padding: 0 25%;
+		margin: 0;
+		text-align: center;
+		font-size: $fontSizeLabelBold;
+		font-style: italic;
+		color: $textColorLight;
+		line-height: $textLineHeightParagraphBold;
+	}
+
+}
