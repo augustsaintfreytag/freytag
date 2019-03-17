@@ -33,6 +33,8 @@ header {
 		flex: 0;
 		display: flex;
 
+		$activeOpacity: 0.25;
+
 		> div {
 			flex: auto;
 			font-weight: 700;
@@ -46,7 +48,21 @@ header {
 			}
 
 			&.nuxt-link-exact-active {
-				opacity: 0.25;
+				opacity: $activeOpacity;
+			}
+
+			&.nuxt-link-active {
+				opacity: $activeOpacity;
+			}
+
+			&:first-child {
+				&.nuxt-link-active {
+					opacity: 1;
+				}
+
+				&.nuxt-link-active.nuxt-link-exact-active {
+					opacity: $activeOpacity;
+				}
 			}
 		}
 	}
