@@ -6,6 +6,8 @@ import { Content } from "~/components/common/storage/models/content-block"
 
 import ImageColumnsBlockComponent from "~/components/content-blocks/image-columns-block/image-columns-block.vue"
 import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-block/text-quote-block.vue"
+import TextColumnBlockComponent from "~/components/content-blocks/text-column-block/text-column-block.vue"
+import VideoVimeoBlockComponent from "~/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
 
 const data: WorkDetailPageData = {
 
@@ -65,7 +67,9 @@ const data: WorkDetailPageData = {
 
 	components: {
 		TextQuoteBlockComponent,
-		ImageColumnsBlockComponent
+		ImageColumnsBlockComponent,
+		TextColumnBlockComponent,
+		VideoVimeoBlockComponent
 	}
 
 })
