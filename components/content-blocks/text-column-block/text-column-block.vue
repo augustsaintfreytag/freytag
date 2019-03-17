@@ -1,6 +1,6 @@
 <template>
 	<section class="content-block text-column-block inset" v-if="contentBlock">
-		<p>{{ contentBlock.textContent }}</p>
+		<p v-for="(paragraph, index) in textParagraphs" :key="index">{{ paragraph }}</p>
 	</section>
 </template>
 
