@@ -16,6 +16,7 @@ header {
 		h1 {
 			font-size: $fontSizeHeadingDefault;
 			font-weight: 700;
+			color: $textColorHeading;
 			text-transform: uppercase;
 			margin: 0 0 5px 0;
 		}
@@ -35,7 +36,8 @@ header {
 		> div {
 			flex: auto;
 			font-weight: 700;
-			font-size: 1.25em;
+			font-size: $fontSizeLabelDefault;
+			color: $textColorHeading;
 			text-transform: uppercase;
 			padding: 0 20px 0 0;
 
