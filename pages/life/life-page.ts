@@ -1,5 +1,6 @@
 import { Component, Vue } from "vue-property-decorator"
 import { Vita } from "~/components/common/storage/models/vita-event"
+import { DateFormatter } from "~/components/common/storage/providers/date-formatter"
 import { LifePageData } from "./life-page-data"
 import { LifePageMapper } from "./life-page-mapper"
 
@@ -71,26 +72,8 @@ export default class LifePage extends Vue {
 		LifePageMapper.mapSortedLifeEvents(data)
 	}
 
-	// Date
-
 	formattedDateRange(event: Vita.Event): string {
-		if(event.dateStarted && event.dateEnded) {
-			return `${this.formattedDate(event.dateStarted)} – ${this.formattedDate(event.dateEnded)}`
-		} else if(event.dateStarted && !event.dateEnded) {
-			return `${this.formattedDate(event.dateStarted)} – PRS.`
-		} else if(event.dateEnded) {
-			return this.formattedDate(event.dateEnded)
-		}
-
-		return ""
-	}
-
-	formattedDate(date: Date): string {
-		return `${this.formattedMonth(date.getMonth() + 1)}/${date.getFullYear()}`
-	}
-
-	formattedMonth(month: number): string {
-		return month < 10 ? "0" + month : String(month)
+		return DateFormatter.formattedDateRange(event)
 	}
 
 }

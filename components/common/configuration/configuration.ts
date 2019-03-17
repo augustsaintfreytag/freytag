@@ -1,24 +1,24 @@
+import { Url } from "../library/url"
+import { CmsConnection } from "./cms-connection";
+
 export namespace Configuration {
 
-	type APIToken = string
-	type URL = string
-	type Protocol = string
+	export type Protocol = string
+	export type ApiToken = string
 
-	export function cmsProtocol(): Protocol {
-		return "http"
+	export interface Connection {
+		protocol(): Protocol
+		host(): Url
+		token(): ApiToken
 	}
 
-	export function cmsHost(): URL {
-		if (process.server) {
-			return "cockpit"
-		} else {
-			return "cockpit.intra"
-		}
+	export enum Context {
+		Client,
+		Server
 	}
 
-	export function cmsToken(): APIToken {
-		// TODO: Let configuration tokens be handled by nuxt plugin to be shared (token allows read-only access to data publically available).
-		return "c180730444cdd76bd0c2bb676cd7b6"
+	export namespace Connections {
+		export const cms = new CmsConnection()
 	}
 
 }

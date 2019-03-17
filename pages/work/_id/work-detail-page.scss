@@ -2,7 +2,7 @@
 
 .work-detail-page {
 
-	section.introducer {
+	section.cover {
 		$shadowHorizontalOffset: 0;
 		$shadowVerticalOffset: 3px;
 		$shadowBlur: 0;
@@ -13,7 +13,8 @@
 
 		.image-holder {
 			width: 100%;
-			min-height: 600px;
+			height: 60vh;
+			overflow: hidden;
 			background: #46fdbd;
 		}
 
@@ -28,6 +29,7 @@
 				text-shadow: $shadowHorizontalOffset $shadowVerticalOffset $shadowBlur $shadowColor;
 				width: fit-content;
 				margin: 0 auto;
+				padding: 0 5%;
 			}
 		}
 
@@ -47,6 +49,50 @@
 				$shadowColor: rgba(60, 60, 60, 0.35);
 				filter: drop-shadow($shadowHorizontalOffset $shadowVerticalOffset $shadowBlur $shadowColor);
 			}
+		}
+	}
+
+	section.introduction {
+		$contentInset: 100px;
+
+		display: flex;
+		margin-top: 50px;
+		margin-bottom: 50px;
+
+		> * {
+			flex: 0 50%;
+		}
+		
+		.details {
+			table {
+				border-collapse: collapse;
+				border: none;
+
+				td {
+					vertical-align: top;
+					padding-right: $contentInset;
+				}
+
+				.label, .text {
+					padding-bottom: 8px;
+				}
+
+				.label {
+					box-sizing: border-box;
+					padding-right: 50px;
+					text-align: right;
+					font-weight: 500;
+				}
+
+				.text {
+					
+				}
+			}
+		}
+
+		.description {
+			line-height: $textLineHeightParagraph;
+			padding-left: $contentInset;
 		}
 	}
 

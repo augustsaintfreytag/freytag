@@ -2,8 +2,10 @@
 
 header {
 	display: flex;
-	margin: 0 0 10px 0;
+	margin-bottom: 10px;
 	background: #fff;
+	box-sizing: border-box;
+	width: 100%;
 	
 	> * {
 		flex: auto;
@@ -16,6 +18,7 @@ header {
 		h1 {
 			font-size: $fontSizeHeadingDefault;
 			font-weight: 700;
+			color: $textColorHeading;
 			text-transform: uppercase;
 			margin: 0 0 5px 0;
 		}
@@ -31,11 +34,15 @@ header {
 	nav {
 		flex: 0;
 		display: flex;
+		margin-top: 5px;
+
+		$activeOpacity: 0.25;
 
 		> div {
 			flex: auto;
 			font-weight: 700;
-			font-size: 1.25em;
+			font-size: $fontSizeLabelDefault;
+			color: $textColorHeading;
 			text-transform: uppercase;
 			padding: 0 20px 0 0;
 
@@ -44,7 +51,21 @@ header {
 			}
 
 			&.nuxt-link-exact-active {
-				opacity: 0.25;
+				opacity: $activeOpacity;
+			}
+
+			&.nuxt-link-active {
+				opacity: $activeOpacity;
+			}
+
+			&:first-child {
+				&.nuxt-link-active {
+					opacity: 1;
+				}
+
+				&.nuxt-link-active.nuxt-link-exact-active {
+					opacity: $activeOpacity;
+				}
 			}
 		}
 	}

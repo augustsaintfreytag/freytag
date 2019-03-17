@@ -3,6 +3,9 @@
 html, body {
 	padding: 0;
 	margin: 0;
+
+	// TODO: Mobile layouts and special handling.
+	min-width: 1050px;
 }
 
 body {
@@ -62,10 +65,22 @@ a, a:link, a:active, a:visited, a:hover {
 	}
 }
 
+.inset {
+	max-width: 1300px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
 main {
 	padding: 0 0 $insetVertical 0;
 }
 
 .inset {
 	padding: $insetVertical $insetHorizontal;
+}
+
+.covering {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
 }

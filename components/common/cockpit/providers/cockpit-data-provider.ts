@@ -23,7 +23,7 @@ export default class CockpitDataProvider {
 		})
 	}
 
-	static async workItem(id: UUID): Promise<Work.Item|undefined> {
+	static async workItemById(id: UUID): Promise<Work.Item|undefined> {
 		const response = await CockpitDataAccess.recordsInCollection("work", {
 			filter: { _id: id }
 		})

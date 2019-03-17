@@ -18,6 +18,7 @@ services:
       - ./tsconfig.json:/var/app/tsconfig.json:cached
       - ./vue-shim.d.ts:/var/app/vue-shim.d.ts:cached
       - ./yarn.lock:/var/app/yarn.lock:cached
+      - ./plugins:/var/app/plugins:cached
       - ./assets:/var/app/assets:cached
       - ./components:/var/app/components:cached
       - ./layouts:/var/app/layouts:cached
