@@ -60,7 +60,8 @@ const data: WorkDetailPageData = {
 				{name: "Span", value: DateFormatter.formattedDateRange(event)},
 				{name: "Kind", value: event.kind},
 				{name: "Format", value: event.format},
-				{name: "Role", value: event.role}
+				{name: "Role", value: event.role},
+				{name: "Context", value: event.context}
 			]
 		}
 	},
