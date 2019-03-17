@@ -87,11 +87,15 @@ export namespace Content {
 
 	export interface BlockRepeatedEntry<ValueObject> {
 
-		field: {type: string, label: string}
+		field: {type: string, name?: string, label?: string}
 		value: ValueObject
 
 	}
 
-	export type BlockRepeatedImageEntry = BlockRepeatedEntry<Image.ContentEntry>
+	type BlockRepeatedImageEntry = BlockRepeatedEntry<Image.ContentEntry>
+	type BlockRepeatedCaptionEntry = BlockRepeatedEntry<string>
+
+	type AnyBlockRepeatedEntry = BlockRepeatedImageEntry|BlockRepeatedCaptionEntry
+	type ImageContentEntries = {imageContentEntry: BlockRepeatedImageEntry, captionContentEntry: BlockRepeatedCaptionEntry}
 
 }
