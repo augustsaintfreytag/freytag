@@ -40,11 +40,45 @@ export namespace Content {
 				throw new TypeError(`Entry has incompatible form '${entry.form}', expected image columns block.`)
 			}
 
+			this.imageContents = []
+			const entryContents = entry.imageContents || []
+
+			for (let index=0, length = entryContents.length; index < length; index ++) {
+				const imageContentEntry = ImageColumnsBlock.imageContentEntryInSequence(entryContents, index)
+				const captionContentEntry = ImageColumnsBlock.captionContentEntryInSequence(entryContents, index)
+				
+				if (!imageContentEntry) {
+					break
+				}
+
+				if (captionContentEntry) {
+					index ++
+				}
+
+				const imageContent = new Image.Content(imageContentEntry, captionContentEntry)
+				this.imageContents.push(imageContent)
+			}
+
 			this.form = (entry.form as Form) || undefined
-			this.imageContents = (entry.imageContents || []).map(imageContentEntry => {
-				return new Image.Content(imageContentEntry.value)
-			})
 			this.meta = new MetaData(entry)
+		}
+
+		private static imageContentEntryInSequence(sequence: AnyBlockRepeatedEntry[], startingIndex: number): Image.ContentEntry|undefined {
+			const imageContentEntry = sequence[startingIndex] as BlockRepeatedImageEntry
+			if (imageContentEntry.field.type !== "image") {
+				return undefined
+			}
+
+			return imageContentEntry.value
+		}
+
+		private static captionContentEntryInSequence(sequence: AnyBlockRepeatedEntry[], startingIndex: number): string|undefined {
+			const captionContentEntry = (startingIndex + 1) < sequence.length ? sequence[startingIndex + 1] as BlockRepeatedCaptionEntry : undefined
+			if (!captionContentEntry || captionContentEntry.field.name !== "caption") {
+				return undefined
+			}
+
+			return captionContentEntry.value
 		}
 
 	}
