@@ -1,38 +1,27 @@
 import { Component, Vue } from "vue-property-decorator"
-import { UUID } from "~/components/common/library/uuid"
-import { Work } from "~/components/common/storage/models/work-item"
-import CockpitDataProvider from "~/components/common/cockpit/providers/cockpit-data-provider"
 import { DateFormatter } from "~/components/common/storage/providers/date-formatter"
+import { WorkDetailPageData } from "./work-detail-page-data"
+import { WorkDetailPageMapper } from "./work-detail-page-mapper"
+import { Content } from "~/components/common/storage/models/content-block"
 
-
-interface WorkDetailPageData {
-
-	workItemId: UUID|undefined
-	workItem: Work.Item|undefined
-
-}
+import ImageColumnsBlockComponent from "~/components/content-blocks/image-columns-block/image-columns-block.vue"
+import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-block/text-quote-block.vue"
+import TextColumnBlockComponent from "~/components/content-blocks/text-column-block/text-column-block.vue"
+import VideoVimeoBlockComponent from "~/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
 
 const data: WorkDetailPageData = {
 
+	types: {
+		Form: {
+			ImageColumns: Content.Form.ImageColumns,
+			TextColumn: Content.Form.TextColumn,
+			TextQuote: Content.Form.TextQuote,
+			VideoVimeo: Content.Form.VideoVimeo
+		}
+	},
+
 	workItemId: undefined,
-	workItem: undefined
-
-}
-
-namespace WorkDetailPageMapper {
-
-	export async function updateWorkItem(data: WorkDetailPageData) {
-		if (!data.workItemId) {
-			return
-		}
-
-		try {
-			const workItem = await CockpitDataProvider.workItemById(data.workItemId)
-			data.workItem = workItem
-		} catch (error) {
-			console.error(`Could not fetch active work item. ${error}`)
-		}
-	}
+	workItem: undefined,
 
 }
 
@@ -44,7 +33,7 @@ namespace WorkDetailPageMapper {
 
 		if (!data.workItem) {
 			if (data.workItemId) {
-				throw { statusCode: 404, message: `Work with id '${data.workItemId}' could not be found.`}
+				throw { statusCode: 404, message: `Work with id '${data.workItemId}' could not be fetched.`}
 			} else {
 				throw { statusCode: 404, message: `Missing work id.` }
 			}
@@ -74,6 +63,13 @@ namespace WorkDetailPageMapper {
 				{name: "Role", value: event.role}
 			]
 		}
+	},
+
+	components: {
+		TextQuoteBlockComponent,
+		ImageColumnsBlockComponent,
+		TextColumnBlockComponent,
+		VideoVimeoBlockComponent
 	}
 
 })

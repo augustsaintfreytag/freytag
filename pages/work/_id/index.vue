@@ -2,7 +2,7 @@
 	<section class="work-pages work-detail-page">
 		<section class="cover">
 			<div class="image-holder">
-				<img v-if="workItem.titleImage" v-bind:src="$root.managedResourcePath(workItem.titleImage.path)" />
+				<img class="covering" v-if="workItem.titleImage" v-bind:src="$root.managedResourcePath(workItem.titleImage.path)" />
 			</div>
 			<div class="title-holder">
 				<h2>{{ workItem.name }}</h2>
@@ -28,7 +28,12 @@
 				{{ workItem.description }}
 			</section>
 		</section>
-		<image-columns-block-component />
+		<span v-for="contentBlock in workItem.blocks" :key="contentBlock.meta.id">
+			<image-columns-block-component v-if="contentBlock.form === types.Form.ImageColumns" :contentBlock="contentBlock" />
+			<text-quote-block-component v-if="contentBlock.form === types.Form.TextQuote" :contentBlock="contentBlock" />
+			<text-column-block-component v-if="contentBlock.form === types.Form.TextColumn" :contentBlock="contentBlock" />
+			<video-vimeo-block-component v-if="contentBlock.form === types.Form.VideoVimeo" :contentBlock="contentBlock" />
+		</span>
 	</section>
 </template>
 

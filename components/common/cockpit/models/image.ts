@@ -7,9 +7,14 @@ export namespace Image {
 	export class Content {
 
 		path: Url|undefined
+		caption: string|undefined
 		
-		constructor(entry: ContentEntry) {
+		constructor(entry: ContentEntry, labelEntry?: string|undefined) {
 			this.path = entry.path || undefined
+			
+			if (labelEntry) {
+				this.caption = labelEntry
+			}
 		}
 
 	}
