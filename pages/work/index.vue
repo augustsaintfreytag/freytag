@@ -7,7 +7,7 @@
 			>
 				<nuxt-link v-bind:to="`/work/${workItem.meta.id}`">
 					<div class="image-holder">
-						<img v-if="workItem.titleImage" v-bind:src="`http://cockpit.intra${workItem.titleImage.path}`" />
+						<img v-if="workItem.titleImage" v-bind:src="$root.managedResourcePath(workItem.titleImage.path)" />
 					</div>
 					<div class="item-data">
 						<div class="blip"></div>
