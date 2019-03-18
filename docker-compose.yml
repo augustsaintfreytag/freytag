@@ -7,7 +7,8 @@ services:
     volumes:
       - data-challenges:/usr/share/nginx/html/challenges
       - data-certificates:/var/lib/letsencrypt
-      - ./server/nginx/${NGINX_CONF_NAME}:/etc/nginx/nginx.conf:cached
+      - ./server/nginx/$NGINX_CONF_NAME:/etc/nginx/nginx.conf:cached
+      - ./server/nginx/include:/etc/nginx/include:cached
     ports:
       - "80:80"
 
@@ -32,11 +33,13 @@ services:
       - ./layouts:/var/app/layouts:cached
       - ./pages:/var/app/pages:cached
       - data-app-build:/var/lib/nuxt
-    command: "bash -c 'cd /var/app && yarn && yarn dev'"
+    command: "bash -c 'cd /var/app && yarn && $APP_CMD_STARTUP'"
     environment:
       - HOST=0.0.0.0
       - PORT=80
       - CHOKIDAR_USEPOLLING=true
+    env_file:
+      - ./server/$APP_PARAMETERS_NAME
 
   cockpit:
     image: agentejo/cockpit:latest
