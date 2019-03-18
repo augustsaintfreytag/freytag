@@ -6,7 +6,7 @@ services:
     image: nginx:latest
     volumes:
       - data-challenges:/usr/share/nginx/html/challenges
-      - data-certificates:/etc/letsencrypt
+      - data-letsencrypt:/etc/letsencrypt
       - ./server/nginx/$NGINX_CONF_NAME:/etc/nginx/nginx.conf:cached
       - ./server/nginx/include:/etc/nginx/include:cached
     ports:
@@ -16,7 +16,7 @@ services:
     image: certbot/certbot:latest
     volumes:
       - data-challenges:/usr/share/nginx/html/challenges
-      - data-certificates:/etc/letsencrypt
+      - data-letsencrypt:/etc/letsencrypt
 
   app:
     image: node:latest
@@ -55,5 +55,5 @@ volumes:
     driver: local
   data-challenges:
     driver: local
-  data-certificates:
+  data-letsencrypt:
     driver: local
