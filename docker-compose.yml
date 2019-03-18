@@ -11,6 +11,7 @@ services:
       - ./server/nginx/include:/etc/nginx/include:cached
     ports:
       - "80:80"
+      - "443:443"
 
   app:
     image: node:latest
