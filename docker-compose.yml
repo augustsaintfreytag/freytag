@@ -12,12 +12,6 @@ services:
     ports:
       - "80:80"
 
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - data-challenges:/usr/share/nginx/html/challenges
-      - data-letsencrypt:/etc/letsencrypt
-
   app:
     image: node:latest
     volumes:
