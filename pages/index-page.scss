@@ -1,5 +1,48 @@
 @import "~/assets/style/values.scss";
 
+.index-page {
+
+	.introducer {
+		$shadowHorizontalOffset: 0;
+		$shadowVerticalOffset: 4px;
+		$shadowBlur: 0;
+		$shadowColor: rgba(30, 30, 30, 0.35);
+		$color: $textColorOnDark;
+		
+		width: 100%;
+		height: 80vh;
+		background: #f2f2f2;
+		background: url("/images/Silence Inn Tinted R3.jpg");
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+
+		display: flex;
+
+		.branding {
+			width: 100%;
+			align-self: center;
+
+			h1 {
+				color: $color;
+				text-align: center;
+				font-size: $fontSizeHeadingExtreme;
+				margin-bottom: 15px;
+				text-transform: uppercase;
+				text-shadow: $shadowHorizontalOffset $shadowVerticalOffset $shadowBlur $shadowColor;
+			}
+
+			.tagline {
+				text-align: center;
+				font-size: $fontSizeTaglineDefault;
+				color: $color;
+				text-shadow: $shadowHorizontalOffset ($shadowVerticalOffset * 0.5) $shadowBlur $shadowColor;
+			}
+		}
+	}
+
+}
+
 // Box Couple
 
 .box-couple {
