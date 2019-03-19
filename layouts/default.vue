@@ -1,5 +1,5 @@
 <template>
-	<div class="case">
+	<div id="page">
 		<div class="wrap">
 			<header-component />
 			<main>
