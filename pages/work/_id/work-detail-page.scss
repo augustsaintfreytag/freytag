@@ -7,8 +7,8 @@
 		$shadowVerticalOffset: 3px;
 		$shadowBlur: 0;
 		$shadowColor: rgba(30, 30, 30, 0.35);
-
-		$color: #fff;
+		$color: $textColorOnDark;
+		
 		position: relative;
 
 		.image-holder {
