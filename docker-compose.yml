@@ -23,6 +23,7 @@ services:
       - ./yarn.lock:/var/app/yarn.lock:cached
       - ./plugins:/var/app/plugins:cached
       - ./assets:/var/app/assets:cached
+      - ./static:/var/app/static:cached
       - ./components:/var/app/components:cached
       - ./layouts:/var/app/layouts:cached
       - ./pages:/var/app/pages:cached
