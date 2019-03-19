@@ -7,7 +7,8 @@ header {
 		display: flex;
 		margin-top: 5px;
 
-		$activeOpacity: 0.25;
+		$inactiveTextColor: $textColorHeading;
+		$activeTextColor: $textColorActive;
 
 		> div {
 			flex: auto;
@@ -22,20 +23,20 @@ header {
 			}
 
 			&.nuxt-link-exact-active {
-				opacity: $activeOpacity;
+				color: $activeTextColor;
 			}
 
 			&.nuxt-link-active {
-				opacity: $activeOpacity;
+				color: $activeTextColor;
 			}
 
 			&:first-child {
 				&.nuxt-link-active {
-					opacity: 1;
+					color: $inactiveTextColor;
 				}
 
 				&.nuxt-link-active.nuxt-link-exact-active {
-					opacity: $activeOpacity;
+					color: $activeTextColor;
 				}
 			}
 		}
