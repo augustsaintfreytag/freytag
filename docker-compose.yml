@@ -5,10 +5,13 @@ services:
   proxy:
     image: nginx:latest
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf:cached
+      - data-challenges:/usr/share/nginx/html/challenges
+      - data-letsencrypt:/etc/letsencrypt
+      - ./server/nginx/$NGINX_CONF_NAME:/etc/nginx/nginx.conf:cached
+      - ./server/nginx/include:/etc/nginx/include:cached
     ports:
       - "80:80"
-      - "9229:9229"
+      - "443:443"
 
   app:
     image: node:latest
@@ -24,11 +27,13 @@ services:
       - ./layouts:/var/app/layouts:cached
       - ./pages:/var/app/pages:cached
       - data-app-build:/var/lib/nuxt
-    command: "bash -c 'cd /var/app && yarn && yarn inspect-dev'"
+    command: "bash -c 'cd /var/app && yarn && $APP_CMD_STARTUP'"
     environment:
       - HOST=0.0.0.0
       - PORT=80
       - CHOKIDAR_USEPOLLING=true
+    env_file:
+      - ./server/$APP_PARAMETERS_NAME
 
   cockpit:
     image: agentejo/cockpit:latest
@@ -42,4 +47,8 @@ volumes:
   data-cockpit:
     driver: local
   data-app-build:
+    driver: local
+  data-challenges:
+    driver: local
+  data-letsencrypt:
     driver: local

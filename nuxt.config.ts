@@ -1,5 +1,5 @@
 export default {
-	dev: true,
+	
 	buildDir: "/var/lib/nuxt/build",
 	build: {
 		extend (config: any, keys: any) {
@@ -11,4 +11,5 @@ export default {
 		}
 	},
 	plugins: ["~/plugins/paths.ts"]
+
 }

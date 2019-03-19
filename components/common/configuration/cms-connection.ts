@@ -18,8 +18,13 @@ export class CmsConnection implements Configuration.Connection {
 	}
 
 	token(): Configuration.ApiToken {
-		// TODO: Let configuration tokens be handled by nuxt plugin to be shared (token allows read-only access to data publically available).
-		return "c180730444cdd76bd0c2bb676cd7b6"
+		const token = process.env["NUXT_ENV_COCKPIT_ACCESS_TOKEN"]
+		if (!token) {
+			throw new TypeError(`Access token for cockpit access is not defined in environment.`)
+		}
+
+		return token
+
 	}
 
 	// Context
