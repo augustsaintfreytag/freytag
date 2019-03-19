@@ -27,6 +27,15 @@
 			HeaderComponent,
 			FooterComponent,
 			SpriteSet
+		},
+
+		head() {
+			return {
+				title: "August S. Freytag",
+				meta: [
+					{hid: "favicon", rel: "shortcut icon", type: "image/x-icon", href: "/favicon.ico"}
+				]
+			}
 		}
 	})
 	export default class DefaultLayout extends Vue {
