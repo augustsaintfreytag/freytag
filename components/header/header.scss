@@ -1,6 +1,7 @@
 @import "~/assets/style/values.scss";
 
 header {
+	
 	display: flex;
 	margin-bottom: 10px;
 	background: #fff;
@@ -12,61 +13,4 @@ header {
 		justify-content: space-between;
 	}
 
-	// Elements
-
-	.branding {
-		h1 {
-			font-size: $fontSizeHeadingDefault;
-			font-weight: 700;
-			color: $textColorHeading;
-			text-transform: uppercase;
-			margin: 0 0 5px 0;
-		}
-
-		.tagline {
-			font-weight: 300;
-			font-size: $fontSizeTaglineDefault;
-			color: $textColorLight;
-			margin: 0;
-		}
-	}
-
-	nav {
-		flex: 0;
-		display: flex;
-		margin-top: 5px;
-
-		$activeOpacity: 0.25;
-
-		> div {
-			flex: auto;
-			font-weight: 700;
-			font-size: $fontSizeLabelDefault;
-			color: $textColorHeading;
-			text-transform: uppercase;
-			padding: 0 20px 0 0;
-
-			&:last-child {
-				padding-right: 0;
-			}
-
-			&.nuxt-link-exact-active {
-				opacity: $activeOpacity;
-			}
-
-			&.nuxt-link-active {
-				opacity: $activeOpacity;
-			}
-
-			&:first-child {
-				&.nuxt-link-active {
-					opacity: 1;
-				}
-
-				&.nuxt-link-active.nuxt-link-exact-active {
-					opacity: $activeOpacity;
-				}
-			}
-		}
-	}
 }

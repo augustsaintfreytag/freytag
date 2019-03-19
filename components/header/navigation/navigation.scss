@@ -1,0 +1,44 @@
+@import "~/assets/style/values.scss";
+
+header {
+
+	nav {
+		flex: 0;
+		display: flex;
+		margin-top: 5px;
+
+		$activeOpacity: 0.25;
+
+		> div {
+			flex: auto;
+			font-weight: 700;
+			font-size: $fontSizeLabelDefault;
+			color: $textColorHeading;
+			text-transform: uppercase;
+			padding: 0 20px 0 0;
+
+			&:last-child {
+				padding-right: 0;
+			}
+
+			&.nuxt-link-exact-active {
+				opacity: $activeOpacity;
+			}
+
+			&.nuxt-link-active {
+				opacity: $activeOpacity;
+			}
+
+			&:first-child {
+				&.nuxt-link-active {
+					opacity: 1;
+				}
+
+				&.nuxt-link-active.nuxt-link-exact-active {
+					opacity: $activeOpacity;
+				}
+			}
+		}
+	}
+
+}
