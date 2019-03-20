@@ -1,0 +1,21 @@
+@import "~/assets/style/values.scss";
+
+header {
+
+	.branding {
+		h1 {
+			font-size: $fontSizeHeadingDefault;
+			font-weight: 700;
+			color: $textColorHeading;
+			text-transform: uppercase;
+			margin: 0 0 5px 0;
+		}
+
+		.tagline {
+			font-size: $fontSizeTaglineDefault;
+			color: $textColorLight;
+			margin: 0;
+		}
+	}
+
+}

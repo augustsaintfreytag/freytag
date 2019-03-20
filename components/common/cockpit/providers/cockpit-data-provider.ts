@@ -1,11 +1,14 @@
+import { UUID } from "~/components/common/library/uuid"
 import { Vita } from "../../storage/models/vita-event"
 import { CockpitDataAccess } from "./cockpit-data-access"
 import { Work } from "../../storage/models/work-item"
-import { UUID } from "~/components/common/library/uuid"
+import { Landing } from "../../storage/models/landing"
 
-export default class CockpitDataProvider {
+export namespace CockpitDataProvider {
 
-	static async lifeEvents(): Promise<Vita.Event[]> {
+	// Collections
+	
+	export async function lifeEvents(): Promise<Vita.Event[]> {
 		const response = await CockpitDataAccess.recordsInCollection("vita")
 
 		return response.entries.map(entry => {
@@ -14,7 +17,7 @@ export default class CockpitDataProvider {
 		})
 	}
 
-	static async workItems(): Promise<Work.Item[]> {
+	export async function workItems(): Promise<Work.Item[]> {
 		const response = await CockpitDataAccess.recordsInCollection("work")
 
 		return response.entries.map(entry => {
@@ -23,7 +26,7 @@ export default class CockpitDataProvider {
 		})
 	}
 
-	static async workItemById(id: UUID): Promise<Work.Item|undefined> {
+	export async function workItemById(id: UUID): Promise<Work.Item|undefined> {
 		const response = await CockpitDataAccess.recordsInCollection("work", {
 			filter: { _id: id }
 		})
@@ -34,6 +37,28 @@ export default class CockpitDataProvider {
 
 		const storedWorkItem = response.entries[0] as Work.ItemEntry
 		return new Work.Item(storedWorkItem)
+	}
+
+	// Singletons
+
+	export async function landingGraphic(): Promise<Landing.Graphic|undefined> {
+		const response = await CockpitDataAccess.singletonRecord("landing_graphic") as Landing.GraphicEntry
+
+		if (!response.asset) {
+			return undefined
+		}
+
+		return new Landing.Graphic(response)
+	}
+
+	export async function landingWorks(): Promise<Landing.Works|undefined> {
+		const response = await CockpitDataAccess.singletonRecord("landing_works") as Landing.WorksEntry
+
+		if (!response.items) {
+			return undefined
+		}
+
+		return new Landing.Works(response)
 	}
 
 }

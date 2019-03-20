@@ -3,11 +3,11 @@
 		<section class="work-overview inset">
 			<section class="work-item kind-blip-colored kind-all"
 				v-for="workItem in workItems" :key="workItem.meta.id"
-				v-bind:class="workItem.event && workItem.event.kind ? `kind-${workItem.event.kind.toLowerCase()}` : ''"
+				:class="workItem.event && workItem.event.kind ? `kind-${workItem.event.kind.toLowerCase()}` : ''"
 			>
-				<nuxt-link v-bind:to="`/work/${workItem.meta.id}`">
+				<nuxt-link :to="`/work/${workItem.meta.id}`">
 					<div class="image-holder">
-						<img v-if="workItem.titleImage" v-bind:src="$root.managedResourcePath(workItem.titleImage.path)" />
+						<img v-if="workItem.titleImage" :src="$root.managedResourcePath(workItem.titleImage.path)" />
 					</div>
 					<div class="item-data">
 						<div class="blip"></div>

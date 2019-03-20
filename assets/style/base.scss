@@ -40,7 +40,7 @@ a, a:link, a:active, a:visited, a:hover {
 
 // Case & Wrap
 
-.case {
+#page {
 	display: flex;
 	justify-content: space-between;
 
@@ -66,17 +66,15 @@ a, a:link, a:active, a:visited, a:hover {
 }
 
 .inset {
-	max-width: 1300px;
+	box-sizing: border-box;
+	padding: $insetVertical $insetHorizontal;
+	max-width: 1400px;
 	margin-left: auto;
 	margin-right: auto;
 }
 
 main {
 	padding: 0 0 $insetVertical 0;
-}
-
-.inset {
-	padding: $insetVertical $insetHorizontal;
 }
 
 .covering {

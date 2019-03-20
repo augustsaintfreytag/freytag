@@ -4,7 +4,7 @@
 			<div 
 				class="kind-blip-colored"
 				v-for="definition in eventToggleDefinitions" :key="definition.identifier"
-				v-bind:class="[
+				:class="[
 					definition.identifier,
 					(definition.filter ? `kind-${definition.filter.toLowerCase()}` : 'kind-all'),
 					{ active: (lifeFilter === definition.filter) }
@@ -19,35 +19,35 @@
 			<div class="details">
 				<div
 					v-for="definition in eventHeaderDefinitions" :key="definition.identifier"
-					v-bind:class="[definition.identifier, {
+					:class="[definition.identifier, {
 						sortable: definition.sortable, 
 						reversed: lifeSortingIsReversed, 
 						active: (lifeSortingMode === definition.identifier) 
 					}]"
 					v-on:click="didToggleSorting($event, definition.identifier)"
-					v-bind:data-sorting-kind="definition.identifier"
+					:data-sorting-kind="definition.identifier"
 				>
 					<span>{{ definition.name }}</span>
 					<div class="sort-switch">
 						<svg class="icon">
-							<use xlink:href="#sorting-switch"></use>
+							<use xlink:href="#img-sorting-switch"></use>
 						</svg>
 					</div>
 				</div>
 			</div>
 		</div>
 		<ul class="life-events">
-			<li class="kind-blip-colored" v-bind:class="`life-event kind-${lifeEvent.kind.toLowerCase()}`" v-for="lifeEvent in lifeEvents" :key="lifeEvent.index">
+			<li class="kind-blip-colored" :class="`life-event kind-${lifeEvent.kind.toLowerCase()}`" v-for="lifeEvent in lifeEvents" :key="lifeEvent.index">
 				<div class="header">
-					<div class="blip" v-bind:title="lifeEvent.kind"></div>
+					<div class="blip" :title="lifeEvent.kind"></div>
 					<h2 class="name">{{ lifeEvent.name }}</h2>
 				</div>
 				<div class="details">
 					<div class="time">{{ formattedDateRange(lifeEvent) }}</div>
 					<div class="format">{{ lifeEvent.format }}</div>
-					<div class="role" v-bind:title="lifeEvent.role">{{ lifeEvent.role }}</div>
-					<div class="location" v-bind:title="lifeEvent.location">{{ lifeEvent.location }}</div>
-					<div class="context" v-bind:title="lifeEvent.context">{{ lifeEvent.context }}</div>
+					<div class="role" :title="lifeEvent.role">{{ lifeEvent.role }}</div>
+					<div class="location" :title="lifeEvent.location">{{ lifeEvent.location }}</div>
+					<div class="context" :title="lifeEvent.context">{{ lifeEvent.context }}</div>
 				</div>
 			</li>
 		</ul>

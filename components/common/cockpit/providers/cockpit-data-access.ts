@@ -3,7 +3,7 @@ import path from "path"
 
 import { Configuration } from "~/components/common/configuration/configuration"
 import { Url } from "~/components/common/library/url"
-import CockpitResponse from "../models/cockpit-response"
+import { CockpitCollectionResponse, CockpitSingletonResponse } from "../models/cockpit-response"
 import CockpitError from "../library/cockpit-error"
 import CockpitRequestOptions from "../models/cockpit-request-options"
 
@@ -14,30 +14,35 @@ export namespace CockpitDataAccess {
 	// Constants
 
 	const defaultOptions: AnyRequestObject = {
-		populate: 1,
+		populate: 2,
 		filter: { display: true }
+	}
+
+	// Typed Fetch
+
+	export async function recordsInCollection(collection: string, requestOptions?: CockpitRequestOptions): Promise<CockpitCollectionResponse> {
+		const route = `api/collections/get/${collection}`
+		return await data(route, requestOptions)
+	}
+
+	export async function singletonRecord(singleton: string, requestOptions?: CockpitRequestOptions): Promise<CockpitSingletonResponse> {
+		const route = `api/singletons/get/${singleton}`
+		return await data(route, requestOptions)
 	}
 
 	// General Fetch
 
-	export async function data(route: string, requestOptions?: CockpitRequestOptions): Promise<CockpitResponse> {
+	export async function data(route: string, requestOptions?: CockpitRequestOptions): Promise<CockpitCollectionResponse> {
 		const url = preparedUrl(route)
 
 		try {
 			const options = preparedOptions(defaultOptions, requestOptions || {})
 			const serverResponse = await axios.post(url, options)
 
-			return serverResponse.data as CockpitResponse
+			return serverResponse.data as CockpitCollectionResponse
 		} catch (err) {
 			throw new CockpitError(`Could not get response from cockpit. ${err}`)
 		}
-	}
-
-	// Typed Fetch
-
-	export async function recordsInCollection(collection: string, requestOptions?: CockpitRequestOptions): Promise<CockpitResponse> {
-		const route = `api/collections/get/${collection}`
-		return await data(route, requestOptions)
 	}
 
 	// Preparation
