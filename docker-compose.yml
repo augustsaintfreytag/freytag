@@ -9,6 +9,7 @@ services:
       - data-letsencrypt:/etc/letsencrypt
       - ./server/nginx/$NGINX_CONF_NAME:/etc/nginx/nginx.conf:cached
       - ./server/nginx/include:/etc/nginx/include:cached
+      - data-app-build-generated:/usr/share/nginx/html/build
     ports:
       - "80:80"
       - "443:443"
@@ -47,7 +48,11 @@ services:
 volumes:
   data-cockpit:
     driver: local
-  data-app-build:
+  data-app-node-modules:
+    driver: local
+  data-app-build-nuxt:
+    driver: local
+  data-app-build-generated:
     driver: local
   data-challenges:
     driver: local
