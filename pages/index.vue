@@ -19,9 +19,6 @@
 				</nuxt-link>
 			</section>
 		</section>
-		<section class="spacer" style="height: 500px;">
-
-		</section>
 	</section>
 </template>
 
