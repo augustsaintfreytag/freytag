@@ -1,5 +1,5 @@
 <template>
-	<section class="maintenance-page">
+	<section class="error-page 404-page">
 		<section class="image-holder">
 			<svg class="icon">
 				<use xlink:href="#freytag-maintenance-logo"></use>
@@ -11,6 +11,6 @@
 	</section>
 </template>
 
-<style lang="scss" src="./maintenance.scss"></style>
+<style lang="scss" src="./error-page.scss"></style>
 
-<script lang="ts" src="./maintenance.ts"></script>
+<script lang="ts" src="./error-page.ts"></script>
