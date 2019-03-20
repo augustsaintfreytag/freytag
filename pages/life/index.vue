@@ -30,7 +30,7 @@
 					<span>{{ definition.name }}</span>
 					<div class="sort-switch">
 						<svg class="icon">
-							<use xlink:href="#img-sorting-switch"></use>
+							<use xlink:href="#sorting-switch"></use>
 						</svg>
 					</div>
 				</div>
