@@ -6,7 +6,7 @@
 			</svg>
 		</section>
 		<section class="explanation">
-			Page not found / Return to <a href="/"><u>Home</u></a>
+			Not found / Return <a href="/"><u>Home</u></a>
 		</section>
 	</section>
 </template>
