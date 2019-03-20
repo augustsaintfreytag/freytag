@@ -2,6 +2,7 @@
 	<section class="index-page">
 		<section class="introducer" :style="`background-image: url(${ $root.managedResourcePath(graphic.asset.path) })`">
 			<header-branding-component />
+			<div class="caption" v-if="graphic.caption">{{ graphic.caption }}</div>
 		</section>
 		<section class="showcases inset" v-if="works && works.items.length">
 			<div class="leader">Selected Showcase</div>
