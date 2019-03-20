@@ -8,9 +8,11 @@ export namespace Landing {
 	export class Graphic {
 
 		asset: Image.Content|undefined
+		caption: string|undefined
 
 		constructor(entry: GraphicEntry) {
 			this.asset = new Image.Content(entry.asset)
+			this.caption = entry.caption || undefined
 		}
 
 	}
@@ -32,6 +34,7 @@ export namespace Landing {
 	export interface GraphicEntry {
 
 		asset: Image.ContentEntry
+		caption: string|undefined
 
 	}
 
