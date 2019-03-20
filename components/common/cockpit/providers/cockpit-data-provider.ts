@@ -51,4 +51,14 @@ export namespace CockpitDataProvider {
 		return new Landing.Graphic(response)
 	}
 
+	export async function landingWorks(): Promise<Landing.Works|undefined> {
+		const response = await CockpitDataAccess.singletonRecord("landing_works") as Landing.WorksEntry
+
+		if (!response.items) {
+			return undefined
+		}
+
+		return new Landing.Works(response)
+	}
+
 }

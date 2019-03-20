@@ -14,7 +14,7 @@ export namespace CockpitDataAccess {
 	// Constants
 
 	const defaultOptions: AnyRequestObject = {
-		populate: 1,
+		populate: 2,
 		filter: { display: true }
 	}
 
