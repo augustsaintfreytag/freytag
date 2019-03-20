@@ -6,5 +6,8 @@
 		<div>
 			<nuxt-link to="/maintenance/502">502 / Bad Gateway</nuxt-link>
 		</div>
+		<div>
+			<nuxt-link to="/maintenance/504">504 / Gateway Timeout</nuxt-link>
+		</div>
 	</section>
 </template>
