@@ -4,7 +4,7 @@
 			{address: '/', name: 'Home'},
 			{address: '/life', name: 'Life'},
 			{address: '/work', name: 'Work'},
-			{address: '/hello', name: 'Contact'},
+			{address: '/contact', name: 'Contact'},
 		]" :key="route.address" :to="route.address">
 			<a>{{ route.name }}</a>
 		</nuxt-link>
