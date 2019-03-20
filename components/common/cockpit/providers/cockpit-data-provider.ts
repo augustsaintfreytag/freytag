@@ -1,7 +1,8 @@
+import { UUID } from "~/components/common/library/uuid"
 import { Vita } from "../../storage/models/vita-event"
 import { CockpitDataAccess } from "./cockpit-data-access"
 import { Work } from "../../storage/models/work-item"
-import { UUID } from "~/components/common/library/uuid"
+import { Landing } from "../../storage/models/landing"
 
 export namespace CockpitDataProvider {
 
@@ -36,6 +37,18 @@ export namespace CockpitDataProvider {
 
 		const storedWorkItem = response.entries[0] as Work.ItemEntry
 		return new Work.Item(storedWorkItem)
+	}
+
+	// Singletons
+
+	export async function landingGraphic(): Promise<Landing.Graphic|undefined> {
+		const response = await CockpitDataAccess.singletonRecord("landing_graphic") as Landing.GraphicEntry
+
+		if (!response.asset) {
+			return undefined
+		}
+
+		return new Landing.Graphic(response)
 	}
 
 }
