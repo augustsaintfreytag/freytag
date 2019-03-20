@@ -1,5 +1,5 @@
 import { Image } from "./image"
-import { Work } from "./work-item";
+import { Work } from "./work-item"
 
 export namespace Landing {
 
