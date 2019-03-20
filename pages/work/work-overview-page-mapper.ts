@@ -1,4 +1,4 @@
-import CockpitDataProvider from "~/components/common/cockpit/providers/cockpit-data-provider"
+import { CockpitDataProvider } from "~/components/common/cockpit/providers/cockpit-data-provider"
 import WorkOverviewPageData from "./work-overview-page-data"
 
 export namespace WorkOverviewPageMapper {

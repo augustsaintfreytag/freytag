@@ -1,4 +1,4 @@
-import CockpitDataProvider from "~/components/common/cockpit/providers/cockpit-data-provider"
+import { CockpitDataProvider } from "~/components/common/cockpit/providers/cockpit-data-provider"
 import { Vita } from "~/components/common/storage/models/vita-event"
 import { SortingProvider } from "~/components/common/storage/providers/sorting-provider"
 import { LifePageData } from "./life-page-data"
