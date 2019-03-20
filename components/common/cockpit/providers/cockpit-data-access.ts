@@ -18,6 +18,18 @@ export namespace CockpitDataAccess {
 		filter: { display: true }
 	}
 
+	// Typed Fetch
+
+	export async function recordsInCollection(collection: string, requestOptions?: CockpitRequestOptions): Promise<CockpitResponse> {
+		const route = `api/collections/get/${collection}`
+		return await data(route, requestOptions)
+	}
+
+	export async function singletonRecord(singleton: string, requestOptions?: CockpitRequestOptions): Promise<CockpitResponse> {
+		const route = `api/singletons/get/${singleton}`
+		return await data(route, requestOptions)
+	}
+
 	// General Fetch
 
 	export async function data(route: string, requestOptions?: CockpitRequestOptions): Promise<CockpitResponse> {
@@ -31,13 +43,6 @@ export namespace CockpitDataAccess {
 		} catch (err) {
 			throw new CockpitError(`Could not get response from cockpit. ${err}`)
 		}
-	}
-
-	// Typed Fetch
-
-	export async function recordsInCollection(collection: string, requestOptions?: CockpitRequestOptions): Promise<CockpitResponse> {
-		const route = `api/collections/get/${collection}`
-		return await data(route, requestOptions)
 	}
 
 	// Preparation
