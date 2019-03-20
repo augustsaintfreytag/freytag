@@ -1,4 +1,6 @@
 @import "~/assets/style/values.scss";
+@import "~/assets/style/mixins/blip-element.scss";
+@import "~/assets/style/life-kind-colors.scss";
 
 .index-page {
 
@@ -11,6 +13,8 @@
 		
 		width: 100%;
 		height: 80vh;
+		margin-bottom: 75px;
+
 		background: #f2f2f2;
 		background: url("/images/Silence Inn Tinted R3.jpg");
 		background-size: cover;
@@ -27,9 +31,9 @@
 				color: $color;
 				text-align: center;
 				font-size: $fontSizeHeadingExtreme;
-				margin-bottom: 15px;
 				text-transform: uppercase;
 				text-shadow: $shadowHorizontalOffset $shadowVerticalOffset $shadowBlur $shadowColor;
+				margin-bottom: 15px;
 			}
 
 			.tagline {
@@ -41,58 +45,60 @@
 		}
 	}
 
-}
+	.showcases {
+		margin-bottom: 75px;
 
-// Box Couple
-
-.box-couple {
-	$boxCoupleLight: #fafafa;
-	$boxCoupleLightText: #f0f0f0;
-	$boxCoupleDark: rgb(170, 104, 255);
-	$boxCoupleDarkText: $textColor;
-	
-	width: 100%;
-	display: flex;
-	margin: 0 0 50px 0;
-
-	> div {
-		flex: auto;
-		padding: 120px 80px;
-		max-height: 100%;
-		box-sizing: border-box;
-	}
-
-	> div:first-child {
-		background: $boxCoupleDark;
-		color: $boxCoupleLightText;
-		flex-basis: 60%;
-		padding-right: 200px;
-		padding-left: 80px;
-	}
-
-	> div:last-child {
-		align-self: center;
-		background: $boxCoupleLight;
-		color: $boxCoupleDarkText;
-		flex-basis: 40%;
-		height: 70%;
-		transform: translateX(-100px);
-	}
-
-	// Alternating Display
-
-	&:nth-child(even) {
-		flex-direction: row-reverse;
-
-		> div:first-child {
-			padding-right: 80px;
-			padding-left: 200px;
-			z-index: 2;
+		.leader {
+			text-align: center;
+			color: $textColorVeryLight;
+			margin-bottom: 25px;
 		}
-	
-		> div:last-child {
-			transform: none;
-			z-index: 1;
+
+		> .work-showcase {
+			.image-holder {
+				background: rgb(117, 241, 214);
+				width: 100%;
+				height: 275px;
+				margin-bottom: 15px;
+			}
+
+			.item-data {
+				$interItemSpacing: 55px;
+				$blipSize: 12px;
+				$blipPadding: 7px;
+				$childDividerSpacing: 15px;
+
+				display: flex;
+
+				> * {
+					flex: 0 auto;
+				}
+
+				.title {
+					margin-right: $interItemSpacing;
+				}
+
+				.blip {
+					padding-top: 3px;
+					padding-right: $blipPadding;
+
+					@include blipElement($blipSize);
+				}
+
+				.format, .contents {
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+
+				.format {
+					&:after {
+						content: "|";
+						padding: 0 $childDividerSpacing;
+					}
+				}
+			}
 		}
 	}
+
 }
