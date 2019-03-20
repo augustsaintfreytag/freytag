@@ -5,7 +5,7 @@
 			{address: '/life', name: 'Life'},
 			{address: '/work', name: 'Work'},
 			{address: '/hello', name: 'Contact'},
-		]" :key="route.address" v-bind:to="route.address">
+		]" :key="route.address" :to="route.address">
 			<a>{{ route.name }}</a>
 		</nuxt-link>
 	</nav>
