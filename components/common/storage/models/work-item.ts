@@ -1,4 +1,4 @@
-import { Image } from "~/components/common/cockpit/models/image"
+import { Image } from "~/components/common/storage/models/image"
 import { CockpitEntry } from "~/components/common/cockpit/models/cockpit-entry"
 import { Content } from "./content-block"
 import { Vita } from "./vita-event"
