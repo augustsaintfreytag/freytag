@@ -1,3 +1,8 @@
+interface Route {
+	route: string,
+	payload: any
+}
+
 export default {
 	
 	buildDir: "/var/lib/nuxt/build",
@@ -10,6 +15,26 @@ export default {
 			}
 		}
 	},
-	plugins: ["~/plugins/paths.ts"]
+	plugins: ["~/plugins/paths.ts"],
+	generate: {
+		dir: "build/generated",
+		routes: ["/maintenance/502", "/maintenance/404"]
+	},
+	hooks: {
+		generate: {
+			extendRoutes: async (routeEntries: Route[]) => {
+				const whitelistedRoutes = ["/maintenance"]
+				const filteredRoutes = routeEntries.filter(routeEntry => {
+					for (const whitelistedRoute of whitelistedRoutes) {
+						if (routeEntry.route.includes(whitelistedRoute)) {
+							return true
+						}
+					}
+				})
+
+				routeEntries.splice(0, routeEntries.length, ...filteredRoutes)
+			}
+		}
+	}
 
 }
