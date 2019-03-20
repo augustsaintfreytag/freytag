@@ -5,10 +5,10 @@ services:
   proxy:
     image: nginx:latest
     volumes:
-      - data-challenges:/usr/share/nginx/html/challenges
-      - data-letsencrypt:/etc/letsencrypt
       - ./server/nginx/$NGINX_CONF_NAME:/etc/nginx/nginx.conf:cached
       - ./server/nginx/include:/etc/nginx/include:cached
+      - data-challenges:/usr/share/nginx/html/challenges
+      - data-letsencrypt:/etc/letsencrypt
       - data-app-build-generated:/usr/share/nginx/html/build
     ports:
       - "80:80"
@@ -28,7 +28,9 @@ services:
       - ./components:/var/app/components:cached
       - ./layouts:/var/app/layouts:cached
       - ./pages:/var/app/pages:cached
-      - data-app-build:/var/lib/nuxt
+      - data-app-node-modules:/var/app/node_modules
+      - data-app-build-generated:/var/app/build
+      - data-app-build-nuxt:/var/lib/nuxt
     command: "bash -c 'cd /var/app && yarn && $APP_CMD_STARTUP'"
     environment:
       - HOST=0.0.0.0
