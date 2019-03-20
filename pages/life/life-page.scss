@@ -12,38 +12,32 @@
 	// Life Events Filter
 
 	.life-events-filter {
-		$filterBlipSize: 18px;
-		$filterBlipPadding: 5px;
+		$filterBlipSize: $blipSize;
+		$filterBlipPadding: 7px;
 		$filterInterItemSpacing: 25px;
 
 		display: flex;
 		margin-bottom: 50px;
-		// padding-left: $blipSize + $blipPadding;
 
 		& > div {
+			display: flex;
+
 			margin-right: $filterInterItemSpacing;
 			cursor: pointer;
 			user-select: none;
 
-			.blip {
-				display: inline-block;
-				padding-right: $filterBlipPadding;
+			> * {
+				flex: 0 auto;
+			}
 
-				&:before {
-					content: " ";
-					display: block;
-					height: $filterBlipSize;
-					width: $filterBlipSize;
-					border-radius: 100%;
-					box-sizing: border-box;
-					border-width: 3px;
-					border-style: solid;
-				}
+			.blip {
+				padding-right: $filterBlipPadding;
+				padding-top: 4px;
+				@include blipElement($filterBlipSize);
 			}
 		
 			.name {
-				display: inline-block;
-				font-size: $fontSizeLabelBold;
+				font-size: $fontSizeLabelDefault;
 				font-weight: 500;
 			}
 		}
