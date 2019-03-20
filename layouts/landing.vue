@@ -10,6 +10,7 @@
 			</main>
 			<footer-component />
 		</div>
+		<sprite-set />
 	</div>
 </template>
 
