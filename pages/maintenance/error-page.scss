@@ -1,0 +1,23 @@
+@import "~/assets/style/values.scss";
+
+.error-page {
+
+	margin-top: 38vh;
+
+	.image-holder {
+		width: 70%;
+		margin: 0 auto;
+
+		svg {
+			width: 100%;
+			height: 100%;
+			fill: $textColor;
+		}
+	}
+
+	.explanation {
+		text-align: center;
+		font-size: $fontSizeLabelDefault;
+	}
+
+}
