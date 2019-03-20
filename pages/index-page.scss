@@ -4,6 +4,8 @@
 
 .index-page {
 
+	$interSectionSpacing: 10vh;
+
 	.introducer {
 		$shadowHorizontalOffset: 0;
 		$shadowVerticalOffset: 4px;
@@ -22,7 +24,7 @@
 		position: relative;
 		width: 100%;
 		height: 80vh;
-		margin-bottom: 75px;
+		margin-bottom: $interSectionSpacing;
 
 		background: #f2f2f2;
 		background-size: cover;
@@ -67,7 +69,7 @@
 	}
 
 	.showcases {
-		margin-bottom: 75px;
+		margin-bottom: $interSectionSpacing;
 
 		.leader {
 			text-align: center;
