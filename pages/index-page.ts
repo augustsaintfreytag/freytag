@@ -5,7 +5,8 @@ import { CockpitDataProvider } from "~/components/common/cockpit/providers/cockp
 import { IndexData } from "./index-data"
 
 const data: IndexData = {
-	graphic: undefined
+	graphic: undefined,
+	works: undefined
 }
 
 namespace IndexPageMapper {
