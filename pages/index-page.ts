@@ -20,6 +20,15 @@ namespace IndexPageMapper {
 		}
 	}
 
+	export async function mapLandingWorks(data: IndexData) {
+		try {
+			const landingWorks = await CockpitDataProvider.landingWorks()
+			data.works = landingWorks
+		} catch (error) {
+			console.error("Could not get landing works.", error)
+		}
+	}
+
 }
 
 @Component({
@@ -36,6 +45,8 @@ namespace IndexPageMapper {
 
 	async asyncData() {
 		await IndexPageMapper.mapLandingGraphic(data)
+		await IndexPageMapper.mapLandingWorks(data)
+
 		return data
 	}
 })
