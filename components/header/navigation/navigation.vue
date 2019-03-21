@@ -5,7 +5,7 @@
 			{address: '/life', name: 'Life'},
 			{address: '/work', name: 'Work'},
 			{address: '/impress', name: 'Impress'},
-		]" :key="route.address" :to="route.address">
+		]" :key="route.address" :to="route.address" :title="`${route.name} (${route.address})`">
 			<a>{{ route.name }}</a>
 		</nuxt-link>
 	</nav>
