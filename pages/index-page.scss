@@ -4,24 +4,45 @@
 
 .index-page {
 
+	$interSectionSpacing: 10vh;
+
 	.introducer {
 		$shadowHorizontalOffset: 0;
 		$shadowVerticalOffset: 4px;
 		$shadowBlur: 0;
 		$shadowColor: rgba(30, 30, 30, 0.35);
 		$color: $textColorOnDark;
+
+		@mixin textShadowDefault {
+			text-shadow: $shadowHorizontalOffset $shadowVerticalOffset $shadowBlur $shadowColor;
+		}
+
+		@mixin textShadowSmall {
+			text-shadow: $shadowHorizontalOffset ($shadowVerticalOffset * 0.5) $shadowBlur $shadowColor;
+		}
 		
+		position: relative;
 		width: 100%;
 		height: 80vh;
-		margin-bottom: 75px;
+		margin-bottom: $interSectionSpacing;
 
 		background: #f2f2f2;
-		background: url("/images/Silence Inn Tinted R3.jpg");
 		background-size: cover;
 		background-position: center;
 		background-repeat: no-repeat;
 
 		display: flex;
+
+		.caption {
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			bottom: 18px;
+			color: $color;
+			opacity: 0.5;
+
+			@include textShadowSmall();
+		}
 
 		.branding {
 			width: 100%;
@@ -32,21 +53,23 @@
 				text-align: center;
 				font-size: $fontSizeHeadingExtreme;
 				text-transform: uppercase;
-				text-shadow: $shadowHorizontalOffset $shadowVerticalOffset $shadowBlur $shadowColor;
 				margin-bottom: 15px;
+
+				@include textShadowDefault();
 			}
 
 			.tagline {
 				text-align: center;
 				font-size: $fontSizeDefaultBold;
 				color: $color;
-				text-shadow: $shadowHorizontalOffset ($shadowVerticalOffset * 0.5) $shadowBlur $shadowColor;
+				
+				@include textShadowSmall();
 			}
 		}
 	}
 
 	.showcases {
-		margin-bottom: 75px;
+		margin-bottom: $interSectionSpacing;
 
 		.leader {
 			text-align: center;
