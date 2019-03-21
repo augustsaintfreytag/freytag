@@ -6,6 +6,12 @@ interface MapRoute {
 	name: string
 }
 
+interface PlatformLink {
+	address: UrlComponent,
+	name: string,
+	spriteId: string
+}
+
 @Component({
 
 	computed: {
@@ -16,6 +22,15 @@ interface MapRoute {
 				{address: "/work", name: "Work"},
 				{address: "/impress", name: "Impress"},
 				{address: "/disclaimer", name: "Disclaimer"}
+			]
+		},
+
+		platformLinks(): PlatformLink[] {
+			return [
+				{address: "vimeo.com/apricum", name: "Vimeo", spriteId: "logo-vimeo"},
+				{address: "gitlab.com/apricum", name: "GitLab", spriteId: "logo-gitlab"},
+				{address: "twitter.com/augustsfreytag", name: "Twitter", spriteId: "logo-twitter"},
+				{address: "medium.com/@augustfreytag", name: "Medium", spriteId: "logo-medium"}
 			]
 		}
 	}

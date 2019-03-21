@@ -64,6 +64,31 @@ footer {
 					}
 				}
 			}
+
+			section.public main {
+				.platform-link {
+					display: flex;
+
+					> * {
+						flex: 0;
+					}
+
+					.sprite {
+						$size: 18px;
+						$itemSpacing: 10px;
+
+						flex-basis: $size + $itemSpacing;
+						position: relative;
+
+						svg {
+							position: absolute;
+							width: $size;
+							height: $size;
+							fill: $textColor;
+						}
+					}
+				}
+			}
 		}
 	}
 
