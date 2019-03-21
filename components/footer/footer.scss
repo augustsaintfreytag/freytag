@@ -17,10 +17,11 @@ footer {
 
 			display: flex;
 
-			// Fundamentals
+			// All Sections
 
 			> section {
-				flex: 1 auto;
+				flex: 1;
+				overflow: hidden;
 
 				header {
 					font-weight: 700;
@@ -35,7 +36,7 @@ footer {
 				}
 			}
 
-			// Content Specifics
+			// Individual Sections
 
 			section.map main {
 				.route {
@@ -88,6 +89,10 @@ footer {
 						}
 					}
 				}
+			}
+
+			section.further {
+				max-width: fit-content;
 			}
 		}
 	}
