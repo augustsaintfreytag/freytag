@@ -2,6 +2,9 @@
 
 footer {
 
+	$sectionHeaderMargin: 25px;
+	$sectionInterItemSpacing: 10px;
+
 	height: max-content;
 	
 	.wrap {
@@ -22,12 +25,12 @@ footer {
 				header {
 					font-weight: 700;
 					font-size: $fontSizeLabelDefault;
-					margin-bottom: 20px;
+					margin-bottom: $sectionHeaderMargin;
 				}
 
 				main {
-					> div {
-						margin-bottom: 6px;
+					> a > div, > div {
+						margin-bottom: $sectionInterItemSpacing;
 					}
 				}
 			}
