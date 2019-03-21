@@ -38,6 +38,10 @@ footer {
 
 			// Individual Sections
 
+			section.personal, section.further {
+				max-width: 22%;
+			}
+
 			section.map main {
 				.route {
 					display: flex;
@@ -89,10 +93,6 @@ footer {
 						}
 					}
 				}
-			}
-
-			section.further {
-				max-width: fit-content;
 			}
 		}
 	}
