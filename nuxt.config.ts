@@ -15,7 +15,7 @@ export default {
 			}
 		}
 	},
-	plugins: ["~/plugins/paths.ts"],
+	plugins: ["~/plugins/paths.ts", "~/plugins/components.ts"],
 	generate: {
 		dir: "build/generated",
 		routes: ["/maintenance/504", "/maintenance/502", "/maintenance/404"]

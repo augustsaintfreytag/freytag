@@ -1,6 +1,6 @@
 <template>
 	<section class="content-block text-column-block inset" v-if="contentBlock">
-		<p v-for="(paragraph, index) in textParagraphs" :key="index">{{ paragraph }}</p>
+		<vue-markdown>{{ contentBlock.textContent }}</vue-markdown>
 	</section>
 </template>
 
