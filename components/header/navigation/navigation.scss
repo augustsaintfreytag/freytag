@@ -1,14 +1,14 @@
 @import "~/assets/style/values.scss";
 
+$inactiveTextColor: $textColorHeading;
+$activeTextColor: $textColorActive;
+
 header {
 
 	nav {
 		flex: 0;
 		display: flex;
 		margin-top: 5px;
-
-		$inactiveTextColor: $textColorHeading;
-		$activeTextColor: $textColorActive;
 
 		> div {
 			flex: auto;
@@ -21,23 +21,31 @@ header {
 			&:last-child {
 				padding-right: 0;
 			}
+		}
+	}
 
-			&.nuxt-link-exact-active {
-				color: $activeTextColor;
-			}
+}
 
+.indicating-navigation {
+
+	.navigation-element {
+		color: $textColorHeading;
+
+		&.nuxt-link-exact-active {
+			color: $activeTextColor;
+		}
+
+		&.nuxt-link-active {
+			color: $activeTextColor;
+		}
+
+		&:first-child {
 			&.nuxt-link-active {
-				color: $activeTextColor;
+				color: $inactiveTextColor;
 			}
 
-			&:first-child {
-				&.nuxt-link-active {
-					color: $inactiveTextColor;
-				}
-
-				&.nuxt-link-active.nuxt-link-exact-active {
-					color: $activeTextColor;
-				}
+			&.nuxt-link-active.nuxt-link-exact-active {
+				color: $activeTextColor;
 			}
 		}
 	}

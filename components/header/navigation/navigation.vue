@@ -1,6 +1,6 @@
 <template>
-	<nav>
-		<nuxt-link tag="div" v-for="route in [
+	<nav class="indicating-navigation">
+		<nuxt-link class="navigation-element" tag="div" v-for="route in [
 			{address: '/', name: 'Home'},
 			{address: '/life', name: 'Life'},
 			{address: '/work', name: 'Work'},
