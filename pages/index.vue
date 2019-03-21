@@ -15,7 +15,7 @@
 						<div class="title">{{ workItem.name }}</div>
 						<div class="blip"></div>
 						<div class="format">{{ workItem.event && workItem.event.format ? workItem.event.format : "Publication" }}</div>
-						<div class="contents">{{ workItem.numberOfSamples === 1 ? "1 sample" : `${workItem.numberOfSamples} samples` }}</div>
+						<div class="contents">{{ !workItem.numberOfSamples ? "No samples" : workItem.numberOfSamples === 1 ? "1 sample" : `${workItem.numberOfSamples} samples` }}</div>
 					</div>
 				</nuxt-link>
 			</section>
