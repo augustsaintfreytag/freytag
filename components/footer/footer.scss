@@ -40,7 +40,7 @@ footer {
 			section.map main {
 				.route {
 					display: flex;
-					max-width: 300px;
+					max-width: 250px;
 
 					> * {
 						overflow: hidden;
@@ -49,12 +49,18 @@ footer {
 					}
 
 					> .name {
-						flex: 1 60%;
+						flex: 0 50%;
 					}
 
 					> .address {
-						flex: 1 40%;
+						flex: 0 50%;
 						color: $textColorVeryLight;
+					}
+				}
+
+				a.nuxt-link-exact-active .route {
+					> .address {
+						color: unset;
 					}
 				}
 			}

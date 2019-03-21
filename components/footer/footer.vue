@@ -12,8 +12,8 @@
 				</section>
 				<section class="map">
 					<header>Map</header>
-					<main>
-						<nuxt-link v-for="route in mapRoutes" :key="route.address" :to="route.address">
+					<main class="indicating-navigation">
+						<nuxt-link class="navigation-element" v-for="route in mapRoutes" :key="route.address" :to="route.address">
 							<div class="route">
 								<div class="name">{{ route.name }}</div>
 								<div class="address">{{ route.address }}</div>
