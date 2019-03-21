@@ -8,13 +8,13 @@ export class CmsConnection implements Configuration.Connection {
 	private accessToken: Configuration.ApiToken|undefined
 
 	constructor() {
-		if (process.env["NUXT_APP_ENVIRONMENT"] === "LIVE") {
+		if (process.env["NUXT_ENV_APP_ENVIRONMENT"] === "LIVE") {
 			this.environment = Environment.Live
 		} else {
 			this.environment = Environment.Development
 		}
 
-		this.accessToken = process.env["NUXT_COCKPIT_ACCESS_TOKEN"]
+		this.accessToken = process.env["NUXT_ENV_COCKPIT_ACCESS_TOKEN"]
 	}
 
 	// Parameters
