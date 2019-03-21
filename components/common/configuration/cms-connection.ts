@@ -1,17 +1,16 @@
 import { Url } from "../library/url"
 import { Configuration } from "./configuration"
-import { Environment } from "./environment"
 
 export class CmsConnection implements Configuration.Connection {
 
-	private environment: Environment
+	private environment: Configuration.Environment
 	private accessToken: Configuration.ApiToken|undefined
 
 	constructor() {
 		if (process.env["NUXT_ENV_APP_ENVIRONMENT"] === "LIVE") {
-			this.environment = Environment.Live
+			this.environment = Configuration.Environment.Live
 		} else {
-			this.environment = Environment.Development
+			this.environment = Configuration.Environment.Development
 		}
 
 		this.accessToken = process.env["NUXT_ENV_COCKPIT_ACCESS_TOKEN"]
@@ -19,8 +18,12 @@ export class CmsConnection implements Configuration.Connection {
 
 	// Parameters
 
-	protocol(): Configuration.Protocol {
-		if (this.environment === Environment.Live) {
+	protocol(context?: Configuration.Context): Configuration.Protocol {
+		if (this.requestedContext(context) === Configuration.Context.Server) {
+			return "http"
+		}
+
+		if (this.environment === Configuration.Environment.Live) {
 			return "https"
 		}
 
@@ -32,7 +35,7 @@ export class CmsConnection implements Configuration.Connection {
 			return "cockpit"
 		}
 
-		if (this.environment === Environment.Live) {
+		if (this.environment === Configuration.Environment.Live) {
 			return "cockpit.augustfreytag.com"
 		}
 

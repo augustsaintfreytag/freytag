@@ -12,9 +12,14 @@ export namespace Configuration {
 		token(): ApiToken
 	}
 
+	export enum Environment {
+		Live,
+		Development
+	}
+
 	export enum Context {
-		Client,
-		Server
+		Server,
+		Client
 	}
 
 	export namespace Connections {
