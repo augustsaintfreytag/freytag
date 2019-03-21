@@ -1,5 +1,61 @@
+@import "~/assets/style/values.scss";
+
 footer {
-	width: 100%;
-	height: 250px;
-	background: transparent;
+
+	height: max-content;
+	
+	.wrap {
+		box-sizing: border-box;
+
+		> .inlay {
+			width: 100%;
+			border-top: 1px dotted $textColorVeryLight;
+			padding: 50px 0;
+
+			display: flex;
+
+			// Fundamentals
+
+			> section {
+				flex: 1 auto;
+
+				header {
+					font-weight: 700;
+					font-size: $fontSizeLabelDefault;
+					margin-bottom: 20px;
+				}
+
+				main {
+					> div {
+						margin-bottom: 6px;
+					}
+				}
+			}
+
+			// Content Specifics
+
+			section.map main {
+				.route {
+					display: flex;
+					max-width: 300px;
+
+					> * {
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+					}
+
+					> .name {
+						flex: 1 60%;
+					}
+
+					> .address {
+						flex: 1 40%;
+						color: $textColorVeryLight;
+					}
+				}
+			}
+		}
+	}
+
 }
