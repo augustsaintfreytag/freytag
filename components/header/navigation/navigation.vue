@@ -4,7 +4,7 @@
 			{address: '/', name: 'Home'},
 			{address: '/life', name: 'Life'},
 			{address: '/work', name: 'Work'},
-			{address: '/contact', name: 'Contact'},
+			{address: '/impress', name: 'Impress'},
 		]" :key="route.address" :to="route.address">
 			<a>{{ route.name }}</a>
 		</nuxt-link>
@@ -12,10 +12,3 @@
 </template>
 
 <style lang="scss" src="./navigation.scss"></style>
-
-<script lang="ts">
-	import { Component, Vue } from "vue-property-decorator"
-
-	@Component
-	export default class HeaderNavigationComponent extends Vue {}
-</script>
