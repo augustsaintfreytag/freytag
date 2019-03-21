@@ -1,21 +1,16 @@
 import { Component, Vue } from "vue-property-decorator"
 import { UrlComponent } from "../common/library/url"
 
-interface MapRoute {
-	address: UrlComponent,
-	name: string
-}
-
-interface PlatformLink {
+interface PageLink {
 	address: UrlComponent,
 	name: string,
-	spriteId: string
+	spriteId?: string
 }
 
 @Component({
 
 	computed: {
-		mapRoutes(): MapRoute[] {
+		mapLinks(): PageLink[] {
 			return [
 				{address: "/", name: "Home"},
 				{address: "/life", name: "Life"},
@@ -25,7 +20,7 @@ interface PlatformLink {
 			]
 		},
 
-		platformLinks(): PlatformLink[] {
+		platformLinks(): PageLink[] {
 			return [
 				{address: "vimeo.com/apricum", name: "Vimeo", spriteId: "logo-vimeo"},
 				{address: "gitlab.com/apricum", name: "GitLab", spriteId: "logo-gitlab"},

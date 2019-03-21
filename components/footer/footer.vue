@@ -13,10 +13,10 @@
 				<section class="map">
 					<header>Map</header>
 					<main class="indicating-navigation">
-						<nuxt-link class="navigation-element" v-for="route in mapRoutes" :key="route.address" :to="route.address">
+						<nuxt-link class="navigation-element" v-for="link in mapLinks" :key="link.address" :to="link.address">
 							<div class="route">
-								<div class="name">{{ route.name }}</div>
-								<div class="address">{{ route.address }}</div>
+								<div class="name">{{ link.name }}</div>
+								<div class="address">{{ link.address }}</div>
 							</div>
 						</nuxt-link>
 					</main>
