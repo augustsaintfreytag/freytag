@@ -38,7 +38,13 @@
 				</section>
 				<section class="further">
 					<header>Further</header>
-					<main></main>
+						<main>
+						<a v-for="link in furtherLinks" :key="link.address" :href="`https://${link.address}`">
+							<div class="route">
+								<div class="name">{{ link.address }}</div>
+							</div>
+						</a>
+					</main>
 				</section>
 			</div>
 		</div>

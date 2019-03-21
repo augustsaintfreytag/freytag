@@ -27,6 +27,14 @@ interface PageLink {
 				{address: "twitter.com/augustsfreytag", name: "Twitter", spriteId: "logo-twitter"},
 				{address: "medium.com/@augustfreytag", name: "Medium", spriteId: "logo-medium"}
 			]
+		},
+
+		furtherLinks(): PageLink[] {
+			return [
+				{address: "apricummedia.com", name: "Apricum Media and Labs"},
+				{address: "steveluxembourg.com", name: "Steve Luxembourg"},
+				{address: "records.lu", name: "Luxembourg Records"}
+			]
 		}
 	}
 
