@@ -35,6 +35,11 @@ export default {
 				routeEntries.splice(0, routeEntries.length, ...filteredRoutes)
 			}
 		}
-	}
+	},
+	css: [
+		"~/assets/style/base.scss",
+		"~/layouts/default.scss",
+		"~/components/header/header.scss"
+	]
 
 }
