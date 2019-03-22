@@ -1,7 +1,7 @@
 import { Component, Vue } from "vue-property-decorator"
 import WorkOverviewPageData from "./work-overview-page-data"
 import { WorkOverviewPageMapper } from "./work-overview-page-mapper"
-import { Head } from "~/components/common/head/head";
+import { Head } from "~/components/common/head/head"
 
 const data: WorkOverviewPageData = {
 	workItems: []

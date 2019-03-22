@@ -1,4 +1,4 @@
-import { CockpitImage } from "../models/cockpit-image-request";
+import { CockpitImage } from "../models/cockpit-image-request"
 
 export namespace CockpitImageRequestPreset {
 
