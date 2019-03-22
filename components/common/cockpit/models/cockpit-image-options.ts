@@ -49,9 +49,15 @@ export namespace CockpitImage {
 			if (quality) {
 				this.quality = quality
 			}
+
+			if (returnsImageData !== undefined) {
+				this.returnsImageData = returnsImageData
+			}
 			
-			this.includesDomainPath = includesDomainPath || false
-			this.isBase64Encoded = isBase64Encoded || false
+			if (includesDomainPath !== undefined) {
+				this.includesDomainPath = includesDomainPath
+			}
+			
 		}
 
 		// Formed Options
