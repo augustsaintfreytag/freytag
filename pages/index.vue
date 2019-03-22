@@ -1,15 +1,20 @@
 <template>
 	<section class="index-page">
-		<section class="introducer" :style="`background-image: url(${ $root.managedResourcePath(graphic.asset.path) })`">
-			<header-branding-component />
+		<section class="introducer">
+			<div class="title-holder">
+				<header-branding-component />
+			</div>
 			<div class="caption" v-if="graphic.caption">{{ graphic.caption }}</div>
+			<div class="image-holder">
+				<img class="covering" :src="$root.managedResourcePath(graphic.asset.path)" />
+			</div>
 		</section>
 		<section class="showcases inset" v-if="works && works.items.length">
 			<div class="leader">Selected Showcase</div>
 			<section class="work-showcase kind-blip-colored kind-all" v-for="workItem in works.items" :key="workItem.meta.id">
 				<nuxt-link :to="`/work/${ workItem.meta.id }`">
 					<div class="image-holder">
-						<img class="covering" v-if="workItem.titleImage" :src="$root.managedResourcePath(workItem.titleImage.path)" />
+						<img class="covering" v-if="workItem.titleImage" :data-src="$root.managedResourcePath(workItem.titleImage.path)" />
 					</div>
 					<div class="item-data">
 						<div class="title">{{ workItem.name }}</div>

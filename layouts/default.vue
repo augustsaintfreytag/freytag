@@ -2,7 +2,7 @@
 	<div id="page">
 		<div class="wrap">
 			<header-component />
-			<main>
+			<main v-lazy-container="{ selector: 'img[data-src]' }">
 				<nuxt />
 			</main>
 			<footer-component />
