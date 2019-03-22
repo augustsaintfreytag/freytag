@@ -3,27 +3,51 @@ import { Configuration } from "./configuration"
 
 export class CmsConnection implements Configuration.Connection {
 
+	private environment: Configuration.Environment
+	private accessToken: Configuration.ApiToken|undefined
+
+	constructor() {
+		if (process.env["NUXT_ENV_APP_ENVIRONMENT"] === "LIVE") {
+			this.environment = Configuration.Environment.Live
+		} else {
+			this.environment = Configuration.Environment.Development
+		}
+
+		this.accessToken = process.env["NUXT_ENV_COCKPIT_ACCESS_TOKEN"]
+	}
+
 	// Parameters
 
-	protocol(): Configuration.Protocol {
+	protocol(context?: Configuration.Context): Configuration.Protocol {
+		if (this.requestedContext(context) === Configuration.Context.Server) {
+			return "http"
+		}
+
+		if (this.environment === Configuration.Environment.Live) {
+			return "https"
+		}
+
 		return "http"
 	}
 
 	host(context?: Configuration.Context): Url {
 		if (this.requestedContext(context) === Configuration.Context.Server) {
 			return "cockpit"
-		} else {
-			return "cockpit.intra"
 		}
+
+		if (this.environment === Configuration.Environment.Live) {
+			return "cockpit.augustfreytag.com"
+		}
+
+		return "cockpit.intra"
 	}
 
 	token(): Configuration.ApiToken {
-		const token = process.env["NUXT_ENV_COCKPIT_ACCESS_TOKEN"]
-		if (!token) {
+		if (!this.accessToken) {
 			throw new TypeError(`Access token for cockpit access is not defined in environment.`)
 		}
 
-		return token
+		return this.accessToken
 
 	}
 

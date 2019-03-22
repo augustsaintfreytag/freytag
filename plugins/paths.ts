@@ -5,7 +5,7 @@ namespace PathProvider {
 
 	export function cockpitPath(pathComponent: string): Url {
 		const connection = Configuration.Connections.cms
-		return `${connection.protocol()}://${connection.host(Configuration.Context.Client)}${pathComponent}`
+		return `${connection.protocol(Configuration.Context.Client)}://${connection.host(Configuration.Context.Client)}${pathComponent}`
 	}
 
 }
