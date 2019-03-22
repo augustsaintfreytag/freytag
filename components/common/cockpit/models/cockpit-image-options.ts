@@ -4,7 +4,7 @@ export namespace CockpitImage {
 
 	// Options
 
-	export class ImageOptions {
+	export class ImageRequest {
 
 		source: Url
 
@@ -15,16 +15,18 @@ export namespace CockpitImage {
 		height: number|undefined
 		quality: number = 0.75
 
+		returnsImageData: boolean = true
 		includesDomainPath: boolean = false
 		isBase64Encoded: boolean = false
 
-		constructor({source, mode, filters, width, height, quality, includesDomainPath, isBase64Encoded}: {
+		constructor({source, mode, filters, width, height, quality, returnsImageData, includesDomainPath, isBase64Encoded}: {
 			source: Url
 			mode?: ImageMode
 			filters?: Filter[]
 			width?: number
 			height?: number
 			quality?: number
+			returnsImageData?: boolean
 			includesDomainPath?: boolean
 			isBase64Encoded?: boolean
 		}) {
@@ -58,6 +60,9 @@ export namespace CockpitImage {
 				this.includesDomainPath = includesDomainPath
 			}
 			
+			if (isBase64Encoded !== undefined) {
+				this.isBase64Encoded = isBase64Encoded
+			}
 		}
 
 		// Formed Options
@@ -69,6 +74,7 @@ export namespace CockpitImage {
 				w: this.width,
 				h: this.height,
 				q: this.quality,
+				o: this.returnsImageData,
 				d: this.includesDomainPath,
 				b64: this.isBase64Encoded
 			}
@@ -94,6 +100,7 @@ export namespace CockpitImage {
 		w?: number,
 		h?: number,
 		q?: number,
+		o?: boolean,
 		d?: boolean,
 		b64?: boolean
 	}
