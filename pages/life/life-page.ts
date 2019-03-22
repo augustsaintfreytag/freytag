@@ -3,6 +3,7 @@ import { Vita } from "~/components/common/storage/models/vita-event"
 import { DateFormatter } from "~/components/common/storage/providers/date-formatter"
 import { LifePageData } from "./life-page-data"
 import { LifePageMapper } from "./life-page-mapper"
+import { Head } from "~/components/common/head/head"
 
 const data: LifePageData = {
 	lifeFilter: undefined,
@@ -47,6 +48,12 @@ const data: LifePageData = {
 				{identifier: "context", name: "Context", sortable: false}
 			]
 		}
+	},
+
+	head() {
+		return Head.modeled({
+			title: Head.Form.suffixedTitle("Life")
+		})
 	}
 
 })

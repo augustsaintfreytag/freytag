@@ -2,12 +2,12 @@ import { Component, Vue } from "vue-property-decorator"
 import { Head } from "~/components/common/head/head"
 
 @Component({
-	layout: "maintenance",
 
 	head() {
 		return Head.modeled({
-			title: Head.Form.suffixedTitle("Maintenance")
+			title: Head.Form.suffixedTitle("Imprint")
 		})
 	}
+
 })
-export default class MaintenancePage extends Vue {}
+export default class ImprintPage extends Vue {}

@@ -3,6 +3,7 @@ import { DateFormatter } from "~/components/common/storage/providers/date-format
 import { WorkDetailPageData } from "./work-detail-page-data"
 import { WorkDetailPageMapper } from "./work-detail-page-mapper"
 import { Content } from "~/components/common/storage/models/content-block"
+import { Head } from "~/components/common/head/head"
 
 import ImageColumnsBlockComponent from "~/components/content-blocks/image-columns-block/image-columns-block.vue"
 import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-block/text-quote-block.vue"
@@ -71,6 +72,18 @@ const data: WorkDetailPageData = {
 		ImageColumnsBlockComponent,
 		TextColumnBlockComponent,
 		VideoVimeoBlockComponent
+	},
+
+	head() {
+		const titleComponents = ["Work"]
+
+		if (data.workItem) {
+			titleComponents.unshift(data.workItem.name)
+		}
+
+		return Head.modeled({
+			title: Head.Form.suffixedTitle(titleComponents)
+		})
 	}
 
 })
