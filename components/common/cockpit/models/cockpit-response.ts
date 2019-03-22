@@ -1,7 +1,9 @@
 import { CockpitEntry } from "./cockpit-entry"
 import { CockpitFieldDefinition } from "./cockpit-field-definition"
 
-export interface CockpitCollectionResponse {
+export type AnyCockpitResponse = any
+
+export interface CockpitCollectionResponse extends AnyCockpitResponse {
 
 	total: number,
 	fields: {[key: string]: CockpitFieldDefinition}
@@ -9,8 +11,10 @@ export interface CockpitCollectionResponse {
 
 }
 
-export interface CockpitSingletonResponse {
+export interface CockpitSingletonResponse extends AnyCockpitResponse {
 
 	[key: string]: any
 
 }
+
+export type CockpitImageResponse = string
