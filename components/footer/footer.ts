@@ -15,8 +15,7 @@ interface PageLink {
 				{address: "/", name: "Home"},
 				{address: "/life", name: "Life"},
 				{address: "/work", name: "Work"},
-				{address: "/imprint", name: "Imprint"},
-				{address: "/disclaimer", name: "Disclaimer"}
+				{address: "/imprint", name: "Imprint"}
 			]
 		},
 
