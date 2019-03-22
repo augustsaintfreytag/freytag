@@ -66,12 +66,22 @@ a, a:link, a:active, a:visited {
 	margin-right: auto;
 }
 
+// Main
+
 main {
 	padding: 0 0 $insetVertical 0;
 }
+
+// Image
 
 .covering {
 	object-fit: cover;
 	height: 100%;
 	width: 100%;
+}
+
+.image-holder {
+	img {
+		background: $unloadedImageColor;
+	}
 }
