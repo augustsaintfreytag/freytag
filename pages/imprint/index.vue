@@ -82,4 +82,6 @@
 	</section>
 </template>
 
-<style lang="scss" src="./index.scss"></style>
+<style lang="scss" src="./imprint.scss"></style>
+
+<script lang="ts" src="./imprint.ts"></script>

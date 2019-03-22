@@ -3,6 +3,8 @@ import { DateFormatter } from "~/components/common/storage/providers/date-format
 import { WorkDetailPageData } from "./work-detail-page-data"
 import { WorkDetailPageMapper } from "./work-detail-page-mapper"
 import { Content } from "~/components/common/storage/models/content-block"
+import { Head } from "~/components/common/head/head"
+import { MetaTag } from "~/components/common/head/library/meta-tag"
 
 import ImageColumnsBlockComponent from "~/components/content-blocks/image-columns-block/image-columns-block.vue"
 import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-block/text-quote-block.vue"
@@ -71,6 +73,32 @@ const data: WorkDetailPageData = {
 		ImageColumnsBlockComponent,
 		TextColumnBlockComponent,
 		VideoVimeoBlockComponent
+	},
+
+	head() {
+		const titleComponents = ["Work"]
+		const meta: MetaTag[] = []
+
+		const item = data.workItem
+
+		if (item) {
+			const event = item.event
+			const metaTag: MetaTag = {hid: "description", name: "description", content: undefined}
+
+			if (event) {
+				const introducingText = `${event.kind}, ${event.format}, ${DateFormatter.formattedDateRange(event)}`
+				metaTag.content = `${introducingText} ${item.description}`
+			} else {
+				metaTag.content = item.description
+			}
+
+			titleComponents.unshift(item.name)
+			meta.push(metaTag)
+		}
+
+		return Head.modeled({
+			title: Head.Form.suffixedTitle(titleComponents), meta
+		})
 	}
 
 })
