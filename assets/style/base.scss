@@ -1,4 +1,5 @@
 @import "~/assets/style/values.scss";
+@import "~/assets/style/fonts.scss";
 
 html, body {
 	padding: 0;
@@ -9,7 +10,7 @@ html, body {
 }
 
 body {
-	font-family: "paralucent", sans-serif;
+	font-family: "Paralucent";
 	font-weight: 300;
 	font-size: $fontSizeDefault;
 	color: $textColor;

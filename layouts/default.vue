@@ -14,5 +14,3 @@
 <style lang="scss" src="./default.scss"></style>
 
 <script lang="ts" src="./default.ts"></script>
-
-
