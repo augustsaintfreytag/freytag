@@ -1,5 +1,5 @@
 <template>
-	<section class="error-page 502-page">
+	<section class="error-page 50X-page">
 		<section class="image-holder">
 			<svg class="icon">
 				<use xlink:href="#freytag-maintenance-logo"></use>
