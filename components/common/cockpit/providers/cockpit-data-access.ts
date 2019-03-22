@@ -3,9 +3,9 @@ import path from "path"
 
 import { Configuration } from "~/components/common/configuration/configuration"
 import { Url } from "~/components/common/library/url"
-import { CockpitCollectionResponse, CockpitSingletonResponse } from "../models/cockpit-response"
 import CockpitError from "../library/cockpit-error"
 import CockpitRequestOptions from "../models/cockpit-request-options"
+import { CockpitCollectionResponse, CockpitSingletonResponse, AnyCockpitResponse } from "../models/cockpit-response"
 
 export namespace CockpitDataAccess {
 
@@ -32,7 +32,7 @@ export namespace CockpitDataAccess {
 
 	// General Fetch
 
-	export async function data(route: string, requestOptions?: CockpitRequestOptions): Promise<CockpitCollectionResponse> {
+	export async function data(route: string, requestOptions?: CockpitRequestOptions): Promise<AnyCockpitResponse> {
 		const url = preparedUrl(route)
 
 		try {
@@ -49,6 +49,7 @@ export namespace CockpitDataAccess {
 
 	function preparedUrl(route: string): Url {
 		const connection = Configuration.Connections.cms
+		
 		const protocol = connection.protocol()
 		const host = connection.host()
 		const token = connection.token()
