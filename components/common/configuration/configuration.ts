@@ -1,5 +1,5 @@
 import { Url } from "../library/url"
-import { CmsConnection } from "./cms-connection";
+import { CmsConnection } from "./cms-connection"
 
 export namespace Configuration {
 

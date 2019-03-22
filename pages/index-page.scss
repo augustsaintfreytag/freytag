@@ -26,10 +26,6 @@
 		height: 80vh;
 		margin-bottom: $interSectionSpacing;
 
-		.image-holder {
-			background: $unloadedImageColor;
-		}
-
 		.title-holder {
 			position: absolute;
 			top: 0;
@@ -86,7 +82,6 @@
 
 		> .work-showcase {
 			.image-holder {
-				background: $unloadedImageColor;
 				width: 100%;
 				min-height: 400px;
 				height: 40vh;

@@ -29,7 +29,7 @@ export namespace Head {
 
 			if (inclusion instanceof Array) {
 				if(base[includeKey] instanceof Array === false) {
-					continue;
+					continue
 				}
 
 				if (!base[includeKey]) {
