@@ -1,77 +1,31 @@
-/*
- * The Typekit service used to deliver this font or fonts for use on websites
- * is provided by Adobe and is subject to these Terms of Use
- * http://www.adobe.com/products/eulas/tou_typekit. For font license
- * information, see the list below.
- *
- * paralucent:
- *   - http://typekit.com/eulas/00000000000000003b9ad973
- *   - http://typekit.com/eulas/00000000000000003b9ad98d
- *   - http://typekit.com/eulas/00000000000000003b9ad9d0
- *   - http://typekit.com/eulas/00000000000000003b9ad9d8
- *   - http://typekit.com/eulas/00000000000000003b9ad9e8
- *   - http://typekit.com/eulas/00000000000000003b9ad9ee
- *   - http://typekit.com/eulas/00000000000000003b9ad9f0
- *   - http://typekit.com/eulas/00000000000000003b9ad9fd
- *
- * © 2009-2019 Adobe Systems Incorporated. All Rights Reserved.
- */
-/*{"last_published":"2019-03-09 10:52:18 UTC"}*/
-
-@import url("https://p.typekit.net/p.css?s=1&k=flj5giy&ht=tk&f=27897.27923.27992.28000.28016.28022.28024.28037&a=8971879&app=typekit&e=css");
-
 @font-face {
-	font-family: "paralucent";
-	src: url("https://use.typekit.net/af/e3be10/00000000000000003b9ad973/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff2"), url("https://use.typekit.net/af/e3be10/00000000000000003b9ad973/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("woff"), url("https://use.typekit.net/af/e3be10/00000000000000003b9ad973/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n5&v=3") format("opentype");
-	font-style: normal;
-	font-weight: 500;
-}
-
-@font-face {
-	font-family: "paralucent";
-	src: url("https://use.typekit.net/af/d79fb2/00000000000000003b9ad98d/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3") format("woff2"), url("https://use.typekit.net/af/d79fb2/00000000000000003b9ad98d/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3") format("woff"), url("https://use.typekit.net/af/d79fb2/00000000000000003b9ad98d/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i3&v=3") format("opentype");
-	font-style: italic;
-	font-weight: 300;
-}
-
-@font-face {
-	font-family: "paralucent";
-	src: url("https://use.typekit.net/af/747436/00000000000000003b9ad9d0/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff2"), url("https://use.typekit.net/af/747436/00000000000000003b9ad9d0/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("woff"), url("https://use.typekit.net/af/747436/00000000000000003b9ad9d0/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n7&v=3") format("opentype");
+	font-display: swap;
+	font-family: "Paralucent";
+	src: url("~assets/fonts/Paralucent-700-Regular.woff2") format("woff2");
 	font-style: normal;
 	font-weight: 700;
 }
 
 @font-face {
-	font-family: "paralucent";
-	src: url("https://use.typekit.net/af/854e12/00000000000000003b9ad9d8/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff2"), url("https://use.typekit.net/af/854e12/00000000000000003b9ad9d8/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("woff"), url("https://use.typekit.net/af/854e12/00000000000000003b9ad9d8/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n3&v=3") format("opentype");
+	font-display: swap;
+	font-family: "Paralucent";
+	src: url("~assets/fonts/Paralucent-500-Regular.woff2") format("woff2");
+	font-style: normal;
+	font-weight: 500;
+}
+
+@font-face {
+	font-display: swap;
+	font-family: "Paralucent";
+	src: url("~assets/fonts/Paralucent-300-Regular.woff2") format("woff2");
 	font-style: normal;
 	font-weight: 300;
 }
 
 @font-face {
-	font-family: "paralucent";
-	src: url("https://use.typekit.net/af/ed2089/00000000000000003b9ad9e8/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff2"), url("https://use.typekit.net/af/ed2089/00000000000000003b9ad9e8/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("woff"), url("https://use.typekit.net/af/ed2089/00000000000000003b9ad9e8/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=n6&v=3") format("opentype");
-	font-style: normal;
-	font-weight: 600;
-}
-
-@font-face {
-	font-family: "paralucent";
-	src: url("https://use.typekit.net/af/675f87/00000000000000003b9ad9ee/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3") format("woff2"), url("https://use.typekit.net/af/675f87/00000000000000003b9ad9ee/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3") format("woff"), url("https://use.typekit.net/af/675f87/00000000000000003b9ad9ee/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i5&v=3") format("opentype");
+	font-display: swap;
+	font-family: "Paralucent";
+	src: url("~assets/fonts/Paralucent-300-Italic.woff2") format("woff2");
 	font-style: italic;
-	font-weight: 500;
-}
-
-@font-face {
-	font-family: "paralucent";
-	src: url("https://use.typekit.net/af/1b90bd/00000000000000003b9ad9f0/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("woff2"), url("https://use.typekit.net/af/1b90bd/00000000000000003b9ad9f0/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("woff"), url("https://use.typekit.net/af/1b90bd/00000000000000003b9ad9f0/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i6&v=3") format("opentype");
-	font-style: italic;
-	font-weight: 600;
-}
-
-@font-face {
-	font-family: "paralucent";
-	src: url("https://use.typekit.net/af/e3caea/00000000000000003b9ad9fd/27/l?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff2"), url("https://use.typekit.net/af/e3caea/00000000000000003b9ad9fd/27/d?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("woff"), url("https://use.typekit.net/af/e3caea/00000000000000003b9ad9fd/27/a?primer=7cdcb44be4a7db8877ffa5c0007b8dd865b3bbc383831fe2ea177f62257a9191&fvd=i7&v=3") format("opentype");
-	font-style: italic;
-	font-weight: 700;
+	font-weight: 300;
 }
