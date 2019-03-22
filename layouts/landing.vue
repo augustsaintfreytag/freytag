@@ -5,7 +5,7 @@
 				<section></section>
 				<header-navigation-component />
 			</header>
-			<main>
+			<main v-lazy-container="{ selector: 'img[data-src]' }">
 				<nuxt />
 			</main>
 			<footer-component />
