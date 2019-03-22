@@ -19,7 +19,10 @@ const data: WorkOverviewPageData = {
 
 	head() {
 		return Head.modeled({
-			title: Head.Form.suffixedTitle("Work")
+			title: Head.Form.suffixedTitle("Work"),
+			meta: [
+				{hid: "description", name: "description", content: "Collection of showcases for selected works, past and present. Detailed write-ups and behind-the-scenes explorations, visual excerpts and interview content."}
+			]
 		})
 	}
 })
