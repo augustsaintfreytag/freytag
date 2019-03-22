@@ -6,7 +6,7 @@
 			</div>
 			<div class="caption" v-if="graphic.caption">{{ graphic.caption }}</div>
 			<div class="image-holder">
-				<img class="covering" :src="$root.managedResourcePath(graphic.asset.path)" />
+				<img class="covering" :src="$imagePath(graphic.asset.path, 'cover')" />
 			</div>
 		</section>
 		<section class="showcases inset" v-if="works && works.items.length">
@@ -14,7 +14,7 @@
 			<section class="work-showcase kind-blip-colored kind-all" v-for="workItem in works.items" :key="workItem.meta.id">
 				<nuxt-link :to="`/work/${ workItem.meta.id }`">
 					<div class="image-holder">
-						<img class="covering" v-if="workItem.titleImage" :data-src="$root.managedResourcePath(workItem.titleImage.path)" />
+						<img class="covering" v-if="workItem.titleImage" :data-src="$imagePath(workItem.titleImage.path, 'regular')" />
 					</div>
 					<div class="item-data">
 						<div class="title">{{ workItem.name }}</div>

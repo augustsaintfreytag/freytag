@@ -2,7 +2,7 @@
 	<section class="work-pages work-detail-page">
 		<section class="cover">
 			<div class="image-holder">
-				<img class="covering" v-if="workItem.titleImage" :src="$root.managedResourcePath(workItem.titleImage.path)" />
+				<img class="covering" v-if="workItem.titleImage" :src="$imagePath(workItem.titleImage.path, 'cover')" />
 			</div>
 			<div class="title-holder">
 				<h2>{{ workItem.name }}</h2>

@@ -7,7 +7,7 @@
 			>
 				<nuxt-link :to="`/work/${workItem.meta.id}`">
 					<div class="image-holder">
-						<img class="covering" v-if="workItem.titleImage" :src="$root.managedResourcePath(workItem.titleImage.path)" />
+						<img class="covering" v-if="workItem.titleImage" :src="$imagePath(workItem.titleImage.path, 'teaser')" />
 					</div>
 					<div class="item-data">
 						<div class="blip"></div>
