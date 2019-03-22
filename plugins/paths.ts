@@ -3,7 +3,7 @@ import { UrlComponent } from "~/components/common/library/url"
 import { CockpitAssetPathProvider } from "~/components/common/cockpit/providers/cockpit-asset-path-provider"
 import { CockpitImageRequestPreset } from "~/components/common/cockpit/library/cockpit-image-request-presets"
 
-export default (context: Context, inject: CallableFunction) => {
+export default (_context: Context, inject: CallableFunction) => {
 	
 	inject("assetPath", (component: UrlComponent) => {
 		return CockpitAssetPathProvider.cockpitAsset(component)
