@@ -1,17 +1,16 @@
-import { Url } from "~/components/common/library/url"
-import { Configuration } from "~/components/common/configuration/configuration"
+import { Context } from "@nuxt/vue-app-edge"
+import { UrlComponent } from "~/components/common/library/url"
+import { CockpitAssetPathProvider } from "~/components/common/cockpit/providers/cockpit-asset-path-provider"
+import { CockpitImageRequestPreset } from "~/components/common/cockpit/library/cockpit-image-request-presets"
 
-namespace PathProvider {
+export default (context: Context, inject: CallableFunction) => {
+	
+	inject("assetPath", (component: UrlComponent) => {
+		return CockpitAssetPathProvider.cockpitAsset(component)
+	})
 
-	export function cockpitPath(pathComponent: string): Url {
-		const connection = Configuration.Connections.cms
-		return `${connection.protocol(Configuration.Context.Client)}://${connection.host(Configuration.Context.Client)}${pathComponent}`
-	}
+	inject("imagePath", (component: UrlComponent, format?: CockpitImageRequestPreset.Format|undefined) => {
+		return CockpitAssetPathProvider.cockpitImage(component, format)
+	})
 
-}
-
-export default ({ app }) => {
-	app.methods.managedResourcePath = (pathComponent: string): Url => {
-		return PathProvider.cockpitPath(pathComponent)
-	}
 }
