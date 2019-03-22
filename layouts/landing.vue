@@ -17,5 +17,3 @@
 <style lang="scss"></style>
 
 <script lang="ts" src="./landing.ts"></script>
-
-
