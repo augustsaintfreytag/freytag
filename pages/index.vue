@@ -6,7 +6,7 @@
 			</div>
 			<div class="caption" v-if="graphic.caption">{{ graphic.caption }}</div>
 			<div class="image-holder">
-				<img class="covering" :src="$imagePath(graphic.asset.path, 'cover')" />
+				<img class="covering" :src="$imagePath(graphic.asset.path, 'large')" />
 			</div>
 		</section>
 		<section class="showcases inset" v-if="works && works.items.length">

@@ -8,9 +8,9 @@ export namespace CockpitImageRequestPreset {
 
 	export enum Format {
 
-		Teaser = "teaser",
+		Small = "small",
 		Regular = "regular",
-		Cover = "cover"
+		Large = "large"
 	
 	}
 
@@ -20,7 +20,7 @@ export namespace CockpitImageRequestPreset {
 
 	const presets: PresetsByFormat = {}
 
-	presets[Format.Teaser] = new CockpitImage.ImageRequest({
+	presets[Format.Small] = new CockpitImage.ImageRequest({
 		mode: CockpitImage.ImageMode.BestFit,
 		width: 800,
 		quality: defaultQuality
@@ -28,13 +28,13 @@ export namespace CockpitImageRequestPreset {
 
 	presets[Format.Regular] = new CockpitImage.ImageRequest({
 		mode: CockpitImage.ImageMode.BestFit,
-		width: 1200,
+		width: 1400,
 		quality: defaultQuality
 	})
 
-	presets[Format.Cover] = new CockpitImage.ImageRequest({
+	presets[Format.Large] = new CockpitImage.ImageRequest({
 		mode: CockpitImage.ImageMode.BestFit,
-		width: 1600,
+		width: 1800,
 		quality: defaultQuality
 	})
 
