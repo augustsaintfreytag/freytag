@@ -1,0 +1,66 @@
+@import "~/assets/style/base.scss";
+
+// Headlines
+
+$elementSpacingSlim: 20px;
+$elementSpacingWide: 40px;
+
+$headlineSpacingSlim: 0.75em;
+$headlineSpacingMedium: 1.1em;
+$headlineSpacingWide: 1.4em;
+
+$fontWeightDefault: 400;
+$fontWeightBold: 700;
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "paralucent";
+	margin: 0;
+
+	> .subheading {
+		font-weight: $fontWeightDefault;
+		font-size: 0.7em;
+		margin: $headlineSpacingSlim 0;
+	}
+}
+
+h1, h2, h3 {
+	font-weight: $fontWeightBold;
+}
+
+h4, h5, h6 {
+	font-weight: $fontWeightDefault;
+}
+
+h2 {
+	font-size: $fontSizeLabelBold;
+	margin: 0 0 $headlineSpacingWide 0;
+}
+
+h3 {
+	font-size: $fontSizeLabelDefault;
+	font-weight: $fontWeightDefault;
+	margin: 0 0 $headlineSpacingMedium 0;
+}
+
+h4, h5, h6 {
+	font-size: $fontSizeDefault;
+	margin: 0 0 $headlineSpacingSlim 0;
+}
+
+// Paragraphs
+
+article {
+	
+	p {
+		margin: 0 0 $headlineSpacingSlim 0;
+	}
+
+	> div {
+		margin-bottom: $elementSpacingWide;
+	}
+
+	> div > div {
+		margin-bottom: $elementSpacingSlim;
+	}
+
+}

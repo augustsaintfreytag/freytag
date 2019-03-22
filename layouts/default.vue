@@ -11,10 +11,7 @@
 	</div>
 </template>
 
-<style lang="scss">
-	@import "~/assets/style/fonts.scss";
-	@import "~/assets/style/base.scss";
-</style>
+<style lang="scss" src="./default.scss"></style>
 
 <script lang="ts" src="./default.ts"></script>
 

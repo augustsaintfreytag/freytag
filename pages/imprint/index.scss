@@ -1,0 +1,15 @@
+.imprint-page {
+
+	.imprints {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		grid-template-rows: auto;
+		grid-column-gap: 75px;
+		width: 100%;
+
+		> article {
+			text-align: justify;
+		}
+	}
+
+}
