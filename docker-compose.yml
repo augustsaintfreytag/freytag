@@ -38,15 +38,15 @@ services:
       - CHOKIDAR_USEPOLLING=true
       - NUXT_ENV_APP_ENVIRONMENT=${APP_ENVIRONMENT}
     env_file:
-      - ./server/$APP_PARAMETERS_NAME
+      - ./server/env/$APP_PARAMETERS_NAME
 
   cockpit:
     image: agentejo/cockpit:latest
     volumes:
       - data-cockpit:/var/www/html/storage
     environment:
-        COCKPIT_SESSION_NAME: cockpit
-        COCKPIT_SALT: "4F47B1B2-5603-4D5F-9190-0EF9BE925D07"
+        - COCKPIT_SESSION_NAME=cockpit
+        - COCKPIT_SALT=${COCKPIT_SALT}
 
 volumes:
   data-cockpit:
