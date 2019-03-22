@@ -66,7 +66,6 @@ export namespace CockpitImage {
 			return {
 				src: this.source,
 				m: this.mode,
-				f: this.filters,
 				w: this.width,
 				h: this.height,
 				q: this.quality,
@@ -92,7 +91,6 @@ export namespace CockpitImage {
 	export interface CockpitImageOptions {
 		src?: Url,
 		m?: string,
-		f?: string[],
 		w?: number,
 		h?: number,
 		q?: number,
