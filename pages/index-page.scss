@@ -26,12 +26,42 @@
 		height: 80vh;
 		margin-bottom: $interSectionSpacing;
 
-		background: #f2f2f2;
-		background-size: cover;
-		background-position: center;
-		background-repeat: no-repeat;
+		.image-holder {
+			background: $unloadedImageColor;
+		}
 
-		display: flex;
+		.title-holder {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			display: flex;
+
+			.branding {
+				width: 100%;
+				align-self: center;
+	
+				h1 {
+					color: $color;
+					text-align: center;
+					font-size: $fontSizeHeadingExtreme;
+					text-transform: uppercase;
+					margin-bottom: 15px;
+	
+					@include textShadowDefault();
+				}
+	
+				.tagline {
+					text-align: center;
+					font-size: $fontSizeDefaultBold;
+					color: $color;
+					
+					@include textShadowSmall();
+				}
+			}
+		}
 
 		.caption {
 			position: absolute;
@@ -42,29 +72,6 @@
 			opacity: 0.5;
 
 			@include textShadowSmall();
-		}
-
-		.branding {
-			width: 100%;
-			align-self: center;
-
-			h1 {
-				color: $color;
-				text-align: center;
-				font-size: $fontSizeHeadingExtreme;
-				text-transform: uppercase;
-				margin-bottom: 15px;
-
-				@include textShadowDefault();
-			}
-
-			.tagline {
-				text-align: center;
-				font-size: $fontSizeDefaultBold;
-				color: $color;
-				
-				@include textShadowSmall();
-			}
 		}
 	}
 
@@ -79,7 +86,7 @@
 
 		> .work-showcase {
 			.image-holder {
-				background: rgb(117, 241, 214);
+				background: $unloadedImageColor;
 				width: 100%;
 				min-height: 400px;
 				height: 40vh;
