@@ -52,7 +52,10 @@ const data: LifePageData = {
 
 	head() {
 		return Head.modeled({
-			title: Head.Form.suffixedTitle("Life")
+			title: Head.Form.suffixedTitle("Life"),
+			meta: [
+				{hid: "description", name: "description", content: "Listing of all recorded projects, work-in-progress and completed, for categories life, education, film, development, artwork, and photography, presented by time, format, role, location, and context surrounding each entry."}
+			]
 		})
 	}
 
