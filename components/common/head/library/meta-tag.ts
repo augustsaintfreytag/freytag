@@ -6,5 +6,6 @@ export interface MetaTag {
 	type?: string
 	href?: string
 	rel?: string
+	charset?: string
 	
 }

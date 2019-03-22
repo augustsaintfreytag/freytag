@@ -8,7 +8,10 @@ export namespace Head {
 
 	export const title = "August S. Freytag"
 	export const meta: MetaTag[] = [
+		{hid: "encoding", charset: "utf-8"},
 		{hid: "author", name: "author", content: "August S. Freytag"},
+		{hid: "copyright", name: "copyright", content: "August S. Freytag"},
+		{hid: "robots", name: "robots", content: "follow"},
 		{hid: "favicon", rel: "shortcut icon", type: "image/x-icon", href: "/favicon.ico"}
 	]
 
