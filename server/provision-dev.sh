@@ -1,6 +1,5 @@
 source ./env/provision-dev.env
 
-DOCKER_VOLUME="freytag_data-letsencrypt"
 OUT_DIRECTORY_BASE="ssl"
 
 OUT_ROOT_CA_KEY_NAME="rootCA.key"
