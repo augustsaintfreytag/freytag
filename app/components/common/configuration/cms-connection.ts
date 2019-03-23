@@ -40,7 +40,8 @@ export class CmsConnection implements Configuration.Connection {
 
 	token(): Configuration.ApiToken {
 		if (!this.accessToken) {
-			throw new TypeError(`Access token for cockpit access is not defined in environment.`)
+			console.error("Access token for cockpit access is not defined in environment.")
+			return ""
 		}
 
 		return this.accessToken
