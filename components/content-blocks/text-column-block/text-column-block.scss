@@ -1,0 +1,29 @@
+@import "~/assets/style/values.scss";
+
+.text-column-block {
+
+	columns: auto 2;
+	column-gap: 50px;
+
+	p {
+		font-size: $fontSizeLabelDefault;
+		text-align: left;
+		color: $textColorLight;
+		line-height: $textLineHeightParagraph;
+		margin: 0 0 15px 0;
+	}
+
+	a {
+		text-decoration: underline;
+		color: $textColorVeryLight;
+
+		&:active, &:visited:active {
+			color: $textColorLight;
+		}
+	}
+
+	em {
+		color: $textColorLight;
+	}
+
+}

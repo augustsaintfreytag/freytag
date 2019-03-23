@@ -1,0 +1,14 @@
+[req]
+default_bits = 2048
+prompt = no
+default_md = sha256
+distinguished_name = dn
+
+[dn]
+C=DE
+ST=N/A
+L=N/A
+O=N/A
+OU=N/A
+emailAddress=mail@localhost
+CN=app.intra

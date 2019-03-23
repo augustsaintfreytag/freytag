@@ -1,0 +1,12 @@
+@mixin blipElement($size) {
+	&:before {
+		content: " ";
+		display: block;
+		height: $size;
+		width: $size;
+		border-radius: 100%;
+		border-width: 3px;
+		border-style: solid;
+		box-sizing: border-box;
+	}
+}

@@ -1,0 +1,100 @@
+@import "~/assets/style/values.scss";
+
+footer {
+
+	$sectionHeaderMargin: 25px;
+	$sectionInterItemSpacing: 10px;
+
+	height: max-content;
+	
+	.wrap {
+		box-sizing: border-box;
+
+		> .inlay {
+			width: 100%;
+			border-top: 1px dotted $textColorVeryLight;
+			padding: 50px 0;
+
+			display: flex;
+
+			// All Sections
+
+			> section {
+				flex: 1;
+				overflow: hidden;
+
+				header {
+					font-weight: 700;
+					font-size: $fontSizeLabelDefault;
+					margin-bottom: $sectionHeaderMargin;
+				}
+
+				main {
+					> a > div, > div {
+						margin-bottom: $sectionInterItemSpacing;
+					}
+				}
+			}
+
+			// Individual Sections
+
+			section.personal, section.further {
+				max-width: 22%;
+			}
+
+			section.map main {
+				.route {
+					display: flex;
+					max-width: 250px;
+
+					> * {
+						overflow: hidden;
+						white-space: nowrap;
+						text-overflow: ellipsis;
+					}
+
+					> .name {
+						flex: 0 50%;
+					}
+
+					> .address {
+						flex: 0 50%;
+						color: $textColorVeryLight;
+					}
+				}
+
+				a.nuxt-link-exact-active .route {
+					> .address {
+						color: unset;
+					}
+				}
+			}
+
+			section.public main {
+				.platform-link {
+					display: flex;
+
+					> * {
+						flex: 0;
+					}
+
+					.sprite {
+						$size: 18px;
+						$itemSpacing: 10px;
+
+						flex-basis: $size + $itemSpacing;
+						position: relative;
+
+						svg {
+							position: absolute;
+							width: $size;
+							height: $size;
+							fill: $textColor;
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

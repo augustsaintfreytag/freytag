@@ -1,0 +1,53 @@
+@import "~/assets/style/values.scss";
+
+$inactiveTextColor: $textColorHeading;
+$activeTextColor: $textColorActive;
+
+header {
+
+	nav {
+		flex: 0;
+		display: flex;
+		margin-top: 10px;
+
+		> div {
+			flex: auto;
+			font-weight: 700;
+			font-size: $fontSizeNavigationDefault;
+			color: $textColorHeading;
+			text-transform: uppercase;
+			padding: 0 20px 0 0;
+
+			&:last-child {
+				padding-right: 0;
+			}
+		}
+	}
+
+}
+
+.indicating-navigation {
+
+	.navigation-element {
+		color: $textColorHeading;
+
+		&.nuxt-link-exact-active {
+			color: $activeTextColor;
+		}
+
+		&.nuxt-link-active {
+			color: $activeTextColor;
+		}
+
+		&:first-child {
+			&.nuxt-link-active {
+				color: $inactiveTextColor;
+			}
+
+			&.nuxt-link-active.nuxt-link-exact-active {
+				color: $activeTextColor;
+			}
+		}
+	}
+
+}

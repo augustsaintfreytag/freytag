@@ -1,0 +1,85 @@
+@import "~/assets/style/values.scss";
+@import "~/assets/style/fonts.scss";
+
+html, body {
+	padding: 0;
+	margin: 0;
+	min-width: 1000px;
+}
+
+body {
+	font-family: "Paralucent";
+	font-weight: 300;
+	font-size: $fontSizeDefault;
+	color: $textColor;
+}
+
+// Elements
+
+button {
+	appearance: none;
+	border: none;
+	padding: 0;
+	margin: 0;
+	outline: none;
+}
+
+a, a:link, a:active, a:visited {
+	text-decoration: unset;
+	color: unset;
+}
+
+// Case & Wrap
+
+#page {
+	display: flex;
+	justify-content: space-between;
+
+	> .wrap {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+		min-height: 100vh;
+		padding: 0;
+	
+		> header {
+			flex: 0 auto;
+		}
+	
+		> main {
+			flex: auto;
+		}
+	
+		> footer {
+			flex: 0 auto;
+		}
+	}
+}
+
+.inset {
+	box-sizing: border-box;
+	padding: $insetVertical $insetHorizontal;
+	max-width: 1400px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+// Main
+
+main {
+	padding: 0 0 $insetVertical 0;
+}
+
+// Image
+
+.covering {
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+}
+
+.image-holder {
+	img {
+		background: $unloadedImageColor;
+	}
+}

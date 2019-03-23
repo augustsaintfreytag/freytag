@@ -1,0 +1,16 @@
+@import "~/assets/style/values.scss";
+
+header {
+	
+	display: flex;
+	margin-bottom: 10px;
+	background: #fff;
+	box-sizing: border-box;
+	width: 100%;
+	
+	> * {
+		flex: auto;
+		justify-content: space-between;
+	}
+
+}

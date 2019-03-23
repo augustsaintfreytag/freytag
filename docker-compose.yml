@@ -1,0 +1,64 @@
+version: "3"
+
+services:
+
+  proxy:
+    image: nginx:latest
+    volumes:
+      - ./server/nginx/nginx.conf:/etc/nginx/nginx.conf:cached
+      - ./server/nginx/include:/etc/nginx/include:cached
+      - data-challenges:/usr/share/nginx/html/challenges
+      - data-letsencrypt:/etc/letsencrypt
+      - data-app-build-generated:/usr/share/nginx/html/build
+    ports:
+      - "80:80"
+      - "443:443"
+
+  app:
+    image: node:latest
+    volumes:
+      - ./nuxt.config.ts:/var/app/nuxt.config.ts:cached
+      - ./package.json:/var/app/package.json:cached
+      - ./tsconfig.json:/var/app/tsconfig.json:cached
+      - ./vue-shim.d.ts:/var/app/vue-shim.d.ts:cached
+      - ./yarn.lock:/var/app/yarn.lock:cached
+      - ./plugins:/var/app/plugins:cached
+      - ./assets:/var/app/assets:cached
+      - ./static:/var/app/static:cached
+      - ./components:/var/app/components:cached
+      - ./layouts:/var/app/layouts:cached
+      - ./pages:/var/app/pages:cached
+      - data-app-node-modules:/var/app/node_modules
+      - data-app-build-generated:/var/app/build
+      - data-app-build-nuxt:/var/lib/nuxt
+    command: "bash -c 'cd /var/app && yarn && $APP_CMD_STARTUP'"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=80
+      - CHOKIDAR_USEPOLLING=true
+      - NUXT_ENV_APP_ENVIRONMENT=${APP_ENVIRONMENT}
+    env_file:
+      - ./server/env/$APP_PARAMETERS_NAME
+
+  cockpit:
+    image: agentejo/cockpit:latest
+    volumes:
+      - data-cockpit:/var/www/html/storage
+    environment:
+      - COCKPIT_SESSION_NAME=cockpit
+    env_file:
+      - ./server/env/$APP_PARAMETERS_NAME
+
+volumes:
+  data-cockpit:
+    driver: local
+  data-app-node-modules:
+    driver: local
+  data-app-build-nuxt:
+    driver: local
+  data-app-build-generated:
+    driver: local
+  data-challenges:
+    driver: local
+  data-letsencrypt:
+    driver: local
