@@ -17,7 +17,7 @@ then
 	openssl genrsa -des3 -passout pass:$PLACEHOLDER_PASSWORD -out $OUT_ROOT_CA_KEY_PATH 2048
 
 	# Generate Root CA Pem
-	openssl req -x509 -passin pass:$PLACEHOLDER_PASSWORD -passout pass:$PLACEHOLDER_PASSWORD -new -nodes -key $OUT_ROOT_CA_KEY_PATH -sha256 -days 1024 -subj '/CN=localhost/O=N\/A/C=DE' -out $OUT_ROOT_CA_PEM_PATH
+	openssl req -x509 -passin pass:$PLACEHOLDER_PASSWORD -passout pass:$PLACEHOLDER_PASSWORD -new -nodes -key $OUT_ROOT_CA_KEY_PATH -sha256 -days 1024 -subj '/CN=Local\ Certificate\ Authority/O=N\/A/C=DE' -out $OUT_ROOT_CA_PEM_PATH
 else
 	echo "Root key already exists, will not be generated."
 fi
@@ -30,6 +30,9 @@ do
 	OUT_CSR_PATH=$OUT_DIRECTORY/out.csr
 	OUT_CRT_PATH=$OUT_DIRECTORY/out.crt
 
+	DOMAIN_CONFIG_PATH=./ssl-server-$DOMAIN_NAME.cnf
+	DOMAIN_V3_PATH=./ssl-server-v3-$DOMAIN_NAME.ext
+
 	if ! test -f "$OUT_CRT_PATH"
 	then
 		echo "Generating local certificate for domain '$DOMAIN_NAME'."
@@ -37,10 +40,10 @@ do
 		mkdir $OUT_DIRECTORY
 		
 		# Generate Domain-specific Key
-		openssl req -new -sha256 -nodes -out $OUT_CSR_PATH -newkey rsa:2048 -keyout $OUT_KEY_PATH -config ./ssl-server.csr.cnf
+		openssl req -new -sha256 -nodes -out $OUT_CSR_PATH -newkey rsa:2048 -keyout $OUT_KEY_PATH -config $DOMAIN_CONFIG_PATH
 
 		# Generate Certificate
-		openssl x509 -req -in $OUT_CSR_PATH -CA $OUT_ROOT_CA_PEM_PATH -CAkey $OUT_ROOT_CA_KEY_PATH -CAcreateserial -out $OUT_CRT_PATH -days 500 -sha256 -passin pass:$PLACEHOLDER_PASSWORD -extfile ./ssl-v3.ext
+		openssl x509 -req -in $OUT_CSR_PATH -CA $OUT_ROOT_CA_PEM_PATH -CAkey $OUT_ROOT_CA_KEY_PATH -CAcreateserial -out $OUT_CRT_PATH -days 500 -sha256 -passin pass:$PLACEHOLDER_PASSWORD -extfile $DOMAIN_V3_PATH
 	else
 		echo "Certificate for domain '$DOMAIN_NAME' already exists."
 	fi
