@@ -1,4 +1,4 @@
-source ./env/ycle-live.env
+source ./env/cycle-live.env
 source ./env/provision-live.env
 
 docker-compose up -d
