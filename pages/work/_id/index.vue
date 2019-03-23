@@ -1,11 +1,11 @@
 <template>
-	<section class="work-pages work-detail-page">
+	<article class="work-pages work-detail-page">
 		<section class="cover">
 			<div class="image-holder">
 				<img class="covering" v-if="workItem.titleImage" :src="$imagePath(workItem.titleImage.path, 'large')" />
 			</div>
 			<div class="title-holder">
-				<h2>{{ workItem.name }}</h2>
+				<h1>{{ workItem.name }}</h1>
 			</div>
 			<div class="scroll-indicator">
 				<svg class="icon">
@@ -35,6 +35,7 @@
 			<video-vimeo-block-component v-if="contentBlock.form === types.Form.VideoVimeo" :contentBlock="contentBlock" />
 		</span>
 	</section>
+	</article>
 </template>
 
 <style lang="scss" src="./work-detail-page.scss"></style>
