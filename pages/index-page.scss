@@ -39,10 +39,11 @@
 				width: 100%;
 				align-self: center;
 	
-				h1 {
+				.title {
 					color: $color;
 					text-align: center;
 					font-size: $fontSizeHeadingExtreme;
+					font-weight: 700;
 					text-transform: uppercase;
 					margin-bottom: 15px;
 	

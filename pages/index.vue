@@ -14,7 +14,7 @@
 			<section class="work-showcase kind-blip-colored kind-all" v-for="workItem in works.items" :key="workItem.meta.id">
 				<nuxt-link :to="`/work/${ workItem.meta.id }`">
 					<div class="image-holder">
-						<img class="covering" v-if="workItem.titleImage" :data-src="$imagePath(workItem.titleImage.path, 'regular')" />
+						<img class="covering" v-if="workItem.titleImage" :src="$imagePath(workItem.titleImage.path, 'regular')" />
 					</div>
 					<div class="item-data">
 						<div class="title">{{ workItem.name }}</div>

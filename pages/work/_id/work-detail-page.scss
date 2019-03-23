@@ -2,7 +2,7 @@
 
 .work-detail-page {
 
-	section.cover {
+	.cover {
 		$shadowHorizontalOffset: 0;
 		$shadowVerticalOffset: 3px;
 		$shadowBlur: 0;
@@ -23,7 +23,7 @@
 			bottom: 33%;
 			width: 100%;
 
-			h2 {
+			h1 {
 				font-size: $fontSizeHeadingBold;
 				color: $color;
 				text-shadow: 
@@ -84,10 +84,6 @@
 					padding-right: 50px;
 					text-align: right;
 					font-weight: 500;
-				}
-
-				.text {
-					
 				}
 			}
 		}

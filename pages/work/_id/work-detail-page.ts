@@ -80,6 +80,7 @@ const data: WorkDetailPageData = {
 		const meta: MetaTag[] = []
 
 		const item = data.workItem
+		const itemName = item && item.name ? item.name : undefined
 
 		if (item) {
 			const event = item.event
@@ -92,12 +93,11 @@ const data: WorkDetailPageData = {
 				metaTag.content = item.description
 			}
 
-			titleComponents.unshift(item.name)
 			meta.push(metaTag)
 		}
 
 		return Head.modeled({
-			title: Head.Form.suffixedTitle(titleComponents), meta
+			title: Head.Form.suffixedTitle(itemName || "Untitled", titleComponents), meta
 		})
 	}
 
