@@ -45,8 +45,9 @@ services:
     volumes:
       - data-cockpit:/var/www/html/storage
     environment:
-        - COCKPIT_SESSION_NAME=cockpit
-        - COCKPIT_SALT=${COCKPIT_SALT}
+      - COCKPIT_SESSION_NAME=cockpit
+    env_file:
+      - ./server/env/$APP_PARAMETERS_NAME
 
 volumes:
   data-cockpit:
