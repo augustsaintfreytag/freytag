@@ -3,6 +3,8 @@ source "$BASE/env/provision-dev.env"
 
 OUT_DIRECTORY_BASE=$BASE/ssl
 
+echo "Provisioning development system with base ssl directory at '$OUT_DIRECTORY_BASE'."
+
 OUT_ROOT_CA_KEY_NAME="rootCA.key"
 OUT_ROOT_CA_PEM_NAME="rootCA.pem"
 
@@ -35,6 +37,9 @@ fi
 ORIGINAL_IFS=$IFS
 IFS=","
 
+# Remove Certificates
+docker run --rm -v $VOLUME_SSL:/etc/letsencrypt alpine /bin/sh -c "mv /etc/letsencrypt/live /etc/letsencrypt/live-`date +%s`"
+
 echo "$DOMAIN_NAMES_SSL" | while read -d';' i j; do
 	DOMAIN_NAME=$i
 	DOMAIN_NAME_ALIAS=$j
@@ -62,12 +67,9 @@ echo "$DOMAIN_NAMES_SSL" | while read -d';' i j; do
 		echo "Certificate for domain '$DOMAIN_NAME' (alias '$DOMAIN_NAME_ALIAS') already exists."
 	fi
 
-	# Remove Certificates
-	docker run --rm -v $VOLUME_SSL:/etc/letsencrypt alpine /bin/sh -c "mv /etc/letsencrypt/live /etc/letsencrypt/live-`date +%s`"
-
 	# Copy Certificates
-	echo "Copying ssl contents from '$PWD' to volume named '$VOLUME_SSL'."
-	docker run --rm -v "$PWD":/source -v $VOLUME_SSL:/etc/letsencrypt alpine /bin/sh -c "mkdir -p /etc/letsencrypt/live/ && cp -R /source/ssl/* /etc/letsencrypt/live/"
+	echo "Copying ssl contents from '$OUT_DIRECTORY_BASE' to volume named '$VOLUME_SSL'."
+	docker run --rm -v "$OUT_DIRECTORY_BASE":/source/ssl -v $VOLUME_SSL:/etc/letsencrypt alpine /bin/sh -c "mkdir -p /etc/letsencrypt/live/ && cp -R /source/ssl/* /etc/letsencrypt/live/"
 
 	echo "Setting up alias in ssl volume '$VOLUME_SSL' for domain '$DOMAIN_NAME' as link named '$DOMAIN_NAME_ALIAS'."
 	docker run --rm -v $VOLUME_SSL:/etc/letsencrypt alpine /bin/sh -c "ln -s /etc/letsencrypt/live/$DOMAIN_NAME /etc/letsencrypt/live/$DOMAIN_NAME_ALIAS"
