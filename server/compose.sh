@@ -1,8 +1,8 @@
 if [ "$APP_ENVIRONMENT" = "LIVE" ]
 then
-	source ./cycle-live.env
+	source ./env/cycle-live.env
 else
-	source ./cycle-dev.env
+	source ./env/cycle-dev.env
 fi
 
 docker-compose $@

@@ -1,2 +1,3 @@
 .nuxt
 parameters-*.env
+server/ssl

@@ -17,7 +17,7 @@ export namespace CockpitAssetPathProvider {
 	}
 
 	export function cockpitImage(component: UrlComponent, format?: CockpitImageRequestPreset.Format|undefined): Url {
-		const sourcePath = cockpitAsset(component)
+		const sourcePath = component
 
 		const imageRequest = CockpitImageRequestPreset.preset(format || CockpitImageRequestPreset.Format.Regular)
 		const imageRequestOptions = imageRequest.options(sourcePath) as QueryParameterProvider.ParameterDictionary
