@@ -1,5 +1,6 @@
-source ./env/cycle-live.env
-source ./env/provision-live.env
+BASE=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+source "$BASE/env/cycle-live.env"
+source "$BASE/env/provision-live.env"
 
 docker-compose up -d
 docker run --rm -v $VOLUME_SSL:/etc/letsencrypt alpine /bin/sh -c "rm -rf /etc/letsencrypt/live/*"
