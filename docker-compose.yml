@@ -5,7 +5,7 @@ services:
   proxy:
     image: nginx:latest
     volumes:
-      - ./server/nginx/$NGINX_CONF_NAME:/etc/nginx/nginx.conf:cached
+      - ./server/nginx/nginx.conf:/etc/nginx/nginx.conf:cached
       - ./server/nginx/include:/etc/nginx/include:cached
       - data-challenges:/usr/share/nginx/html/challenges
       - data-letsencrypt:/etc/letsencrypt
