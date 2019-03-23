@@ -9,6 +9,8 @@ OUT_ROOT_CA_PEM_NAME="rootCA.pem"
 OUT_ROOT_CA_KEY_PATH=$OUT_DIRECTORY_BASE/$OUT_ROOT_CA_KEY_NAME
 OUT_ROOT_CA_PEM_PATH=$OUT_DIRECTORY_BASE/$OUT_ROOT_CA_PEM_NAME
 
+mkdir ./$OUT_DIRECTORY_BASE
+
 #############################################################
 #                   ROOT CERTIFICATE                        #
 #############################################################
