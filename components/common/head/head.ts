@@ -6,6 +6,8 @@ export namespace Head {
 
 	// Constant Properties
 
+	export const separator = ", "
+
 	export const title = "August S. Freytag"
 	export const meta: MetaTag[] = [
 		{hid: "encoding", charset: "utf-8"},
@@ -50,12 +52,14 @@ export namespace Head {
 
 	export namespace Form {
 
-		export function suffixedTitle(titleComponents: string|string[]): string {
-			if (typeof titleComponents === "string") {
-				titleComponents = [titleComponents]
+		export function suffixedTitle(primaryTitle: string, titles?: string[]): string {
+			const titleComponents = [...(titles || []), title]
+
+			if (!titleComponents) {
+				return primaryTitle;
 			}
 
-			return [...titleComponents, title].join(" / ")
+			return `${primaryTitle} (${titleComponents.join(separator)})`
 		}
 
 	}
