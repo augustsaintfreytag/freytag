@@ -57,21 +57,21 @@ echo "$DOMAIN_NAMES_SSL" | while read -d';' i j; do
 
 		# Generate Certificate
 		openssl x509 -req -in $OUT_CSR_PATH -CA $OUT_ROOT_CA_PEM_PATH -CAkey $OUT_ROOT_CA_KEY_PATH -CAcreateserial -out $OUT_CRT_PATH -days 500 -sha256 -passin pass:$PLACEHOLDER_PASSWORD -extfile $DOMAIN_V3_PATH
-
-		# Remove Certificates
-		docker run --rm -v $DOCKER_VOLUME:/etc/letsencrypt alpine /bin/sh -c "mv /etc/letsencrypt/live /etc/letsencrypt/live-`date +%s`"
-
-		# Copy Certificates
-		echo "Copying ssl contents from '$PWD' to volume named '$DOCKER_VOLUME'."
-		docker run --rm -v "$PWD":/source -v $DOCKER_VOLUME:/etc/letsencrypt alpine /bin/sh -c "mkdir -p /etc/letsencrypt/live/ && cp -R /source/ssl/* /etc/letsencrypt/live/"
-
-		echo "Setting up alias in ssl volume '$DOCKER_VOLUME' for domain '$DOMAIN_NAME' as link named '$DOMAIN_NAME_ALIAS'."
-		docker run --rm -v $DOCKER_VOLUME:/etc/letsencrypt alpine /bin/sh -c "ln -s /etc/letsencrypt/live/$DOMAIN_NAME /etc/letsencrypt/live/$DOMAIN_NAME_ALIAS"
 	else
 		echo "Certificate for domain '$DOMAIN_NAME' (alias '$DOMAIN_NAME_ALIAS') already exists."
 	fi
+
+	# Remove Certificates
+	docker run --rm -v $VOLUME_SSL:/etc/letsencrypt alpine /bin/sh -c "mv /etc/letsencrypt/live /etc/letsencrypt/live-`date +%s`"
+
+	# Copy Certificates
+	echo "Copying ssl contents from '$PWD' to volume named '$VOLUME_SSL'."
+	docker run --rm -v "$PWD":/source -v $VOLUME_SSL:/etc/letsencrypt alpine /bin/sh -c "mkdir -p /etc/letsencrypt/live/ && cp -R /source/ssl/* /etc/letsencrypt/live/"
+
+	echo "Setting up alias in ssl volume '$VOLUME_SSL' for domain '$DOMAIN_NAME' as link named '$DOMAIN_NAME_ALIAS'."
+	docker run --rm -v $VOLUME_SSL:/etc/letsencrypt alpine /bin/sh -c "ln -s /etc/letsencrypt/live/$DOMAIN_NAME /etc/letsencrypt/live/$DOMAIN_NAME_ALIAS"
 done
 
 IFS=$ORIGINAL_IFS
 
-docker run -v $DOCKER_VOLUME:/etc/letsencrypt frapsoft/openssl dhparam -dsaparam -out /etc/letsencrypt/dhparam-2048.pem 2048
+docker run -v $VOLUME_SSL:/etc/letsencrypt frapsoft/openssl dhparam -dsaparam -out /etc/letsencrypt/dhparam-2048.pem 2048
