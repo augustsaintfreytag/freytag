@@ -59,7 +59,7 @@ echo "$DOMAIN_NAMES_SSL" | while read -d';' i j; do
 		openssl x509 -req -in $OUT_CSR_PATH -CA $OUT_ROOT_CA_PEM_PATH -CAkey $OUT_ROOT_CA_KEY_PATH -CAcreateserial -out $OUT_CRT_PATH -days 500 -sha256 -passin pass:$PLACEHOLDER_PASSWORD -extfile $DOMAIN_V3_PATH
 
 		# Remove Certificates
-		# docker run --rm -v $DOCKER_VOLUME:/etc/letsencrypt alpine /bin/sh -c "rm -rf /etc/letsencrypt/live/$DOMAIN_NAME_ALIAS"
+		docker run --rm -v $DOCKER_VOLUME:/etc/letsencrypt alpine /bin/sh -c "mv /etc/letsencrypt/live /etc/letsencrypt/live-`date +%s`"
 
 		# Copy Certificates
 		echo "Copying ssl contents from '$PWD' to volume named '$DOCKER_VOLUME'."
