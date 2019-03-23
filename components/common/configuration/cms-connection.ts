@@ -23,11 +23,7 @@ export class CmsConnection implements Configuration.Connection {
 			return "http"
 		}
 
-		if (this.environment === Configuration.Environment.Live) {
-			return "https"
-		}
-
-		return "http"
+		return "https"
 	}
 
 	host(context?: Configuration.Context): Url {
