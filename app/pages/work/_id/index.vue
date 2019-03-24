@@ -28,6 +28,7 @@
 				{{ workItem.description }}
 			</section>
 		</section>
+		<div class="divider inset"></div>
 		<template v-for="contentBlock in workItem.blocks">
 			<image-columns-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.ImageColumns" :contentBlock="contentBlock" />
 			<text-quote-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.TextQuote" :contentBlock="contentBlock" />
