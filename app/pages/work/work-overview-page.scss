@@ -39,7 +39,7 @@
 
 				.blip {
 					flex: 0 $blipSize;
-					padding-top: 4px;
+					align-self: center;
 					padding-right: $blipPadding;
 
 					@include blipElement($blipSize);
