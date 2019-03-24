@@ -4,7 +4,7 @@ BASE=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 source "$BASE/env/cycle-live.env"
 source "$BASE/env/provision-live.env"
 
-docker run --rm -v $VOLUME_SSL:/etc/letsencrypt alpine /bin/sh -c "mv /etc/letsencrypt/live /etc/letsencrypt/live-displaced && mkdir /etc/letsencrypt/live"
+docker run --rm -v $VOLUME_SSL:/etc/letsencrypt alpine /bin/sh -c "mv /etc/letsencrypt/live /etc/letsencrypt/live-displaced"
 
 $BASE/provision-dev.sh
 
