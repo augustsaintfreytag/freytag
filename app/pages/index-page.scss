@@ -1,0 +1,137 @@
+@import "~/assets/style/values.scss";
+@import "~/assets/style/mixins/blip-element.scss";
+@import "~/assets/style/life-kind-colors.scss";
+
+.index-page {
+
+	$interSectionSpacing: 8vh;
+
+	.introducer {
+		$shadowHorizontalOffset: 0;
+		$shadowVerticalOffset: 4px;
+		$shadowBlur: 0;
+		$shadowColor: rgba(30, 30, 30, 0.35);
+		$color: $textColorOnDark;
+
+		@mixin textShadowDefault {
+			text-shadow: $shadowHorizontalOffset $shadowVerticalOffset $shadowBlur $shadowColor;
+		}
+
+		@mixin textShadowSmall {
+			text-shadow: $shadowHorizontalOffset ($shadowVerticalOffset * 0.5) $shadowBlur $shadowColor;
+		}
+		
+		position: relative;
+		width: 100%;
+		height: 80vh;
+		margin-bottom: $interSectionSpacing;
+
+		.title-holder {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+
+			display: flex;
+
+			.branding {
+				width: 100%;
+				align-self: center;
+	
+				.title {
+					color: $color;
+					text-align: center;
+					font-size: $fontSizeHeadingExtreme;
+					font-weight: 700;
+					text-transform: uppercase;
+					margin-bottom: 15px;
+	
+					@include textShadowDefault();
+				}
+	
+				.tagline {
+					text-align: center;
+					font-size: $fontSizeDefaultBold;
+					color: $color;
+					
+					@include textShadowSmall();
+				}
+			}
+		}
+
+		.image-holder {
+			height: 100%;
+		}
+
+		.caption {
+			position: absolute;
+			width: 100%;
+			text-align: center;
+			bottom: 18px;
+			color: $color;
+			opacity: 0.5;
+
+			@include textShadowSmall();
+		}
+	}
+
+	.showcases {
+		margin-bottom: $interSectionSpacing;
+
+		.leader {
+			text-align: center;
+			color: $textColorVeryLight;
+			margin-bottom: 25px;
+		}
+
+		> .work-showcase {
+			.image-holder {
+				width: 100%;
+				min-height: 400px;
+				height: 40vh;
+				overflow: hidden;
+				margin-bottom: 15px;
+			}
+
+			.item-data {
+				$interItemSpacing: 55px;
+				$blipSize: 11px;
+				$blipPadding: 7px;
+				$childDividerSpacing: 15px;
+
+				display: flex;
+
+				> * {
+					flex: 0 auto;
+				}
+
+				.title {
+					margin-right: $interItemSpacing;
+				}
+
+				.blip {
+					flex: 0 $blipSize;
+					padding-right: $blipPadding;
+					align-self: center;
+
+					@include blipElement($blipSize);
+				}
+
+				.format, .contents {
+					overflow: hidden;
+					text-overflow: ellipsis;
+					white-space: nowrap;
+				}
+
+				.format {
+					&:after {
+						content: "|";
+						padding: 0 $childDividerSpacing;
+					}
+				}
+			}
+		}
+	}
+
+}
