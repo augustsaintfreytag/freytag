@@ -1,4 +1,9 @@
+# Clean Mode: Remove all live certificates, start clean.
+
 BASE=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+
+$BASE/provision-dev.sh
+
 source "$BASE/env/cycle-live.env"
 source "$BASE/env/provision-live.env"
 
