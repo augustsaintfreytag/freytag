@@ -4,6 +4,7 @@ import { DateFormatter } from "~/components/common/storage/providers/date-format
 import { LifePageData } from "./life-page-data"
 import { LifePageMapper } from "./life-page-mapper"
 import { Head } from "~/components/common/head/head"
+import { LifePageRouteMapper } from "./life-page-route-mapper"
 
 const data: LifePageData = {
 	lifeFilter: undefined,
@@ -19,7 +20,9 @@ const data: LifePageData = {
 		return data
 	},
 
-	async asyncData() {
+	async asyncData({ query }) {
+		LifePageRouteMapper.mapPersistentParameters(data, query)
+
 		await LifePageMapper.updateLifeEvents(data)
 		LifePageMapper.mapSortedLifeEvents(data)
 
@@ -62,6 +65,16 @@ const data: LifePageData = {
 })
 export default class LifePage extends Vue {
 
+	// Controlling
+
+	updateRoute() {
+		const data = this.$data as LifePageData
+		const query = Object.assign({}, this.$nuxt.$route.query)
+
+		LifePageRouteMapper.storePersistentParameters(data, query)
+		this.$nuxt.$router.push({ name: this.$nuxt.$route.name, query })
+	}
+
 	// Events
 
 	didToggleFilter(_event: MouseEvent, filter: string) {
@@ -69,6 +82,8 @@ export default class LifePage extends Vue {
 
 		LifePageMapper.toggleFilter(data, filter)
 		LifePageMapper.mapSortedLifeEvents(data)
+
+		this.updateRoute()
 	}
 
 	didToggleSorting(_event: MouseEvent, sortingMode: string) {
@@ -80,6 +95,8 @@ export default class LifePage extends Vue {
 
 		LifePageMapper.toggleSortingMode(data, sortingMode)
 		LifePageMapper.mapSortedLifeEvents(data)
+
+		this.updateRoute()
 	}
 
 	formattedDateRange(event: Vita.Event): string {
