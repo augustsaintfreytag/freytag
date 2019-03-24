@@ -1,9 +1,8 @@
 import { LifePageMapper } from "./life-page-mapper"
 import { Vita } from "~/components/common/storage/models/vita-event"
+import { PageData } from "~/components/common/library/page-data"
 
-type Data = Record<string, any>
-
-export interface LifePageData extends Data {
+export interface LifePageData extends PageData {
 
 	lifeFilter: string|undefined
 	lifeSortingMode: LifePageMapper.SortingMode
