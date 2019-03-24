@@ -4,23 +4,23 @@ export namespace SortingProvider {
 
 	// Aliases
 
-	export type Options = {sortingKeyPair: KeyPair, sortingReversed?: boolean}
+	export type Options<Value> = {sortingKeyPair: KeyPair, sortingValueFallback: ValueFallback<Value>, sortingReversed?: boolean}
 
 	// Functionality
 
-	export function sortedModels<T extends AnySortableModel>(models: T[], options: Options): T[] {
+	export function sortedModels<Model extends AnySortableModel<Value>, Value>(models: Model[], options: Options<Value>): Model[] {
 		const sortingKeyPrimary = options.sortingKeyPair.primary
 		const sortingKeySecondary = options.sortingKeyPair.secondary || options.sortingKeyPair.primary
 
-		models = models.sort((a: T, b: T) => {
-			const aValue = a[sortingKeyPrimary] || a[sortingKeySecondary] || ""
-			const bValue = b[sortingKeyPrimary] || b[sortingKeySecondary] || ""
+		models = models.sort((lhs: Model, rhs: Model) => {
+			const lhsValue = lhs[sortingKeyPrimary] || options.sortingValueFallback.primary || lhs[sortingKeySecondary] || options.sortingValueFallback.secondary || ""
+			const rhsValue = rhs[sortingKeyPrimary] || options.sortingValueFallback.primary || rhs[sortingKeySecondary] || options.sortingValueFallback.secondary || ""
 
-			if (aValue < bValue) {
+			if (lhsValue < rhsValue) {
 				return -1
 			}
 			
-			if(aValue > bValue) {
+			if(lhsValue > rhsValue) {
 				return 1
 			}
 
@@ -39,6 +39,11 @@ export namespace SortingProvider {
 	export interface KeyPair {
 		primary: string
 		secondary?: string
+	}
+
+	export interface ValueFallback<Value> {
+		primary?: Value,
+		secondary?: Value
 	}
 
 }
