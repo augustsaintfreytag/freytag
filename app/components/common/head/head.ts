@@ -52,15 +52,8 @@ export namespace Head {
 
 	export namespace Form {
 
-		export function suffixedTitle(primaryTitle: string, titles?: string[]): string {
-			const titleComponents = [...(titles || []), title]
-
-			if (!titleComponents) {
-				return primaryTitle;
-			}
-
-			titleComponents.unshift(primaryTitle)
-			return titleComponents.join(separator)
+		export function suffixedTitle(primaryTitle: string, titles: string[] = []): string {
+			return [primaryTitle, ...titles, title].join(separator)
 		}
 
 	}
