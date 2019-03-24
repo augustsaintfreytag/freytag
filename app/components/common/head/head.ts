@@ -6,7 +6,7 @@ export namespace Head {
 
 	// Constant Properties
 
-	export const separator = ", "
+	export const separator = " / "
 
 	export const title = "August S. Freytag"
 	export const meta: MetaTag[] = [
@@ -59,7 +59,8 @@ export namespace Head {
 				return primaryTitle;
 			}
 
-			return `${primaryTitle} (${titleComponents.join(separator)})`
+			titleComponents.unshift(primaryTitle)
+			return titleComponents.join(separator)
 		}
 
 	}
