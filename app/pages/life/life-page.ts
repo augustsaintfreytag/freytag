@@ -4,9 +4,8 @@ import { DateFormatter } from "~/components/common/storage/providers/date-format
 import { LifePageData } from "./life-page-data"
 import { LifePageMapper } from "./life-page-mapper"
 import { Head } from "~/components/common/head/head"
-import { LifePageRouteMapper } from "./life-page-route-mapper"
 
-const data: LifePageData = {
+const initialData: LifePageData = {
 	lifeFilter: undefined,
 	lifeSortingMode: "time",
 	lifeSortingIsReversed: true,
@@ -16,11 +15,9 @@ const data: LifePageData = {
 
 @Component({
 
-	data() {
-		return data
-	},
+	async asyncData() {
+		const data = initialData
 
-	async asyncData({ query }) {
 		await LifePageMapper.updateLifeEvents(data)
 		LifePageMapper.mapSortedLifeEvents(data)
 
