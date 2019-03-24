@@ -11,8 +11,7 @@ import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-bloc
 import TextColumnBlockComponent from "~/components/content-blocks/text-column-block/text-column-block.vue"
 import VideoVimeoBlockComponent from "~/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
 
-const data: WorkDetailPageData = {
-
+const initialData: WorkDetailPageData = {
 	types: {
 		Form: {
 			ImageColumns: Content.Form.ImageColumns,
@@ -23,29 +22,24 @@ const data: WorkDetailPageData = {
 	},
 
 	workItemId: undefined,
-	workItem: undefined,
-
+	workItem: undefined
 }
 
 @Component({
 
 	async asyncData({ params }) {
-		data.workItemId = params["id"]
-		await WorkDetailPageMapper.updateWorkItem(data)
+		initialData.workItemId = params["id"]
+		await WorkDetailPageMapper.updateWorkItem(initialData)
 
-		if (!data.workItem) {
-			if (data.workItemId) {
-				throw { statusCode: 404, message: `Work with id '${data.workItemId}' could not be fetched.`}
+		if (!initialData.workItem) {
+			if (initialData.workItemId) {
+				throw { statusCode: 404, message: `Work with id '${initialData.workItemId}' could not be fetched.`}
 			} else {
 				throw { statusCode: 404, message: `Missing work id.` }
 			}
 		}
 
-		return data
-	},
-
-	data() {
-		return data
+		return initialData
 	},
 
 	computed: {
@@ -79,7 +73,7 @@ const data: WorkDetailPageData = {
 		const titleComponents = ["Work"]
 		const meta: MetaTag[] = []
 
-		const item = data.workItem
+		const item = initialData.workItem
 		const itemName = item && item.name ? item.name : undefined
 
 		if (item) {

@@ -5,7 +5,7 @@ import { IndexData } from "./index-data"
 import { IndexPageMapper } from "./index-page-mapper"
 import { Head } from "~/components/common/head/head"
 
-const data: IndexData = {
+const initialData: IndexData = {
 	graphic: undefined,
 	works: undefined
 }
@@ -18,15 +18,11 @@ const data: IndexData = {
 		HeaderBrandingComponent
 	},
 
-	data() {
-		return data
-	},
-
 	async asyncData() {
-		await IndexPageMapper.mapLandingGraphic(data)
-		await IndexPageMapper.mapLandingWorks(data)
+		await IndexPageMapper.mapLandingGraphic(initialData)
+		await IndexPageMapper.mapLandingWorks(initialData)
 
-		return data
+		return initialData
 	},
 
 	head() {
