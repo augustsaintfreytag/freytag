@@ -1,8 +1,9 @@
+import { AnySortableModel } from "../library/any-sortable-model"
+
 export namespace SortingProvider {
 
 	// Aliases
 
-	export type AnySortableModel = {[key: string]: any}
 	export type Options = {sortingKeyPair: KeyPair, sortingReversed?: boolean}
 
 	// Functionality
