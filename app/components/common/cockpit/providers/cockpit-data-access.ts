@@ -11,11 +11,13 @@ export namespace CockpitDataAccess {
 
 	type AnyRequestObject = {[key: string]: any}
 
-	// Constants
-
-	const defaultOptions: AnyRequestObject = {
-		populate: 3,
-		filter: { display: true }
+	// Options
+	
+	function defaultOptions(): AnyRequestObject {
+		return {
+			populate: 3,
+			filter: { display: true }
+		}
 	}
 
 	// Typed Fetch
@@ -36,7 +38,7 @@ export namespace CockpitDataAccess {
 		const url = preparedUrl(route)
 
 		try {
-			const options = preparedOptions(defaultOptions, requestOptions || {})
+			const options = preparedOptions(defaultOptions(), requestOptions || {})
 			const serverResponse = await axios.post(url, options)
 
 			return serverResponse.data as CockpitCollectionResponse
