@@ -36,7 +36,7 @@
 					</div>
 				</div>
 				<div>
-					<p>Provided by: <a href="http://www.translate-24h.de/">http://www.translate-24h.de/</a>.</p>
+					<p>Provided by: <a href="http://www.translate-24h.de/">translate-24h.de</a></p>
 				</div>
 			</article>
 			<article>
@@ -53,19 +53,19 @@
 						10965 Berlin
 					</p>
 					<p>
-						Telephone: 030 915 779 70‬<br />
-						E-Mail: me@augustfreytag.com<br />
-						Internet address: augustfreytag.com
+						Telefon: 030 915 779 70‬<br />
+						Email: me@augustfreytag.com<br />
+						Internetadresse: augustfreytag.com
 					</p>
 				</div>
 				<div>
-					<h3>Disclaimer</h3>
+					<h3>Haftungsausschluss</h3>
 					<div>
 						<h4>Haftung für Inhalte</h4>
 						<p>Als Diensteanbieter sind wir gemäß § 7 Abs.1 TMG für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.</p>
 					</div>
 					<div>
-						<h4>Accountability for links</h4>
+						<h4>Haftung für Verlinkungen</h4>
 						<p>Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstöße überprüft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.</p>
 					</div>
 					<div>
@@ -75,7 +75,7 @@
 					</div>
 				</div>
 				<div>
-					<p>Provided by: <a href="https://www.e-recht24.de">e-recht24.de</a>.</p>
+					<p>Provided by: <a href="https://www.e-recht24.de">e-recht24.de</a></p>
 				</div>
 			</article>
 		</section>
