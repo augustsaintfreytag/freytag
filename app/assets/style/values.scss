@@ -14,7 +14,7 @@ $textColorActive: #d3d3d3;
 
 $textColorHeading: #3a3a3a;
 
-$unloadedImageColor: #eaeaea;
+$faintElementColor: #f4f4f4;
 
 $textColorAccent: $textColor;
 
@@ -36,3 +36,7 @@ $fontSizeHeadingBold: 3.5em;
 $fontSizeHeadingExtreme: 5.25em;
 
 $fontSizeNavigationDefault: 1.25em;
+
+// Elements
+
+$dividerBorder: 3px solid $faintElementColor;

@@ -54,6 +54,14 @@
 		}
 	}
 
+	.divider {
+		&:after {
+			content: " ";
+			display: block;
+			border-bottom: $dividerBorder;
+		}
+	}
+
 	section.introduction {
 		$contentInset: 100px;
 

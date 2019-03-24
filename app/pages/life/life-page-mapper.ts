@@ -8,9 +8,14 @@ export namespace LifePageMapper {
 	export type SortingMode = string
 	export type Filter = string
 
-	export const sortingOptions: {[key: string]: SortingProvider.KeyPair|undefined} = {
-		time: {primary: "dateEnded", secondary: "dateStarted"},
+	export const sortingKeyPairs: {[key: string]: SortingProvider.KeyPair|undefined} = {
+		time: {primary: "dateStarted", secondary: "dateEnded"},
 		format: {primary: "format", secondary: undefined}
+	}
+
+	export const sortingValueFallbacks: {[key: string]: SortingProvider.ValueFallback<any>} = {
+		time: {primary: undefined, secondary: new Date()},
+		format: {primary: undefined, secondary: undefined}
 	}
 
 	// Fetching
@@ -62,14 +67,16 @@ export namespace LifePageMapper {
 	}
 
 	function isValidSortingMode(mode: SortingMode): boolean {
-		return sortingOptions[mode] !== undefined
+		return sortingKeyPairs[mode] !== undefined
 	}
 
 	// Sorting
 	
 	function sortedLifeEventsWithMode(events: Vita.Event[], mode: SortingMode, reversed: boolean = false): Vita.Event[] {
-		const options = sortingOptions[mode]!
-		return sortedLifeEventsWithOptions(events, {sortingKeyPair: options, sortingReversed: reversed})
+		const sortingKeyPair = sortingKeyPairs[mode]!
+		const sortingValueFallback = sortingValueFallbacks[mode]!
+
+		return sortedLifeEventsWithOptions(events, {sortingKeyPair, sortingValueFallback, sortingReversed: reversed})
 	}
 
 	function filteredLifeEventsWithOptions(events: Vita.Event[], options: {filter: Filter}): Vita.Event[] {
@@ -78,7 +85,7 @@ export namespace LifePageMapper {
 		})
 	}
 
-	function sortedLifeEventsWithOptions(events: Vita.Event[], options: {sortingKeyPair: SortingProvider.KeyPair, sortingReversed: boolean}): Vita.Event[] {
+	function sortedLifeEventsWithOptions<SortedValue>(events: Vita.Event[], options: {sortingKeyPair: SortingProvider.KeyPair, sortingValueFallback: SortingProvider.ValueFallback<SortedValue>, sortingReversed: boolean}): Vita.Event[] {
 		return SortingProvider.sortedModels(events, options)
 	}
 

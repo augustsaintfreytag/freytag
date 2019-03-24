@@ -38,6 +38,4 @@ interface PageLink {
 	}
 
 })
-export default class FooterComponent extends Vue {
-
-}
+export default class FooterComponent extends Vue {}

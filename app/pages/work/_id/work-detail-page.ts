@@ -29,7 +29,7 @@ const data: WorkDetailPageData = {
 
 @Component({
 
-	async asyncData({params}) {
+	async asyncData({ params }) {
 		data.workItemId = params["id"]
 		await WorkDetailPageMapper.updateWorkItem(data)
 

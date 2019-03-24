@@ -12,7 +12,7 @@ footer {
 
 		> .inlay {
 			width: 100%;
-			border-top: 1px dotted $textColorVeryLight;
+			border-top: $dividerBorder;
 			padding: 50px 0;
 
 			display: flex;

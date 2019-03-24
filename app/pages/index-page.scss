@@ -111,8 +111,9 @@
 				}
 
 				.blip {
-					padding-top: 3px;
+					flex: 0 $blipSize;
 					padding-right: $blipPadding;
+					align-self: center;
 
 					@include blipElement($blipSize);
 				}

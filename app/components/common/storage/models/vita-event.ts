@@ -1,5 +1,6 @@
 import { ConversionProvider } from "~/components/common/cockpit/providers/conversion-provider"
 import { CockpitEntry } from "~/components/common/cockpit/models/cockpit-entry"
+import { AnySortableModel } from "../library/any-sortable-model"
 import { Kind } from "../library/kind"
 import MetaData from "./meta-data"
 
@@ -7,7 +8,9 @@ export namespace Vita {
 
 	// Live Model
 
-	export class Event {
+	export class Event implements AnySortableModel<any> {
+
+		[key: string]: any
 
 		display: boolean
 		name: string

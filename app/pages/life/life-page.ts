@@ -4,6 +4,7 @@ import { DateFormatter } from "~/components/common/storage/providers/date-format
 import { LifePageData } from "./life-page-data"
 import { LifePageMapper } from "./life-page-mapper"
 import { Head } from "~/components/common/head/head"
+import { LifePageRouteMapper } from "./life-page-route-mapper"
 
 const data: LifePageData = {
 	lifeFilter: undefined,
@@ -19,7 +20,7 @@ const data: LifePageData = {
 		return data
 	},
 
-	async asyncData() {
+	async asyncData({ query }) {
 		await LifePageMapper.updateLifeEvents(data)
 		LifePageMapper.mapSortedLifeEvents(data)
 
