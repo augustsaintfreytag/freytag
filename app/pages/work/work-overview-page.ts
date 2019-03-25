@@ -3,12 +3,12 @@ import WorkOverviewPageData from "./work-overview-page-data"
 import { WorkOverviewPageMapper } from "./work-overview-page-mapper"
 import { Head } from "~/components/common/head/head"
 
-const initialData: WorkOverviewPageData = {
-	workItems: []
-}
-
 @Component({
 	async asyncData() {
+		const initialData: WorkOverviewPageData = {
+			workItems: []
+		}
+
 		await WorkOverviewPageMapper.updateWorkItems(initialData)
 		return initialData
 	},
