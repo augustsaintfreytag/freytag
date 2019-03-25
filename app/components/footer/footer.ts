@@ -1,5 +1,5 @@
 import { Component, Vue } from "vue-property-decorator"
-import { UrlComponent } from "../common/library/url"
+import { PageLink } from "./page-link"
 
 interface PageLink {
 	address: UrlComponent,
