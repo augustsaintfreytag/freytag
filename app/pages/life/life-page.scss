@@ -31,8 +31,11 @@
 			}
 
 			.blip {
+				flex: 0 $blipSize;
 				padding-right: $filterBlipPadding;
-				padding-top: 4px;
+				align-self: center;
+				transform: translateY(-0.5px);
+				
 				@include blipElement($filterBlipSize);
 			}
 		
@@ -127,8 +130,8 @@
 			.blip {
 				flex: 0 $blipSize;
 				height: min-content;
-				padding-top: 4px;
 				padding-right: $blipPadding;
+				align-self: center;
 
 				@include blipElement($blipSize);
 			}
