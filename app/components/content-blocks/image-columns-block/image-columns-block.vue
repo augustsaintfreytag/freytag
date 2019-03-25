@@ -2,7 +2,7 @@
 	<section class="content-block image-columns-block inset" v-if="contentBlock" :class="`content-${ imageContentDesignation }`">
 		<div v-for="(imageContent, index) in contentBlock.imageContents" :key="index">
 			<div class="image-holder">
-				<img class="covering" :src="$imagePath(imageContent.path, 'regular')" />
+				<img class="covering" :src="$imagePath(imageContent.path, imageFormat(imageContentDesignation))" />
 			</div>
 			<div class="label">{{ imageContent.caption }}</div>
 		</div>
