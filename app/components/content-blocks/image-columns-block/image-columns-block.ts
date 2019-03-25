@@ -18,7 +18,11 @@ import { Content } from "~/components/common/storage/models/content-block"
 				return "dual"
 			}
 
-			if (numberOfImageContents >= 3) {
+			if (numberOfImageContents === 3) {
+				return "triple"
+			}
+
+			if (numberOfImageContents >= 4) {
 				return "full"
 			}
 
