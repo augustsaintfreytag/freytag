@@ -5,13 +5,13 @@ import { PageLink } from "./page-link"
 
 const rot13 = new Rot13()
 
-const initialData: FooterData = {
-	mail: rot13.encoded("me@augustfreytag.com")
-}
-
 @Component({
 
 	data() {
+		const initialData: FooterData = {
+			mail: rot13.encoded("me@augustfreytag.com")
+		}
+
 		return initialData
 	},
 
@@ -43,9 +43,11 @@ const initialData: FooterData = {
 		}
 	},
 
-	mounted() {
-		const data = this.$data as FooterData
-		data.mail = rot13.decoded(data.mail)
+	created() {
+		if (process.browser) {
+			const data = this.$data as FooterData
+			data.mail = rot13.decoded(data.mail)
+		}
 	}
 
 })
