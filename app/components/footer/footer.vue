@@ -6,7 +6,7 @@
 				<section class="personal">
 					<header>Me</header>
 					<main>
-						<div>me@augustfreytag.com</div>
+						<div>{{ mail }}</div>
 						<div>Columbiadamm, Berlin<br />Germany</div>
 					</main>
 				</section>
