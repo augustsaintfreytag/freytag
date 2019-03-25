@@ -1,13 +1,19 @@
 import { Component, Vue } from "vue-property-decorator"
+import Rot13 from "../common/address-obfuscator/provider/rot-13"
+import { FooterData } from "./footer-data"
 import { PageLink } from "./page-link"
 
-interface PageLink {
-	address: UrlComponent,
-	name: string,
-	spriteId?: string
+const rot13 = new Rot13()
+
+const initialData: FooterData = {
+	mail: rot13.encoded("me@augustfreytag.com")
 }
 
 @Component({
+
+	data() {
+		return initialData
+	},
 
 	computed: {
 		mapLinks(): PageLink[] {
@@ -35,6 +41,11 @@ interface PageLink {
 				{address: "records.lu", name: "Luxembourg Records"}
 			]
 		}
+	},
+
+	mounted() {
+		const data = this.$data as FooterData
+		data.mail = rot13.decoded(data.mail)
 	}
 
 })
