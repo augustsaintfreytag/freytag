@@ -5,11 +5,6 @@ import { IndexData } from "./index-data"
 import { IndexPageMapper } from "./index-page-mapper"
 import { Head } from "~/components/common/head/head"
 
-const initialData: IndexData = {
-	graphic: undefined,
-	works: undefined
-}
-
 @Component({
 	layout: "landing",
 
@@ -19,6 +14,11 @@ const initialData: IndexData = {
 	},
 
 	async asyncData() {
+		const initialData: IndexData = {
+			graphic: undefined,
+			works: undefined
+		}
+		
 		await IndexPageMapper.mapLandingGraphic(initialData)
 		await IndexPageMapper.mapLandingWorks(initialData)
 

@@ -5,23 +5,21 @@ import { LifePageData } from "./life-page-data"
 import { LifePageMapper } from "./life-page-mapper"
 import { Head } from "~/components/common/head/head"
 
-const initialData: LifePageData = {
-	lifeFilter: undefined,
-	lifeSortingMode: "time",
-	lifeSortingIsReversed: true,
-	unsortedLifeEvents: [],
-	lifeEvents: []
-}
-
 @Component({
 
 	async asyncData() {
-		const data = initialData
+		const initialData: LifePageData = {
+			lifeFilter: undefined,
+			lifeSortingMode: "time",
+			lifeSortingIsReversed: true,
+			unsortedLifeEvents: [],
+			lifeEvents: []
+		}
 
-		await LifePageMapper.updateLifeEvents(data)
-		LifePageMapper.mapSortedLifeEvents(data)
+		await LifePageMapper.updateLifeEvents(initialData)
+		LifePageMapper.mapSortedLifeEvents(initialData)
 
-		return data
+		return initialData
 	},
 
 	computed: {
