@@ -15,7 +15,7 @@
 		</section>
 		<section class="introduction inset">
 			<section class="details">
-				<life-event-detail-table-component :lifeEvent="workItem.event" />
+				<life-event-detail-table-component :lifeEvent="workItem.event" rowNames="['Title', 'Span', 'Kind', 'Format', 'Role', 'Context']" />
 			</section>
 			<section class="description">
 				{{ workItem.description }}
