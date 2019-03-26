@@ -37,7 +37,7 @@ export default class LifeEventCardComponent extends Vue {
 		this.$emit("didRequestLifeEvent", id)
 	}
 
-	truncated(input): string {
+	truncated(input: string): string {
 		return TruncatedTextProvider.truncated(input, maxNavigationTextLength)
 	}
 
