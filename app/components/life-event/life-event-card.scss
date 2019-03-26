@@ -55,7 +55,7 @@
 
 			td {
 				vertical-align: top;
-				padding-bottom: 8px;
+				padding-bottom: 10px;
 				overflow: hidden;
 				white-space: nowrap;
 				text-overflow: ellipsis;
@@ -72,6 +72,10 @@
 				}
 			}
 		}
+	}
+
+	.description {
+		line-height: $textLineHeightParagraphBold;
 	}
 
 	> nav {
