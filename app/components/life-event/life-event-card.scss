@@ -13,10 +13,26 @@
 	$blipPadding: 15px;
 	$tableContentInset: 70px;
 
+	position: relative;
 	padding: 0 50px;
 	background: #fff;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.20);
 	border-radius: 10px;
+
+	> .decorations {
+		position: absolute;
+		top: 15px;
+		left: 15px;
+
+		.close {
+			svg {
+				$size: 20px;
+				width: $size;
+				height: $size;
+				fill: $faintElementColor;
+			}	
+		}
+	}
 
 	> header {
 		display: flex;

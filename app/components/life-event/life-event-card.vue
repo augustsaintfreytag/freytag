@@ -1,5 +1,12 @@
 <template>
 	<section class="life-event-card kind-blip-colored" :class="`kind-${lifeEvent.kind.toLowerCase()}`" v-if="lifeEvent">
+		<section class="decorations">
+			<div class="close">
+				<svg class="icon">
+					<use xlink:href="#close-button"></use>
+				</svg>
+			</div>
+		</section>
 		<header>
 			<div class="blip"></div>
 			<h2>{{ lifeEvent.name }}</h2>
