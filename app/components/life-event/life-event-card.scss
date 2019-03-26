@@ -6,6 +6,7 @@
 	// All
 	$baseSpacing: 50px;
 	$interSectionSpacing: $baseSpacing * 0.5;
+	$outerSectionSpacing: $baseSpacing * 1.5;
 
 	// Elements
 	$blipSize: 16px;
@@ -20,7 +21,7 @@
 	> header {
 		display: flex;
 		width: 100%;
-		margin-top: $baseSpacing;
+		margin-top: $outerSectionSpacing;
 		margin-bottom: $baseSpacing;
 
 		> * {
@@ -42,7 +43,7 @@
 	}
 
 	> section, > nav {
-		margin-bottom: $baseSpacing * 0.68;
+		margin-bottom: $interSectionSpacing;
 	}
 
 	> .details {
@@ -76,7 +77,7 @@
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
-		margin-top: $baseSpacing * 2;
+		margin-top: $outerSectionSpacing;
 		margin-bottom: $baseSpacing;
 		color: $textColorVeryLight;
 
