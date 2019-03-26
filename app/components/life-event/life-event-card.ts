@@ -4,7 +4,7 @@ import { TruncatedTextProvider } from "../common/truncated-text/truncated-text-p
 import { UUID } from "../common/library/uuid"
 import { Vita } from "../common/storage/models/vita-event"
 
-const maxNavigationTextLength = 15
+const maxNavigationTextLength = 22
 
 @Component({
 	props: ["lifeEventSet"],

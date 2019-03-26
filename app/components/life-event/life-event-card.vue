@@ -23,7 +23,7 @@
 					No event
 				</span>
 			</div>
-		<div class="next" :class="{ active: nextLifeEvent !== undefined }" v-on:click="requestLifeEvent(nextLifeEvent ? nextLifeEvent.meta.id : undefined)">
+			<div class="next" :class="{ active: nextLifeEvent !== undefined }" v-on:click="requestLifeEvent(nextLifeEvent ? nextLifeEvent.meta.id : undefined)">
 				<span v-if="nextLifeEvent">
 					{{ truncated(nextLifeEvent.name) }}
 				</span>
