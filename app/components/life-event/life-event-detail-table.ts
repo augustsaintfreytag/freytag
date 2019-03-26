@@ -14,6 +14,7 @@ function detailRows(lifeEvent: Vita.Event): DetailRowDefinition[] {
 		{name: "Kind", value: lifeEvent.kind},
 		{name: "Format", value: lifeEvent.format},
 		{name: "Role", value: lifeEvent.role},
+		{name: "Location", value: lifeEvent.location},
 		{name: "Context", value: lifeEvent.context},
 		{name: "Description", value: lifeEvent.description}
 	]
