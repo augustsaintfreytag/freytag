@@ -81,17 +81,14 @@
 				td {
 					vertical-align: top;
 					padding-right: $contentInset;
-				}
-
-				.label, .text {
 					padding-bottom: 8px;
-				}
-
-				.label {
-					box-sizing: border-box;
-					padding-right: 50px;
-					text-align: right;
-					font-weight: 500;
+	
+					&.label {
+						box-sizing: border-box;
+						padding-right: 50px;
+						text-align: right;
+						font-weight: 500;
+					}
 				}
 			}
 		}
