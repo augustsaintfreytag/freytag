@@ -1,0 +1,78 @@
+@import "~/assets/style/values.scss";
+@import "~/assets/style/mixins/blip-element.scss";
+@import "~/assets/style/life-kind-colors.scss";
+
+.life-event-card {
+	// All
+	$interSectionSpacing: 30px;
+
+	// Elements
+	$blipSize: 16px;
+	$blipPadding: 15px;
+	$tableContentInset: 70px;
+
+	padding: 75px 50px;
+	background: #fff;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.20);
+	border-radius: 10px;
+
+	> header {
+		display: flex;
+		width: 100%;
+		margin-bottom: $interSectionSpacing;
+
+		> * {
+			flex: 0 auto;
+		}
+
+		.blip {	
+			flex: 0 $blipSize;
+			padding-right: $blipPadding;
+			align-self: center;
+
+			@include blipElement($blipSize);
+		}
+
+		h2 {
+			margin: 0;
+			font-size: $fontSizeLabelBold;
+		}
+	}
+
+	> section, > nav {
+		margin-bottom: $interSectionSpacing * 0.68;
+	}
+
+	> .details {
+		table {
+			border-collapse: collapse;
+			border: none;
+			// width: 100%;
+
+			td {
+				vertical-align: top;
+				padding-bottom: 8px;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+
+				&.label {
+					padding-right: $tableContentInset;
+					text-align: left;
+					font-weight: 500;
+					box-sizing: border-box;
+				}
+
+				&.text {
+
+				}
+			}
+		}
+	}
+
+	> nav {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+	}
+}
