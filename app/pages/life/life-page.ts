@@ -16,7 +16,8 @@ import { Head } from "~/components/common/head/head"
 			lifeSortingMode: "time",
 			lifeSortingIsReversed: true,
 			unsortedLifeEvents: [],
-			lifeEvents: []
+			lifeEvents: [],
+			lifeEventIndexMap: {}
 		}
 
 		await LifePageMapper.updateLifeEvents(initialData)
