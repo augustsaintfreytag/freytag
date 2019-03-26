@@ -23,7 +23,7 @@ import { Head } from "~/components/common/head/head"
 	},
 
 	computed: {
-		eventToggleDefinitions: () => {
+		eventToggleDefinitions() {
 			return [
 				{identifier: "all", name: "All"},
 				{identifier: "life", name: "Life", filter: "Life"},
@@ -35,7 +35,7 @@ import { Head } from "~/components/common/head/head"
 			]
 		},
 
-		eventHeaderDefinitions: () => {
+		eventHeaderDefinitions() {
 			return [
 				{identifier: "time", name: "Span", sortable: true},
 				{identifier: "format", name: "Format", sortable: true},
@@ -54,7 +54,6 @@ import { Head } from "~/components/common/head/head"
 			]
 		})
 	}
-
 })
 export default class LifePage extends Vue {
 
@@ -76,10 +75,6 @@ export default class LifePage extends Vue {
 
 		LifePageMapper.toggleSortingMode(data, sortingMode)
 		LifePageMapper.mapSortedLifeEvents(data)
-	}
-
-	formattedDateRange(event: Vita.Event): string {
-		return DateFormatter.formattedDateRange(event)
 	}
 
 }
