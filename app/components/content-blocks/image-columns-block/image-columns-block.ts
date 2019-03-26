@@ -2,7 +2,6 @@ import { Component, Vue } from "vue-property-decorator"
 import { Content } from "~/components/common/storage/models/content-block"
 import { CockpitImageRequestPreset } from "~/components/common/cockpit/library/cockpit-image-request-presets"
 
-
 enum ImageContentDesignation {
 	None = "none",
 	Single = "single",
@@ -12,7 +11,6 @@ enum ImageContentDesignation {
 }
 
 @Component({
-
 	props: ["contentBlock"],
 
 	computed: {
@@ -39,7 +37,6 @@ enum ImageContentDesignation {
 			return ImageContentDesignation.None
 		}
 	}
-
 })
 export default class ImageColumnsBlockComponent extends Vue {
 

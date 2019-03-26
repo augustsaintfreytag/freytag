@@ -23,8 +23,8 @@
 			display: flex;
 
 			margin-right: $filterInterItemSpacing;
-			cursor: pointer;
 			user-select: none;
+			cursor: pointer;
 
 			> * {
 				flex: 0 auto;
@@ -102,82 +102,56 @@
 		list-style: none;
 		padding: 0;
 
-		> li {
-			$interItemSpace: 20px;
-			margin-bottom: $interItemSpace / 2;
-			padding-bottom: $interItemSpace / 2;
-			border-bottom: 1px solid #f0f0f0;
+		li {
+			position: relative;
 
-			> .header {
-				margin-bottom: $interItemSpace / 4;
+			.life-event {
+				$interItemSpace: 20px;
+				margin-bottom: $interItemSpace / 2;
+				padding-bottom: $interItemSpace / 2;
+				border-bottom: 1px solid #f0f0f0;
+				cursor: pointer;
+	
+				.header {
+					margin-bottom: $interItemSpace / 4;
+				}
 			}
 		}
 	}
 
-	// Individual Life Event
-
-	.life-event, .life-events-header {
+	aside.life-event-card-holder {
+		position: fixed;
+		top: 0;
+		left: 0;
 		width: 100%;
+		height: 100%;
 
-		> .header {
-			display: flex;
-			margin-bottom: 4px;
-
-			> * {
-				flex: auto;
-			}
-
-			.blip {
-				flex: 0 $blipSize;
-				height: min-content;
-				padding-right: $blipPadding;
-				align-self: center;
-
-				@include blipElement($blipSize);
-			}
-
-			.name {
-				margin: 0;
-				font-weight: 500;
-				font-size: $fontSizeLabelDefault;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
+		&.hidden {
+			display: none;
 		}
 
-		> .details {
-			display: flex;
-			padding-left: $blipSize + $blipPadding;
+		display: flex;
+		justify-content: space-around;
 
-			> * {
-				flex: auto;
-				width: 300px;
-				padding-right: 25px;
-				box-sizing: border-box;
-			}
+		.overlay {
+			z-index: 1;
+			position: absolute;
+			top: 0;
+			left: 0;
+			height: 100%;
+			width: 100%;
+			background: rgba(255, 255, 255, 0.75);
+			cursor: pointer;
+		}
 
-			.time {
-				max-width: 160px;
-			}
-
-			.format {
-				max-width: 180px;
-			}
-
-			.role {
-				max-width: 240px;
-			}
-
-			// Text Content
-
-			> div {
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-				font-family: "paralucent";
-				font-weight: 300;
-			}
+		> .life-event-card {
+			z-index: 2;
+			flex: 0 auto;
+			align-self: center;
+			width: 500px;
+			height: fit-content;
+			cursor: default;
 		}
 	}
+
 }

@@ -39,6 +39,10 @@ export namespace LifePageMapper {
 
 		events = sortedLifeEventsWithMode(events, data.lifeSortingMode, data.lifeSortingIsReversed)
 		data.lifeEvents = events
+		data.lifeEventIndexMap = events.reduce((map, event, index) => {
+			map[event.meta.id] = index
+			return map
+		}, {})
 	}
 
 	// Sorting Modes

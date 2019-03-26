@@ -36,21 +36,15 @@
 				</div>
 			</div>
 		</div>
-		<ul class="life-events">
-			<li class="kind-blip-colored" :class="`life-event kind-${lifeEvent.kind.toLowerCase()}`" v-for="lifeEvent in lifeEvents" :key="lifeEvent.index">
-				<div class="header">
-					<div class="blip" :title="lifeEvent.kind"></div>
-					<h2 class="name">{{ lifeEvent.name }}</h2>
-				</div>
-				<div class="details">
-					<div class="time">{{ formattedDateRange(lifeEvent) }}</div>
-					<div class="format">{{ lifeEvent.format }}</div>
-					<div class="role" :title="lifeEvent.role">{{ lifeEvent.role }}</div>
-					<div class="location" :title="lifeEvent.location">{{ lifeEvent.location }}</div>
-					<div class="context" :title="lifeEvent.context">{{ lifeEvent.context }}</div>
-				</div>
+		<ul class="life-events" ref="life-event-listing">
+			<li v-for="lifeEvent in lifeEvents" :key="lifeEvent.index" v-on:click="didRequestLifeEvent(lifeEvent.meta.id)">
+				<life-event-component :life-event="lifeEvent" title="Open Event in Overlay" />
 			</li>
 		</ul>
+		<aside class="life-event-card-holder" :class="{ hidden: lifeSelectedItemId === undefined }">
+			<life-event-card-component v-if="lifeSelectedItemId" :life-event-set="lifeSelectedItemSet" v-on:didRequestLifeEvent="didRequestLifeEvent" />
+			<div class="overlay" v-on:click="didRequestLifeEvent()" title="Close Overlay"></div>
+		</aside>
 	</section>
 </template>
 
