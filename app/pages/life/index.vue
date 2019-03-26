@@ -37,10 +37,14 @@
 			</div>
 		</div>
 		<ul class="life-events" ref="life-event-listing">
-			<li v-for="lifeEvent in lifeEvents" :key="lifeEvent.index">
-				<life-event-component :life-event="lifeEvent" />
+			<li v-for="lifeEvent in lifeEvents" :key="lifeEvent.index" v-on:click="didRequestLifeEvent(lifeEvent.meta.id)">
+				<life-event-component :life-event="lifeEvent" title="Open Event in Overlay" />
 			</li>
 		</ul>
+		<aside class="life-event-card-holder" :class="{ hidden: lifeSelectedItemId === undefined }">
+			<life-event-card-component v-if="lifeSelectedItemId" :life-event-set="lifeSelectedItemSet" v-on:didRequestLifeEvent="didRequestLifeEvent" />
+			<div class="overlay" v-on:click="didRequestLifeEvent()" title="Close Overlay"></div>
+		</aside>
 	</section>
 </template>
 

@@ -1,13 +1,15 @@
 import { Component, Vue } from "vue-property-decorator"
-
 import { LifePageData } from "./life-page-data"
 import { LifePageMapper } from "./life-page-mapper"
 import LifeEventComponent from "~/components/life-event/life-event.vue"
+import LifeEventCardComponent from "~/components/life-event/life-event-card.vue"
 import { Head } from "~/components/common/head/head"
+import { UUID } from "~/components/common/library/uuid"
 
 @Component({
 	components: {
 		LifeEventComponent,
+		LifeEventCardComponent
 	},
 
 	async asyncData() {
@@ -15,6 +17,7 @@ import { Head } from "~/components/common/head/head"
 			lifeFilter: undefined,
 			lifeSortingMode: "time",
 			lifeSortingIsReversed: true,
+			lifeSelectedItemId: undefined,
 			unsortedLifeEvents: [],
 			lifeEvents: [],
 			lifeEventIndexMap: {}
@@ -47,6 +50,23 @@ import { Head } from "~/components/common/head/head"
 				{identifier: "location", name: "Location", sortable: false},
 				{identifier: "context", name: "Context", sortable: false}
 			]
+		},
+
+		lifeSelectedItemSet() {
+			const data = this.$data as LifePageData
+			const selectedItemId = data.lifeSelectedItemId
+		
+			if (!selectedItemId) {
+				return undefined
+			}
+		
+			const index = data.lifeEventIndexMap[selectedItemId]
+			
+			return {
+				current: data.lifeEvents[index],
+				previous: data.lifeEvents[index - 1],
+				next: data.lifeEvents[index + 1]
+			}
 		}
 	},
 
@@ -79,6 +99,11 @@ export default class LifePage extends Vue {
 
 		LifePageMapper.toggleSortingMode(data, sortingMode)
 		LifePageMapper.mapSortedLifeEvents(data)
+	}
+
+	didRequestLifeEvent(id: UUID|undefined) {
+		const data = this.$data as LifePageData
+		data.lifeSelectedItemId = id
 	}
 
 }
