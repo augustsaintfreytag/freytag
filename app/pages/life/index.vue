@@ -36,19 +36,9 @@
 				</div>
 			</div>
 		</div>
-		<ul class="life-events">
-			<li class="kind-blip-colored" :class="`life-event kind-${lifeEvent.kind.toLowerCase()}`" v-for="lifeEvent in lifeEvents" :key="lifeEvent.index">
-				<div class="header">
-					<div class="blip" :title="lifeEvent.kind"></div>
-					<h2 class="name">{{ lifeEvent.name }}</h2>
-				</div>
-				<div class="details">
-					<div class="time">{{ formattedDateRange(lifeEvent) }}</div>
-					<div class="format">{{ lifeEvent.format }}</div>
-					<div class="role" :title="lifeEvent.role">{{ lifeEvent.role }}</div>
-					<div class="location" :title="lifeEvent.location">{{ lifeEvent.location }}</div>
-					<div class="context" :title="lifeEvent.context">{{ lifeEvent.context }}</div>
-				</div>
+		<ul class="life-events" ref="life-event-listing">
+			<li v-for="lifeEvent in lifeEvents" :key="lifeEvent.index">
+				<life-event-component :life-event="lifeEvent" />
 			</li>
 		</ul>
 	</section>

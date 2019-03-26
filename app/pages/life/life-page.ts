@@ -1,11 +1,14 @@
 import { Component, Vue } from "vue-property-decorator"
-import { Vita } from "~/components/common/storage/models/vita-event"
-import { DateFormatter } from "~/components/common/storage/providers/date-formatter"
+
 import { LifePageData } from "./life-page-data"
 import { LifePageMapper } from "./life-page-mapper"
+import LifeEventComponent from "~/components/life-event/life-event.vue"
 import { Head } from "~/components/common/head/head"
 
 @Component({
+	components: {
+		LifeEventComponent,
+	},
 
 	async asyncData() {
 		const initialData: LifePageData = {
