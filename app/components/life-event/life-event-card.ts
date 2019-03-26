@@ -1,6 +1,7 @@
 import { Component, Vue } from "vue-property-decorator"
 import LifeEventDetailTableComponent from "~/components/life-event/life-event-detail-table.vue"
 import { TruncatedTextProvider } from "../common/truncated-text/truncated-text-provider"
+import { UUID } from "../common/library/uuid"
 import { Vita } from "../common/storage/models/vita-event"
 
 const maxNavigationTextLength = 15
@@ -27,6 +28,14 @@ const maxNavigationTextLength = 15
 	}
 })
 export default class LifeEventCardComponent extends Vue {
+
+	requestLifeEvent(id: UUID) {
+		if (!id) {
+			return
+		}
+		
+		this.$emit("didRequestLifeEvent", id)
+	}
 
 	truncated(input): string {
 		return TruncatedTextProvider.truncated(input, maxNavigationTextLength)

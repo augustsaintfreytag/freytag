@@ -14,23 +14,23 @@
 			{{ lifeEvent.description }}
 		</section>
 		<nav>
-			<div class="previous">
-				<span class="arrow">&lt;</span>
+			<div class="previous" :class="{ active: previousLifeEvent !== undefined }" v-on:click="requestLifeEvent(previousLifeEvent ? previousLifeEvent.meta.id : undefined)">
+				<span class="indicator">&lt;</span>
 				<span v-if="previousLifeEvent">
-					{{ previousLifeEvent.name }}
+					{{ truncated(previousLifeEvent.name) }}
 				</span>
 				<span v-else>
 					No event
 				</span>
 			</div>
-			<div class="next">
+		<div class="next" :class="{ active: nextLifeEvent !== undefined }" v-on:click="requestLifeEvent(nextLifeEvent ? nextLifeEvent.meta.id : undefined)">
 				<span v-if="nextLifeEvent">
-					{{ nextLifeEvent.name }}
+					{{ truncated(nextLifeEvent.name) }}
 				</span>
 				<span v-else>
 					No event
 				</span>
-				<span class="arrow">&gt;</span>
+				<span class="indicator">&gt;</span>
 			</div>
 		</nav>
 	</section>
