@@ -3,15 +3,18 @@
 @import "~/assets/style/life-kind-colors.scss";
 
 .life-event-card {
+	transition: transform 0.3s ease-in-out;
+	transform: scale(1.0);
+
 	// All
-	$interSectionSpacing: 30px;
+	$interSectionSpacing: 50px;
 
 	// Elements
 	$blipSize: 16px;
 	$blipPadding: 15px;
 	$tableContentInset: 70px;
 
-	padding: 75px 50px;
+	padding: 25px 50px;
 	background: #fff;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.20);
 	border-radius: 10px;
@@ -19,6 +22,7 @@
 	> header {
 		display: flex;
 		width: 100%;
+		margin-top: $interSectionSpacing * 0.5;
 		margin-bottom: $interSectionSpacing;
 
 		> * {
@@ -74,5 +78,32 @@
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
+		margin-top: $interSectionSpacing * 2;
+		margin-bottom: $interSectionSpacing * 0.5;
+		color: $textColorVeryLight;
+
+		$indicatorSpacing: 8px;
+
+		> div {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+
+			&.active {
+				cursor: pointer;
+			}
+		}
+
+		.previous {
+			.indicator {
+				padding-right: $indicatorSpacing;
+			}
+		}
+
+		.next {
+			.indicator {
+				padding-left: $indicatorSpacing;
+			}
+		}
 	}
 }
