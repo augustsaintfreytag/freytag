@@ -56,9 +56,7 @@
 			td {
 				vertical-align: top;
 				padding-bottom: 10px;
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
+				padding-right: 25px;
 
 				&.label {
 					padding-right: $tableContentInset;
