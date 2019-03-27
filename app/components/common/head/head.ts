@@ -2,7 +2,7 @@ import { MetaTag } from "./library/meta-tag"
 
 export namespace Head {
 
-	type HeadDictionary = {[key: string]: string|any[]}
+	type HeadDictionary = {[key: string]: string|HeadDictionary|HeadDictionary[]|undefined}
 
 	// Constant Properties
 
