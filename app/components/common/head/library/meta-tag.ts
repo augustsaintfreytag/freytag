@@ -1,4 +1,6 @@
-export interface MetaTag {
+import { Dictionary } from "@nuxt/vue-app-edge"
+
+export interface MetaTag extends Dictionary<string|undefined> {
 
 	hid: string
 	name?: string

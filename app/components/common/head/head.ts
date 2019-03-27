@@ -2,12 +2,13 @@ import { MetaTag } from "./library/meta-tag"
 
 export namespace Head {
 
-	type HeadDictionary = {[key: string]: string|any[]}
+	type HeadDictionary = {[key: string]: string|HeadDictionary|HeadDictionary[]|undefined}
 
 	// Constant Properties
 
 	export const separator = " / "
 
+	export const htmlAttrs = { lang: "en" }
 	export const title = "August S. Freytag"
 	export const meta: MetaTag[] = [
 		{hid: "encoding", charset: "utf-8"},
@@ -20,7 +21,7 @@ export namespace Head {
 	// Modeling
 
 	export function modeled(include?: HeadDictionary|undefined): HeadDictionary {
-		const base = {title, meta}
+		const base = {htmlAttrs, title, meta}
 
 		if (!include) {
 			return base
