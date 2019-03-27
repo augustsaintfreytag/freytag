@@ -6,7 +6,9 @@ export namespace WorkOverviewPageMapper {
 	export async function updateWorkItems(data: WorkOverviewPageData) {
 		try {
 			const workItems = await CockpitDataProvider.workItems()
-			data.workItems = workItems
+			data.workItems = workItems.sort((lhs, rhs) => {
+				return lhs.meta.created > rhs.meta.created ? -1 : lhs.meta.created < rhs.meta.created ? 1 : 0
+			})
 		} catch (error) {
 			console.error(`Could not fetch work items. ${error}`)
 		}
