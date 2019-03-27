@@ -24,7 +24,7 @@
 				<section class="public">
 					<header>Public</header>
 					<main>
-						<a v-for="link in platformLinks" :key="link.address" :href="`https://${link.address}`" target="_blank">
+						<a v-for="link in platformLinks" :key="link.address" :href="`https://${link.address}`" target="_blank" rel="noopener">
 							<div class="platform-link">
 								<div class="sprite">
 									<svg class="icon">
@@ -39,7 +39,7 @@
 				<section class="further">
 					<header>Further</header>
 						<main>
-						<a v-for="link in furtherLinks" :key="link.address" :title="link.name" :href="`https://${link.address}`" target="_blank">
+						<a v-for="link in furtherLinks" :key="link.address" :title="link.name" :href="`https://${link.address}`" target="_blank" rel="noopener">
 							<div class="route">
 								<div class="name">{{ link.address }}</div>
 							</div>
