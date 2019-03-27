@@ -15,14 +15,7 @@
 		</section>
 		<section class="introduction inset">
 			<section class="details">
-				<table>
-					<tbody>
-						<tr v-for="row in detailsRows" :key="row.name">
-							<td class="label">{{ row.name }}</td>
-							<td class="text">{{ row.value }}</td>
-						</tr>
-					</tbody>
-				</table>
+				<life-event-detail-table-component :lifeEvent="workItem.event" rowNames="['Title', 'Span', 'Kind', 'Format', 'Role', 'Context']" />
 			</section>
 			<section class="description">
 				{{ workItem.description }}
@@ -30,10 +23,10 @@
 		</section>
 		<div class="divider inset"></div>
 		<template v-for="contentBlock in workItem.blocks">
-			<image-columns-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.ImageColumns" :contentBlock="contentBlock" />
-			<text-quote-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.TextQuote" :contentBlock="contentBlock" />
-			<text-column-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.TextColumn" :contentBlock="contentBlock" />
-			<video-vimeo-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.VideoVimeo" :contentBlock="contentBlock" />
+			<image-columns-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.ImageColumns" :content-block="contentBlock" />
+			<text-quote-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.TextQuote" :content-block="contentBlock" />
+			<text-column-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.TextColumn" :content-block="contentBlock" />
+			<video-vimeo-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.VideoVimeo" :content-block="contentBlock" />
 		</template>
 	</article>
 </template>

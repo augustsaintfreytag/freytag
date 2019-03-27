@@ -6,6 +6,7 @@ import { Content } from "~/components/common/storage/models/content-block"
 import { Head } from "~/components/common/head/head"
 import { MetaTag } from "~/components/common/head/library/meta-tag"
 
+import LifeEventDetailTableComponent from "~/components/life-event/life-event-detail-table.vue"
 import ImageColumnsBlockComponent from "~/components/content-blocks/image-columns-block/image-columns-block.vue"
 import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-block/text-quote-block.vue"
 import TextColumnBlockComponent from "~/components/content-blocks/text-column-block/text-column-block.vue"
@@ -27,6 +28,14 @@ const initialData: WorkDetailPageData = {
 
 @Component({
 
+	components: {
+		LifeEventDetailTableComponent,
+		TextQuoteBlockComponent,
+		ImageColumnsBlockComponent,
+		TextColumnBlockComponent,
+		VideoVimeoBlockComponent
+	},
+
 	async asyncData({ params }) {
 		initialData.workItemId = params["id"]
 		await WorkDetailPageMapper.updateWorkItem(initialData)
@@ -40,33 +49,6 @@ const initialData: WorkDetailPageData = {
 		}
 
 		return initialData
-	},
-
-	computed: {
-		detailsRows() {
-			const workItem = this.$data.workItem
-			const event = workItem ? workItem.event : undefined
-	
-			if (!workItem || !event) {
-				return []
-			}
-	
-			return [
-				{name: "Title", value: event.name},
-				{name: "Span", value: DateFormatter.formattedDateRange(event)},
-				{name: "Kind", value: event.kind},
-				{name: "Format", value: event.format},
-				{name: "Role", value: event.role},
-				{name: "Context", value: event.context}
-			]
-		}
-	},
-
-	components: {
-		TextQuoteBlockComponent,
-		ImageColumnsBlockComponent,
-		TextColumnBlockComponent,
-		VideoVimeoBlockComponent
 	},
 
 	head() {

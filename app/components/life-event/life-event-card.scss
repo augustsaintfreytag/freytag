@@ -1,0 +1,114 @@
+@import "~/assets/style/values.scss";
+@import "~/assets/style/mixins/blip-element.scss";
+@import "~/assets/style/life-kind-colors.scss";
+
+.life-event-card {
+	// All
+	$baseSpacing: 50px;
+	$interSectionSpacing: $baseSpacing * 0.5;
+	$outerSectionSpacing: $baseSpacing * 1.5;
+
+	// Elements
+	$blipSize: 16px;
+	$blipPadding: 15px;
+	$tableContentInset: 70px;
+
+	position: relative;
+	padding: 0 50px;
+	background: #fff;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.20);
+	border-radius: 10px;
+
+	> header {
+		display: flex;
+		width: 100%;
+		margin-top: $outerSectionSpacing;
+		margin-bottom: $baseSpacing;
+
+		> * {
+			flex: 0 auto;
+		}
+
+		.blip {	
+			flex: 0 $blipSize;
+			padding-right: $blipPadding;
+			align-self: center;
+
+			@include blipElement($blipSize);
+		}
+
+		h2 {
+			margin: 0;
+			font-size: $fontSizeLabelBold;
+		}
+	}
+
+	> section, > nav {
+		margin-bottom: $interSectionSpacing;
+	}
+
+	> .details {
+		table {
+			border-collapse: collapse;
+			border: none;
+			// width: 100%;
+
+			td {
+				vertical-align: top;
+				padding-bottom: 10px;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+
+				&.label {
+					padding-right: $tableContentInset;
+					text-align: left;
+					font-weight: 500;
+					box-sizing: border-box;
+				}
+
+				&.text {
+
+				}
+			}
+		}
+	}
+
+	.description {
+		line-height: $textLineHeightParagraphBold;
+	}
+
+	> nav {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		margin-top: $outerSectionSpacing;
+		margin-bottom: $baseSpacing;
+		color: $textColorVeryLight;
+
+		$indicatorSpacing: 8px;
+
+		> div {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			user-select: none;
+
+			&.active {
+				cursor: pointer;
+			}
+		}
+
+		.previous {
+			.indicator {
+				padding-right: $indicatorSpacing;
+			}
+		}
+
+		.next {
+			.indicator {
+				padding-left: $indicatorSpacing;
+			}
+		}
+	}
+}

@@ -1,7 +1,6 @@
 import { Dictionary } from "vue-router/types/router"
+import { Index, IndexDistance } from "../../library"
 
-type Index = number
-type IndexDistance = number
 type SequenceMap = Dictionary<number|undefined>
 
 export default class Rot13 {
