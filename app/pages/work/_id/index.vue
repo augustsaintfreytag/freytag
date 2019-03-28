@@ -13,7 +13,7 @@
 				</svg>
 			</div>
 		</section>
-		<section class="introduction inset">
+		<section class="introduction inset" :class="{ 'collapsed': workItem.event === undefined }">
 			<section class="details">
 				<life-event-detail-table-component :lifeEvent="workItem.event" rowNames="['Title', 'Span', 'Kind', 'Format', 'Role', 'Location', 'Context']" />
 			</section>

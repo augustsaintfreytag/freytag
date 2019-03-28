@@ -72,6 +72,19 @@
 		> * {
 			flex: 0 50%;
 		}
+
+		&.collapsed {
+			justify-content: space-around;
+
+			.details {
+				display: none;
+			}
+
+			.description {
+				padding-left: 0;
+				text-align: center;
+			}
+		}
 		
 		.details {
 			table {
