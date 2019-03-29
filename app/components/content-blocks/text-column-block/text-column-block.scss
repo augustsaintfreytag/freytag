@@ -13,17 +13,4 @@
 		margin: 0 0 15px 0;
 	}
 
-	a {
-		text-decoration: underline;
-		color: $textColorVeryLight;
-
-		&:active, &:visited:active {
-			color: $textColorLight;
-		}
-	}
-
-	em {
-		color: $textColorLight;
-	}
-
 }
