@@ -9,7 +9,7 @@ export namespace CockpitDataProvider {
 	// Collections
 	
 	export async function lifeEvents(): Promise<Vita.Event[]> {
-		const response = await CockpitDataAccess.recordsInCollection("vita")
+		const response = await CockpitDataAccess.recordsInCollection("vita", { filter: { display: true } })
 
 		return response.entries.map(entry => {
 			const storedLifeEvent = entry as Vita.EventEntry
@@ -18,7 +18,7 @@ export namespace CockpitDataProvider {
 	}
 
 	export async function workItems(): Promise<Work.Item[]> {
-		const response = await CockpitDataAccess.recordsInCollection("work")
+		const response = await CockpitDataAccess.recordsInCollection("work", { filter: { display: true } })
 
 		return response.entries.map(entry => {
 			const storedWorkItem = entry as Work.ItemEntry
