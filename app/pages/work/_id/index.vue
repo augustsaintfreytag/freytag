@@ -13,15 +13,15 @@
 				</svg>
 			</div>
 		</section>
-		<section class="introduction inset">
+		<section class="introduction inset" :class="{ 'collapsed': workItem.event === undefined }">
 			<section class="details">
 				<life-event-detail-table-component :lifeEvent="workItem.event" rowNames="['Title', 'Span', 'Kind', 'Format', 'Role', 'Location', 'Context']" />
 			</section>
-			<section class="description">
-				{{ workItem.description }}
+			<section class="description text">
+				<markdown>{{ workItem.description }}</markdown>
 			</section>
 		</section>
-		<div class="divider inset"></div>
+		<div class="divider inset" v-if="workItem.blocks.length"></div>
 		<template v-for="contentBlock in workItem.blocks">
 			<image-columns-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.ImageColumns" :content-block="contentBlock" />
 			<text-quote-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.TextQuote" :content-block="contentBlock" />
