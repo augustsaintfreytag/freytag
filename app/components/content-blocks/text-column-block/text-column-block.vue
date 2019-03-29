@@ -1,6 +1,6 @@
 <template>
-	<section class="content-block text-column-block inset" v-if="contentBlock">
-		<vue-markdown>{{ contentBlock.textContent }}</vue-markdown>
+	<section class="content-block text-column-block text inset" v-if="contentBlock">
+		<markdown>{{ contentBlock.textContent }}</markdown>
 	</section>
 </template>
 
