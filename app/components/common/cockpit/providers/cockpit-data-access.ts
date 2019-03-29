@@ -15,8 +15,7 @@ export namespace CockpitDataAccess {
 	
 	function defaultOptions(): AnyRequestObject {
 		return {
-			populate: 3,
-			filter: { display: true }
+			populate: 3
 		}
 	}
 
