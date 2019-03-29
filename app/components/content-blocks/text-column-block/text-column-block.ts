@@ -1,8 +1,11 @@
 import { Component, Vue } from "vue-property-decorator"
 import { Content } from "~/components/common/storage/models/content-block"
+import Markdown from "~/components/markdown/markdown.vue"
 
 @Component({
-	props: ["contentBlock"],
+	components: {
+		Markdown
+	},
 
 	computed: {
 		textParagraphs(): string[] {
@@ -14,5 +17,6 @@ import { Content } from "~/components/common/storage/models/content-block"
 			return textContent.replace(/\n+/, "\n").split("\n")
 		}
 	}
+	props: ["contentBlock"]
 })
 export default class TextColumnBlockComponent extends Vue {}

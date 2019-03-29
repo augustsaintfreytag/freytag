@@ -6,6 +6,7 @@ import { Content } from "~/components/common/storage/models/content-block"
 import { Head } from "~/components/common/head/head"
 import { MetaTag } from "~/components/common/head/library/meta-tag"
 
+import Markdown from "~/components/markdown/markdown.vue"
 import LifeEventDetailTableComponent from "~/components/life-event/life-event-detail-table.vue"
 import ImageColumnsBlockComponent from "~/components/content-blocks/image-columns-block/image-columns-block.vue"
 import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-block/text-quote-block.vue"
@@ -29,6 +30,7 @@ const initialData: WorkDetailPageData = {
 @Component({
 
 	components: {
+		Markdown,
 		LifeEventDetailTableComponent,
 		TextQuoteBlockComponent,
 		ImageColumnsBlockComponent,

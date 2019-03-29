@@ -18,7 +18,7 @@
 				<life-event-detail-table-component :lifeEvent="workItem.event" rowNames="['Title', 'Span', 'Kind', 'Format', 'Role', 'Location', 'Context']" />
 			</section>
 			<section class="description text">
-				<vue-markdown :anchor-attributes="{ target: '_blank', rel: 'noopener' }">{{ workItem.description }}</vue-markdown>
+				<markdown>{{ workItem.description }}</markdown>
 			</section>
 		</section>
 		<div class="divider inset" v-if="workItem.blocks.length"></div>
