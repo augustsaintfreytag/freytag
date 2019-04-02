@@ -90,6 +90,7 @@ footer {
 							width: $size;
 							height: $size;
 							fill: $textColor;
+							z-index: -1;
 						}
 					}
 				}
