@@ -1,6 +1,5 @@
 <template>
 	<footer>
-		<div id="guide"></div>
 		<div class="wrap inset">
 			<div class="inlay">
 				<section class="personal">
