@@ -1,7 +1,14 @@
-$widthBreakpoint: 600px;
+$phoneWidthBreakpoint: 762px;
+$tabletWidthBreakpoint: 1024px;
 
-@mixin mobile() {
-	@media (max-width: $widthBreakpoint) {
-		@content;
+@mixin mobile($type: "tablet") {
+	@if $type == "tablet" {
+		@media (max-width: $tabletWidthBreakpoint) {
+			@content;
+		}
+	} @else if $type == "phone" {
+		@media (max-width: $phoneWidthBreakpoint) {
+			@content;
+		}
 	}
 }
