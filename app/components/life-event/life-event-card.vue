@@ -13,18 +13,18 @@
 		<nav>
 			<div class="previous" :class="{ active: previousLifeEvent !== undefined }" v-on:click="requestLifeEvent(previousLifeEvent ? previousLifeEvent.meta.id : undefined)">
 				<span class="indicator">&lt;</span>
-				<span v-if="previousLifeEvent">
+				<span class="name" v-if="previousLifeEvent">
 					{{ truncated(previousLifeEvent.name) }}
 				</span>
-				<span v-else>
+				<span class="name" v-else>
 					No event
 				</span>
 			</div>
 			<div class="next" :class="{ active: nextLifeEvent !== undefined }" v-on:click="requestLifeEvent(nextLifeEvent ? nextLifeEvent.meta.id : undefined)">
-				<span v-if="nextLifeEvent">
+				<span class="name" v-if="nextLifeEvent">
 					{{ truncated(nextLifeEvent.name) }}
 				</span>
-				<span v-else>
+				<span class="name" v-else>
 					No event
 				</span>
 				<span class="indicator">&gt;</span>

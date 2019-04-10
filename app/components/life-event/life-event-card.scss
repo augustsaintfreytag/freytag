@@ -1,6 +1,7 @@
 @import "~/assets/style/values.scss";
 @import "~/assets/style/mixins/blip-element.scss";
 @import "~/assets/style/life-kind-colors.scss";
+@import "~/assets/style/mixins/mobile.scss";
 
 .life-event-card {
 	// All
@@ -18,6 +19,12 @@
 	background: #fff;
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.20);
 	border-radius: 10px;
+
+	@include mobile() {
+		padding: 0 20px;
+		$interSectionSpacing: $baseSpacing * 0.25;
+		$outerSectionSpacing: $baseSpacing * 0.5;
+	}
 
 	> header {
 		display: flex;
@@ -40,6 +47,16 @@
 		h2 {
 			margin: 0;
 			font-size: $fontSizeLabelBold;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		@include mobile() {
+			margin-bottom: $baseSpacing * 0.5;
+
+			h2 {
+				font-size: $fontSizeLabelDefault;
+			}
 		}
 	}
 
@@ -51,7 +68,6 @@
 		table {
 			border-collapse: collapse;
 			border: none;
-			// width: 100%;
 
 			td {
 				vertical-align: top;
@@ -64,9 +80,18 @@
 					font-weight: 500;
 					box-sizing: border-box;
 				}
+			}
+		}
 
-				&.text {
+		@include mobile() {
+			table {
+				td {
+					padding-right: 5px;
+					padding-bottom: 10px;
 
+					&.label {
+						padding-right: $tableContentInset * 0.3;
+					}
 				}
 			}
 		}
@@ -107,6 +132,17 @@
 			.indicator {
 				padding-left: $indicatorSpacing;
 			}
+		}
+	}
+
+
+	@include mobile() {
+		.description {
+			margin-bottom: $outerSectionSpacing;
+		}
+
+		nav {
+			display: none;
 		}
 	}
 }
