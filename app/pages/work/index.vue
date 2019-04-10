@@ -20,6 +20,9 @@
 				</nuxt-link>
 			</section>
 		</section>
+		<aside class="opt">
+			<p>Showcases of previous work by August Freytag, offering insights into and stories from selected projects, film, development, artwork and photography.</p>
+		</aside>
 	</section>
 </template>
 

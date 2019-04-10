@@ -45,6 +45,9 @@
 			<life-event-card-component v-if="lifeSelectedItemId" :life-event-set="lifeSelectedItemSet" v-on:didRequestLifeEvent="didRequestLifeEvent" />
 			<div class="overlay" v-on:click="didRequestLifeEvent()" title="Close Overlay"></div>
 		</aside>
+		<aside class="opt">
+			<p>Listing of selected life events by categories: Life, Education, Film, Development, Artwork, Photography. Contents collected and provided by August Freytag (August S. Freytag).</p>
+		</aside>
 	</section>
 </template>
 
