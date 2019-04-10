@@ -1,0 +1,7 @@
+$widthBreakpoint: 600px;
+
+@mixin mobile() {
+	@media (max-width: $widthBreakpoint) {
+		@content;
+	}
+}
