@@ -25,6 +25,10 @@
 				</nuxt-link>
 			</section>
 		</section>
+		<aside class="opt">
+			<p>Portfolio site of August Freytag (August S. Freytag), presenting a life overview and work showcases, publications, further platforms and projects and contact options.</p>
+			<p>All displayed contents are intellectual property of August Freytag (August S. Freytag), all rights reserved. Denoted contents belong to their respective owners.</p>
+		</aside>
 	</section>
 </template>
 

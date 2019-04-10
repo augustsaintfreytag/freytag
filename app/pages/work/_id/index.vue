@@ -28,6 +28,9 @@
 			<text-column-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.TextColumn" :content-block="contentBlock" />
 			<video-vimeo-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.VideoVimeo" :content-block="contentBlock" />
 		</template>
+		<aside class="opt">
+			<p>Showcase "{{ workItem.name }}" written and presented by August Freytag, all contents in imagery, video and text are intellectual property of August Freytag (August S. Freytag).</p>
+		</aside>
 	</article>
 </template>
 

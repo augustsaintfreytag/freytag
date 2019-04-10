@@ -116,6 +116,12 @@
 					margin-bottom: $interItemSpace / 4;
 				}
 			}
+
+			&:last-child {
+				.life-event {
+					border-bottom: none;
+				}
+			}
 		}
 	}
 
