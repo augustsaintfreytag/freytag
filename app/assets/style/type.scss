@@ -54,6 +54,10 @@ article {
 
 	> div {
 		margin-bottom: $elementSpacingWide;
+
+		@include mobile("phone") {
+			margin-bottom: $elementSpacingWide * 0.5;
+		}
 	}
 
 	> div > div {
