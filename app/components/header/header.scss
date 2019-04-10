@@ -1,4 +1,5 @@
 @import "~/assets/style/values.scss";
+@import "~/assets/style/mixins/mobile.scss";
 
 header {
 	
@@ -11,6 +12,18 @@ header {
 	> * {
 		flex: auto;
 		justify-content: space-between;
+	}
+
+	@include mobile() {
+		.branding {
+			display: none;
+		}
+
+		nav {
+			flex-basis: 100%;
+			padding-bottom: 12px;
+			border-bottom: $dividerBorder;
+		}
 	}
 
 }
