@@ -1,4 +1,5 @@
 @import "~/assets/style/values.scss";
+@import "~/assets/style/mixins/mobile.scss";
 
 header {
 	
@@ -11,6 +12,12 @@ header {
 	> * {
 		flex: auto;
 		justify-content: space-between;
+	}
+
+	@include mobile("phone") {
+		.branding {
+			display: none;
+		}
 	}
 
 }

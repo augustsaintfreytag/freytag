@@ -1,3 +1,5 @@
+@import "~/assets/style/mixins/mobile.scss";
+
 .imprint-page {
 
 	.imprints {
@@ -7,8 +9,20 @@
 		grid-column-gap: 75px;
 		width: 100%;
 
+		@include mobile("phone") {
+			grid-template-columns: 1fr;
+		}
+
 		> article {
 			text-align: justify;
+
+			@include mobile("phone") {
+				margin-bottom: 45px;
+
+				h2 {
+					padding-right: 15%;
+				}
+			}
 		}
 	}
 

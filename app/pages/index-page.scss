@@ -1,3 +1,4 @@
+@import "~/assets/style/mixins/mobile.scss";
 @import "~/assets/style/values.scss";
 @import "~/assets/style/mixins/blip-element.scss";
 @import "~/assets/style/life-kind-colors.scss";
@@ -26,6 +27,10 @@
 		height: 80vh;
 		margin-bottom: $interSectionSpacing;
 
+		@include mobile("phone") {
+			margin-bottom: $interSectionSpacing / 2;
+		}
+
 		.title-holder {
 			position: absolute;
 			top: 0;
@@ -48,12 +53,23 @@
 					margin-bottom: 15px;
 	
 					@include textShadowDefault();
+
+					@include mobile() {
+						font-size: $fontSizeHeadingBold;
+					}
+
+					@include mobile("phone") {
+						font-size: $fontSizeHeadingDefault;
+					}
 				}
 	
 				.tagline {
 					text-align: center;
 					font-size: $fontSizeDefaultBold;
 					color: $color;
+					box-sizing: border-box;
+					padding: 0 2em;
+					line-height: $textLineHeightParagraphBold;
 					
 					@include textShadowSmall();
 				}
@@ -71,6 +87,8 @@
 			bottom: 18px;
 			color: $color;
 			opacity: 0.5;
+			padding: 0 3em;
+			box-sizing: border-box;
 
 			@include textShadowSmall();
 		}
@@ -78,6 +96,10 @@
 
 	.showcases {
 		margin-bottom: $interSectionSpacing;
+
+		@include mobile("phone") {
+			margin-bottom: $interSectionSpacing / 2;
+		}
 
 		.leader {
 			text-align: center;
@@ -92,6 +114,11 @@
 				height: 40vh;
 				overflow: hidden;
 				margin-bottom: 15px;
+
+				@include mobile() {
+					min-height: 100px;
+					height: 34vh;
+				}
 			}
 
 			.item-data {
@@ -101,6 +128,15 @@
 				$childDividerSpacing: 15px;
 
 				display: flex;
+
+				@include mobile("phone") {
+					flex-wrap: wrap;
+
+					.title {
+						flex: 0 100%;
+						margin-bottom: 5px;
+					}
+				}
 
 				> * {
 					flex: 0 auto;
