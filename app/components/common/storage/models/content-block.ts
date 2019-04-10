@@ -87,11 +87,13 @@ export namespace Content {
 
 		form: Form|undefined
 		videoCode: string|undefined
+		videoAspectValue: string|undefined
 		meta: MetaData
 
 		constructor(entry: BlockEntry) {
 			this.form = entry.form as Form
 			this.videoCode = entry.videoCode || undefined
+			this.videoAspectValue = entry.videoAspectValue || undefined
 			this.meta = new MetaData(entry)
 		}
 
@@ -116,6 +118,7 @@ export namespace Content {
 		textContent: string
 		imageContents: BlockRepeatedImageEntry[]|undefined
 		videoCode: string
+		videoAspectValue: string
 
 	}
 
