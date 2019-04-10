@@ -1,6 +1,20 @@
 @import "~/assets/style/values.scss";
+@import "~/assets/style/mixins/mobile.scss";
 
 .work-detail-page {
+
+	$contentInset: 100px;
+	$interContentSpacing: 0px;
+
+	@include mobile() {
+		$contentInset: 50px;
+		$interContentSpacing: 35px;
+	}
+
+	@include mobile("phone") {
+		$contentInset: 35px;
+		$interContentSpacing: 25px;
+	}
 
 	.cover {
 		$shadowHorizontalOffset: 0;
@@ -26,12 +40,18 @@
 			h1 {
 				font-size: $fontSizeHeadingBold;
 				color: $color;
+				text-align: center;
 				text-shadow: 
 					$shadowHorizontalOffset $shadowVerticalOffset $shadowBlur $shadowColor,
 					0 0 100px rgba(0, 0, 0, 0.5);
 				width: fit-content;
 				margin: 0 auto;
 				padding: 0 5%;
+
+				@include mobile() {
+					font-size: $fontSizeHeadingDefault;
+					padding: 0 15%;
+				}
 			}
 		}
 
@@ -54,20 +74,10 @@
 		}
 	}
 
-	.divider {
-		&:after {
-			content: " ";
-			display: block;
-			border-bottom: $dividerBorder;
-		}
-	}
-
 	section.introduction {
-		$contentInset: 100px;
-
 		display: flex;
-		margin-top: 50px;
-		margin-bottom: 50px;
+		margin-top: $contentInset / 2;
+		margin-bottom: $contentInset / 2;
 
 		> * {
 			flex: 0 50%;
@@ -109,6 +119,38 @@
 		.description {
 			line-height: $textLineHeightParagraph;
 			padding-left: $contentInset;
+		}
+
+		@include mobile("phone") {
+			display: block;
+			margin-top: $contentInset * 0.25;
+			margin-bottom: $contentInset * 0.25;
+
+			.details {
+				margin-bottom: $contentInset * 0.68;
+			}
+
+			.description {
+				padding-left: 0;
+			}
+		}
+	}
+
+	.divider {
+		&:after {
+			content: " ";
+			display: block;
+			border-bottom: $dividerBorder;
+		}
+	}
+
+	.content-block {
+		@include mobile() {
+			font-size: $fontSizeDefault * 0.9;
+		}
+
+		@include mobile("phone") {
+			margin-bottom: $interContentSpacing;
 		}
 	}
 

@@ -37,6 +37,10 @@
 				transform: translateY(-0.5px);
 				
 				@include blipElement($filterBlipSize);
+
+				@include mobile() {
+					padding-right: $filterBlipPadding * 0.8;
+				}
 			}
 		
 			.name {
@@ -51,8 +55,8 @@
 
 			& > div {
 				margin-bottom: 5px;
-				margin-right: 0;
-				flex: 0 50%;
+				margin-right: $filterInterItemSpacing * 0.6;
+				flex: 0 auto;
 			}
 		}
 	}
