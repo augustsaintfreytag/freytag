@@ -65,6 +65,10 @@ a, a:link, a:active, a:visited {
 	margin-right: auto;
 
 	@include mobile() {
+		padding: $insetVertical * 0.6 $insetHorizontal * 0.6;
+	}
+
+	@include mobile("phone") {
 		padding: $insetVertical * 0.35 $insetHorizontal * 0.35;
 	}
 }
@@ -75,6 +79,10 @@ main {
 	padding: 0 0 $insetVertical 0;
 
 	@include mobile() {
+		padding-bottom: $insetVertical * 0.6;
+	}
+
+	@include mobile("phone") {
 		padding-bottom: $insetVertical * 0.35;
 	}
 }
