@@ -1,4 +1,5 @@
 @import "~/assets/style/values.scss";
+@import "~/assets/style/mixins/mobile.scss";
 
 .text-column-block {
 
@@ -11,6 +12,10 @@
 		color: $textColorLight;
 		line-height: $textLineHeightParagraph;
 		margin: 0 0 15px 0;
+	}
+
+	@include mobile("phone") {
+		columns: unset;
 	}
 
 }
