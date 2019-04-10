@@ -19,6 +19,7 @@
 			</section>
 			<section class="description text">
 				<markdown>{{ workItem.description }}</markdown>
+				<aside class="opt">{{ workItem.description }}</aside>
 			</section>
 		</section>
 		<div class="divider inset" v-if="workItem.blocks.length"></div>
