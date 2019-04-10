@@ -1,10 +1,11 @@
+@import "~/assets/style/mixins/mobile.scss";
 @import "~/assets/style/values.scss";
 @import "~/assets/style/fonts.scss";
 
 html, body {
 	padding: 0;
 	margin: 0;
-	min-width: 1000px;
+	min-width: 300px;
 }
 
 body {
@@ -62,12 +63,20 @@ a, a:link, a:active, a:visited {
 	max-width: 1400px;
 	margin-left: auto;
 	margin-right: auto;
+
+	@include mobile() {
+		padding: $insetVertical * 0.35 $insetHorizontal * 0.35;
+	}
 }
 
 // Main
 
 main {
 	padding: 0 0 $insetVertical 0;
+
+	@include mobile() {
+		padding-bottom: $insetVertical * 0.35;
+	}
 }
 
 // Image
