@@ -1,4 +1,5 @@
 @import "~/assets/style/values.scss";
+@import "~/assets/style/mixins/mobile.scss";
 
 header {
 
@@ -9,12 +10,22 @@ header {
 			color: $textColorHeading;
 			text-transform: uppercase;
 			margin: 0 0 5px 0;
+
+			@include mobile("tablet") {
+				margin-top: 1px;
+				font-size: $fontSizeHeadingDefault * 0.77;
+			}
 		}
 
 		.tagline {
 			font-size: $fontSizeDefaultBold;
 			color: $textColorLight;
 			margin: 0;
+
+			@include mobile("tablet") {
+				// font-size: $fontSizeDefault;
+				padding-right: 15%;
+			}
 		}
 	}
 

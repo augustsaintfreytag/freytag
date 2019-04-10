@@ -14,15 +14,9 @@ header {
 		justify-content: space-between;
 	}
 
-	@include mobile() {
+	@include mobile("phone") {
 		.branding {
 			display: none;
-		}
-
-		nav {
-			flex-basis: 100%;
-			padding-bottom: 12px;
-			border-bottom: $dividerBorder;
 		}
 	}
 

@@ -18,14 +18,11 @@ footer {
 			display: flex;
 
 			@include mobile() {
-				display: block;
-				padding: 25px 0 5px 0;
+				padding: 50px 0 5px 0;
+			}
 
-				> section {
-					flex: 0 100%;
-					max-width: none;
-					width: 100%;
-				}
+			@include mobile("phone") {
+				padding: 25px 0 5px 0;
 			}
 
 			// All Sections
@@ -38,12 +35,20 @@ footer {
 					margin-bottom: 10px;
 				}
 
+				@include mobile("phone") {
+					margin-bottom: 10px;
+				}
+
 				header {
 					font-weight: 700;
 					font-size: $fontSizeLabelDefault;
 					margin-bottom: $sectionHeaderMargin;
 
 					@include mobile() {
+						margin-bottom: $sectionHeaderMargin * 0.75;
+					}
+
+					@include mobile("phone") {
 						margin-bottom: $sectionHeaderMargin * 0.5;
 					}
 				}
@@ -51,6 +56,10 @@ footer {
 				main {
 					> a > div, > div {
 						margin-bottom: $sectionInterItemSpacing;
+
+						@include mobile("phone") {
+							margin-bottom: $sectionInterItemSpacing * 0.75;
+						}	
 					}
 				}
 			}
@@ -116,6 +125,27 @@ footer {
 							z-index: -1;
 						}
 					}
+				}
+			}
+
+			// Arrangement Break
+
+			@include mobile() {
+				flex-wrap: wrap;
+	
+				> section {
+					flex: 0 50%;
+					max-width: none!important;
+					width: 50%;
+				}
+			}
+	
+			@include mobile("phone") {
+				display: block;
+	
+				> section {
+					max-width: none;
+					width: 100%;
 				}
 			}
 		}
