@@ -22,13 +22,13 @@ export namespace CockpitImageRequestPreset {
 
 	presets[Format.Small] = new CockpitImage.ImageRequest({
 		mode: CockpitImage.ImageMode.BestFit,
-		width: 800,
+		width: 850,
 		quality: defaultQuality
 	})
 
 	presets[Format.Regular] = new CockpitImage.ImageRequest({
 		mode: CockpitImage.ImageMode.BestFit,
-		width: 1400,
+		width: 1300,
 		quality: defaultQuality
 	})
 
