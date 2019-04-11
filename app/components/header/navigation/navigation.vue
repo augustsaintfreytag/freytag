@@ -1,5 +1,5 @@
 <template>
-	<nav class="indicating-navigation">
+	<nav class="page-navigation indicating-navigation">
 		<nuxt-link class="navigation-element" tag="div" v-for="route in [
 			{address: '/', name: 'Home'},
 			{address: '/life', name: 'Life'},

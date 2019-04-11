@@ -1,5 +1,5 @@
 <template>
-	<header class="inset">
+	<header class="page-header inset">
 		<header-branding-component />
 		<header-navigation-component />
 	</header>

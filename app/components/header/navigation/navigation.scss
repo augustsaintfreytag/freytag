@@ -4,38 +4,33 @@
 $inactiveTextColor: $textColorHeading;
 $activeTextColor: $textColorActive;
 
-header {
+header nav.page-navigation {
+	flex: 0;
+	display: flex;
+	margin-top: 10px;
 
-	nav {
-		flex: 0;
-		display: flex;
-		margin-top: 10px;
-
-		> div {
-			flex: auto;
-			font-weight: 700;
-			font-size: $fontSizeNavigationDefault;
-			color: $textColorHeading;
-			text-transform: uppercase;
-			padding: 0 20px 0 0;
-			
-			&:last-child {
-				padding-right: 0;
-			}
-		}
-
-		@include mobile("phone") {
-			flex-basis: 100%;
-			padding-bottom: 12px;
-			border-bottom: $dividerBorder;
-
-			> div {
-				max-width: fit-content;
-			}
+	> div {
+		flex: auto;
+		font-weight: 700;
+		font-size: $fontSizeNavigationDefault;
+		color: $textColorHeading;
+		text-transform: uppercase;
+		padding: 0 20px 0 0;
+		
+		&:last-child {
+			padding-right: 0;
 		}
 	}
 
+	@include mobile("phone") {
+		flex-basis: 100%;
+		padding-bottom: 12px;
+		border-bottom: $dividerBorder;
 
+		> div {
+			max-width: fit-content;
+		}
+	}
 }
 
 .indicating-navigation {
