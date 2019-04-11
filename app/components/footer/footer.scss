@@ -83,14 +83,10 @@ footer {
 						overflow: hidden;
 						white-space: nowrap;
 						text-overflow: ellipsis;
-					}
-
-					> .name {
 						flex: 0 50%;
 					}
 
 					> .address {
-						flex: 0 50%;
 						color: $textColorVeryLight;
 					}
 				}
@@ -115,6 +111,7 @@ footer {
 						$itemSpacing: 10px;
 
 						flex-basis: $size + $itemSpacing;
+						min-width: $size + $itemSpacing;
 						position: relative;
 
 						svg {
@@ -132,20 +129,22 @@ footer {
 
 			@include mobile() {
 				flex-wrap: wrap;
+				justify-content: space-between;
 	
 				> section {
 					flex: 0 50%;
 					max-width: none!important;
-					width: 50%;
+					width: 46%;
 				}
 			}
 	
 			@include mobile("phone") {
-				display: block;
+				flex-wrap: wrap;
 	
 				> section {
+					flex: 0 auto;
+					min-width: max-content;
 					max-width: none;
-					width: 100%;
 				}
 			}
 		}

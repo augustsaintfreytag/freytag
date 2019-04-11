@@ -9,6 +9,9 @@
 	$interSectionSpacing: $baseSpacing * 0.5;
 	$outerSectionSpacing: $baseSpacing * 1.5;
 
+	$interSectionSpacingSlim: $baseSpacing * 0.25;
+	$outerSectionSpacingSlim: $baseSpacing * 0.5;
+
 	// Elements
 	$blipSize: 16px;
 	$blipPadding: 15px;
@@ -22,8 +25,6 @@
 
 	@include mobile("phone") {
 		padding: 0 20px;
-		$interSectionSpacing: $baseSpacing * 0.25;
-		$outerSectionSpacing: $baseSpacing * 0.5;
 	}
 
 	> header {
@@ -31,6 +32,10 @@
 		width: 100%;
 		margin-top: $outerSectionSpacing;
 		margin-bottom: $baseSpacing;
+
+		@include mobile("phone") {
+			margin-top: $outerSectionSpacingSlim;
+		}
 
 		> * {
 			flex: 0 auto;
@@ -62,6 +67,10 @@
 
 	> section, > nav {
 		margin-bottom: $interSectionSpacing;
+
+		@include mobile("phone") {
+			margin-bottom: $interSectionSpacingSlim;
+		}
 	}
 
 	> .details {
@@ -102,6 +111,8 @@
 	}
 
 	> nav {
+		$indicatorSpacing: 8px;
+
 		display: flex;
 		justify-content: space-between;
 		width: 100%;
@@ -109,7 +120,9 @@
 		margin-bottom: $baseSpacing;
 		color: $textColorVeryLight;
 
-		$indicatorSpacing: 8px;
+		@include mobile("phone") {
+			margin-top: $outerSectionSpacingSlim;
+		}
 
 		> div {
 			overflow: hidden;
@@ -138,7 +151,7 @@
 
 	@include mobile("phone") {
 		.description {
-			margin-bottom: $outerSectionSpacing;
+			margin-bottom: $outerSectionSpacingSlim;
 		}
 
 		nav {
