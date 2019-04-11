@@ -14,7 +14,7 @@ body {
 	font-size: $fontSizeDefault;
 	color: $textColor;
 
-	@include mobile("phone") {
+	@include mobile() {
 		-webkit-text-size-adjust: 100%;
 	}
 }
