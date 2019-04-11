@@ -13,6 +13,10 @@ body {
 	font-weight: 300;
 	font-size: $fontSizeDefault;
 	color: $textColor;
+
+	@include mobile("phone") {
+		-webkit-text-size-adjust: 100%;
+	}
 }
 
 // Elements
