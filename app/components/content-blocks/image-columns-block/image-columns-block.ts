@@ -42,8 +42,6 @@ export default class ImageColumnsBlockComponent extends Vue {
 
 	imageFormat(designation: ImageContentDesignation): CockpitImageRequestPreset.Format {
 		if (designation === ImageContentDesignation.Single) {
-			return CockpitImageRequestPreset.Format.Large
-		} else if (designation === ImageContentDesignation.Dual) {
 			return CockpitImageRequestPreset.Format.Regular
 		}
 
