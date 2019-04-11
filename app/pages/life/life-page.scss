@@ -59,6 +59,10 @@
 				flex: 0 auto;
 			}
 		}
+
+		@include mobile("phone") {
+			padding-right: 25%;
+		}
 	}
 
 	// Life Events Header

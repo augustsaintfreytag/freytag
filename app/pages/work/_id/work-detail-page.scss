@@ -50,7 +50,10 @@
 
 				@include mobile() {
 					font-size: $fontSizeHeadingDefault;
-					padding: 0 15%;
+				}
+
+				@include mobile("phone") {
+					padding: 0 10%;
 				}
 			}
 		}
