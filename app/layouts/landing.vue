@@ -1,8 +1,8 @@
 <template>
 	<div id="page">
 		<div class="wrap">
-			<header class="inset">
-				<section></section>
+			<header class="page-header inset">
+				<section class="branding"></section>
 				<header-navigation-component />
 			</header>
 			<main>
@@ -13,7 +13,5 @@
 		<sprite-set />
 	</div>
 </template>
-
-<style lang="scss"></style>
 
 <script lang="ts" src="./landing.ts"></script>

@@ -39,7 +39,7 @@
 				@include blipElement($filterBlipSize);
 
 				@include mobile() {
-					padding-right: $filterBlipPadding * 0.8;
+					padding-right: $filterBlipPadding * 0.75;
 				}
 			}
 		
@@ -55,7 +55,7 @@
 
 			& > div {
 				margin-bottom: 5px;
-				margin-right: $filterInterItemSpacing * 0.6;
+				margin-right: $filterInterItemSpacing * 0.5;
 				flex: 0 auto;
 			}
 		}

@@ -1,11 +1,10 @@
 @import "~/assets/style/values.scss";
 @import "~/assets/style/mixins/mobile.scss";
 
-header {
+header.page-header {
 	
 	display: flex;
 	margin-bottom: 10px;
-	background: #fff;
 	box-sizing: border-box;
 	width: 100%;
 	
