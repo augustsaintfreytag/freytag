@@ -8,7 +8,8 @@
 
 	p {
 		font-size: $fontSizeLabelDefault;
-		text-align: left;
+		text-align: justify;
+		hyphens: auto;
 		color: $textColorLight;
 		line-height: $textLineHeightParagraph;
 		margin: 0 0 15px 0;
