@@ -12,7 +12,7 @@ namespace Modules {
 	}
 
 	export function withSupplementedAnchors(input: string): string {
-		return input.replace(/(<a\s*href=".+?")(\s*>)/g, "$1 target=\"_blank\" rel=\"noopener\"$2")
+		return input.replace(/(<a\s*href="[^/].+?")(\s*>)/g, "$1 target=\"_blank\" rel=\"noopener\"$2")
 	}
 
 }
