@@ -18,8 +18,7 @@
 				<life-event-detail-table-component :lifeEvent="workItem.event" rowNames="['Title', 'Span', 'Kind', 'Format', 'Role', 'Location', 'Context']" />
 			</section>
 			<section class="description text">
-				<markdown>{{ workItem.description }}</markdown>
-				<aside class="opt">{{ workItem.description }}</aside>
+				<markdown :content="workItem.description"></markdown>
 			</section>
 		</section>
 		<div class="divider inset" v-if="workItem.blocks.length"></div>
@@ -30,7 +29,7 @@
 			<video-vimeo-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.VideoVimeo" :content-block="contentBlock" />
 		</template>
 		<aside class="opt">
-			<p>Showcase "{{ workItem.name }}" written and presented by August Freytag, all contents in imagery, video and text are intellectual property of August Freytag (August S. Freytag).</p>
+			<p>Showcase "{{ workItem.name }}" written and presented by August Freytag. All contents in imagery, video and text are intellectual property of August Freytag (August S. Freytag).</p>
 		</aside>
 	</article>
 </template>
