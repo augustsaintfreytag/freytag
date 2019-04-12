@@ -1,7 +1,5 @@
 <template>
-	<vue-markdown :anchor-attributes="{ target: '_blank', rel: 'noopener' }">
-		<slot></slot>
-	</vue-markdown>
+	<span v-html="output"></span>
 </template>
 
 <script lang="ts" src="./markdown.ts"></script>

@@ -1,7 +1,6 @@
 <template>
 	<section class="content-block text-column-block text inset" v-if="contentBlock">
-		<markdown>{{ contentBlock.textContent }}</markdown>
-		<aside class="opt">{{ contentBlock.textContent }}</aside>
+		<markdown :content="contentBlock.textContent"></markdown>
 	</section>
 </template>
 

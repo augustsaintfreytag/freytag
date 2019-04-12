@@ -17,10 +17,10 @@
 	"dependencies": {
 		"axios": "^0.18.0",
 		"babel-runtime": "^6.26.0",
+		"markdown-it": "^8.4.2",
 		"node-sass": "^4.11.0",
 		"nuxt-ts-edge": "^3.0.0-25876102.3be7f0aa",
 		"sass-loader": "^7.1.0",
-		"vue-markdown": "^2.2.4",
 		"vue-property-decorator": "^7.3.0"
 	},
 	"devDependencies": {
