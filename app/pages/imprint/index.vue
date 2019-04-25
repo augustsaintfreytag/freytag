@@ -11,7 +11,7 @@
 					<p>
 						August S. Freytag<br />
 						c/o Philip Giese<br />
-						Columbiadamm 39<br />
+						Columbiadamm<br />
 						10965 Berlin
 					</p>
 					<p>
@@ -49,7 +49,7 @@
 					<p>
 						August S. Freytag<br />
 						c/o Philip Giese<br />
-						Columbiadamm 39<br />
+						Columbiadamm<br />
 						10965 Berlin
 					</p>
 					<p>
