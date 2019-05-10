@@ -15,7 +15,10 @@ export default {
 			}
 		}
 	},
-	plugins: ["~/plugins/paths.ts"],
+	plugins: [
+		{ src: "~/plugins/paths.ts" }, 
+		{ src: "~/plugins/lazyload.ts", ssr: false }
+	],
 	generate: {
 		dir: "build/generated",
 		routes: ["/maintenance/404", "/maintenance/50X"]
