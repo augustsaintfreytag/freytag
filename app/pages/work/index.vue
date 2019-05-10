@@ -5,7 +5,7 @@
 				v-for="workItem in workItems" :key="workItem.meta.id"
 				:class="workItem.event && workItem.event.kind ? `kind-${workItem.event.kind.toLowerCase()}` : ''"
 			>
-				<nuxt-link :to="`/work/${workItem.meta.id}`">
+				<nuxt-link :to="`/work/${workItem.slug || workItem.meta.id}`">
 					<div class="image-holder">
 						<img class="covering" v-if="workItem.titleImage" :src="$imagePath(workItem.titleImage.path, 'regular')" />
 					</div>
