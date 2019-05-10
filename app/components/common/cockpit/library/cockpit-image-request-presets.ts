@@ -2,7 +2,7 @@ import { CockpitImage } from "../models/cockpit-image-request"
 
 export namespace CockpitImageRequestPreset {
 
-	const defaultQuality = 75
+	const defaultQuality = 90
 
 	// Library
 
@@ -22,19 +22,19 @@ export namespace CockpitImageRequestPreset {
 
 	presets[Format.Small] = new CockpitImage.ImageRequest({
 		mode: CockpitImage.ImageMode.BestFit,
-		width: 850,
+		width: 600,
 		quality: defaultQuality
 	})
 
 	presets[Format.Regular] = new CockpitImage.ImageRequest({
 		mode: CockpitImage.ImageMode.BestFit,
-		width: 1300,
+		width: 1000,
 		quality: defaultQuality
 	})
 
 	presets[Format.Large] = new CockpitImage.ImageRequest({
 		mode: CockpitImage.ImageMode.BestFit,
-		width: 1800,
+		width: 1600,
 		quality: defaultQuality
 	})
 
