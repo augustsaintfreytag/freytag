@@ -35,6 +35,8 @@ export namespace Work {
 			
 			this.blocks = (entry.blocks || []).map(contentBlockEntry => {
 				switch (contentBlockEntry.form) {
+					case Content.Form.Heading:
+						return new Content.HeadingBlock(contentBlockEntry)
 					case Content.Form.TextQuote:
 						return new Content.TextQuoteBlock(contentBlockEntry)
 					case Content.Form.TextColumn:
