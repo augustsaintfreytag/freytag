@@ -13,6 +13,7 @@ export namespace Work {
 
 		display: boolean
 		name: string
+		slug: string|undefined
 		description: string|undefined
 		titleImage: Image.Content|undefined
 		event: Vita.Event|undefined
@@ -23,6 +24,7 @@ export namespace Work {
 		constructor(entry: ItemEntry) {
 			this.display = entry.display
 			this.name = entry.name
+			this.slug = entry.slug || undefined
 			this.description = entry.description || undefined
 			
 			if (entry.titleImage) {
@@ -71,6 +73,7 @@ export namespace Work {
 
 		display: boolean
 		name: string
+		slug: string|undefined
 		description: string|undefined
 		titleImage: Image.ContentEntry|undefined
 		event: Vita.EventEntry|undefined
