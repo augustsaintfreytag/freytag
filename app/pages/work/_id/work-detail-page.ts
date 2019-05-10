@@ -8,30 +8,18 @@ import { MetaTag } from "~/components/common/head/library/meta-tag"
 
 import Markdown from "~/components/markdown/markdown.vue"
 import LifeEventDetailTableComponent from "~/components/life-event/life-event-detail-table.vue"
+import HeadingBlockComponent from "~/components/content-blocks/heading-content-block/heading-content-block.vue"
 import ImageColumnsBlockComponent from "~/components/content-blocks/image-columns-block/image-columns-block.vue"
 import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-block/text-quote-block.vue"
 import TextColumnBlockComponent from "~/components/content-blocks/text-column-block/text-column-block.vue"
 import VideoVimeoBlockComponent from "~/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
-
-const initialData: WorkDetailPageData = {
-	types: {
-		Form: {
-			ImageColumns: Content.Form.ImageColumns,
-			TextColumn: Content.Form.TextColumn,
-			TextQuote: Content.Form.TextQuote,
-			VideoVimeo: Content.Form.VideoVimeo
-		}
-	},
-
-	workItemId: undefined,
-	workItem: undefined
-}
 
 @Component({
 
 	components: {
 		Markdown,
 		LifeEventDetailTableComponent,
+		HeadingBlockComponent,
 		TextQuoteBlockComponent,
 		ImageColumnsBlockComponent,
 		TextColumnBlockComponent,
@@ -39,6 +27,21 @@ const initialData: WorkDetailPageData = {
 	},
 
 	async asyncData({ params }) {
+		const initialData: WorkDetailPageData = {
+			types: {
+				Form: {
+					Heading: Content.Form.Heading,
+					ImageColumns: Content.Form.ImageColumns,
+					TextColumn: Content.Form.TextColumn,
+					TextQuote: Content.Form.TextQuote,
+					VideoVimeo: Content.Form.VideoVimeo
+				}
+			},
+		
+			workItemId: undefined,
+			workItem: undefined
+		}
+
 		initialData.workItemId = params["id"]
 		await WorkDetailPageMapper.updateWorkItem(initialData)
 
@@ -54,10 +57,11 @@ const initialData: WorkDetailPageData = {
 	},
 
 	head() {
+		const data = this.$data as WorkDetailPageData
 		const titleComponents = ["Work"]
 		const meta: MetaTag[] = []
 
-		const item = initialData.workItem
+		const item = data.workItem
 		const itemName = item && item.name ? item.name : undefined
 
 		if (item) {

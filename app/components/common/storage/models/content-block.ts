@@ -13,6 +13,20 @@ export namespace Content {
 
 	}
 
+	export class HeadingBlock implements Block {
+
+		form: Form|undefined
+		textContent: string|undefined
+		meta: MetaData
+
+		constructor(entry: BlockEntry) {
+			this.form = (entry.form as Form) || undefined
+			this.textContent = entry.textContent || undefined
+			this.meta = new MetaData(entry)
+		}
+
+	}
+
 	export class TextQuoteBlock implements Block {
 
 		form: Form|undefined
@@ -101,6 +115,7 @@ export namespace Content {
 
 	export enum Form {
 
+		Heading = "Heading",
 		TextQuote = "Text (Quote)",
 		TextColumn = "Text (Column)",
 		ImageColumns = "Images (Columns)",

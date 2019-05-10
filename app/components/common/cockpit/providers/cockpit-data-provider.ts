@@ -1,3 +1,4 @@
+import { Dictionary } from "@nuxt/vue-app-edge"
 import { UUID } from "~/components/common/library/uuid"
 import { Vita } from "../../storage/models/vita-event"
 import { CockpitDataAccess } from "./cockpit-data-access"
@@ -31,9 +32,15 @@ export namespace CockpitDataProvider {
 	}
 
 	export async function workItemById(id: UUID): Promise<Work.Item|undefined> {
-		const response = await CockpitDataAccess.recordsInCollection("work", {
-			filter: { _id: id }
-		})
+		return await workItemByFilter({ _id: id })
+	}
+
+	export async function workItemBySlug(slug: string): Promise<Work.Item|undefined> {
+		return await workItemByFilter({ slug: slug })
+	}
+
+	export async function workItemByFilter(filter: Dictionary<any>): Promise<Work.Item|undefined> {
+		const response = await CockpitDataAccess.recordsInCollection("work", {filter})
 
 		if (response.entries.length !== 1) {
 			return undefined
