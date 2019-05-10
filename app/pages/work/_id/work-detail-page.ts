@@ -14,21 +14,6 @@ import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-bloc
 import TextColumnBlockComponent from "~/components/content-blocks/text-column-block/text-column-block.vue"
 import VideoVimeoBlockComponent from "~/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
 
-const initialData: WorkDetailPageData = {
-	types: {
-		Form: {
-			Heading: Content.Form.Heading,
-			ImageColumns: Content.Form.ImageColumns,
-			TextColumn: Content.Form.TextColumn,
-			TextQuote: Content.Form.TextQuote,
-			VideoVimeo: Content.Form.VideoVimeo
-		}
-	},
-
-	workItemId: undefined,
-	workItem: undefined
-}
-
 @Component({
 
 	components: {
@@ -42,6 +27,21 @@ const initialData: WorkDetailPageData = {
 	},
 
 	async asyncData({ params }) {
+		const initialData: WorkDetailPageData = {
+			types: {
+				Form: {
+					Heading: Content.Form.Heading,
+					ImageColumns: Content.Form.ImageColumns,
+					TextColumn: Content.Form.TextColumn,
+					TextQuote: Content.Form.TextQuote,
+					VideoVimeo: Content.Form.VideoVimeo
+				}
+			},
+		
+			workItemId: undefined,
+			workItem: undefined
+		}
+
 		initialData.workItemId = params["id"]
 		await WorkDetailPageMapper.updateWorkItem(initialData)
 
@@ -57,10 +57,11 @@ const initialData: WorkDetailPageData = {
 	},
 
 	head() {
+		const data = this.$data as WorkDetailPageData
 		const titleComponents = ["Work"]
 		const meta: MetaTag[] = []
 
-		const item = initialData.workItem
+		const item = data.workItem
 		const itemName = item && item.name ? item.name : undefined
 
 		if (item) {
