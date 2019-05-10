@@ -1,4 +1,4 @@
-import { Dictionary } from "vue-router/types/router"
+import { Dictionary } from "@nuxt/vue-app-edge"
 import { LifePageData } from "./life-page-data"
 
 export namespace LifePageRouteMapper {
