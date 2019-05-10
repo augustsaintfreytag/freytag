@@ -13,6 +13,7 @@ export namespace Work {
 
 		display: boolean
 		name: string
+		slug: string|undefined
 		description: string|undefined
 		titleImage: Image.Content|undefined
 		event: Vita.Event|undefined
@@ -23,6 +24,7 @@ export namespace Work {
 		constructor(entry: ItemEntry) {
 			this.display = entry.display
 			this.name = entry.name
+			this.slug = entry.slug || undefined
 			this.description = entry.description || undefined
 			
 			if (entry.titleImage) {
@@ -35,6 +37,8 @@ export namespace Work {
 			
 			this.blocks = (entry.blocks || []).map(contentBlockEntry => {
 				switch (contentBlockEntry.form) {
+					case Content.Form.Heading:
+						return new Content.HeadingBlock(contentBlockEntry)
 					case Content.Form.TextQuote:
 						return new Content.TextQuoteBlock(contentBlockEntry)
 					case Content.Form.TextColumn:
@@ -69,6 +73,7 @@ export namespace Work {
 
 		display: boolean
 		name: string
+		slug: string|undefined
 		description: string|undefined
 		titleImage: Image.ContentEntry|undefined
 		event: Vita.EventEntry|undefined

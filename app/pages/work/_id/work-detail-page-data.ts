@@ -9,7 +9,7 @@ export interface WorkDetailPageData extends PageData {
 		Form: {[key: string]: Content.Form}
 	},
 
-	workItemId: UUID|undefined
+	workItemId: string|undefined
 	workItem: Work.Item|undefined
 
 }

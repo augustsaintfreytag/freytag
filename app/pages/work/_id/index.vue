@@ -23,6 +23,7 @@
 		</section>
 		<div class="divider inset" v-if="workItem.blocks.length"></div>
 		<template v-for="contentBlock in workItem.blocks">
+			<heading-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.Heading" :content-block="contentBlock" />
 			<image-columns-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.ImageColumns" :content-block="contentBlock" />
 			<text-quote-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.TextQuote" :content-block="contentBlock" />
 			<text-column-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.TextColumn" :content-block="contentBlock" />
