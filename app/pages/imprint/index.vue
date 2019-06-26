@@ -10,7 +10,7 @@
 					<h3>Contact Information</h3>
 					<p>
 						August S. Freytag<br />
-						c/o Philip Giese<br />
+						c/o Philip D. Giese<br />
 						Columbiadamm<br />
 						10965 Berlin
 					</p>
@@ -48,7 +48,7 @@
 					<h3>Kontaktinformationen</h3>
 					<p>
 						August S. Freytag<br />
-						c/o Philip Giese<br />
+						c/o Philip D. Giese<br />
 						Columbiadamm<br />
 						10965 Berlin
 					</p>
