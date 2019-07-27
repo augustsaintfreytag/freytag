@@ -8,17 +8,7 @@
 				</h2>
 				<div>
 					<h3>Contact Information</h3>
-					<p>
-						August S. Freytag<br />
-						c/o Philip D. Giese<br />
-						Columbiadamm<br />
-						10965 Berlin
-					</p>
-					<p>
-						Telephone: 030 915 779 70‬<br />
-						E-Mail: me@augustfreytag.com<br />
-						Internet address: augustfreytag.com
-					</p>
+					<contact-block-component />
 				</div>
 				<div>
 					<h3>Disclaimer</h3>
@@ -46,17 +36,7 @@
 				</h2>
 				<div>
 					<h3>Kontaktinformationen</h3>
-					<p>
-						August S. Freytag<br />
-						c/o Philip D. Giese<br />
-						Columbiadamm<br />
-						10965 Berlin
-					</p>
-					<p>
-						Telefon: 030 915 779 70‬<br />
-						Email: me@augustfreytag.com<br />
-						Internetadresse: augustfreytag.com
-					</p>
+					<contact-block-component />
 				</div>
 				<div>
 					<h3>Haftungsausschluss</h3>
