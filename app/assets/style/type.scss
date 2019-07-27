@@ -42,7 +42,7 @@ h3 {
 }
 
 h4, h5, h6 {
-	font-size: $fontSizeDefault;
+	font-size: $fontSizeDefault + 0.05em;
 	margin: 0 0 $headlineSpacingSlim 0;
 }
 

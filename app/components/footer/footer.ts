@@ -21,6 +21,7 @@ const rot13 = new Rot13()
 				{address: "/", name: "Home"},
 				{address: "/life", name: "Life"},
 				{address: "/work", name: "Work"},
+				{address: "/privacy", name: "Privacy"},
 				{address: "/imprint", name: "Imprint"}
 			]
 		},
