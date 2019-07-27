@@ -5,7 +5,7 @@ type SequenceMap = Dictionary<number|undefined>
 
 export default class Rot13 {
 
-	private static alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	private static alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
 	private static rotation: IndexDistance = 13
 
 	private sequence: string[]
