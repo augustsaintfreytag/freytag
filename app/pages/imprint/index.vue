@@ -1,5 +1,5 @@
 <template>
-	<section class="imprint-page">
+	<section class="imprint-page text">
 		<section class="imprints inset">
 			<article>
 				<h2>
