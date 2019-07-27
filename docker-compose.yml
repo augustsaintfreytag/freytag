@@ -15,7 +15,7 @@ services:
       - "443:443"
 
   app:
-    image: node:latest
+    image: node:12.1.0
     volumes:
       - ./app/nuxt.config.ts:/var/app/nuxt.config.ts:cached
       - ./app/package.json:/var/app/package.json:cached
