@@ -52,7 +52,7 @@
 			</div>
 			<div>
 				<h3>Vimeo</h3>
-				<p>Auf einigen Seiten binden wir Videos über die werbefreie Streaming-Plattform "Vimeo" ein. Die Plattform erhebt dabei Nutzungsdaten über Ihre Interaktion mit den vorgestellten Medien, darunter z.B. Ihre IP-Adresse, den Zeitpunkt des Ladens oder Abspielens des Videos, aus Ihrer IP-Adresse abgeleiteten geographischen Informationen und weitere Daten zur statistischen Auswertung. Auch wenn der Auftritt selbst keine Cookies setzt, werden auf Ihrem Computer ggf. Cookies von Vimeo abgelegt. Eine volle Ausführung Datenschutz-relevanter Informationen finden Sie in der <a href="https://vimeo.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Vimeo</a>.</p>
+				<p>Auf einigen Seiten binden wir Videos über die Streaming-Plattform "Vimeo" ein. Die Plattform erhebt dabei Nutzungsdaten über Ihre Interaktion mit den vorgestellten Medien, darunter z.B. Ihre IP-Adresse, den Zeitpunkt des Ladens oder Abspielens des Videos, aus Ihrer IP-Adresse abgeleiteten geographischen Informationen und weitere Daten zur statistischen Auswertung. Auch wenn der Auftritt selbst keine Cookies setzt, werden auf Ihrem Computer ggf. Cookies von Vimeo abgelegt. Eine volle Ausführung Datenschutz-relevanter Informationen finden Sie in der <a href="https://vimeo.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Vimeo</a>. Um die bei Vimeo gespeicherten personenbezogenen Daten abzufragen, wenden Sie sich direkt an die Plattform.</p>
 			</div>
 			<div>
 				<h3>SSL-Verschlüsselung</h3>
