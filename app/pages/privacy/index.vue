@@ -64,7 +64,7 @@
 			</div>
 			<div>
 				<h3>Fragen an den Datenschutzbeauftragten</h3>
-				<p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine E-Mail oder wenden Sie sich direkt an den Inhaber und Betreiber der Seite.</p>
+				<p>Wenn Sie Fragen zum Datenschutz haben, wenden Sie sich direkt an den Inhaber und Betreiber der Seite.</p>
 			</div>
 			<div>
 				<p>Die Datenschutzerklärung wurde mithilfe der activeMind AG erstellt, den Experten für <a href="https://www.activemind.de/datenschutz/datenschutzhinweis-generator/" target="_blank" rel="noopener">externe Datenschutzbeauftragte</a> (Version #2019-04-10).</p>
