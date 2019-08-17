@@ -52,7 +52,9 @@
 			</div>
 			<div>
 				<h3>Vimeo</h3>
-				<p>Auf einigen Seiten binden wir Videos über die Streaming-Plattform "Vimeo" ein. Die Plattform erhebt dabei Nutzungsdaten über Ihre Interaktion mit den vorgestellten Medien, darunter z.B. Ihre IP-Adresse, den Zeitpunkt des Ladens oder Abspielens des Videos, aus Ihrer IP-Adresse abgeleiteten geographischen Informationen und weitere Daten zur statistischen Auswertung. Auch wenn der Auftritt selbst keine Cookies setzt, werden auf Ihrem Computer ggf. Cookies von Vimeo abgelegt. Eine volle Ausführung Datenschutz-relevanter Informationen finden Sie in der <a href="https://vimeo.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Vimeo</a>. Um die bei Vimeo gespeicherten personenbezogenen Daten abzufragen, wenden Sie sich direkt an die Plattform.</p>
+				<p>Auf unserer Website sind Plugins des Videoportals Vimeo der Vimeo, LLC, 555 West 18th Street, New York, New York 10011, USA eingebunden. Bei jedem Aufruf einer Seite, die ein oder mehrere Vimeo-Videoclips anbietet, wird eine direkte Verbindung zwischen Ihrem Browser und einem Server von Vimeo in den USA hergestellt. Dabei werden Informationen über Ihren Besuch und Ihre IP-Adresse dort gespeichert. Durch Interaktionen mit den Vimeo Plugins (z.B. Klicken des Start-Buttons) werden diese Informationen ebenfalls an Vimeo übermittelt und dort gespeichert. Eine volle Ausführung Datenschutz-relevanter Informationen finden Sie in der <a href="https://vimeo.com/privacy" target="_blank" rel="noopener">Datenschutzerklärung von Vimeo</a>.</p>
+				<p>Wenn Sie ein Vimeo-Benutzerkonto haben und nicht möchten, dass Vimeo über diese Website Daten über Sie sammelt und mit Ihren bei Vimeo gespeicherten Mitgliedsdaten verknüpft, müssen Sie sich vor Ihrem Besuch dieser Website bei Vimeo ausloggen.</p>
+				<p>Außerdem ruft Vimeo über einen iFrame, in dem das Video aufgerufen wird, den Tracker Google Analytics auf. Dabei handelt es sich um ein eigenes Tracking von Vimeo, auf das wir keinen Zugriff haben. Sie können das Tracking durch Google Analytics unterbinden, indem Sie die Deaktivierungs-Tools einsetzen, die Google für einige Internet-Browser anbietet. Sie können darüber hinaus die Erfassung der durch Google Analytics erzeugten und auf ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren: <a href="http://tools.google.com/dlpage/gaoptout?hl=de" target="_blank" rel="noopener">http://tools.google.com/dlpage/gaoptout</a>.</p>
 			</div>
 			<div>
 				<h3>SSL-Verschlüsselung</h3>
@@ -64,7 +66,7 @@
 			</div>
 			<div>
 				<h3>Fragen an den Datenschutzbeauftragten</h3>
-				<p>Wenn Sie Fragen zum Datenschutz haben, schreiben Sie uns bitte eine E-Mail oder wenden Sie sich direkt an den Inhaber und Betreiber der Seite.</p>
+				<p>Wenn Sie Fragen zum Datenschutz haben, wenden Sie sich direkt an den Inhaber und Betreiber der Seite.</p>
 			</div>
 			<div>
 				<p>Die Datenschutzerklärung wurde mithilfe der activeMind AG erstellt, den Experten für <a href="https://www.activemind.de/datenschutz/datenschutzhinweis-generator/" target="_blank" rel="noopener">externe Datenschutzbeauftragte</a> (Version #2019-04-10).</p>
