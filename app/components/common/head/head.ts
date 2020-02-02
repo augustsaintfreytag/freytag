@@ -9,12 +9,12 @@ export namespace Head {
 	export const separator = " / "
 
 	export const htmlAttrs = { lang: "en" }
-	export const title = "August S. Freytag"
+	export const title = "August Saint Freytag"
 	export const meta: MetaTag[] = [
 		{hid: "encoding", charset: "utf-8"},
 		{hid: "viewport", name: "viewport", content: "width=device-width, initial-scale=1.0"},
-		{hid: "author", name: "author", content: "August S. Freytag"},
-		{hid: "copyright", name: "copyright", content: "August S. Freytag"},
+		{hid: "author", name: "author", content: "August Saint Freytag"},
+		{hid: "copyright", name: "copyright", content: "August Saint Freytag"},
 		{hid: "robots", name: "robots", content: "follow"},
 		{hid: "favicon", rel: "shortcut icon", type: "image/x-icon", href: "/favicon.ico"}
 	]
