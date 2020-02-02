@@ -4,7 +4,7 @@ import { Component, Vue } from "vue-property-decorator"
 	data() {
 		return {
 			content: {
-				headerPrimaryTitle: "August S. Freytag",
+				headerPrimaryTitle: "August Saint Freytag",
 				headerPrimaryOccupations: ["Developer", "Music Video Artist", "Editor", "Concept Designer", "Analogue Photographer"].join(" ・ ")
 			}
 		}
