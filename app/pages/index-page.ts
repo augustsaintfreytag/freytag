@@ -28,7 +28,7 @@ import { Head } from "~/components/common/head/head"
 	head() {
 		return Head.modeled({
 			meta: [
-				{hid: "description", name: "description", content: "Personal portfolio and work showcase site of August S. Freytag, music video artist, filmmaker, concept designer, developer, analogue photographer. Presenting a selection of artwork, concepts, sketches and work in progress."}
+				{hid: "description", name: "description", content: "Personal portfolio and work showcase site of August Saint Freytag (A.S.F.), music video artist, filmmaker, concept designer, developer, analogue photographer. Presenting a selection of artwork, concepts, sketches and work in progress."}
 			]
 		})
 	}
