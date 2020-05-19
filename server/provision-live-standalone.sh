@@ -4,7 +4,7 @@ BASE=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 source "$BASE/env/cycle-live.env"
 source "$BASE/env/provision-live.env"
 
-docker-compose down proxy
+docker-compose stop proxy
 
 for DOMAIN_NAME in $(echo $DOMAIN_NAME_PARAMS | sed "s/,/ /g")
 do
@@ -13,4 +13,4 @@ do
 done
 
 docker run -v $VOLUME_SSL:/etc/letsencrypt frapsoft/openssl dhparam -dsaparam -out /etc/letsencrypt/dhparam-2048.pem 2048
-docker-compose up proxy
+docker-compose start proxy
