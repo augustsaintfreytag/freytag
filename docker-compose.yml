@@ -13,6 +13,7 @@ services:
     ports:
       - "80:80"
       - "443:443"
+    restart: always
 
   app:
     image: node:12.1.0
@@ -32,6 +33,7 @@ services:
       - data-app-build-generated:/var/app/build
       - data-app-build-nuxt:/var/lib/nuxt
     command: "bash -c 'cd /var/app && yarn && $APP_CMD_STARTUP'"
+    restart: always
     environment:
       - HOST=0.0.0.0
       - PORT=80
@@ -42,6 +44,7 @@ services:
 
   cockpit:
     image: agentejo/cockpit:latest
+    restart: always
     volumes:
       - data-cockpit:/var/www/html/storage
     environment:
