@@ -3,6 +3,7 @@ version: "3"
 services:
 
   proxy:
+    container_name: freytag_proxy
     image: nginx:latest
     volumes:
       - ./server/nginx/nginx.conf:/etc/nginx/nginx.conf:cached
@@ -16,6 +17,7 @@ services:
     restart: always
 
   app:
+    container_name: freytag_app
     image: node:12.1.0
     volumes:
       - ./app/nuxt.config.ts:/var/app/nuxt.config.ts:cached
@@ -43,6 +45,7 @@ services:
       - ./server/env/$APP_PARAMETERS_NAME
 
   cockpit:
+    container_name: freytag_cockpit
     image: agentejo/cockpit:latest
     restart: always
     volumes:
