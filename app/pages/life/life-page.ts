@@ -33,6 +33,7 @@ import { UUID } from "~/components/common/library/uuid"
 		eventToggleDefinitions() {
 			return [
 				{identifier: "all", name: "All"},
+				{identifier: "external", name: "External", filter: "External"},
 				{identifier: "life", name: "Life", filter: "Life"},
 				{identifier: "education", name: "Education", filter: "Education"},
 				{identifier: "film", name: "Film", filter: "Film"},
