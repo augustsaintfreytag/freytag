@@ -5,7 +5,7 @@ import { Component, Vue } from "vue-property-decorator"
 		return {
 			content: {
 				headerPrimaryTitle: "August Saint Freytag",
-				headerPrimaryOccupations: ["Developer", "Music Video Artist", "Editor", "Concept Designer", "Analogue Photographer"].join(" ・ ")
+				headerPrimaryOccupations: ["Developer", "Music Video Artist", "Editor", "Concept Designer", "Analogue Photographer"].map(value => value.replace(" ", "&nbsp;")).join(" ・ ")
 			}
 		}
 	}
