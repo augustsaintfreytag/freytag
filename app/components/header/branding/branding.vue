@@ -1,5 +1,5 @@
 <template>
-	<section class="branding">
+	<section class="page-branding">
 		<div class="title">{{ content.headerPrimaryTitle }}</div>
 		<div class="tagline">{{ content.headerPrimaryOccupations }}</div>
 	</section>

@@ -3,7 +3,7 @@
 
 header {
 
-	.branding {
+	.page-branding {
 		.title {
 			font-size: $fontSizeHeadingDefault;
 			font-weight: 700;
@@ -11,9 +11,12 @@ header {
 			text-transform: uppercase;
 			margin: 0 0 5px 0;
 
-			@include mobile("tablet") {
-				margin-top: 1px;
-				font-size: $fontSizeHeadingDefault * 0.77;
+			@include mobile("factor-l") {
+				font-size: $fontSizeHeadingDefault * 0.75;
+			}
+
+			@include mobile("factor-m") {
+				font-size: $fontSizeHeadingDefault * 0.58;
 			}
 		}
 
@@ -22,9 +25,14 @@ header {
 			color: $textColorLight;
 			margin: 0;
 
-			@include mobile("tablet") {
-				// font-size: $fontSizeDefault;
-				padding-right: 15%;
+			@include mobile("factor-l") {
+				font-size: $fontSizeDefaultBold * 0.85;
+				padding-right: 20%;
+			}
+
+			@include mobile("factor-m") {
+				font-size: $fontSizeDefaultBold * 0.78;
+				padding-right: 10%;
 			}
 		}
 	}

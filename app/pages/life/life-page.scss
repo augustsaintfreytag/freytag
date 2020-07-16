@@ -38,7 +38,7 @@
 				
 				@include blipElement($filterBlipSize);
 
-				@include mobile() {
+				@include mobile("factor-l") {
 					padding-right: $filterBlipPadding * 0.75;
 				}
 			}
@@ -49,7 +49,7 @@
 			}
 		}
 
-		@include mobile() {
+		@include mobile("factor-l") {
 			flex-wrap: wrap;
 			margin-bottom: 30px;
 
@@ -60,7 +60,7 @@
 			}
 		}
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			padding-right: 25%;
 		}
 	}
@@ -178,7 +178,7 @@
 			height: fit-content;
 			cursor: default;
 
-			@include mobile() {
+			@include mobile("factor-l") {
 				width: 73vw;
 			}
 		}
@@ -186,7 +186,7 @@
 
 	// Mobile Column Reduction
 
-	@include mobile() {
+	@include mobile("factor-l") {
 		.life-events-header .details, ul.life-events > li .details {
 			.location, .context {
 				display: none;

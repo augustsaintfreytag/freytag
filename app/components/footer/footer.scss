@@ -1,5 +1,6 @@
 @import "~/assets/style/values.scss";
 @import "~/assets/style/mixins/mobile.scss";
+@import "~/assets/style/mixins/text-ellipsis.scss";
 
 footer {
 
@@ -15,27 +16,45 @@ footer {
 			width: 100%;
 			border-top: $dividerBorder;
 			padding: 50px 0;
-			display: flex;
 
-			@include mobile() {
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+
+			@include mobile("factor-l") {
 				padding: 50px 0 5px 0;
 			}
 
-			@include mobile("phone") {
+			@include mobile("factor-s") {
+				padding: 50px 0 5px 0;
+				flex-wrap: wrap;
+			}
+
+			@include mobile("factor-xs") {
 				padding: 25px 0 5px 0;
+				flex-wrap: wrap;
 			}
 
 			// All Sections
 
 			> section {
-				flex: 1;
-				overflow: hidden;
+				flex: 1 1 0;
+				padding: 0 15px 0 0;
+				box-sizing: border-box;
 
-				@include mobile() {
-					margin-bottom: 10px;
+				@include mobile("factor-l") {
+					// Tablet or slim desktop window, use compressed full layout.
 				}
-
-				@include mobile("phone") {
+	
+				@include mobile("factor-s") {
+					// Slide-over or wide mobile, use two column.
+					flex: 0 0 50%;
+					margin-bottom: 20px;
+				}
+		
+				@include mobile("factor-xs") {
+					// Slide-over or slim mobile, use single column.
+					flex: 0 0 100%;
 					margin-bottom: 10px;
 				}
 
@@ -44,11 +63,11 @@ footer {
 					font-size: $fontSizeLabelDefault;
 					margin-bottom: $sectionHeaderMargin;
 
-					@include mobile() {
+					@include mobile("factor-l") {
 						margin-bottom: $sectionHeaderMargin * 0.75;
 					}
 
-					@include mobile("phone") {
+					@include mobile("factor-xs") {
 						margin-bottom: $sectionHeaderMargin * 0.5;
 					}
 				}
@@ -57,7 +76,7 @@ footer {
 					> a > div, > div {
 						margin-bottom: $sectionInterItemSpacing;
 
-						@include mobile("phone") {
+						@include mobile("factor-xs") {
 							margin-bottom: $sectionInterItemSpacing * 0.75;
 						}	
 					}
@@ -66,85 +85,78 @@ footer {
 
 			// Individual Sections
 
-			section.personal, section.further {
-				max-width: 22%;
-
-				@include mobile() {
-					max-width: none;
-				}
+			> section.personal {
+				// flex-basis: 30%;
+				// min-width: 210px;
 			}
 
-			section.map main {
-				.route {
-					display: flex;
-					max-width: 250px;
+			> section.map {
+				// flex-basis: 22%;
+				// min-width: 165px;
 
-					> * {
-						overflow: hidden;
-						white-space: nowrap;
-						text-overflow: ellipsis;
-						flex: 0 50%;
+				main {
+					.route {
+						display: flex;
+						max-width: 250px;
+	
+						> .name, > .address {
+							flex: 0 50%;
+							@include textEllipsis();
+						}
+	
+						> .address {
+							color: $textColorVeryLight;
+						}
 					}
-
-					> .address {
-						color: $textColorVeryLight;
-					}
-				}
-
-				a.nuxt-link-exact-active .route {
-					> .address {
-						color: unset;
-					}
-				}
-			}
-
-			section.public main {
-				.platform-link {
-					display: flex;
-
-					> * {
-						flex: 0;
-					}
-
-					.sprite {
-						$size: 18px;
-						$itemSpacing: 10px;
-
-						flex-basis: $size + $itemSpacing;
-						min-width: $size + $itemSpacing;
-						position: relative;
-
-						svg {
-							position: absolute;
-							width: $size;
-							height: $size;
-							fill: $textColor;
-							z-index: -1;
+	
+					a.nuxt-link-exact-active .route {
+						> .address {
+							color: unset;
 						}
 					}
 				}
 			}
 
-			// Arrangement Break
+			> section.public {
+				// flex-basis: 20%;
+				overflow: hidden;
 
-			@include mobile() {
-				flex-wrap: wrap;
-				justify-content: space-between;
+				main {
+					.platform-link {
+						display: flex;
 	
-				> section {
-					flex: 0 50%;
-					max-width: none!important;
-					width: 46%;
+						.sprite {
+							$size: 18px;
+							$itemSpacing: 10px;
+	
+							flex: 0 0 $size + $itemSpacing;
+							position: relative;
+	
+							svg {
+								position: absolute;
+								width: $size;
+								height: $size;
+								fill: $textColor;
+								z-index: -1;
+							}
+						}
+	
+						.address {
+							flex: 1;
+							@include textEllipsis();
+						}
+					}
 				}
 			}
-	
-			@include mobile("phone") {
-				flex-wrap: wrap;
-	
-				> section {
-					flex: 0 auto;
-					min-width: max-content;
-					max-width: none;
+
+			> section.further {
+				// flex-basis: 20%;
+				overflow: hidden;
+
+				main {
+					.regular-link .name {
+						@include textEllipsis();
+					}
 				}
 			}
 		}

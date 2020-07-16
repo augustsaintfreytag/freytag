@@ -5,18 +5,16 @@
 html, body {
 	padding: 0;
 	margin: 0;
-	min-width: 300px;
 }
 
 body {
+	-webkit-text-size-adjust: 100%;
+
 	font-family: "Paralucent";
 	font-weight: 300;
 	font-size: $fontSizeDefault;
 	color: $textColor;
-
-	@include mobile() {
-		-webkit-text-size-adjust: 100%;
-	}
+	min-width: 300px;
 }
 
 // Elements
@@ -68,12 +66,12 @@ a, a:link, a:active, a:visited {
 	margin-left: auto;
 	margin-right: auto;
 
-	@include mobile() {
-		padding: $insetVertical * 0.6 $insetHorizontal * 0.6;
+	@include mobile("factor-l") {
+		padding: $insetVertical * 0.75 $insetHorizontal * 0.75;
 	}
 
-	@include mobile("phone") {
-		padding: $insetVertical * 0.35 $insetHorizontal * 0.35;
+	@include mobile("factor-xs") {
+		padding: $insetVertical * 0.5 $insetHorizontal * 0.5;
 	}
 }
 
@@ -82,11 +80,11 @@ a, a:link, a:active, a:visited {
 main {
 	padding: 0 0 $insetVertical 0;
 
-	@include mobile() {
+	@include mobile("factor-l") {
 		padding-bottom: $insetVertical * 0.6;
 	}
 
-	@include mobile("phone") {
+	@include mobile("factor-xs") {
 		padding-bottom: $insetVertical * 0.35;
 	}
 }

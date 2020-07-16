@@ -15,7 +15,7 @@
 		margin: 0 0 15px 0;
 	}
 
-	@include mobile("phone") {
+	@include mobile("factor-xs") {
 		columns: unset;
 	}
 

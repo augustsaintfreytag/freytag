@@ -1,6 +1,7 @@
 @import "~/assets/style/mixins/mobile.scss";
 @import "~/assets/style/values.scss";
 @import "~/assets/style/mixins/blip-element.scss";
+@import "~/assets/style/mixins/text-ellipsis.scss";
 @import "~/assets/style/life-kind-colors.scss";
 
 .index-page {
@@ -27,7 +28,7 @@
 		height: 80vh;
 		margin-bottom: $interSectionSpacing;
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			margin-bottom: $interSectionSpacing / 2;
 		}
 
@@ -40,7 +41,7 @@
 
 			display: flex;
 
-			.branding {
+			.page-branding {
 				width: 100%;
 				align-self: center;
 	
@@ -54,11 +55,11 @@
 	
 					@include textShadowDefault();
 
-					@include mobile() {
+					@include mobile("factor-l") {
 						font-size: $fontSizeHeadingBold;
 					}
 
-					@include mobile("phone") {
+					@include mobile("factor-xs") {
 						font-size: $fontSizeHeadingDefault;
 					}
 				}
@@ -97,7 +98,7 @@
 	.showcases {
 		margin-bottom: $interSectionSpacing;
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			margin-bottom: $interSectionSpacing / 2;
 		}
 
@@ -115,56 +116,60 @@
 				overflow: hidden;
 				margin-bottom: 15px;
 
-				@include mobile() {
+				@include mobile("factor-l") {
 					min-height: 100px;
 					height: 34vh;
 				}
 			}
 
 			.item-data {
-				$interItemSpacing: 55px;
 				$blipSize: 11px;
 				$blipPadding: 7px;
-				$childDividerSpacing: 15px;
+				$childDividerSpacing: 10px;
 
 				display: flex;
 
-				@include mobile("phone") {
+				@include mobile("factor-xs") {
 					flex-wrap: wrap;
+				}
 
-					.title {
+				.title {
+					flex: 2 2 auto;
+					margin-right: 75px;
+					@include textEllipsis();
+
+					@include mobile("factor-s") {
+						margin-right: 25px;
+					}
+
+					@include mobile("factor-xs") {
 						flex: 0 100%;
 						margin-bottom: 5px;
 					}
 				}
 
-				> * {
-					flex: 0 auto;
-				}
-
-				.title {
-					margin-right: $interItemSpacing;
-				}
-
 				.blip {
 					flex: 0 $blipSize;
-					padding-right: $blipPadding;
-					align-self: center;
+					padding: 4px $blipPadding 0 $blipPadding;
 
 					@include blipElement($blipSize);
-				}
 
-				.format, .contents {
-					overflow: hidden;
-					text-overflow: ellipsis;
-					white-space: nowrap;
+					@include mobile("factor-xs") {
+						padding-left: 0;
+					}
 				}
 
 				.format {
+					flex: 0 0 auto;
 					&:after {
 						content: "|";
 						padding: 0 $childDividerSpacing;
 					}
+				}
+
+				.contents {
+					flex: 0 0 auto;
+					@include textEllipsis();
 				}
 			}
 		}
