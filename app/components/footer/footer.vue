@@ -6,7 +6,7 @@
 					<header>Me</header>
 					<main>
 						<div>{{ mail }}</div>
-						<div>Columbiadamm, Berlin<br />Germany</div>
+						<div>Sprawling Heart of the Capital<br />Berlin, Germany</div>
 					</main>
 				</section>
 				<section class="map">
