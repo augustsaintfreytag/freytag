@@ -1,9 +1,9 @@
 BASE=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
 APP_DIR=$BASE/../app
 
-APP_BUILD_GEN_VOLUME=freytag_data-app-build-generated
-APP_BUILD_VAR_VOLUME=freytag_data-app-build-nuxt
-APP_NODE_MODULES_VOLUME=freytag_data-app-node-modules
+APP_BUILD_GEN_VOLUME=freytag_data_app_build_generated
+APP_BUILD_VAR_VOLUME=freytag_data_app_build_nuxt
+APP_NODE_MODULES_VOLUME=freytag_data_app_node_modules
 
 docker run -ti --rm \
 -v "$APP_DIR/nuxt.config.ts":/var/app/nuxt.config.ts:cached \
