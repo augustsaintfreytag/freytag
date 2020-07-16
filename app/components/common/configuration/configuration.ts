@@ -13,8 +13,8 @@ export namespace Configuration {
 	}
 
 	export enum Environment {
-		Live,
-		Development
+		Live = "LIVE",
+		Development = "DEVELOPMENT"
 	}
 
 	export enum Context {

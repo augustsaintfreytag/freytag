@@ -30,7 +30,7 @@ const rot13 = new Rot13()
 			return [
 				{address: "vimeo.com/apricum", name: "Vimeo", spriteId: "logo-vimeo"},
 				{address: "gitlab.com/apricum", name: "GitLab", spriteId: "logo-gitlab"},
-				{address: "twitter.com/augustsfreytag", name: "Twitter", spriteId: "logo-twitter"},
+				{address: "twitter.com/augustfreytag", name: "Twitter", spriteId: "logo-twitter"},
 				{address: "medium.com/@augustfreytag", name: "Medium", spriteId: "logo-medium"}
 			]
 		},

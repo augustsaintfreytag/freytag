@@ -3,18 +3,21 @@ version: "3"
 services:
 
   proxy:
+    container_name: freytag_proxy
     image: nginx:latest
     volumes:
       - ./server/nginx/nginx.conf:/etc/nginx/nginx.conf:cached
       - ./server/nginx/include:/etc/nginx/include:cached
-      - data-challenges:/usr/share/nginx/html/challenges
-      - data-letsencrypt:/etc/letsencrypt
-      - data-app-build-generated:/usr/share/nginx/html/build
+      - data_challenges:/usr/share/nginx/html/challenges
+      - data_letsencrypt:/etc/letsencrypt
+      - data_app_build_generated:/usr/share/nginx/html/build
     ports:
       - "80:80"
       - "443:443"
+    restart: unless-stopped
 
   app:
+    container_name: freytag_app
     image: node:12.1.0
     volumes:
       - ./app/nuxt.config.ts:/var/app/nuxt.config.ts:cached
@@ -28,10 +31,11 @@ services:
       - ./app/components:/var/app/components:cached
       - ./app/layouts:/var/app/layouts:cached
       - ./app/pages:/var/app/pages:cached
-      - data-app-node-modules:/var/app/node_modules
-      - data-app-build-generated:/var/app/build
-      - data-app-build-nuxt:/var/lib/nuxt
+      - data_app_node_modules:/var/app/node_modules
+      - data_app_build_generated:/var/app/build
+      - data_app_build_nuxt:/var/lib/nuxt
     command: "bash -c 'cd /var/app && yarn && $APP_CMD_STARTUP'"
+    restart: unless-stopped
     environment:
       - HOST=0.0.0.0
       - PORT=80
@@ -41,24 +45,28 @@ services:
       - ./server/env/$APP_PARAMETERS_NAME
 
   cockpit:
+    container_name: freytag_cockpit
     image: agentejo/cockpit:latest
+    restart: unless-stopped
     volumes:
-      - data-cockpit:/var/www/html/storage
+      - data_cockpit:/var/www/html/storage
     environment:
       - COCKPIT_SESSION_NAME=cockpit
     env_file:
       - ./server/env/$APP_PARAMETERS_NAME
 
 volumes:
-  data-cockpit:
+  data_cockpit:
     driver: local
-  data-app-node-modules:
+  data_app_node_modules:
     driver: local
-  data-app-build-nuxt:
+  data_app_build_nuxt:
     driver: local
-  data-app-build-generated:
+  data_app_build_generated:
     driver: local
-  data-challenges:
+  data_challenges:
     driver: local
-  data-letsencrypt:
+  data_letsencrypt:
+    driver: local
+  data_logs:
     driver: local
