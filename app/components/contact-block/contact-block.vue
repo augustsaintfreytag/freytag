@@ -1,9 +1,8 @@
 <template>
 	<span>
 		<p>
-			August S. Freytag<br />
-			c/o Philip D. Giese<br />
-			Columbiadamm 39<br />
+			August Saint Freytag<br />
+			Friesenstraße 15C<br />
 			10965 Berlin
 		</p>
 		<p>
