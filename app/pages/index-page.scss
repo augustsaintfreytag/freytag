@@ -51,16 +51,23 @@
 					font-size: $fontSizeHeadingExtreme;
 					font-weight: 700;
 					text-transform: uppercase;
-					margin-bottom: 15px;
+					margin-bottom: 12px;
 	
 					@include textShadowDefault();
 
 					@include mobile("factor-l") {
-						font-size: $fontSizeHeadingBold;
+						font-size: $fontSizeHeadingExtreme * 0.8;
+						margin-bottom: 10px;
 					}
 
-					@include mobile("factor-xs") {
-						font-size: $fontSizeHeadingDefault;
+					@include mobile("factor-m") {
+						font-size: $fontSizeHeadingExtreme * 0.65;
+						margin-bottom: 10px;
+					}
+
+					@include mobile("factor-s") {
+						font-size: $fontSizeHeadingExtreme * 0.55;
+						margin-bottom: 8px;
 					}
 				}
 	
@@ -69,10 +76,18 @@
 					font-size: $fontSizeDefaultBold;
 					color: $color;
 					box-sizing: border-box;
-					padding: 0 2em;
+					padding: 0 4em;
 					line-height: $textLineHeightParagraphBold;
 					
 					@include textShadowSmall();
+
+					@include mobile("factor-m") {
+						font-size: $fontSizeDefaultBold * 0.85;
+					}
+
+					@include mobile("factor-s") {
+						font-size: $fontSizeDefaultBold * 0.8;
+					}
 				}
 			}
 		}
