@@ -57,24 +57,6 @@
 				}
 			}
 		}
-
-		.scroll-indicator {
-			position: absolute;
-			width: 100%;
-			bottom: 15px;
-			$size: 40px;
-
-			svg {
-				display: block;
-				position: relative;
-				height: $size;
-				width: $size;
-				margin: 0 auto;
-				fill: $color;
-				$shadowColor: rgba(30, 30, 30, $shadowOpacity);
-				filter: drop-shadow($shadowHorizontalOffset $shadowVerticalOffset $shadowBlur $shadowColor);
-			}
-		}
 	}
 
 	section.introduction {
