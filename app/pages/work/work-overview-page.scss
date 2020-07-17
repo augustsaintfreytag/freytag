@@ -12,7 +12,7 @@
 		grid-column-gap: 25px;
 		grid-row-gap: 35px;
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			grid-template-columns: 1fr;
 			grid-row-gap: 15px;
 		}
@@ -28,11 +28,11 @@
 					height: 100%;
 				}
 
-				@include mobile() {
+				@include mobile("factor-l") {
 					height: 270px;
 				}
 
-				@include mobile("phone") {
+				@include mobile("factor-xs") {
 					height: 200px;
 				}
 			}
@@ -46,7 +46,7 @@
 				margin: 16px 0 6px 0;
 				font-size: $fontSizeDefault;
 
-				@include mobile("phone") {
+				@include mobile("factor-xs") {
 					margin: 12px 0 3px 0;
 				}
 

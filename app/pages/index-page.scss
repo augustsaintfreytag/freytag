@@ -1,6 +1,7 @@
 @import "~/assets/style/mixins/mobile.scss";
 @import "~/assets/style/values.scss";
 @import "~/assets/style/mixins/blip-element.scss";
+@import "~/assets/style/mixins/text-ellipsis.scss";
 @import "~/assets/style/life-kind-colors.scss";
 
 .index-page {
@@ -24,10 +25,10 @@
 		
 		position: relative;
 		width: 100%;
-		height: 80vh;
+		height: 85vh;
 		margin-bottom: $interSectionSpacing;
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			margin-bottom: $interSectionSpacing / 2;
 		}
 
@@ -40,7 +41,7 @@
 
 			display: flex;
 
-			.branding {
+			.page-branding {
 				width: 100%;
 				align-self: center;
 	
@@ -50,16 +51,23 @@
 					font-size: $fontSizeHeadingExtreme;
 					font-weight: 700;
 					text-transform: uppercase;
-					margin-bottom: 15px;
+					margin-bottom: 12px;
 	
 					@include textShadowDefault();
 
-					@include mobile() {
-						font-size: $fontSizeHeadingBold;
+					@include mobile("factor-l") {
+						font-size: $fontSizeHeadingExtreme * 0.8;
+						margin-bottom: 10px;
 					}
 
-					@include mobile("phone") {
-						font-size: $fontSizeHeadingDefault;
+					@include mobile("factor-m") {
+						font-size: $fontSizeHeadingExtreme * 0.65;
+						margin-bottom: 10px;
+					}
+
+					@include mobile("factor-s") {
+						font-size: $fontSizeHeadingExtreme * 0.55;
+						margin-bottom: 8px;
 					}
 				}
 	
@@ -68,10 +76,18 @@
 					font-size: $fontSizeDefaultBold;
 					color: $color;
 					box-sizing: border-box;
-					padding: 0 2em;
+					padding: 0 4em;
 					line-height: $textLineHeightParagraphBold;
 					
 					@include textShadowSmall();
+
+					@include mobile("factor-m") {
+						font-size: $fontSizeDefaultBold * 0.85;
+					}
+
+					@include mobile("factor-s") {
+						font-size: $fontSizeDefaultBold * 0.8;
+					}
 				}
 			}
 		}
@@ -97,7 +113,7 @@
 	.showcases {
 		margin-bottom: $interSectionSpacing;
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			margin-bottom: $interSectionSpacing / 2;
 		}
 
@@ -111,60 +127,64 @@
 			.image-holder {
 				width: 100%;
 				min-height: 400px;
-				height: 40vh;
+				height: 44vh;
 				overflow: hidden;
 				margin-bottom: 15px;
 
-				@include mobile() {
+				@include mobile("factor-l") {
 					min-height: 100px;
 					height: 34vh;
 				}
 			}
 
 			.item-data {
-				$interItemSpacing: 55px;
 				$blipSize: 11px;
 				$blipPadding: 7px;
-				$childDividerSpacing: 15px;
+				$childDividerSpacing: 10px;
 
 				display: flex;
 
-				@include mobile("phone") {
+				@include mobile("factor-xs") {
 					flex-wrap: wrap;
+				}
 
-					.title {
+				.title {
+					flex: 2 2 auto;
+					margin-right: 75px;
+					@include textEllipsis();
+
+					@include mobile("factor-s") {
+						margin-right: 25px;
+					}
+
+					@include mobile("factor-xs") {
 						flex: 0 100%;
 						margin-bottom: 5px;
 					}
 				}
 
-				> * {
-					flex: 0 auto;
-				}
-
-				.title {
-					margin-right: $interItemSpacing;
-				}
-
 				.blip {
 					flex: 0 $blipSize;
-					padding-right: $blipPadding;
-					align-self: center;
+					padding: 4px $blipPadding 0 $blipPadding;
 
 					@include blipElement($blipSize);
-				}
 
-				.format, .contents {
-					overflow: hidden;
-					text-overflow: ellipsis;
-					white-space: nowrap;
+					@include mobile("factor-xs") {
+						padding-left: 0;
+					}
 				}
 
 				.format {
+					flex: 0 0 auto;
 					&:after {
 						content: "|";
 						padding: 0 $childDividerSpacing;
 					}
+				}
+
+				.contents {
+					flex: 0 0 auto;
+					@include textEllipsis();
 				}
 			}
 		}

@@ -9,14 +9,14 @@
 		grid-column-gap: 75px;
 		width: 100%;
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			grid-template-columns: 1fr;
 		}
 
 		> article {
 			text-align: justify;
 
-			@include mobile("phone") {
+			@include mobile("factor-xs") {
 				margin-bottom: 45px;
 
 				h2 {

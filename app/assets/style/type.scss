@@ -57,7 +57,7 @@ article {
 	> div {
 		margin-bottom: $elementSpacingWide;
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			margin-bottom: $elementSpacingWide * 0.5;
 		}
 	}

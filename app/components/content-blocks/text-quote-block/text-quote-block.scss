@@ -12,11 +12,11 @@
 		color: $textColorLight;
 		line-height: $textLineHeightParagraphBold;
 
-		@include mobile() {
+		@include mobile("factor-l") {
 			padding: 0 18%;
 		}
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			padding: 0 15%;
 		}
 	}

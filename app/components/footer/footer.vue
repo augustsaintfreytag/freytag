@@ -6,7 +6,7 @@
 					<header>Me</header>
 					<main>
 						<div>{{ mail }}</div>
-						<div>Sprawling Heart of the Capital<br />Berlin, Germany</div>
+						<div>The Heart of the Capital<br />Berlin, Germany</div>
 					</main>
 				</section>
 				<section class="map">
@@ -37,9 +37,9 @@
 				</section>
 				<section class="further">
 					<header>Further</header>
-						<main>
+					<main>
 						<a v-for="link in furtherLinks" :key="link.address" :title="link.name" :href="`https://${link.address}`" target="_blank" rel="noopener">
-							<div class="route">
+							<div class="regular-link">
 								<div class="name">{{ link.address }}</div>
 							</div>
 						</a>

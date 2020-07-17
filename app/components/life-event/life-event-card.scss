@@ -23,7 +23,7 @@
 	box-shadow: 0 0 15px rgba(0, 0, 0, 0.20);
 	border-radius: 10px;
 
-	@include mobile("phone") {
+	@include mobile("factor-xs") {
 		padding: 0 20px;
 	}
 
@@ -33,7 +33,7 @@
 		margin-top: $outerSectionSpacing;
 		margin-bottom: $baseSpacing;
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			margin-top: $outerSectionSpacingSlim;
 		}
 
@@ -56,7 +56,7 @@
 			text-overflow: ellipsis;
 		}
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			margin-bottom: $baseSpacing * 0.5;
 
 			h2 {
@@ -68,7 +68,7 @@
 	> section, > nav {
 		margin-bottom: $interSectionSpacing;
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			margin-bottom: $interSectionSpacingSlim;
 		}
 	}
@@ -92,7 +92,7 @@
 			}
 		}
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			table {
 				td {
 					padding-right: 5px;
@@ -120,7 +120,7 @@
 		margin-bottom: $baseSpacing;
 		color: $textColorVeryLight;
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			margin-top: $outerSectionSpacingSlim;
 		}
 
@@ -149,7 +149,7 @@
 	}
 
 
-	@include mobile("phone") {
+	@include mobile("factor-xs") {
 		.description {
 			margin-bottom: $outerSectionSpacingSlim;
 		}

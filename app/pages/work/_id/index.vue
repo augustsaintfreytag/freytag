@@ -7,11 +7,6 @@
 			<div class="title-holder">
 				<h1>{{ workItem.name }}</h1>
 			</div>
-			<div class="scroll-indicator">
-				<svg class="icon">
-					<use xlink:href="#scroll-indicator"></use>
-				</svg>
-			</div>
 		</section>
 		<section class="introduction inset" :class="{ 'collapsed': workItem.event === undefined }">
 			<section class="details">
