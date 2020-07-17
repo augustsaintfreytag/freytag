@@ -52,6 +52,7 @@
 		@include mobile("factor-l") {
 			flex-wrap: wrap;
 			margin-bottom: 30px;
+			padding-right: 32%;
 
 			& > div {
 				margin-bottom: 5px;
@@ -60,8 +61,16 @@
 			}
 		}
 
-		@include mobile("factor-xs") {
+		@include mobile("factor-m") {
 			padding-right: 25%;
+		}
+
+		@include mobile("factor-s") {
+			padding-right: 15%;
+		}
+
+		@include mobile("factor-xs") {
+			padding-right: 10%;
 		}
 	}
 
