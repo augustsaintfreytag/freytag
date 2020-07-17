@@ -7,7 +7,6 @@ $activeTextColor: $textColorActive;
 header nav.page-navigation {
 	flex: 0;
 	display: flex;
-	margin-top: 10px;
 
 	> div {
 		flex: auto;
@@ -22,7 +21,11 @@ header nav.page-navigation {
 		}
 	}
 
-	@include mobile("phone") {
+	@include mobile("factor-m") {
+		font-size: $fontSizeNavigationDefault * 0.75;
+	}
+
+	@include mobile("factor-xs") {
 		flex-basis: 100%;
 		padding-bottom: 12px;
 		border-bottom: $dividerBorder;

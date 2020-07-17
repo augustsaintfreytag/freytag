@@ -6,12 +6,12 @@
 	$contentInset: 100px;
 	$interContentSpacing: 0px;
 
-	@include mobile() {
+	@include mobile("factor-l") {
 		$contentInset: 50px;
 		$interContentSpacing: 35px;
 	}
 
-	@include mobile("phone") {
+	@include mobile("factor-xs") {
 		$contentInset: 35px;
 		$interContentSpacing: 25px;
 	}
@@ -48,31 +48,13 @@
 				margin: 0 auto;
 				padding: 0 5%;
 
-				@include mobile() {
+				@include mobile("factor-l") {
 					font-size: $fontSizeHeadingDefault;
 				}
 
-				@include mobile("phone") {
+				@include mobile("factor-xs") {
 					padding: 0 10%;
 				}
-			}
-		}
-
-		.scroll-indicator {
-			position: absolute;
-			width: 100%;
-			bottom: 15px;
-			$size: 40px;
-
-			svg {
-				display: block;
-				position: relative;
-				height: $size;
-				width: $size;
-				margin: 0 auto;
-				fill: $color;
-				$shadowColor: rgba(30, 30, 30, $shadowOpacity);
-				filter: drop-shadow($shadowHorizontalOffset $shadowVerticalOffset $shadowBlur $shadowColor);
 			}
 		}
 	}
@@ -124,7 +106,7 @@
 			padding-left: $contentInset;
 		}
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			display: block;
 			margin-top: $contentInset * 0.25;
 			margin-bottom: $contentInset * 0.25;
@@ -148,11 +130,11 @@
 	}
 
 	.content-block {
-		@include mobile() {
+		@include mobile("factor-l") {
 			font-size: $fontSizeDefault * 0.9;
 		}
 
-		@include mobile("phone") {
+		@include mobile("factor-xs") {
 			margin-bottom: $interContentSpacing;
 		}
 	}

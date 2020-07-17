@@ -13,10 +13,24 @@ header.page-header {
 		justify-content: space-between;
 	}
 
-	@include mobile("phone") {
-		.branding {
+	@include mobile("factor-s") {
+		.page-branding {
 			display: none;
 		}
 	}
+
+	.page-navigation {
+		margin-top: 12px;
+
+		@include mobile("factor-l") {
+			margin-top: 8px;
+		}
+
+		@include mobile("factor-m") {
+			margin-top: 3px;
+		}
+	}
+
+	.page-branding {}
 
 }

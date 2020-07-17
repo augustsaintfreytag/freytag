@@ -1,13 +1,18 @@
-$phoneWidthBreakpoint: 668px;
-$tabletWidthBreakpoint: 1024px;
-
-@mixin mobile($type: "tablet") {
-	@if $type == "tablet" {
-		@media (max-width: $tabletWidthBreakpoint) {
+@mixin mobile($type) {
+	@if $type == "factor-l" {
+		@media (max-width: 1024px) {
 			@content;
 		}
-	} @else if $type == "phone" {
-		@media (max-width: $phoneWidthBreakpoint) {
+	} @else if $type == "factor-m" {
+		@media (max-width: 800px) {
+			@content;
+		}
+	} @else if $type == "factor-s" {
+		@media (max-width: 690px) {
+			@content;
+		}
+	} @else if $type == "factor-xs" {
+		@media (max-width: 414px) {
 			@content;
 		}
 	}
