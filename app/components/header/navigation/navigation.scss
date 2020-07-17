@@ -21,6 +21,10 @@ header nav.page-navigation {
 		}
 	}
 
+	@include mobile("factor-m") {
+		font-size: $fontSizeNavigationDefault * 0.75;
+	}
+
 	@include mobile("factor-xs") {
 		flex-basis: 100%;
 		padding-bottom: 12px;
