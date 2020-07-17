@@ -11,7 +11,12 @@
 		</section>
 		<section class="showcases inset" v-if="works && works.items.length">
 			<div class="leader">Selected Showcase</div>
-			<section class="work-showcase kind-blip-colored kind-all" v-for="workItem in works.items" :key="workItem.meta.id">
+			<section 
+				class="work-showcase kind-blip-colored kind-all" 
+				:class="workItem.event && workItem.event.kind ? `kind-${workItem.event.kind.toLowerCase()}` : ''"
+				v-for="workItem in works.items" 
+				:key="workItem.meta.id"
+			>
 				<nuxt-link :to="`/work/${ workItem.meta.id }`">
 					<div class="image-holder">
 						<img class="covering" v-if="workItem.titleImage" v-lazy="$imagePath(workItem.titleImage.path, 'regular')" />
