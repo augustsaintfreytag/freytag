@@ -203,4 +203,12 @@
 		}
 	}
 
+	@include mobile("factor-s") {
+		.life-events-header .details, ul.life-events > li .details {
+			.location, .context, .role {
+				display: none;
+			}
+		}
+	}
+
 }
