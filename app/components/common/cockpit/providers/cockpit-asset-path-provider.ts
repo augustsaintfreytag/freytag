@@ -6,6 +6,7 @@ import { CockpitImageRequestPreset } from "~/components/common/cockpit/library/c
 export namespace CockpitAssetPathProvider {
 
 	const token = Configuration.Connections.cms.token()
+	const run = Math.floor(Math.random() * 1e10).toString(16)
 
 	const pathPrefix = (() => {
 		const connection = Configuration.Connections.cms
@@ -23,7 +24,7 @@ export namespace CockpitAssetPathProvider {
 		const imageRequestOptions = imageRequest.options(sourcePath) as QueryParameterProvider.ParameterDictionary
 
 		const joinedImageRequestOptions = QueryParameterProvider.joinedParameters(imageRequestOptions)
-		const imageUrl: Url = `${pathPrefix}/api/cockpit/image?token=${token}&${joinedImageRequestOptions}`
+		const imageUrl: Url = `${pathPrefix}/api/cockpit/image?token=${token}&${joinedImageRequestOptions}&run=${run}`
 
 		return imageUrl
 	}
