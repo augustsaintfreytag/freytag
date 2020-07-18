@@ -19,7 +19,7 @@
 			>
 				<nuxt-link :to="`/work/${ workItem.meta.id }`">
 					<div class="image-holder">
-						<img class="covering" v-if="workItem.titleImage" v-lazy="$imagePath(workItem.titleImage.path, 'regular')" />
+						<img class="covering" v-if="workItem.titleImage" :src="$imagePath(workItem.titleImage.path, 'regular')" />
 					</div>
 					<div class="item-data">
 						<span class="title">{{ workItem.name }}</span>

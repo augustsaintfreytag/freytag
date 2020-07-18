@@ -21,7 +21,6 @@
 		"node-sass": "^4.11.0",
 		"nuxt-ts-edge": "^3.0.0-25876102.3be7f0aa",
 		"sass-loader": "^7.1.0",
-		"vue-lazyload": "^1.2.6",
 		"vue-property-decorator": "^7.3.0"
 	},
 	"devDependencies": {

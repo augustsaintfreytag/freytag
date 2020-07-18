@@ -2,7 +2,7 @@ import { CockpitImage } from "../models/cockpit-image-request"
 
 export namespace CockpitImageRequestPreset {
 
-	const defaultQuality = 90
+	const defaultQuality = 75
 
 	// Library
 
