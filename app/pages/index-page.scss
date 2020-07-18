@@ -135,6 +135,13 @@
 					min-height: 100px;
 					height: 34vh;
 				}
+
+				@include mobile("factor-s") {
+					img {
+						// Golden ratio adjustment
+						object-position: 61%;
+					}
+				}
 			}
 
 			.item-data {
