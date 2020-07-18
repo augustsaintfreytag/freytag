@@ -1,4 +1,5 @@
 @import "~/assets/style/values.scss";
+@import "~/assets/style/mixins/mobile.scss";
 
 .error-page {
 
@@ -6,7 +7,12 @@
 
 	.image-holder {
 		width: 70%;
+		max-width: 75vh;
 		margin: 0 auto;
+
+		@include mobile("factor-m") {
+			width: 85%;
+		}
 
 		svg {
 			width: 100%;
@@ -18,6 +24,10 @@
 	.explanation {
 		text-align: center;
 		font-size: $fontSizeLabelDefault;
+
+		@include mobile("factor-l") {
+			font-size: $fontSizeLabelDefault * 0.85;
+		}
 	}
 
 }
