@@ -2,8 +2,9 @@ import { Component, Vue } from "vue-property-decorator"
 import { Head } from "~/components/common/head/head"
 import { Work } from "~/components/common/storage/models/work-item"
 import { CockpitDataProvider } from "~/components/common/cockpit/providers/cockpit-data-provider"
+import { PageData } from "~/components/common/pages/library/page-data"
 
-interface Data {
+interface Data extends PageData {
 	workItems: Work.Item[]
 }
 
