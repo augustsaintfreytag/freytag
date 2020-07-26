@@ -1,9 +1,14 @@
 import { Component, Vue } from "vue-property-decorator"
 import HeaderComponent from "~/components/header/header.vue"
 import HeaderBrandingComponent from "~/components/header/branding/branding.vue"
-import { IndexData } from "./index-data"
-import { IndexPageMapper } from "./index-page-mapper"
 import { Head } from "~/components/common/head/head"
+import { Landing } from "~/components/common/storage/models/landing"
+import { CockpitDataProvider } from "~/components/common/cockpit/providers/cockpit-data-provider"
+
+type IndexPageData = {
+	graphic: Landing.Graphic|undefined,
+	works: Landing.Works|undefined
+}
 
 @Component({
 	layout: "landing",
@@ -13,16 +18,13 @@ import { Head } from "~/components/common/head/head"
 		HeaderBrandingComponent
 	},
 
-	async asyncData() {
-		const initialData: IndexData = {
-			graphic: undefined,
-			works: undefined
-		}
-		
-		await IndexPageMapper.mapLandingGraphic(initialData)
-		await IndexPageMapper.mapLandingWorks(initialData)
+	async asyncData(): Promise<IndexPageData> {
+		const graphic = await CockpitDataProvider.landingGraphic()
+		const works = await CockpitDataProvider.landingWorks()
 
-		return initialData
+		return {
+			graphic, works
+		}
 	},
 
 	head() {
@@ -33,4 +35,9 @@ import { Head } from "~/components/common/head/head"
 		})
 	}
 })
-export default class IndexPage extends Vue {}
+export default class IndexPage extends Vue {
+
+	graphic: Landing.Graphic|undefined
+	works: Landing.Works|undefined
+
+}
