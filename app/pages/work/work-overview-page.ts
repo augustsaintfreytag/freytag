@@ -1,16 +1,33 @@
 import { Component, Vue } from "vue-property-decorator"
-import WorkOverviewPageData from "./work-overview-page-data"
-import { WorkOverviewPageMapper } from "./work-overview-page-mapper"
 import { Head } from "~/components/common/head/head"
+import { Work } from "~/components/common/storage/models/work-item"
+import { CockpitDataProvider } from "~/components/common/cockpit/providers/cockpit-data-provider"
+
+interface Data {
+	workItems: Work.Item[]
+}
+
+// Data Form
+
+async function fetchWorkItems(): Promise<Work.Item[]> {
+	try {
+		const workItems = await CockpitDataProvider.workItems()
+		return workItems.sort((lhs, rhs) => {
+			return lhs.meta.created > rhs.meta.created ? -1 : lhs.meta.created < rhs.meta.created ? 1 : 0
+		})
+	} catch (error) {
+		console.error(`Could not fetch work items. ${error}`)
+		return []
+	}
+}
+
+// Component
 
 @Component({
-	async asyncData() {
-		const initialData: WorkOverviewPageData = {
-			workItems: []
+	async asyncData(): Promise<Data> {
+		return {
+			workItems: await fetchWorkItems()
 		}
-
-		await WorkOverviewPageMapper.updateWorkItems(initialData)
-		return initialData
 	},
 
 	head() {
@@ -27,5 +44,7 @@ import { Head } from "~/components/common/head/head"
 	}
 })
 export default class WorkOverviewPage extends Vue {
+
+	workItems: Work.Item[] = []
 
 }
