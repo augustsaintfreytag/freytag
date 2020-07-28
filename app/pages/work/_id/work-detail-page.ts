@@ -15,7 +15,7 @@ import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-bloc
 import TextColumnBlockComponent from "~/components/content-blocks/text-column-block/text-column-block.vue"
 import VideoVimeoBlockComponent from "~/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
 import { PageData } from "~/components/common/pages/library/page-data"
-import { CockpitDataProvider } from "~/components/common/cockpit/providers/cockpit-data-provider"
+import * as DataProvider from "./work-detail-data-provider"
 
 // Library
 
@@ -26,26 +26,6 @@ interface AsyncPartialData extends PageData {
 
 interface Data extends AsyncPartialData {
 	formTypes: Dictionary<Content.Form>,
-}
-
-// Data Form
-
-async function fetchWorkItem(id: UUID): Promise<Work.Item|undefined> {
-	try {
-		let workItem: Work.Item|undefined
-
-		// Fetch by Slug
-		workItem = await CockpitDataProvider.workItemBySlug(id)
-
-		// Fetch by Id
-		if (!workItem) {
-			workItem = await CockpitDataProvider.workItemById(id)
-		}
-
-		return workItem
-	} catch (error) {
-		console.error(`Could not fetch active work item.`, error)
-	}
 }
 
 // Component
@@ -70,7 +50,7 @@ async function fetchWorkItem(id: UUID): Promise<Work.Item|undefined> {
 				return undefined
 			}
 
-			return await fetchWorkItem(workItemId)
+			return await DataProvider.fetchWorkItem(workItemId)
 		})()
 		
 
