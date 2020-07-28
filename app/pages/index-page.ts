@@ -10,6 +10,8 @@ type IndexPageData = {
 	works: Landing.Works|undefined
 }
 
+// Component
+
 @Component({
 	layout: "landing",
 

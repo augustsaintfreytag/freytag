@@ -5,6 +5,19 @@ export namespace SortingProvider {
 	// Aliases
 
 	export type Options<Value> = {sortingKeyPair: KeyPair, sortingValueFallback: ValueFallback<Value>, sortingReversed?: boolean}
+	export type AnyValueFallback = ValueFallback<any>
+	
+	// Library
+
+	export interface KeyPair {
+		primary: string
+		secondary?: string
+	}
+
+	export interface ValueFallback<Value> {
+		primary?: Value,
+		secondary?: Value
+	}
 
 	// Functionality
 
@@ -32,18 +45,6 @@ export namespace SortingProvider {
 		} else {
 			return models
 		}
-	}
-
-	// Library
-
-	export interface KeyPair {
-		primary: string
-		secondary?: string
-	}
-
-	export interface ValueFallback<Value> {
-		primary?: Value,
-		secondary?: Value
 	}
 
 }

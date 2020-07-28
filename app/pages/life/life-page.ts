@@ -1,10 +1,29 @@
 import { Component, Vue } from "vue-property-decorator"
-import { LifePageData } from "./life-page-data"
-import { LifePageMapper } from "./life-page-mapper"
 import LifeEventComponent from "~/components/life-event/life-event.vue"
 import LifeEventCardComponent from "~/components/life-event/life-event-card.vue"
+import { Filter, fetchLifeEvents, SortingMode, SortingProperties, sortedLifeEvents, toggleDefinitions, headerDefinitions, isValidSortingMode, toggleFilter } from "./life-page-data-provider"
 import { Head } from "~/components/common/head/head"
 import { UUID } from "~/components/common/library/uuid"
+import { PageData } from "~/components/common/pages/library/page-data"
+import { Vita } from "~/components/common/storage/models/vita-event"
+import { Index } from "~/components/common/library"
+import { Dictionary } from "~/components/common/library/dictionary"
+
+interface PartialAsyncData extends PageData {
+	lifeRawEvents: Vita.Event[]
+	lifeEvents: Vita.Event[],
+	lifeEventIndexMap: Dictionary<Index>
+}
+
+interface Data extends PartialAsyncData {
+	lifeFilter: string|undefined
+	lifeSortingMode: SortingMode
+	lifeSortingIsReversed: boolean
+	lifeSelectedItemId: UUID|undefined,
+	lifeRawEvents: Vita.Event[]
+	lifeEvents: Vita.Event[],
+	lifeEventIndexMap: Dictionary<Index>
+}
 
 @Component({
 	components: {
@@ -12,62 +31,20 @@ import { UUID } from "~/components/common/library/uuid"
 		LifeEventCardComponent
 	},
 
-	async asyncData() {
-		const initialData: LifePageData = {
-			lifeFilter: undefined,
-			lifeSortingMode: "time",
-			lifeSortingIsReversed: true,
-			lifeSelectedItemId: undefined,
-			unsortedLifeEvents: [],
-			lifeEvents: [],
-			lifeEventIndexMap: {}
+	async asyncData(): Promise<PartialAsyncData> {
+		const unsortedEvents = await fetchLifeEvents()
+
+		if (!unsortedEvents) {
+			throw { statusCode: 404, message: "Life events could not be loaded." }
 		}
 
-		await LifePageMapper.updateLifeEvents(initialData)
-		LifePageMapper.mapSortedLifeEvents(initialData)
+		const sortingProperties: SortingProperties = { filter: undefined, sortingMode: "time", sortingIsReversed: true }
+		const { events, eventIndicesById } = sortedLifeEvents(unsortedEvents, sortingProperties)
 
-		return initialData
-	},
-
-	computed: {
-		eventToggleDefinitions() {
-			return [
-				{identifier: "all", name: "All"},
-				{identifier: "external", name: "External", filter: "External"},
-				{identifier: "life", name: "Life", filter: "Life"},
-				{identifier: "education", name: "Education", filter: "Education"},
-				{identifier: "film", name: "Film", filter: "Film"},
-				{identifier: "development", name: "Development", filter: "Development"},
-				{identifier: "artwork", name: "Artwork", filter: "Artwork"},
-				{identifier: "photography", name: "Photography", filter: "Photography"}
-			]
-		},
-
-		eventHeaderDefinitions() {
-			return [
-				{identifier: "time", name: "Span", sortable: true},
-				{identifier: "format", name: "Format", sortable: true},
-				{identifier: "role", name: "Role", sortable: false},
-				{identifier: "location", name: "Location", sortable: false},
-				{identifier: "context", name: "Context", sortable: false}
-			]
-		},
-
-		lifeSelectedItemSet() {
-			const data = this.$data as LifePageData
-			const selectedItemId = data.lifeSelectedItemId
-		
-			if (!selectedItemId) {
-				return undefined
-			}
-		
-			const index = data.lifeEventIndexMap[selectedItemId]
-			
-			return {
-				current: data.lifeEvents[index],
-				previous: data.lifeEvents[index - 1],
-				next: data.lifeEvents[index + 1]
-			}
+		return {
+			lifeRawEvents: unsortedEvents,
+			lifeEvents: events,
+			lifeEventIndexMap: eventIndicesById
 		}
 	},
 
@@ -80,31 +57,95 @@ import { UUID } from "~/components/common/library/uuid"
 		})
 	}
 })
-export default class LifePage extends Vue {
+export default class LifePage extends Vue implements Data {
+
+	// Data Properties
+
+	lifeFilter: string|undefined
+	lifeSortingMode: SortingMode = "time"
+	lifeSortingIsReversed: boolean = true
+	lifeSelectedItemId: UUID|undefined
+	lifeRawEvents: Vita.Event[] = []
+	lifeEvents: Vita.Event[] = []
+	lifeEventIndexMap: Dictionary<Index> = {}
+
+	// Computed Properties
+
+	get eventToggleDefinitions() {
+		return toggleDefinitions
+	}
+
+	get eventHeaderDefinitions() {
+		return headerDefinitions
+	}
+
+	get lifeSelectedItemSet() {	
+		if (!this.lifeSelectedItemId) {
+			return undefined
+		}
+	
+		const selectedItemId = this.lifeSelectedItemId
+		const index = this.lifeEventIndexMap[selectedItemId]
+		
+		return {
+			current: this.lifeEvents[index],
+			previous: this.lifeEvents[index - 1],
+			next: this.lifeEvents[index + 1]
+		}
+	}
+
+	// Control
+
+	toggleFilter(filter: Filter) {
+		this.lifeFilter = filter
+	}
+	
+	toggleSortingMode(mode: SortingMode) {
+		if (this.lifeSortingMode === mode) {
+			this.lifeSortingIsReversed = !this.lifeSortingIsReversed
+			return
+		}
+	
+		this.setSortingMode(mode)
+	}
+
+	setSortingMode(mode: SortingMode) {
+		if (!isValidSortingMode(mode)) {
+			console.error(`Sorting mode '${mode}' is not supported.`)
+			return
+		}
+	
+		this.lifeSortingMode = mode
+		this.lifeSortingIsReversed = false
+	}
+
+	mapFilteredEvents() {
+		const rawEvents = this.lifeRawEvents
+		const sortingProperties: SortingProperties = { filter: undefined, sortingMode: "time", sortingIsReversed: true }
+		const { events, eventIndicesById } = sortedLifeEvents(rawEvents, sortingProperties)
+
+		this.lifeEvents = events
+		this.lifeEventIndexMap = eventIndicesById
+	}
 
 	// Events
 
 	didToggleFilter(_event: MouseEvent, filter: string) {
-		const data = this.$data as LifePageData
-
-		LifePageMapper.toggleFilter(data, filter)
-		LifePageMapper.mapSortedLifeEvents(data)
+		this.toggleFilter(filter)
+		this.mapFilteredEvents()
 	}
 
 	didToggleSorting(_event: MouseEvent, sortingMode: string) {
-		const data = this.$data as LifePageData
-
 		if (!sortingMode) {
 			return
 		}
 
-		LifePageMapper.toggleSortingMode(data, sortingMode)
-		LifePageMapper.mapSortedLifeEvents(data)
+		this.toggleSortingMode(sortingMode)
+		this.mapFilteredEvents()
 	}
 
 	didRequestLifeEvent(id: UUID|undefined) {
-		const data = this.$data as LifePageData
-		data.lifeSelectedItemId = id
+		this.lifeSelectedItemId = id
 	}
 
 }
