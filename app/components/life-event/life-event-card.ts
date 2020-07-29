@@ -31,6 +31,7 @@ export default class LifeEventCardComponent extends Vue {
 
 	requestLifeEvent(id: UUID) {
 		if (!id) {
+			console.error("Requested life event without an identifier, can not present.")
 			return
 		}
 		
