@@ -7,7 +7,7 @@ declare module 'vue/types/vue' {
 	import { PathFormBlockWithComponent, PathFormBlockWithComponentAndFormat } from "plugins/paths"
 
 	interface Vue {
-	  $assetPath: PathFormBlockWithComponent,
-	  $imagePath: PathFormBlockWithComponentAndFormat 
+		$assetPath: PathFormBlockWithComponent,
+		$imagePath: PathFormBlockWithComponentAndFormat 
 	}
-  }
+}
