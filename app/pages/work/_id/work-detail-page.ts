@@ -93,7 +93,7 @@ interface Data extends AsyncPartialData {
 	}
 
 })
-export default class WorkDetailPage extends Vue {
+export default class WorkDetailPage extends Vue implements Data {
 
 	formTypes = {
 		heading: Content.Form.Heading,

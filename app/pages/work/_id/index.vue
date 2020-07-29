@@ -18,11 +18,11 @@
 		</section>
 		<div class="divider inset" v-if="workItem.blocks.length"></div>
 		<template v-for="contentBlock in workItem.blocks">
-			<heading-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.Heading" :content-block="contentBlock" />
-			<image-columns-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.ImageColumns" :content-block="contentBlock" />
-			<text-quote-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.TextQuote" :content-block="contentBlock" />
-			<text-column-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.TextColumn" :content-block="contentBlock" />
-			<video-vimeo-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === types.Form.VideoVimeo" :content-block="contentBlock" />
+			<heading-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === formTypes.heading" :content-block="contentBlock" />
+			<image-columns-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === formTypes.imageColumns" :content-block="contentBlock" />
+			<text-quote-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === formTypes.textQuote" :content-block="contentBlock" />
+			<text-column-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === formTypes.textColumn" :content-block="contentBlock" />
+			<video-vimeo-block-component :key="contentBlock.meta.id" v-if="contentBlock.form === formTypes.videoVimeo" :content-block="contentBlock" />
 		</template>
 		<aside class="opt">
 			<p>Showcase "{{ workItem.name }}" written and presented by August Freytag. All contents in imagery, video and text are intellectual property of August Freytag (August S. Freytag).</p>

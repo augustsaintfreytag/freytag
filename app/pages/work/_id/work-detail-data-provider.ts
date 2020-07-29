@@ -6,9 +6,10 @@ type WorkItemFetchIdentifier = string|UUID
 
 export async function fetchWorkItem(identifier: WorkItemFetchIdentifier): Promise<Work.Item|undefined> {
 	try {
-		return 
-			await CockpitDataProvider.workItemBySlug(identifier) ||
+		return (
+			await CockpitDataProvider.workItemBySlug(identifier) || 
 			await CockpitDataProvider.workItemById(identifier)
+		)
 	} catch (error) {
 		console.error(`Could not fetch active work item.`, error)
 	}
