@@ -35,7 +35,7 @@ export default class LifeEventCardComponent extends Vue {
 			return
 		}
 		
-		this.$emit("didRequestLifeEvent", id)
+		this.$emit("requestLifeEvent", id)
 	}
 
 	truncated(input: string): string {

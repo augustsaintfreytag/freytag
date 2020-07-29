@@ -9,7 +9,7 @@
 					(definition.filter ? `kind-${definition.filter.toLowerCase()}` : 'kind-all'),
 					{ active: (lifeFilter === definition.filter) }
 				]"
-				v-on:click="didToggleFilter($event, definition.filter)"
+				v-on:click="toggleFilter(definition.filter)"
 			>
 				<div class="blip active-indicator"></div>
 				<div class="name">{{ definition.name }}</div>
@@ -24,7 +24,7 @@
 						reversed: lifeSortingIsReversed, 
 						active: (lifeSortingMode === definition.identifier) 
 					}]"
-					v-on:click="didToggleSorting($event, definition.identifier)"
+					v-on:click="toggleSortingMode(definition.identifier)"
 					:data-sorting-kind="definition.identifier"
 				>
 					<span>{{ definition.name }}</span>
@@ -37,13 +37,13 @@
 			</div>
 		</div>
 		<ul class="life-events" ref="life-event-listing">
-			<li v-for="lifeEvent in lifeEvents" :key="lifeEvent.index" v-on:click="didRequestLifeEvent(lifeEvent.meta.id)">
+			<li v-for="lifeEvent in lifeEvents" :key="lifeEvent.index" v-on:click="openLifeEvent(lifeEvent.meta.id)">
 				<life-event-component :life-event="lifeEvent" title="Open Event in Overlay" />
 			</li>
 		</ul>
 		<aside class="life-event-card-holder" :class="{ hidden: lifeSelectedItemId === undefined }">
-			<life-event-card-component v-if="lifeSelectedItemId" :life-event-set="lifeSelectedItemSet" v-on:didRequestLifeEvent="didRequestLifeEvent" />
-			<div class="overlay" v-on:click="didRequestLifeEvent()" title="Close Overlay"></div>
+			<life-event-card-component v-if="lifeSelectedItemId" :life-event-set="lifeSelectedItemSet" @requestLifeEvent="openLifeEvent(lifeSelectedItemId)" />
+			<div class="overlay" @click="closeLifeEvent()" title="Close Overlay"></div>
 		</aside>
 		<aside class="opt">
 			<p>Listing of selected life events by categories: Life, Education, Film, Development, Artwork, Photography. Contents collected and provided by August Freytag (August S. Freytag).</p>

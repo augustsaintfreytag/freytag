@@ -57,7 +57,7 @@ export async function fetchLifeEvents(): Promise<Vita.Event[]|undefined> {
 
 // Mapping
 
-export function sortedLifeEvents(unsortedLifeEvents: Vita.Event[], properties: SortingProperties): {events: Vita.Event[], eventsById: Dictionary<Index>} {
+export function sortedLifeEvents(unsortedLifeEvents: Vita.Event[], properties: SortingProperties): {events: Vita.Event[], eventIndicesById: Dictionary<Index>} {
 	const { filter, sortingMode, sortingIsReversed } = properties
 	let events = [...unsortedLifeEvents]
 	
@@ -68,7 +68,7 @@ export function sortedLifeEvents(unsortedLifeEvents: Vita.Event[], properties: S
 	events = sortedLifeEventsWithMode(events, sortingMode, sortingIsReversed)
 	const eventsById = mappedEventIndicesById(events)
 
-	return { events, eventsById } 
+	return { events, eventIndicesById: eventsById } 
 }
 
 function mappedEventIndicesById(events: Vita.Event[]): Dictionary<Index> {

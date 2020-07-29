@@ -1,21 +1,15 @@
 import { Component, Vue } from "vue-property-decorator"
-import LifeEventComponent from "~/components/life-event/life-event.vue"
-import LifeEventCardComponent from "~/components/life-event/life-event-card.vue"
-import { Filter, fetchLifeEvents, SortingMode, SortingProperties, sortedLifeEvents, toggleDefinitions, headerDefinitions, isValidSortingMode, toggleFilter } from "./life-page-data-provider"
 import { Head } from "~/components/common/head/head"
+import { Index } from "~/components/common/library"
+import { Dictionary } from "~/components/common/library/dictionary"
 import { UUID } from "~/components/common/library/uuid"
 import { PageData } from "~/components/common/pages/library/page-data"
 import { Vita } from "~/components/common/storage/models/vita-event"
-import { Index } from "~/components/common/library"
-import { Dictionary } from "~/components/common/library/dictionary"
+import LifeEventCardComponent from "~/components/life-event/life-event-card.vue"
+import LifeEventComponent from "~/components/life-event/life-event.vue"
+import { fetchLifeEvents, Filter, headerDefinitions, isValidSortingMode, sortedLifeEvents, SortingMode, SortingProperties, toggleDefinitions } from "./life-page-data-provider"
 
-interface PartialAsyncData extends PageData {
-	lifeRawEvents: Vita.Event[]
-	lifeEvents: Vita.Event[],
-	lifeEventIndexMap: Dictionary<Index>
-}
-
-interface Data extends PartialAsyncData {
+interface Data extends PageData {
 	lifeFilter: string|undefined
 	lifeSortingMode: SortingMode
 	lifeSortingIsReversed: boolean
@@ -31,7 +25,7 @@ interface Data extends PartialAsyncData {
 		LifeEventCardComponent
 	},
 
-	async asyncData(): Promise<PartialAsyncData> {
+	async asyncData(): Promise<Data> {
 		const unsortedEvents = await fetchLifeEvents()
 
 		if (!unsortedEvents) {
@@ -42,6 +36,10 @@ interface Data extends PartialAsyncData {
 		const { events, eventIndicesById } = sortedLifeEvents(unsortedEvents, sortingProperties)
 
 		return {
+			lifeFilter: undefined,
+			lifeSortingMode: "time",
+			lifeSortingIsReversed: true,
+			lifeSelectedItemId: undefined,
 			lifeRawEvents: unsortedEvents,
 			lifeEvents: events,
 			lifeEventIndexMap: eventIndicesById
@@ -62,12 +60,12 @@ export default class LifePage extends Vue implements Data {
 	// Data Properties
 
 	lifeFilter: string|undefined
-	lifeSortingMode: SortingMode = "time"
-	lifeSortingIsReversed: boolean = true
+	lifeSortingMode!: SortingMode
+	lifeSortingIsReversed!: boolean
 	lifeSelectedItemId: UUID|undefined
-	lifeRawEvents: Vita.Event[] = []
-	lifeEvents: Vita.Event[] = []
-	lifeEventIndexMap: Dictionary<Index> = {}
+	lifeRawEvents!: Vita.Event[]
+	lifeEvents!: Vita.Event[]
+	lifeEventIndexMap!: Dictionary<Index>
 
 	// Computed Properties
 
@@ -98,15 +96,22 @@ export default class LifePage extends Vue implements Data {
 
 	toggleFilter(filter: Filter) {
 		this.lifeFilter = filter
+		this.mapFilteredEvents()
 	}
 	
 	toggleSortingMode(mode: SortingMode) {
+		if (!mode) {
+			console.error(`Can not toggle sorting mode without a specifier.`)
+			return
+		}
+
 		if (this.lifeSortingMode === mode) {
 			this.lifeSortingIsReversed = !this.lifeSortingIsReversed
 			return
 		}
 	
 		this.setSortingMode(mode)
+		this.mapFilteredEvents()
 	}
 
 	setSortingMode(mode: SortingMode) {
@@ -128,24 +133,14 @@ export default class LifePage extends Vue implements Data {
 		this.lifeEventIndexMap = eventIndicesById
 	}
 
-	// Events
+	// Actions
 
-	didToggleFilter(_event: MouseEvent, filter: string) {
-		this.toggleFilter(filter)
-		this.mapFilteredEvents()
-	}
-
-	didToggleSorting(_event: MouseEvent, sortingMode: string) {
-		if (!sortingMode) {
-			return
-		}
-
-		this.toggleSortingMode(sortingMode)
-		this.mapFilteredEvents()
-	}
-
-	didRequestLifeEvent(id: UUID|undefined) {
+	openLifeEvent(id: UUID) {
 		this.lifeSelectedItemId = id
+	}
+
+	closeLifeEvent() {
+		this.lifeSelectedItemId = undefined
 	}
 
 }
