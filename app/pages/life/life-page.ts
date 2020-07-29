@@ -107,6 +107,7 @@ export default class LifePage extends Vue implements Data {
 
 		if (this.lifeSortingMode === mode) {
 			this.lifeSortingIsReversed = !this.lifeSortingIsReversed
+			this.mapFilteredEvents()
 			return
 		}
 	
@@ -126,7 +127,7 @@ export default class LifePage extends Vue implements Data {
 
 	mapFilteredEvents() {
 		const rawEvents = this.lifeRawEvents
-		const sortingProperties: SortingProperties = { filter: undefined, sortingMode: "time", sortingIsReversed: true }
+		const sortingProperties: SortingProperties = { filter: this.lifeFilter, sortingMode: this.lifeSortingMode, sortingIsReversed: this.lifeSortingIsReversed }
 		const { events, eventIndicesById } = sortedLifeEvents(rawEvents, sortingProperties)
 
 		this.lifeEvents = events
