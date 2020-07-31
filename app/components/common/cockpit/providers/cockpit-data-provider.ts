@@ -1,9 +1,9 @@
-import { Dictionary } from "@nuxt/vue-app-edge"
 import { UUID } from "~/components/common/library/uuid"
 import { Vita } from "../../storage/models/vita-event"
 import { CockpitDataAccess } from "./cockpit-data-access"
 import { Work } from "../../storage/models/work-item"
 import { Landing } from "../../storage/models/landing"
+import { Dictionary } from "../../library/dictionary"
 
 export namespace CockpitDataProvider {
 

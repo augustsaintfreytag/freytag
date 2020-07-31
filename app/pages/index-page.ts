@@ -5,7 +5,9 @@ import { Head } from "~/components/common/head/head"
 import { Landing } from "~/components/common/storage/models/landing"
 import { CockpitDataProvider } from "~/components/common/cockpit/providers/cockpit-data-provider"
 
-type IndexPageData = {
+// Library
+
+type Data = {
 	graphic: Landing.Graphic|undefined,
 	works: Landing.Works|undefined
 }
@@ -20,7 +22,7 @@ type IndexPageData = {
 		HeaderBrandingComponent
 	},
 
-	async asyncData(): Promise<IndexPageData> {
+	async asyncData(): Promise<Data> {
 		const graphic = await CockpitDataProvider.landingGraphic()
 		const works = await CockpitDataProvider.landingWorks()
 
@@ -32,12 +34,20 @@ type IndexPageData = {
 	head() {
 		return Head.modeled({
 			meta: [
-				{hid: "description", name: "description", content: "Personal portfolio and work showcase site of August Saint Freytag (A.S.F.), music video artist, filmmaker, concept designer, developer, analogue photographer. Presenting a selection of artwork, concepts, sketches and work in progress."}
+				{
+					hid: "description", 
+					name: "description", 
+					content: [
+						"Personal portfolio and work showcase site of August Saint Freytag (A.S.F.),", 
+						"music video artist, filmmaker, concept designer, developer, analogue photographer.", 
+						"Presenting a selection of artwork, concepts, sketches and work in progress."
+					].join(" ")
+				}
 			]
 		})
 	}
 })
-export default class IndexPage extends Vue {
+export default class IndexPage extends Vue implements Data {
 
 	graphic: Landing.Graphic|undefined
 	works: Landing.Works|undefined

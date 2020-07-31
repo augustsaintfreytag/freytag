@@ -5,6 +5,7 @@ interface Route {
 
 export default {
 	
+	buildModules: ["@nuxt/typescript-build"],
 	buildDir: "/var/lib/nuxt/build",
 	build: {
 		extend (config: any, keys: any) {
@@ -16,6 +17,7 @@ export default {
 		}
 	},
 	plugins: [
+		{ src: "~/plugins/decorator-metadata.ts" },
 		{ src: "~/plugins/paths.ts" }
 	],
 	generate: {
