@@ -1,10 +1,37 @@
 import { ConversionProvider } from "~/components/common/cockpit/providers/conversion-provider"
 import { CockpitEntry } from "~/components/common/cockpit/models/cockpit-entry"
 import { SortableModel } from "../library/any-sortable-model"
-import { Kind } from "../library/kind"
 import MetaData from "./meta-data"
 
 export namespace Vita {
+
+	enum EventKind {
+		Life = "Life",
+		Education = "Education", 
+		External = "External", 
+		Film = "Film", 
+		Artwork = "Artwork", 
+		Photography = "Photography", 
+		Development = "Development"
+	}
+
+	const eventKindRawValues: string[] = [
+		"Life",
+		"Education", 
+		"External", 
+		"Film", 
+		"Artwork", 
+		"Photography", 
+		"Development"
+	]
+
+	function eventKindFromRawValue(value: string): EventKind|undefined {
+		if (!eventKindRawValues.includes(value)) {
+			return undefined
+		}
+
+		return value as EventKind
+	}
 
 	// Live Model
 
@@ -14,7 +41,7 @@ export namespace Vita {
 
 		display: boolean
 		name: string
-		kind: Kind
+		kind: EventKind|undefined
 		format: string|undefined
 		dateStarted: Date|undefined
 		dateEnded: Date|undefined
@@ -27,7 +54,7 @@ export namespace Vita {
 		constructor(event: EventEntry) {
 			this.display = event.display
 			this.name = event.name
-			this.kind = event.kind as Kind
+			this.kind = eventKindFromRawValue(event.kind)
 			this.format = event.format || undefined
 			this.dateStarted = ConversionProvider.dateFromString(event.dateStarted)
 			this.dateEnded = ConversionProvider.dateFromString(event.dateEnded)
