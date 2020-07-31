@@ -5,7 +5,7 @@
 			<h2 class="name">{{ lifeEvent.name }}</h2>
 		</div>
 		<div class="details">
-			<div class="time">{{ formattedDateRange(lifeEvent) }}</div>
+			<div class="time">{{ formattedDateRange }}</div>
 			<div class="format">{{ lifeEvent.format }}</div>
 			<div class="role" :title="lifeEvent.role">{{ lifeEvent.role }}</div>
 			<div class="location" :title="lifeEvent.location">{{ lifeEvent.location }}</div>

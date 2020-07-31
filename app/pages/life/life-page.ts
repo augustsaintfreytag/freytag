@@ -8,6 +8,7 @@ import { Vita } from "~/components/common/storage/models/vita-event"
 import LifeEventCardComponent from "~/components/life-event/life-event-card.vue"
 import LifeEventComponent from "~/components/life-event/life-event.vue"
 import { fetchLifeEvents, Filter, headerDefinitions, isValidSortingMode, sortedLifeEvents, SortingMode, SortingProperties, toggleDefinitions } from "./life-page-data-provider"
+import { TraversingItemSet } from "~/components/common/storage/library/traversing-item-set"
 
 interface Data extends PageData {
 	lifeFilter: string|undefined
@@ -77,7 +78,7 @@ export default class LifePage extends Vue implements Data {
 		return headerDefinitions
 	}
 
-	get lifeSelectedItemSet() {	
+	get lifeSelectedItemSet(): TraversingItemSet<Vita.Event>|undefined {	
 		if (!this.lifeSelectedItemId) {
 			return undefined
 		}

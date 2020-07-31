@@ -1,33 +1,22 @@
-import { Component, Vue } from "vue-property-decorator"
+import { Component, Vue, Prop } from "vue-property-decorator"
 import LifeEventDetailTableComponent from "~/components/life-event/life-event-detail-table.vue"
+import { Vita } from "../common/storage/models/vita-event"
 import { TruncatedTextProvider } from "../common/truncated-text/truncated-text-provider"
 import { UUID } from "../common/library/uuid"
-import { Vita } from "../common/storage/models/vita-event"
+import { TraversingItemSet } from "../common/storage/library/traversing-item-set"
 
 const maxNavigationTextLength = 22
 
 @Component({
-	props: ["lifeEventSet"],
-
 	components: {
 		LifeEventDetailTableComponent
-	},
-
-	computed: {
-		lifeEvent(): Vita.Event {
-			return this.$props.lifeEventSet.current
-		},
-
-		nextLifeEvent(): Vita.Event|undefined {
-			return this.$props.lifeEventSet.next
-		},
-
-		previousLifeEvent(): Vita.Event|undefined {
-			return this.$props.lifeEventSet.previous
-		}
 	}
 })
 export default class LifeEventCardComponent extends Vue {
+
+	// Data
+
+	@Prop() lifeEventSet!: TraversingItemSet<Vita.Event>
 
 	requestLifeEvent(id: UUID) {
 		if (!id) {
@@ -40,6 +29,20 @@ export default class LifeEventCardComponent extends Vue {
 
 	truncated(input: string): string {
 		return TruncatedTextProvider.truncated(input, maxNavigationTextLength)
+	}
+
+	// Set Items
+
+	get lifeEvent(): Vita.Event {
+		return this.lifeEventSet.current
+	}
+
+	get nextLifeEvent(): Vita.Event|undefined {
+		return this.lifeEventSet.next
+	}
+
+	get previousLifeEvent(): Vita.Event|undefined {
+		return this.lifeEventSet.previous
 	}
 
 }
