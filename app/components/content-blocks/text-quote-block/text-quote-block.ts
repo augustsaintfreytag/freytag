@@ -1,6 +1,9 @@
-import { Component, Vue } from "vue-property-decorator"
+import { Component, Vue, Prop } from "vue-property-decorator"
+import { Content } from "~/components/common/storage/models/content-block"
 
-@Component({
-	props: ["contentBlock"]
-})
-export default class TextQuoteBlockComponent extends Vue {}
+@Component
+export default class TextQuoteBlockComponent extends Vue {
+
+	@Prop() contentBlock!: Content.Block
+
+}

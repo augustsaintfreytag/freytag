@@ -1,11 +1,14 @@
-import { Component, Vue } from "vue-property-decorator"
+import { Component, Vue, Prop } from "vue-property-decorator"
 import Markdown from "~/components/markdown/markdown.vue"
+import { Content } from "~/components/common/storage/models/content-block"
 
 @Component({
 	components: {
 		Markdown
-	},
-
-	props: ["contentBlock"]
+	}
 })
-export default class TextColumnBlockComponent extends Vue {}
+export default class TextColumnBlockComponent extends Vue {
+
+	@Prop() contentBlock!: Content.Block
+
+}
