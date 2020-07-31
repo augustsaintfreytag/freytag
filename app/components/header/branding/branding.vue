@@ -1,7 +1,7 @@
 <template>
 	<section class="page-branding">
-		<div class="title">{{ content.headerPrimaryTitle }}</div>
-		<div class="tagline" v-html="content.headerPrimaryOccupations"></div>
+		<div class="title">{{ primaryTitle }}</div>
+		<div class="tagline" v-html="primaryOccupations"></div>
 	</section>
 </template>
 
