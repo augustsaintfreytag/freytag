@@ -1,4 +1,4 @@
-import { Component, Vue } from "vue-property-decorator"
+import { Component, Vue, Prop } from "vue-property-decorator"
 import { Content } from "~/components/common/storage/models/content-block"
 import { CockpitImageRequestPreset } from "~/components/common/cockpit/library/cockpit-image-request-presets"
 
@@ -10,35 +10,38 @@ enum ImageContentDesignation {
 	Full = "full"
 }
 
-@Component({
-	props: ["contentBlock"],
+@Component
+export default class ImageColumnsBlockComponent extends Vue {
 
-	computed: {
-		imageContentDesignation(): ImageContentDesignation {
-			const contentBlock = this.$props.contentBlock as Content.ImageColumnsBlock
-			const numberOfImageContents = contentBlock.imageContents.length
+	@Prop() contentBlock!: Content.Block
 
-			if (numberOfImageContents === 1) {
-				return ImageContentDesignation.Single
-			}
+	get imageContentDesignation(): ImageContentDesignation {
+		const contentBlock = this.contentBlock
 
-			if (numberOfImageContents === 2) {
-				return ImageContentDesignation.Dual
-			}
-
-			if (numberOfImageContents === 3) {
-				return ImageContentDesignation.Triple
-			}
-
-			if (numberOfImageContents >= 4) {
-				return ImageContentDesignation.Full
-			}
-
+		if (!Content.ImageColumnsBlock.isImageColumnsBlock(contentBlock)) {
 			return ImageContentDesignation.None
 		}
+
+		const numberOfImageContents = contentBlock.imageContents.length
+
+		if (numberOfImageContents === 1) {
+			return ImageContentDesignation.Single
+		}
+
+		if (numberOfImageContents === 2) {
+			return ImageContentDesignation.Dual
+		}
+
+		if (numberOfImageContents === 3) {
+			return ImageContentDesignation.Triple
+		}
+
+		if (numberOfImageContents >= 4) {
+			return ImageContentDesignation.Full
+		}
+
+		return ImageContentDesignation.None
 	}
-})
-export default class ImageColumnsBlockComponent extends Vue {
 
 	imageFormat(designation: ImageContentDesignation): CockpitImageRequestPreset.Format {
 		if (designation === ImageContentDesignation.Single) {

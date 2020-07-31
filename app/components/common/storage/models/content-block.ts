@@ -95,6 +95,17 @@ export namespace Content {
 			return captionContentEntry.value
 		}
 
+		// Type Assertion
+
+		static isImageColumnsBlock(object: Object): object is ImageColumnsBlock {
+			const formValue = object["form"]
+			if (!formValue || formValue !== Form.ImageColumns) {
+				return false
+			}
+
+			return true
+		}
+
 	}
 
 	export class VideoVimeoBlock implements Block {
@@ -127,7 +138,7 @@ export namespace Content {
 
 	export interface BlockEntry extends CockpitEntry {
 
-		form: string|Form
+		form: string
 		identifierItem: string
 		identifierGroup: string
 		textContent: string
