@@ -1,13 +1,21 @@
 import { Component, Vue } from "vue-property-decorator"
 
+interface Data {
+	primaryTitle: string
+	primaryOccupations: string
+}
+
 @Component({
-	data() {
+	data(): Data {
 		return {
-			content: {
-				headerPrimaryTitle: "August Saint Freytag",
-				headerPrimaryOccupations: ["Developer", "Music Video Artist", "Editor", "Concept Designer", "Analogue Photographer"].map(value => value.replace(" ", "&nbsp;")).join(" ・ ")
-			}
+			primaryTitle: "August Saint Freytag",
+			primaryOccupations: ["Developer", "Music Video Artist", "Editor", "Concept Designer", "Analogue Photographer"].map(value => value.replace(" ", "&nbsp;")).join(" ・ ")
 		}
 	}
 })
-export default class HeaderBrandingComponent extends Vue {}
+export default class HeaderBrandingComponent extends Vue implements Data {
+
+	primaryTitle!: string
+	primaryOccupations!: string
+
+}
