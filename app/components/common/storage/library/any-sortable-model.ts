@@ -1,1 +1,1 @@
-export type AnySortableModel<Value> = {[key: string]: Value}
+export type SortableModel<Value> = {[key: string]: Value}

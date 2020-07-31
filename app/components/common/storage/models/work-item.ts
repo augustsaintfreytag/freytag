@@ -1,6 +1,6 @@
 import { Image } from "~/components/common/storage/models/image"
 import { CockpitEntry } from "~/components/common/cockpit/models/cockpit-entry"
-import { AnySortableModel } from "../library/any-sortable-model"
+import { SortableModel } from "../library/any-sortable-model"
 import { Content } from "./content-block"
 import { Vita } from "./vita-event"
 import MetaData from "./meta-data"
@@ -9,7 +9,7 @@ export namespace Work {
 
 	// Live Model
 
-	export class Item implements AnySortableModel<any> {
+	export class Item implements SortableModel<any> {
 
 		display: boolean
 		name: string

@@ -1,4 +1,4 @@
-import { AnySortableModel } from "../library/any-sortable-model"
+import { SortableModel } from "../library/any-sortable-model"
 
 export namespace SortingProvider {
 
@@ -21,7 +21,7 @@ export namespace SortingProvider {
 
 	// Functionality
 
-	export function sortedModels<Model extends AnySortableModel<Value>, Value>(models: Model[], options: Options<Value>): Model[] {
+	export function sortedModels<Model extends SortableModel<Value>, Value>(models: Model[], options: Options<Value>): Model[] {
 		const sortingKeyPrimary = options.sortingKeyPair.primary
 		const sortingKeySecondary = options.sortingKeyPair.secondary || options.sortingKeyPair.primary
 
