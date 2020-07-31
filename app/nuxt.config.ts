@@ -17,6 +17,7 @@ export default {
 		}
 	},
 	plugins: [
+		{ src: "~/plugins/decorator-metadata.ts" },
 		{ src: "~/plugins/paths.ts" }
 	],
 	generate: {
