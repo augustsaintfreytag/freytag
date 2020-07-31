@@ -1,4 +1,4 @@
-import { Dictionary } from "@nuxt/vue-app-edge"
+import { Dictionary } from "@/components/common/library/dictionary";
 
 export interface MetaTag extends Dictionary<string|undefined> {
 

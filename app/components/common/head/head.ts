@@ -1,8 +1,9 @@
 import { MetaTag } from "./library/meta-tag"
+import { Dictionary } from "../library/dictionary"
 
 export namespace Head {
 
-	type HeadDictionary = {[key: string]: string|HeadDictionary|HeadDictionary[]|undefined}
+	type HeadDictionary = Dictionary<any>
 
 	// Constant Properties
 
