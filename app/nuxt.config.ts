@@ -5,6 +5,7 @@ interface Route {
 
 export default {
 	
+	buildModules: ["@nuxt/typescript-build"],
 	buildDir: "/var/lib/nuxt/build",
 	build: {
 		extend (config: any, keys: any) {
