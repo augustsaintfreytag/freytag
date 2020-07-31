@@ -1,8 +1,9 @@
-import { Vue, Component } from "vue-property-decorator"
+import { Vue, Component, Prop } from "vue-property-decorator"
 
-@Component({
+@Component
+export default class VimeoPlayerComponent extends Vue {
 
-	props: ["videoCode", "videoAspectValue"]
+	@Prop() videoCode!: string
+	@Prop() videoAspectValue!: string
 
-})
-export default class VimeoPlayerComponent extends Vue {}
+}
