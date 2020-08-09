@@ -1,4 +1,4 @@
-import { CockpitImage } from "../models/cockpit-image-request"
+import { CockpitImageOptions, CockpitImageRequest } from "cockpit-access"
 
 export namespace CockpitImageRequestPreset {
 
@@ -14,33 +14,33 @@ export namespace CockpitImageRequestPreset {
 	
 	}
 
-	type PresetsByFormat = {[key: string]: CockpitImage.ImageRequest}
+	type PresetsByFormat = {[key: string]: CockpitImageRequest}
 
 	// Preset Preparation
 
 	const presets: PresetsByFormat = {}
 
-	presets[Format.Small] = new CockpitImage.ImageRequest({
-		mode: CockpitImage.ImageMode.BestFit,
+	presets[Format.Small] = new CockpitImageRequest({
+		mode: CockpitImageOptions.Mode.BestFit,
 		width: 600,
 		quality: defaultQuality
 	})
 
-	presets[Format.Regular] = new CockpitImage.ImageRequest({
-		mode: CockpitImage.ImageMode.BestFit,
+	presets[Format.Regular] = new CockpitImageRequest({
+		mode: CockpitImageOptions.Mode.BestFit,
 		width: 1000,
 		quality: defaultQuality
 	})
 
-	presets[Format.Large] = new CockpitImage.ImageRequest({
-		mode: CockpitImage.ImageMode.BestFit,
+	presets[Format.Large] = new CockpitImageRequest({
+		mode: CockpitImageOptions.Mode.BestFit,
 		width: 1600,
 		quality: defaultQuality
 	})
 
 	// Preset Supply
 
-	export function preset(format: Format): CockpitImage.ImageRequest {
+	export function preset(format: Format): CockpitImageRequest {
 		const preset = presets[format]
 		
 		if (!preset) {

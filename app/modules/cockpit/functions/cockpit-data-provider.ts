@@ -1,9 +1,9 @@
-import { UUID } from "~/components/common/library/uuid"
-import { Vita } from "../../storage/models/vita-event"
-import { CockpitDataAccess } from "./cockpit-data-access"
-import { Work } from "../../storage/models/work-item"
+import { Dictionary } from "@/modules/common/library/dictionary"
+import { UUID } from "@/modules/common/library/uuid"
+import { CockpitDataAccess } from "cockpit-access"
 import { Landing } from "../../storage/models/landing"
-import { Dictionary } from "../../library/dictionary"
+import { Vita } from "../../storage/models/vita-event"
+import { Work } from "../../storage/models/work-item"
 
 export namespace CockpitDataProvider {
 
