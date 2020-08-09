@@ -1,9 +1,8 @@
-import { Image } from "~/components/common/storage/models/image"
-import { CockpitEntry } from "~/components/common/cockpit/models/cockpit-entry"
+import { Image } from "@/modules/storage/models/image"
+import { CockpitEntry, CockpitMetaData } from "cockpit-access"
 import { SortableModel } from "../library/any-sortable-model"
 import { Content } from "./content-block"
 import { Vita } from "./vita-event"
-import MetaData from "./meta-data"
 
 export namespace Work {
 
@@ -19,7 +18,7 @@ export namespace Work {
 		event: Vita.Event|undefined
 		blocks: Content.Block[]
 		numberOfSamples: number
-		meta: MetaData
+		meta: CockpitMetaData
 
 		constructor(entry: ItemEntry) {
 			this.display = entry.display
@@ -62,7 +61,7 @@ export namespace Work {
 				return count
 			}, 0)
 
-			this.meta = new MetaData(entry)
+			this.meta = new CockpitMetaData(entry)
 		}
 
 	}

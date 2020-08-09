@@ -1,1 +1,0 @@
-export type SortableModel<Value> = {[key: string]: Value}

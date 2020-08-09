@@ -1,6 +1,5 @@
-import { Image } from "~/components/common/storage/models/image"
-import { CockpitEntry } from "~/components/common/cockpit/models/cockpit-entry"
-import MetaData from "./meta-data"
+import { CockpitEntry, CockpitMetaData } from "cockpit-access"
+import { Image } from "./image"
 
 export namespace Content {
 
@@ -9,7 +8,7 @@ export namespace Content {
 	export interface Block {
 
 		form: Form|undefined
-		meta: MetaData
+		meta: CockpitMetaData
 
 	}
 
@@ -17,12 +16,12 @@ export namespace Content {
 
 		form: Form|undefined
 		textContent: string|undefined
-		meta: MetaData
+		meta: CockpitMetaData
 
 		constructor(entry: BlockEntry) {
 			this.form = (entry.form as Form) || undefined
 			this.textContent = entry.textContent || undefined
-			this.meta = new MetaData(entry)
+			this.meta = new CockpitMetaData(entry)
 		}
 
 	}
@@ -31,12 +30,12 @@ export namespace Content {
 
 		form: Form|undefined
 		textContent: string|undefined
-		meta: MetaData
+		meta: CockpitMetaData
 
 		constructor(entry: BlockEntry) {
 			this.form = (entry.form as Form) || undefined
 			this.textContent = entry.textContent || undefined
-			this.meta = new MetaData(entry)
+			this.meta = new CockpitMetaData(entry)
 		}
 
 	}
@@ -47,7 +46,7 @@ export namespace Content {
 
 		form: Form|undefined
 		imageContents: Image.Content[]
-		meta: MetaData
+		meta: CockpitMetaData
 
 		constructor(entry: BlockEntry) {
 			if (entry.form !== Form.ImageColumns) {
@@ -74,7 +73,7 @@ export namespace Content {
 			}
 
 			this.form = (entry.form as Form) || undefined
-			this.meta = new MetaData(entry)
+			this.meta = new CockpitMetaData(entry)
 		}
 
 		private static imageContentEntryInSequence(sequence: AnyBlockRepeatedEntry[], startingIndex: number): Image.ContentEntry|undefined {
@@ -113,13 +112,13 @@ export namespace Content {
 		form: Form|undefined
 		videoCode: string|undefined
 		videoAspectValue: string|undefined
-		meta: MetaData
+		meta: CockpitMetaData
 
 		constructor(entry: BlockEntry) {
 			this.form = entry.form as Form
 			this.videoCode = entry.videoCode || undefined
 			this.videoAspectValue = entry.videoAspectValue || undefined
-			this.meta = new MetaData(entry)
+			this.meta = new CockpitMetaData(entry)
 		}
 
 	}

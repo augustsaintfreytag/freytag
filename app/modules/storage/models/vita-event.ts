@@ -1,10 +1,8 @@
-import { ConversionProvider } from "~/components/common/cockpit/providers/conversion-provider"
-import { CockpitEntry } from "~/components/common/cockpit/models/cockpit-entry"
+import { CockpitDateConversion, CockpitEntry, CockpitMetaData } from "cockpit-access"
 import { SortableModel } from "../library/any-sortable-model"
-import MetaData from "./meta-data"
 
 export namespace Vita {
-
+	
 	enum EventKind {
 		Life = "Life",
 		Education = "Education", 
@@ -49,20 +47,20 @@ export namespace Vita {
 		context: string|undefined
 		location: string|undefined
 		description: string|undefined
-		meta: MetaData
+		meta: CockpitMetaData
 	
 		constructor(event: EventEntry) {
 			this.display = event.display
 			this.name = event.name
 			this.kind = eventKindFromRawValue(event.kind)
 			this.format = event.format || undefined
-			this.dateStarted = ConversionProvider.dateFromString(event.dateStarted)
-			this.dateEnded = ConversionProvider.dateFromString(event.dateEnded)
+			this.dateStarted = CockpitDateConversion.dateFromString(event.dateStarted)
+			this.dateEnded = CockpitDateConversion.dateFromString(event.dateEnded)
 			this.role = event.role || undefined
 			this.context = event.context || undefined
 			this.location = event.location || undefined
 			this.description = event.description || undefined
-			this.meta = new MetaData(event)
+			this.meta = new CockpitMetaData(event)
 		}
 	
 	}

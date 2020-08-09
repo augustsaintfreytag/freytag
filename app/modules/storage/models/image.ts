@@ -1,4 +1,4 @@
-import { Url } from "~/components/common/library/url"
+import { URL } from "@/modules/common/library/url"
 
 export namespace Image {
 
@@ -6,7 +6,7 @@ export namespace Image {
 
 	export class Content {
 
-		path: Url|undefined
+		path: URL|undefined
 		caption: string|undefined
 		
 		constructor(entry: ContentEntry, labelEntry?: string|undefined) {
