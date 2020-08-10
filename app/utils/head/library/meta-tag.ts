@@ -1,4 +1,4 @@
-import { Dictionary } from "~/library/dictionary";
+import { Dictionary } from "@/utils/common/library/dictionary"
 
 export interface MetaTag extends Dictionary<string|undefined> {
 
