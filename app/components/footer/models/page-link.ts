@@ -1,7 +1,9 @@
-import { UrlComponent } from "~/components/common/library/url"
+import { URLComponent } from "@/utils/common/library/url"
 
 export interface PageLink {
-	address: UrlComponent,
+	
+	address: URLComponent,
 	name: string,
 	spriteId?: string
+	
 }

@@ -1,8 +1,8 @@
+import { URL } from "@/utils/common/library/url"
 import { Component, Vue } from "vue-property-decorator"
-import { Url } from "../../common/library/url"
 
 interface RouteEntry {
-	address: Url
+	address: URL
 	name: string
 }
 

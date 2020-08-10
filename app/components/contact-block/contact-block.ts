@@ -1,5 +1,5 @@
+import Rot13 from "@/utils/address-obfuscator/functions/rot-13"
 import { Component, Vue } from "vue-property-decorator"
-import Rot13 from "../common/address-obfuscator/provider/rot-13"
 
 // Modules
 

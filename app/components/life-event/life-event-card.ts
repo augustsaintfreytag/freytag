@@ -1,9 +1,9 @@
-import { Component, Vue, Prop } from "vue-property-decorator"
-import LifeEventDetailTableComponent from "~/components/life-event/life-event-detail-table.vue"
-import { Vita } from "../common/storage/models/vita-event"
-import { TruncatedTextProvider } from "../common/truncated-text/truncated-text-provider"
-import { UUID } from "../common/library/uuid"
-import { TraversingItemSet } from "../common/storage/library/traversing-item-set"
+import LifeEventDetailTableComponent from "@/components/life-event/life-event-detail-table.vue"
+import { UUID } from "@/utils/common/library/uuid"
+import { TraversingItemSet } from "@/utils/storage/library/traversing-item-set"
+import { Vita } from "@/utils/storage/models/vita-event"
+import { TruncatedTextProvider } from "@/utils/truncated-text/truncated-text-provider"
+import { Component, Prop, Vue } from "vue-property-decorator"
 
 const maxNavigationTextLength = 22
 

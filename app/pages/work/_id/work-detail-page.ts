@@ -1,25 +1,23 @@
+import HeadingBlockComponent from "@/components/content-blocks/heading-content-block/heading-content-block.vue"
+import ImageColumnsBlockComponent from "@/components/content-blocks/image-columns-block/image-columns-block.vue"
+import TextColumnBlockComponent from "@/components/content-blocks/text-column-block/text-column-block.vue"
+import TextQuoteBlockComponent from "@/components/content-blocks/text-quote-block/text-quote-block.vue"
+import VideoVimeoBlockComponent from "@/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
+import LifeEventDetailTableComponent from "@/components/life-event/life-event-detail-table.vue"
+import Markdown from "@/components/markdown/markdown.vue"
+import { Dictionary } from "@/utils/common/library/dictionary"
+import { UUID } from "@/utils/common/library/uuid"
+import { Head } from "@/utils/head/head"
+import { MetaTag } from "@/utils/head/library/meta-tag"
+import { Content } from "@/utils/storage/models/content-block"
+import { Work } from "@/utils/storage/models/work-item"
+import { DateFormatter } from "@/utils/storage/providers/date-formatter"
 import { Component, Vue } from "vue-property-decorator"
-import { DateFormatter } from "~/components/common/storage/providers/date-formatter"
-import { Content } from "~/components/common/storage/models/content-block"
-import { Head } from "~/components/common/head/head"
-import { MetaTag } from "~/components/common/head/library/meta-tag"
-import { Dictionary } from "~/components/common/library/dictionary"
-import { UUID } from "~/components/common/library/uuid"
-import { Work } from "~/components/common/storage/models/work-item"
-
-import Markdown from "~/components/markdown/markdown.vue"
-import LifeEventDetailTableComponent from "~/components/life-event/life-event-detail-table.vue"
-import HeadingBlockComponent from "~/components/content-blocks/heading-content-block/heading-content-block.vue"
-import ImageColumnsBlockComponent from "~/components/content-blocks/image-columns-block/image-columns-block.vue"
-import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-block/text-quote-block.vue"
-import TextColumnBlockComponent from "~/components/content-blocks/text-column-block/text-column-block.vue"
-import VideoVimeoBlockComponent from "~/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
-import { PageData } from "~/components/common/pages/library/page-data"
 import * as DataProvider from "./work-detail-data-provider"
 
 // Library
 
-interface AsyncPartialData extends PageData {
+interface AsyncPartialData {
 	workItemId: string|undefined
 	workItem: Work.Item|undefined
 }
@@ -31,7 +29,6 @@ interface Data extends AsyncPartialData {
 // Component
 
 @Component({
-
 	components: {
 		Markdown,
 		LifeEventDetailTableComponent,
@@ -91,7 +88,6 @@ interface Data extends AsyncPartialData {
 			title: Head.Form.suffixedTitle(itemName || "Untitled", titleComponents), meta
 		})
 	}
-
 })
 export default class WorkDetailPage extends Vue implements Data {
 

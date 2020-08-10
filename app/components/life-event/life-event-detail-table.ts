@@ -1,6 +1,6 @@
+import { Vita } from "@/utils/storage/models/vita-event"
+import { DateFormatter } from "@/utils/storage/providers/date-formatter"
 import { Component, Vue } from "vue-property-decorator"
-import { Vita } from "../common/storage/models/vita-event"
-import { DateFormatter } from "../common/storage/providers/date-formatter"
 
 interface DetailRow {
 	name: string

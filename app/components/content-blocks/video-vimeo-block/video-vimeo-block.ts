@@ -1,6 +1,6 @@
-import { Component, Vue, Prop } from "vue-property-decorator"
-import VimeoPlayerComponent from "~/components/vimeo-player/vimeo-player.vue"
-import { Content } from "~/components/common/storage/models/content-block"
+import VimeoPlayerComponent from "@/components/vimeo-player/vimeo-player.vue"
+import { Content } from "@/utils/storage/models/content-block"
+import { Component, Prop, Vue } from "vue-property-decorator"
 
 @Component({
 	components: {

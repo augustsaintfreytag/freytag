@@ -1,6 +1,6 @@
-import { Component, Vue, Prop } from "vue-property-decorator"
-import Markdown from "~/components/markdown/markdown.vue"
-import { Content } from "~/components/common/storage/models/content-block"
+import Markdown from "@/components/markdown/markdown.vue"
+import { Content } from "@/utils/storage/models/content-block"
+import { Component, Prop, Vue } from "vue-property-decorator"
 
 @Component({
 	components: {

@@ -1,10 +1,9 @@
+import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-provider"
+import { Head } from "@/utils/head/head"
+import { Work } from "@/utils/storage/models/work-item"
 import { Component, Vue } from "vue-property-decorator"
-import { Head } from "~/components/common/head/head"
-import { Work } from "~/components/common/storage/models/work-item"
-import { CockpitDataProvider } from "~/components/common/cockpit/providers/cockpit-data-provider"
-import { PageData } from "~/components/common/pages/library/page-data"
 
-interface Data extends PageData {
+interface Data {
 	workItems: Work.Item[]
 }
 

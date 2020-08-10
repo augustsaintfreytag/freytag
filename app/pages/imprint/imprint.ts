@@ -1,9 +1,8 @@
+import ContactBlockComponent from "@/components/contact-block/contact-block.vue"
+import { Head } from "@/utils/head/head"
 import { Component, Vue } from "vue-property-decorator"
-import { Head } from "~/components/common/head/head"
-import ContactBlockComponent from "~/components/contact-block/contact-block.vue"
 
 @Component({
-
 	components: {
 		ContactBlockComponent
 	},
@@ -13,6 +12,5 @@ import ContactBlockComponent from "~/components/contact-block/contact-block.vue"
 			title: Head.Form.suffixedTitle("Imprint")
 		})
 	}
-
 })
 export default class ImprintPage extends Vue {}
