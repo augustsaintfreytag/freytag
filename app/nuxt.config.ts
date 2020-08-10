@@ -18,6 +18,7 @@ export default {
 	},
 	plugins: [
 		{ src: "~/plugins/decorator-metadata.ts" },
+		{ src: "~/plugins/cockpit-access.ts" },
 		{ src: "~/plugins/paths.ts" }
 	],
 	generate: {
