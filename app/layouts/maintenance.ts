@@ -1,5 +1,5 @@
+import SpriteSet from "@/components/sprite-set/sprite-set.vue"
 import { Component, Vue } from "vue-property-decorator"
-import SpriteSet from "~/components/sprite-set/sprite-set.vue"
 
 @Component({
 	components: {

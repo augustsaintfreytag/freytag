@@ -1,8 +1,8 @@
+import FooterComponent from "@/components/footer/footer.vue"
+import HeaderNavigationComponent from "@/components/header/navigation/navigation.vue"
+import SpriteSet from "@/components/sprite-set/sprite-set.vue"
+import { Head } from "@/utils/head/head"
 import { Component, Vue } from "vue-property-decorator"
-import { Head } from "~/components/common/head/head"
-import HeaderNavigationComponent from "~/components/header/navigation/navigation.vue"
-import FooterComponent from "~/components/footer/footer.vue"
-import SpriteSet from "~/components/sprite-set/sprite-set.vue"
 
 @Component({
 	components: {
