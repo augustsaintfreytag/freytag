@@ -1,4 +1,4 @@
-import { Image } from "@/modules/storage/models/image"
+import { Image } from "@/utils/storage/models/image"
 import { CockpitEntry, CockpitMetaData } from "cockpit-access"
 import { SortableModel } from "../library/any-sortable-model"
 import { Content } from "./content-block"

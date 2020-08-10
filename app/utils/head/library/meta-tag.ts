@@ -1,4 +1,4 @@
-import { Dictionary } from "@/components/common/library/dictionary";
+import { Dictionary } from "~/library/dictionary";
 
 export interface MetaTag extends Dictionary<string|undefined> {
 

@@ -1,7 +1,8 @@
-import { URL } from "@/modules/common/library/url"
-import { APIToken, Connection, Context, Environment, Protocol } from "./cockpit-configuration"
+import { URL } from "@/utils/common/library/url"
+import { Context, Environment } from "cockpit-access"
+import type { Address, APIToken, Protocol } from "cockpit-access"
 
-export class CockpitConnection implements Connection {
+export class CockpitAddress implements Address {
 
 	private environment: Environment
 	private accessToken: APIToken|undefined
@@ -14,6 +15,7 @@ export class CockpitConnection implements Connection {
 		}
 
 		this.accessToken = process.env["NUXT_ENV_COCKPIT_ACCESS_TOKEN"]
+		
 	}
 
 	// Parameters

@@ -1,5 +1,5 @@
 import { MetaTag } from "./library/meta-tag"
-import { Dictionary } from "../library/dictionary"
+import { Dictionary } from "../common/library/dictionary"
 
 export namespace Head {
 

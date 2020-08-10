@@ -1,4 +1,4 @@
-import { URL } from "@/modules/common/library/url"
+import { URL } from "@/utils/common/library/url"
 
 export namespace Image {
 

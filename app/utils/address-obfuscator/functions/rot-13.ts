@@ -1,5 +1,5 @@
 import { Dictionary } from "vue-router/types/router"
-import { Index, IndexDistance } from "../../library"
+import { Index, IndexDistance } from "../../common/library"
 
 type SequenceMap = Dictionary<number|undefined>
 
