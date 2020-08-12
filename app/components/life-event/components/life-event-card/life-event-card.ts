@@ -5,14 +5,14 @@ import { Vita } from "@/utils/storage/models/vita-event"
 import { TruncatedTextProvider } from "@/utils/truncated-text/truncated-text-provider"
 import { Component, Prop, Vue } from "vue-property-decorator"
 
-const maxNavigationTextLength = 22
-
 @Component({
 	components: {
 		LifeEventDetailTableComponent
 	}
 })
 export default class LifeEventCardComponent extends Vue {
+
+	readonly maxNavigationTextLength = 22
 
 	// Data
 
@@ -28,7 +28,7 @@ export default class LifeEventCardComponent extends Vue {
 	}
 
 	truncated(input: string): string {
-		return TruncatedTextProvider.truncated(input, maxNavigationTextLength)
+		return TruncatedTextProvider.truncated(input, this.maxNavigationTextLength)
 	}
 
 	// Set Items

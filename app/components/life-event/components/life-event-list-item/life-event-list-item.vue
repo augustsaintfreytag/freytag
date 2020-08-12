@@ -14,6 +14,6 @@
 	</section>
 </template>
 
-<style lang="scss" src="./life-event.scss"></style>
+<style lang="scss" src="./life-event-list-item.scss"></style>
 
-<script lang="ts" src="./life-event.ts"></script>
+<script lang="ts" src="./life-event-list-item.ts"></script>

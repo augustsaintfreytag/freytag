@@ -1,4 +1,4 @@
-import { LifeEventDetailRow } from "@/components/life-event/models/life-event-detail-row"
+import { LifeEventDetailRow } from "@/components/life-event/life-event-detail-table"
 import { Vita } from "@/utils/storage/models/vita-event"
 import { DateFormatter } from "@/utils/storage/providers/date-formatter"
 
