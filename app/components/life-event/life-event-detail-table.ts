@@ -1,65 +1,31 @@
+import { filteredRowsByNames, filteredRowsByValue, rowsFromEvent } from "@/components/life-event/functions/life-event-filter"
+import { LifeEventDetailRow } from "@/components/life-event/models/life-event-detail-row"
 import { Vita } from "@/utils/storage/models/vita-event"
-import { DateFormatter } from "@/utils/storage/providers/date-formatter"
-import { Component, Vue } from "vue-property-decorator"
+import { Component, Prop, Vue } from "vue-property-decorator"
 
-interface DetailRow {
-	name: string
-	value: string|undefined
-}
+@Component({})
+export default class LifeEventDetailTableComponent extends Vue {
 
-namespace LifeEventDetailTable {
+	@Prop() lifeEvent!: Vita.Event
+	@Prop() rowNames!: string[]
+	@Prop() showsEmptyRows: boolean = false
 
-	export function filteredRowsByNames(rows: DetailRow[], rowNames: string[]): DetailRow[] {
-		return rows.filter(row => {
-			return rowNames.includes(row.name)
-		})
-	}
-
-	export function filteredRowsByValue(rows: DetailRow[]): DetailRow[] {
-		return rows.filter(row => {
-			return row.value !== undefined && row.value !== ""
-		})
-	}
-
-	export function rowsFromEvent(lifeEvent: Vita.Event): DetailRow[] {
-		return [
-			{name: "Title", value: lifeEvent.name},
-			{name: "Span", value: DateFormatter.formattedDateRange(lifeEvent)},
-			{name: "Kind", value: lifeEvent.kind},
-			{name: "Format", value: lifeEvent.format},
-			{name: "Role", value: lifeEvent.role},
-			{name: "Location", value: lifeEvent.location},
-			{name: "Context", value: lifeEvent.context},
-			{name: "Description", value: lifeEvent.description}
-		]
-	}
-
-}
-
-@Component({
-	props: ["lifeEvent", "rowNames", "showsEmptyRows"],
-
-	computed: {
-		detailRows() {
-			const event = this.$props.lifeEvent
-			const rowNames = this.$props.rowNames as string[]
-			
-			if (!event) {
-				return []
-			}
-			
-			let rows: DetailRow[] = LifeEventDetailTable.rowsFromEvent(event)
-			
-			if (!this.$props.showsEmptyRows) {
-				rows = LifeEventDetailTable.filteredRowsByValue(rows)
-			}
-			
-			if (rowNames) {
-				rows = LifeEventDetailTable.filteredRowsByNames(rows, rowNames)
-			}
-
-			return rows
+	get detailRows(): LifeEventDetailRow[] {
+		const event = this.lifeEvent
+		
+		if (!event) {
+			return []
 		}
+		
+		let rows: LifeEventDetailRow[] = rowsFromEvent(event)
+		
+		if (!this.$props.showsEmptyRows) {
+			rows = filteredRowsByValue(rows)
+		}
+		
+		rows = filteredRowsByNames(rows, this.rowNames)
+
+		return rows
 	}
-})
-export default class LifeEventDetailTableComponent extends Vue {}
+
+}
