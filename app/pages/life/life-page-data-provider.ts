@@ -1,8 +1,8 @@
-import { Vita } from "@/components/common/storage/models/vita-event"
-import { SortingProvider } from "@/components/common/storage/providers/sorting-provider"
-import { Index } from "@/library"
 import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-provider"
-import { Dictionary } from "@/utils/head/library/node_modules/@/library/dictionary"
+import { Dictionary } from "@/utils/common/library/dictionary"
+import { Index } from "@/utils/common/library/index"
+import { Vita } from "@/utils/storage/models/vita-event"
+import { SortingProvider } from "@/utils/storage/providers/sorting-provider"
 
 // Library
 	

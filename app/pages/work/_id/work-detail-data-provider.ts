@@ -1,6 +1,6 @@
-import { Work } from "@/components/common/storage/models/work-item"
 import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-provider"
-import { UUID } from "@/utils/cockpit/functions/node_modules/@/library/uuid"
+import { UUID } from "@/utils/common/library/uuid"
+import { Work } from "@/utils/storage/models/work-item"
 
 type WorkItemFetchIdentifier = string|UUID
 
