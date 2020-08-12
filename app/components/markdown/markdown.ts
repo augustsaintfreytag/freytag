@@ -5,7 +5,7 @@ interface Data {
 	formattedContent: string
 }
 
-@Component
+@Component({})
 export default class MarkdownComponent extends Vue implements Data {
 
 	// Props

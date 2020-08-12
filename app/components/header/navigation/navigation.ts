@@ -6,7 +6,7 @@ interface RouteEntry {
 	name: string
 }
 
-@Component
+@Component({})
 export default class HeaderComponent extends Vue {
 
 	get routes(): RouteEntry[] {

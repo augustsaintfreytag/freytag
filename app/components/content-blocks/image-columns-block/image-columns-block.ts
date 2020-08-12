@@ -10,7 +10,7 @@ enum ImageContentDesignation {
 	Full = "full"
 }
 
-@Component
+@Component({})
 export default class ImageColumnsBlockComponent extends Vue {
 
 	@Prop() contentBlock!: Content.Block
