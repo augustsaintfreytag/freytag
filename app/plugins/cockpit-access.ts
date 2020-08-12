@@ -4,7 +4,7 @@ import { Address, addressRegister, APIToken, Context, Protocol } from "cockpit-a
 const protocol = process.env["NUXT_ENV_COCKPIT_PROTOCOL"]
 const hostClient = process.env["NUXT_ENV_COCKPIT_HOST_CLIENT"]
 const hostServer = process.env["NUXT_ENV_COCKPIT_HOST_SERVER"]
-const token = process.env["NUXT_ENV_COCKPIT_TOKEN"]
+const token = process.env["NUXT_ENV_COCKPIT_ACCESS_TOKEN"]
 
 if (!protocol || !hostClient || !hostServer || !token) {
 	throw new TypeError(`Missing cockpit access parameters from environment, protocol, host or token not defined.`)

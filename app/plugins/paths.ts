@@ -1,4 +1,3 @@
-
 import { Format } from "@/utils/cockpit/library/cockpit-image-request-presets"
 import { URL, URLComponent } from "@/utils/common/library/url"
 import { CockpitAssetPathForm } from "cockpit-access"

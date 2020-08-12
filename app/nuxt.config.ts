@@ -16,9 +16,9 @@ export default {
 		}
 	},
 	plugins: [
-		{ src: "@/plugins/decorator-metadata.ts" },
-		{ src: "@/plugins/cockpit-access.ts" },
-		{ src: "@/plugins/paths.ts" }
+		{ src: "plugins/decorator-metadata.ts" },
+		{ src: "plugins/cockpit-access.ts" },
+		{ src: "plugins/paths.ts" }
 	],
 	generate: {
 		dir: "build/generated",
@@ -41,8 +41,8 @@ export default {
 		}
 	},
 	css: [
-		"@/assets/style/base.scss",
-		"@/layouts/default.scss",
-		"@/components/header/header.scss"
+		"assets/style/base.scss",
+		"layouts/default.scss",
+		"components/header/header.scss"
 	]
 }
