@@ -5,7 +5,7 @@ interface Route {
 
 export default {
 	buildModules: ["@nuxt/typescript-build"],
-	buildDir: "/var/lib/nuxt/build",
+	buildDir: ".output",
 	build: {
 		extend (config: any, keys: any) {
 			const isClient = keys.isClient as boolean
