@@ -1,10 +1,6 @@
-import Rot13 from "@/utils/address-obfuscator/functions/rot-13"
+import * as Rot13 from "@/utils/address-obfuscator/functions/rot-13"
 import { Component, Vue } from "vue-property-decorator"
 import { PageLink } from "./models/page-link"
-
-// Modules
-
-const rot13 = new Rot13()
 
 // Library
 
@@ -18,14 +14,14 @@ interface Data {
 
 	data(): Data {
 		return {
-			mail: rot13.encoded("me@augustfreytag.com")
+			mail: Rot13.encoded("me@augustfreytag.com")
 		}
 	},
 
 	created() {
 		if (process.browser) {
 			const data = this.$data as Data
-			data.mail = rot13.decoded(data.mail)
+			data.mail = Rot13.decoded(data.mail)
 		}
 	}
 

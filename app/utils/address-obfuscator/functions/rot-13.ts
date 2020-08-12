@@ -1,64 +1,61 @@
 import { Dictionary } from "vue-router/types/router"
 import { Index, IndexDistance } from "../../common/library"
 
+// Library
+
 type SequenceMap = Dictionary<number|undefined>
 
-export default class Rot13 {
+// Properties
 
-	private static alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-	private static rotation: IndexDistance = 13
+const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+const rotation: IndexDistance = 13
 
-	private sequence: string[]
-	private sequenceIndexMap: Dictionary<Index|undefined>
+const { sequence, sequenceIndexMap } = (() => {
+	const sequence: string[] = [...alphabet.split(""), ...alphabet.toLowerCase().split("")]
+	const sequenceIndexMap: Dictionary<Index|undefined> = sequence.reduce((map: SequenceMap, character: string, index: Index) => {
+		map[character] = index
+		return map
+	}, {})
 
-	constructor() {
-		this.sequence = [...Rot13.alphabet.split(""), ...Rot13.alphabet.toLowerCase().split("")]
-		this.sequenceIndexMap = {}
+	return { sequence, sequenceIndexMap }
+})()
 
-		this.sequenceIndexMap = this.sequence.reduce((map: SequenceMap, character: string, index: Index) => {
-			map[character] = index
-			return map
-		}, {})
-	}
+// Coding
 
-	// Coding
+export function encoded(input: string): string {
+	return coded(input, rotation)
+}
 
-	encoded(input: string): string {
-		return this.coded(input, Rot13.rotation)
-	}
+export function decoded(input: string): string {
+	return coded(input, sequence.length * Math.ceil(rotation / sequence.length) - rotation)
+}
 
-	decoded(input: string): string {
-		return this.coded(input, this.sequence.length * Math.ceil(Rot13.rotation / this.sequence.length) - Rot13.rotation)
-	}
+function coded(input: string, offset: IndexDistance): string {
+	const outputSequence: string[] = []
 
-	coded(input: string, offset: IndexDistance): string {
-		const outputSequence: string[] = []
-
-		for (const character of input) {
-			const characterIndex = this.sequenceIndexMap[character]
-			if (characterIndex === undefined) {
-				outputSequence.push(character)
-				continue
-			}
-
-			outputSequence.push(
-				this.offset(characterIndex, offset)
-			)
+	for (const character of input) {
+		const characterIndex = sequenceIndexMap[character]
+		if (characterIndex === undefined) {
+			outputSequence.push(character)
+			continue
 		}
 
-		return outputSequence.join("")
+		outputSequence.push(
+			offsetCharacter(characterIndex, offset)
+		)
 	}
 
-	// Cipher
+	return outputSequence.join("")
+}
 
-	offset(index: Index, offset: IndexDistance): string {
-		const offsetIndex = (index + offset) % this.sequence.length
+// Cipher
 
-		if (offsetIndex < 0) {
-			throw new RangeError(`Index from initial ${index} and offset ${offset} results in negative index, out of range.`)
-		}
+function offsetCharacter(index: Index, offset: IndexDistance): string {
+	const offsetIndex = (index + offset) % sequence.length
 
-		return this.sequence[offsetIndex]
+	if (offsetIndex < 0) {
+		throw new RangeError(`Index from initial ${index} and offset ${offset} results in negative index, out of range.`)
 	}
 
+	return sequence[offsetIndex]
 }
