@@ -1,4 +1,5 @@
 .nuxt
+.build
 *.log
 parameters-*.env
 server/ssl
