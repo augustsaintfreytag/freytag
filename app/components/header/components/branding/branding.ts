@@ -5,11 +5,15 @@ interface Data {
 	primaryOccupations: string
 }
 
+function brandingOccupations(): string[] {
+	return ["Developer", "Music Video Artist", "Editor", "Concept Designer", "Analogue Photographer"]
+}
+
 @Component({
 	data(): Data {
 		return {
 			primaryTitle: "August Saint Freytag",
-			primaryOccupations: ["Developer", "Music Video Artist", "Editor", "Concept Designer", "Analogue Photographer"].map(value => value.replace(" ", "&nbsp;")).join(" ・ ")
+			primaryOccupations: brandingOccupations().map(value => value.replace(" ", "&nbsp;")).join(" ・ ")
 		}
 	}
 })
