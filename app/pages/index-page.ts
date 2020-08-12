@@ -1,9 +1,9 @@
+import HeaderBrandingComponent from "@/components/header/branding/branding.vue"
+import HeaderComponent from "@/components/header/header.vue"
+import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-provider"
+import { Head } from "@/utils/head/head"
+import { Landing } from "@/utils/storage/models/landing"
 import { Component, Vue } from "vue-property-decorator"
-import HeaderComponent from "~/components/header/header.vue"
-import HeaderBrandingComponent from "~/components/header/branding/branding.vue"
-import { Head } from "~/components/common/head/head"
-import { Landing } from "~/components/common/storage/models/landing"
-import { CockpitDataProvider } from "~/components/common/cockpit/providers/cockpit-data-provider"
 
 // Library
 

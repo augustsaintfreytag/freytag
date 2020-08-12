@@ -4,9 +4,8 @@ interface Route {
 }
 
 export default {
-	
 	buildModules: ["@nuxt/typescript-build"],
-	buildDir: "/var/lib/nuxt/build",
+	buildDir: ".output",
 	build: {
 		extend (config: any, keys: any) {
 			const isClient = keys.isClient as boolean
@@ -17,8 +16,9 @@ export default {
 		}
 	},
 	plugins: [
-		{ src: "~/plugins/decorator-metadata.ts" },
-		{ src: "~/plugins/paths.ts" }
+		{ src: "plugins/decorator-metadata.ts" },
+		{ src: "plugins/cockpit-access.ts" },
+		{ src: "plugins/paths.ts" }
 	],
 	generate: {
 		dir: "build/generated",
@@ -41,9 +41,8 @@ export default {
 		}
 	},
 	css: [
-		"~/assets/style/base.scss",
-		"~/layouts/default.scss",
-		"~/components/header/header.scss"
+		"assets/style/base.scss",
+		"layouts/default.scss",
+		"components/header/header.scss"
 	]
-
 }

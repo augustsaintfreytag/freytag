@@ -22,7 +22,7 @@
       "dom"
     ],
 
-    // Rigidity
+    // Type Checking
     "strict": true,
     "allowJs": true,
     "noUnusedLocals": false,
@@ -32,9 +32,6 @@
     // Paths
     "baseUrl": ".",
     "paths": {
-      "~/*": [
-        "./*"
-      ],
       "@/*": [
         "./*"
       ]

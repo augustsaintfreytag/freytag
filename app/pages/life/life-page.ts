@@ -1,16 +1,17 @@
+import LifeEventCardComponent from "@/components/life-event/life-event-card.vue"
+import LifeEventComponent from "@/components/life-event/life-event.vue"
+import { Dictionary } from "@/utils/common/library/dictionary"
+import { Index } from "@/utils/common/library/index"
+import { UUID } from "@/utils/common/library/uuid"
+import { Head } from "@/utils/head/head"
+import { TraversingItemSet } from "@/utils/storage/library/traversing-item-set"
+import { Vita } from "@/utils/storage/models/vita-event"
 import { Component, Vue } from "vue-property-decorator"
-import { Head } from "~/components/common/head/head"
-import { Index } from "~/components/common/library"
-import { Dictionary } from "~/components/common/library/dictionary"
-import { UUID } from "~/components/common/library/uuid"
-import { PageData } from "~/components/common/pages/library/page-data"
-import { Vita } from "~/components/common/storage/models/vita-event"
-import LifeEventCardComponent from "~/components/life-event/life-event-card.vue"
-import LifeEventComponent from "~/components/life-event/life-event.vue"
 import { fetchLifeEvents, Filter, headerDefinitions, isValidSortingMode, sortedLifeEvents, SortingMode, SortingProperties, toggleDefinitions } from "./life-page-data-provider"
-import { TraversingItemSet } from "~/components/common/storage/library/traversing-item-set"
 
-interface Data extends PageData {
+// Data
+
+interface Data {
 	lifeFilter: string|undefined
 	lifeSortingMode: SortingMode
 	lifeSortingIsReversed: boolean
@@ -19,6 +20,8 @@ interface Data extends PageData {
 	lifeEvents: Vita.Event[],
 	lifeEventIndexMap: Dictionary<Index>
 }
+
+// Component
 
 @Component({
 	components: {

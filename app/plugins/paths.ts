@@ -1,16 +1,14 @@
+import { Format } from "@/utils/cockpit/library/cockpit-image-request-presets"
+import { URL, URLComponent } from "@/utils/common/library/url"
+import { CockpitAssetPathForm } from "cockpit-access"
 import Vue from "vue"
-import { UrlComponent, Url } from "~/components/common/library/url"
-import { CockpitAssetPathProvider } from "~/components/common/cockpit/providers/cockpit-asset-path-provider"
-import { CockpitImageRequestPreset } from "~/components/common/cockpit/library/cockpit-image-request-presets"
-
-type Format = CockpitImageRequestPreset.Format
 
 declare module 'vue/types/vue' {
   interface Vue {
-    $imagePath(component: UrlComponent, format?: Format|undefined): Url
+    $imagePath(component: URLComponent, format?: Format|undefined): URL
   }
 }
 
-Vue.prototype.$imagePath = (component: UrlComponent, format?: Format|undefined) => {
-	return CockpitAssetPathProvider.cockpitImage(component, format)
+Vue.prototype.$imagePath = (component: URLComponent, format?: Format|undefined) => {
+	return CockpitAssetPathForm.cockpitImage(component, format)
 }

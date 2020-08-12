@@ -1,6 +1,6 @@
-import { Component, Vue, Prop } from "vue-property-decorator"
-import { Content } from "~/components/common/storage/models/content-block"
-import { CockpitImageRequestPreset } from "~/components/common/cockpit/library/cockpit-image-request-presets"
+import { Content } from "@/utils/storage/models/content-block"
+import { CockpitImageRequest } from "cockpit-access"
+import { Component, Prop, Vue } from "vue-property-decorator"
 
 enum ImageContentDesignation {
 	None = "none",
@@ -43,16 +43,16 @@ export default class ImageColumnsBlockComponent extends Vue {
 		return ImageContentDesignation.None
 	}
 
-	imageFormat(designation: ImageContentDesignation): CockpitImageRequestPreset.Format {
+	imageFormat(designation: ImageContentDesignation): CockpitImageRequest.Format {
 		if (designation === ImageContentDesignation.Single) {
-			return CockpitImageRequestPreset.Format.Large
+			return CockpitImageRequest.Format.Large
 		}
 
 		if (designation === ImageContentDesignation.Dual) {
-			return CockpitImageRequestPreset.Format.Regular
+			return CockpitImageRequest.Format.Regular
 		}
 
-		return CockpitImageRequestPreset.Format.Small
+		return CockpitImageRequest.Format.Small
 	}
 
 }

@@ -1,5 +1,6 @@
+
+import { Head } from "@/utils/head/head"
 import { Component, Vue } from "vue-property-decorator"
-import { Head } from "~/components/common/head/head"
 
 @Component({
 	layout: "maintenance",

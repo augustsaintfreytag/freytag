@@ -1,7 +1,6 @@
+import Rot13 from "@/utils/address-obfuscator/functions/rot-13"
 import { Component, Vue } from "vue-property-decorator"
 import { PageLink } from "./models/page-link"
-import { PageData } from "../common/pages/library/page-data"
-import Rot13 from "../common/address-obfuscator/provider/rot-13"
 
 // Modules
 
@@ -9,7 +8,7 @@ const rot13 = new Rot13()
 
 // Library
 
-interface Data extends PageData {
+interface Data {
 	mail: string
 }
 

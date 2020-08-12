@@ -80,7 +80,7 @@
 
 <script lang="ts">
 	import { Component, Vue } from "vue-property-decorator"
-	import ContactBlockComponent from "~/components/contact-block/contact-block.vue"
+	import ContactBlockComponent from "@/components/contact-block/contact-block.vue"
 
 	@Component({
 		components: { ContactBlockComponent }

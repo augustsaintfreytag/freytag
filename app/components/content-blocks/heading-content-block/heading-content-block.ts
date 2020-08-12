@@ -1,5 +1,5 @@
-import { Component, Vue, Prop } from "vue-property-decorator"
-import { Content } from "~/components/common/storage/models/content-block"
+import { Content } from "@/utils/storage/models/content-block"
+import { Component, Prop, Vue } from "vue-property-decorator"
 
 @Component
 export default class HeadingBlockComponent extends Vue {
