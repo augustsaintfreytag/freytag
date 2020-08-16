@@ -1,7 +1,7 @@
 import FooterComponent from "@/components/footer/footer.vue"
 import HeaderComponent from "@/components/header/header.vue"
 import SpriteSet from "@/components/sprite-set/sprite-set.vue"
-import { Head } from "@/utils/head/head"
+import { head } from "@/utils/head/head"
 import { Component, Vue } from "vue-property-decorator"
 
 @Component({
@@ -12,7 +12,7 @@ import { Component, Vue } from "vue-property-decorator"
 	},
 
 	head() {
-		return Head.modeled()
+		return head()
 	}
 })
 export default class DefaultLayout extends Vue {}

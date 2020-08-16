@@ -2,7 +2,7 @@ import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-pro
 import { Dictionary } from "@/utils/common/library/dictionary"
 import { Index } from "@/utils/common/library/index"
 import { Vita } from "@/utils/storage/models/vita-event"
-import { SortingProvider } from "@/utils/storage/providers/sorting-provider"
+import * as SortingProvider from "@/utils/storage/providers/sorting-provider"
 
 // Library
 	
