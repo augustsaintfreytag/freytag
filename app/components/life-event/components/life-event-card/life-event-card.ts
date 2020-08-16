@@ -1,6 +1,6 @@
 import LifeEventDetailTableComponent from "@/components/life-event/life-event-detail-table.vue"
 import { UUID } from "@/utils/common/library/uuid"
-import { TraversingItemSet } from "@/utils/storage/library/traversing-item-set"
+import { TraversalItem } from "@/utils/storage/library/traversal-item"
 import { Vita } from "@/utils/storage/models/vita-event"
 import { truncated } from "@/utils/truncated-text/truncated-text-provider"
 import { Component, Prop, Vue } from "vue-property-decorator"
@@ -16,7 +16,7 @@ export default class LifeEventCardComponent extends Vue {
 
 	// Data
 
-	@Prop() lifeEventSet!: TraversingItemSet<Vita.Event>
+	@Prop() lifeEventSet!: TraversalItem<Vita.Event>
 
 	requestLifeEvent(id: UUID) {
 		if (!id) {

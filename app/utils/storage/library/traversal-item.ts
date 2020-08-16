@@ -1,4 +1,4 @@
-export interface TraversingItemSet<Item> {
+export interface TraversalItem<Item> {
 
 	previous: Item|undefined
 	current: Item

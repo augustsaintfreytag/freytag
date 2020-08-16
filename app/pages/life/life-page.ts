@@ -4,7 +4,7 @@ import { Dictionary } from "@/utils/common/library/dictionary"
 import { Index } from "@/utils/common/library/index"
 import { UUID } from "@/utils/common/library/uuid"
 import { Head } from "@/utils/head/head"
-import { TraversingItemSet } from "@/utils/storage/library/traversing-item-set"
+import { TraversalItem } from "@/utils/storage/library/traversal-item"
 import { Vita } from "@/utils/storage/models/vita-event"
 import { Component, Vue } from "vue-property-decorator"
 import { fetchLifeEvents, Filter, headerDefinitions, isValidSortingMode, sortedLifeEvents, SortingMode, SortingProperties, toggleDefinitions } from "./life-page-data-provider"
@@ -81,7 +81,7 @@ export default class LifePage extends Vue implements Data {
 		return headerDefinitions
 	}
 
-	get lifeSelectedItemSet(): TraversingItemSet<Vita.Event>|undefined {	
+	get lifeSelectedItemSet(): TraversalItem<Vita.Event>|undefined {	
 		if (!this.lifeSelectedItemId) {
 			return undefined
 		}
