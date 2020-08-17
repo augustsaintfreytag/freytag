@@ -5,6 +5,6 @@
 	</section>
 </template>
 
-<style lang="scss" src="./branding.scss"></style>
+<style lang="scss" src="./page-header-branding.scss"></style>
 
-<script lang="ts" src="./branding.ts"></script>
+<script lang="ts" src="./page-header-branding.ts"></script>

@@ -1,5 +1,5 @@
-import HeaderBrandingComponent from "@/components/header/branding/branding.vue"
-import HeaderComponent from "@/components/header/header.vue"
+import PageHeaderBranding from "@/components/page-header/components/branding/page-header-branding.vue"
+import PageHeader from "@/components/page-header/page-header.vue"
 import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-provider"
 import { head } from "@/utils/head/head"
 import { LandingGraphic, LandingWorks } from "@/utils/storage/models/landing"
@@ -18,8 +18,8 @@ type Data = {
 	layout: "landing",
 
 	components: {
-		HeaderComponent,
-		HeaderBrandingComponent
+		PageHeader,
+		PageHeaderBranding
 	},
 
 	async asyncData(): Promise<Data> {

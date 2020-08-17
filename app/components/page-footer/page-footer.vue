@@ -50,6 +50,6 @@
 	</footer>
 </template>
 
-<style lang="scss" src="./footer.scss"></style>
+<style lang="scss" src="./page-footer.scss"></style>
 
-<script lang="ts" src="./footer.ts"></script>
+<script lang="ts" src="./page-footer.ts"></script>

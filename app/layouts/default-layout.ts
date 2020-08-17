@@ -1,13 +1,13 @@
-import FooterComponent from "@/components/footer/footer.vue"
-import HeaderComponent from "@/components/header/header.vue"
+import PageFooter from "@/components/page-footer/page-footer.vue"
+import PageHeader from "@/components/page-header/page-header.vue"
 import SpriteSet from "@/components/sprite-set/sprite-set.vue"
 import { head } from "@/utils/head/head"
 import { Component, Vue } from "vue-property-decorator"
 
 @Component({
 	components: {
-		HeaderComponent,
-		FooterComponent,
+		PageHeader,
+		PageFooter,
 		SpriteSet
 	},
 

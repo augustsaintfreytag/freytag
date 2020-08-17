@@ -1,5 +1,5 @@
-import LifeEventCardComponent from "@/components/life-event/life-event-card.vue"
-import LifeEventComponent from "@/components/life-event/life-event.vue"
+import LifeEventCard from "@/components/life-event/components/life-event-card/life-event-card.vue"
+import LifeEventListItem from "@/components/life-event/components/life-event-list-item/life-event-list-item.vue"
 import { Dictionary } from "@/utils/common/library/dictionary"
 import { Index } from "@/utils/common/library/index"
 import { UUID } from "@/utils/common/library/uuid"
@@ -25,8 +25,8 @@ interface Data {
 
 @Component({
 	components: {
-		LifeEventComponent,
-		LifeEventCardComponent
+		LifeEventComponent: LifeEventListItem,
+		LifeEventCard
 	},
 
 	async asyncData(): Promise<Data> {

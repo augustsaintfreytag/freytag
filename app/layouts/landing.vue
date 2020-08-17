@@ -14,4 +14,4 @@
 	</div>
 </template>
 
-<script lang="ts" src="./landing.ts"></script>
+<script lang="ts" src="./landing-layout.ts"></script>

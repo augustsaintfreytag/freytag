@@ -6,6 +6,6 @@
 	</nav>
 </template>
 
-<style lang="scss" src="./navigation.scss"></style>
+<style lang="scss" src="./page-header-navigation.scss"></style>
 
-<script lang="ts" src="./navigation.ts" ></script>
+<script lang="ts" src="./page-header-navigation.ts" ></script>

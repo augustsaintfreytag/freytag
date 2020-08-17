@@ -38,11 +38,11 @@
 		</div>
 		<ul class="life-events" ref="life-event-listing">
 			<li v-for="lifeEvent in lifeEvents" :key="lifeEvent.index" v-on:click="openLifeEvent(lifeEvent.meta.id)">
-				<life-event-component :life-event="lifeEvent" title="Open Event in Overlay" />
+				<life-event-list-item :life-event="lifeEvent" title="Open Event in Overlay" />
 			</li>
 		</ul>
 		<aside class="life-event-card-holder" :class="{ hidden: lifeSelectedItemId === undefined }">
-			<life-event-card-component v-if="lifeSelectedItemId" :life-event-set="lifeSelectedItemSet" @requestLifeEvent="openLifeEvent(lifeSelectedItemId)" />
+			<life-event-card v-if="lifeSelectedItemId" :life-event-set="lifeSelectedItemSet" @requestLifeEvent="openLifeEvent(lifeSelectedItemId)" />
 			<div class="overlay" @click="closeLifeEvent()" title="Close Overlay"></div>
 		</aside>
 		<aside class="opt">

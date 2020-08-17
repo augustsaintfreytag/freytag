@@ -26,7 +26,7 @@ interface Data {
 	}
 
 })
-export default class FooterComponent extends Vue implements Data {
+export default class PageFooter extends Vue implements Data {
 
 	// Data
 

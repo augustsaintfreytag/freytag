@@ -7,7 +7,7 @@ interface RouteEntry {
 }
 
 @Component({})
-export default class HeaderComponent extends Vue {
+export default class PageHeaderNavigation extends Vue {
 
 	get routes(): RouteEntry[] {
 		return [

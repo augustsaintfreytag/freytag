@@ -17,7 +17,7 @@ function brandingOccupations(): string[] {
 		}
 	}
 })
-export default class HeaderBrandingComponent extends Vue implements Data {
+export default class PageHeaderBranding extends Vue implements Data {
 
 	primaryTitle!: string
 	primaryOccupations!: string
