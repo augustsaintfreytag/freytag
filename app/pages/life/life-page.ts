@@ -3,7 +3,7 @@ import LifeEventComponent from "@/components/life-event/life-event.vue"
 import { Dictionary } from "@/utils/common/library/dictionary"
 import { Index } from "@/utils/common/library/index"
 import { UUID } from "@/utils/common/library/uuid"
-import { Head } from "@/utils/head/head"
+import { head, suffixedTitle } from "@/utils/head/head"
 import { TraversalItem } from "@/utils/storage/library/traversal-item"
 import { Vita } from "@/utils/storage/models/vita-event"
 import { Component, Vue } from "vue-property-decorator"
@@ -51,8 +51,8 @@ interface Data {
 	},
 
 	head() {
-		return Head.modeled({
-			title: Head.Form.suffixedTitle("Life"),
+		return head({
+			title: suffixedTitle("Life"),
 			meta: [
 				{hid: "description", name: "description", content: "Listing of all recorded projects, work-in-progress and completed, for categories life, education, film, development, artwork, and photography, presented by time, format, role, location, and context surrounding each entry."}
 			]

@@ -3,15 +3,15 @@ import ImageColumnsBlockComponent from "@/components/content-blocks/image-column
 import TextColumnBlockComponent from "@/components/content-blocks/text-column-block/text-column-block.vue"
 import TextQuoteBlockComponent from "@/components/content-blocks/text-quote-block/text-quote-block.vue"
 import VideoVimeoBlockComponent from "@/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
+import { formattedDateRange } from "@/components/life-event/functions/vita-date-formatter"
 import LifeEventDetailTableComponent from "@/components/life-event/life-event-detail-table.vue"
 import Markdown from "@/components/markdown/markdown.vue"
 import { Dictionary } from "@/utils/common/library/dictionary"
 import { UUID } from "@/utils/common/library/uuid"
-import { Head } from "@/utils/head/head"
+import { head, suffixedTitle } from "@/utils/head/head"
 import { MetaTag } from "@/utils/head/library/meta-tag"
 import { Content } from "@/utils/storage/models/content-block"
 import { Work } from "@/utils/storage/models/work-item"
-import { DateFormatter } from "@/utils/storage/providers/date-formatter"
 import { Component, Vue } from "vue-property-decorator"
 import * as DataProvider from "./work-detail-data-provider"
 
@@ -75,7 +75,7 @@ interface Data extends AsyncPartialData {
 			const metaTag: MetaTag = {hid: "description", name: "description", content: undefined}
 
 			if (event) {
-				const introducingText = `${event.kind}, ${event.format}, ${DateFormatter.formattedDateRange(event)}`
+				const introducingText = `${event.kind}, ${event.format}, ${formattedDateRange(event)}`
 				metaTag.content = `${introducingText} ${item.description}`
 			} else {
 				metaTag.content = item.description
@@ -84,8 +84,8 @@ interface Data extends AsyncPartialData {
 			meta.push(metaTag)
 		}
 
-		return Head.modeled({
-			title: Head.Form.suffixedTitle(itemName || "Untitled", titleComponents), meta
+		return head({
+			title: suffixedTitle(itemName || "Untitled", titleComponents), meta
 		})
 	}
 })

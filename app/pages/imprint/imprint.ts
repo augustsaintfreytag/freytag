@@ -1,5 +1,5 @@
 import ContactBlockComponent from "@/components/contact-block/contact-block.vue"
-import { Head } from "@/utils/head/head"
+import { head, suffixedTitle } from "@/utils/head/head"
 import { Component, Vue } from "vue-property-decorator"
 
 @Component({
@@ -8,8 +8,8 @@ import { Component, Vue } from "vue-property-decorator"
 	},
 
 	head() {
-		return Head.modeled({
-			title: Head.Form.suffixedTitle("Imprint")
+		return head({
+			title: suffixedTitle("Imprint")
 		})
 	}
 })

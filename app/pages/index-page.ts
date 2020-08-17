@@ -1,7 +1,7 @@
 import HeaderBrandingComponent from "@/components/header/branding/branding.vue"
 import HeaderComponent from "@/components/header/header.vue"
 import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-provider"
-import { Head } from "@/utils/head/head"
+import { head } from "@/utils/head/head"
 import { Landing } from "@/utils/storage/models/landing"
 import { Component, Vue } from "vue-property-decorator"
 
@@ -32,7 +32,7 @@ type Data = {
 	},
 
 	head() {
-		return Head.modeled({
+		return head({
 			meta: [
 				{
 					hid: "description", 
