@@ -1,16 +1,16 @@
 <template>
 	<div id="page">
 		<div class="wrap">
-			<header-component />
+			<page-header />
 			<main>
 				<nuxt />
 			</main>
-			<footer-component />
+			<page-footer />
 		</div>
 		<sprite-set />
 	</div>
 </template>
 
-<style lang="scss" src="./default.scss"></style>
+<style lang="scss" src="./default-layout.scss"></style>
 
-<script lang="ts" src="./default.ts"></script>
+<script lang="ts" src="./default-layout.ts"></script>

@@ -1,32 +1,21 @@
-import { Component, Vue } from "vue-property-decorator"
-import Markdown from "markdown-it"
+import { Component, Prop, Vue } from "vue-property-decorator"
+import { MarkdownProvider } from "./functions/markdown-provider"
 
-namespace Modules {
+interface Data {
+	formattedContent: string
+}
 
-	export const markdown = Markdown({
-		linkify: true
-	})
+@Component({})
+export default class Markdown extends Vue implements Data {
 
-	export function supplemented(input: string): string {
-		return withSupplementedAnchors(input)
-	}
+	// Props
 
-	export function withSupplementedAnchors(input: string): string {
-		return input.replace(/(<a\s*href="[^/].+?")(\s*>)/g, "$1 target=\"_blank\" rel=\"noopener\"$2")
+	@Prop() content!: string
+
+	// Data
+
+	get formattedContent(): string {
+		return MarkdownProvider.render(this.content)
 	}
 
 }
-
-@Component({
-	props: [
-		"content"
-	],
-
-	data() {
-		const sourceString = this.$props["content"] as string
-		const renderedString = Modules.markdown.render(sourceString)
-
-		return { output: Modules.supplemented(renderedString) }
-	}
-})
-export default class MarkdownComponent extends Vue {}

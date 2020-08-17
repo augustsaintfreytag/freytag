@@ -23,17 +23,18 @@ services:
       - ./app/nuxt.config.ts:/var/app/nuxt.config.ts:cached
       - ./app/package.json:/var/app/package.json:cached
       - ./app/tsconfig.json:/var/app/tsconfig.json:cached
-      - ./app/vue-shim.d.ts:/var/app/vue-shim.d.ts:cached
       - ./app/yarn.lock:/var/app/yarn.lock:cached
-      - ./app/plugins:/var/app/plugins:cached
       - ./app/assets:/var/app/assets:cached
-      - ./app/static:/var/app/static:cached
       - ./app/components:/var/app/components:cached
       - ./app/layouts:/var/app/layouts:cached
       - ./app/pages:/var/app/pages:cached
+      - ./app/plugins:/var/app/plugins:cached
+      - ./app/static:/var/app/static:cached
+      - ./app/types:/var/app/types:cached
+      - ./app/utils:/var/app/utils:cached
       - data_app_node_modules:/var/app/node_modules
       - data_app_build_generated:/var/app/build
-      - data_app_build_nuxt:/var/lib/nuxt
+      - data_app_build_nuxt:/var/app/.output
     command: "bash -c 'cd /var/app && yarn && $APP_CMD_STARTUP'"
     restart: unless-stopped
     environment:

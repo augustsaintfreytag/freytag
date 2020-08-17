@@ -1,18 +1,16 @@
+import ContactBlock from "@/components/contact-block/contact-block.vue"
+import { head, suffixedTitleForHead } from "@/utils/head/head"
 import { Component, Vue } from "vue-property-decorator"
-import { Head } from "~/components/common/head/head"
-import ContactBlockComponent from "~/components/contact-block/contact-block.vue"
 
 @Component({
-
 	components: {
-		ContactBlockComponent
+		ContactBlock
 	},
 
 	head() {
-		return Head.modeled({
-			title: Head.Form.suffixedTitle("Imprint")
+		return head({
+			title: suffixedTitleForHead("Imprint")
 		})
 	}
-
 })
 export default class ImprintPage extends Vue {}

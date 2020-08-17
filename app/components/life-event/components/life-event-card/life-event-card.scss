@@ -1,0 +1,161 @@
+@import "@/assets/style/values.scss";
+@import "@/assets/style/mixins/blip-element.scss";
+@import "@/assets/style/life-kind-colors.scss";
+@import "@/assets/style/mixins/mobile.scss";
+
+.life-event-card {
+	// All
+	$baseSpacing: 50px;
+	$interSectionSpacing: $baseSpacing * 0.5;
+	$outerSectionSpacing: $baseSpacing * 1.5;
+
+	$interSectionSpacingSlim: $baseSpacing * 0.25;
+	$outerSectionSpacingSlim: $baseSpacing * 0.5;
+
+	// Elements
+	$blipSize: 16px;
+	$blipPadding: 15px;
+	$tableContentInset: 70px;
+
+	position: relative;
+	padding: 0 50px;
+	background: #fff;
+	box-shadow: 0 0 15px rgba(0, 0, 0, 0.20);
+	border-radius: 10px;
+
+	@include mobile("factor-xs") {
+		padding: 0 20px;
+	}
+
+	> header {
+		display: flex;
+		width: 100%;
+		margin-top: $outerSectionSpacing;
+		margin-bottom: $baseSpacing;
+
+		@include mobile("factor-xs") {
+			margin-top: $outerSectionSpacingSlim;
+		}
+
+		> * {
+			flex: 0 auto;
+		}
+
+		.blip {	
+			flex: 0 $blipSize;
+			padding-right: $blipPadding;
+			align-self: center;
+
+			@include blipElement($blipSize);
+		}
+
+		h2 {
+			margin: 0;
+			font-size: $fontSizeLabelBold;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
+
+		@include mobile("factor-xs") {
+			margin-bottom: $baseSpacing * 0.5;
+
+			h2 {
+				font-size: $fontSizeLabelDefault;
+			}
+		}
+	}
+
+	> section, > nav {
+		margin-bottom: $interSectionSpacing;
+
+		@include mobile("factor-xs") {
+			margin-bottom: $interSectionSpacingSlim;
+		}
+	}
+
+	> .details {
+		table {
+			border-collapse: collapse;
+			border: none;
+
+			td {
+				vertical-align: top;
+				padding-bottom: 10px;
+				padding-right: 25px;
+
+				&.label {
+					padding-right: $tableContentInset;
+					text-align: left;
+					font-weight: 500;
+					box-sizing: border-box;
+				}
+			}
+		}
+
+		@include mobile("factor-xs") {
+			table {
+				td {
+					padding-right: 5px;
+					padding-bottom: 10px;
+
+					&.label {
+						padding-right: $tableContentInset * 0.3;
+					}
+				}
+			}
+		}
+	}
+
+	.description {
+		line-height: $textLineHeightParagraphBold;
+	}
+
+	> nav {
+		$indicatorSpacing: 8px;
+
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		margin-top: $outerSectionSpacing;
+		margin-bottom: $baseSpacing;
+		color: $textColorVeryLight;
+
+		@include mobile("factor-xs") {
+			margin-top: $outerSectionSpacingSlim;
+		}
+
+		> div {
+			overflow: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			user-select: none;
+
+			&.active {
+				cursor: pointer;
+			}
+		}
+
+		.previous {
+			.indicator {
+				padding-right: $indicatorSpacing;
+			}
+		}
+
+		.next {
+			.indicator {
+				padding-left: $indicatorSpacing;
+			}
+		}
+	}
+
+
+	@include mobile("factor-xs") {
+		.description {
+			margin-bottom: $outerSectionSpacingSlim;
+		}
+
+		nav {
+			display: none;
+		}
+	}
+}

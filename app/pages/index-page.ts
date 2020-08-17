@@ -1,36 +1,55 @@
+import PageHeaderBranding from "@/components/page-header/components/branding/page-header-branding.vue"
+import PageHeader from "@/components/page-header/page-header.vue"
+import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-provider"
+import { head } from "@/utils/head/head"
+import { LandingGraphic, LandingWorks } from "@/utils/storage/models/landing"
 import { Component, Vue } from "vue-property-decorator"
-import HeaderComponent from "~/components/header/header.vue"
-import HeaderBrandingComponent from "~/components/header/branding/branding.vue"
-import { IndexData } from "./index-data"
-import { IndexPageMapper } from "./index-page-mapper"
-import { Head } from "~/components/common/head/head"
+
+// Library
+
+type Data = {
+	graphic: LandingGraphic|undefined,
+	works: LandingWorks|undefined
+}
+
+// Component
 
 @Component({
 	layout: "landing",
 
 	components: {
-		HeaderComponent,
-		HeaderBrandingComponent
+		PageHeader,
+		PageHeaderBranding
 	},
 
-	async asyncData() {
-		const initialData: IndexData = {
-			graphic: undefined,
-			works: undefined
-		}
-		
-		await IndexPageMapper.mapLandingGraphic(initialData)
-		await IndexPageMapper.mapLandingWorks(initialData)
+	async asyncData(): Promise<Data> {
+		const graphic = await CockpitDataProvider.landingGraphic()
+		const works = await CockpitDataProvider.landingWorks()
 
-		return initialData
+		return {
+			graphic, works
+		}
 	},
 
 	head() {
-		return Head.modeled({
+		return head({
 			meta: [
-				{hid: "description", name: "description", content: "Personal portfolio and work showcase site of August Saint Freytag (A.S.F.), music video artist, filmmaker, concept designer, developer, analogue photographer. Presenting a selection of artwork, concepts, sketches and work in progress."}
+				{
+					hid: "description", 
+					name: "description", 
+					content: [
+						"Personal portfolio and work showcase site of August Saint Freytag (A.S.F.),", 
+						"music video artist, filmmaker, concept designer, developer, analogue photographer.", 
+						"Presenting a selection of artwork, concepts, sketches and work in progress."
+					].join(" ")
+				}
 			]
 		})
 	}
 })
-export default class IndexPage extends Vue {}
+export default class IndexPage extends Vue implements Data {
+
+	graphic: LandingGraphic|undefined
+	works: LandingWorks|undefined
+
+}
