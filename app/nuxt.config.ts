@@ -42,7 +42,7 @@ export default {
 	},
 	css: [
 		"assets/style/base.scss",
-		"layouts/default.scss",
-		"components/header/header.scss"
+		"layouts/default-layout.scss",
+		"components/page-header/page-header.scss"
 	]
 }
