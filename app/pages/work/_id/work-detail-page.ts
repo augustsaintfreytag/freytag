@@ -8,7 +8,7 @@ import LifeEventDetailTableComponent from "@/components/life-event/life-event-de
 import Markdown from "@/components/markdown/markdown.vue"
 import { Dictionary } from "@/utils/common/library/dictionary"
 import { UUID } from "@/utils/common/library/uuid"
-import { head, suffixedTitle } from "@/utils/head/head"
+import { head, suffixedTitleForHead } from "@/utils/head/head"
 import { MetaTag } from "@/utils/head/library/meta-tag"
 import { Content } from "@/utils/storage/models/content-block"
 import { Work } from "@/utils/storage/models/work-item"
@@ -85,7 +85,7 @@ interface Data extends AsyncPartialData {
 		}
 
 		return head({
-			title: suffixedTitle(itemName || "Untitled", titleComponents), meta
+			title: suffixedTitleForHead(itemName || "Untitled", titleComponents), meta
 		})
 	}
 })

@@ -51,6 +51,6 @@ export function head(include?: HeadDictionary|undefined): HeadDictionary {
 
 // Element Form
 
-export function suffixedTitle(primaryTitle: string, titles: string[] = []): string {
+export function suffixedTitleForHead(primaryTitle: string, titles: string[] = []): string {
 	return [primaryTitle, ...titles, title].join(separator)
 }

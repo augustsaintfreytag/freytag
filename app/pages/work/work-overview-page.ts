@@ -1,5 +1,5 @@
 import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-provider"
-import { head, suffixedTitle } from "@/utils/head/head"
+import { head, suffixedTitleForHead } from "@/utils/head/head"
 import { Work } from "@/utils/storage/models/work-item"
 import { Component, Vue } from "vue-property-decorator"
 
@@ -32,7 +32,7 @@ async function fetchWorkItems(): Promise<Work.Item[]> {
 
 	head() {
 		return head({
-			title: suffixedTitle("Work"),
+			title: suffixedTitleForHead("Work"),
 			meta: [
 				{
 					hid: "description", 

@@ -1,5 +1,5 @@
 import ContactBlockComponent from "@/components/contact-block/contact-block.vue"
-import { head, suffixedTitle } from "@/utils/head/head"
+import { head, suffixedTitleForHead } from "@/utils/head/head"
 import { Component, Vue } from "vue-property-decorator"
 
 @Component({
@@ -9,7 +9,7 @@ import { Component, Vue } from "vue-property-decorator"
 
 	head() {
 		return head({
-			title: suffixedTitle("Imprint")
+			title: suffixedTitleForHead("Imprint")
 		})
 	}
 })

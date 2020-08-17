@@ -1,4 +1,4 @@
-import { head, suffixedTitle } from "@/utils/head/head"
+import { head, suffixedTitleForHead } from "@/utils/head/head"
 import { Component, Vue } from "vue-property-decorator"
 
 @Component({
@@ -6,7 +6,7 @@ import { Component, Vue } from "vue-property-decorator"
 
 	head() {
 		return head({
-			title: suffixedTitle("Maintenance")
+			title: suffixedTitleForHead("Maintenance")
 		})
 	}
 })
