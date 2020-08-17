@@ -1,4 +1,4 @@
-import { Content } from "@/utils/storage/models/content-block"
+import { ContentBlock, ImageColumnsContentBlock } from "@/utils/storage/models/content-block"
 import { CockpitImageRequest } from "cockpit-access"
 import { Component, Prop, Vue } from "vue-property-decorator"
 
@@ -13,12 +13,12 @@ enum ImageContentDesignation {
 @Component({})
 export default class ImageColumnsBlockComponent extends Vue {
 
-	@Prop() contentBlock!: Content.Block
+	@Prop() contentBlock!: ContentBlock
 
 	get imageContentDesignation(): ImageContentDesignation {
 		const contentBlock = this.contentBlock
 
-		if (!Content.ImageColumnsBlock.isImageColumnsBlock(contentBlock)) {
+		if (!ImageColumnsContentBlock.isImageColumnsBlock(contentBlock)) {
 			return ImageContentDesignation.None
 		}
 

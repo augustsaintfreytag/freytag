@@ -1,5 +1,5 @@
 import Markdown from "@/components/markdown/markdown.vue"
-import { Content } from "@/utils/storage/models/content-block"
+import { ContentBlock } from "@/utils/storage/models/content-block"
 import { Component, Prop, Vue } from "vue-property-decorator"
 
 @Component({
@@ -9,6 +9,6 @@ import { Component, Prop, Vue } from "vue-property-decorator"
 })
 export default class TextColumnBlockComponent extends Vue {
 
-	@Prop() contentBlock!: Content.Block
+	@Prop() contentBlock!: ContentBlock
 
 }

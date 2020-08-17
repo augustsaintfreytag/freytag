@@ -1,163 +1,151 @@
+import { ContentBlockKind } from "@/utils/storage/models/content-block-kind"
+import { ImageContent, ImageContentEntry } from "@/utils/storage/models/image-content"
 import { CockpitEntry, CockpitMetaData } from "cockpit-access"
-import { Image } from "./image"
 
-export namespace Content {
+// Types
 
-	// Live Models
+type BlockRepeatedImageEntry = ContentBlockRepeatedEntry<ImageContentEntry>
+type BlockRepeatedCaptionEntry = ContentBlockRepeatedEntry<string>
 
-	export interface Block {
+type AnyBlockRepeatedEntry = BlockRepeatedImageEntry|BlockRepeatedCaptionEntry
 
-		form: Form|undefined
-		meta: CockpitMetaData
+// Live Models
 
+export interface ContentBlock {
+
+	form: ContentBlockKind|undefined
+	meta: CockpitMetaData
+
+}
+
+export class HeadingContentBlock implements ContentBlock {
+
+	form: ContentBlockKind|undefined
+	textContent: string|undefined
+	meta: CockpitMetaData
+
+	constructor(entry: ContentBlockEntry) {
+		this.form = (entry.form as ContentBlockKind) || undefined
+		this.textContent = entry.textContent || undefined
+		this.meta = new CockpitMetaData(entry)
 	}
 
-	export class HeadingBlock implements Block {
+}
 
-		form: Form|undefined
-		textContent: string|undefined
-		meta: CockpitMetaData
+export class TextQuoteContentBlock implements ContentBlock {
 
-		constructor(entry: BlockEntry) {
-			this.form = (entry.form as Form) || undefined
-			this.textContent = entry.textContent || undefined
-			this.meta = new CockpitMetaData(entry)
+	form: ContentBlockKind|undefined
+	textContent: string|undefined
+	meta: CockpitMetaData
+
+	constructor(entry: ContentBlockEntry) {
+		this.form = (entry.form as ContentBlockKind) || undefined
+		this.textContent = entry.textContent || undefined
+		this.meta = new CockpitMetaData(entry)
+	}
+
+}
+
+export class TextColumnContentBlock extends TextQuoteContentBlock {}
+
+export class ImageColumnsContentBlock implements ContentBlock {
+
+	form: ContentBlockKind|undefined
+	imageContents: ImageContent[]
+	meta: CockpitMetaData
+
+	constructor(entry: ContentBlockEntry) {
+		if (entry.form !== ContentBlockKind.ImageColumns) {
+			throw new TypeError(`Entry has incompatible form '${entry.form}', expected image columns block.`)
 		}
 
-	}
+		this.imageContents = []
+		const entryContents = entry.imageContents || []
 
-	export class TextQuoteBlock implements Block {
-
-		form: Form|undefined
-		textContent: string|undefined
-		meta: CockpitMetaData
-
-		constructor(entry: BlockEntry) {
-			this.form = (entry.form as Form) || undefined
-			this.textContent = entry.textContent || undefined
-			this.meta = new CockpitMetaData(entry)
-		}
-
-	}
-
-	export class TextColumnBlock extends TextQuoteBlock {}
-
-	export class ImageColumnsBlock implements Block {
-
-		form: Form|undefined
-		imageContents: Image.Content[]
-		meta: CockpitMetaData
-
-		constructor(entry: BlockEntry) {
-			if (entry.form !== Form.ImageColumns) {
-				throw new TypeError(`Entry has incompatible form '${entry.form}', expected image columns block.`)
+		for (let index=0, length = entryContents.length; index < length; index ++) {
+			const imageContentEntry = ImageColumnsContentBlock.imageContentEntryInSequence(entryContents, index)
+			const captionContentEntry = ImageColumnsContentBlock.captionContentEntryInSequence(entryContents, index)
+			
+			if (!imageContentEntry) {
+				break
 			}
 
-			this.imageContents = []
-			const entryContents = entry.imageContents || []
-
-			for (let index=0, length = entryContents.length; index < length; index ++) {
-				const imageContentEntry = ImageColumnsBlock.imageContentEntryInSequence(entryContents, index)
-				const captionContentEntry = ImageColumnsBlock.captionContentEntryInSequence(entryContents, index)
-				
-				if (!imageContentEntry) {
-					break
-				}
-
-				if (captionContentEntry) {
-					index ++
-				}
-
-				const imageContent = new Image.Content(imageContentEntry, captionContentEntry)
-				this.imageContents.push(imageContent)
+			if (captionContentEntry) {
+				index ++
 			}
 
-			this.form = (entry.form as Form) || undefined
-			this.meta = new CockpitMetaData(entry)
+			const imageContent = new ImageContent(imageContentEntry, captionContentEntry)
+			this.imageContents.push(imageContent)
 		}
 
-		private static imageContentEntryInSequence(sequence: AnyBlockRepeatedEntry[], startingIndex: number): Image.ContentEntry|undefined {
-			const imageContentEntry = sequence[startingIndex] as BlockRepeatedImageEntry
-			if (imageContentEntry.field.type !== "image") {
-				return undefined
-			}
+		this.form = (entry.form as ContentBlockKind) || undefined
+		this.meta = new CockpitMetaData(entry)
+	}
 
-			return imageContentEntry.value
+	private static imageContentEntryInSequence(sequence: AnyBlockRepeatedEntry[], startingIndex: number): ImageContentEntry|undefined {
+		const imageContentEntry = sequence[startingIndex] as BlockRepeatedImageEntry
+		if (imageContentEntry.field.type !== "image") {
+			return undefined
 		}
 
-		private static captionContentEntryInSequence(sequence: AnyBlockRepeatedEntry[], startingIndex: number): string|undefined {
-			const captionContentEntry = (startingIndex + 1) < sequence.length ? sequence[startingIndex + 1] as BlockRepeatedCaptionEntry : undefined
-			if (!captionContentEntry || captionContentEntry.field.name !== "caption") {
-				return undefined
-			}
+		return imageContentEntry.value
+	}
 
-			return captionContentEntry.value
+	private static captionContentEntryInSequence(sequence: AnyBlockRepeatedEntry[], startingIndex: number): string|undefined {
+		const captionContentEntry = (startingIndex + 1) < sequence.length ? sequence[startingIndex + 1] as BlockRepeatedCaptionEntry : undefined
+		if (!captionContentEntry || captionContentEntry.field.name !== "caption") {
+			return undefined
 		}
 
-		// Type Assertion
+		return captionContentEntry.value
+	}
 
-		static isImageColumnsBlock(object: Object): object is ImageColumnsBlock {
-			const formValue = object["form"]
-			if (!formValue || formValue !== Form.ImageColumns) {
-				return false
-			}
+	// Type Assertion
 
-			return true
+	static isImageColumnsBlock(object: Object): object is ImageColumnsContentBlock {
+		const formValue = object["form"]
+		if (!formValue || formValue !== ContentBlockKind.ImageColumns) {
+			return false
 		}
 
+		return true
 	}
 
-	export class VideoVimeoBlock implements Block {
+}
 
-		form: Form|undefined
-		videoCode: string|undefined
-		videoAspectValue: string|undefined
-		meta: CockpitMetaData
+export class VideoVimeoContentBlock implements ContentBlock {
 
-		constructor(entry: BlockEntry) {
-			this.form = entry.form as Form
-			this.videoCode = entry.videoCode || undefined
-			this.videoAspectValue = entry.videoAspectValue || undefined
-			this.meta = new CockpitMetaData(entry)
-		}
+	form: ContentBlockKind|undefined
+	videoCode: string|undefined
+	videoAspectValue: string|undefined
+	meta: CockpitMetaData
 
+	constructor(entry: ContentBlockEntry) {
+		this.form = entry.form as ContentBlockKind
+		this.videoCode = entry.videoCode || undefined
+		this.videoAspectValue = entry.videoAspectValue || undefined
+		this.meta = new CockpitMetaData(entry)
 	}
 
-	export enum Form {
+}
 
-		Heading = "Heading",
-		TextQuote = "Text (Quote)",
-		TextColumn = "Text (Column)",
-		ImageColumns = "Images (Columns)",
-		VideoVimeo = "Video (Vimeo)"
+// Stored Models
 
-	}
+export interface ContentBlockEntry extends CockpitEntry {
 
-	// Stored Models
+	form: string
+	identifierItem: string
+	identifierGroup: string
+	textContent: string
+	imageContents: BlockRepeatedImageEntry[]|undefined
+	videoCode: string
+	videoAspectValue: string
 
-	export interface BlockEntry extends CockpitEntry {
+}
 
-		form: string
-		identifierItem: string
-		identifierGroup: string
-		textContent: string
-		imageContents: BlockRepeatedImageEntry[]|undefined
-		videoCode: string
-		videoAspectValue: string
+export interface ContentBlockRepeatedEntry<ValueObject> {
 
-	}
-
-	export interface BlockRepeatedEntry<ValueObject> {
-
-		field: {type: string, name?: string, label?: string}
-		value: ValueObject
-
-	}
-
-	type BlockRepeatedImageEntry = BlockRepeatedEntry<Image.ContentEntry>
-	type BlockRepeatedCaptionEntry = BlockRepeatedEntry<string>
-
-	type AnyBlockRepeatedEntry = BlockRepeatedImageEntry|BlockRepeatedCaptionEntry
-	type ImageContentEntries = {imageContentEntry: BlockRepeatedImageEntry, captionContentEntry: BlockRepeatedCaptionEntry}
+	field: {type: string, name?: string, label?: string}
+	value: ValueObject
 
 }

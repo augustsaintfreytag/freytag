@@ -1,15 +1,15 @@
 import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-provider"
 import { head, suffixedTitleForHead } from "@/utils/head/head"
-import { Work } from "@/utils/storage/models/work-item"
+import { WorkItem } from "@/utils/storage/models/work-item"
 import { Component, Vue } from "vue-property-decorator"
 
 interface Data {
-	workItems: Work.Item[]
+	workItems: WorkItem[]
 }
 
 // Data Form
 
-async function fetchWorkItems(): Promise<Work.Item[]> {
+async function fetchWorkItems(): Promise<WorkItem[]> {
 	try {
 		const workItems = await CockpitDataProvider.workItems()
 		return workItems.sort((lhs, rhs) => {
@@ -45,6 +45,6 @@ async function fetchWorkItems(): Promise<Work.Item[]> {
 })
 export default class WorkOverviewPage extends Vue {
 
-	workItems: Work.Item[] = []
+	workItems: WorkItem[] = []
 
 }

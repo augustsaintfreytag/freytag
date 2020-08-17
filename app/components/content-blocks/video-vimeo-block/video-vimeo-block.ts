@@ -1,5 +1,5 @@
 import VimeoPlayerComponent from "@/components/vimeo-player/vimeo-player.vue"
-import { Content } from "@/utils/storage/models/content-block"
+import { ContentBlock } from "@/utils/storage/models/content-block"
 import { Component, Prop, Vue } from "vue-property-decorator"
 
 @Component({
@@ -9,6 +9,6 @@ import { Component, Prop, Vue } from "vue-property-decorator"
 })
 export default class VideoVimeoBlockComponent extends Vue {
 
-	@Prop() contentBlock!: Content.Block
+	@Prop() contentBlock!: ContentBlock
 
 }

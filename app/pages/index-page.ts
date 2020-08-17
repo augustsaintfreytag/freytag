@@ -2,14 +2,14 @@ import HeaderBrandingComponent from "@/components/header/branding/branding.vue"
 import HeaderComponent from "@/components/header/header.vue"
 import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-provider"
 import { head } from "@/utils/head/head"
-import { Landing } from "@/utils/storage/models/landing"
+import { LandingGraphic, LandingWorks } from "@/utils/storage/models/landing"
 import { Component, Vue } from "vue-property-decorator"
 
 // Library
 
 type Data = {
-	graphic: Landing.Graphic|undefined,
-	works: Landing.Works|undefined
+	graphic: LandingGraphic|undefined,
+	works: LandingWorks|undefined
 }
 
 // Component
@@ -49,7 +49,7 @@ type Data = {
 })
 export default class IndexPage extends Vue implements Data {
 
-	graphic: Landing.Graphic|undefined
-	works: Landing.Works|undefined
+	graphic: LandingGraphic|undefined
+	works: LandingWorks|undefined
 
 }

@@ -3,15 +3,15 @@ import ImageColumnsBlockComponent from "@/components/content-blocks/image-column
 import TextColumnBlockComponent from "@/components/content-blocks/text-column-block/text-column-block.vue"
 import TextQuoteBlockComponent from "@/components/content-blocks/text-quote-block/text-quote-block.vue"
 import VideoVimeoBlockComponent from "@/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
-import { formattedDateRange } from "@/components/life-event/functions/vita-date-formatter"
+import { formattedDateRange } from "@/components/life-event/functions/life-event-date-formatter"
 import LifeEventDetailTableComponent from "@/components/life-event/life-event-detail-table.vue"
 import Markdown from "@/components/markdown/markdown.vue"
 import { Dictionary } from "@/utils/common/library/dictionary"
 import { UUID } from "@/utils/common/library/uuid"
 import { head, suffixedTitleForHead } from "@/utils/head/head"
 import { MetaTag } from "@/utils/head/library/meta-tag"
-import { Content } from "@/utils/storage/models/content-block"
-import { Work } from "@/utils/storage/models/work-item"
+import { ContentBlockKind } from "@/utils/storage/models/content-block-kind"
+import { WorkItem } from "@/utils/storage/models/work-item"
 import { Component, Vue } from "vue-property-decorator"
 import * as DataProvider from "./work-detail-data-provider"
 
@@ -19,11 +19,11 @@ import * as DataProvider from "./work-detail-data-provider"
 
 interface AsyncPartialData {
 	workItemId: string|undefined
-	workItem: Work.Item|undefined
+	workItem: WorkItem|undefined
 }
 
 interface Data extends AsyncPartialData {
-	formTypes: Dictionary<Content.Form>,
+	formTypes: Dictionary<ContentBlockKind>,
 }
 
 // Component
@@ -42,7 +42,7 @@ interface Data extends AsyncPartialData {
 	async asyncData({ params }): Promise<AsyncPartialData> {
 		const workItemId = params["id"] as UUID|undefined
 
-		const workItem: Work.Item|undefined = await (async () => {
+		const workItem: WorkItem|undefined = await (async () => {
 			if (!workItemId) {
 				return undefined
 			}
@@ -92,14 +92,14 @@ interface Data extends AsyncPartialData {
 export default class WorkDetailPage extends Vue implements Data {
 
 	formTypes = {
-		heading: Content.Form.Heading,
-		imageColumns: Content.Form.ImageColumns,
-		textColumn: Content.Form.TextColumn,
-		textQuote: Content.Form.TextQuote,
-		videoVimeo: Content.Form.VideoVimeo
+		heading: ContentBlockKind.Heading,
+		imageColumns: ContentBlockKind.ImageColumns,
+		textColumn: ContentBlockKind.TextColumn,
+		textQuote: ContentBlockKind.TextQuote,
+		videoVimeo: ContentBlockKind.VideoVimeo
 	}
 
 	workItemId: UUID|undefined
-	workItem: Work.Item|undefined
+	workItem: WorkItem|undefined
 
 }

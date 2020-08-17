@@ -1,5 +1,5 @@
 import { filteredRowsByNames, filteredRowsByValue, rowsFromEvent } from "@/components/life-event/functions/life-event-filter"
-import { Vita } from "@/utils/storage/models/vita-event"
+import { LifeEvent } from "@/utils/storage/models/life-event"
 import { Component, Prop, Vue } from "vue-property-decorator"
 
 export type LifeEventDetailRow = {
@@ -10,7 +10,7 @@ export type LifeEventDetailRow = {
 @Component({})
 export default class LifeEventDetailTableComponent extends Vue {
 
-	@Prop() lifeEvent!: Vita.Event
+	@Prop() lifeEvent!: LifeEvent
 	@Prop() rowNames!: string[]
 	@Prop() showsEmptyRows: boolean = false
 

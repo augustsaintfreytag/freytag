@@ -5,7 +5,7 @@ import { Index } from "@/utils/common/library/index"
 import { UUID } from "@/utils/common/library/uuid"
 import { head, suffixedTitleForHead } from "@/utils/head/head"
 import { TraversalItem } from "@/utils/storage/library/traversal-item"
-import { Vita } from "@/utils/storage/models/vita-event"
+import { LifeEvent } from "@/utils/storage/models/life-event"
 import { Component, Vue } from "vue-property-decorator"
 import { fetchLifeEvents, Filter, headerDefinitions, isValidSortingMode, sortedLifeEvents, SortingMode, SortingProperties, toggleDefinitions } from "./life-page-data-provider"
 
@@ -16,8 +16,8 @@ interface Data {
 	lifeSortingMode: SortingMode
 	lifeSortingIsReversed: boolean
 	lifeSelectedItemId: UUID|undefined,
-	lifeRawEvents: Vita.Event[]
-	lifeEvents: Vita.Event[],
+	lifeRawEvents: LifeEvent[]
+	lifeEvents: LifeEvent[],
 	lifeEventIndexMap: Dictionary<Index>
 }
 
@@ -67,8 +67,8 @@ export default class LifePage extends Vue implements Data {
 	lifeSortingMode!: SortingMode
 	lifeSortingIsReversed!: boolean
 	lifeSelectedItemId: UUID|undefined
-	lifeRawEvents!: Vita.Event[]
-	lifeEvents!: Vita.Event[]
+	lifeRawEvents!: LifeEvent[]
+	lifeEvents!: LifeEvent[]
 	lifeEventIndexMap!: Dictionary<Index>
 
 	// Computed Properties
@@ -81,7 +81,7 @@ export default class LifePage extends Vue implements Data {
 		return headerDefinitions
 	}
 
-	get lifeSelectedItemSet(): TraversalItem<Vita.Event>|undefined {	
+	get lifeSelectedItemSet(): TraversalItem<LifeEvent>|undefined {	
 		if (!this.lifeSelectedItemId) {
 			return undefined
 		}

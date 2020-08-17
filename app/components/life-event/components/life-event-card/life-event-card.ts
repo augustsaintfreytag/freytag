@@ -1,7 +1,7 @@
 import LifeEventDetailTableComponent from "@/components/life-event/life-event-detail-table.vue"
 import { UUID } from "@/utils/common/library/uuid"
 import { TraversalItem } from "@/utils/storage/library/traversal-item"
-import { Vita } from "@/utils/storage/models/vita-event"
+import { LifeEvent } from "@/utils/storage/models/life-event"
 import { truncated } from "@/utils/truncated-text/truncated-text-provider"
 import { Component, Prop, Vue } from "vue-property-decorator"
 
@@ -16,7 +16,7 @@ export default class LifeEventCardComponent extends Vue {
 
 	// Data
 
-	@Prop() lifeEventSet!: TraversalItem<Vita.Event>
+	@Prop() lifeEventSet!: TraversalItem<LifeEvent>
 
 	requestLifeEvent(id: UUID) {
 		if (!id) {
@@ -33,15 +33,15 @@ export default class LifeEventCardComponent extends Vue {
 
 	// Set Items
 
-	get lifeEvent(): Vita.Event {
+	get lifeEvent(): LifeEvent {
 		return this.lifeEventSet.current
 	}
 
-	get nextLifeEvent(): Vita.Event|undefined {
+	get nextLifeEvent(): LifeEvent|undefined {
 		return this.lifeEventSet.next
 	}
 
-	get previousLifeEvent(): Vita.Event|undefined {
+	get previousLifeEvent(): LifeEvent|undefined {
 		return this.lifeEventSet.previous
 	}
 

@@ -1,47 +1,43 @@
-import { Image } from "./image"
-import { Work } from "./work-item"
+import { ImageContent, ImageContentEntry } from "@/utils/storage/models/image-content"
+import { WorkItem, WorkItemEntry } from "@/utils/storage/models/work-item"
 
-export namespace Landing {
+// Live Model
 
-	// Live Model
+export class LandingGraphic {
 
-	export class Graphic {
+	asset: ImageContent|undefined
+	caption: string|undefined
 
-		asset: Image.Content|undefined
-		caption: string|undefined
-
-		constructor(entry: GraphicEntry) {
-			this.asset = new Image.Content(entry.asset)
-			this.caption = entry.caption || undefined
-		}
-
+	constructor(entry: LandingGraphicEntry) {
+		this.asset = new ImageContent(entry.asset)
+		this.caption = entry.caption || undefined
 	}
 
-	export class Works {
+}
 
-		items: Work.Item[]
-		
-		constructor(entry: WorksEntry) {
-			this.items = entry.items.map(workEntry => {
-				return new Work.Item(workEntry)
-			})
-		}
+export class LandingWorks {
 
+	items: WorkItem[]
+	
+	constructor(entry: LandingWorksEntry) {
+		this.items = entry.items.map(workEntry => {
+			return new WorkItem(workEntry)
+		})
 	}
 
-	// Stored Model
+}
 
-	export interface GraphicEntry {
+// Stored Model
 
-		asset: Image.ContentEntry
-		caption: string|undefined
+export interface LandingGraphicEntry {
 
-	}
+	asset: ImageContentEntry
+	caption: string|undefined
 
-	export interface WorksEntry {
+}
 
-		items: Work.ItemEntry[]
+export interface LandingWorksEntry {
 
-	}
+	items: WorkItemEntry[]
 
 }

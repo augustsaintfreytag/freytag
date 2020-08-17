@@ -1,10 +1,10 @@
 import * as CockpitDataProvider from "@/utils/cockpit/functions/cockpit-data-provider"
 import { UUID } from "@/utils/common/library/uuid"
-import { Work } from "@/utils/storage/models/work-item"
+import { WorkItem } from "@/utils/storage/models/work-item"
 
 type WorkItemFetchIdentifier = string|UUID
 
-export async function fetchWorkItem(identifier: WorkItemFetchIdentifier): Promise<Work.Item|undefined> {
+export async function fetchWorkItem(identifier: WorkItemFetchIdentifier): Promise<WorkItem|undefined> {
 	try {
 		return (
 			await CockpitDataProvider.workItemBySlug(identifier) || 
