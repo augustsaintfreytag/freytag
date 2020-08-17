@@ -11,7 +11,7 @@ enum ImageContentDesignation {
 }
 
 @Component({})
-export default class ImageColumnsBlockComponent extends Vue {
+export default class ImageColumnsContentBlock extends Vue {
 
 	@Prop() contentBlock!: ContentBlock
 

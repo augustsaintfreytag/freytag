@@ -3,7 +3,7 @@ import { LifeEvent } from "@/utils/storage/models/life-event"
 import { Component, Prop, Vue } from "vue-property-decorator"
 
 @Component({})
-export default class LifeEventComponent extends Vue {
+export default class LifeEventListItem extends Vue {
 
 	@Prop() lifeEvent!: LifeEvent
 

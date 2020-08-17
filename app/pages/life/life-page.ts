@@ -25,7 +25,7 @@ interface Data {
 
 @Component({
 	components: {
-		LifeEventComponent: LifeEventListItem,
+		LifeEventListItem,
 		LifeEventCard
 	},
 

@@ -31,8 +31,8 @@
 			</section>
 		</section>
 		<aside class="opt">
-			<p>Portfolio site of August Saint Freytag (named as August Freytag, August S. Freytag, A.S.F.), presenting a life overview and work showcases, publications, further platforms and projects and contact options.</p>
-			<p>All displayed contents are intellectual property of August Saint Freytag (named as August Freytag, August S. Freytag, A.S.F.), all rights reserved. Denoted contents belong to their respective owners.</p>
+			<p>Portfolio site of August Saint Freytag (Freytag, August Freytag, August S. Freytag, A.S.F.), presenting a life overview and work showcases, publications, further platforms and projects and contact options.</p>
+			<p>All displayed contents are intellectual property of August Saint Freytag (Freytag, August Freytag, August S. Freytag, A.S.F.), all rights reserved. Supplementary contents if denoted are property of their respective owners.</p>
 		</aside>
 	</section>
 </template>

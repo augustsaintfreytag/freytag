@@ -1,12 +1,12 @@
 import { Component, Prop, Vue } from "vue-property-decorator"
-import { Markdown } from "./markdown-form"
+import { MarkdownProvider } from "./functions/markdown-provider"
 
 interface Data {
 	formattedContent: string
 }
 
 @Component({})
-export default class MarkdownComponent extends Vue implements Data {
+export default class Markdown extends Vue implements Data {
 
 	// Props
 
@@ -15,7 +15,7 @@ export default class MarkdownComponent extends Vue implements Data {
 	// Data
 
 	get formattedContent(): string {
-		return Markdown.render(this.content)
+		return MarkdownProvider.render(this.content)
 	}
 
 }

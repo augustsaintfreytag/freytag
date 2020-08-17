@@ -8,7 +8,7 @@ export type LifeEventDetailRow = {
 }
 
 @Component({})
-export default class LifeEventDetailTableComponent extends Vue {
+export default class LifeEventDetailTable extends Vue {
 
 	@Prop() lifeEvent!: LifeEvent
 	@Prop() rowNames!: string[]

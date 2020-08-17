@@ -1,4 +1,4 @@
-import LifeEventDetailTableComponent from "@/components/life-event/life-event-detail-table.vue"
+import LifeEventDetailTable from "@/components/life-event/life-event-detail-table.vue"
 import { UUID } from "@/utils/common/library/uuid"
 import { TraversalItem } from "@/utils/storage/library/traversal-item"
 import { LifeEvent } from "@/utils/storage/models/life-event"
@@ -7,10 +7,10 @@ import { Component, Prop, Vue } from "vue-property-decorator"
 
 @Component({
 	components: {
-		LifeEventDetailTableComponent
+		LifeEventDetailTable
 	}
 })
-export default class LifeEventCardComponent extends Vue {
+export default class LifeEventCard extends Vue {
 
 	readonly maxNavigationTextLength = 22
 

@@ -46,7 +46,7 @@
 			<div class="overlay" @click="closeLifeEvent()" title="Close Overlay"></div>
 		</aside>
 		<aside class="opt">
-			<p>Listing of selected life events by categories: Life, Education, Film, Development, Artwork, Photography. Contents collected and provided by August Freytag (August S. Freytag).</p>
+			<p>Listing of selected life events by categories: Life, Education, Film, Development, Artwork, Photography. Contents collected and provided by August Saint Freytag (Freytag, August Freytag, August S. Freytag, A.S.F.).</p>
 		</aside>
 	</section>
 </template>

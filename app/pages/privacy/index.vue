@@ -80,10 +80,10 @@
 
 <script lang="ts">
 	import { Component, Vue } from "vue-property-decorator"
-	import ContactBlockComponent from "@/components/contact-block/contact-block.vue"
+	import ContactBlock from "@/components/contact-block/contact-block.vue"
 
 	@Component({
-		components: { ContactBlockComponent }
+		components: { ContactBlock }
 	})
 	export default class PrivacyPolicyPage extends Vue {}
 

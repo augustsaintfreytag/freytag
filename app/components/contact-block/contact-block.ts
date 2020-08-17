@@ -26,7 +26,7 @@ interface Data {
 		}
 	}
 })
-export default class ContactBlockComponent extends Vue implements Data {
+export default class ContactBlock extends Vue implements Data {
 
 	phoneNumber!: string
 	mailAddress!: string

@@ -1,10 +1,10 @@
-import HeadingBlockComponent from "@/components/content-blocks/heading-content-block/heading-content-block.vue"
-import ImageColumnsBlockComponent from "@/components/content-blocks/image-columns-block/image-columns-block.vue"
-import TextColumnBlockComponent from "@/components/content-blocks/text-column-block/text-column-block.vue"
-import TextQuoteBlockComponent from "@/components/content-blocks/text-quote-block/text-quote-block.vue"
-import VideoVimeoBlockComponent from "@/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
+import HeadingContentBlock from "@/components/content-blocks/heading-content-block/heading-content-block.vue"
+import ImageColumnsContentBlock from "@/components/content-blocks/image-columns-block/image-columns-block.vue"
+import TextColumnContentBlock from "@/components/content-blocks/text-column-block/text-column-block.vue"
+import TextQuoteContentBlock from "@/components/content-blocks/text-quote-block/text-quote-block.vue"
+import VideoVimeoContentBlock from "@/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
 import { formattedDateRange } from "@/components/life-event/functions/life-event-date-formatter"
-import LifeEventDetailTableComponent from "@/components/life-event/life-event-detail-table.vue"
+import LifeEventDetailTable from "@/components/life-event/life-event-detail-table.vue"
 import Markdown from "@/components/markdown/markdown.vue"
 import { Dictionary } from "@/utils/common/library/dictionary"
 import { UUID } from "@/utils/common/library/uuid"
@@ -31,12 +31,12 @@ interface Data extends AsyncPartialData {
 @Component({
 	components: {
 		Markdown,
-		LifeEventDetailTableComponent,
-		HeadingBlockComponent,
-		TextQuoteBlockComponent,
-		ImageColumnsBlockComponent,
-		TextColumnBlockComponent,
-		VideoVimeoBlockComponent
+		LifeEventDetailTable,
+		HeadingContentBlock,
+		TextQuoteContentBlock,
+		ImageColumnsContentBlock,
+		TextColumnContentBlock,
+		VideoVimeoContentBlock
 	},
 
 	async asyncData({ params }): Promise<AsyncPartialData> {

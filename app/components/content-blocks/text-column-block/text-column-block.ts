@@ -7,7 +7,7 @@ import { Component, Prop, Vue } from "vue-property-decorator"
 		Markdown
 	}
 })
-export default class TextColumnBlockComponent extends Vue {
+export default class TextColumnContentBlock extends Vue {
 
 	@Prop() contentBlock!: ContentBlock
 

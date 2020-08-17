@@ -1,6 +1,6 @@
 import { default as MarkdownModule } from "markdown-it"
 
-export const Markdown = MarkdownModule({
+export const MarkdownProvider = MarkdownModule({
 	linkify: true
 })
 
