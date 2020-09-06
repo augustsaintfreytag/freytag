@@ -1,0 +1,3 @@
+[submodule "server/ansible/shared"]
+	path = server/ansible/shared
+	url = git@gitlab.com:apricum/ansible-shared-tasks.git
