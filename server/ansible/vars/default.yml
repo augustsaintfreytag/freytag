@@ -1,0 +1,24 @@
+---
+# Controller
+host_root: "../../../"
+
+# Server
+server_user: server
+server_certificate_root: "/etc/letsencrypt"
+server_certificate_log_root: "/var/log/letsencrypt"
+
+server_domains: [
+  {name: "augustfreytag.com", domains: "augustfreytag.com,www.augustfreytag.com"},
+  {name: "cockpit.augustfreytag.com", domains: "cockpit.augustfreytag.com"}
+]
+
+# App
+app_version: "master"
+app_root: "/var/www/freytag"
+
+# Cockpit
+cockpit_docker_volume: "freytag_data_cockpit"
+
+# Dependencies
+dep_swift_release: "https://swift.org/builds/swift-5.2.5-release/ubuntu1804/swift-5.2.5-RELEASE/swift-5.2.5-RELEASE-ubuntu18.04.tar.gz"
+dep_cockpit_sync: "http://drop.augustfreytag.com/cockpit-sync-1.0.0-linux-x86-64.tar.gz"
