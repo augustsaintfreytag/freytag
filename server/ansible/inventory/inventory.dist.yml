@@ -1,0 +1,4 @@
+all:
+    hosts:
+        # Digital Ocean Master
+        0.0.0.0:

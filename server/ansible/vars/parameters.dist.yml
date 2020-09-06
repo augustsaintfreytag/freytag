@@ -1,0 +1,8 @@
+---
+# Deployment Tokens (Project)
+gitlab_deploy_user: "…"
+gitlab_deploy_password: "…"
+
+# Deployment Tokens (Media)
+gitlab_media_deploy_user: "…"
+gitlab_media_deploy_password: "…"
