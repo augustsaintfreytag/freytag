@@ -1,0 +1,39 @@
+# Cockpit Set-Up
+
+- name: "SERVER - Create shared Docker volume for cockpit data"
+  docker_volume:
+    state: present
+    name: "{{ cockpit_docker_volume }}"
+    driver: local
+  become: yes
+  tags:
+    - cockpit
+    - cockpit-update
+  
+- name: "FILE - Set-up Cockpit sync directory"
+  file:
+    path: "{{ app_root }}/tools/cockpit/archive"
+    state: directory
+    mode: "0755"
+    owner: "server"
+  become: yes
+  tags:
+    - cockpit
+    - cockpit-update
+
+- name: "DATA - Fetch most recent Cockpit state"
+  git:
+    repo: "https://{{ gitlab_media_deploy_user }}:{{ gitlab_media_deploy_password }}@gitlab.com/apricum/luxembourg-media.git"
+    dest: "{{ app_root }}/tools/cockpit/archive"
+  tags:
+    - cockpit
+    - cockpit-update
+
+- name: "DATA - Sync Cockpit state to volume"
+  command:
+    chdir: "{{ app_root }}/tools/cockpit"
+    cmd: "cockpit-sync restore -v {{ cockpit_docker_volume }} -p ./archive"
+  become: yes
+  tags:
+    - cockpit
+    - cockpit-update
