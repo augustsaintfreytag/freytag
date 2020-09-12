@@ -23,7 +23,7 @@
 
 - name: "DATA - Fetch most recent Cockpit state"
   git:
-    repo: "https://{{ gitlab_media_deploy_user }}:{{ gitlab_media_deploy_password }}@gitlab.com/apricum/luxembourg-media.git"
+    repo: "https://{{ gitlab_media_deploy_user }}:{{ gitlab_media_deploy_password }}@gitlab.com/apricum/folio-freytag-media.git"
     dest: "{{ app_root }}/tools/cockpit/archive"
   tags:
     - cockpit
