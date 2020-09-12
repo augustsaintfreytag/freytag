@@ -1,0 +1,19 @@
+# Playbook for System Set-Up
+
+- hosts: all
+
+  vars_files:
+    - vars/default.yml
+
+  vars:
+    ansible_user: "{{ server_user }}"
+
+  tasks:
+    # System Requirement Set-Up
+    - import_tasks: ./shared/tasks/set-up-ansible.yml
+    - import_tasks: ./shared/tasks/set-up-docker.yml
+    - import_tasks: ./shared/tasks/set-up-swift.yml
+    - import_tasks: ./shared/tasks/set-up-firewall.yml
+
+    # Custom Requirement Set-Up
+    - import_tasks: ./custom/tasks/set-up-cockpit-sync.yml
