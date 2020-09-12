@@ -1,0 +1,15 @@
+# Playbook for Web Server Set-Up
+
+- hosts: all
+
+  vars_files:
+    - vars/default.yml
+    - vars/parameters.private.yml
+    
+  vars:
+    ansible_user: "{{ server_user }}"
+
+  tasks:
+    - import_tasks: ./custom/tasks/set-up-app.yml
+    - import_tasks: ./custom/tasks/set-up-cockpit.yml
+    - import_tasks: ./shared/tasks/set-up-certificates.yml
