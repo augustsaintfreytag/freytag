@@ -1,7 +1,11 @@
 ---
-# Deployment Tokens (Project)
+# Deployment Tokens (App)
 gitlab_deploy_user: "…"
 gitlab_deploy_password: "…"
+
+# Deployment Tokens (Ansible Shared)
+gitlab_ansible_shared_deploy_user: "…"
+gitlab_ansible_shared_deploy_password: "…"
 
 # Deployment Tokens (Media)
 gitlab_media_deploy_user: "…"
