@@ -32,7 +32,7 @@
 - name: "DATA - Sync Cockpit state to volume"
   command:
     chdir: "{{ app_root }}/tools/cockpit"
-    cmd: "cockpit-sync restore -v {{ cockpit_docker_volume }} -p ./archive"
+    cmd: "cockpit-sync restore --docker-volume {{ cockpit_docker_volume }} --archive ./archive"
   become: yes
   tags:
     - cockpit
