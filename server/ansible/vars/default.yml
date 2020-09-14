@@ -13,8 +13,11 @@ server_domains: [
 ]
 
 # App
+app_environment: "dev"
 app_version: "feature/automated-release"
 app_root: "/var/www/freytag"
+app_startup_command_dev: "yarn dev"
+app_startup_command_live: "yarn build && yarn start"
 
 # Cockpit
 cockpit_docker_volume: "freytag_data_cockpit"
