@@ -4,8 +4,10 @@ host_root: "../../../.."
 
 # Server
 server_user: server
-server_certificate_root: "/etc/letsencrypt"
-server_certificate_log_root: "/var/log/letsencrypt"
+server_nginx_config_file_dev: "nginx.dev.conf"
+server_nginx_config_file_live: "nginx.live.conf"
+server_certificate_directory: "/etc/letsencrypt"
+server_certificate_log_directory: "/var/log/letsencrypt"
 
 server_domains: [
   {name: "augustfreytag.com", domains: "augustfreytag.com,www.augustfreytag.com"},

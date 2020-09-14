@@ -10,3 +10,9 @@ gitlab_ansible_shared_deploy_password: "…"
 # Deployment Tokens (Media)
 gitlab_media_deploy_user: "…"
 gitlab_media_deploy_password: "…"
+
+# App Cockpit Access
+cockpit_access_token: "…"
+cockpit_protocol: "…"
+cockpit_host_client: "…"
+cockpit_host_server: "…"
