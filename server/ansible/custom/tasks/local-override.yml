@@ -1,0 +1,8 @@
+# Local Environment Override
+
+- name: "FACT - Set app root path to existing host root path (equivalent on local)"
+  set_fact:
+    app_root: "{{ host_root }}"
+
+- debug:
+    msg: "Using app root set to host root, path '{{ app_root }}'."

@@ -1,15 +1,12 @@
 # Services
 
-- set_fact:
-    app_root: "{{ host_root }}"
-
-- debug:
-    msg: "Using app root set to host root, path '{{ app_root }}'."
-
 - name: "FILE - Create temporary directory for NGINX mounting"
   file:
     path: "{{ server_dev_tmp_directory }}"
     state: directory
+  tags:
+    - app-services
+    - app-services-start
 
 - name: "SERVER - Start application services"
   docker_compose:
