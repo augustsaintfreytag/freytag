@@ -8,6 +8,7 @@ server_nginx_config_file_dev: "nginx.dev.conf"
 server_nginx_config_file_live: "nginx.live.conf"
 server_certificate_directory: "/etc/letsencrypt"
 server_certificate_log_directory: "/var/log/letsencrypt"
+server_dev_tmp_directory: "/var/tmp/freytag_dev_server"
 
 server_domains: [
   {name: "augustfreytag.com", domains: "augustfreytag.com,www.augustfreytag.com"},
