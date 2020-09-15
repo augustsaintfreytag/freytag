@@ -8,6 +8,7 @@
     
   vars:
     ansible_user: "{{ server_user }}"
+    app_environment: "live"
     app_startup_command: "{{ app_startup_command_live }}"
     server_nginx_config_file: "{{ server_nginx_config_file_live }}"
 

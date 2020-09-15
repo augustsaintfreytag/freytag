@@ -6,6 +6,7 @@
     - vars/default.yml
 
   vars:
+    app_environment: "live"
     ansible_user: "{{ server_user }}"
 
   tasks:
