@@ -1,6 +1,6 @@
 # Playbook for Digital Ocean Droplet Set-Up
 
-- hosts: all
+- hosts: live
 
   vars_files:
     - vars/default.yml

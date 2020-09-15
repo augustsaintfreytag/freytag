@@ -1,6 +1,6 @@
 # Playbook for System Set-Up
 
-- hosts: all
+- hosts: live
 
   vars_files:
     - vars/default.yml
