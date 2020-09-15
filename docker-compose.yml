@@ -70,8 +70,6 @@ services:
       - data_cockpit:/var/www/html/storage
     environment:
       - COCKPIT_SESSION_NAME=cockpit
-    env_file:
-      - ./server/env/$APP_PARAMETERS_NAME
 
 volumes:
   data_cockpit:
