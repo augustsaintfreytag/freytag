@@ -1,6 +1,6 @@
 ---
 # Controller
-host_root: "../../../.."
+host_root: "../.."
 
 # Server
 server_user: server
