@@ -5,7 +5,7 @@
 			<h2>{{ lifeEvent.name }}</h2>
 		</header>
 		<section class="details">
-			<life-event-detail-table-component :life-event="lifeEvent" row-names="['Span', 'Kind', 'Format', 'Role', 'Location', 'Context']" />
+			<life-event-detail-table :life-event="lifeEvent" row-names="['Span', 'Kind', 'Format', 'Role', 'Location', 'Context']" />
 		</section>
 		<section class="description" v-if="lifeEvent.description">
 			{{ lifeEvent.description }}

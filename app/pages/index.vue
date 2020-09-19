@@ -2,7 +2,7 @@
 	<section class="index-page">
 		<section class="introducer">
 			<div class="title-holder">
-				<header-branding-component />
+				<page-header-branding />
 			</div>
 			<div class="caption" v-if="graphic && graphic.caption">{{ graphic.caption }}</div>
 			<div class="image-holder" v-if="graphic">

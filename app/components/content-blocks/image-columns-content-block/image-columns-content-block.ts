@@ -1,4 +1,5 @@
-import { ContentBlock, ImageColumnsContentBlock as ImageColumnsContentBlockModel } from "@/utils/storage/models/content-block"
+import { ImageColumnsContentBlock as ImageColumnsContentBlockModel } from "@/utils/storage/models/content-block"
+import type { ContentBlock } from "@/utils/storage/models/content-block"
 import { CockpitImageRequest } from "cockpit-access"
 import { Component, Prop, Vue } from "vue-property-decorator"
 
