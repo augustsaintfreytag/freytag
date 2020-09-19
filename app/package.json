@@ -4,8 +4,7 @@
 	"description": "Personal portfolio and work showcase page for August S. Freytag, concept designer, filmmaker, developer, analogue photographer.",
 	"main": "index.js",
 	"repository": "git@gitlab.com:apricum/freytag.git",
-	"author": "August S. Freytag <night@apricummedia.com>",
-	"license": "UNLICENSED",
+	"author": "August Saint Freytag <night@apricummedia.com>",
 	"private": true,
 	"scripts": {
 		"dev": "nuxt-ts",
