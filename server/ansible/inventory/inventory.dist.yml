@@ -1,0 +1,11 @@
+dev:
+  hosts:
+    # Local (Dev)
+    localhost:
+      ansible_connection: local
+      ansible_python_interpreter: "/usr/bin/python"
+
+live:
+  hosts:
+    # Master (Live)
+    0.0.0.0:

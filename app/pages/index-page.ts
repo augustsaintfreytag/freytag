@@ -35,8 +35,8 @@ type Data = {
 		return head({
 			meta: [
 				{
-					hid: "description", 
-					name: "description", 
+					hid: "description",
+					name: "description",
 					content: [
 						"Personal portfolio and work showcase site of August Saint Freytag (A.S.F.),", 
 						"music video artist, filmmaker, concept designer, developer, analogue photographer.", 

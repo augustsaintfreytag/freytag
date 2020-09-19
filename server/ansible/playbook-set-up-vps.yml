@@ -1,0 +1,13 @@
+# Playbook for Digital Ocean Droplet Set-Up
+
+- hosts: live
+
+  vars_files:
+    - vars/default.yml
+    
+  vars:
+    ansible_user: "root"
+
+  tasks:
+    # Droplet Set-Up
+    - import_tasks: ./shared/tasks/set-up-vps.yml

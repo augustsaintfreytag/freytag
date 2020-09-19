@@ -1,0 +1,29 @@
+---
+# Controller
+host_root: "../.."
+
+# Server
+server_user: server
+server_nginx_config_file_dev: "nginx.dev.conf"
+server_nginx_config_file_live: "nginx.live.conf"
+server_certificate_directory: "/etc/letsencrypt"
+server_certificate_log_directory: "/var/log/letsencrypt"
+server_dev_tmp_directory: "/var/tmp/freytag_dev_server"
+
+server_domains: [
+  {name: "augustfreytag.com", domains: "augustfreytag.com,www.augustfreytag.com"},
+  {name: "cockpit.augustfreytag.com", domains: "cockpit.augustfreytag.com"}
+]
+
+# App
+app_version: "feature/automated-release"
+app_root: "/var/www/freytag"
+app_startup_command_dev: "yarn dev"
+app_startup_command_live: "yarn build && yarn generate --no-build && yarn start"
+
+# Cockpit
+cockpit_docker_volume: "freytag_data_cockpit"
+
+# Dependencies
+dep_swift_release: "https://swift.org/builds/swift-5.2.5-release/ubuntu1804/swift-5.2.5-RELEASE/swift-5.2.5-RELEASE-ubuntu18.04.tar.gz"
+dep_cockpit_sync: "http://drop.augustfreytag.com/cockpit-sync-1.0.0-linux-x86-64.tar.gz"

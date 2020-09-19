@@ -1,0 +1,21 @@
+# Playbook for Web Server Set-Up
+
+- hosts: live
+
+  vars_files:
+    - vars/default.yml
+    - vars/parameters.private.yml
+    
+  vars:
+    ansible_user: "{{ server_user }}"
+    app_environment: "live"
+    app_startup_command: "{{ app_startup_command_live }}"
+    server_nginx_config_file: "{{ server_nginx_config_file_live }}"
+
+  tasks:
+    - import_tasks: ./custom/tasks/stop-services-live.yml
+    - import_tasks: ./custom/tasks/set-up-app.yml
+    - import_tasks: ./custom/tasks/set-up-cockpit.yml
+    - import_tasks: ./shared/tasks/set-up-certificates.yml
+    - import_tasks: ./custom/tasks/start-services-live.yml
+    
