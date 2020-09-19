@@ -16,8 +16,7 @@ gitlab_media_deploy_password: "…"
 
 # App Cockpit Access
 cockpit_access_token: "…"
-cockpit_protocol_dev: "…"
-cockpit_protocol_live: "…"
+cockpit_protocol: "…"
 cockpit_host_client_dev: "…"
 cockpit_host_client_live: "…"
 cockpit_host_server: "…"
