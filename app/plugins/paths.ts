@@ -1,3 +1,4 @@
+import * as CockpitImageRequestPresets from "@/utils/cockpit/library/cockpit-image-request-presets"
 import { Format } from "@/utils/cockpit/library/cockpit-image-request-presets"
 import { URL, URLComponent } from "@/utils/common/library/url"
 import { CockpitAssetPathForm } from "cockpit-access"
@@ -10,5 +11,6 @@ declare module 'vue/types/vue' {
 }
 
 Vue.prototype.$imagePath = (component: URLComponent, format?: Format|undefined) => {
-	return CockpitAssetPathForm.cockpitImage(component, format)
+  const imageRequest = CockpitImageRequestPresets.preset(format ?? Format.Regular)
+  return CockpitAssetPathForm.cockpitImage(component, imageRequest)
 }
