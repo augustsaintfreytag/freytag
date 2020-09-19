@@ -7,7 +7,7 @@
   environment:
     APP_STARTUP_CMD: "{{ app_startup_command }}"
     COCKPIT_ACCESS_TOKEN: "{{ cockpit_access_token }}"
-    COCKPIT_PROTOCOL: "{{ cockpit_protocol }}"
+    COCKPIT_PROTOCOL: "{{ cockpit_protocol_live }}"
     COCKPIT_HOST_CLIENT: "{{ cockpit_host_client_live }}"
     COCKPIT_HOST_SERVER: "{{ cockpit_host_server }}"
     SERVER_NGINX_CONFIG_FILE: "{{ server_nginx_config_file }}"
