@@ -12,7 +12,7 @@ export default class LifeEventDetailTable extends Vue {
 
 	@Prop() lifeEvent!: LifeEvent
 	@Prop() rowNames!: string[]
-	@Prop() showsEmptyRows: boolean = false
+	@Prop() showsEmptyRows!: boolean
 
 	get detailRows(): LifeEventDetailRow[] {
 		const event = this.lifeEvent
