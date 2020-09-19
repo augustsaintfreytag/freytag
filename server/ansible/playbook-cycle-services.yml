@@ -1,0 +1,22 @@
+# Playbook for Web Server Set-Up
+
+- hosts: localhost
+  gather_facts: no
+
+  vars_files:
+    - vars/default.yml
+    - vars/parameters.private.yml
+  vars:
+    state: ""
+    app_environment: "live"
+    app_startup_command: "{{ app_startup_command_live }}"
+    server_nginx_config_file: "{{ server_nginx_config_file_live }}"
+
+  tasks:
+    - import_tasks: ./custom/tasks/local-override.yml
+
+    - import_tasks: ./custom/tasks/start-services-live.yml
+      when: state == 'present'
+
+    - import_tasks: ./custom/tasks/stop-services-live.yml
+      when: state == 'absent'
