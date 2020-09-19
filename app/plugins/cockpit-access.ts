@@ -30,7 +30,7 @@ function clientDependentProtocol(): string|undefined {
 const defaultAddress: Address = {
 	protocol: (context?: Context): Protocol => {
 		if (isServerSideContext(context)) {
-			return protocol
+			return "http"
 		}
 
 		return clientDependentProtocol() || protocol
