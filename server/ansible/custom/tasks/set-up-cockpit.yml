@@ -1,6 +1,6 @@
 # Cockpit Set-Up
 
-- name: "SERVER - Create shared Docker volume for cockpit data"
+- name: "SERVER - Create shared Docker volume for Cockpit"
   docker_volume:
     state: present
     name: "{{ cockpit_docker_volume }}"

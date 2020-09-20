@@ -3,12 +3,12 @@
 		<div class="wrap">
 			<header class="page-header inset">
 				<section class="branding"></section>
-				<header-navigation-component />
+				<page-header-navigation />
 			</header>
 			<main>
 				<nuxt />
 			</main>
-			<footer-component />
+			<page-footer />
 		</div>
 		<sprite-set />
 	</div>

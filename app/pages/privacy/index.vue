@@ -7,7 +7,7 @@
 			</h2>
 			<div>
 				<p>Verantwortlicher im Sinne der Datenschutzgesetze, insbesondere der EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
-				<contact-block-component />
+				<contact-block />
 			</div>
 			<div>
 				<h3>Ihre Betroffenenrechte</h3>
