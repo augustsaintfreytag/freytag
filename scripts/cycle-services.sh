@@ -1,5 +1,8 @@
 #! /usr/bin/env bash
 
+# Service Cycle Script
+# Starts or stops services in a local development environment.
+
 if [ "$1" == "start" ]; then
 	SERVICES_STATE="present"
 elif [ "$1" == "stop" ]; then
@@ -12,5 +15,7 @@ if [ "$SERVICES_STATE" == "" ]; then
 	exit 1
 fi
 
-cd ./server/ansible
-ansible-playbook -v -i ./inventory/inventory.private.yml ./playbook-dev-cycle-services.yml --extra-vars="state=$SERVICES_STATE"
+BASEDIR=$(dirname "$0")
+cd "$BASEDIR/../server/ansible"
+
+ansible-playbook ./playbook-dev-cycle-services.yml --extra-vars="state=$SERVICES_STATE"

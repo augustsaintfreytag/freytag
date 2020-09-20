@@ -8,7 +8,6 @@
   become: yes
   tags:
     - cockpit
-    - cockpit-update
   
 - name: "FILE - Set-up Cockpit sync directory"
   file:
