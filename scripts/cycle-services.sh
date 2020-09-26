@@ -11,7 +11,7 @@ fi
 
 if [ "$SERVICES_STATE" == "" ]; then
 	echo "Missing argument 'operation' for services (start|stop)."
-	echo "Usage: cycle.sh <operation>"
+	echo "Usage: cycle-services.sh <operation>"
 	exit 1
 fi
 
