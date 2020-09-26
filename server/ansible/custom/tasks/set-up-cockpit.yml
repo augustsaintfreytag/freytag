@@ -24,6 +24,7 @@
   git:
     repo: "https://{{ gitlab_media_deploy_user }}:{{ gitlab_media_deploy_password }}@gitlab.com/apricum/folio-freytag-media.git"
     dest: "{{ app_root }}/tools/cockpit/archive"
+    force: yes
   tags:
     - cockpit
     - cockpit-update

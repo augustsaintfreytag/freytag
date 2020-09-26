@@ -1,0 +1,34 @@
+# GitLab Listener Configuration Set-Up
+---
+
+- name: "FILE - Remove pre-existing static GitLab Listener configuration"
+  file:
+    path: "/usr/local/etc/gitlab-listener/listener.plist"
+    state: absent
+  become: yes
+  tags:
+    - listener
+    - listener-link
+
+- name: "FILE - Link GitLab Listener configuration to system"
+  file:
+    src: "{{ app_root }}/server/listener/listener.plist"
+    dest: "/usr/local/etc/gitlab-listener/listener.plist"
+    state: link
+  become: yes
+  tags:
+    - listener
+    - listener-link
+
+# Restart Service
+
+- name: "SERVICE - Restart GitLab Listener service"
+  systemd:
+    name: gitlab-listener.service
+    enabled: yes
+    state: restarted
+    no_block: yes
+  become: yes
+  tags:
+    - listener
+    - listener-system-service

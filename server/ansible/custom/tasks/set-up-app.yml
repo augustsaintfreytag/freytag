@@ -6,6 +6,7 @@
     state: directory
     mode: "0755"
     owner: "server"
+    recurse: yes
   become: yes
   tags:
     - app-repo
@@ -26,3 +27,13 @@
   tags:
     - app-repo
     - app-repo-private
+    - requires_host
+
+- name: "FILE - Copy private inventory files"
+  copy:
+    src: "{{ host_root }}/server/ansible/inventory/inventory.private.yml"
+    dest: "{{ app_root }}/server/ansible/inventory/inventory.private.yml"
+  tags:
+    - app-repo
+    - app-repo-private
+    - requires_host
