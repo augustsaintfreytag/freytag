@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>GitLab Instructions</key>
+	<array>
+		<dict>
+			<key>command</key>
+			<array>
+				<string>/var/www/freytag/server/scripts/event-update-project.sh</string>
+			</array>
+			<key>invokeForKind</key>
+			<string>push</string>
+			<key>invokeForRef</key>
+			<string>refs/heads/master</string>
+		</dict>
+	</array>
+	<key>User Instructions</key>
+	<array>
+		<dict>
+			<key>command</key>
+			<array>
+				<string>/var/www/freytag/server/scripts/user-ping.sh</string>
+			</array>
+			<key>tag</key>
+			<string>ping</string>
+		</dict>
+		<dict>
+			<key>command</key>
+			<array>
+				<string>/var/www/freytag/server/scripts/user-update-cockpit.sh</string>
+			</array>
+			<key>tag</key>
+			<string>update-cockpit</string>
+		</dict>
+	</array>
+	<key>Server</key>
+	<dict>
+		<key>name</key>
+		<string>server</string>
+		<key>port</key>
+		<integer>8080</integer>
+	</dict>
+</dict>
+</plist>
