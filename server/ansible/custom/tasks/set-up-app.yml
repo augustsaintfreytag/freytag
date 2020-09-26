@@ -26,3 +26,4 @@
   tags:
     - app-repo
     - app-repo-private
+    - requires_host
