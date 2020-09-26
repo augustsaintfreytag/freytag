@@ -1,6 +1,6 @@
 # Playbook for System Set-Up
 
-- hosts: live
+- hosts: "{{ override_hosts | default('live') }}"
 
   vars_files:
     - vars/default.yml
