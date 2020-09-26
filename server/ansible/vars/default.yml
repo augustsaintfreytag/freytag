@@ -16,7 +16,7 @@ server_domains: [
 ]
 
 # App
-app_version: "master"
+app_version: "feature/listener-autonomous-deployment"
 app_root: "/var/www/freytag"
 app_startup_command_dev: "yarn dev"
 app_startup_command_live: "yarn build && yarn generate --no-build && yarn start"
