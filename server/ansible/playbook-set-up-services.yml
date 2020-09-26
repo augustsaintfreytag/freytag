@@ -18,4 +18,3 @@
     - import_tasks: ./custom/tasks/set-up-cockpit.yml
     - import_tasks: ./shared/tasks/set-up-certificates.yml
     - import_tasks: ./custom/tasks/start-services-live.yml
-    

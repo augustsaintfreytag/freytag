@@ -15,6 +15,4 @@
     - import_tasks: ./shared/tasks/set-up-docker.yml
     - import_tasks: ./shared/tasks/set-up-swift.yml
     - import_tasks: ./shared/tasks/set-up-firewall.yml
-
-    # Custom Requirement Set-Up
-    - import_tasks: ./custom/tasks/set-up-cockpit-sync.yml
+    - import_tasks: ./shared/tasks/set-up-cockpit-sync.yml

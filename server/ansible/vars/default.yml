@@ -26,4 +26,6 @@ cockpit_docker_volume: "freytag_data_cockpit"
 
 # Dependencies
 dep_swift_release: "https://swift.org/builds/swift-5.2.5-release/ubuntu1804/swift-5.2.5-RELEASE/swift-5.2.5-RELEASE-ubuntu18.04.tar.gz"
-dep_cockpit_sync: "http://drop.augustfreytag.com/cockpit-sync-1.0.0-linux-x86-64.tar.gz"
+dep_listener_service: "https://gitlab.com/apricum/gitlab-listener/-/raw/feature/associated-files/System/gitlab-listener.service"
+dep_listener_release: "http://drop.augustfreytag.com/gitlab-listener-0.5.0-linux-x86-64.tar.gz"
+dep_cockpit_sync_release: "http://drop.augustfreytag.com/cockpit-sync-1.0.0-linux-x86-64.tar.gz"
