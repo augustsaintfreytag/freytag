@@ -6,4 +6,4 @@
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR/../ansible"
 
-ansible-playbook ./playbook-set-up-services.yml --extra-vars="override_hosts=localhost" --skip-tags="requires_host"
+ansible-playbook ./playbook-set-up-services.yml --extra-vars="override_hosts=localhost" --skip-tags="requires_host, listener"
