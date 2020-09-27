@@ -1,0 +1,165 @@
+@import "@/assets/style/values.scss";
+@import "@/assets/style/mixins/mobile.scss";
+@import "@/assets/style/mixins/text-ellipsis.scss";
+
+footer {
+
+	$sectionHeaderMargin: 25px;
+	$sectionInterItemSpacing: 10px;
+
+	height: max-content;
+	
+	.wrap {
+		box-sizing: border-box;
+
+		> .inlay {
+			width: 100%;
+			border-top: $dividerBorder;
+			padding: 50px 0;
+
+			display: flex;
+			flex-wrap: nowrap;
+			justify-content: space-between;
+
+			@include mobile("factor-l") {
+				padding: 50px 0 5px 0;
+			}
+
+			@include mobile("factor-s") {
+				padding: 50px 0 5px 0;
+				flex-wrap: wrap;
+			}
+
+			@include mobile("factor-xs") {
+				padding: 25px 0 5px 0;
+				flex-wrap: wrap;
+			}
+
+			// All Sections
+
+			> section {
+				flex: 1 1 0;
+				padding: 0 15px 0 0;
+				box-sizing: border-box;
+
+				@include mobile("factor-l") {
+					// Tablet or slim desktop window, use compressed full layout.
+				}
+	
+				@include mobile("factor-s") {
+					// Slide-over or wide mobile, use two column.
+					flex: 0 0 50%;
+					margin-bottom: 20px;
+				}
+		
+				@include mobile("factor-xs") {
+					// Slide-over or slim mobile, use single column.
+					flex: 0 0 100%;
+					margin-bottom: 10px;
+				}
+
+				header {
+					font-weight: 700;
+					font-size: $fontSizeLabelDefault;
+					margin-bottom: $sectionHeaderMargin;
+
+					@include mobile("factor-l") {
+						margin-bottom: $sectionHeaderMargin * 0.75;
+					}
+
+					@include mobile("factor-xs") {
+						margin-bottom: $sectionHeaderMargin * 0.5;
+					}
+				}
+
+				main {
+					> a > div, > div {
+						margin-bottom: $sectionInterItemSpacing;
+
+						@include mobile("factor-xs") {
+							margin-bottom: $sectionInterItemSpacing * 0.75;
+						}	
+					}
+				}
+			}
+
+			// Individual Sections
+
+			> section.personal {
+				// flex-basis: 30%;
+				// min-width: 210px;
+			}
+
+			> section.map {
+				// flex-basis: 22%;
+				// min-width: 165px;
+
+				main {
+					.route {
+						display: flex;
+						max-width: 250px;
+	
+						> .name, > .address {
+							flex: 0 50%;
+							@include textEllipsis();
+						}
+	
+						> .address {
+							color: $textColorVeryLight;
+						}
+					}
+	
+					a.nuxt-link-exact-active .route {
+						> .address {
+							color: unset;
+						}
+					}
+				}
+			}
+
+			> section.public {
+				// flex-basis: 20%;
+				overflow: hidden;
+
+				main {
+					.platform-link {
+						display: flex;
+	
+						.sprite {
+							$size: 18px;
+							$itemSpacing: 10px;
+	
+							flex: 0 0 $size + $itemSpacing;
+							position: relative;
+	
+							svg {
+								position: absolute;
+								width: $size;
+								height: $size;
+								fill: $textColor;
+								z-index: -1;
+							}
+						}
+	
+						.address {
+							flex: 1;
+							@include textEllipsis();
+						}
+					}
+				}
+			}
+
+			> section.further {
+				// flex-basis: 20%;
+				overflow: hidden;
+
+				main {
+					.regular-link .name {
+						@include textEllipsis();
+					}
+				}
+			}
+		}
+	}
+
+}

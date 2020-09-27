@@ -1,0 +1,14 @@
+<template>
+	<section class="content-block image-columns-content-block inset" v-if="contentBlock" :class="`content-${ imageContentDesignation }`">
+		<div v-for="(imageContent, index) in contentBlock.imageContents" :key="index">
+			<div class="image-holder">
+				<img class="covering" :src="$imagePath(imageContent.path, imageFormat(imageContentDesignation))" />
+			</div>
+			<div class="label">{{ imageContent.caption }}</div>
+		</div>
+	</section>
+</template>
+
+<style lang="scss" src="./image-columns-content-block.scss"></style>
+
+<script lang="ts" src="./image-columns-content-block.ts"></script>

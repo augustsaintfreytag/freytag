@@ -1,15 +1,30 @@
+# Variables
+
+# "APP_ENVIRONMENT"                     Active environment for services to operate in. Example: "LIVE", "DEV"
+# "APP_STARTUP_CMD"                     Start-up command invoked for App service after setting up dependencies. Example "yarn dev"
+# "COCKPIT_ACCESS_TOKEN"                Private access token used to authenticate with Cockpit to read data.
+# "COCKPIT_PROTOCOL"                    The network protocol used to communicate with Cockpit in the current environment. Example "https"
+# "COCKPIT_HOST_CLIENT"                 The Cockpit hostname used and expected to be reachable on the client-side.
+# "COCKPIT_HOST_SERVER"                 The Cockpit hostname used and expected to be reachable on the server-side.
+# "SERVER_NGINX_CONFIG_FILE"            NGINX configuration file name, mapped into the NGINX container. Example: "nginx.dev.conf"
+# "SERVER_CERTIFICATE_DIRECTORY"        Path to the server's local certificate directory (not in container).
+# "SERVER_CERTIFICATE_LOG_DIRECTORY"    Path to the server's local certificate log output directory (not in container).
+
 version: "3"
 
 services:
 
   proxy:
     container_name: freytag_proxy
-    image: nginx:latest
+    build:
+      context: ./server/docker
+      dockerfile: nginx.dockerfile
+    image: apricum/nginx
     volumes:
-      - ./server/nginx/nginx.conf:/etc/nginx/nginx.conf:cached
+      - ./server/nginx/${SERVER_NGINX_CONFIG_FILE}:/etc/nginx/nginx.conf:cached
       - ./server/nginx/include:/etc/nginx/include:cached
-      - data_challenges:/usr/share/nginx/html/challenges
-      - data_letsencrypt:/etc/letsencrypt
+      - ${SERVER_CERTIFICATE_DIRECTORY}:/etc/letsencrypt:cached
+      - ${SERVER_CERTIFICATE_LOG_DIRECTORY}:/var/log/letsencrypt:cached
       - data_app_build_generated:/usr/share/nginx/html/build
     ports:
       - "80:80"
@@ -23,26 +38,29 @@ services:
       - ./app/nuxt.config.ts:/var/app/nuxt.config.ts:cached
       - ./app/package.json:/var/app/package.json:cached
       - ./app/tsconfig.json:/var/app/tsconfig.json:cached
-      - ./app/vue-shim.d.ts:/var/app/vue-shim.d.ts:cached
       - ./app/yarn.lock:/var/app/yarn.lock:cached
-      - ./app/plugins:/var/app/plugins:cached
       - ./app/assets:/var/app/assets:cached
-      - ./app/static:/var/app/static:cached
       - ./app/components:/var/app/components:cached
       - ./app/layouts:/var/app/layouts:cached
       - ./app/pages:/var/app/pages:cached
+      - ./app/plugins:/var/app/plugins:cached
+      - ./app/static:/var/app/static:cached
+      - ./app/types:/var/app/types:cached
+      - ./app/utils:/var/app/utils:cached
       - data_app_node_modules:/var/app/node_modules
       - data_app_build_generated:/var/app/build
-      - data_app_build_nuxt:/var/lib/nuxt
-    command: "bash -c 'cd /var/app && yarn && $APP_CMD_STARTUP'"
+      - data_app_build_nuxt:/var/app/.output
+    command: "bash -c 'cd /var/app && yarn && ${APP_STARTUP_CMD}'"
     restart: unless-stopped
     environment:
       - HOST=0.0.0.0
       - PORT=80
       - CHOKIDAR_USEPOLLING=true
       - NUXT_ENV_APP_ENVIRONMENT=${APP_ENVIRONMENT}
-    env_file:
-      - ./server/env/$APP_PARAMETERS_NAME
+      - NUXT_ENV_COCKPIT_ACCESS_TOKEN=${COCKPIT_ACCESS_TOKEN}
+      - NUXT_ENV_COCKPIT_PROTOCOL=${COCKPIT_PROTOCOL}
+      - NUXT_ENV_COCKPIT_HOST_CLIENT=${COCKPIT_HOST_CLIENT}
+      - NUXT_ENV_COCKPIT_HOST_SERVER=${COCKPIT_HOST_SERVER}
 
   cockpit:
     container_name: freytag_cockpit
@@ -52,8 +70,6 @@ services:
       - data_cockpit:/var/www/html/storage
     environment:
       - COCKPIT_SESSION_NAME=cockpit
-    env_file:
-      - ./server/env/$APP_PARAMETERS_NAME
 
 volumes:
   data_cockpit:
@@ -63,10 +79,4 @@ volumes:
   data_app_build_nuxt:
     driver: local
   data_app_build_generated:
-    driver: local
-  data_challenges:
-    driver: local
-  data_letsencrypt:
-    driver: local
-  data_logs:
     driver: local

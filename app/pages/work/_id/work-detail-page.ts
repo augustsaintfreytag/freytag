@@ -1,63 +1,69 @@
+import HeadingContentBlock from "@/components/content-blocks/heading-content-block/heading-content-block.vue"
+import ImageColumnsContentBlock from "@/components/content-blocks/image-columns-content-block/image-columns-content-block.vue"
+import TextColumnContentBlock from "@/components/content-blocks/text-column-content-block/text-column-content-block.vue"
+import TextQuoteContentBlock from "@/components/content-blocks/text-quote-content-block/text-quote-content-block.vue"
+import VideoVimeoContentBlock from "@/components/content-blocks/video-vimeo-content-block/video-vimeo-content-block.vue"
+import { formattedDateRange } from "@/components/life-event/functions/life-event-date-formatter"
+import LifeEventDetailTable from "@/components/life-event/life-event-detail-table.vue"
+import Markdown from "@/components/markdown/markdown.vue"
+import { Dictionary } from "@/utils/common/library/dictionary"
+import { UUID } from "@/utils/common/library/uuid"
+import { head, suffixedTitleForHead } from "@/utils/head/head"
+import { MetaTag } from "@/utils/head/library/meta-tag"
+import { ContentBlockKind } from "@/utils/storage/models/content-block-kind"
+import { WorkItem } from "@/utils/storage/models/work-item"
 import { Component, Vue } from "vue-property-decorator"
-import { DateFormatter } from "~/components/common/storage/providers/date-formatter"
-import { WorkDetailPageData } from "./work-detail-page-data"
-import { WorkDetailPageMapper } from "./work-detail-page-mapper"
-import { Content } from "~/components/common/storage/models/content-block"
-import { Head } from "~/components/common/head/head"
-import { MetaTag } from "~/components/common/head/library/meta-tag"
+import * as DataProvider from "./work-detail-data-provider"
 
-import Markdown from "~/components/markdown/markdown.vue"
-import LifeEventDetailTableComponent from "~/components/life-event/life-event-detail-table.vue"
-import HeadingBlockComponent from "~/components/content-blocks/heading-content-block/heading-content-block.vue"
-import ImageColumnsBlockComponent from "~/components/content-blocks/image-columns-block/image-columns-block.vue"
-import TextQuoteBlockComponent from "~/components/content-blocks/text-quote-block/text-quote-block.vue"
-import TextColumnBlockComponent from "~/components/content-blocks/text-column-block/text-column-block.vue"
-import VideoVimeoBlockComponent from "~/components/content-blocks/video-vimeo-block/video-vimeo-block.vue"
+// Library
+
+interface AsyncPartialData {
+	workItemId: string|undefined
+	workItem: WorkItem|undefined
+}
+
+interface Data extends AsyncPartialData {
+	formTypes: Dictionary<ContentBlockKind>,
+}
+
+// Component
 
 @Component({
-
 	components: {
 		Markdown,
-		LifeEventDetailTableComponent,
-		HeadingBlockComponent,
-		TextQuoteBlockComponent,
-		ImageColumnsBlockComponent,
-		TextColumnBlockComponent,
-		VideoVimeoBlockComponent
+		LifeEventDetailTable,
+		HeadingContentBlock,
+		TextQuoteContentBlock,
+		ImageColumnsContentBlock,
+		TextColumnContentBlock,
+		VideoVimeoContentBlock
 	},
 
-	async asyncData({ params }) {
-		const initialData: WorkDetailPageData = {
-			types: {
-				Form: {
-					Heading: Content.Form.Heading,
-					ImageColumns: Content.Form.ImageColumns,
-					TextColumn: Content.Form.TextColumn,
-					TextQuote: Content.Form.TextQuote,
-					VideoVimeo: Content.Form.VideoVimeo
-				}
-			},
+	async asyncData({ params }): Promise<AsyncPartialData> {
+		const workItemId = params["id"] as UUID|undefined
+
+		const workItem: WorkItem|undefined = await (async () => {
+			if (!workItemId) {
+				return undefined
+			}
+
+			return await DataProvider.fetchWorkItem(workItemId)
+		})()
 		
-			workItemId: undefined,
-			workItem: undefined
-		}
 
-		initialData.workItemId = params["id"]
-		await WorkDetailPageMapper.updateWorkItem(initialData)
-
-		if (!initialData.workItem) {
-			if (initialData.workItemId) {
-				throw { statusCode: 404, message: `Work with id '${initialData.workItemId}' could not be fetched.`}
+		if (!workItem) {
+			if (workItemId) {
+				throw { statusCode: 404, message: `Work item with id '${workItemId}' not found.`}
 			} else {
-				throw { statusCode: 404, message: `Missing work id.` }
+				throw { statusCode: 404, message: `Missing work id, can not fetch work item.` }
 			}
 		}
 
-		return initialData
+		return { workItem, workItemId }
 	},
 
 	head() {
-		const data = this.$data as WorkDetailPageData
+		const data = this.$data as Data
 		const titleComponents = ["Work"]
 		const meta: MetaTag[] = []
 
@@ -69,7 +75,7 @@ import VideoVimeoBlockComponent from "~/components/content-blocks/video-vimeo-bl
 			const metaTag: MetaTag = {hid: "description", name: "description", content: undefined}
 
 			if (event) {
-				const introducingText = `${event.kind}, ${event.format}, ${DateFormatter.formattedDateRange(event)}`
+				const introducingText = `${event.kind}, ${event.format}, ${formattedDateRange(event)}`
 				metaTag.content = `${introducingText} ${item.description}`
 			} else {
 				metaTag.content = item.description
@@ -78,10 +84,22 @@ import VideoVimeoBlockComponent from "~/components/content-blocks/video-vimeo-bl
 			meta.push(metaTag)
 		}
 
-		return Head.modeled({
-			title: Head.Form.suffixedTitle(itemName || "Untitled", titleComponents), meta
+		return head({
+			title: suffixedTitleForHead(itemName || "Untitled", titleComponents), meta
 		})
 	}
-
 })
-export default class WorkDetailPage extends Vue {}
+export default class WorkDetailPage extends Vue implements Data {
+
+	formTypes = {
+		heading: ContentBlockKind.Heading,
+		imageColumns: ContentBlockKind.ImageColumns,
+		textColumn: ContentBlockKind.TextColumn,
+		textQuote: ContentBlockKind.TextQuote,
+		videoVimeo: ContentBlockKind.VideoVimeo
+	}
+
+	workItemId: UUID|undefined
+	workItem: WorkItem|undefined
+
+}

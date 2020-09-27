@@ -1,0 +1,31 @@
+---
+# Controller
+host_root: "{{ playbook_dir }}/../.."
+
+# Server
+server_user: server
+server_nginx_config_file_dev: "nginx.dev.conf"
+server_nginx_config_file_live: "nginx.live.conf"
+server_certificate_directory: "/etc/letsencrypt"
+server_certificate_log_directory: "/var/log/letsencrypt"
+server_dev_tmp_directory: "/var/tmp/freytag_dev_server"
+
+server_domains: [
+  {name: "augustfreytag.com", domains: "augustfreytag.com,www.augustfreytag.com"},
+  {name: "cockpit.augustfreytag.com", domains: "cockpit.augustfreytag.com"}
+]
+
+# App
+app_version: "master"
+app_root: "/var/www/freytag"
+app_startup_command_dev: "yarn dev"
+app_startup_command_live: "yarn build && yarn generate --no-build && yarn start"
+
+# Cockpit
+cockpit_docker_volume: "freytag_data_cockpit"
+
+# Dependencies
+dep_swift_release: "https://swift.org/builds/swift-5.2.5-release/ubuntu1804/swift-5.2.5-RELEASE/swift-5.2.5-RELEASE-ubuntu18.04.tar.gz"
+dep_listener_service: "https://gitlab.com/apricum/gitlab-listener/-/raw/master/System/gitlab-listener.service"
+dep_listener_release: "http://drop.augustfreytag.com/gitlab-listener-0.5.1-linux-x86-64.tar.gz"
+dep_cockpit_sync_release: "http://drop.augustfreytag.com/cockpit-sync-1.0.0-linux-x86-64.tar.gz"

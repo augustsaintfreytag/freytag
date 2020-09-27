@@ -8,7 +8,7 @@
 				</h2>
 				<div>
 					<h3>Contact Information</h3>
-					<contact-block-component />
+					<contact-block />
 				</div>
 				<div>
 					<h3>Disclaimer</h3>
@@ -36,7 +36,7 @@
 				</h2>
 				<div>
 					<h3>Kontaktinformationen</h3>
-					<contact-block-component />
+					<contact-block />
 				</div>
 				<div>
 					<h3>Haftungsausschluss</h3>

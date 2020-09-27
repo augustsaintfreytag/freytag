@@ -7,7 +7,7 @@
 			</h2>
 			<div>
 				<p>Verantwortlicher im Sinne der Datenschutzgesetze, insbesondere der EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
-				<contact-block-component />
+				<contact-block />
 			</div>
 			<div>
 				<h3>Ihre Betroffenenrechte</h3>
@@ -80,10 +80,10 @@
 
 <script lang="ts">
 	import { Component, Vue } from "vue-property-decorator"
-	import ContactBlockComponent from "~/components/contact-block/contact-block.vue"
+	import ContactBlock from "@/components/contact-block/contact-block.vue"
 
 	@Component({
-		components: { ContactBlockComponent }
+		components: { ContactBlock }
 	})
 	export default class PrivacyPolicyPage extends Vue {}
 

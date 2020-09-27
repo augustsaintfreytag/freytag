@@ -1,0 +1,24 @@
+@import "@/assets/style/values.scss";
+@import "@/assets/style/mixins/mobile.scss";
+
+.text-quote-content-block {
+
+	p {
+		padding: 0 25%;
+		margin: 0;
+		text-align: center;
+		font-style: italic;
+		font-size: $fontSizeLabelBold;
+		color: $textColorLight;
+		line-height: $textLineHeightParagraphBold;
+
+		@include mobile("factor-l") {
+			padding: 0 18%;
+		}
+
+		@include mobile("factor-xs") {
+			padding: 0 15%;
+		}
+	}
+
+}

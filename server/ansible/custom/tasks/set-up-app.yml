@@ -1,0 +1,39 @@
+# Application Set-Up
+
+- name: "FILE - Set-up project directories"
+  file:
+    path: "{{ app_root }}"
+    state: directory
+    mode: "0755"
+    owner: "server"
+    recurse: yes
+  become: yes
+  tags:
+    - app-repo
+
+- name: "GIT - Clone project repository"
+  git:
+    repo: "https://{{ gitlab_deploy_user }}:{{ gitlab_deploy_password }}@gitlab.com/apricum/freytag.git"
+    dest: "{{ app_root }}"
+    version: "{{ app_version }}"
+    force: yes
+  tags:
+    - app-repo
+
+- name: "FILE - Copy private automation files"
+  copy:
+    src: "{{ host_root }}/server/ansible/vars/parameters.private.yml"
+    dest: "{{ app_root }}/server/ansible/vars/parameters.private.yml"
+  tags:
+    - app-repo
+    - app-repo-private
+    - requires_host
+
+- name: "FILE - Copy private inventory files"
+  copy:
+    src: "{{ host_root }}/server/ansible/inventory/inventory.private.yml"
+    dest: "{{ app_root }}/server/ansible/inventory/inventory.private.yml"
+  tags:
+    - app-repo
+    - app-repo-private
+    - requires_host
