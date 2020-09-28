@@ -33,7 +33,7 @@ services:
 
   app:
     container_name: freytag_app
-    image: node:12.1.0
+    image: node:12.18.4
     volumes:
       - ./app/nuxt.config.ts:/var/app/nuxt.config.ts:cached
       - ./app/package.json:/var/app/package.json:cached
@@ -64,7 +64,7 @@ services:
 
   cockpit:
     container_name: freytag_cockpit
-    image: agentejo/cockpit:latest
+    image: agentejo/cockpit:0.11.2
     restart: unless-stopped
     volumes:
       - data_cockpit:/var/www/html/storage
