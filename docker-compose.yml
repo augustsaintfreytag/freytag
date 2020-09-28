@@ -19,7 +19,7 @@ services:
     build:
       context: ./server/docker
       dockerfile: nginx.dockerfile
-    image: apricum/nginx
+    image: custom-nginx
     volumes:
       - ./server/nginx/${SERVER_NGINX_CONFIG_FILE}:/etc/nginx/nginx.conf:cached
       - ./server/nginx/include:/etc/nginx/include:cached
