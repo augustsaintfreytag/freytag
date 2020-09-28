@@ -3,7 +3,8 @@
 - name: "SERVER - Start application services"
   docker_compose:
     project_src: "{{ app_root }}"
-    restarted: yes
+    state: present
+    build: yes
   environment:
     APP_STARTUP_CMD: "{{ app_startup_command }}"
     COCKPIT_ACCESS_TOKEN: "{{ cockpit_access_token }}"

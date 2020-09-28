@@ -4,8 +4,6 @@
   docker_compose:
     project_src: "{{ app_root }}"
     state: absent
-    stopped: yes
-    build: no
   become: yes
   ignore_errors: yes
   tags:
