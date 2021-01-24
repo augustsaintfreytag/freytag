@@ -12,6 +12,7 @@
   docker_compose:
     project_src: "{{ app_root }}"
     restarted: yes
+  register: docker_services_output
   environment:
     APP_STARTUP_CMD: "{{ app_startup_command }}"
     COCKPIT_ACCESS_TOKEN: "{{ cockpit_access_token }}"
@@ -24,3 +25,7 @@
   tags:
     - app-services
     - app-services-start
+
+- name: "SERVER - Application services output"
+  debug:
+    msg: "{{ docker_services_output }}"

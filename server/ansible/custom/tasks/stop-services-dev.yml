@@ -6,7 +6,12 @@
     state: absent
     stopped: yes
     build: no
+  register: docker_services_output
   ignore_errors: yes
   tags:
     - app-services
     - app-services-stop
+
+- name: "SERVER - Application services output"
+  debug:
+    msg: "{{ docker_services_output }}"
