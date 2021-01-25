@@ -1,45 +1,45 @@
 {
-  "compilerOptions": {
-    // Features
-    "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
-    "esModuleInterop": true,
-    "sourceMap": true,
+	"compilerOptions": {
+		// Features
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"esModuleInterop": true,
+		"sourceMap": true,
 
-    // Output
-    "target": "es2018",
-    "module": "esnext",
-    "moduleResolution": "node",
+		// Output
+		"target": "es2018",
+		"module": "esnext",
+		"moduleResolution": "node",
 
-    // Dependencies
-    "types": [
-      "@types/node",
-      "@nuxt/types"
-    ],
-    "lib": [
-      "esnext",
-      "esnext.asynciterable",
-      "dom"
-    ],
+		// Dependencies
+		"types": [
+			"@types/node",
+			"@nuxt/types"
+		],
+		"lib": [
+			"esnext",
+			"esnext.asynciterable",
+			"dom"
+		],
 
-    // Type Checking
-    "strict": true,
-    "allowJs": true,
-    "noUnusedLocals": false,
-    "noImplicitAny": false,
-    "noEmit": true,
+		// Type Checking
+		"strict": true,
+		"allowJs": true,
+		"noUnusedLocals": false,
+		"noImplicitAny": false,
+		"noEmit": true,
 
-    // Paths
-    "baseUrl": ".",
-    "paths": {
-      "@/*": [
-        "./*"
-      ]
-    }
-  },
+		// Paths
+		"baseUrl": ".",
+		"paths": {
+			"@/*": [
+				"./*"
+			]
+		}
+	},
 
-  "exclude": [
-    "node_modules",
-    "node_modules.nosync"
-  ]
+	"exclude": [
+		"node_modules",
+		"node_modules.nosync"
+	]
 }
