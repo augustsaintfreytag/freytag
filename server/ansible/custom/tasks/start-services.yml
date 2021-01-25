@@ -2,7 +2,7 @@
 
 - name: "SERVER - Start application services"
   shell:
-    cmd: "docker-compose --file {{ app_root }}/server/docker/docker-compose.yml --project-directory {{ app_root }} --env-file {{ docker_env_root }}/parameters.live.env --env-file {{ docker_env_root }}/parameters.private.env up -d"
+    cmd: "docker-compose --file {{ app_root }}/server/docker/docker-compose.yml --project-directory {{ app_root }} --env-file {{ docker_env_root }}/parameters.live.private.env up -d"
   become: yes
   tags:
     - app-services
