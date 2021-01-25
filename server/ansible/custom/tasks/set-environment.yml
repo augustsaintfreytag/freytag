@@ -1,0 +1,27 @@
+# Environment Set
+# Copy over environment variables
+
+# Define sourceable env file in "env_path"
+# Define variables to be read in "env_vars"
+
+- name: "DEBUG - Preparing to read environment variables"
+  debug:
+    msg: "Reading environment variables from '{{ env_path }}'."
+
+- name: ENV - Read values from environment
+  shell: "source {{ env_path }} && echo ${{ item|upper }}"
+  register: read_env_values
+  with_items: "{{ env_vars }}"
+  changed_when: false
+
+- name: ENV - Store read values in dictionary
+  set_fact:
+    imported_env: "{{ imported_env | default({}) | combine({item.0: item.1.stdout}) }}"
+  with_together:
+    - "{{ env_vars }}"
+    - "{{ read_env_values.results }}"
+  changed_when: false
+
+- name: "DEBUG - Output sampled env var (inside)"
+  debug:
+    msg: "Imported env var from file: '{{ imported_env.message }}'"
