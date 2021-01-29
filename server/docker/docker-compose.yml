@@ -33,7 +33,7 @@ services:
 
   app:
     container_name: freytag_app
-    image: node:12.18.4
+    image: node:14.13.0
     volumes:
       - ./app/nuxt.config.ts:/var/app/nuxt.config.ts:cached
       - ./app/package.json:/var/app/package.json:cached
