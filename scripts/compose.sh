@@ -1,7 +1,7 @@
 #! /usr/bin/env zsh
 
 BASEDIR=$(dirname "$0")
-ROOTDIR="$BASEDIR/.."
+ROOTDIR=$(realpath "$BASEDIR/..")
 DOCKERDIR="$ROOTDIR/server/docker"
 ENVDIR="$ROOTDIR/server/docker/env"
 
