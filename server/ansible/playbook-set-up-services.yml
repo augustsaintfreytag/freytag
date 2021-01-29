@@ -9,8 +9,7 @@
   vars:
     app_environment: "live"
     ansible_user: "{{ server_user }}"
-    app_startup_command: "{{ app_startup_command_live }}"
-    server_nginx_config_file: "{{ server_nginx_config_file_live }}"
+    docker_env_root: "{{ app_root }}/server/docker/env"
 
   tasks:
     - import_tasks: ./custom/tasks/stop-services-live.yml

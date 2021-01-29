@@ -7,7 +7,7 @@ const hostServer = process.env["NUXT_ENV_COCKPIT_HOST_SERVER"]
 const token = process.env["NUXT_ENV_COCKPIT_ACCESS_TOKEN"]
 
 if (!protocol || !hostClient || !hostServer || !token) {
-	throw new TypeError(`Missing cockpit access parameters from environment, protocol, host or token not defined.`)
+	throw new Error(`Missing cockpit access parameters from environment, protocol, host or token not defined.`)
 }
 
 function isServerSideContext(context: Context|undefined): boolean {
