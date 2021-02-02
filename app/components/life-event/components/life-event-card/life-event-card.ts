@@ -1,6 +1,6 @@
 import LifeEventDetailTable from "@/components/life-event/life-event-detail-table.vue"
-import { UUID } from "@/utils/common/library/uuid"
-import { TraversalItem } from "@/utils/storage/library/traversal-item"
+import type { UUID } from "@/utils/common/library/uuid"
+import type { TraversalItem } from "@/utils/storage/library/traversal-item"
 import { LifeEvent } from "@/utils/storage/models/life-event"
 import { truncated } from "@/utils/truncated-text/truncated-text-provider"
 import { Component, Prop, Vue } from "vue-property-decorator"
