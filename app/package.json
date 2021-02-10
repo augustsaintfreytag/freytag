@@ -1,9 +1,11 @@
 {
 	"name": "folio-freytag",
 	"version": "2.0.0",
-	"description": "Personal portfolio and work showcase page for August S. Freytag, concept designer, filmmaker, developer, analogue photographer.",
+	"description": "Personal portfolio and work showcase page for August Saint Freytag, concept designer, filmmaker, developer, analogue photographer.",
 	"main": "index.js",
-	"engines": { "node": ">=14" },
+	"engines": {
+		"node": ">=14"
+	},
 	"repository": "git@gitlab.com:apricum/freytag.git",
 	"author": "August Saint Freytag <night@apricummedia.com>",
 	"private": true,
@@ -15,20 +17,23 @@
 		"generate": "nuxt-ts generate"
 	},
 	"dependencies": {
-		"@nuxt/typescript-runtime": "^1.0.0",
-		"axios": "^0.19.2",
-		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git",
-		"markdown-it": "^11.0.0",
+		"@nuxt/typescript-runtime": "^2.0.1",
+		"axios": "^0.21.1",
+		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git#fix/type-marked-exports",
+		"markdown-it": "^12.0.4",
 		"node-sass": "^4.14.0",
-		"nuxt": "^2.14.0",
+		"nuxt": "^2.14.12",
 		"reflect-metadata": "^0.1.13",
 		"sass-loader": "^9.0.2",
-		"vue-class-component": "^7.2.5",
-		"vue-property-decorator": "^9.0.0"
+		"vue-class-component": "^7.2.6",
+		"vue-property-decorator": "^9.1.2"
 	},
 	"devDependencies": {
-		"@nuxt/types": "^2.14.0",
-		"@nuxt/typescript-build": "^2.0.2",
-		"@types/node": "^11.13.0"
+		"@nuxt/types": "^2.14.12",
+		"@nuxt/typescript-build": "^2.0.4",
+		"@types/node": "^14.14.22"
+	},
+	"resolutions": {
+		"typescript": "4.1.3"
 	}
 }

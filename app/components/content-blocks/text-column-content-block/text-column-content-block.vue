@@ -1,5 +1,5 @@
 <template>
-	<section class="content-block text-column-content-block text inset" v-if="contentBlock">
+	<section class="content-block text-column text-column-content-block text inset" v-if="contentBlock">
 		<markdown :content="contentBlock.textContent"></markdown>
 	</section>
 </template>

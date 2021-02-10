@@ -10,7 +10,7 @@ if (!protocol || !hostClient || !hostServer || !token) {
 	throw new Error(`Missing cockpit access parameters from environment, protocol, host or token not defined.`)
 }
 
-function isServerSideContext(context: Context|undefined): boolean {
+function isServerSideContext(context?: Context): boolean {
 	return context === Context.Server || (context === undefined && process.server)
 }
 

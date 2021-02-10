@@ -1,9 +1,11 @@
+import { NuxtConfig } from "@nuxt/types"
+
 interface Route {
 	route: string,
 	payload: any
 }
 
-export default {
+const config: NuxtConfig = {
 	buildModules: ["@nuxt/typescript-build"],
 	buildDir: ".output",
 	build: {
@@ -13,6 +15,10 @@ export default {
 			if (isClient) {
 				config.devtool = "eval-source-map"
 			}
+		},
+		filenames: {
+			app: ({isDev}) => isDev ? "[name].[hash].js" : "[chunkhash].js",
+			chunk: ({isDev}) => isDev ? "[name].[hash].js" : "[chunkhash].js",
 		}
 	},
 	plugins: [
@@ -46,3 +52,5 @@ export default {
 		"components/page-header/page-header.scss"
 	]
 }
+
+export default config

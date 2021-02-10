@@ -3,20 +3,9 @@
 
 .text-column-content-block {
 
-	columns: auto 2;
-	column-gap: 50px;
-
 	p {
-		font-size: $fontSizeLabelDefault;
-		text-align: left;
-		hyphens: auto;
 		color: $textColorLight;
-		line-height: $textLineHeightParagraph;
-		margin: 0 0 15px 0;
-	}
-
-	@include mobile("factor-xs") {
-		columns: unset;
+		font-size: $fontSizeLabelDefault;
 	}
 
 }
