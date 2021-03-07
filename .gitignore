@@ -1,6 +1,18 @@
-.nuxt
-.output
+# Dependencies
+/node_modules
+
+# Frameworks
+/.next
+/.nuxt
+/out
+/build
+
+# Debug
 *.log
+
+# Locals
 *.private.*
-parameters-*.env
-server/ssl
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
