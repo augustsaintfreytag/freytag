@@ -2,10 +2,10 @@
 /node_modules
 
 # Frameworks
-/.next
-/.nuxt
-/out
-/build
+.next/
+.nuxt/
+out/
+build/
 
 # Debug
 *.log
