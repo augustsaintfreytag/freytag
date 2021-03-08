@@ -1,3 +1,4 @@
+import { NextPage } from "next"
 import { ReactText } from "react"
 import classNames from "./index.module.sass"
 
@@ -7,12 +8,12 @@ interface HeadingProps {
 }
 
 const Heading = ({ children }: HeadingProps) => {
-	return <div className={ classNames.heading }>{ children }</div>
+	return <div className={classNames.heading}>{children}</div>
 }
 
-const IndexPage = () => {
+const IndexPage: NextPage = () => {
 	return (
-		<section className={ classNames.welcomePane }>
+		<section className={classNames.welcomePane}>
 			<h1>Welcome</h1>
 			<Heading>Hello</Heading>
 		</section>
