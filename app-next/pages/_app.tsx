@@ -1,4 +1,4 @@
-import DefaultLayout from "@/layouts/default-layout"
+import DefaultLayout from "@/layouts/default/default-layout"
 import "@/styles/base/globals.sass"
 import type { AppProps } from "next/app"
 import type { FunctionComponent } from "react"

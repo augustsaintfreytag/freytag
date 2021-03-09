@@ -7,15 +7,10 @@ interface HeadingProps {
 	// content: string
 }
 
-const Heading = ({ children }: HeadingProps) => {
-	return <div className={classNames.heading}>{children}</div>
-}
-
 const IndexPage: NextPage = () => {
 	return (
 		<section className={classNames.welcomePane}>
-			<h1>Welcome</h1>
-			<Heading>Hello</Heading>
+			<div>…</div>
 		</section>
 	)
 }
