@@ -1,4 +1,4 @@
-import { Dictionary } from "@/utils/types/library/dictionary"
+import { Dictionary } from "~/utils/types/library/dictionary"
 
 export function className(...components: (string | undefined)[]): string {
 	const classNames = new Set<string>()

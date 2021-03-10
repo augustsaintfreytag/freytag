@@ -1,6 +1,6 @@
-import Footer from "@/components/footer/footer"
-import Header from "@/components/header/header"
 import { FunctionComponent } from "react"
+import Footer from "~/components/footer/footer"
+import Header from "~/components/header/header"
 import styles from "./default-layout.module.sass"
 
 const DefaultLayout: FunctionComponent = ({ children }) => (
