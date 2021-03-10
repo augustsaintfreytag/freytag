@@ -1,10 +1,16 @@
 import { FunctionComponent } from "react"
 import styles from "./header.module.sass"
 
-const titleText = "August Saint Freytag"
-const descriptors = ["Concept Designer", "Video Artist", "Developer", "Editor", "Storyteller"]
-const descriptorSeparator = "/"
-const descriptorText = descriptors.join(` ${descriptorSeparator} `)
+function headerText(): [title: string, descriptor: string] {
+	const titleText = "August Saint Freytag"
+	const descriptors = ["Concept Designer", "Video Artist", "Developer", "Editor", "Storyteller"]
+	const descriptorSeparator = "/"
+	const descriptorText = descriptors.join(` ${descriptorSeparator} `)
+
+	return [titleText, descriptorText]
+}
+
+const [titleText, descriptorText] = headerText()
 
 const Header: FunctionComponent = () => (
 	<header className={styles.header}>
