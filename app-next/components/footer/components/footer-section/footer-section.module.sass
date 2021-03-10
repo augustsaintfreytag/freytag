@@ -1,28 +1,39 @@
 @import "/styles/values/fonts"
 
 .footerSection
-	$rowSpacing: 1rem
-	$interItemSpacing: 0.7rem
+	$headerToItemsSpacing: 2.8rem
+	$spriteToTextSpacing: 0.7rem
+	$interItemSpacing: 0.75rem
 
 	.footerHeader
 		font-family: $subheadingFont
 		font-weight: 700
 		font-size: 1.75rem
 		text-transform: uppercase
-		margin-bottom: 2.5rem
+		margin-bottom: $headerToItemsSpacing
 
 	.footerItem
 		display: flex
-		margin: 0 0 $rowSpacing 0
+		margin: 0 0 $interItemSpacing 0
 
 		.sprite
 			$size: 1rem
 			height: $size
 			width: $size
 			padding: 0.2rem 0 0 0
-			margin: 0 $interItemSpacing 0 0
+			margin: 0 $spriteToTextSpacing 0 0
+
+		.text, .link
+			font-size: 0.95rem
+			line-height: 1.5rem
 
 		.text
-			font-size: 0.95rem
 			font-family: $elementFont
-			line-height: 1.5rem
+
+		.link
+			font-family: $linkFont
+		
+		&.withLink
+			.text
+				width: 5.5rem
+				margin-right: 2rem
