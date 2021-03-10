@@ -1,13 +1,16 @@
 @import "/styles/values/colors"
 @import "/styles/values/fonts"
+@import "/styles/values/spacing"
 	
 .footer
 	background-color: $elementBackgroundColor
 	// background-image: url("/paper-card.jpg")
 	background-size: cover
 	box-sizing: border-box
-	padding: 70px 50px
-	padding-right: 10rem
 
-	display: flex
-	justify-content: space-between
+	.inlay
+		@include inlayed
+		padding: 4rem 0
+
+		display: flex
+		justify-content: space-between

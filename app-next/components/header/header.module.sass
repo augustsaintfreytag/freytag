@@ -1,35 +1,39 @@
 @import "/styles/values/fonts"
 @import "/styles/values/colors"
-@import "/styles/mixins/type"
+@import "/styles/values/spacing"
 	
 .header
-	box-sizing: border-box
-	padding: 30px 50px
-	display: flex
-	justify-content: space-between
+	.inlay
+		@include inlayed
+		padding: 1rem 0
 
-	.leader
-		.title
-			font-family: $headingFont
-			font-weight: 800
-			font-size: 2.6rem
-			padding: 0.2rem 0
+		display: flex
+		justify-content: space-between
+		box-sizing: border-box
 
-		.descriptors
-			font-family: $headingFont
-			font-weight: 300
-			font-size: 0.8rem
-			color: $textColorFaded
-			padding: 0.2rem 0
-
-	.trailer
-		width: 260px
-
-		ol
-			display: flex
-			justify-content: space-between
-
-			> li
+		.leader
+			.title
 				font-family: $headingFont
-				font-size: 1.0rem
+				font-weight: 800
+				font-size: 2.6rem
+				padding: 0.2rem 0
+
+			.descriptors
+				font-family: $headingFont
+				font-weight: 300
+				font-size: 0.8rem
+				color: $textColorFaded
+				padding: 0.2rem 0
+
+		.trailer
+			margin: 0.5rem 0
+			width: 260px
+
+			ol
+				display: flex
+				justify-content: space-between
+
+				> li
+					font-family: $headingFont
+					font-size: 1.0rem
 				
