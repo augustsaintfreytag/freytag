@@ -3,7 +3,7 @@ import { Dictionary } from "~/utils/types/library/dictionary"
 export function className(...components: (string | undefined)[]): string {
 	const classNames = new Set<string>()
 
-	for (const className in classNames) {
+	for (const className in components) {
 		if (!className) {
 			continue
 		}
