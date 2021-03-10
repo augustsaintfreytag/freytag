@@ -2,12 +2,14 @@
 
 $workSansFont: "Work Sans"
 $maisonFont: "Maison Neue"
+$maisonMonoFont: "Maison Neue Mono"
 
 $defaultFont: $workSansFont
+$elementFont: $workSansFont
 $paragraphFont: $workSansFont
 $headingFont: $maisonFont
-
-// $defaultFontMonospace: "Maison Neue Mono"
+$subheadingFont: $maisonMonoFont
+$tagFont: $maisonMonoFont
 
 @font-face
 	font-family: "Work Sans"
@@ -34,3 +36,13 @@ $headingFont: $maisonFont
 	font-family: "Maison Neue"
 	font-weight: 800
 	src: url("/fonts/MaisonNeue-Black.ttf") format("truetype")
+
+@font-face
+	font-family: "Maison Neue Mono"
+	font-weight: 400
+	src: url("/fonts/MaisonNeueMono-Regular.ttf") format("truetype")
+
+@font-face
+	font-family: "Maison Neue Mono"
+	font-weight: 700
+	src: url("/fonts/MaisonNeueMono-Bold.ttf") format("truetype")
