@@ -1,0 +1,35 @@
+@import "/styles/values/fonts"
+@import "/styles/values/colors"
+@import "/styles/mixins/type"
+	
+.header
+	box-sizing: border-box
+	padding: 30px 50px
+	display: flex
+	justify-content: space-between
+
+	.leader
+		.title
+			font-family: $headingFont
+			font-weight: 800
+			font-size: 2.6rem
+			padding: 0.2rem 0
+
+		.descriptors
+			font-family: $headingFont
+			font-weight: 300
+			font-size: 0.8rem
+			color: $textColorFaded
+			padding: 0.2rem 0
+
+	.trailer
+		width: 260px
+
+		ol
+			display: flex
+			justify-content: space-between
+
+			> li
+				font-family: $headingFont
+				font-size: 1.0rem
+				
