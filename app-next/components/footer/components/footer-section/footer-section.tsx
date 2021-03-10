@@ -22,9 +22,11 @@ export const FooterItem: FunctionComponent<FooterItemProps> = props => {
 
 // Footer Section
 
+type FooterItemElement = ReactElement<FooterItemProps>
+
 type FooterSectionProps = {
 	header: string
-	children: ReactElement<FooterItemProps>[]
+	children: FooterItemElement | FooterItemElement[]
 }
 
 const FooterSection: FunctionComponent<FooterSectionProps> = props => (
