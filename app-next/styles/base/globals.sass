@@ -1,13 +1,28 @@
 // Globals
 	
-@use "spacing"
+@import "/styles/values/fonts"
+@import "/styles/values/spacing"
+@import "/styles/values/colors"
 	
 html, body
 	padding: 0
 	margin: 0
-	font-family: -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif
-	font-size: 1.5rem
+
+body
+	@include antiAliasedFont
+	font-family: "Work Sans"
+	font-weight: 400
+	color: $textColor
 
 a
 	color: unset
 	text-decoration: unset
+
+h1, h2, h3, h4, h5, h6
+	font-weight: unset
+	margin: 0
+	padding: 0
+
+ul, ol
+	list-style: none
+	padding: 0

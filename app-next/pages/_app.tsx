@@ -1,14 +1,14 @@
 import type { AppProps } from "next/app"
-import { FunctionComponent } from "react"
-import "../styles/base/globals.sass"
+import type { FunctionComponent } from "react"
+import Sprites from "~/components/sprites/sprites"
+import DefaultLayout from "~/layouts/default/default-layout"
+import "~/styles/base/globals.sass"
 
-const App: FunctionComponent<AppProps> = props => {
-	const Component = props.Component
-	const pageProps = props.pageProps
-
-	return (
+const App: FunctionComponent<AppProps> = ({ Component, pageProps }) => (
+	<DefaultLayout>
+		<Sprites />
 		<Component {...pageProps} />
-	)
-}
+	</DefaultLayout>
+)
 
 export default App

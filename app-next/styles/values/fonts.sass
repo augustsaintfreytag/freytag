@@ -1,0 +1,56 @@
+// Fonts
+
+$workSansFont: "Work Sans"
+$maisonFont: "Maison Neue"
+$maisonMonoFont: "Maison Neue Mono"
+
+$defaultFont: $workSansFont
+$elementFont: $workSansFont
+$paragraphFont: $workSansFont
+$headingFont: $maisonFont
+$subheadingFont: $maisonMonoFont
+$tagFont: $maisonMonoFont
+$linkFont: $maisonMonoFont
+
+@font-face
+	font-family: "Work Sans"
+	font-weight: 400
+	src: url("/fonts/WorkSans-Regular.ttf") format("truetype")
+
+@font-face
+	font-family: "Work Sans"
+	font-weight: 400
+	font-style: italic
+	src: url("/fonts/WorkSans-Italic.ttf") format("truetype")
+
+@font-face
+	font-family: "Maison Neue"
+	font-weight: 400
+	src: url("/fonts/MaisonNeue-Book.ttf") format("truetype")
+
+@font-face
+	font-family: "Maison Neue"
+	font-weight: 700
+	src: url("/fonts/MaisonNeue-Bold.ttf") format("truetype")
+
+@font-face
+	font-family: "Maison Neue"
+	font-weight: 800
+	src: url("/fonts/MaisonNeue-Black.ttf") format("truetype")
+
+@font-face
+	font-family: "Maison Neue Mono"
+	font-weight: 400
+	src: url("/fonts/MaisonNeueMono-Regular.ttf") format("truetype")
+
+@font-face
+	font-family: "Maison Neue Mono"
+	font-weight: 700
+	src: url("/fonts/MaisonNeueMono-Bold.ttf") format("truetype")
+
+// Mixins
+
+@mixin antiAliasedFont
+	font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	-webkit-font-smoothing: antialiased

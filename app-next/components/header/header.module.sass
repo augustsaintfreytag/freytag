@@ -1,0 +1,39 @@
+@import "/styles/values/fonts"
+@import "/styles/values/colors"
+@import "/styles/values/spacing"
+	
+.header
+	.inlay
+		@include inlayed
+		padding: 1rem 0
+
+		display: flex
+		justify-content: space-between
+		box-sizing: border-box
+
+		.leader
+			.title
+				font-family: $headingFont
+				font-weight: 800
+				font-size: 2.6rem
+				padding: 0.2rem 0
+
+			.descriptors
+				font-family: $headingFont
+				font-weight: 300
+				font-size: 0.8rem
+				color: $textColorFaded
+				padding: 0.2rem 0
+
+		.trailer
+			margin: 0.5rem 0
+			width: 260px
+
+			ol
+				display: flex
+				justify-content: space-between
+
+				> li
+					font-family: $headingFont
+					font-size: 1.0rem
+				
