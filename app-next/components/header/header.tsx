@@ -1,20 +1,16 @@
 import { FunctionComponent } from "react"
+import { headerText } from "~/utils/brand/functions/brand-text"
 import styles from "./header.module.sass"
 
-function headerText(): [title: string, descriptor: string] {
-	const titleText = "August Saint Freytag"
-	const descriptors = ["Concept Designer", "Video Artist", "Developer", "Editor", "Storyteller"]
-	const descriptorSeparator = "/"
-	const descriptorText = descriptors.join(` ${descriptorSeparator} `)
 
-	return [titleText, descriptorText]
 }
 
-const [titleText, descriptorText] = headerText()
 
 type Props = {
 	showsBrand: boolean
 }
+
+const { title: titleText, descriptor: descriptorText } = headerText()
 
 const Header: FunctionComponent<Props> = props => (
 	<header className={styles.header}>
