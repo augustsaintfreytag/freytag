@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { FunctionComponent, ReactElement } from "react"
+import { FunctionComponent, ReactElement, ReactNode, ReactNodeArray } from "react"
+import ExternalLink from "~/components/link/components/external-link"
 import Sprite from "~/components/sprites/sprite"
 import { className } from "~/utils/class-names/class-name"
 import { HrefProperties, hrefProperties } from "~/utils/urls/functions/formatted-href"
@@ -17,7 +18,7 @@ type FooterItemProps = {
 type FooterItemLinkProps = {
 	href: URL
 	isExternal?: boolean
-	children: ReactElement | ReactElement[]
+	children: ReactNode | ReactNodeArray
 }
 
 function hrefPropertiesFromProps(url: URL | undefined): HrefProperties | undefined {
@@ -30,11 +31,7 @@ function hrefPropertiesFromProps(url: URL | undefined): HrefProperties | undefin
 
 const FooterItemLink: FunctionComponent<FooterItemLinkProps> = props => {
 	if (props.isExternal) {
-		return (
-			<a href={props.href} target="_blank" rel="noopener">
-				{props.children}
-			</a>
-		)
+		return <ExternalLink href={props.href}>{props.children}</ExternalLink>
 	}
 
 	return (
