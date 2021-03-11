@@ -1,6 +1,7 @@
 @import "/styles/values/fonts"
 @import "/styles/values/colors"
 @import "/styles/values/spacing"
+@import "/styles/base/accessibility"
 	
 .header
 	.inlay
@@ -12,7 +13,7 @@
 		justify-content: space-between
 		box-sizing: border-box
 
-		.leader
+		.brand
 			.title
 				font-family: $headingFont
 				font-weight: 800
@@ -26,15 +27,21 @@
 				color: $textColorFaded
 				padding: 0.2rem 0
 
-		.trailer
+		.navigation
 			margin: 0.5rem 0
 			width: 260px
+
+			.navigationItem
+				font-family: $headingFont
+				font-size: 1.0rem
+
+				a
+					position: relative
+
+					&::after
+						@include extendedInteractiveArea
 
 			ol
 				display: flex
 				justify-content: space-between
-
-				> li
-					font-family: $headingFont
-					font-size: 1.0rem
 				
