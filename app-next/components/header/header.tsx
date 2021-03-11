@@ -12,13 +12,22 @@ function headerText(): [title: string, descriptor: string] {
 
 const [titleText, descriptorText] = headerText()
 
-const Header: FunctionComponent = () => (
+type Props = {
+	showsBrand: boolean
+}
+
+const Header: FunctionComponent<Props> = props => (
 	<header className={styles.header}>
 		<div className={styles.inlay}>
 			<section className={styles.leader}>
-				<h1 className={styles.title}>{titleText}</h1>
-				<div className={styles.descriptors}>{descriptorText}</div>
+				{props.showsBrand && (
+					<>
+						<h1 className={styles.title}>{titleText}</h1>
+						<div className={styles.descriptors}>{descriptorText}</div>
+					</>
+				)}
 			</section>
+
 			<nav className={styles.trailer}>
 				<ol>
 					<li>Home</li>
