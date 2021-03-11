@@ -1,4 +1,34 @@
-.welcomePane
-	padding: 50px 0 50px 0
-	margin: 0 auto
-	width: 60%
+@import "/styles/values/colors"
+@import "/styles/values/fonts"
+@import "/styles/values/spacing"
+	
+.page
+	@include inlayed
+	padding: $pageContentSpacing 0
+
+	// Lines
+
+	> .line
+		position: relative
+		font-family: $headingFont
+		font-size: 1.75rem
+		text-align: center
+		margin: $pageSubContentSpacing 0
+
+	// Decorative Elements
+
+	.surpassed
+		position: absolute
+		opacity: 0.3
+		transform: translateX(-70%) translateY(25%)
+		z-index: -1
+
+	.underlined, u
+		display: inline-block
+		text-decoration: none
+
+		&::after
+			content: ""
+			display: block
+			margin-top: -3px
+			border-bottom: 0.2rem solid $textColor
