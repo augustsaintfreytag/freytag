@@ -3,7 +3,7 @@ import Link from "next/link"
 import { FunctionComponent } from "react"
 import Divider from "~/components/divider/divider"
 import Now from "~/components/now/now"
-import { TextFunctionComponent } from "~/utils/framework/library/components"
+import { PropsWithHref, TextFunctionComponent } from "~/utils/framework/library/components"
 import styles from "./index.module.sass"
 
 // Decoration Components
@@ -12,13 +12,11 @@ const Surpassed: TextFunctionComponent = props => <span className={styles.surpas
 
 // Link Components
 
-type IndexLinkProps = {
-	href: string
-}
-
-const IndexLink: FunctionComponent<IndexLinkProps> = props => (
+const IndexLink: FunctionComponent<PropsWithHref> = props => (
 	<Link href={props.href}>
-		<u>{props.href}</u>
+		<a>
+			<u>{props.href}</u>
+		</a>
 	</Link>
 )
 
