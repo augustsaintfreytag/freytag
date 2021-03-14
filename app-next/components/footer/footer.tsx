@@ -15,7 +15,7 @@ const Footer: FunctionComponent = () => (
 	<footer className={styles.footer}>
 		<div className={styles.inlay}>
 			<FooterSection header="Me">
-				<FooterItem sprite={SpriteHref.Broadcast} text="mailman@augustfreytag.com" />
+				<FooterItem sprite={SpriteHref.Broadcast} text="me@augustfreytag.com" />
 				<FooterItem
 					sprite={SpriteHref.Map}
 					text={
