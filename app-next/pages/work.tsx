@@ -26,6 +26,14 @@ const WorkListingPage: Page = () => (
 					href="./demo"
 				/>
 			</div>
+			<aside className={styles.closure}>
+				<div>
+					There are <em>8 showcases</em> presented here, containing <em>48 samples</em> total.
+				</div>
+				<div>
+					Showcases are prepared and published on average every <em>2 months</em>.
+				</div>
+			</aside>
 		</section>
 	</>
 )
