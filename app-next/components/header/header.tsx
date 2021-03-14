@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { FunctionComponent } from "react"
+import { PropsWithAnyChildren, PropsWithHref } from "~/types/props"
 import { headerText } from "~/utils/brand/functions/brand-text"
-import { PropsWithAnyChildren, PropsWithHref } from "~/utils/framework/library/components"
 import styles from "./header.module.sass"
 
 // Navigation Item Component

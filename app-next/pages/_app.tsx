@@ -1,21 +1,24 @@
-import type { AppProps } from "next/app"
-import { FunctionComponent } from "react"
+import type { AppProps as NextAppProps } from "next/app"
+import { Fragment, FunctionComponent } from "react"
 import Sprites from "~/components/sprites/sprites"
-import DefaultLayout from "~/layouts/default/default-layout"
 import "~/styles/base/globals.sass"
+import { Page } from "~/types/page"
 
-function isLandingPageRoute(route: string): boolean {
-	return route === "/"
+type AppProps = NextAppProps & {
+	Component: Page
 }
 
 const App: FunctionComponent<AppProps> = props => {
 	const { Component, pageProps, router } = props
+	const Layout = Component.layout ?? Fragment
 
 	return (
-		<DefaultLayout showsBrand={!isLandingPageRoute(router.route)}>
+		<>
 			<Sprites />
-			<Component {...pageProps} />
-		</DefaultLayout>
+			<Layout>
+				<Component {...pageProps} />
+			</Layout>
+		</>
 	)
 }
 

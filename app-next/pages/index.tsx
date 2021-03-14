@@ -1,11 +1,12 @@
-import { NextPage } from "next"
 import Link from "next/link"
 import { FunctionComponent } from "react"
 import Divider from "~/components/divider/divider"
 import Now from "~/components/now/now"
+import LandingLayout from "~/layouts/default/landing-layout"
+import { Page } from "~/types/page"
+import { PropsWithHref, TextFunctionComponent } from "~/types/props"
 import { headerText } from "~/utils/brand/functions/brand-text"
 import { className } from "~/utils/class-names/class-name"
-import { PropsWithHref, TextFunctionComponent } from "~/utils/framework/library/components"
 import styles from "./index.module.sass"
 
 // Decoration Components
@@ -40,7 +41,7 @@ const CoverSection: FunctionComponent = () => (
 
 // Page Component
 
-const IndexPage: NextPage = () => {
+const IndexPage: Page = () => {
 	return (
 		<section className={styles.page}>
 			<CoverSection />
@@ -65,5 +66,7 @@ const IndexPage: NextPage = () => {
 		</section>
 	)
 }
+
+IndexPage.layout = LandingLayout
 
 export default IndexPage
