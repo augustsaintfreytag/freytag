@@ -1,30 +1,47 @@
+import Link from "next/link"
 import { FunctionComponent } from "react"
+import { headerText } from "~/utils/brand/functions/brand-text"
+import { PropsWithAnyChildren, PropsWithHref } from "~/utils/framework/library/components"
 import styles from "./header.module.sass"
 
-function headerText(): [title: string, descriptor: string] {
-	const titleText = "August Saint Freytag"
-	const descriptors = ["Concept Designer", "Video Artist", "Developer", "Editor", "Storyteller"]
-	const descriptorSeparator = "/"
-	const descriptorText = descriptors.join(` ${descriptorSeparator} `)
+// Navigation Item Component
 
-	return [titleText, descriptorText]
+type NavListItemProps = PropsWithHref & PropsWithAnyChildren
+
+const NavListItem: FunctionComponent<NavListItemProps> = props => {
+	return (
+		<li className={styles.navigationItem}>
+			<Link href={props.href}>{props.children}</Link>
+		</li>
+	)
 }
 
-const [titleText, descriptorText] = headerText()
+// Header Component
 
-const Header: FunctionComponent = () => (
+type Props = {
+	showsBrand: boolean
+}
+
+const { title: titleText, descriptor: descriptorText } = headerText()
+
+const Header: FunctionComponent<Props> = props => (
 	<header className={styles.header}>
 		<div className={styles.inlay}>
-			<section className={styles.leader}>
-				<h1 className={styles.title}>{titleText}</h1>
-				<div className={styles.descriptors}>{descriptorText}</div>
+			<section className={styles.brand}>
+				{props.showsBrand && (
+					<>
+						<h1 className={styles.title}>{titleText}</h1>
+						<div className={styles.descriptors}>{descriptorText}</div>
+					</>
+				)}
 			</section>
-			<nav className={styles.trailer}>
+
+			<nav className={styles.navigation}>
 				<ol>
-					<li>Home</li>
-					<li>Life</li>
-					<li>Work</li>
-					<li>Imprint</li>
+					<NavListItem href="/">Home</NavListItem>
+					<NavListItem href="/life">Life</NavListItem>
+					<NavListItem href="/work">Work</NavListItem>
+					<NavListItem href="/imprint">Imprint</NavListItem>
 				</ol>
 			</nav>
 		</div>

@@ -3,10 +3,14 @@ import Footer from "~/components/footer/footer"
 import Header from "~/components/header/header"
 import styles from "./default-layout.module.sass"
 
-const DefaultLayout: FunctionComponent = ({ children }) => (
+type Props = {
+	showsBrand?: boolean
+}
+
+const DefaultLayout: FunctionComponent<Props> = props => (
 	<section className={styles.layout}>
-		<Header />
-		<main>{children}</main>
+		<Header showsBrand={props.showsBrand ?? true} />
+		<main>{props.children}</main>
 		<Footer />
 	</section>
 )
