@@ -8,6 +8,12 @@ $pageSubContentSpacing: 1.75rem
 	max-width: $pageInlayWidth
 	margin: 0 auto
 
+@mixin listMargin($margin)
+	margin-top: $margin
+
+	&:first-child
+		margin-top: 0
+
 @mixin coverObject
 	height: 100%
 	width: 100%
