@@ -13,27 +13,23 @@ type Props = {
 
 const WorkListItem: FunctionComponent<Props> = props => (
 	<section className={styles.workListItem}>
-		<Link href={props.href}>
-			<>
-				<div className={styles.inlay}>
-					<div className={styles.inlayContent}>
-						<h2 className={styles.heading}>{props.headingText}</h2>
-						<div className={styles.preview}>
-							<p>{props.previewText}</p>
-						</div>
-						<div className={styles.link}>
-							<Link href={props.href}>
-								<>
-									<div className={styles.text}>Read Now</div>
-									<Sprite className={styles.symbol} href="#Arrow Top Right" />
-								</>
-							</Link>
-						</div>
-					</div>
+		<div className={styles.inlay}>
+			<div className={styles.inlayContent}>
+				<h2 className={styles.heading}>{props.headingText}</h2>
+				<div className={styles.preview}>
+					<p>{props.previewText}</p>
 				</div>
-				<img className={styles.image} src={props.image} />
-			</>
-		</Link>
+				<Link href={props.href}>
+					<a>
+						<div className={styles.link}>
+							<div className={styles.text}>Read Now</div>
+							<Sprite className={styles.symbol} href="#Arrow Top Right" />
+						</div>
+					</a>
+				</Link>
+			</div>
+		</div>
+		<img className={styles.image} src={props.image} />
 	</section>
 )
 
