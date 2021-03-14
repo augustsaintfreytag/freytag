@@ -3,32 +3,77 @@
 @import "/styles/values/spacing"
 	
 .page
-	@include inlayed
-	padding: $pageContentSpacing 0
+	// Index page is special, top has no padding.
+	padding: 0 0 $pageContentSpacing 0
 
-	// Lines
-
-	> .line
+	.cover
 		position: relative
-		font-family: $headingFont
-		font-size: 1.75rem
+		width: 100%
+		height: 78vh
+		overflow: hidden
+
+		img
+			z-index: 1
+			height: 100%
+			width: 100%
+			object-fit: cover
+			object-position: center
+
+		.heading
+			h1
+				font-family: $headingFont
+				font-weight: 800
+				font-size: 6vw
+				text-transform: uppercase
+				color: $clear
+				z-index: 2
+
+		.subheading
+			h2
+				position: relative
+				top: 5rem
+				font-family: $headingFont
+				font-weight: 300
+				font-size: 1rem
+				color: $clear
+			
+		.centered
+			position: absolute
+			display: flex
+			justify-content: center
+			align-items: center
+			width: 100%
+			height: 100%
+	
+	.texts
+		@include inlayed
+		margin-top: $pageContentSpacing
+
+		.line
+			position: relative
+			font-family: $headingFont
+			font-size: 1.75rem
+			text-align: center
+			margin: $pageSubContentSpacing 0
+
+		// Decorative Elements
+
+		.surpassed
+			position: absolute
+			opacity: 0.3
+			transform: translateX(-70%) translateY(25%)
+			z-index: -1
+
+		.underlined, u
+			display: inline-block
+			text-decoration: none
+
+			&::after
+				content: ""
+				display: block
+				margin-top: -3px
+				border-bottom: 0.2rem solid $textColor
+
+	.feature
+		margin-top: $pageContentSpacing
 		text-align: center
-		margin: $pageSubContentSpacing 0
-
-	// Decorative Elements
-
-	.surpassed
-		position: absolute
-		opacity: 0.3
-		transform: translateX(-70%) translateY(25%)
-		z-index: -1
-
-	.underlined, u
-		display: inline-block
-		text-decoration: none
-
-		&::after
-			content: ""
-			display: block
-			margin-top: -3px
-			border-bottom: 0.2rem solid $textColor
