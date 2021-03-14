@@ -1,0 +1,55 @@
+@import "/styles/values/colors"
+@import "/styles/values/fonts"
+@import "/styles/values/spacing"
+	
+.workListItem
+	position: relative
+	width: 100%
+	height: 28rem
+	background: #ddd4e0
+	overflow: hidden
+	
+	.inlay
+		position: absolute
+		display: flex
+		justify-content: start
+		align-items: center
+		height: 100%
+		width: 100%
+		z-index: 2
+
+		.inlayContent
+			@include inlayed
+			margin-top: 2.5rem
+			box-sizing: border-box
+
+			.heading
+				font-family: $headingFont
+				font-weight: 700
+				font-size: 2.2rem
+			.preview
+				margin-top: $pageSubContentSpacing
+				font-family: $elementFont
+				font-size: 0.85rem
+				width: 38%
+			.link
+				margin-top: $pageSubContentSpacing
+
+				.text
+					display: inline-block
+					font-family: $elementFont
+					font-size: 0.85rem
+					margin-right: 0.65rem
+				.symbol
+					display: inline-block
+					vertical-align: middle
+					margin-top: -0.05rem
+
+					$size: 15px
+					height: $size
+					width: $size
+					fill: black
+
+	.image
+		@include coverObject
+		z-index: 1
