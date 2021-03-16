@@ -1,7 +1,8 @@
 import Link from "next/link"
-import { FunctionComponent, ReactElement, ReactNode, ReactNodeArray } from "react"
+import { FunctionComponent, ReactElement } from "react"
 import ExternalLink from "~/components/link/components/external-link"
 import Sprite from "~/components/sprites/sprite"
+import { PropsWithAnyChildren } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { HrefProperties, hrefProperties } from "~/utils/urls/functions/formatted-href"
 import { URL } from "~/utils/urls/library/url"
@@ -15,10 +16,9 @@ type FooterItemProps = {
 	link?: URL
 }
 
-type FooterItemLinkProps = {
+type FooterItemLinkProps = PropsWithAnyChildren & {
 	href: URL
 	isExternal?: boolean
-	children: ReactNode | ReactNodeArray
 }
 
 function hrefPropertiesFromProps(url: URL | undefined): HrefProperties | undefined {

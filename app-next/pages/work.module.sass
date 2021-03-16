@@ -1,0 +1,22 @@
+@import "/styles/base/accessibility"
+@import "/styles/values/colors"
+@import "/styles/values/spacing"
+	
+.page
+	$sectionSpacing: $pageSubContentSpacing * 1.65
+	$closureSpacing: 1rem
+
+	padding-bottom: $pageContentSpacing
+
+	.workList
+		> section
+			@include listMargin($sectionSpacing)
+
+	.closure
+		@include inlayed
+		margin-top: $pageContentSpacing
+		color: $textColorFaded
+		text-align: center
+
+		> div
+			@include listMargin($closureSpacing)

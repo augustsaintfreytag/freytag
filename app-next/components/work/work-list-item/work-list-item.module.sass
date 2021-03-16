@@ -1,0 +1,66 @@
+@import "/styles/values/colors"
+@import "/styles/values/fonts"
+@import "/styles/values/spacing"
+@import "/styles/base/accessibility"
+	
+.workListItem
+	$height: 28rem
+	$inlayVerticalOffset: 1.5rem
+	$inlayInterItemSpacing: $pageSubContentSpacing
+	$inlayImageOffset: 50% 32%
+
+	position: relative
+	width: 100%
+	height: $height
+	background: #ddd4e0
+	
+	.inlay
+		position: absolute
+		display: flex
+		justify-content: flex-start
+		align-items: center
+		height: 100%
+		width: 100%
+		z-index: 2
+
+		.inlayContent
+			@include inlayed
+			margin-top: $inlayVerticalOffset
+			box-sizing: border-box
+
+			.heading
+				font-family: $headingFont
+				font-weight: 700
+				font-size: 2.2rem
+			.preview
+				margin-top: $inlayInterItemSpacing
+				font-family: $elementFont
+				font-size: 0.85rem
+				width: 38%
+			.link
+				position: relative
+				display: inline-block
+				margin-top: $inlayInterItemSpacing
+
+				&::after
+					@include extendedInteractiveArea
+
+				.text
+					display: inline-block
+					font-family: $elementFont
+					font-size: 0.85rem
+					margin-right: 0.65rem
+				.symbol
+					display: inline-block
+					vertical-align: middle
+					margin-top: -0.05rem
+
+					$size: 15px
+					height: $size
+					width: $size
+					fill: black
+
+	.image
+		@include coverObject
+		object-position: $inlayImageOffset
+		z-index: 1
