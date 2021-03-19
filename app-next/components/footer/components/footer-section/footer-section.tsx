@@ -4,8 +4,8 @@ import ExternalLink from "~/components/link/components/external-link"
 import Sprite from "~/components/sprites/sprite"
 import { PropsWithAnyChildren } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
-import { HrefProperties, hrefProperties } from "~/utils/urls/functions/formatted-href"
-import { URL } from "~/utils/urls/library/url"
+import { HrefProperties, hrefProperties } from "~/utils/routing/functions/formatted-href"
+import { URL } from "~/utils/routing/library/url"
 import styles from "./footer-section.module.sass"
 
 // Footer Item
