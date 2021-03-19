@@ -8,7 +8,7 @@ import { Page } from "~/types/page"
 import { PropsWithHref } from "~/types/props"
 import { headerText } from "~/utils/brand/functions/brand-text"
 import { className } from "~/utils/class-names/class-name"
-import styles from "./index.module.sass"
+import styles from "./index-page.module.sass"
 
 // Decoration Components
 

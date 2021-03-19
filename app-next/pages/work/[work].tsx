@@ -6,7 +6,7 @@ import { PageProps } from "~/pages/_app"
 import type { Page } from "~/types/page"
 import { LifeEventKind } from "~/utils/api/life-event/library/life-event-kind"
 import { stringParameter } from "~/utils/routing/functions/route-parameters"
-import styles from "./work-detail.module.sass"
+import styles from "./work-detail-page.module.sass"
 
 const WorkDetailPage: Page<PageProps> = props => {
 	const workId = stringParameter(props.router, "work")

@@ -3,7 +3,7 @@ import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { Page } from "~/types/page"
 import { pageTitle } from "~/utils/title/functions/page-title"
-import styles from "./work.module.sass"
+import styles from "./work-page.module.sass"
 
 const WorkListingPage: Page = () => (
 	<>
