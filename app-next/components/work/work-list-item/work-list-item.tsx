@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { FunctionComponent } from "react"
 import Sprite from "~/components/sprites/sprite"
-import { URL } from "~/utils/urls/library/url"
+import { URL } from "~/utils/routing/library/url"
 import styles from "./work-list-item.module.sass"
 
 type Props = {
