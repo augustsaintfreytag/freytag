@@ -26,12 +26,12 @@ const IndexLink: FunctionComponent<PropsWithHref> = props => (
 
 // Cover Component
 
-const { descriptor: descriptorText } = headerText()
+const { title: titleText, descriptor: descriptorText } = headerText()
 
 const CoverSection: FunctionComponent = () => (
 	<section className={styles.cover}>
 		<div className={className(styles.heading, styles.centered)}>
-			<h1>August Saint Freytag</h1>
+			<h1>{titleText}</h1>
 		</div>
 		<div className={className(styles.subheading, styles.centered)}>
 			<h2>{descriptorText}</h2>
