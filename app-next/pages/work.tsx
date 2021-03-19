@@ -17,13 +17,13 @@ const WorkListingPage: Page = () => (
 					headingText="With Signs of Defeat"
 					previewText="Augue non imperdiet faucibus rutrum, ad dui suscipit dis egestas venenatis pharetra massa, fringilla vestibulum ac per cras adipiscing. Nullam a pulvinar scelerisque ut adipiscing elit."
 					image="/showcase-churchview.jpg"
-					href="./demo"
+					href="/work/a0-12-24"
 				/>
 				<WorkListItem
 					headingText="Troubles and Minds"
 					previewText="Aarturient hac ligula, sociis senectus at a condimentum — vulputate mi fringilla metus parturient habitant. Fames nibh, phasellus vestibulum a condimentum nilet est."
 					image="/showcase-forest-perch.jpg"
-					href="./demo"
+					href="/work/a0-14-24"
 				/>
 			</div>
 			<aside className={styles.closure}>
