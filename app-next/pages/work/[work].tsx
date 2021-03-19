@@ -1,3 +1,4 @@
+import Divider from "~/components/divider/divider"
 import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
@@ -12,15 +13,21 @@ const WorkDetailPage: Page<PageProps> = props => {
 	// return <span>Work Detail with Id '{workId}'</span>
 
 	return (
-		<section className={styles.page}>
-			<WorkCover image="/demo-cover.png" />
-			<WorkTitle
-				className={styles.title}
-				title="Topic X: History &amp; Insights"
-				abstract="Lacinia litora condimentum donec ullamcorper adipiscing a vitae dapibus dignissim erat ligula quisque malesuada. A leo nibh suspendisse metus consectetur parturient etiam aptent fermentum velit tristique leo — a adipiscing vivamus mi leo cras condimentum."
-				link={{ kind: LifeEventKind.Graphics, title: "Project X Internals" }}
-			/>
-		</section>
+		<>
+			<section className={styles.page}>
+				<header>
+					<WorkCover image="/demo-cover.png" />
+					<WorkTitle
+						className={styles.title}
+						title="Topic X: History &amp; Insights"
+						abstract="Lacinia litora condimentum donec ullamcorper adipiscing a vitae dapibus dignissim erat ligula quisque malesuada. A leo nibh suspendisse metus consectetur parturient etiam aptent fermentum velit tristique leo — a adipiscing vivamus mi leo cras condimentum."
+						link={{ kind: LifeEventKind.Graphics, title: "Project X Internals" }}
+					/>
+				</header>
+				<Divider className={styles.divider} />
+				<main></main>
+			</section>
+		</>
 	)
 }
 
