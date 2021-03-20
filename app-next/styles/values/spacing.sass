@@ -1,6 +1,7 @@
 // Spacing
 
 $pageInlayWidth: 68rem
+$textInlayWidth: 38rem
 $pageSpacing: 8.5rem
 $pageContentSpacing: 5rem
 $pageSubContentSpacing: 1.75rem
@@ -10,6 +11,10 @@ $pageCoverHeight: 68vh
 
 @mixin inlayed
 	max-width: $pageInlayWidth
+	margin: 0 auto
+
+@mixin inlayedText
+	max-width: $textInlayWidth
 	margin: 0 auto
 
 @mixin listMargin($margin)
