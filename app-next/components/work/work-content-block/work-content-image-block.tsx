@@ -1,18 +1,12 @@
 import { FunctionComponent } from "react"
-import { URL } from "~/utils/routing/library/url"
+import ImageFigure, { Props as ImageFigureProps } from "~/components/image-figure/image-figure"
 import styles from "./work-content-image-block.module.sass"
 
-type Props = {
-	src?: URL
-	caption?: string
-}
+type Props = ImageFigureProps
 
 const WorkContentImageBlock: FunctionComponent<Props> = props => (
 	<section className={styles.block}>
-		<figure>
-			<img src={props.src} />
-			{props.caption && <figcaption>{props.caption}</figcaption>}
-		</figure>
+		<ImageFigure {...props} />
 	</section>
 )
 
