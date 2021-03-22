@@ -5,12 +5,6 @@
 .block
 	@include inlayed
 
-	img
-		display: block
-		width: 100%
-		height: auto
-
-	figcaption
-		padding: $captionSpacing 0
-		color: $textColorFaded
-		@include inlayedText
+	figure
+		figcaption
+			@include inlayedText
