@@ -1,5 +1,5 @@
 import { FunctionComponent, ReactNode, ReactNodeArray } from "react"
-import { URL } from "~/utils/urls/library/url"
+import { URL } from "~/utils/routing/library/url"
 
 type Props = {
 	href: URL

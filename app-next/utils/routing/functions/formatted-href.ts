@@ -1,4 +1,4 @@
-import { URL } from "~/utils/urls/library/url"
+import { URL } from "~/utils/routing/library/url"
 
 export type HrefProperties = { href: URL; text: string; isExternal: boolean }
 

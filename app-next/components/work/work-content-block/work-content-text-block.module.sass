@@ -1,0 +1,10 @@
+@import "/styles/values/fonts"
+@import "/styles/values/spacing"
+	
+.block
+	$paragraphSpacing: $pageSubContentSpacing * 0.8
+
+	@include inlayedText
+
+	p
+		@include listMargin($paragraphSpacing)
