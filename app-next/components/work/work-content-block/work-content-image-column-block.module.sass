@@ -1,0 +1,15 @@
+@import "/styles/values/fonts"
+@import "/styles/values/colors"
+@import "/styles/values/spacing"
+	
+.block
+	@include inlayed
+	display: flex
+	overflow: hidden
+
+	> figure
+		@include horizontalListMargin($pageSubContentSpacing)
+
+		height: max-content
+		flex: 1 1 100%
+		overflow: hidden
