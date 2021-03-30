@@ -1,0 +1,40 @@
+@import "/styles/values/fonts"
+@import "/styles/values/spacing"
+@import "/styles/values/colors"
+@import "/styles/values/kind-colors"
+@import "life-table-layout.sass"
+
+$itemComponentSpacing: 0.5rem
+$interDetailComponentSpacing: 0.75rem
+
+.table
+	@include table
+
+.item
+	position: relative
+	$decorativeSpacing: 1.6rem
+
+	.decorative
+		$decorativeVerticalOffset: 0.3rem
+		$decorativeSize: 0.75rem
+
+		position: absolute
+		top: $decorativeVerticalOffset
+		left: -$decorativeSpacing
+		height: $decorativeSize
+		width: $decorativeSize
+		background: #333
+		@include tagBackgroundColors
+
+	.inlay
+		> header
+			font-family: $elementHeadingFont
+			font-size: 1.05rem
+			font-weight: 700
+			
+		> main
+			margin-top: $itemComponentSpacing
+
+			> div
+				font-family: $elementAccentedFont
+				font-size: 0.85rem

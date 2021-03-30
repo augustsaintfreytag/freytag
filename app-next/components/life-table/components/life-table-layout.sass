@@ -1,0 +1,13 @@
+@import "/styles/values/spacing"
+	
+@mixin table
+	display: flex
+
+	> *
+		@include horizontalListMargin($interDetailComponentSpacing)
+
+		flex: auto
+		width: 20%
+
+		&:last-child
+			width: 40%
