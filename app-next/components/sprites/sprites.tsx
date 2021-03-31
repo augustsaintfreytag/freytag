@@ -31,6 +31,16 @@ const Sprites = () => (
 				transform="translate(5503 -367.187)"
 			/>
 		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Arrow Bottom">
+			<g transform="translate(70.722 -528.536) rotate(90)">
+				<rect width="24" height="24" transform="translate(528.536 46.722)" fill="#1c1c1c" />
+				<path
+					d="M1.452.367l0,3.643L9.645,4l-9.35,9.35,2.729,2.729,9.35-9.35-.008,8.2,3.643,0L16.023.354Z"
+					transform="translate(539.699 47.143) rotate(45)"
+					fill="#fff"
+				/>
+			</g>
+		</symbol>
 	</svg>
 )
 
