@@ -41,6 +41,11 @@ const Sprites = () => (
 				/>
 			</g>
 		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Arrow None">
+			<g transform="translate(70.722 -528.536)">
+				<rect width="24" height="24" transform="translate(528.536 46.722)" fill="#1c1c1c" />
+			</g>
+		</symbol>
 	</svg>
 )
 
