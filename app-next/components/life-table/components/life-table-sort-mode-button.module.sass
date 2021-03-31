@@ -1,0 +1,29 @@
+@import "/styles/values/fonts"
+@import "/styles/values/spacing"
+@import "/styles/values/colors"
+@import "life-table-layout.sass"
+
+.button
+	$interComponentSpacing: 0.9rem
+
+	display: flex
+	
+	.label
+		@include tableHeaderFont
+		width: min-content
+
+	.mode
+		$size: 1.2rem
+		$verticalOffset: 0rem
+
+		height: $size
+		width: $size
+
+		align-self: center
+		margin: 0 0 $verticalOffset $interComponentSpacing
+
+		&.modeNone
+			fill: $spriteFillColorFaded
+		
+		&.modeAscending, &.modeDescending
+			fill: $spriteFillColor
