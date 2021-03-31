@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react"
+import { PropsWithClassName } from "~/types/props"
 
-type Props = {
-	className?: string
+type Props = PropsWithClassName & {
 	href: string
 }
 
