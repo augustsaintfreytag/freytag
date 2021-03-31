@@ -1,5 +1,23 @@
 @import "/styles/values/spacing"
 	
+$itemComponentSpacing: 0.5rem
+$interDetailComponentSpacing: 0.75rem
+
+@mixin tableHeaderFont
+	font-family: $elementHeadingFont
+	font-weight: 400
+	font-size: 0.85rem
+
+@mixin tableItemHeadingFont
+	font-family: $elementHeadingFont
+	font-size: 1.05rem
+	font-weight: 700
+
+@mixin tableItemFont
+	font-family: $elementAccentedFont
+	font-weight: 400
+	font-size: 0.85rem
+
 @mixin table
 	display: flex
 

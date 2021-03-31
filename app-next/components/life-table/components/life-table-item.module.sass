@@ -4,9 +4,6 @@
 @import "/styles/values/kind-colors"
 @import "life-table-layout.sass"
 
-$itemComponentSpacing: 0.5rem
-$interDetailComponentSpacing: 0.75rem
-
 .table
 	@include table
 
@@ -23,18 +20,17 @@ $interDetailComponentSpacing: 0.75rem
 		left: -$decorativeSpacing
 		height: $decorativeSize
 		width: $decorativeSize
+		
 		background: #333
 		@include tagBackgroundColors
 
 	.inlay
 		> header
-			font-family: $elementHeadingFont
-			font-size: 1.05rem
-			font-weight: 700
+			@include tableItemHeadingFont
 			
 		> main
 			margin-top: $itemComponentSpacing
 
 			> div
-				font-family: $elementAccentedFont
-				font-size: 0.85rem
+				@include tableItemFont
+				
