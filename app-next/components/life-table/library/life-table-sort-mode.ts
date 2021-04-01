@@ -1,4 +1,4 @@
-export enum SortingMode {
+export enum LifeTableSortMode {
 	None,
 	Ascending,
 	Descending
