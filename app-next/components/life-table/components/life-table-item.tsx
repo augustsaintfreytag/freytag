@@ -21,6 +21,7 @@ function kindAttributeValue(kind: LifeEventKind): string {
 // Component
 
 type Props = LifeTableItemData
+
 const LifeTableItem: FunctionComponent<Props> = props => (
 	<section className={styles.item}>
 		<div className={styles.decorative} data-tag-representation={kindAttributeValue(props.kind)}></div>
