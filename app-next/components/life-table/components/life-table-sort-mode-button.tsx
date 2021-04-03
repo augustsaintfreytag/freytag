@@ -25,8 +25,12 @@ type ModeIndicatorProps = {
 }
 
 const ModeIndicator: FunctionComponent<ModeIndicatorProps> = props => {
-	return <Sprite className={className(styles.mode, sortingModeClassName)} href="#Arrow Bottom" />
 	const SortModeClassName = classNameForSortMode(props.mode)
+	if (props.mode === SortMode.None) {
+		return <Sprite className={className(styles.mode, SortModeClassName)} href="#Arrow None" />
+	}
+
+	return <Sprite className={className(styles.mode, SortModeClassName)} href="#Arrow Bottom" />
 }
 
 // Component
