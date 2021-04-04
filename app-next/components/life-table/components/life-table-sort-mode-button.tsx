@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
 import { LifeTableSortMode as SortMode } from "~/components/life-table/library/life-table-sort-mode"
-import Sprite from "~/components/sprites/sprite"
+import Sprite, { SpriteReference } from "~/components/sprites/sprite"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import styles from "./life-table-sort-mode-button.module.sass"
@@ -18,6 +18,17 @@ function classNameForSortMode(sortMode: SortMode): string {
 	}
 }
 
+function spriteReferenceForSortMode(sortMode: SortMode): SpriteReference {
+	switch (sortMode) {
+		case SortMode.None:
+			return "#Arrow None"
+		case SortMode.Descending:
+			return "#Arrow Down"
+		case SortMode.Ascending:
+			return "#Arrow Up"
+	}
+}
+
 // Indicator
 
 type ModeIndicatorProps = {
@@ -25,12 +36,10 @@ type ModeIndicatorProps = {
 }
 
 const ModeIndicator: FunctionComponent<ModeIndicatorProps> = props => {
-	const SortModeClassName = classNameForSortMode(props.mode)
-	if (props.mode === SortMode.None) {
-		return <Sprite className={className(styles.mode, SortModeClassName)} href="#Arrow None" />
-	}
+	const sortModeClassName = classNameForSortMode(props.mode)
+	const spriteHref = spriteReferenceForSortMode(props.mode)
 
-	return <Sprite className={className(styles.mode, SortModeClassName)} href="#Arrow Bottom" />
+	return <Sprite className={className(styles.mode, sortModeClassName)} href={spriteHref} />
 }
 
 // Component
