@@ -31,20 +31,17 @@ const Sprites = () => (
 				transform="translate(5503 -367.187)"
 			/>
 		</symbol>
-		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Arrow Bottom">
-			<g transform="translate(70.722 -528.536) rotate(90)">
-				<rect width="24" height="24" transform="translate(528.536 46.722)" fill="#1c1c1c" />
-				<path
-					d="M1.452.367l0,3.643L9.645,4l-9.35,9.35,2.729,2.729,9.35-9.35-.008,8.2,3.643,0L16.023.354Z"
-					transform="translate(539.699 47.143) rotate(45)"
-					fill="#fff"
-				/>
-			</g>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Arrow Up">
+			<path d="M24,24H0V0H24V24ZM10.069,8.845V22.068h3.86V8.845l5.792,5.8L22.3,12.073,12,1.758,1.707,12.07l2.576,2.576,5.784-5.8Z" />
+		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Arrow Down">
+			<path
+				d="M-6,24H-30V0H-6V24ZM-25.721,9.749h0L-28.3,12.325-18,22.64-7.707,12.328l-2.576-2.576-5.786,5.8V2.33h-3.86V15.553l-5.792-5.8Z"
+				transform="translate(30)"
+			/>
 		</symbol>
 		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" id="Arrow None">
-			<g transform="translate(70.722 -528.536)">
-				<rect width="24" height="24" transform="translate(528.536 46.722)" fill="#1c1c1c" />
-			</g>
+			<rect width="24" height="24" transform="translate(0 24) rotate(-90)" />
 		</symbol>
 	</svg>
 )
