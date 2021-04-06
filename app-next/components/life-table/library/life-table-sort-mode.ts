@@ -1,5 +1,5 @@
 export enum LifeTableSortMode {
-	None,
-	Ascending,
-	Descending
+	None = "-",
+	Ascending = "↑",
+	Descending = "↓"
 }
