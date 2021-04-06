@@ -37,9 +37,6 @@ const LifeTable: FunctionComponent<Props> = props => {
 				/>
 			</header>
 			<main>
-				<div style={{ margin: "2rem 0" }}>
-					Sorting Now, Column {activeColumn}, Mode {activeColumnSortMode}, Props <code>{JSON.stringify(sortProps)}</code>
-				</div>
 				<ol>
 					{data.map((itemData, index) => (
 						<li key={index}>
