@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { LifeTableColumn as Column } from "~/components/life-table/library/life-table-column"
 import { LifeTableSortMode as SortMode } from "~/components/life-table/library/life-table-sort-mode"
 import { LifeTableItemData as ItemData } from "~/components/life-table/models/life-table-item-data"
@@ -84,21 +84,26 @@ type HookProps = {
 
 // Hook
 
-export function useLifeTableData(initialData: ItemData[], props: SortProps): HookProps {
-	const [sortProps, setSortProps] = useState<SortProps>(props)
-	const [data, setSortedData] = useState<ItemData[]>([])
+export function useLifeTableData(initialData: ItemData[], initialSortProps: SortProps): HookProps {
+	const [sortProps, setSortProps] = useState<SortProps>(initialSortProps)
+	const [unsortedData, setUnsortedData] = useState<ItemData[]>(initialData)
+	const [sortedData, setSortedData] = useState<ItemData[]>([])
 
-	const setData: SetDataBlock = (unsortedData: ItemData[]) => {
+	const sortAndSetData: SetDataBlock = (unsortedData: ItemData[]) => {
 		const sortedData = sortedDataFromCollection(unsortedData, sortProps.mode, sortProps.column)
 		setSortedData(sortedData)
 	}
 
-	setData(initialData)
+	// Sort Prop Change Effect
+	useEffect(() => {
+		console.log(`Sorting and setting data with sort props '${JSON.stringify(sortProps)}'.`)
+		sortAndSetData(unsortedData)
+	}, [unsortedData, sortProps])
 
 	return {
 		sortProps,
 		setSortProps,
-		data,
-		setData
+		data: sortedData,
+		setData: setUnsortedData
 	}
 }
