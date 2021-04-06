@@ -43,7 +43,11 @@ function valueDescriptionBlockForColumn(column: Column): (data: ItemData) => str
 function sortedDataFromCollection(data: ItemData[], mode: SortMode, column: Column): ItemData[] {
 	const valueDescriptionBlock = valueDescriptionBlockForColumn(column)
 
-	return data.sort((lhs, rhs) => {
+	if (mode === SortMode.None) {
+		return [...data]
+	}
+
+	const sortedData = data.sort((lhs, rhs) => {
 		const lhsDescription = valueDescriptionBlock(lhs)
 		const rhsDescription = valueDescriptionBlock(rhs)
 
@@ -53,6 +57,12 @@ function sortedDataFromCollection(data: ItemData[], mode: SortMode, column: Colu
 
 		return lhsDescription < rhsDescription ? 1 : -1
 	})
+
+	if (mode === SortMode.Descending) {
+		return sortedData.reverse()
+	}
+
+	return sortedData
 }
 
 // Library
