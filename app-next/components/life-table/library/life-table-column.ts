@@ -1,6 +1,6 @@
 export enum LifeTableColumn {
-	Span,
-	Format,
-	Role,
-	Context
+	Span = "Span",
+	Format = "Format",
+	Role = "Role",
+	Context = "Context"
 }
