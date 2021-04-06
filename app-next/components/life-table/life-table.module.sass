@@ -1,0 +1,15 @@
+@import "/styles/values/fonts"
+@import "/styles/values/colors"
+@import "/styles/values/spacing"
+
+$interItemSpacing: 0.25rem
+
+.table
+	@include inlayed
+
+	> header
+
+	> main
+		margin-top: $pageSubContentSpacing
+		ol > li
+			@include listMargin($interItemSpacing)

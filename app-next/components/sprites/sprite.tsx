@@ -1,8 +1,10 @@
 import { FunctionComponent } from "react"
+import { PropsWithClassName } from "~/types/props"
 
-type Props = {
-	className?: string
-	href: string
+export type SpriteReference = string
+
+type Props = PropsWithClassName & {
+	href: SpriteReference
 }
 
 const Sprite: FunctionComponent<Props> = props => (

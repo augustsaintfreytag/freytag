@@ -1,12 +1,7 @@
 @import "/styles/values/fonts"
 @import "/styles/values/spacing"
 @import "/styles/values/colors"
-	
-$kindColors: ("writing": #fcbd47, "external": #f0e9b1, "life": #f0b6c1, "film": #473ff8, "development": #a180c6, "graphics": #a0d3dd, "photography": #3ff8d4)
-
-@mixin tagBackgroundColor($representation, $color)
-	&[data-tag-representation="#{$representation}"]
-		background-color: $color
+@import "/styles/values/kind-colors"
 
 .tag
 	$paddingSpacing: 0.4rem
@@ -20,5 +15,4 @@ $kindColors: ("writing": #fcbd47, "external": #f0e9b1, "life": #f0b6c1, "film": 
 	color: $textColorOnDark
 	background: $tagBackgroundColor
 
-	@each $kind, $color in $kindColors
-		@include tagBackgroundColor($kind, $color)
+	@include tagBackgroundColors
