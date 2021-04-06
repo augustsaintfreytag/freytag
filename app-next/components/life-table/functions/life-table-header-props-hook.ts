@@ -6,13 +6,13 @@ import { LifeTableSortMode as SortMode } from "~/components/life-table/library/l
 type Props = {
 	activeColumn: Column
 	activeColumnSortMode: SortMode
-	onToggle: (column: Column) => void
+	onColumnToggle: (column: Column) => void
 }
 export function useLifeTableHeaderProps(initialColumn: Column): Props {
 	const [activeColumn, setActiveColumn] = useState<Column>(initialColumn)
 	const [activeColumnSortMode, setActiveColumnSortMode] = useState<SortMode>(defaultSortModeForColumn(activeColumn))
 
-	function onToggle(column: Column) {
+	function onColumnToggle(column: Column) {
 		if (column === activeColumn) {
 			const newSortMode = invertedSortMode(activeColumnSortMode)
 			setActiveColumnSortMode(newSortMode)
@@ -26,6 +26,6 @@ export function useLifeTableHeaderProps(initialColumn: Column): Props {
 	return {
 		activeColumn,
 		activeColumnSortMode,
-		onToggle
+		onColumnToggle
 	}
 }
