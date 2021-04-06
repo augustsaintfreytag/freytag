@@ -14,6 +14,10 @@ function intervalDescription(interval?: OpenDateInterval): string {
 		return intervalComponentDescription(interval.end)
 	}
 
+	if (interval?.start && !interval?.end) {
+		return intervalComponentDescription(interval.start)
+	}
+
 	if (interval?.start && interval?.end) {
 		return `${intervalComponentDescription(interval.start)} – ${intervalComponentDescription(interval.end)}`
 	}
@@ -31,6 +35,8 @@ function valueDescriptionBlockForColumn(column: Column): (data: ItemData) => str
 			return (data: ItemData) => data.role ?? ""
 		case Column.Span:
 			return (data: ItemData) => intervalDescription(data.interval)
+		default:
+			throw new Error(`Unknown column '${column}' for value description block form.`)
 	}
 }
 
