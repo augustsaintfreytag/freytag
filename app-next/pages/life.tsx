@@ -12,8 +12,7 @@ const items: LifeTableItemData[] = [
 		interval: { start: new Date(1612170006 * 1000), end: new Date(1614589206 * 1000) },
 		format: "Web Application",
 		role: "Designer, Developer",
-		context:
-			"Reinvention of the Folio Freytag, following through with a new look optimised for past and future showcases."
+		context: "Reinvention of the Folio Freytag, following through with a new look optimised for past and future showcases."
 	},
 	{
 		name: "Unannounced Game Jam",
@@ -21,8 +20,15 @@ const items: LifeTableItemData[] = [
 		interval: { start: new Date(1611170006 * 1000) },
 		format: "Game",
 		role: "Co-Writer, Game Designer",
-		context:
-			"Mus fringilla, odio sem nibh eget felis consectetur a sem dignissim dignissim ridiculus felis facilisi vestibulum nascetur."
+		context: "Mus fringilla, odio sem nibh eget felis consectetur a sem dignissim dignissim ridiculus felis facilisi vestibulum nascetur."
+	},
+	{
+		name: "Listener on Macintosh",
+		kind: LifeEventKind.Graphics,
+		interval: { end: new Date(1611135006 * 1000) },
+		format: "Digital Art",
+		role: "Designer",
+		context: "Sem dignissim dignissim ridiculus felis facilisi vestibulum nascetur nostra consequat feugiat a est penatibus id conubia netus."
 	}
 ]
 
