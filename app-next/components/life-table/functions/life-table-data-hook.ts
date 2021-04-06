@@ -55,7 +55,7 @@ function sortedDataFromCollection(data: ItemData[], mode: SortMode, column: Colu
 			return 0
 		}
 
-		return lhsDescription < rhsDescription ? 1 : -1
+		return lhsDescription < rhsDescription ? -1 : 1
 	})
 
 	if (mode === SortMode.Descending) {
