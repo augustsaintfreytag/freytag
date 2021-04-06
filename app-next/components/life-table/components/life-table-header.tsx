@@ -1,5 +1,4 @@
-import { FunctionComponent, useState } from "react"
-import { defaultSortModeForColumn, invertedSortMode } from "~/components/life-table/functions/life-table-sort-mode"
+import { FunctionComponent } from "react"
 import { LifeTableColumn as Column } from "~/components/life-table/library/life-table-column"
 import { LifeTableSortMode as SortMode } from "~/components/life-table/library/life-table-sort-mode"
 import { className } from "~/utils/class-names/class-name"
@@ -36,36 +35,20 @@ const items: ItemDefinition[] = [
 ]
 
 type Props = {
-	onSortModeChange?: (column: Column, mode: SortMode) => void
+	activeColumn?: Column
+	activeColumnSortMode?: SortMode
+	onColumnToggle?: (column: Column) => void
 }
 
 const LifeTableHeader: FunctionComponent<Props> = props => {
-	const [activeColumn, setActiveColumn] = useState<Column>(Column.Span)
-	const [activeColumnSortMode, setActiveColumnSortMode] = useState<SortMode>(defaultSortModeForColumn(activeColumn))
+	const { activeColumn, activeColumnSortMode } = props
 
-	function itemSortModeForColumn(column: Column): SortMode {
+	function itemSortModeForColumn(column?: Column): SortMode {
 		if (column !== activeColumn) {
 			return SortMode.None
 		}
 
-		return activeColumnSortMode
-	}
-
-	function toggleSortModeForColumn(column: Column) {
-		const defer = () => {
-			props.onSortModeChange?.(activeColumn, activeColumnSortMode)
-		}
-
-		if (column === activeColumn) {
-			const newSortMode = invertedSortMode(activeColumnSortMode)
-			setActiveColumnSortMode(newSortMode)
-			defer()
-			return
-		}
-
-		setActiveColumn(column)
-		setActiveColumnSortMode(SortMode.Descending)
-		defer()
+		return activeColumnSortMode ?? SortMode.None
 	}
 
 	return (
@@ -77,7 +60,7 @@ const LifeTableHeader: FunctionComponent<Props> = props => {
 					column={item.column}
 					mode={itemSortModeForColumn(item.column)}
 					onToggle={() => {
-						toggleSortModeForColumn(item.column)
+						props.onColumnToggle?.(item.column)
 					}}
 				/>
 			))}
