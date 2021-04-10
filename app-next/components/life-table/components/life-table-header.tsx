@@ -1,9 +1,9 @@
 import { FunctionComponent } from "react"
+import LifeTableHeaderItem from "~/components/life-table/components/life-table-header-item"
 import { LifeTableColumn as Column } from "~/components/life-table/library/life-table-column"
 import { LifeTableSortMode as SortMode } from "~/components/life-table/library/life-table-sort-mode"
 import { className } from "~/utils/class-names/class-name"
 import styles from "./life-table-header.module.sass"
-import { default as SortModeButton } from "./life-table-sort-mode-button"
 
 // Item
 
@@ -11,19 +11,6 @@ type ItemDefinition = {
 	column: Column
 	text: string
 }
-
-type ItemProps = {
-	text: string
-	column: Column
-	mode: SortMode
-	onToggle: () => void
-}
-
-const Item: FunctionComponent<ItemProps> = props => (
-	<div>
-		<SortModeButton text={props.text} mode={props.mode} onClick={props.onToggle} />
-	</div>
-)
 
 // Component
 
@@ -54,7 +41,8 @@ const LifeTableHeader: FunctionComponent<Props> = props => {
 	return (
 		<section className={className(styles.header, styles.table)}>
 			{items.map((item, index) => (
-				<Item
+				<LifeTableHeaderItem
+					className={styles.item}
 					key={index}
 					text={item.text}
 					column={item.column}
