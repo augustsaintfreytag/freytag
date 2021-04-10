@@ -15,7 +15,7 @@ type Props = {
 const initialSortProps = { column: LifeTableColumn.Span, mode: LifeTableSortMode.Descending }
 
 const LifeTable: FunctionComponent<Props> = props => {
-	const { activeColumn, activeColumnSortMode, toggleColumn } = useLifeTableHeaderProps(initialSortProps.column)
+	const { activeColumn, activeColumnSortMode, toggleColumn } = useLifeTableHeaderProps(initialSortProps.column, initialSortProps.mode)
 	const { data, sortProps, setSortProps } = useLifeTableData(props.data, initialSortProps)
 
 	useEffect(() => {

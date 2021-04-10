@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { defaultSortModeForColumn, invertedSortMode } from "~/components/life-table/functions/life-table-sort-mode"
+import { defaultSortMode, invertedSortMode } from "~/components/life-table/functions/life-table-sort-mode"
 import { LifeTableColumn as Column } from "~/components/life-table/library/life-table-column"
 import { LifeTableSortMode as SortMode } from "~/components/life-table/library/life-table-sort-mode"
 
@@ -8,9 +8,10 @@ type Props = {
 	activeColumnSortMode: SortMode
 	toggleColumn: (column: Column) => void
 }
-export function useLifeTableHeaderProps(initialColumn: Column): Props {
+
+export function useLifeTableHeaderProps(initialColumn: Column, intialSortMode: SortMode): Props {
 	const [activeColumn, setActiveColumn] = useState<Column>(initialColumn)
-	const [activeColumnSortMode, setActiveColumnSortMode] = useState<SortMode>(defaultSortModeForColumn(activeColumn))
+	const [activeColumnSortMode, setActiveColumnSortMode] = useState<SortMode>(intialSortMode)
 
 	function toggleColumn(column: Column) {
 		if (column === activeColumn) {
@@ -20,7 +21,7 @@ export function useLifeTableHeaderProps(initialColumn: Column): Props {
 		}
 
 		setActiveColumn(column)
-		setActiveColumnSortMode(defaultSortModeForColumn(column))
+		setActiveColumnSortMode(defaultSortMode)
 	}
 
 	return {
