@@ -17,7 +17,7 @@ const items: LifeTableItemData[] = [
 	{
 		name: "Unannounced Game Jam",
 		kind: LifeEventKind.Development,
-		interval: { start: new Date(1611170006 * 1000) },
+		interval: { start: new Date(1610170006 * 1000) },
 		format: "Game",
 		role: "Co-Writer, Game Designer",
 		context: "Mus fringilla, odio sem nibh eget felis consectetur a sem dignissim dignissim ridiculus felis facilisi vestibulum nascetur."
@@ -29,6 +29,14 @@ const items: LifeTableItemData[] = [
 		format: "Digital Art",
 		role: "Designer",
 		context: "Sem dignissim dignissim ridiculus felis facilisi vestibulum nascetur nostra consequat feugiat a est penatibus id conubia netus."
+	},
+	{
+		name: "Unannounced Short Film",
+		kind: LifeEventKind.Film,
+		interval: { end: new Date(1618835006 * 1000) },
+		format: "Short Film",
+		role: "Writer",
+		context: "Nascetur nostra consequat feugiat a est penatibus id conubia netus — felis consectetur a sem dignissim dignissim."
 	}
 ]
 
