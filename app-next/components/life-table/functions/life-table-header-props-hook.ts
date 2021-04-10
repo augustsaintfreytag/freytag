@@ -20,7 +20,7 @@ export function useLifeTableHeaderProps(initialColumn: Column): Props {
 		}
 
 		setActiveColumn(column)
-		setActiveColumnSortMode(SortMode.Descending)
+		setActiveColumnSortMode(defaultSortModeForColumn(column))
 	}
 
 	return {
