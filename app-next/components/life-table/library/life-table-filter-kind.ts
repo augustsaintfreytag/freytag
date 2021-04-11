@@ -1,5 +1,5 @@
 import { LifeEventKind } from "~/utils/api/life-event/library/life-event-kind"
 
-export const LifeEventKindAll = "All"
+export const LifeTableFilterKindAll = "All"
 
-export type FilterKind = LifeEventKind | typeof LifeEventKindAll
+export type LifeTableFilterKind = LifeEventKind | typeof LifeTableFilterKindAll

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { FilterKind, LifeEventKindAll } from "~/components/life-table/library/life-table-filter-kind"
+import { LifeTableFilterKind as FilterKind, LifeTableFilterKindAll as FilterKindAll } from "~/components/life-table/library/life-table-filter-kind"
 import { PropsWithClassName } from "~/types/props"
 import { allLifeEventKinds } from "~/utils/api/life-event/library/life-event-kind"
 import { className } from "~/utils/class-names/class-name"
@@ -17,7 +17,7 @@ const filterDefinitions = (() => {
 	const definitions: FilterDefinition[] = []
 
 	definitions.push({
-		kind: LifeEventKindAll,
+		kind: FilterKindAll,
 		attribute: "all",
 		text: "All"
 	})
