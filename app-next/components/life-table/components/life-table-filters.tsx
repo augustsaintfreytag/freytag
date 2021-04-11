@@ -45,6 +45,7 @@ const LifeTableFilters: FunctionComponent<Props> = props => {
 
 					return (
 						<button
+							key={definition.kind}
 							className={className(styles.item, isActive && styles.active)}
 							onClick={() => {
 								props.onFilterChange?.(definition.kind)
