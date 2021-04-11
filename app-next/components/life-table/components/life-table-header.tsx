@@ -5,14 +5,12 @@ import { LifeTableSortMode as SortMode } from "~/components/life-table/library/l
 import { className } from "~/utils/class-names/class-name"
 import styles from "./life-table-header.module.sass"
 
-// Item
+// Definitions
 
 type ItemDefinition = {
 	column: Column
 	text: string
 }
-
-// Component
 
 const items: ItemDefinition[] = [
 	{ column: Column.Span, text: "Span" },
@@ -20,6 +18,8 @@ const items: ItemDefinition[] = [
 	{ column: Column.Role, text: "Role" },
 	{ column: Column.Context, text: "Context" }
 ]
+
+// Component
 
 type Props = {
 	activeColumn?: Column
@@ -35,7 +35,7 @@ const LifeTableHeader: FunctionComponent<Props> = props => {
 			return SortMode.None
 		}
 
-		return activeColumnSortMode ?? SortMode.None
+		return activeColumnSortMode || SortMode.None
 	}
 
 	return (
