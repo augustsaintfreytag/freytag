@@ -1,44 +1,23 @@
 import { useState } from "react"
+import { valueDescriptionBlockForColumn } from "~/components/life-table/functions/life-table-value-description"
 import { LifeTableColumn as Column } from "~/components/life-table/library/life-table-column"
+import { LifeTableFilterKind as FilterKind, LifeTableFilterKindAll as FilterKindAll } from "~/components/life-table/library/life-table-filter-kind"
 import { LifeTableSortMode as SortMode } from "~/components/life-table/library/life-table-sort-mode"
 import { LifeTableItemData as ItemData } from "~/components/life-table/models/life-table-item-data"
-import { OpenDateInterval } from "~/utils/date/library/intervals"
+
+// Filtering
+
+function filteredDataFromCollection(data: ItemData[], kind: FilterKind): ItemData[] {
+	if (kind === FilterKindAll) {
+		return [...data]
+	}
+
+	return data.filter(item => {
+		return item.kind === kind
+	})
+}
 
 // Sorting
-
-function intervalComponentDescription(date: Date): string {
-	return date.valueOf().toString()
-}
-function intervalDescription(interval?: OpenDateInterval): string {
-	if (!interval?.start && interval?.end) {
-		return intervalComponentDescription(interval.end)
-	}
-
-	if (interval?.start && !interval?.end) {
-		return intervalComponentDescription(interval.start)
-	}
-
-	if (interval?.start && interval?.end) {
-		return `${intervalComponentDescription(interval.start)} – ${intervalComponentDescription(interval.end)}`
-	}
-
-	return ""
-}
-
-function valueDescriptionBlockForColumn(column: Column): (data: ItemData) => string {
-	switch (column) {
-		case Column.Context:
-			return (data: ItemData) => data.context ?? ""
-		case Column.Format:
-			return (data: ItemData) => data.format
-		case Column.Role:
-			return (data: ItemData) => data.role ?? ""
-		case Column.Span:
-			return (data: ItemData) => intervalDescription(data.interval)
-		default:
-			throw new Error(`Unknown column '${column}' for value description block form.`)
-	}
-}
 
 function sortedDataFromCollection(data: ItemData[], mode: SortMode, column: Column): ItemData[] {
 	const valueDescriptionBlock = valueDescriptionBlockForColumn(column)
@@ -67,36 +46,47 @@ function sortedDataFromCollection(data: ItemData[], mode: SortMode, column: Colu
 
 // Library
 
-type SortProps = {
-	mode: SortMode
-	column: Column
+export type DataProps = {
+	filterKind: FilterKind
+	sortColumn: Column
+	sortMode: SortMode
 }
 
-type SetSortPropsBlock = (props: SortProps) => void
+type SetDataPropsBlock = (props: DataProps) => void
 type SetDataBlock = (data: ItemData[]) => void
 
 type HookProps = {
 	data: ItemData[]
-	sortProps: SortProps
-	setSortProps: SetSortPropsBlock
+	sortProps: DataProps
+	setData: SetDataBlock
+	setDataProps: SetDataPropsBlock
 }
 
 // Hook
 
-export function useLifeTableData(initialData: ItemData[], initialSortProps: SortProps): HookProps {
-	const [sortProps, setSortPropsState] = useState<SortProps>(initialSortProps)
-	const [data, setDataState] = useState<ItemData[]>(initialData)
+export function useLifeTableData(initialData: ItemData[], initialDataProps: DataProps): HookProps {
+	const [rawData, setRawData] = useState<ItemData[]>(initialData)
+	const [displayableData, setDisplayableData] = useState<ItemData[]>(initialData)
+	const [props, setProps] = useState<DataProps>(initialDataProps)
 
-	function setSortProps(props: SortProps) {
-		setSortPropsState(props)
+	function setDataProps(props: DataProps) {
+		setProps(props)
 
-		const sortedData = sortedDataFromCollection(data, props.mode, props.column)
-		setDataState(sortedData)
+		const filteredData = filteredDataFromCollection(rawData, props.filterKind)
+		const sortedData = sortedDataFromCollection(filteredData, props.sortMode, props.sortColumn)
+
+		setDisplayableData(sortedData)
+	}
+
+	function setData(data: ItemData[]) {
+		setRawData(data)
+		setDataProps(props)
 	}
 
 	return {
-		data,
-		sortProps,
-		setSortProps
+		data: displayableData,
+		sortProps: props,
+		setData: setData,
+		setDataProps: setDataProps
 	}
 }
