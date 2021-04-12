@@ -8,8 +8,11 @@
 	@include table
 
 .item
-	position: relative
+	$fixedHeight: 4.5rem
 	$decorativeSpacing: 1.6rem
+
+	position: relative
+	height: $fixedHeight
 
 	.decorative
 		$decorativeVerticalOffset: 0.3rem
@@ -25,12 +28,13 @@
 		@include tagBackgroundColors
 
 	.inlay
-		> header
+		header
 			@include tableItemHeadingFont
 			
-		> main
+		main
 			margin-top: $itemComponentSpacing
 
-			> div
+			> *
 				@include tableItemFont
+				line-height: 1.5
 				
