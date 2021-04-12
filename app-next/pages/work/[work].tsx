@@ -8,7 +8,7 @@ import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { PageProps } from "~/pages/_app"
 import type { Page } from "~/types/page"
-import { LifeEventKind } from "~/utils/api/life-event/library/life-event-kind"
+import { LifeEventKind } from "~/utils/api/records/life-event/library/life-event-kind"
 import { stringParameter } from "~/utils/routing/functions/route-parameters"
 import styles from "./work-detail-page.module.sass"
 
@@ -36,10 +36,7 @@ A leo nibh suspendisse metus consectetur parturient etiam, aptent fermentum veli
 				<Divider className={styles.divider} />
 				<main>
 					<WorkContentTextBlock text={sampleTextA} />
-					<WorkContentImageBlock
-						src="/showcase-content-block.png"
-						caption="Essential Irish Palm Trees (Digital)"
-					/>
+					<WorkContentImageBlock src="/showcase-content-block.png" caption="Essential Irish Palm Trees (Digital)" />
 					<WorkContentHeadingBlock text="The Sub Menu Button" />
 					<WorkContentTextBlock text={sampleTextB} />
 					<WorkContentImageColumnBlock

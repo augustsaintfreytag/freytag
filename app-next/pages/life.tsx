@@ -2,7 +2,7 @@ import LifeTable from "~/components/life-table/life-table"
 import { LifeTableItemData } from "~/components/life-table/models/life-table-item-data"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { Page } from "~/types/page"
-import { LifeEventKind } from "~/utils/api/life-event/library/life-event-kind"
+import { LifeEventKind } from "~/utils/api/records/life-event/library/life-event-kind"
 import styles from "./life-page.module.sass"
 
 const items: LifeTableItemData[] = [
