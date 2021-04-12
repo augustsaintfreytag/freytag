@@ -26,22 +26,23 @@ function sortedDataFromCollection(data: ItemData[], mode: SortMode, column: Colu
 		return [...data]
 	}
 
-	const sortedData = data.sort((lhs, rhs) => {
-		const lhsDescription = valueDescriptionBlock(lhs)
-		const rhsDescription = valueDescriptionBlock(rhs)
+	const preprocessedDataFragments = data.map(itemData => {
+		return { data: itemData, description: valueDescriptionBlock(itemData) }
+	})
 
-		if (lhsDescription === rhsDescription) {
+	const sortedData = preprocessedDataFragments.sort((lhs, rhs) => {
+		if (lhs.description === rhs.description) {
 			return 0
 		}
 
-		return lhsDescription < rhsDescription ? -1 : 1
+		return lhs.description < rhs.description ? -1 : 1
 	})
 
 	if (mode === SortMode.Descending) {
-		return sortedData.reverse()
+		sortedData.reverse()
 	}
 
-	return sortedData
+	return sortedData.map(fragment => fragment.data)
 }
 
 // Library
