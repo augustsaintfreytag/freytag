@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "cockpit-access": "https://gitlab.com/apricum/cockpit-access.git"
+  }
+}

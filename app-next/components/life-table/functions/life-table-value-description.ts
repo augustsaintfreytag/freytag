@@ -2,20 +2,18 @@ import { LifeTableColumn as Column } from "~/components/life-table/library/life-
 import { LifeTableItemData as ItemData } from "~/components/life-table/models/life-table-item-data"
 import { OpenDateInterval } from "~/utils/date/library/intervals"
 
+const safeSortPaddingLength = 20
+
 function intervalComponentDescription(date: Date): string {
-	return date.valueOf().toString()
+	return date.valueOf().toString().padStart(safeSortPaddingLength, "0")
 }
 export function intervalDescription(interval?: OpenDateInterval): string {
-	if (!interval?.start && interval?.end) {
-		return intervalComponentDescription(interval.end)
-	}
-
-	if (interval?.start && !interval?.end) {
+	if (interval?.start) {
 		return intervalComponentDescription(interval.start)
 	}
 
-	if (interval?.start && interval?.end) {
-		return `${intervalComponentDescription(interval.start)} – ${intervalComponentDescription(interval.end)}`
+	if (interval?.end) {
+		return intervalComponentDescription(interval.end)
 	}
 
 	return ""

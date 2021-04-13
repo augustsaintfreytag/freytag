@@ -17,7 +17,7 @@ type Props = {
 const initialSortProps: DataProps = { filterKind: FilterKindAll, sortColumn: LifeTableColumn.Span, sortMode: LifeTableSortMode.Descending }
 
 const LifeTable: FunctionComponent<Props> = props => {
-	const [activeFilterKind, setActiveFilterKind] = useState<FilterKind>(FilterKindAll)
+	const [activeFilterKind, setActiveFilterKind] = useState<FilterKind>(initialSortProps.filterKind)
 	const { activeColumn, activeColumnSortMode, toggleColumn } = useLifeTableHeaderProps(initialSortProps.sortColumn, initialSortProps.sortMode)
 	const { data, setDataProps } = useLifeTableData(props.data, initialSortProps)
 

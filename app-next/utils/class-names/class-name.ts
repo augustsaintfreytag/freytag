@@ -1,10 +1,10 @@
 import { Dictionary } from "~/utils/types/library/dictionary"
 
-export function className(...components: (string | undefined)[]): string {
+export function className(...components: (string | boolean | undefined)[]): string {
 	const classNames = new Set<string>()
 
 	for (const className of components) {
-		if (!className) {
+		if (typeof className !== "string") {
 			continue
 		}
 
