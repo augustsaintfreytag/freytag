@@ -47,7 +47,7 @@ function sortedDataFromCollection(data: ItemData[], mode: SortMode, column: Colu
 
 // Library
 
-export type DataProps = {
+type DataProps = {
 	filterKind: FilterKind
 	sortColumn: Column
 	sortMode: SortMode
@@ -64,6 +64,8 @@ type HookProps = {
 }
 
 // Hook
+
+export type LifeTableDataProps = DataProps
 
 export function useLifeTableData(initialData: ItemData[], initialDataProps: DataProps): HookProps {
 	const [rawData, setRawData] = useState<ItemData[]>(initialData)

@@ -1,7 +1,7 @@
 import { FunctionComponent, useEffect, useState } from "react"
 import LifeTableFilters from "~/components/life-table/components/life-table-filters"
 import LifeTableHeader from "~/components/life-table/components/life-table-header"
-import { DataProps, useLifeTableData } from "~/components/life-table/functions/life-table-data-hook"
+import { LifeTableDataProps, useLifeTableData } from "~/components/life-table/functions/life-table-data-hook"
 import { useLifeTableHeaderProps } from "~/components/life-table/functions/life-table-header-props-hook"
 import { LifeTableColumn } from "~/components/life-table/library/life-table-column"
 import { LifeTableFilterKind as FilterKind, LifeTableFilterKindAll as FilterKindAll } from "~/components/life-table/library/life-table-filter-kind"
