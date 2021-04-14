@@ -1,0 +1,11 @@
+$kindColors: ("all": #d6d6d6, "writing": #fcbd47, "external": #f0e9b1, "life": #f0b6c1, "film": #473ff8, "development": #a180c6, "artwork": #a0d3dd, "photography": #3ff8d4)
+
+// Data Attribute Key: data-tag-representation
+
+@mixin tagBackgroundColor($representation, $color)
+	&[data-tag-representation="#{$representation}"]
+		background-color: $color
+
+@mixin tagBackgroundColors
+	@each $kind, $color in $kindColors
+		@include tagBackgroundColor($kind, $color)

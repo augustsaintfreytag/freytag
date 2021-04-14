@@ -4,6 +4,7 @@ import { Fragment, FunctionComponent } from "react"
 import Sprites from "~/components/sprites/sprites"
 import "~/styles/base/globals.sass"
 import type { Page } from "~/types/page"
+import "~/utils/api/common/config/api-configuration"
 
 type AppProps = NextAppProps & {
 	Component: Page
