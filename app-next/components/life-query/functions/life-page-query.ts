@@ -39,8 +39,12 @@ export function lifeTablePropsFromQuery(query: ParsedUrlQuery): Props | undefine
 
 const routerTransitionOptions = { scroll: false }
 
-function queryParametersFromProps(props: Props): Dictionary<string, string> {
+function queryParametersFromProps(props: Props | undefined): Dictionary<string, string> {
 	const query: Dictionary<string, string> = {}
+
+	if (!props) {
+		return query
+	}
 
 	query[ParameterKey.FilterKind] = props.filterKind
 	query[ParameterKey.SortColumn] = props.sortColumn
@@ -49,10 +53,16 @@ function queryParametersFromProps(props: Props): Dictionary<string, string> {
 	return query
 }
 
-export function setQueryFromLifeTableProps(router: Router, props: Props) {
+export function setQueryFromLifeTableProps(router: Router, props: Props | undefined) {
 	const parameters = queryParametersFromProps(props)
 	const currentRoute = router.pathname
 	const route = { pathname: currentRoute, query: parameters }
 
 	router.replace(route, undefined, routerTransitionOptions)
+}
+
+// Prop Comparison
+
+export function lifeTablePropsAreEqual(lhs: Props, rhs: Props): boolean {
+	return lhs.filterKind === rhs.filterKind && lhs.sortColumn === rhs.sortColumn && lhs.sortMode === rhs.sortMode
 }
