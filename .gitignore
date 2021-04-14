@@ -1,16 +1,19 @@
 # Dependencies
 /node_modules
 
+# Assets
+public/assets
+
 # Frameworks
 .next/
 .nuxt/
 out/
 build/
 
-# Editor
+# Environment
 .vscode
 
-# Debug
+# Development
 *.log
 
 # Locals
