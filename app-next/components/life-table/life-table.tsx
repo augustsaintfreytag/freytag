@@ -1,4 +1,6 @@
+import { useRouter } from "next/router"
 import { FunctionComponent, useEffect, useState } from "react"
+import { lifeTablePropsFromQuery, setQueryFromLifeTableProps } from "~/components/life-query/functions/life-page-query"
 import LifeTableFilters from "~/components/life-table/components/life-table-filters"
 import LifeTableHeader from "~/components/life-table/components/life-table-header"
 import { LifeTableDataProps, useLifeTableData } from "~/components/life-table/functions/life-table-data-hook"
@@ -11,22 +13,31 @@ import LifeTableItem from "./components/life-table-item"
 import styles from "./life-table.module.sass"
 
 type Props = {
+	initialProps?: LifeTableDataProps
 	data: LifeTableItemData[]
 }
 
-const initialSortProps: DataProps = { filterKind: FilterKindAll, sortColumn: LifeTableColumn.Span, sortMode: LifeTableSortMode.Descending }
-
 const LifeTable: FunctionComponent<Props> = props => {
+	const router = useRouter()
+	const initialSortProps = lifeTablePropsFromQuery(router.query) ?? {
+		filterKind: FilterKindAll,
+		sortColumn: LifeTableColumn.Span,
+		sortMode: LifeTableSortMode.Descending
+	}
+
 	const [activeFilterKind, setActiveFilterKind] = useState<FilterKind>(initialSortProps.filterKind)
 	const { activeColumn, activeColumnSortMode, toggleColumn } = useLifeTableHeaderProps(initialSortProps.sortColumn, initialSortProps.sortMode)
 	const { data, setDataProps } = useLifeTableData(props.data, initialSortProps)
 
 	useEffect(() => {
-		setDataProps({
+		const props = {
 			filterKind: activeFilterKind,
 			sortColumn: activeColumn,
 			sortMode: activeColumnSortMode
-		})
+		}
+
+		setDataProps(props)
+		setQueryFromLifeTableProps(router, props)
 	}, [activeFilterKind, activeColumn, activeColumnSortMode])
 
 	return (
