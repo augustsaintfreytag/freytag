@@ -30,7 +30,7 @@ A leo nibh suspendisse metus consectetur parturient etiam, aptent fermentum veli
 						className={styles.title}
 						title="Topic X: History &amp; Insights"
 						abstract="Lacinia litora condimentum donec ullamcorper adipiscing a vitae dapibus dignissim erat ligula quisque malesuada. A leo nibh suspendisse metus consectetur parturient etiam aptent fermentum velit tristique leo — a adipiscing vivamus mi leo cras condimentum."
-						link={{ kind: LifeEventKind.Graphics, title: "Project X Internals" }}
+						link={{ kind: LifeEventKind.Artwork, title: "Project X Internals" }}
 					/>
 				</header>
 				<Divider className={styles.divider} />

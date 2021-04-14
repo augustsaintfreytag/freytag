@@ -5,7 +5,7 @@ export enum LifeEventKind {
 	Life = "Life",
 	Film = "Film",
 	Development = "Development",
-	Graphics = "Graphics",
+	Artwork = "Artwork",
 	Photography = "Photography"
 }
 
@@ -14,7 +14,7 @@ export const allLifeEventKinds: LifeEventKind[] = [
 	LifeEventKind.External,
 	LifeEventKind.Film,
 	LifeEventKind.Development,
-	LifeEventKind.Graphics,
+	LifeEventKind.Artwork,
 	LifeEventKind.Photography
 ]
 
