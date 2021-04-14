@@ -1,6 +1,6 @@
 import { useRouter } from "next/router"
 import { FunctionComponent, useEffect, useState } from "react"
-import { lifeTablePropsFromQuery, setQueryFromLifeTableProps } from "~/components/life-query/functions/life-page-query"
+import { lifeTablePropsAreEqual, lifeTablePropsFromQuery, setQueryFromLifeTableProps } from "~/components/life-query/functions/life-page-query"
 import LifeTableFilters from "~/components/life-table/components/life-table-filters"
 import LifeTableHeader from "~/components/life-table/components/life-table-header"
 import { LifeTableDataProps, useLifeTableData } from "~/components/life-table/functions/life-table-data-hook"
@@ -19,15 +19,15 @@ type Props = {
 
 const LifeTable: FunctionComponent<Props> = props => {
 	const router = useRouter()
-	const initialSortProps = lifeTablePropsFromQuery(router.query) ?? {
+	const initialProps = lifeTablePropsFromQuery(router.query) ?? {
 		filterKind: FilterKindAll,
 		sortColumn: LifeTableColumn.Span,
 		sortMode: LifeTableSortMode.Descending
 	}
 
-	const [activeFilterKind, setActiveFilterKind] = useState<FilterKind>(initialSortProps.filterKind)
-	const { activeColumn, activeColumnSortMode, toggleColumn } = useLifeTableHeaderProps(initialSortProps.sortColumn, initialSortProps.sortMode)
-	const { data, setDataProps } = useLifeTableData(props.data, initialSortProps)
+	const [activeFilterKind, setActiveFilterKind] = useState<FilterKind>(initialProps.filterKind)
+	const { activeColumn, activeColumnSortMode, toggleColumn } = useLifeTableHeaderProps(initialProps.sortColumn, initialProps.sortMode)
+	const { data, setDataProps } = useLifeTableData(props.data, initialProps)
 
 	useEffect(() => {
 		const props = {
@@ -37,7 +37,16 @@ const LifeTable: FunctionComponent<Props> = props => {
 		}
 
 		setDataProps(props)
-		setQueryFromLifeTableProps(router, props)
+
+		const routeAssignableProps = (() => {
+			if (lifeTablePropsAreEqual(props, initialProps)) {
+				return undefined
+			}
+
+			return props
+		})()
+
+		setQueryFromLifeTableProps(router, routeAssignableProps)
 	}, [activeFilterKind, activeColumn, activeColumnSortMode])
 
 	return (
