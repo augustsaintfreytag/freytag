@@ -36,7 +36,7 @@ const CoverSection: FunctionComponent = () => (
 		<div className={className(styles.subheading, styles.centered)}>
 			<h2>{descriptorText}</h2>
 		</div>
-		<img src="/paper-title-cover.jpg" />
+		<img src="/assets/paper-title-cover.jpg" />
 	</section>
 )
 
