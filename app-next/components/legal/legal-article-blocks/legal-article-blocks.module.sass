@@ -1,0 +1,36 @@
+@import "./legal-fonts"
+@import "./legal-spacing"
+
+.block
+	// Fonts
+	.heading
+		@include headingFont
+		
+	.subHeading
+		@include subHeadingFont
+		
+	p
+		@include paragraphFont
+
+	aside
+		@include asideFont
+
+	// Block-Specific Spacing
+	&.headingBlock, &.subHeadingBlock, &.textBlock
+		> .heading
+			margin-top: $firstSectionSpacing
+		> .subHeading
+			margin-top: $secondSectionSpacing
+		> p
+			margin-top: $paragraphSpacing
+		> aside
+			margin-top: $headingAsideSpacing
+
+	&.subHeadingBlock
+		> .subHeading
+			margin-top: $firstSectionSpacing
+
+	&.contactBlock
+		> div
+			margin-top: $secondSectionSpacing
+			@include contactBlockFont
