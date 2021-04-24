@@ -1,0 +1,65 @@
+@import "/styles/values/fonts"
+@import "/styles/values/spacing"
+@import "/styles/values/colors"
+
+.page
+	$firstSectionSpacing: $pageSubContentSpacing * 1.45
+	$secondSectionSpacing: $pageSubContentSpacing * 0.68
+	$thirdSectionSpacing: $pageSubContentSpacing * 0.32
+
+	$headingAsideSpacing: $thirdSectionSpacing
+	$paragraphSpacing: $thirdSectionSpacing
+
+	$lineHeight: 1.45
+
+	article
+		@include inlayedText
+		margin-top: $pageContentSpacing
+		margin-bottom: $pageContentSpacing
+
+	// Imprint Blocks
+
+	.block
+		&.headingBlock, &.subHeadingBlock, &.textBlock
+			> .heading
+				margin-top: $firstSectionSpacing
+			> .subHeading
+				margin-top: $secondSectionSpacing
+			> p
+				margin-top: $paragraphSpacing
+
+		&.subHeadingBlock
+			> .subHeading
+				margin-top: $firstSectionSpacing
+
+		&.contactBlock
+			font-family: $paragraphFont
+			font-size: $elementTextFontSize
+			line-height: $paragraphLineHeight
+
+			> div
+				margin-top: $secondSectionSpacing
+				line-height: $lineHeight
+
+	// General
+
+	.heading
+		font-family: $headingFont
+		font-weight: 700
+		font-size: $elementArticleHeadingFontSize
+
+	.subHeading
+		font-family: $headingFont
+		font-weight: 300
+		font-size: $elementArticleSubHeadingFontSize
+		
+	aside
+		font-family: $headingFont
+		font-size: $elementArticleSubHeadingFontSize
+		margin-top: $headingAsideSpacing
+
+	p
+		font-family: $paragraphFont
+		font-size: $elementTextFontSize
+		text-align: justify
+		line-height: $lineHeight
