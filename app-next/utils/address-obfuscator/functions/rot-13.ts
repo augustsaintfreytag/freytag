@@ -1,9 +1,10 @@
-import { Dictionary } from "vue-router/types/router"
-import { Index, IndexDistance } from "../../common/library"
+import { Dictionary } from "~/utils/types/library/dictionary"
 
 // Library
 
-type SequenceMap = Dictionary<number|undefined>
+type Index = number
+type IndexDistance = number
+type SequenceMap = Dictionary<string, number>
 
 // Properties
 
@@ -12,7 +13,7 @@ const rotation: IndexDistance = 13
 
 const { sequence, sequenceIndexMap } = (() => {
 	const sequence: string[] = [...alphabet.split(""), ...alphabet.toLowerCase().split("")]
-	const sequenceIndexMap: Dictionary<Index|undefined> = sequence.reduce((map: SequenceMap, character: string, index: Index) => {
+	const sequenceIndexMap: Dictionary<string, Index> = sequence.reduce((map: SequenceMap, character: string, index: Index) => {
 		map[character] = index
 		return map
 	}, {})
@@ -40,9 +41,7 @@ function coded(input: string, offset: IndexDistance): string {
 			continue
 		}
 
-		outputSequence.push(
-			offsetCharacter(characterIndex, offset)
-		)
+		outputSequence.push(offsetCharacter(characterIndex, offset))
 	}
 
 	return outputSequence.join("")
