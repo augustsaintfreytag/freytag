@@ -11,11 +11,11 @@ const addressLines: string[] = ["Telephone: 030 915 779 70‬", "Mail: me@august
 
 const Lines: FunctionComponent<{ lines: string[] }> = props => (
 	<div>
-		{props.lines.map(line => (
-			<>
+		{props.lines.map((line, index) => (
+			<span key={index}>
 				{line}
 				<br />
-			</>
+			</span>
 		))}
 	</div>
 )
