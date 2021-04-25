@@ -3,7 +3,12 @@
 @import "/styles/values/colors"
 
 .page
+	padding-bottom: $pageContentSpacing
+
 	article
 		@include inlayedText
 		margin-top: $pageContentSpacing
-		margin-bottom: $pageContentSpacing
+	
+	aside
+		@include inlayedText
+		margin-top: $pageContentSpacing

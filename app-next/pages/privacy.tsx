@@ -1,3 +1,4 @@
+import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import {
 	LegalContactBlock,
@@ -126,6 +127,16 @@ const PrivacyPage: Page = () => {
 					<p>If you have any questions about data protection, please contact the owner and operator of the site directly.</p>
 				</LegalTextBlock>
 			</article>
+			<Divider />
+			<aside>
+				<LegalTextBlock>
+					<p>
+						The privacy policy was created with the help of <ExternalLink href="https://www.activemind.de">activeMind AG</ExternalLink>, the experts
+						for external data protection officers (version 2019-04-10) and translated manually with the assistance of&nbsp;
+						<ExternalLink href="https://www.deepl.com">DeepL</ExternalLink>.
+					</p>
+				</LegalTextBlock>
+			</aside>
 		</section>
 	)
 }
