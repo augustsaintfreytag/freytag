@@ -1,4 +1,5 @@
 import Head from "next/head"
+import { useRouter } from "next/router"
 import { FunctionComponent } from "react"
 import Footer from "~/components/footer/footer"
 import Header from "~/components/header/header"
@@ -10,6 +11,8 @@ type Props = PropsWithAnyChildren & {
 }
 
 const DefaultLayoutFragment: FunctionComponent<Props> = props => {
+	const router = useRouter()
+
 	return (
 		<>
 			<Head>
@@ -20,9 +23,9 @@ const DefaultLayoutFragment: FunctionComponent<Props> = props => {
 					content="Folio site of August Saint Freytag, concept and experience designer, video and story artist. Life events, work showcases, features."
 				/>
 			</Head>
-			<Header showsBrand={props.showsBrand ?? false} />
+			<Header showsBrand={props.showsBrand ?? false} activeRoute={router.route} />
 			<main>{props.children}</main>
-			<Footer />
+			<Footer activeRoute={router.route} />
 		</>
 	)
 }
