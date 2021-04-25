@@ -128,6 +128,122 @@ const PrivacyPage: Page = () => {
 				</LegalTextBlock>
 			</article>
 			<Divider />
+			<article>
+				<LegalHeadingBlock heading="Datenschutzerklärung" aside="Regulation (EU) 2016/679 (DSGVO)" />
+				<LegalTextBlock>
+					<p>Verantwortlicher im Sinne der Datenschutzgesetze, insbesondere der EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
+				</LegalTextBlock>
+				<LegalContactBlock decoded={shouldDisplaySensitiveData} />
+				<LegalSubHeadingBlock heading="Ihre Betroffenenrechte" />
+				<LegalTextBlock>
+					<p>Unter den angegebenen Kontaktdaten unseres Datenschutzbeauftragten können Sie jederzeit folgende Rechte ausüben:</p>
+					<ul>
+						<li>Auskunft über Ihre bei uns gespeicherten Daten und deren Verarbeitung (Art. 15 DSGVO)</li>
+						<li>Berichtigung unrichtiger personenbezogener Daten (Art. 16 DSGVO)</li>
+						<li>Löschung Ihrer bei uns gespeicherten Daten (Art. 17 DSGVO)</li>
+						<li>
+							Einschränkung der Datenverarbeitung, sofern wir Ihre Daten aufgrund gesetzlicher Pflichten noch nicht löschen dürfen (Art. 18 DSGVO)
+						</li>
+						<li>Widerspruch gegen die Verarbeitung Ihrer Daten bei uns (Art. 21 DSGVO)</li>
+						<li>
+							Datenübertragbarkeit, sofern Sie in die Datenverarbeitung eingewilligt haben oder einen Vertrag mit uns abgeschlossen haben (Art. 20
+							DSGVO)
+						</li>
+					</ul>
+					<p>
+						Sofern Sie uns eine Einwilligung erteilt haben, können Sie diese jederzeit mit Wirkung für die Zukunft widerrufen. Sie können sich
+						jederzeit mit einer Beschwerde an eine Aufsichtsbehörde wenden, z. B. an die zuständige Aufsichtsbehörde des Bundeslands Ihres Wohnsitzes
+						oder an die für uns als verantwortliche Stelle zuständige Behörde. Eine Liste der Aufsichtsbehörden (für den nichtöffentlichen Bereich)
+						mit Anschrift finden Sie beim{" "}
+						<ExternalLink href="https://www.bfdi.bund.de/DE/Infothek/Anschriften_Links/anschriften_links-node.html">BfDI</ExternalLink>.
+					</p>
+				</LegalTextBlock>
+				<LegalTextBlock heading="Art und Zweck der Verarbeitung">
+					<p>
+						Wenn Sie auf unsere Website zugreifen, d.h., wenn Sie sich nicht registrieren oder anderweitig Informationen übermitteln, werden
+						automatisch Informationen allgemeiner Natur erfasst. Diese Informationen (Server-Logfiles) beinhalten etwa die Art des Webbrowsers, das
+						verwendete Betriebssystem, den Domainnamen Ihres Internet-Service-Providers, Ihre IP-Adresse und ähnliches.
+					</p>
+					<p>Sie werden insbesondere zu folgenden Zwecken verarbeitet:</p>
+					<ul>
+						<li>Sicherstellung eines problemlosen Verbindungsaufbaus der Website</li>
+						<li>Sicherstellung einer reibungslosen Nutzung unserer Website</li>
+						<li>Auswertung der Systemsicherheit und -stabilität</li>
+						<li>Zu weiteren administrativen Zwecken</li>
+					</ul>
+					<p>
+						Wir verwenden Ihre Daten nicht, um Rückschlüsse auf Ihre Person zu ziehen. Informationen dieser Art werden von uns ggfs. statistisch
+						ausgewertet, um unseren Internetauftritt und die dahinterstehende Technik zu optimieren.
+					</p>
+				</LegalTextBlock>
+				<LegalTextBlock heading="Rechtsgrundlage">
+					<p>
+						Die Verarbeitung erfolgt gemäß Art. 6 Abs. 1 lit. f DSGVO auf Basis unseres berechtigten Interesses an der Verbesserung der Stabilität und
+						Funktionalität unserer Website.
+					</p>
+				</LegalTextBlock>
+				<LegalTextBlock heading="Empfänger">
+					<p>
+						Empfänger der Daten sind ggf. technische Dienstleister, die für den Betrieb und die Wartung unserer Webseite als Auftragsverarbeiter tätig
+						werden.
+					</p>
+				</LegalTextBlock>
+				<LegalTextBlock heading="Speicherdauer">
+					<p>
+						Die Daten werden gelöscht, sobald diese für den Zweck der Erhebung nicht mehr erforderlich sind. Dies ist für die Daten, die der
+						Bereitstellung der Webseite dienen, grundsätzlich der Fall, wenn die jeweilige Sitzung beendet ist.
+					</p>
+				</LegalTextBlock>
+				<LegalTextBlock heading="Bereitstellung vorgeschrieben oder erforderlich">
+					<p>
+						Die Bereitstellung der vorgenannten personenbezogenen Daten ist weder gesetzlich noch vertraglich vorgeschrieben. Ohne die IP-Adresse ist
+						jedoch der Dienst und die Funktionsfähigkeit unserer Website nicht gewährleistet. Zudem können einzelne Dienste und Services nicht
+						verfügbar oder eingeschränkt sein. Aus diesem Grund ist ein Widerspruch ausgeschlossen.
+					</p>
+				</LegalTextBlock>
+				<LegalSubHeadingBlock heading="Vimeo" />
+				<LegalTextBlock>
+					<p>
+						Auf unserer Website sind Plugins des Videoportals Vimeo der Vimeo, LLC, 555 West 18th Street, New York, New York 10011, USA eingebunden.
+						Bei jedem Aufruf einer Seite, die ein oder mehrere Vimeo-Videoclips anbietet, wird eine direkte Verbindung zwischen Ihrem Browser und
+						einem Server von Vimeo in den USA hergestellt. Dabei werden Informationen über Ihren Besuch und Ihre IP-Adresse dort gespeichert. Durch
+						Interaktionen mit den Vimeo Plugins (z.B. Klicken des Start-Buttons) werden diese Informationen ebenfalls an Vimeo übermittelt und dort
+						gespeichert. Eine volle Ausführung Datenschutz-relevanter Informationen finden Sie in der Datenschutzerklärung von Vimeo.
+					</p>
+					<p>
+						Wenn Sie ein Vimeo-Benutzerkonto haben und nicht möchten, dass Vimeo über diese Website Daten über Sie sammelt und mit Ihren bei Vimeo
+						gespeicherten Mitgliedsdaten verknüpft, müssen Sie sich vor Ihrem Besuch dieser Website bei Vimeo ausloggen.
+					</p>
+					<p>
+						Außerdem ruft Vimeo über einen iFrame, in dem das Video aufgerufen wird, den Tracker Google Analytics auf. Dabei handelt es sich um ein
+						eigenes Tracking von Vimeo, auf das wir keinen Zugriff haben. Sie können das Tracking durch Google Analytics unterbinden, indem Sie die
+						Deaktivierungs-Tools einsetzen, die Google für einige Internet-Browser anbietet. Sie können darüber hinaus die Erfassung der durch Google
+						Analytics erzeugten und auf ihre Nutzung der Website bezogenen Daten (inkl. Ihrer IP-Adresse) an Google sowie die Verarbeitung dieser
+						Daten durch Google verhindern, indem Sie das unter dem folgenden Link verfügbare Browser-Plugin herunterladen und installieren:{" "}
+						<ExternalLink href="http://tools.google.com/dlpage/gaoptout">tools.google.com/dlpage/gaoptout</ExternalLink>.
+					</p>
+				</LegalTextBlock>
+				<LegalSubHeadingBlock heading="SSL-Verschlüsselung" />
+				<LegalTextBlock>
+					<p>
+						Um die Sicherheit Ihrer Daten bei der Übertragung zu schützen, verwenden wir dem aktuellen Stand der Technik entsprechende
+						Verschlüsselungsverfahren (z. B. SSL) über HTTPS.
+					</p>
+				</LegalTextBlock>
+				<LegalSubHeadingBlock heading="Änderung unserer Datenschutzbestimmungen" />
+				<LegalTextBlock>
+					<p>
+						Wir behalten uns vor, diese Datenschutzerklärung anzupassen, damit sie stets den aktuellen rechtlichen Anforderungen entspricht oder um
+						Änderungen unserer Leistungen in der Datenschutzerklärung umzusetzen, z.B. bei der Einführung neuer Services. Für Ihren erneuten Besuch
+						gilt dann die neue Datenschutzerklärung.
+					</p>
+				</LegalTextBlock>
+				<LegalSubHeadingBlock heading="Fragen an den Datenschutzbeauftragten" />
+				<LegalTextBlock>
+					<p>Wenn Sie Fragen zum Datenschutz haben, wenden Sie sich direkt an den Inhaber und Betreiber der Seite.</p>
+				</LegalTextBlock>
+			</article>
+			<Divider />
 			<aside>
 				<LegalTextBlock>
 					<p>
