@@ -13,12 +13,13 @@ import styles from "./footer-section.module.sass"
 type FooterItemProps = {
 	sprite?: string
 	text: string | ReactElement
-	link?: URL
+	href?: URL
+	active?: boolean
 }
 
 type FooterItemLinkProps = PropsWithAnyChildren & {
 	href: URL
-	isExternal?: boolean
+	external?: boolean
 }
 
 function hrefPropertiesFromProps(url: URL | undefined): HrefProperties | undefined {
@@ -30,7 +31,7 @@ function hrefPropertiesFromProps(url: URL | undefined): HrefProperties | undefin
 }
 
 const FooterItemLink: FunctionComponent<FooterItemLinkProps> = props => {
-	if (props.isExternal) {
+	if (props.external) {
 		return <ExternalLink href={props.href}>{props.children}</ExternalLink>
 	}
 
@@ -42,7 +43,7 @@ const FooterItemLink: FunctionComponent<FooterItemLinkProps> = props => {
 }
 
 export const FooterItem: FunctionComponent<FooterItemProps> = props => {
-	const linkProperties = hrefPropertiesFromProps(props.link)
+	const linkProperties = hrefPropertiesFromProps(props.href)
 
 	if (!linkProperties) {
 		return (
@@ -54,8 +55,8 @@ export const FooterItem: FunctionComponent<FooterItemProps> = props => {
 	}
 
 	return (
-		<FooterItemLink href={linkProperties.href} isExternal={linkProperties.isExternal}>
-			<div className={className(styles.footerItem, styles.withLink)}>
+		<FooterItemLink href={linkProperties.href} external={linkProperties.isExternal}>
+			<div className={className(styles.footerItem, styles.linkItem, props.active && styles.active)}>
 				{props.sprite && <Sprite className={styles.sprite} href={props.sprite} />}
 				<div className={styles.text}>{props.text}</div>
 				<div className={styles.link}>{linkProperties.text}</div>

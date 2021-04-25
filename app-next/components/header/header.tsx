@@ -2,15 +2,22 @@ import Link from "next/link"
 import { FunctionComponent } from "react"
 import { PropsWithAnyChildren, PropsWithHref } from "~/types/props"
 import { headerText } from "~/utils/brand/functions/brand-text"
+import { className } from "~/utils/class-names/class-name"
+import { URL } from "~/utils/routing/library/url"
 import styles from "./header.module.sass"
 
 // Navigation Item Component
 
-type NavListItemProps = PropsWithHref & PropsWithAnyChildren
+type NavigationListItemProps = PropsWithHref &
+	PropsWithAnyChildren & {
+		active?: boolean
+	}
 
-const NavListItem: FunctionComponent<NavListItemProps> = props => {
+const NavigationListItem: FunctionComponent<NavigationListItemProps> = props => {
+	const isActive = props.active ?? false
+
 	return (
-		<li className={styles.navigationItem}>
+		<li className={className(styles.navigationItem, isActive && styles.active)}>
 			<Link href={props.href}>{props.children}</Link>
 		</li>
 	)
@@ -19,33 +26,53 @@ const NavListItem: FunctionComponent<NavListItemProps> = props => {
 // Header Component
 
 type Props = {
+	activeRoute?: URL
 	showsBrand: boolean
 }
 
+type NavigationDefinition = {
+	href: URL
+	description: string
+}
+
+const navigationDefinitions: NavigationDefinition[] = [
+	{ href: "/", description: "Home" },
+	{ href: "/life", description: "Life" },
+	{ href: "/work", description: "Work" },
+	{ href: "/imprint", description: "Imprint" }
+]
+
 const { title: titleText, descriptor: descriptorText } = headerText()
 
-const Header: FunctionComponent<Props> = props => (
-	<header className={styles.header}>
-		<div className={styles.inlay}>
-			<section className={styles.brand}>
-				{props.showsBrand && (
-					<>
-						<h1 className={styles.title}>{titleText}</h1>
-						<div className={styles.descriptors}>{descriptorText}</div>
-					</>
-				)}
-			</section>
+const Header: FunctionComponent<Props> = props => {
+	return (
+		<header className={styles.header}>
+			<div className={styles.inlay}>
+				<section className={styles.brand}>
+					{props.showsBrand && (
+						<>
+							<h1 className={styles.title}>{titleText}</h1>
+							<div className={styles.descriptors}>{descriptorText}</div>
+						</>
+					)}
+				</section>
 
-			<nav className={styles.navigation}>
-				<ol>
-					<NavListItem href="/">Home</NavListItem>
-					<NavListItem href="/life">Life</NavListItem>
-					<NavListItem href="/work">Work</NavListItem>
-					<NavListItem href="/imprint">Imprint</NavListItem>
-				</ol>
-			</nav>
-		</div>
-	</header>
-)
+				<nav className={styles.navigation}>
+					<ol>
+						{navigationDefinitions.map(definition => {
+							const isActiveRoute = props.activeRoute === definition.href
+
+							return (
+								<NavigationListItem key={definition.href} href={definition.href} active={isActiveRoute}>
+									{definition.description}
+								</NavigationListItem>
+							)
+						})}
+					</ol>
+				</nav>
+			</div>
+		</header>
+	)
+}
 
 export default Header
