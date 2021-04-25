@@ -9,7 +9,7 @@
 	.subHeading
 		@include subHeadingFont
 		
-	p
+	p, ul
 		@include paragraphFont
 
 	aside
@@ -26,6 +26,12 @@
 		> aside
 			margin-top: $headingAsideSpacing
 
+	&.textBlock
+		ul
+			padding-left: 1rem
+			li
+				list-style: circle
+
 	&.subHeadingBlock
 		> .subHeading
 			margin-top: $firstSectionSpacing
@@ -34,3 +40,8 @@
 		> div
 			margin-top: $secondSectionSpacing
 			@include contactBlockFont
+
+
+	// Decorations
+	a
+		text-decoration: underline
