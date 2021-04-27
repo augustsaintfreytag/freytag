@@ -10,10 +10,9 @@
 # "SERVER_CERTIFICATE_DIRECTORY"        Path to the server's local certificate directory (not in container).
 # "SERVER_CERTIFICATE_LOG_DIRECTORY"    Path to the server's local certificate log output directory (not in container).
 
-version: "3"
+version: "3.9"
 
 services:
-
   proxy:
     container_name: freytag_proxy
     build:
@@ -30,44 +29,39 @@ services:
       - "80:80"
       - "443:443"
     restart: unless-stopped
+    depends_on: 
+      - app
+      - cockpit
 
   app:
     container_name: freytag_app
-    image: node:14.13.0
+    image: node:15.14.0
     volumes:
-      - ./app/nuxt.config.ts:/var/app/nuxt.config.ts:cached
-      - ./app/package.json:/var/app/package.json:cached
-      - ./app/tsconfig.json:/var/app/tsconfig.json:cached
-      - ./app/yarn.lock:/var/app/yarn.lock:cached
-      - ./app/assets:/var/app/assets:cached
-      - ./app/components:/var/app/components:cached
-      - ./app/layouts:/var/app/layouts:cached
-      - ./app/pages:/var/app/pages:cached
-      - ./app/plugins:/var/app/plugins:cached
-      - ./app/static:/var/app/static:cached
-      - ./app/types:/var/app/types:cached
-      - ./app/utils:/var/app/utils:cached
+      - ./app-next:/var/app:cached
       - data_app_node_modules:/var/app/node_modules
-      - data_app_build_generated:/var/app/build
-      - data_app_build_nuxt:/var/app/.output
-    command: "bash -c 'cd /var/app && yarn && ${APP_STARTUP_CMD}'"
+      - data_app_build_framework:/var/app/.next
+    working_dir: /var/app
+    command: "${APP_STARTUP_CMD}"
+    depends_on:
+      app-dependencies:
+        condition: service_completed_successfully
     restart: unless-stopped
-    environment:
-      - HOST=0.0.0.0
-      - PORT=80
-      - CHOKIDAR_USEPOLLING=true
-      - NUXT_ENV_APP_ENVIRONMENT=${APP_ENVIRONMENT}
-      - NUXT_ENV_COCKPIT_ACCESS_TOKEN=${COCKPIT_ACCESS_TOKEN}
-      - NUXT_ENV_COCKPIT_PROTOCOL=${COCKPIT_PROTOCOL}
-      - NUXT_ENV_COCKPIT_HOST_CLIENT=${COCKPIT_HOST_CLIENT}
-      - NUXT_ENV_COCKPIT_HOST_SERVER=${COCKPIT_HOST_SERVER}
+
+  app-dependencies:
+    container_name: freytag_app_dependencies
+    image: node:15.14.0
+    volumes:
+      - ./app-next/package.json:/var/app/package.json:cached
+      - data_app_node_modules:/var/app/node_modules
+    working_dir: /var/app
+    command: "yarn"
 
   cockpit:
     container_name: freytag_cockpit
     image: agentejo/cockpit:0.11.2
-    restart: unless-stopped
     volumes:
       - data_cockpit:/var/www/html/storage
+    restart: unless-stopped
     environment:
       - COCKPIT_SESSION_NAME=cockpit
 
@@ -76,7 +70,7 @@ volumes:
     driver: local
   data_app_node_modules:
     driver: local
-  data_app_build_nuxt:
+  data_app_build_framework:
     driver: local
   data_app_build_generated:
     driver: local
