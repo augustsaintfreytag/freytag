@@ -48,7 +48,7 @@ const Footer: FunctionComponent<Props> = props => (
 			<FooterSection header="Map">
 				{navigationDefinitions.map(definition => {
 					const isActiveRoute = definition.href === props.activeRoute
-					return <FooterItem text={definition.description} href={definition.href} active={isActiveRoute} />
+					return <FooterItem key={definition.href} text={definition.description} href={definition.href} active={isActiveRoute} />
 				})}
 			</FooterSection>
 			<FooterSection header="Further">
