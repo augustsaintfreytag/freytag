@@ -15,7 +15,7 @@ const ImprintPage: Page = () => {
 	return (
 		<section className={styles.page}>
 			<ImageCover
-				src="/assets/privacy-cover.jpg"
+				src="/assets/imprint-cover.jpg"
 				description="A stack of legal documents in a top-down view, 
 						the top-most document showing an invoice for legal services, one of which is 
 						writing a privacy policy, racking up a total bill of $15,950."

@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react"
 import FooterSection, { FooterItem } from "~/components/footer/components/footer-section/footer-section"
+import { URL } from "~/utils/routing/library/url"
 import styles from "./footer.module.sass"
 
 enum SpriteHref {
@@ -11,7 +12,24 @@ enum SpriteHref {
 	Medium = "#Medium Symbol"
 }
 
-const Footer: FunctionComponent = () => (
+type NavigationDefinition = {
+	href: URL
+	description: string
+}
+
+const navigationDefinitions: NavigationDefinition[] = [
+	{ href: "/", description: "Home" },
+	{ href: "/life", description: "Life" },
+	{ href: "/work", description: "Work" },
+	{ href: "/imprint", description: "Imprint" },
+	{ href: "/privacy", description: "Privacy" }
+]
+
+type Props = {
+	activeRoute?: URL
+}
+
+const Footer: FunctionComponent<Props> = props => (
 	<footer className={styles.footer}>
 		<div className={styles.inlay}>
 			<FooterSection header="Me">
@@ -28,16 +46,16 @@ const Footer: FunctionComponent = () => (
 				/>
 			</FooterSection>
 			<FooterSection header="Map">
-				<FooterItem text="Home" link="/" />
-				<FooterItem text="Life" link="/life" />
-				<FooterItem text="Work" link="/work" />
-				<FooterItem text="Imprint" link="/imprint" />
+				{navigationDefinitions.map(definition => {
+					const isActiveRoute = definition.href === props.activeRoute
+					return <FooterItem key={definition.href} text={definition.description} href={definition.href} active={isActiveRoute} />
+				})}
 			</FooterSection>
 			<FooterSection header="Further">
-				<FooterItem sprite={SpriteHref.Vimeo} text="Vimeo" link="https://vimeo.com/apricum" />
-				<FooterItem sprite={SpriteHref.GitLab} text="GitLab" link="https://gitlab.com/apricum" />
-				<FooterItem sprite={SpriteHref.Twitter} text="Twitter" link="https://twitter.com/augustfreytag" />
-				<FooterItem sprite={SpriteHref.Medium} text="Medium" link="https://medium.com/@augustfreytag" />
+				<FooterItem sprite={SpriteHref.Vimeo} text="Vimeo" href="https://vimeo.com/apricum" />
+				<FooterItem sprite={SpriteHref.GitLab} text="GitLab" href="https://gitlab.com/apricum" />
+				<FooterItem sprite={SpriteHref.Twitter} text="Twitter" href="https://twitter.com/augustfreytag" />
+				<FooterItem sprite={SpriteHref.Medium} text="Medium" href="https://medium.com/@augustfreytag" />
 			</FooterSection>
 		</div>
 	</footer>
