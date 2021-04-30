@@ -7,7 +7,7 @@ import DefaultLayout from "~/layouts/default/default-layout"
 import { PageProps } from "~/pages/_app"
 import { Page } from "~/types/page"
 import * as DataAccess from "~/utils/api/common/functions/data-access"
-import { LifeEvent } from "~/utils/api/records/life-event/library/life-event"
+import { LifeEvent } from "~/utils/api/records/life-event/life-event"
 import styles from "./life-page.module.sass"
 
 type PageData = {

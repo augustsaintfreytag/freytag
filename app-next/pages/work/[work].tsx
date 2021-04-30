@@ -8,7 +8,7 @@ import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { PageProps } from "~/pages/_app"
 import type { Page } from "~/types/page"
-import { LifeEventKind } from "~/utils/api/records/life-event/library/life-event-kind"
+import { LifeEventKind } from "~/utils/api/records/life-event/life-event-kind"
 import { stringParameter } from "~/utils/routing/functions/route-parameters"
 import styles from "./work-detail-page.module.sass"
 

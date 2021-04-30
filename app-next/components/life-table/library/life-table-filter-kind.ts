@@ -1,4 +1,4 @@
-import { LifeEventKind } from "~/utils/api/records/life-event/library/life-event-kind"
+import { LifeEventKind } from "~/utils/api/records/life-event/life-event-kind"
 
 export const LifeTableFilterKindAll = "All"
 
