@@ -1,6 +1,10 @@
 import { CockpitDateConversion } from "cockpit-access"
 import { DateInterval, OpenDateInterval } from "~/utils/date/library/intervals"
 
+export function dateFromTimestamp(timestamp: number): Date {
+	return new Date(timestamp * 1000)
+}
+
 export function intervalFromFragment(fragment: { dateStarted: string; dateEnded: string }): DateInterval | OpenDateInterval | undefined {
 	const startDate = CockpitDateConversion.dateFromString(fragment.dateStarted)
 	const endDate = CockpitDateConversion.dateFromString(fragment.dateEnded)
