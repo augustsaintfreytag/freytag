@@ -3,6 +3,15 @@
 BASEDIR=$(dirname "$0")
 ROOTDIR=$(realpath "$BASEDIR/..")
 DOCKERDIR="$ROOTDIR/server/docker"
-ENVDIR="$ROOTDIR/server/docker/env"
+DOCKERENV="$DOCKERDIR/env/parameters.dev.private.env"
 
-docker compose --file $DOCKERDIR/docker-compose.yml --project-directory $ROOTDIR --env-file "$ENVDIR/parameters.dev.private.env" $@
+set -a
+source "$DOCKERENV"
+set +a
+
+set +e
+mkdir "$SERVER_CERTIFICATE_DIRECTORY" &> /dev/null
+mkdir "$SERVER_CERTIFICATE_LOG_DIRECTORY" &> /dev/null
+set -e
+
+docker compose --file $DOCKERDIR/docker-compose.yml --project-directory $ROOTDIR $@
