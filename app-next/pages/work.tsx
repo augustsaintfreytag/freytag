@@ -5,9 +5,13 @@ import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { PageProps } from "~/pages/_app"
 import { Page } from "~/types/page"
-import * as DataAccess from "~/utils/api/common/functions/data-access"
-import { dateFromTimestamp } from "~/utils/api/common/functions/date-conversion"
-import { WorkShowcase } from "~/utils/api/records/work-showcase/work-showcase"
+import { imageUrlFromComponent } from "~/utils/api/records/image/functions/image-record-data-access"
+import {
+	lastWorkShowcaseModificationDate,
+	sortedWorkShowcases,
+	workShowcasesFromApi
+} from "~/utils/api/records/work-showcase/functions/work-showcase-data-access"
+import { WorkShowcase } from "~/utils/api/records/work-showcase/library/work-showcase"
 import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
 import { denominatorDescription } from "~/utils/description/functions/denominator-description"
 import { pageTitle } from "~/utils/title/functions/page-title"
@@ -29,8 +33,8 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async context =
 	const data: PageData = { showcases: [] }
 
 	try {
-		const showcases = await DataAccess.workShowcases()
-		data.showcases = DataAccess.sortedWorkShowcases(showcases)
+		const showcases = await workShowcasesFromApi()
+		data.showcases = sortedWorkShowcases(showcases)
 	} catch (error) {
 		console.error(`Could not fetch work showcase listing data. ${error}`)
 	}
@@ -38,23 +42,6 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async context =
 	return {
 		props: { data }
 	}
-}
-
-function lastShowcaseModificationFromShowcases(showcases: WorkShowcase[]): Date | undefined {
-	const showcaseDates: Date[] = showcases
-		.map(showcase => {
-			const timestamp = showcase._created
-			const date = dateFromTimestamp(timestamp)
-
-			return date
-		})
-		.sort()
-
-	if (!showcaseDates.length) {
-		return undefined
-	}
-
-	return showcaseDates[showcaseDates.length - 1]
 }
 
 const WorkListingPage: Page<PageProps & Props> = props => {
@@ -65,14 +52,14 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 		return showcases.map(showcase => {
 			const headingText = showcase.name
 			const previewText = showcase.description ?? ""
-			const image = DataAccess.imageUrl(showcase.teaserImage?.path)
+			const image = imageUrlFromComponent(showcase.teaserImage?.path)
 			const href = `/work/${showcase.slug}`
 
 			return { headingText, previewText, image, href }
 		})
 	}, [showcaseIds])
 
-	const lastShowcaseCreationDate = useMemo(() => lastShowcaseModificationFromShowcases(showcases), [showcaseIds])
+	const lastShowcaseCreationDate = useMemo(() => lastWorkShowcaseModificationDate(showcases), [showcaseIds])
 	const lastShowcaseCreation = (lastShowcaseCreationDate && formattedDate(lastShowcaseCreationDate, DateFormatStyle.DayMonthAndYear)) || "Never"
 
 	return (

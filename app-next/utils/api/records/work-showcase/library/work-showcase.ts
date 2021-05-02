@@ -1,6 +1,6 @@
 import { CockpitEntry } from "cockpit-access"
-import { ImageRecord } from "~/utils/api/records/image/image-record"
-import { LifeEvent } from "~/utils/api/records/life-event/life-event"
+import { ImageRecord } from "~/utils/api/records/image/library/image-record"
+import { LifeEvent } from "~/utils/api/records/life-event/library/life-event"
 
 export type WorkShowcase = CockpitEntry & {
 	display: boolean

@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react"
 import BlockTag from "~/components/block-tag/block-tag"
 import { PropsWithClassName } from "~/types/props"
-import { LifeEventKind } from "~/utils/api/records/life-event/life-event-kind"
+import { LifeEventKind } from "~/utils/api/records/life-event/library/life-event-kind"
 import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./work-title.module.sass"
