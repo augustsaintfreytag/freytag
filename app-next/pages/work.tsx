@@ -50,12 +50,14 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 
 	const workListItemProps = useMemo(() => {
 		return showcases.map(showcase => {
+			const id = showcase._id
+			const slug = showcase.slug
 			const headingText = showcase.name
 			const previewText = showcase.description ?? ""
 			const image = imageUrlFromComponent(showcase.teaserImage?.path)
 			const href = `/work/${showcase.slug}`
 
-			return { headingText, previewText, image, href }
+			return { id, slug, headingText, previewText, image, href }
 		})
 	}, [showcaseIds])
 
@@ -71,7 +73,15 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 				<h1 className={styles.semantic}>Work</h1>
 				<div className={styles.workList}>
 					{workListItemProps.map(props => {
-						return <WorkListItem headingText={props.headingText} previewText={props.previewText} image={props.image} href={props.href}></WorkListItem>
+						return (
+							<WorkListItem
+								headingText={props.headingText}
+								previewText={props.previewText}
+								image={props.image}
+								href={props.href}
+								key={props.id}
+							></WorkListItem>
+						)
 					})}
 				</div>
 				<aside className={styles.closure}>
