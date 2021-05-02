@@ -1,23 +1,11 @@
-import { CockpitDataAccess } from "cockpit-access"
-import { LifeEvent } from "~/utils/api/records/life-event/library/life-event"
-
-enum ApiCollection {
+export enum ApiCollection {
 	Vita = "vita",
 	Work = "work"
 }
 
-enum ApiSingleton {
+export enum ApiSingleton {
 	LandingGraphic = "landing_graphic",
 	LandingWorks = "landing_works"
 }
 
-const defaultFilter = { display: true }
-
-// Data
-
-export async function lifeEvents(): Promise<LifeEvent[]> {
-	const response = await CockpitDataAccess.recordsInCollection(ApiCollection.Vita, { filter: defaultFilter })
-	const entries = response.entries as LifeEvent[]
-
-	return entries
-}
+export const defaultApiFilter = { display: true }
