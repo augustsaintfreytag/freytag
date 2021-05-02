@@ -10,6 +10,8 @@ import * as DataAccess from "~/utils/api/common/functions/data-access"
 import { LifeEvent } from "~/utils/api/records/life-event/life-event"
 import styles from "./life-page.module.sass"
 
+// Library
+
 type PageData = {
 	lifeEvents: LifeEvent[]
 }
@@ -17,6 +19,8 @@ type PageData = {
 type Props = {
 	data: PageData
 }
+
+// Page
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
 	const lifeEvents = await DataAccess.lifeEvents()
