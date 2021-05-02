@@ -1,5 +1,6 @@
 import Link from "next/link"
 import { FunctionComponent } from "react"
+import Markdown from "~/components/markdown/markdown"
 import Sprite from "~/components/sprites/sprite"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./work-list-item.module.sass"
@@ -17,7 +18,7 @@ const WorkListItem: FunctionComponent<Props> = props => (
 			<div className={styles.inlayContent}>
 				<h2 className={styles.heading}>{props.headingText}</h2>
 				<div className={styles.preview}>
-					<p>{props.previewText}</p>
+					<Markdown>{props.previewText}</Markdown>
 				</div>
 				<Link href={props.href}>
 					<a>
