@@ -1,3 +1,5 @@
+import { enumCaseFromRawValue } from "~/utils/types/functions/enum-case-conversion"
+
 export enum WorkContentBlockKind {
 	Heading = "Heading",
 	Text = "Text",
@@ -13,6 +15,10 @@ export const allWorkContentBlockKind: WorkContentBlockKind[] = [
 	WorkContentBlockKind.Images,
 	WorkContentBlockKind.Video
 ]
+
+export function workContentBlockKindFromRawValue(rawValue: string): WorkContentBlockKind | undefined {
+	return enumCaseFromRawValue(rawValue, allWorkContentBlockKind)
+}
 
 // Legacy
 
