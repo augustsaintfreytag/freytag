@@ -1,51 +1,104 @@
+import { GetServerSideProps } from "next"
 import Divider from "~/components/divider/divider"
-import WorkContentHeadingBlock from "~/components/work/work-content-block/work-content-heading-block"
-import WorkContentImageBlock from "~/components/work/work-content-block/work-content-image-block"
-import WorkContentImageColumnBlock from "~/components/work/work-content-block/work-content-image-column-block"
-import WorkContentTextBlock from "~/components/work/work-content-block/work-content-text-block"
+import WorkContentBlock from "~/components/work/work-content-block/components/work-content-block"
+import { workContentBlockKindFromLegacy } from "~/components/work/work-content-block/library/work-content-block-kind"
 import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { PageProps } from "~/pages/_app"
 import type { Page } from "~/types/page"
-import { LifeEventKind } from "~/utils/api/records/life-event/library/life-event-kind"
-import { stringParameter } from "~/utils/routing/functions/route-parameters"
+import { intervalFromFragment } from "~/utils/api/common/functions/date-conversion"
+import { imageUrlFromComponent } from "~/utils/api/records/image/functions/image-record-data-access"
+import { LifeEventKind, lifeEventKindFromRawValue } from "~/utils/api/records/life-event/library/life-event-kind"
+import { workShowcaseFromApi } from "~/utils/api/records/work-showcase/functions/work-showcase-data-access"
+import { WorkShowcase } from "~/utils/api/records/work-showcase/library/work-showcase"
+import { OpenDateInterval } from "~/utils/date/library/intervals"
 import styles from "./work-detail-page.module.sass"
 
-const WorkDetailPage: Page<PageProps> = props => {
-	const workId = stringParameter(props.router, "work")
+// Library
 
-	const sampleTextA = `Duis volutpat curae porta felis *ullamcorper* magnis curabitur a a nam eu ipsum suspendisse cras varius inceptos in magna mauris sit — pretium a maecenas — quis arcu. Sed neque vestibulum, est nunc condimentum adipiscing ullamcorper ad montes orci, vitae a parturient, hac ligula sociis senectus at a condimentum vulputate; Mi fringilla metus parturient habitant. Fames nibh, phasellus vestibulum a condimentum nascetur eleifend mauris condimentum sociis lacinia; litora condimentum donec ullamcorper adipiscing a vitae dapibus dignissim. Erat ligula quisque malesuada. 	
+type PageData = {
+	showcase: WorkShowcase
+}
 
-A leo nibh suspendisse metus consectetur parturient etiam, aptent fermentum velit tristique leo, a allet adipiscing vivamus mi leo cras condimentum. Vestibulum gravida dana luctus risus perem ullamcorper consectetur, orci nec gravida nisl a per elit vestibulum lian etiam, canis a vestibulum quisque.`
+type Props = {
+	data?: PageData
+}
 
-	const sampleTextB = `Fermentum eleifend a congue ante ac suspendisse sit consectetur, amet id hendrerit diam risus a sodales condimentum at scelerisque ligula a hac odio. Pharetra ullamcorper tellus fringilla quam adipiscing a ac egestas himenaeos quisque lacus consectetur netus potenti ad ullamcorper dignissim mus cras a lorem fringilla. Odio sem nibh eget felis consectetur a sem "dignissim dignissim" ridiculus felis facilisi vestibulum nascetur congue, leo proin nostra consequat, feugiat a est penatibus id conubia cum netus consequat.`
+// Processing
+
+type LinkProperties = {
+	kind: LifeEventKind
+	title: string
+	interval: OpenDateInterval
+}
+
+function linkPropertiesForShowcase(showcase: WorkShowcase): LinkProperties | undefined {
+	const event = showcase.event
+
+	if (!event) {
+		return undefined
+	}
+
+	const eventKind = lifeEventKindFromRawValue(event.kind)
+	const eventInterval = intervalFromFragment(event)
+
+	if (!eventKind || !eventInterval) {
+		return undefined
+	}
+
+	return {
+		kind: eventKind,
+		title: event.name,
+		interval: eventInterval
+	}
+}
+
+// Page
+
+export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
+	const showcaseId = context.query["work"]
+
+	if (!showcaseId || typeof showcaseId !== "string") {
+		return { notFound: true }
+	}
+
+	try {
+		const showcase = await workShowcaseFromApi(showcaseId)
+		if (!showcase) {
+			return { notFound: true }
+		}
+
+		const data: PageData = { showcase }
+		return { props: { data } }
+	} catch (error) {
+		return { notFound: true }
+	}
+}
+
+const WorkDetailPage: Page<PageProps & Props> = props => {
+	const showcase = props.data!.showcase!
+	const name = showcase.name
+	const abstract = showcase.description ?? "…"
+	const link = linkPropertiesForShowcase(showcase)
 
 	return (
 		<>
 			<article className={styles.page}>
 				<header>
-					<WorkCover image="/demo-cover.png" />
-					<WorkTitle
-						className={styles.title}
-						title="Topic X: History &amp; Insights"
-						abstract="Lacinia litora condimentum donec ullamcorper adipiscing a vitae dapibus dignissim erat ligula quisque malesuada. A leo nibh suspendisse metus consectetur parturient etiam aptent fermentum velit tristique leo — a adipiscing vivamus mi leo cras condimentum."
-						link={{ kind: LifeEventKind.Artwork, title: "Project X Internals" }}
-					/>
+					<WorkCover image={imageUrlFromComponent(undefined)} />
+					<WorkTitle className={styles.title} title={name} abstract={abstract} link={link} />
 				</header>
 				<Divider className={styles.divider} />
 				<main>
-					<WorkContentTextBlock text={sampleTextA} />
-					<WorkContentImageBlock src="/showcase-content-block.png" caption="Essential Irish Palm Trees (Digital)" />
-					<WorkContentHeadingBlock text="The Sub Menu Button" />
-					<WorkContentTextBlock text={sampleTextB} />
-					<WorkContentImageColumnBlock
-						collection={[
-							{ src: "/work-content-square-01.jpg", caption: "Square One" },
-							{ src: "/work-content-square-02.jpg", caption: "Square Next" },
-							{ src: "/work-content-square-03.jpg", caption: "Square Last" }
-						]}
-					/>
+					{showcase.blocks?.map(block => {
+						const kind = workContentBlockKindFromLegacy(block.form)
+						if (!kind) {
+							return undefined
+						}
+
+						return <WorkContentBlock key={block._id} kind={kind} block={block} />
+					})}
 				</main>
 			</article>
 		</>
