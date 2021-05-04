@@ -1,18 +1,16 @@
 import { GetServerSideProps } from "next"
 import Divider from "~/components/divider/divider"
 import WorkContentBlock from "~/components/work/work-content-block/components/work-content-block"
+import { linkPropsForShowcase } from "~/components/work/work-content-block/functions/work-content-block-data-form"
 import { workContentBlockKindFromLegacy } from "~/components/work/work-content-block/library/work-content-block-kind"
 import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { PageProps } from "~/pages/_app"
 import type { Page } from "~/types/page"
-import { intervalFromFragment } from "~/utils/api/common/functions/date-conversion"
 import { imageUrlFromComponent } from "~/utils/api/records/image/functions/image-record-data-access"
-import { LifeEventKind, lifeEventKindFromRawValue } from "~/utils/api/records/life-event/library/life-event-kind"
 import { workShowcaseFromApi } from "~/utils/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/utils/api/records/work-showcase/library/work-showcase"
-import { OpenDateInterval } from "~/utils/date/library/intervals"
 import styles from "./work-detail-page.module.sass"
 
 // Library
@@ -23,35 +21,6 @@ type PageData = {
 
 type Props = {
 	data?: PageData
-}
-
-// Processing
-
-type LinkProperties = {
-	kind: LifeEventKind
-	title: string
-	interval: OpenDateInterval
-}
-
-function linkPropertiesForShowcase(showcase: WorkShowcase): LinkProperties | undefined {
-	const event = showcase.event
-
-	if (!event) {
-		return undefined
-	}
-
-	const eventKind = lifeEventKindFromRawValue(event.kind)
-	const eventInterval = intervalFromFragment(event)
-
-	if (!eventKind || !eventInterval) {
-		return undefined
-	}
-
-	return {
-		kind: eventKind,
-		title: event.name,
-		interval: eventInterval
-	}
 }
 
 // Page
@@ -80,7 +49,7 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 	const showcase = props.data!.showcase!
 	const name = showcase.name
 	const abstract = showcase.description ?? "…"
-	const link = linkPropertiesForShowcase(showcase)
+	const link = linkPropsForShowcase(showcase)
 
 	return (
 		<>
