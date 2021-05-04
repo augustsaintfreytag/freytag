@@ -40,12 +40,3 @@ export function workContentBlockKindFromLegacy(rawValue: LegacyWorkContentBlockK
 			return undefined
 	}
 }
-
-/* 	Previous Kinds:
-
-	Heading = "Heading",
-	TextQuote = "Text (Quote)",
-	TextColumn = "Text (Column)",
-	ImageColumns = "Images (Columns)",
-	VideoVimeo = "Video (Vimeo)"
-*/
