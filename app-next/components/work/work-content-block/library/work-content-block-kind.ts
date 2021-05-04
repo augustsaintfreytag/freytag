@@ -32,7 +32,7 @@ export function workContentBlockKindFromLegacy(rawValue: LegacyWorkContentBlockK
 			return WorkContentBlockKind.Quote
 		case "Text (Column)":
 			return WorkContentBlockKind.Text
-		case "Images (Column)":
+		case "Images (Columns)":
 			return WorkContentBlockKind.Images
 		case "Video (Vimeo)":
 			return WorkContentBlockKind.Video
