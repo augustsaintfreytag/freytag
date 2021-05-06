@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react"
+import { allLifeEventKinds } from "~/api/records/life-event/library/life-event-kind"
 import { LifeTableFilterKind as FilterKind, LifeTableFilterKindAll as FilterKindAll } from "~/components/life-table/library/life-table-filter-kind"
 import { PropsWithClassName } from "~/types/props"
-import { allLifeEventKinds } from "~/utils/api/records/life-event/library/life-event-kind"
 import { className } from "~/utils/class-names/class-name"
 import styles from "./life-table-filters.module.sass"
 

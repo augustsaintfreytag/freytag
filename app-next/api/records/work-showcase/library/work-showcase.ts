@@ -1,6 +1,6 @@
 import { CockpitEntry } from "cockpit-access"
-import { ImageRecord } from "~/utils/api/records/image/library/image-record"
-import { LifeEvent } from "~/utils/api/records/life-event/library/life-event"
+import { ImageRecord } from "~/api/records/image/library/image-record"
+import { LifeEvent } from "~/api/records/life-event/library/life-event"
 
 // Showcase
 

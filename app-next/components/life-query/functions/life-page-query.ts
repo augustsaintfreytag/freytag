@@ -1,9 +1,9 @@
 import { NextRouter as Router } from "next/router"
 import { ParsedUrlQuery } from "node:querystring"
+import { lifeEventKindFromRawValue } from "~/api/records/life-event/library/life-event-kind"
 import { LifeTableDataProps } from "~/components/life-table/functions/life-table-data-hook"
 import { lifeTableColumnFromRawValue } from "~/components/life-table/library/life-table-column"
 import { lifeTableSortModeFromRawValue } from "~/components/life-table/library/life-table-sort-mode"
-import { lifeEventKindFromRawValue } from "~/utils/api/records/life-event/library/life-event-kind"
 import { valueFromRawValue } from "~/utils/routing/functions/query-parameter-value"
 import { Dictionary } from "~/utils/types/library/dictionary"
 

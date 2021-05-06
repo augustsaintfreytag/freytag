@@ -1,7 +1,7 @@
+import { intervalFromFragment } from "~/api/common/functions/date-conversion"
+import { LifeEvent } from "~/api/records/life-event/library/life-event"
+import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
 import { LifeTableItemData } from "~/components/life-table/models/life-table-item-data"
-import { intervalFromFragment } from "~/utils/api/common/functions/date-conversion"
-import { LifeEvent } from "~/utils/api/records/life-event/library/life-event"
-import { LifeEventKind } from "~/utils/api/records/life-event/library/life-event-kind"
 
 export function lifeTableItemDataFromEvents(lifeEvents: LifeEvent[]): LifeTableItemData[] {
 	return lifeEvents.reduce((items: LifeTableItemData[], lifeEvent: LifeEvent) => {

@@ -1,5 +1,5 @@
 import { CockpitAssetPathForm } from "cockpit-access"
-import { imageRequest, ImageRequestFormat } from "~/utils/api/common/library/image-request-preset"
+import { imageRequest, ImageRequestFormat } from "~/api/common/library/image-request-preset"
 import { URL } from "~/utils/routing/library/url"
 
 const imageFallbackUrl: URL = "/assets/image-fallback.png"

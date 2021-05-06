@@ -1,16 +1,16 @@
 import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { useMemo } from "react"
-import WorkListItem from "~/components/work/work-list-item/work-list-item"
-import DefaultLayout from "~/layouts/default/default-layout"
-import { Page, PageProps } from "~/types/page"
-import { imageUrlFromComponent } from "~/utils/api/records/image/functions/image-record-data-access"
+import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
 import {
 	lastWorkShowcaseModificationDate,
 	sortedWorkShowcases,
 	workShowcasesFromApi
-} from "~/utils/api/records/work-showcase/functions/work-showcase-data-access"
-import { WorkShowcase } from "~/utils/api/records/work-showcase/library/work-showcase"
+} from "~/api/records/work-showcase/functions/work-showcase-data-access"
+import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import WorkListItem from "~/components/work/work-list-item/work-list-item"
+import DefaultLayout from "~/layouts/default/default-layout"
+import { Page, PageProps } from "~/types/page"
 import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
 import { denominatorDescription } from "~/utils/description/functions/denominator-description"
 import { pageTitle } from "~/utils/title/functions/page-title"

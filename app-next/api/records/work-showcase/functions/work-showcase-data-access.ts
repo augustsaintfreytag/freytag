@@ -1,7 +1,7 @@
 import { CockpitDataAccess } from "cockpit-access"
-import { ApiCollection, defaultApiFilter } from "~/utils/api/common/functions/data-access"
-import { dateFromTimestamp } from "~/utils/api/common/functions/date-conversion"
-import { WorkShowcase } from "~/utils/api/records/work-showcase/library/work-showcase"
+import { ApiCollection, defaultApiFilter } from "~/api/common/functions/data-access"
+import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
+import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
 // Work Showcase Collection

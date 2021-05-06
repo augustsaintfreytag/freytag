@@ -1,5 +1,5 @@
 import { GetServerSidePropsContext, GetServerSidePropsResult } from "next"
-import { UUID } from "~/utils/api/common/library/uuid"
+import { UUID } from "~/api/common/library/uuid"
 
 type PromisedServerSideResult<Data> = Promise<GetServerSidePropsResult<{ data?: Data }>>
 type ServerSideContext = GetServerSidePropsContext<{}>
