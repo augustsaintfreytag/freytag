@@ -1,5 +1,6 @@
 #! /usr/bin/env zsh
 
+DEBUG=0
 BASEDIR=$(dirname "$0")
 ROOTDIR=$(realpath "$BASEDIR/..")
 DOCKERDIR="$ROOTDIR/server/docker"
@@ -8,6 +9,10 @@ DOCKERENV="$DOCKERDIR/env/parameters.dev.private.env"
 set -a
 source "$DOCKERENV"
 set +a
+
+if [[ $DEBUG == '1' ]]; then
+	APP_STARTUP_CMD="yarn dev-inspect"
+fi
 
 set +e
 mkdir "$SERVER_CERTIFICATE_DIRECTORY" &> /dev/null
