@@ -6,8 +6,8 @@ import { workContentBlockKindFromLegacy } from "~/components/work/work-content-b
 import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
-import { PageProps } from "~/pages/_app"
-import type { Page } from "~/types/page"
+import type { Page, PageProps } from "~/types/page"
+import { getServerSideApiRecord } from "~/utils/api/props/functions/server-side-props"
 import { imageUrlFromComponent } from "~/utils/api/records/image/functions/image-record-data-access"
 import { workShowcaseFromApi } from "~/utils/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/utils/api/records/work-showcase/library/work-showcase"
@@ -25,24 +25,12 @@ type Props = {
 
 // Page
 
+function mapShowcasePageData(showcase: WorkShowcase): PageData {
+	return { showcase }
+}
+
 export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
-	const showcaseId = context.query["work"]
-
-	if (!showcaseId || typeof showcaseId !== "string") {
-		return { notFound: true }
-	}
-
-	try {
-		const showcase = await workShowcaseFromApi(showcaseId)
-		if (!showcase) {
-			return { notFound: true }
-		}
-
-		const data: PageData = { showcase }
-		return { props: { data } }
-	} catch (error) {
-		return { notFound: true }
-	}
+	return await getServerSideApiRecord<WorkShowcase, PageData>(context, "work", workShowcaseFromApi, mapShowcasePageData)
 }
 
 const WorkDetailPage: Page<PageProps & Props> = props => {

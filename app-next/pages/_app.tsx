@@ -1,5 +1,4 @@
 import type { AppProps as NextAppProps } from "next/app"
-import type { Router } from "next/router"
 import { Fragment, FunctionComponent } from "react"
 import Sprites from "~/components/sprites/sprites"
 import "~/styles/base/globals.sass"
@@ -8,10 +7,6 @@ import "~/utils/api/common/config/api-configuration"
 
 type AppProps = NextAppProps & {
 	Component: Page
-}
-
-export type PageProps = {
-	router: Router
 }
 
 const App: FunctionComponent<AppProps> = props => {
