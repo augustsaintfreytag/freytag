@@ -8,7 +8,7 @@ type Props = {
 
 const WorkContentTextBlock: FunctionComponent<Props> = props => (
 	<section className={styles.block}>
-		<Markdown text={props.text} />
+		<Markdown>{props.text ?? ""}</Markdown>
 	</section>
 )
 

@@ -29,6 +29,30 @@ const components: Components = {
 				{children}
 			</a>
 		)
+	},
+
+	strong({ node, inline, className, children, ...props }) {
+		const textComponents: string[] = children.reduce((collection: string[], child: any) => {
+			if (typeof child === "string") {
+				collection.push(child)
+			}
+
+			return collection
+		}, [])
+
+		const textContent = textComponents.join()
+		const words = textContent.split(" ")
+
+		return (
+			<strong className={className} {...props}>
+				{words.map((word, index) => (
+					<>
+						<span>{word}</span>
+						{index !== words.length - 1 && <span>&nbsp;</span>}
+					</>
+				))}
+			</strong>
+		)
 	}
 }
 

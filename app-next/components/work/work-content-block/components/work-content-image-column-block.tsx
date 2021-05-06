@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import ImageFigure, { Props as ImageFigureProps } from "~/components/image-figure/image-figure"
+import ImageFigure, { ImageFigureProps } from "~/components/image-figure/image-figure"
 import styles from "./work-content-image-column-block.module.sass"
 
 type Props = {

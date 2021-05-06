@@ -2,6 +2,8 @@ import { CockpitEntry } from "cockpit-access"
 import { ImageRecord } from "~/utils/api/records/image/library/image-record"
 import { LifeEvent } from "~/utils/api/records/life-event/library/life-event"
 
+// Showcase
+
 export type WorkShowcase = CockpitEntry & {
 	display: boolean
 	name: string
@@ -13,17 +15,19 @@ export type WorkShowcase = CockpitEntry & {
 	blocks?: WorkShowcaseBlock[]
 }
 
+// Showcase Block
+
 export type WorkShowcaseBlock = CockpitEntry & {
 	form: string
 	identifierItem: string
 	identifierGroup: string
 	textContent: string
-	imageContents?: AnyWorkShowcaseBlockContent[]
+	imageContents?: WorkShowcaseImageComponent[]
 	videoCode: string
 	videoAspectValue: string
 }
 
-export type AnyWorkShowcaseBlockContent = WorkShowcaseBlockContent<any>
+// Showcase Block Contents (Collection)
 
 export type WorkShowcaseBlockContent<ValueObject> = {
 	field: {
@@ -33,3 +37,6 @@ export type WorkShowcaseBlockContent<ValueObject> = {
 	}
 	value: ValueObject
 }
+
+export type AnyWorkShowcaseBlockContent = WorkShowcaseBlockContent<any>
+export type WorkShowcaseImageComponent = WorkShowcaseBlockContent<ImageRecord> | WorkShowcaseBlockContent<string>

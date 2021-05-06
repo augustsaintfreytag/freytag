@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next"
 import { useMemo } from "react"
-import { lifeTableItemDataFromEvents } from "~/components/life-table/functions/life-table-item-data"
+import { lifeTableItemDataFromEvents } from "~/components/life-table/functions/life-table-item-data-form"
 import LifeTable from "~/components/life-table/life-table"
 import { LifeTableItemData } from "~/components/life-table/models/life-table-item-data"
 import DefaultLayout from "~/layouts/default/default-layout"

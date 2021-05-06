@@ -4,7 +4,7 @@ import { dateFromTimestamp } from "~/utils/api/common/functions/date-conversion"
 import { WorkShowcase } from "~/utils/api/records/work-showcase/library/work-showcase"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
-// Data Access
+// Work Showcase Collection
 
 const workShowcaseCollectionFields: Dictionary<string, number> = {
 	_id: 1,
@@ -22,6 +22,16 @@ export async function workShowcasesFromApi(): Promise<WorkShowcase[]> {
 	const entries = response.entries as WorkShowcase[]
 
 	return entries
+}
+
+// Work Showcase
+
+export async function workShowcaseFromApi(slug: string): Promise<WorkShowcase | undefined> {
+	const filter = { ...defaultApiFilter, slug: slug }
+	const response = await CockpitDataAccess.recordsInCollection(ApiCollection.Work, { filter: filter })
+	const firstEntry = response.entries[0] as WorkShowcase | undefined
+
+	return firstEntry
 }
 
 // Data Processing
