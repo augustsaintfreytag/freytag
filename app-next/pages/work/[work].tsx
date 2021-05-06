@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next"
+import { useMemo } from "react"
 import Divider from "~/components/divider/divider"
 import WorkContentBlock from "~/components/work/work-content-block/components/work-content-block"
 import { linkPropsForShowcase } from "~/components/work/work-content-block/functions/work-content-block-data-form"
@@ -7,11 +8,17 @@ import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
+import { dateFromTimestamp } from "~/utils/api/common/functions/date-conversion"
 import { getServerSideApiRecord } from "~/utils/api/props/functions/server-side-props"
 import { imageUrlFromComponent } from "~/utils/api/records/image/functions/image-record-data-access"
 import { workShowcaseFromApi } from "~/utils/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/utils/api/records/work-showcase/library/work-showcase"
+import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
 import styles from "./work-detail-page.module.sass"
+
+// Sub Components
+
+const WorkDivider = () => <Divider className={styles.divider} />
 
 // Library
 
@@ -39,6 +46,16 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 	const abstract = showcase.description ?? "…"
 	const link = linkPropsForShowcase(showcase)
 
+	const metadata = useMemo(() => {
+		const created = dateFromTimestamp(showcase._created)
+		const modified = showcase._modified && dateFromTimestamp(showcase._modified)
+
+		return {
+			created: formattedDate(created, DateFormatStyle.MonthAndYear),
+			modified: modified && formattedDate(modified, DateFormatStyle.MonthAndYear)
+		}
+	}, [showcase._created, showcase._modified])
+
 	return (
 		<>
 			<article className={styles.page}>
@@ -46,7 +63,7 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 					<WorkCover image={imageUrlFromComponent(undefined)} />
 					<WorkTitle className={styles.title} title={name} abstract={abstract} link={link} />
 				</header>
-				<Divider className={styles.divider} />
+				<WorkDivider />
 				<main>
 					{showcase.blocks?.map(block => {
 						const kind = workContentBlockKindFromLegacy(block.form)
@@ -56,6 +73,10 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 
 						return <WorkContentBlock key={block._id} kind={kind} block={block} />
 					})}
+					<WorkDivider />
+					<WorkContentBlock>
+						<p>Initially published {metadata.created}, by August Saint Freytag.</p>
+					</WorkContentBlock>
 				</main>
 			</article>
 		</>
