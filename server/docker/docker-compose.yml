@@ -29,7 +29,7 @@ services:
       - "80:80"
       - "443:443"
     restart: unless-stopped
-    depends_on: 
+    depends_on:
       - app
       - cockpit
 
@@ -42,6 +42,8 @@ services:
       - data_app_build_framework:/var/app/.next
     working_dir: /var/app
     command: "${APP_STARTUP_CMD}"
+    ports:
+      - "9229:9229"
     depends_on:
       app-dependencies:
         condition: service_completed_successfully
