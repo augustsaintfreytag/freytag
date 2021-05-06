@@ -1,4 +1,5 @@
 import { GetServerSideProps } from "next"
+import Head from "next/head"
 import { useMemo } from "react"
 import Divider from "~/components/divider/divider"
 import WorkContentBlock from "~/components/work/work-content-block/components/work-content-block"
@@ -14,6 +15,7 @@ import { imageUrlFromComponent } from "~/utils/api/records/image/functions/image
 import { workShowcaseFromApi } from "~/utils/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/utils/api/records/work-showcase/library/work-showcase"
 import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
+import { pageTitle } from "~/utils/title/functions/page-title"
 import styles from "./work-detail-page.module.sass"
 
 // Sub Components
@@ -58,6 +60,9 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 
 	return (
 		<>
+			<Head>
+				<title>{pageTitle(name)}</title>
+			</Head>
 			<article className={styles.page}>
 				<header>
 					<WorkCover image={imageUrlFromComponent(undefined)} />

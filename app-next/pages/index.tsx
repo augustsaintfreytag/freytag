@@ -1,3 +1,4 @@
+import Head from "next/head"
 import Link from "next/link"
 import { FunctionComponent } from "react"
 import Divider from "~/components/divider/divider"
@@ -6,7 +7,7 @@ import LandingLayout from "~/layouts/default/landing-layout"
 import { TextFunctionComponent } from "~/types/components"
 import { Page } from "~/types/page"
 import { PropsWithHref } from "~/types/props"
-import { headerText } from "~/utils/brand/functions/brand-text"
+import { brandTitleText, headerText } from "~/utils/brand/functions/brand-text"
 import { className } from "~/utils/class-names/class-name"
 import styles from "./index-page.module.sass"
 
@@ -44,27 +45,32 @@ const CoverSection: FunctionComponent = () => (
 
 const IndexPage: Page = () => {
 	return (
-		<section className={styles.page}>
-			<CoverSection />
-			<section className={styles.texts}>
-				<div className={styles.line}>My name is August Saint Freytag.</div>
-				<div className={styles.line}>
-					The renaissance is <Now />
-					<Surpassed>next year</Surpassed>.
-				</div>
-				<Divider />
-				<div className={styles.line}>
-					List the string of <IndexLink href="/life" /> events until now.
-				</div>
-				<div className={styles.line}>
-					Read and view showcases of <IndexLink href="/work" /> in review.
-				</div>
-				<div className={styles.line}>As a start, a feature was selected for you.</div>
+		<>
+			<Head>
+				<title>{brandTitleText}</title>
+			</Head>
+			<section className={styles.page}>
+				<CoverSection />
+				<section className={styles.texts}>
+					<div className={styles.line}>My name is August Saint Freytag.</div>
+					<div className={styles.line}>
+						The renaissance is <Now />
+						<Surpassed>next year</Surpassed>.
+					</div>
+					<Divider />
+					<div className={styles.line}>
+						List the string of <IndexLink href="/life" /> events until now.
+					</div>
+					<div className={styles.line}>
+						Read and view showcases of <IndexLink href="/work" /> in review.
+					</div>
+					<div className={styles.line}>As a start, a feature was selected for you.</div>
+				</section>
+				<section className={styles.feature}>
+					<div>(Feature missing)</div>
+				</section>
 			</section>
-			<section className={styles.feature}>
-				<div>(Feature missing)</div>
-			</section>
-		</section>
+		</>
 	)
 }
 

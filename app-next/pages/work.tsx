@@ -3,8 +3,7 @@ import Head from "next/head"
 import { useMemo } from "react"
 import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import DefaultLayout from "~/layouts/default/default-layout"
-import { PageProps } from "~/pages/_app"
-import { Page } from "~/types/page"
+import { Page, PageProps } from "~/types/page"
 import { imageUrlFromComponent } from "~/utils/api/records/image/functions/image-record-data-access"
 import {
 	lastWorkShowcaseModificationDate,
