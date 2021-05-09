@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { useMemo } from "react"
+import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
 import {
 	lastWorkShowcaseModificationDate,
@@ -53,7 +54,7 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 			const slug = showcase.slug
 			const headingText = showcase.name
 			const previewText = showcase.description ?? ""
-			const image = imageUrlFromComponent(showcase.teaserImage?.path)
+			const image = imageUrlFromComponent(showcase.teaserImage?.path, ImageFormat.Large)
 			const href = `/work/${showcase.slug}`
 
 			return { id, slug, headingText, previewText, image, href }
