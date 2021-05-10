@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { FunctionComponent, ReactElement } from "react"
-import ExternalLink from "~/components/link/components/external-link"
+import ExternalLink from "~/components/link/external-link"
 import Sprite from "~/components/sprites/sprite"
 import { PropsWithAnyChildren } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"

@@ -6,26 +6,26 @@ type ServerSideContext = GetServerSidePropsContext<{}>
 
 const ServerSideResultNotFound: GetServerSidePropsResult<{}> = { notFound: true }
 
-export async function getServerSideApiRecord<Record, PageData>(
+export async function getServerSideApiResponseByQuery<Response, PageData>(
 	context: ServerSideContext,
 	queryKey: string,
-	resolveRecord: (id: UUID) => Promise<Record | undefined>,
-	mapRecord: (record: Record) => PageData
+	resolveResponse: (id: UUID) => Promise<Response | undefined>,
+	mapResponse: (response: Response) => PageData
 ): PromisedServerSideResult<PageData> {
-	const recordId = context.query[queryKey]
+	const id = context.query[queryKey]
 
-	if (!recordId || typeof recordId !== "string") {
+	if (!id || typeof id !== "string") {
 		return ServerSideResultNotFound
 	}
 
 	try {
-		const record = await resolveRecord(recordId)
+		const response = await resolveResponse(id)
 
-		if (!record) {
+		if (!response) {
 			return ServerSideResultNotFound
 		}
 
-		const data = mapRecord(record)
+		const data = mapResponse(response)
 
 		return {
 			props: { data }
@@ -34,3 +34,25 @@ export async function getServerSideApiRecord<Record, PageData>(
 		return ServerSideResultNotFound
 	}
 }
+
+export async function getServerSideApiResponse<Response, PageData>(
+	resolveResponse: () => Promise<Response | undefined>,
+	mapResponse: (response: Response) => PageData
+): PromisedServerSideResult<PageData> {
+	try {
+		const response = await resolveResponse()
+		if (!response) {
+			return ServerSideResultNotFound
+		}
+
+		const data = mapResponse(response)
+
+		return {
+			props: { data }
+		}
+	} catch (error) {
+		return ServerSideResultNotFound
+	}
+}
+
+// export async function tryAsync<ReturnValue>()

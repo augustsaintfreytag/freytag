@@ -7,7 +7,7 @@ import {
 	LegalSubHeadingBlock,
 	LegalTextBlock
 } from "~/components/legal/legal-article-blocks/legal-article-blocks"
-import ExternalLink from "~/components/link/components/external-link"
+import ExternalLink from "~/components/link/external-link"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { Page } from "~/types/page"
 import { useSensitiveDataDisplay } from "~/utils/render/sensitive-data-hook"

@@ -4,8 +4,8 @@ export enum ApiCollection {
 }
 
 export enum ApiSingleton {
-	LandingGraphic = "landing_graphic",
-	LandingWorks = "landing_works"
+	PageGraphics = "pageGraphics",
+	ShowcaseFeature = "showcaseFeature"
 }
 
 export const defaultApiFilter = { display: true }

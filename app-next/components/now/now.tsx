@@ -1,12 +1,18 @@
 import { FunctionComponent, useState } from "react"
 import { nowDisplayText } from "~/components/now/functions/now-formatting"
 import { NowDisplayMode, nowDisplayModeCases } from "~/components/now/library/now-display-mode"
+import { TextFunctionComponent } from "~/types/components"
+import styles from "./now.module.sass"
 
 // Functions
 
 function nowDisplayMode(index: number): NowDisplayMode {
 	return nowDisplayModeCases[index % nowDisplayModeCases.length]
 }
+
+// Decoration Components
+
+const Surpassed: TextFunctionComponent = props => <span className={styles.surpassed}>{props.children}</span>
 
 // Component
 
@@ -24,9 +30,12 @@ const Now: FunctionComponent = () => {
 		updateNowText(updatedText)
 	}
 	return (
-		<a onClick={onClickNowText}>
-			<u>{nowText}</u>
-		</a>
+		<div className={styles.now}>
+			<a onClick={onClickNowText}>
+				<u>{nowText}</u>
+			</a>
+			<Surpassed>next year</Surpassed>
+		</div>
 	)
 }
 

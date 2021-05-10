@@ -1,14 +1,14 @@
 import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { useMemo } from "react"
-import { ImageFormat } from "~/api/common/library/image-request-preset"
-import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
+import { getServerSideApiResponse } from "~/api/props/functions/server-side-props"
 import {
 	averageTimeIntervalBetweenShowcases,
 	lastWorkShowcaseModificationDate,
 	sortedWorkShowcases,
 	workShowcasesFromApi
 } from "~/api/records/work-showcase/functions/work-showcase-data-access"
+import { mappedWorkShowcaseListItemProps } from "~/api/records/work-showcase/functions/work-showcase-prop-mapping"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import DefaultLayout from "~/layouts/default/default-layout"
@@ -31,19 +31,13 @@ type Props = {
 
 // Page
 
+function mapPageData(showcases: WorkShowcase[]): PageData {
+	showcases = sortedWorkShowcases(showcases)
+	return { showcases }
+}
+
 export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
-	const data: PageData = { showcases: [] }
-
-	try {
-		const showcases = await workShowcasesFromApi()
-		data.showcases = sortedWorkShowcases(showcases)
-	} catch (error) {
-		console.error(`Could not fetch work showcase listing data. ${error}`)
-	}
-
-	return {
-		props: { data }
-	}
+	return await getServerSideApiResponse<WorkShowcase[], PageData>(workShowcasesFromApi, mapPageData)
 }
 
 const WorkListingPage: Page<PageProps & Props> = props => {
@@ -51,16 +45,7 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 	const showcaseIds = showcases.map(showcase => showcase._id)
 
 	const workListItemProps = useMemo(() => {
-		return showcases.map(showcase => {
-			const id = showcase._id
-			const slug = showcase.slug
-			const headingText = showcase.name
-			const previewText = showcase.description ?? ""
-			const image = imageUrlFromComponent(showcase.teaserImage?.path, ImageFormat.Large)
-			const href = `/work/${showcase.slug}`
-
-			return { id, slug, headingText, previewText, image, href }
-		})
+		return showcases.map(showcase => mappedWorkShowcaseListItemProps(showcase))
 	}, [showcaseIds])
 
 	const lastShowcaseCreation = useMemo<string | undefined>(() => {

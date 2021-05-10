@@ -5,10 +5,9 @@
 .page
 	padding-bottom: $pageSpacing
 	
-	.texts
-		@include inlayed
+	.inlay
+		@include inlayed	
 		margin-top: $pageSpacing
-		position: relative
-
-	.feature
-		margin-top: $pageContentSpacing
+	
+		> div
+			@include listMargin($pageContentSpacing * 0.8)
