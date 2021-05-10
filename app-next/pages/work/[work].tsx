@@ -3,7 +3,7 @@ import Head from "next/head"
 import { useMemo } from "react"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
-import { getServerSideApiRecordByQuery } from "~/api/props/functions/server-side-props"
+import { getServerSideApiResponseByQuery } from "~/api/props/functions/server-side-props"
 import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
 import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
@@ -40,7 +40,7 @@ function mapPageData(showcase: WorkShowcase): PageData {
 }
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
-	return await getServerSideApiRecordByQuery<WorkShowcase, PageData>(context, "work", workShowcaseFromApi, mapPageData)
+	return await getServerSideApiResponseByQuery<WorkShowcase, PageData>(context, "work", workShowcaseFromApi, mapPageData)
 }
 
 const WorkDetailPage: Page<PageProps & Props> = props => {
