@@ -6,7 +6,7 @@ type ServerSideContext = GetServerSidePropsContext<{}>
 
 const ServerSideResultNotFound: GetServerSidePropsResult<{}> = { notFound: true }
 
-export async function getServerSideApiRecord<Record, PageData>(
+export async function getServerSideApiRecordByQuery<Record, PageData>(
 	context: ServerSideContext,
 	queryKey: string,
 	resolveRecord: (id: UUID) => Promise<Record | undefined>,
@@ -26,6 +26,26 @@ export async function getServerSideApiRecord<Record, PageData>(
 		}
 
 		const data = mapRecord(record)
+
+		return {
+			props: { data }
+		}
+	} catch (error) {
+		return ServerSideResultNotFound
+	}
+}
+
+export async function getServerSideApiRecordCollection<Record, PageData>(
+	resolveRecords: () => Promise<Record[] | undefined>,
+	mapRecords: (record: Record[]) => PageData
+): PromisedServerSideResult<PageData> {
+	try {
+		const records = await resolveRecords()
+		if (!records) {
+			return ServerSideResultNotFound
+		}
+
+		const data = mapRecords(records)
 
 		return {
 			props: { data }

@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { useMemo } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
+import { getServerSideApiRecordCollection } from "~/api/props/functions/server-side-props"
 import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
 import {
 	averageTimeIntervalBetweenShowcases,
@@ -31,19 +32,13 @@ type Props = {
 
 // Page
 
+function mapPageData(showcases: WorkShowcase[]): PageData {
+	showcases = sortedWorkShowcases(showcases)
+	return { showcases }
+}
+
 export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
-	const data: PageData = { showcases: [] }
-
-	try {
-		const showcases = await workShowcasesFromApi()
-		data.showcases = sortedWorkShowcases(showcases)
-	} catch (error) {
-		console.error(`Could not fetch work showcase listing data. ${error}`)
-	}
-
-	return {
-		props: { data }
-	}
+	return await getServerSideApiRecordCollection<WorkShowcase, PageData>(workShowcasesFromApi, mapPageData)
 }
 
 const WorkListingPage: Page<PageProps & Props> = props => {
