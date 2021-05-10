@@ -80,3 +80,28 @@ export function lastWorkShowcaseModificationDate(showcases: WorkShowcase[]): Dat
 
 	return showcaseDates[showcaseDates.length - 1]
 }
+
+const averageTimeIntervalSampleSize = 5
+
+export function averageTimeIntervalBetweenShowcases(showcases: WorkShowcase[]): TimeInterval | undefined {
+	if (showcases.length < 2) {
+		return undefined
+	}
+
+	const showcaseDates = sortedWorkShowcaseDates(showcases)
+	const showcaseSelection = showcaseDates.slice(Math.max(0, -averageTimeIntervalSampleSize - 1)).reverse()
+	const intervalDifferences = showcaseSelection.reduce((differences: TimeInterval[], date: Date, index: number) => {
+		const subsequentDate = showcaseSelection[index + 1]
+		if (!subsequentDate) {
+			return differences
+		}
+
+		const difference = Math.abs(date.valueOf() - subsequentDate.valueOf())
+
+		differences.push(difference)
+		return differences
+	}, [])
+
+	const averageIntervalDifference = intervalDifferences.reduce((sum, value) => sum + value, 0) / intervalDifferences.length
+	return averageIntervalDifference
+}
