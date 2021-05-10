@@ -1,0 +1,13 @@
+@import "/styles/values/colors"
+@import "/styles/values/fonts"
+@import "/styles/values/spacing"
+	
+.page
+	padding-bottom: $pageSpacing
+	
+	.inlay
+		@include inlayed	
+		margin-top: $pageSpacing
+	
+		> div
+			@include listMargin($pageContentSpacing * 0.8)
