@@ -40,11 +40,18 @@ export async function workShowcaseFromApi(slug: string): Promise<WorkShowcase | 
 
 export function sortedWorkShowcases(showcases: WorkShowcase[]): WorkShowcase[] {
 	return [...showcases].sort((lhs, rhs) => {
-		if (lhs._created === rhs._created) {
-			return 0
+		const lhsv = lhs._created
+		const rhsv = rhs._created
+
+		if (lhsv > rhsv) {
+			return 1
 		}
 
-		return lhs._created < rhs._created ? 1 : -1
+		if (lhsv < rhsv) {
+			return -1
+		}
+
+		return 0
 	})
 }
 
