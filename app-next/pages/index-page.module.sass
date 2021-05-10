@@ -4,42 +4,6 @@
 	
 .page
 	padding-bottom: $pageSpacing
-
-	.cover
-		position: relative
-		width: 100%
-		height: $indexCoverHeight
-		overflow: hidden
-
-		img
-			z-index: 1
-			@include coverObject
-
-		.heading
-			h1
-				font-family: $headingFont
-				font-weight: 800
-				font-size: 6vw
-				text-transform: uppercase
-				color: $clear
-				z-index: 2
-
-		.subheading
-			h2
-				position: relative
-				top: 5rem
-				font-family: $headingFont
-				font-weight: 300
-				font-size: 1rem
-				color: $clear
-			
-		.centered
-			position: absolute
-			display: flex
-			justify-content: center
-			align-items: center
-			width: 100%
-			height: 100%
 	
 	.texts
 		@include inlayed

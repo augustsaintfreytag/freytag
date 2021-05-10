@@ -2,12 +2,12 @@ import Head from "next/head"
 import Link from "next/link"
 import { FunctionComponent } from "react"
 import Divider from "~/components/divider/divider"
+import IndexCover from "~/components/index-cover/index-cover"
 import Now from "~/components/now/now"
 import LandingLayout from "~/layouts/default/landing-layout"
 import { Page } from "~/types/page"
 import { PropsWithHref } from "~/types/props"
-import { brandTitleText, headerText } from "~/utils/brand/functions/brand-text"
-import { className } from "~/utils/class-names/class-name"
+import { brandTitleText } from "~/utils/brand/functions/brand-text"
 import styles from "./index-page.module.sass"
 
 // Link Components
@@ -20,22 +20,6 @@ const IndexLink: FunctionComponent<PropsWithHref> = props => (
 	</Link>
 )
 
-// Cover Component
-
-const { title: titleText, descriptor: descriptorText } = headerText()
-
-const CoverSection: FunctionComponent = () => (
-	<section className={styles.cover}>
-		<div className={className(styles.heading, styles.centered)}>
-			<h1>{titleText}</h1>
-		</div>
-		<div className={className(styles.subheading, styles.centered)}>
-			<h2>{descriptorText}</h2>
-		</div>
-		<img src="/assets/paper-title-cover.jpg" />
-	</section>
-)
-
 // Page Component
 
 const IndexPage: Page = () => {
@@ -45,7 +29,7 @@ const IndexPage: Page = () => {
 				<title>{brandTitleText}</title>
 			</Head>
 			<section className={styles.page}>
-				<CoverSection />
+				<IndexCover />
 				<section className={styles.texts}>
 					<div className={styles.line}>My name is August Saint Freytag.</div>
 					<div className={styles.line}>
