@@ -2,6 +2,7 @@ import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { useMemo } from "react"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
+import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { getServerSideApiRecord } from "~/api/props/functions/server-side-props"
 import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
 import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
@@ -45,6 +46,7 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async context =
 const WorkDetailPage: Page<PageProps & Props> = props => {
 	const showcase = props.data!.showcase!
 	const name = showcase.name
+	const cover = imageUrlFromComponent(showcase.titleImage?.path, ImageFormat.ExtraLarge)
 	const abstract = showcase.description ?? "…"
 	const link = linkPropsForShowcase(showcase)
 
@@ -65,7 +67,7 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 			</Head>
 			<article className={styles.page}>
 				<header>
-					<WorkCover image={imageUrlFromComponent(undefined)} />
+					<WorkCover image={cover} />
 					<WorkTitle className={styles.title} title={name} abstract={abstract} link={link} />
 				</header>
 				<WorkDivider />

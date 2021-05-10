@@ -1,36 +1,47 @@
 import { CockpitImageOptions, CockpitImageRequest } from "cockpit-access"
 
-const defaultQuality = 75
-
 // Library
 
-export enum ImageRequestFormat {
-	Small = "small",
-	Regular = "regular",
-	Large = "large"
+enum ImageCompressionQuality {
+	low = 65,
+	default = 75,
+	high = 85
+}
+
+export enum ImageFormat {
+	Small = "s",
+	Regular = "r",
+	Large = "l",
+	ExtraLarge = "xl"
 }
 
 // Preset Supply
 
-export function imageRequest(format: ImageRequestFormat): CockpitImageRequest {
+export function imageRequest(format: ImageFormat): CockpitImageRequest {
 	switch (format) {
-		case ImageRequestFormat.Small:
+		case ImageFormat.Small:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
 				width: 600,
-				quality: defaultQuality
+				quality: ImageCompressionQuality.default
 			})
-		case ImageRequestFormat.Regular:
+		case ImageFormat.Regular:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
 				width: 1000,
-				quality: defaultQuality
+				quality: ImageCompressionQuality.default
 			})
-		case ImageRequestFormat.Large:
+		case ImageFormat.Large:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
 				width: 1600,
-				quality: defaultQuality
+				quality: ImageCompressionQuality.default
+			})
+		case ImageFormat.ExtraLarge:
+			return new CockpitImageRequest({
+				mode: CockpitImageOptions.Mode.BestFit,
+				width: 2200,
+				quality: ImageCompressionQuality.default
 			})
 		default:
 			throw new TypeError(`Unsupported format '${format}' for image request preset.`)

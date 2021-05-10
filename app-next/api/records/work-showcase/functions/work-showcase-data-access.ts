@@ -2,6 +2,8 @@ import { CockpitDataAccess } from "cockpit-access"
 import { ApiCollection, defaultApiFilter } from "~/api/common/functions/data-access"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import { dateSort } from "~/utils/date/functions/date-sorting"
+import { TimeInterval } from "~/utils/date/library/intervals"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
 // Work Showcase Collection
@@ -38,27 +40,63 @@ export async function workShowcaseFromApi(slug: string): Promise<WorkShowcase | 
 
 export function sortedWorkShowcases(showcases: WorkShowcase[]): WorkShowcase[] {
 	return [...showcases].sort((lhs, rhs) => {
-		if (lhs._created === rhs._created) {
-			return 0
+		const lhsv = lhs._created
+		const rhsv = rhs._created
+
+		if (lhsv > rhsv) {
+			return 1
 		}
 
-		return lhs._created < rhs._created ? 1 : -1
+		if (lhsv < rhsv) {
+			return -1
+		}
+
+		return 0
 	})
 }
 
-export function lastWorkShowcaseModificationDate(showcases: WorkShowcase[]): Date | undefined {
-	const showcaseDates: Date[] = showcases
+function sortedWorkShowcaseDates(showcases: WorkShowcase[]): Date[] {
+	return showcases
 		.map(showcase => {
 			const timestamp = showcase._created
 			const date = dateFromTimestamp(timestamp)
 
 			return date
 		})
-		.sort()
+		.sort(dateSort)
+}
+
+export function lastWorkShowcaseModificationDate(showcases: WorkShowcase[]): Date | undefined {
+	const showcaseDates = sortedWorkShowcaseDates(showcases)
 
 	if (!showcaseDates.length) {
 		return undefined
 	}
 
 	return showcaseDates[showcaseDates.length - 1]
+}
+
+const averageTimeIntervalSampleSize = 5
+
+export function averageTimeIntervalBetweenShowcases(showcases: WorkShowcase[]): TimeInterval | undefined {
+	if (showcases.length < 2) {
+		return undefined
+	}
+
+	const showcaseDates = sortedWorkShowcaseDates(showcases)
+	const showcaseSelection = showcaseDates.slice(Math.max(0, -averageTimeIntervalSampleSize - 1)).reverse()
+	const intervalDifferences = showcaseSelection.reduce((differences: TimeInterval[], date: Date, index: number) => {
+		const subsequentDate = showcaseSelection[index + 1]
+		if (!subsequentDate) {
+			return differences
+		}
+
+		const difference = Math.abs(date.valueOf() - subsequentDate.valueOf())
+
+		differences.push(difference)
+		return differences
+	}, [])
+
+	const averageIntervalDifference = intervalDifferences.reduce((sum, value) => sum + value, 0) / intervalDifferences.length
+	return averageIntervalDifference
 }

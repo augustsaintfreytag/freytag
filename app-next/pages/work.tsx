@@ -1,8 +1,10 @@
 import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { useMemo } from "react"
+import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
 import {
+	averageTimeIntervalBetweenShowcases,
 	lastWorkShowcaseModificationDate,
 	sortedWorkShowcases,
 	workShowcasesFromApi
@@ -12,6 +14,7 @@ import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { Page, PageProps } from "~/types/page"
 import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
+import { formattedTimeInterval } from "~/utils/date/functions/time-formatting"
 import { denominatorDescription } from "~/utils/description/functions/denominator-description"
 import { pageTitle } from "~/utils/title/functions/page-title"
 import styles from "./work-page.module.sass"
@@ -53,15 +56,32 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 			const slug = showcase.slug
 			const headingText = showcase.name
 			const previewText = showcase.description ?? ""
-			const image = imageUrlFromComponent(showcase.teaserImage?.path)
+			const image = imageUrlFromComponent(showcase.teaserImage?.path, ImageFormat.Large)
 			const href = `/work/${showcase.slug}`
 
 			return { id, slug, headingText, previewText, image, href }
 		})
 	}, [showcaseIds])
 
-	const lastShowcaseCreationDate = useMemo(() => lastWorkShowcaseModificationDate(showcases), [showcaseIds])
-	const lastShowcaseCreation = (lastShowcaseCreationDate && formattedDate(lastShowcaseCreationDate, DateFormatStyle.DayMonthAndYear)) || "Never"
+	const lastShowcaseCreation = useMemo<string | undefined>(() => {
+		const lastCreationDate = lastWorkShowcaseModificationDate(showcases)
+		if (!lastCreationDate) {
+			return undefined
+		}
+
+		return formattedDate(lastCreationDate, DateFormatStyle.DayMonthAndYear)
+	}, [showcaseIds])
+
+	const averageShowcaseCreation = useMemo<string | undefined>(() => {
+		const averageInterval = averageTimeIntervalBetweenShowcases(showcases)
+		if (!averageInterval) {
+			return undefined
+		}
+
+		return formattedTimeInterval(averageInterval)
+	}, [showcaseIds])
+
+	debugger
 
 	return (
 		<>
@@ -85,11 +105,13 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 				</div>
 				<aside className={styles.closure}>
 					<div>
-						There are <em>{denominatorDescription({ singular: "showcase", plural: "showcases" }, showcases.length)} showcases</em> presented here.
+						There are <em>{denominatorDescription({ singular: "showcase", plural: "showcases" }, showcases.length)}</em> presented here.
 					</div>
-					<div>
-						The last published showcase was created on <em>{lastShowcaseCreation}</em>.
-					</div>
+					{averageShowcaseCreation && (
+						<div>
+							A showcase is published on average every <em>{averageShowcaseCreation}</em>, last released on <em>{lastShowcaseCreation}</em>.
+						</div>
+					)}
 				</aside>
 			</section>
 		</>
