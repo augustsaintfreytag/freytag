@@ -4,16 +4,11 @@ import { FunctionComponent } from "react"
 import Divider from "~/components/divider/divider"
 import Now from "~/components/now/now"
 import LandingLayout from "~/layouts/default/landing-layout"
-import { TextFunctionComponent } from "~/types/components"
 import { Page } from "~/types/page"
 import { PropsWithHref } from "~/types/props"
 import { brandTitleText, headerText } from "~/utils/brand/functions/brand-text"
 import { className } from "~/utils/class-names/class-name"
 import styles from "./index-page.module.sass"
-
-// Decoration Components
-
-const Surpassed: TextFunctionComponent = props => <span className={styles.surpassed}>{props.children}</span>
 
 // Link Components
 
@@ -54,8 +49,7 @@ const IndexPage: Page = () => {
 				<section className={styles.texts}>
 					<div className={styles.line}>My name is August Saint Freytag.</div>
 					<div className={styles.line}>
-						The renaissance is <Now />
-						<Surpassed>next year</Surpassed>.
+						The renaissance is <Now />.
 					</div>
 					<Divider />
 					<div className={styles.line}>

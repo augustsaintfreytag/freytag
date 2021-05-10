@@ -26,8 +26,8 @@ export function nowDisplayText(mode: NowDisplayMode): string {
 			return new Date().getFullYear().toString()
 		case NowDisplayMode.Date:
 			const { year, month, day } = formattedDateComponents(new Date())
-			return `${year}-${month}-${day}`
+			return `on ${year}-${month}-${day}`
 		case NowDisplayMode.NextHour:
-			return formattedNextHour(new Date())
+			return `at ${formattedNextHour(new Date())}`
 	}
 }
