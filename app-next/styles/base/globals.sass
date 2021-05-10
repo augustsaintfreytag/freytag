@@ -39,6 +39,16 @@ p
 	margin: 0
 	line-height: $paragraphLineHeight
 
+u
+	display: inline-block
+	text-decoration: none
+
+	&::after
+		content: ""
+		display: block
+		margin-top: -3px
+		border-bottom: 0.2rem solid $textColor
+
 button
 	display: block
 	appearance: none
