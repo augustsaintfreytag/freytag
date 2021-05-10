@@ -2,6 +2,7 @@ import { CockpitDataAccess } from "cockpit-access"
 import { ApiCollection, defaultApiFilter } from "~/api/common/functions/data-access"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import { TimeInterval } from "~/utils/date/library/intervals"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
 // Work Showcase Collection
@@ -46,15 +47,32 @@ export function sortedWorkShowcases(showcases: WorkShowcase[]): WorkShowcase[] {
 	})
 }
 
-export function lastWorkShowcaseModificationDate(showcases: WorkShowcase[]): Date | undefined {
-	const showcaseDates: Date[] = showcases
+function sortedWorkShowcaseDates(showcases: WorkShowcase[]): Date[] {
+	return showcases
 		.map(showcase => {
 			const timestamp = showcase._created
 			const date = dateFromTimestamp(timestamp)
 
 			return date
 		})
-		.sort()
+		.sort((lhs, rhs) => {
+			const lhsv = lhs.valueOf()
+			const rhsv = rhs.valueOf()
+
+			if (lhsv > rhsv) {
+				return 1
+			}
+
+			if (lhsv < rhsv) {
+				return -1
+			}
+
+			return 0
+		})
+}
+
+export function lastWorkShowcaseModificationDate(showcases: WorkShowcase[]): Date | undefined {
+	const showcaseDates = sortedWorkShowcaseDates(showcases)
 
 	if (!showcaseDates.length) {
 		return undefined
