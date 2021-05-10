@@ -34,7 +34,7 @@ const Now: FunctionComponent = () => {
 			<a onClick={onClickNowText}>
 				<u>{nowText}</u>
 			</a>
-			<Surpassed>Next Year</Surpassed>
+			<Surpassed>next year</Surpassed>
 		</div>
 	)
 }
