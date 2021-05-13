@@ -1,7 +1,10 @@
+@import "/styles/values/breakpoints"
+	
 // Spacing
 
 $pageInlayWidth: 68rem
 $textInlayWidth: 38rem
+
 $pageSpacing: 8.5rem
 $pageContentSpacing: 5rem
 $pageSubContentSpacing: 1.75rem
@@ -9,12 +12,18 @@ $pageSubContentSpacing: 1.75rem
 $captionSpacing: 0.85rem
 $descriptionParagraphSpacing: 0.85rem
 
-$indexCoverHeight: 78vh
 $pageCoverHeight: 68vh
+$indexCoverHeightMobile: 42vh
+
+// Mixins
 
 @mixin inlayed
 	max-width: $pageInlayWidth
 	margin: 0 auto
+
+	@include breakpoint($phone)
+		max-width: none
+		margin: 0 1.5rem
 
 @mixin inlayedText
 	max-width: $textInlayWidth

@@ -3,7 +3,14 @@
 @import "/styles/values/fonts"
 @import "/styles/values/spacing"
 @import "/styles/values/colors"
-	
+@import "/styles/values/breakpoints"
+
+html
+	font-size: 16px
+
+	@include breakpoint($phone)
+		font-size: 12px
+
 html, body
 	padding: 0
 	margin: 0
@@ -60,4 +67,3 @@ button
 
 	&:hover, &:active
 		color: unset
-		
