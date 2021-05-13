@@ -1,10 +1,10 @@
 import { useRouter } from "next/router"
 import { FunctionComponent, useEffect, useState } from "react"
-import { lifeTablePropsAreEqual, lifeTablePropsFromQuery, setQueryFromLifeTableProps } from "~/components/life-query/functions/life-page-query"
 import LifeTableFilters from "~/components/life-table/components/life-table-filters"
 import LifeTableHeader from "~/components/life-table/components/life-table-header"
 import { LifeTableDataProps, useLifeTableData } from "~/components/life-table/functions/life-table-data-hook"
 import { useLifeTableHeaderProps } from "~/components/life-table/functions/life-table-header-props-hook"
+import * as LifeTableMapping from "~/components/life-table/functions/life-table-query-mapping"
 import { LifeTableColumn } from "~/components/life-table/library/life-table-column"
 import { LifeTableFilterKind as FilterKind, LifeTableFilterKindAll as FilterKindAll } from "~/components/life-table/library/life-table-filter-kind"
 import { LifeTableSortMode } from "~/components/life-table/library/life-table-sort-mode"
@@ -19,7 +19,7 @@ type Props = {
 
 const LifeTable: FunctionComponent<Props> = props => {
 	const router = useRouter()
-	const initialProps = lifeTablePropsFromQuery(router.query) ?? {
+	const initialProps = LifeTableMapping.lifeTablePropsFromQuery(router.query) ?? {
 		filterKind: FilterKindAll,
 		sortColumn: LifeTableColumn.Span,
 		sortMode: LifeTableSortMode.Descending
@@ -39,14 +39,14 @@ const LifeTable: FunctionComponent<Props> = props => {
 		setDataProps(props)
 
 		const routeAssignableProps = (() => {
-			if (lifeTablePropsAreEqual(props, initialProps)) {
+			if (LifeTableMapping.lifeTablePropsAreEqual(props, initialProps)) {
 				return undefined
 			}
 
 			return props
 		})()
 
-		setQueryFromLifeTableProps(router, routeAssignableProps)
+		LifeTableMapping.setQueryFromLifeTableProps(router, routeAssignableProps)
 	}, [activeFilterKind, activeColumn, activeColumnSortMode])
 
 	return (
