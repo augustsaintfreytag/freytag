@@ -10,6 +10,7 @@
 		"start": "next start"
 	},
 	"dependencies": {
+		"breakpoint-sass": "^2.7.1",
 		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git",
 		"next": "10.1.2",
 		"react": "17.0.2",
