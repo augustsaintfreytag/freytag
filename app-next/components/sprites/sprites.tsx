@@ -25,6 +25,12 @@ const Sprites = () => (
 		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 16.74" id="Broadcast Symbol">
 			<path d="M9 7.2A1.8 1.8 0 1010.8 9 1.805 1.805 0 009 7.2M14.4 9A5.4 5.4 0 003.6 9a5.483 5.483 0 002.7 4.68l.9-1.53a3.579 3.579 0 115.4-3.06 3.38 3.38 0 01-1.8 3.06l.9 1.53A5.371 5.371 0 0014.4 9M9 0a9.026 9.026 0 00-9 9 8.855 8.855 0 004.5 7.74l.9-1.53A7.191 7.191 0 1116.2 9a7.113 7.113 0 01-3.6 6.21l.9 1.53A8.855 8.855 0 0018 9a9.026 9.026 0 00-9-9z"></path>
 		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.486 16.486" id="Internal Content Symbol">
+			<g transform="translate(0 2.16)">
+				<path d="M0,14.326H16.486V-2.16H0Zm8.243-2.748h5.5V.588h-5.5Z" transform="translate(0 0)" fill-rule="evenodd" />
+			</g>
+		</symbol>
+
 		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.001 21.001" id="Arrow Top Right">
 			<path
 				d="M-5482,388.187h-21v-21h21v21Zm-16.444-17.509h0v3.237h7.286l-8.3,8.306,2.428,2.428,8.3-8.3v7.287h3.238V370.678Z"
