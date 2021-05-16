@@ -3,6 +3,11 @@
 // Spacing
 
 $pageInlayWidth: 68rem
+$pageInlayWidthMobile: 36rem
+
+$pageInlayPadding: 3rem
+$pageInlayPaddingMobile: 3rem
+
 $textInlayWidth: 38rem
 
 $pageSpacing: 8.5rem
@@ -17,10 +22,11 @@ $descriptionParagraphSpacing: 0.85rem
 @mixin inlayed
 	max-width: $pageInlayWidth
 	margin: 0 auto
+	padding: 0 $pageInlayPadding
 
 	@include breakpoint($phone)
-		padding: 0 3rem
-		max-width: 36rem
+		padding: 0 $pageInlayPaddingMobile
+		max-width: $pageInlayWidthMobile
 
 @mixin inlayedText
 	max-width: $textInlayWidth
