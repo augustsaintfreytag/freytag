@@ -12,9 +12,6 @@ $pageSubContentSpacing: 1.75rem
 $captionSpacing: 0.85rem
 $descriptionParagraphSpacing: 0.85rem
 
-$pageCoverHeight: 68vh
-$indexCoverHeightMobile: 42vh
-
 // Mixins
 
 @mixin inlayed
@@ -23,7 +20,8 @@ $indexCoverHeightMobile: 42vh
 
 	@include breakpoint($phone)
 		max-width: none
-		margin: 0 1.5rem
+		margin-left: 1.5rem
+		margin-right: 1.5rem
 
 @mixin inlayedText
 	max-width: $textInlayWidth
