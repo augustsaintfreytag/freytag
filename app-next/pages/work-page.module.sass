@@ -1,9 +1,10 @@
+@import "/styles/values/all"
 @import "/styles/base/accessibility"
-@import "/styles/values/colors"
-@import "/styles/values/spacing"
 	
 .page
-	$sectionSpacing: $pageSubContentSpacing * 1.25
+	$sectionSpacing: 2.2rem
+	$sectionSpacingMobile: 4rem
+
 	$closureSpacing: 1rem
 
 	padding-bottom: $pageContentSpacing
@@ -12,8 +13,12 @@
 		> section
 			@include listMargin($sectionSpacing)
 
+			@include breakpoint($phone)
+				@include listMargin($sectionSpacingMobile)
+
 	.closure
 		@include inlayed
+
 		margin-top: $pageContentSpacing
 		color: $textColorFaded
 		text-align: center

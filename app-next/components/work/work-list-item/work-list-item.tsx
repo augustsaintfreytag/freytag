@@ -14,6 +14,7 @@ type Props = {
 
 const WorkListItem: FunctionComponent<Props> = props => (
 	<section className={styles.workListItem}>
+		<img className={styles.image} src={props.image} />
 		<div className={styles.inlay}>
 			<div className={styles.inlayContent}>
 				<h2 className={styles.heading}>{props.headingText}</h2>
@@ -30,7 +31,6 @@ const WorkListItem: FunctionComponent<Props> = props => (
 				</Link>
 			</div>
 		</div>
-		<img className={styles.image} src={props.image} />
 	</section>
 )
 
