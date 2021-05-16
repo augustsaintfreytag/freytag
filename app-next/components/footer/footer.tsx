@@ -4,6 +4,7 @@ import { URL } from "~/utils/routing/library/url"
 import styles from "./footer.module.sass"
 
 enum SpriteHref {
+	InternalLink = "#Internal Content Symbol",
 	Broadcast = "#Broadcast Symbol",
 	Map = "#Map Symbol",
 	Vimeo = "#Vimeo Symbol",
@@ -48,7 +49,16 @@ const Footer: FunctionComponent<Props> = props => (
 			<FooterSection header="Map">
 				{navigationDefinitions.map(definition => {
 					const isActiveRoute = definition.href === props.activeRoute
-					return <FooterItem key={definition.href} text={definition.description} href={definition.href} active={isActiveRoute} />
+
+					return (
+						<FooterItem
+							key={definition.href}
+							sprite={SpriteHref.InternalLink}
+							text={definition.description}
+							href={definition.href}
+							active={isActiveRoute}
+						/>
+					)
 				})}
 			</FooterSection>
 			<FooterSection header="Further">

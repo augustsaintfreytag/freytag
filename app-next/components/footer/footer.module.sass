@@ -1,7 +1,8 @@
-@import "/styles/values/colors"
-@import "/styles/values/fonts"
-@import "/styles/values/spacing"
+@import "/styles/values/all"
 	
+$footerSpacing: $pageContentSpacing * 0.85
+$footerSpacingMobile: $pageContentSpacing * 0.65
+
 .footer
 	background-color: $elementBackgroundColor
 	background-size: cover
@@ -10,8 +11,18 @@
 
 	.inlay
 		@include inlayed
-		padding-top: 4rem
-		padding-bottom: 4rem
+		margin-top: $footerSpacing
+		margin-bottom: $footerSpacing
 
 		display: flex
 		justify-content: space-between
+
+		@include breakpoint($phone)
+			$footerInlaySpacingMobile: 2.75rem
+
+			margin: $footerSpacingMobile $footerInlaySpacingMobile $footerSpacingMobile $footerInlaySpacingMobile
+			flex-direction: column
+
+		> section
+			@include breakpoint($phone)
+				@include listMargin(2.65rem)
