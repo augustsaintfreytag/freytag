@@ -1,14 +1,18 @@
-@import "/styles/values/colors"
-@import "/styles/values/fonts"
-@import "/styles/values/spacing"
+@import "/styles/values/all"
 	
 .page
 	padding-bottom: $pageSpacing
 	
 	.texts
 		@include inlayed
-		margin-top: $pageSpacing
 		position: relative
+		margin-top: $pageSpacing
 
 	.feature
+		position: relative
 		margin-top: $pageContentSpacing
+		
+		@include breakpoint($phone)
+			> section
+				background: #f5f5f5
+				padding-bottom: $pageSubContentSpacing
