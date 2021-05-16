@@ -1,6 +1,4 @@
-@import "/styles/values/fonts"
-@import "/styles/values/colors"
-@import "/styles/values/spacing"
+@import "/styles/values/all"
 @import "/styles/base/accessibility"
 	
 .header
@@ -29,11 +27,11 @@
 
 		.navigation
 			margin: 0.5rem 0
-			width: 260px
+			width: 16.25rem
 
 			.navigationItem
 				font-family: $headingFont
-				font-size: 1.0rem
+				font-size: $pageNavigationFontSize
 
 				a
 					position: relative
@@ -48,3 +46,18 @@
 				display: flex
 				justify-content: space-between
 				
+@include breakpoint($phone)
+	.header
+		.inlay
+			height: unset
+			padding: 0
+
+			.brand
+				display: none
+
+			.navigation
+				margin: 0.4rem auto
+				width: 24rem
+
+				.navigationItem
+					font-size: $pageNavigationFontSizeMobile
