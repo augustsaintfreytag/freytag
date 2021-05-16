@@ -27,10 +27,9 @@ const Sprites = () => (
 		</symbol>
 		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16.486 16.486" id="Internal Content Symbol">
 			<g transform="translate(0 2.16)">
-				<path d="M0,14.326H16.486V-2.16H0Zm8.243-2.748h5.5V.588h-5.5Z" transform="translate(0 0)" fill-rule="evenodd" />
+				<path d="M0,14.326H16.486V-2.16H0Zm8.243-2.748h5.5V.588h-5.5Z" fillRule="evenodd" />
 			</g>
 		</symbol>
-
 		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.001 21.001" id="Arrow Top Right">
 			<path
 				d="M-5482,388.187h-21v-21h21v21Zm-16.444-17.509h0v3.237h7.286l-8.3,8.306,2.428,2.428,8.3-8.3v7.287h3.238V370.678Z"
