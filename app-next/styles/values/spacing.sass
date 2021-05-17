@@ -5,16 +5,16 @@
 $pageInlayWidth: 68rem
 $pageInlayWidthMobile: 36rem
 
-$pageInlayPadding: 3rem
+$pageInlayPadding: 3.25rem
 $pageInlayPaddingMobile: 3rem
 
 $textInlayWidth: 38rem
+$textInlayWidthMobile: 28rem
 
 $pageSpacing: 8.5rem
 $pageContentSpacing: 5rem
 $pageSubContentSpacing: 1.75rem
 
-$captionSpacing: 0.85rem
 $descriptionParagraphSpacing: 0.85rem
 
 // Mixins
@@ -28,9 +28,22 @@ $descriptionParagraphSpacing: 0.85rem
 		padding: 0 $pageInlayPaddingMobile
 		max-width: $pageInlayWidthMobile
 
+@mixin notInlayed
+	max-width: unset
+	margin: unset
+	padding: unset
+
 @mixin inlayedText
 	max-width: $textInlayWidth
-	margin: 0 auto
+	margin-left: auto
+	margin-right: auto
+	padding-left: $pageInlayPadding
+	padding-right: $pageInlayPadding
+
+	@include breakpoint($anyMobile)
+		max-width: $textInlayWidthMobile
+		padding-left: $pageInlayPaddingMobile
+		padding-right: $pageInlayPaddingMobile
 
 @mixin listMargin($margin)
 	margin-top: $margin
@@ -38,11 +51,29 @@ $descriptionParagraphSpacing: 0.85rem
 	&:first-child
 		margin-top: 0
 
+@mixin noListMargin
+	margin-top: unset
+
+	&:first-child
+		margin-top: unset
+
 @mixin horizontalListMargin($margin)
 	margin-left: $margin
 
 	&:first-child
 		margin-left: 0
+
+@mixin noHorizontalListMargin
+	margin-left: unset
+
+	&:first-child
+		margin-left: unset
+
+@mixin margin($value)
+	margin: $value
+
+	&:first-child
+		margin: $value
 
 @mixin coverImage
 	position: relative
