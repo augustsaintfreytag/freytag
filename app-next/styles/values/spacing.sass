@@ -21,7 +21,8 @@ $descriptionParagraphSpacing: 0.85rem
 
 @mixin inlayed
 	max-width: $pageInlayWidth
-	margin: 0 auto
+	margin-left: auto
+	margin-right: auto
 	padding: 0 $pageInlayPadding
 
 	@include breakpoint($anyMobile)
@@ -30,7 +31,8 @@ $descriptionParagraphSpacing: 0.85rem
 
 @mixin notInlayed
 	max-width: unset
-	margin: unset
+	margin-left: unset
+	margin-right: unset
 	padding: unset
 
 @mixin inlayedText
