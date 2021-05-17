@@ -6,6 +6,8 @@
 @import "/styles/values/breakpoints"
 
 html
+	margin: 0
+	padding: env(safe-area-inset)
 	font-size: 16px
 
 	@include breakpoint($anyMobile)
@@ -14,7 +16,7 @@ html
 	@include breakpoint($tablet)
 		font-size: 14px
 
-html, body
+body
 	padding: 0
 	margin: 0
 
