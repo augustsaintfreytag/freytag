@@ -44,6 +44,19 @@ $descriptionParagraphSpacing: 0.85rem
 	&:first-child
 		margin-left: 0
 
+@mixin coverImage
+	position: relative
+	width: 100%
+	height: 68vh
+	overflow: hidden
+
+	img
+		z-index: 1
+		@include coverObject
+
+	@include breakpoint($anyMobile)
+		height: 88vh
+
 @mixin coverObject
 	height: 100%
 	width: 100%
