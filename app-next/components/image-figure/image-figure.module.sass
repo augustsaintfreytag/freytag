@@ -1,7 +1,7 @@
-@import "/styles/values/fonts"
-@import "/styles/values/colors"
-@import "/styles/values/spacing"
+@import "/styles/values/all"
 	
+$captionSpacing: 0.85rem
+
 .figure
 	img
 		display: block
@@ -9,5 +9,11 @@
 		height: auto
 
 	figcaption
-		padding: $captionSpacing 0
+		margin-top: $captionSpacing
+		font-size: $captionFontSize
 		color: $textColorFaded
+
+		@include breakpoint($anyMobile)
+			padding-right: 2.5rem
+			font-size: $captionFontSizeMobile
+			line-height: $captionLineHeight
