@@ -9,7 +9,7 @@ type Props = {
 const WorkContentImageColumnBlock: FunctionComponent<Props> = props => (
 	<section className={styles.block}>
 		{props.collection.map(elementProps => (
-			<ImageFigure {...elementProps} />
+			<ImageFigure key={elementProps.src} {...elementProps} />
 		))}
 	</section>
 )
