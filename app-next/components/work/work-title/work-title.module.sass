@@ -5,8 +5,8 @@
 .workTitle
 	@include inlayed
 
-	$interContentSpacing: $pageContentSpacing * 0.8
-	$interSubContentSpacing: $pageSubContentSpacing * 0.8
+	$interContentSpacing: 4rem
+	$interSubContentSpacing: 1.4rem
 
 	> header
 		h1
@@ -14,6 +14,10 @@
 			font-weight: 700
 			font-size: $pageHeadingFontSize
 			text-align: center
+
+			@include breakpoint($anyMobile)
+				font-size: $pageHeadingFontSizeMobile
+
 	> main
 		margin-top: $interContentSpacing
 
@@ -22,14 +26,28 @@
 			width: fit-content
 			margin: 0 auto
 			align-items: center
+			justify-content: space-around
+
+			@include breakpoint($anyMobile)
+				display: block
+				width: 100%
 
 			.tag
 				margin-right: 1rem
 				flex: 0 0 auto
+
+				@include breakpoint($anyMobile)
+					margin: 0 auto
 				
 			.description
 				margin-bottom: 0.1rem
-				flex: content
+				flex: auto
+				line-height: 1.5
+
+				@include breakpoint($anyMobile)
+					margin: 0.7rem auto 0 auto
+					max-width: 68%
+					text-align: center
 
 		.abstract
 			text-align: center
