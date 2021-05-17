@@ -1,0 +1,6 @@
+@import "/styles/values/breakpoints"
+
+@mixin onlySafari
+	@media not all and (min-resolution: .001dpcm)
+		@supports (-webkit-appearance: none)
+			@content
