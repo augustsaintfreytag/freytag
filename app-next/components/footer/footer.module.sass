@@ -18,9 +18,9 @@ $footerSpacingMobile: $pageContentSpacing * 0.65
 		display: flex
 		justify-content: space-between
 
-		@include breakpoint($phone)
+		@include breakpoint($anyMobile)
 			flex-direction: column
 
 		> section
-			@include breakpoint($phone)
+			@include breakpoint($anyMobile)
 				@include listMargin(2.65rem)

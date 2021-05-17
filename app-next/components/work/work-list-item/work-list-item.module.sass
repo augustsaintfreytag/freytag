@@ -14,7 +14,7 @@ $inlayImageOffsetMobile: 100% 100%
 	width: 100%
 	height: 30rem
 
-	@include breakpoint($phone)
+	@include breakpoint($anyMobile)
 		height: unset
 	
 	.inlay
@@ -27,14 +27,14 @@ $inlayImageOffsetMobile: 100% 100%
 		width: 100%
 		z-index: 2
 
-		@include breakpoint($phone)
+		@include breakpoint($anyMobile)
 			position: relative
 			display: block
 
 		.inlayContent
 			@include inlayed
 
-			@include breakpoint($phone)
+			@include breakpoint($anyMobile)
 				margin-top: $inlaySpacingMobile
 				padding-top: 1.25rem
 				padding-bottom: 1.25rem
@@ -47,7 +47,7 @@ $inlayImageOffsetMobile: 100% 100%
 				$textShadowOffset: 0.15rem
 				text-shadow: $textShadowOffset $textShadowOffset 0 rgba(255, 255, 255, 0.5)
 
-				@include breakpoint($phone)
+				@include breakpoint($anyMobile)
 					font-size: $elementHeadingFontSizeMobile
 					text-shadow: unset
 
@@ -57,7 +57,7 @@ $inlayImageOffsetMobile: 100% 100%
 				font-family: $elementFont
 				font-size: $elementTextFontSize
 
-				@include breakpoint($phone)
+				@include breakpoint($anyMobile)
 					width: 100%
 					margin-top: $inlayInterItemSpacingMobile
 					font-size: $elementTextFontSizeMobile
@@ -73,7 +73,7 @@ $inlayImageOffsetMobile: 100% 100%
 				display: inline-block
 				margin-top: $inlayInterItemSpacing
 
-				@include breakpoint($phone)
+				@include breakpoint($anyMobile)
 					margin-top: $inlayInterItemSpacingMobile
 
 				&::after
@@ -85,7 +85,7 @@ $inlayImageOffsetMobile: 100% 100%
 					font-size: $elementTextFontSize
 					margin-right: 0.65rem
 
-					@include breakpoint($phone)
+					@include breakpoint($anyMobile)
 						font-size: $elementTextFontSizeMobile
 
 				.symbol
@@ -104,6 +104,6 @@ $inlayImageOffsetMobile: 100% 100%
 		@include coverObject
 		object-position: $inlayImageOffset
 
-		@include breakpoint($phone)
+		@include breakpoint($anyMobile)
 			object-position: $inlayImageOffsetMobile
 			height: 19rem
