@@ -1,19 +1,23 @@
-@import "/styles/values/fonts"
-@import "/styles/values/spacing"
-@import "/styles/values/colors"
+@import "/styles/values/all"
+@import "/styles/base/vendors"
 @import "/styles/indicators/kind-colors"
 
 .tag
 	$paddingSpacing: 0.4rem
 
+	width: fit-content
+	text-transform: uppercase
+	padding: $paddingSpacing/4 $paddingSpacing $paddingSpacing/4 $paddingSpacing
+	line-height: 1.3
 	font-family: $tagFont
 	font-size: $tagTextFontSize
 	font-weight: 700
-	text-transform: uppercase
-	padding: $paddingSpacing/6.25 $paddingSpacing $paddingSpacing/4 $paddingSpacing
 	color: $textColorOnDark
 	background: $tagBackgroundColor
-	width: fit-content
-	line-height: 1.2
 
 	@include tagBackgroundColors
+
+	@include onlySafari
+		padding: $paddingSpacing/3 $paddingSpacing $paddingSpacing/8 $paddingSpacing
+	// @include breakpoint($anyMobile)
+		// padding: $paddingSpacing/2 $paddingSpacing $paddingSpacing/8 $paddingSpacing
