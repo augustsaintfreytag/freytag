@@ -11,3 +11,6 @@
 	
 		ol > li
 			@include listMargin(0.35rem)
+
+			@include breakpoint($anyMobile)
+				@include listMargin(1.5rem)

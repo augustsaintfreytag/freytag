@@ -30,6 +30,7 @@ const LifeTableItem: FunctionComponent<Props> = props => (
 			<main className={styles.table}>
 				<div className={styles.interval}>{formattedOpenDateInterval(props.interval)}</div>
 				<div className={styles.format}>{props.format}</div>
+				<div className={styles.disclosure}>(show more)</div>
 				<div className={styles.role}>{formattedRole(props.role)}</div>
 				<div className={styles.context}>{formattedContext(props.context)}</div>
 			</main>

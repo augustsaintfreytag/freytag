@@ -1,6 +1,4 @@
-@import "/styles/values/fonts"
-@import "/styles/values/spacing"
-@import "/styles/values/colors"
+@import "/styles/values/all"
 @import "/styles/indicators/kind-colors"
 @import "life-table-layout.sass"
 
@@ -13,6 +11,9 @@
 
 	position: relative
 	height: $fixedHeight
+
+	@include breakpoint($anyMobile)
+		height: unset
 
 	.decorative
 		$decorativeVerticalOffset: 0.3rem
@@ -40,4 +41,13 @@
 				box-sizing: border-box
 				line-height: 1.5
 				padding-right: 1rem
+				
+				&.disclosure
+					color: $textColorFaded
+
+				@include breakpoint($anyMobile)
+					padding-right: 0.5rem
+					white-space: nowrap
+					text-overflow: ellipsis
+					overflow: hidden
 				

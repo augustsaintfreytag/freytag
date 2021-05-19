@@ -1,28 +1,24 @@
-@import "/styles/values/fonts"
-@import "/styles/values/spacing"
-@import "/styles/values/colors"
+@import "/styles/values/all"
 @import "/styles/indicators/kind-colors"
 @import "life-table-layout.sass"
 
-.filters
-	$inlaySpacing: $pageContentSpacing * 0.55
-	$interItemSpacing: $pageContentSpacing * 0.5
+$inlaySpacing: $pageContentSpacing * 0.55
+$interItemSpacing: $pageContentSpacing * 0.5
 
+$activeItemOpacity: 1.0
+$inactiveItemOpacity: 0.35
+$interComponentSpacing: 0.9rem
+
+.filters
 	padding: $inlaySpacing 0
 	background: $elementBackgroundColor
+	
+	@include breakpoint($anyMobile)
+		overflow: scroll
 
 	.inlay
 		@include inlayed
-
-		$activeItemOpacity: 1.0
-		$inactiveItemOpacity: 0.35
-		$interComponentSpacing: 0.9rem
-
-		// Filter
-
 		display: flex
-
-		// Item
 
 		.item
 			display: flex

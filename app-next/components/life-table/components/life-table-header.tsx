@@ -10,13 +10,15 @@ import styles from "./life-table-header.module.sass"
 type ItemDefinition = {
 	column: Column
 	text: string
+	style: string
 }
 
 const items: ItemDefinition[] = [
-	{ column: Column.Span, text: "Span" },
-	{ column: Column.Format, text: "Format" },
-	{ column: Column.Role, text: "Role" },
-	{ column: Column.Context, text: "Context" }
+	{ column: Column.Span, text: "Span", style: styles.span },
+	{ column: Column.Format, text: "Format", style: styles.format },
+	{ column: Column.Disclosure, text: "Disclosure", style: styles.disclosure },
+	{ column: Column.Role, text: "Role", style: styles.role },
+	{ column: Column.Context, text: "Context", style: styles.context }
 ]
 
 // Component
@@ -42,8 +44,8 @@ const LifeTableHeader: FunctionComponent<Props> = props => {
 		<section className={className(styles.header, styles.table)}>
 			{items.map((item, index) => (
 				<LifeTableHeaderItem
-					className={styles.item}
 					key={index}
+					className={className(styles.item, item.style)}
 					text={item.text}
 					column={item.column}
 					mode={itemSortModeForColumn(item.column)}
