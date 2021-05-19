@@ -11,14 +11,15 @@ type ItemDefinition = {
 	column: Column
 	text: string
 	style: string
+	isSortable: boolean
 }
 
 const items: ItemDefinition[] = [
-	{ column: Column.Span, text: "Span", style: styles.span },
-	{ column: Column.Format, text: "Format", style: styles.format },
-	{ column: Column.Disclosure, text: "Disclosure", style: styles.disclosure },
-	{ column: Column.Role, text: "Role", style: styles.role },
-	{ column: Column.Context, text: "Context", style: styles.context }
+	{ column: Column.Span, text: "Span", style: styles.span, isSortable: true },
+	{ column: Column.Format, text: "Format", style: styles.format, isSortable: true },
+	{ column: Column.Disclosure, text: "Disclosure", style: styles.disclosure, isSortable: false },
+	{ column: Column.Role, text: "Role", style: styles.role, isSortable: false },
+	{ column: Column.Context, text: "Context", style: styles.context, isSortable: false }
 ]
 
 // Component
@@ -50,8 +51,13 @@ const LifeTableHeader: FunctionComponent<Props> = props => {
 					column={item.column}
 					mode={itemSortModeForColumn(item.column)}
 					onToggle={() => {
+						if (!item.isSortable) {
+							return
+						}
+
 						props.onColumnToggle?.(item.column)
 					}}
+					disabled={!item.isSortable}
 				/>
 			))}
 		</section>
