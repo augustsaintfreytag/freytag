@@ -48,10 +48,11 @@ type Props = PropsWithClassName & {
 	text: string
 	mode: SortMode
 	onClick?: () => void
+	disabled?: boolean
 }
 
 const LifeTableSortModeButton: FunctionComponent<Props> = props => (
-	<button className={className(styles.button, props.className)} onClick={props.onClick}>
+	<button className={className(styles.button, props.className)} onClick={props.onClick} disabled={props.disabled}>
 		<div className={styles.label}>{props.text}</div>
 		<ModeIndicator className={styles.mode} mode={props.mode} />
 	</button>
