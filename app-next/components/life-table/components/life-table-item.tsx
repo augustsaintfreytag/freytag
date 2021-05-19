@@ -11,7 +11,12 @@ function formattedRole(role: string | undefined): string {
 }
 
 function formattedContext(context: string | undefined): string {
-	return context ?? ""
+	let text = context ?? ""
+	if (text && text[text.length - 1] !== ".") {
+		text += "."
+	}
+
+	return text
 }
 
 function kindAttributeValue(kind: LifeEventKind): string {
