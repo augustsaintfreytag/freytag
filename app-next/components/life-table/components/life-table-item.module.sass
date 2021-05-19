@@ -1,4 +1,5 @@
 @import "/styles/values/all"
+@import "/styles/base/accessibility"
 @import "/styles/indicators/kind-colors"
 @import "life-table-layout.sass"
 
@@ -41,13 +42,35 @@
 				box-sizing: border-box
 				line-height: 1.5
 				padding-right: 1rem
-				
-				&.disclosure
-					color: $textColorFaded
 
 				@include breakpoint($anyMobile)
 					padding-right: 0.5rem
 					white-space: nowrap
 					text-overflow: ellipsis
 					overflow: hidden
+
+				button
+					font-size: inherit
 				
+				&.disclosure
+					color: $textColorFaded
+
+	&.disclosed
+		@include breakpoint($anyMobile)
+			.inlay 
+				main
+					flex-wrap: wrap
+
+					> *
+						&.role, &.context, &.description
+							@include notInlayed
+
+							display: block
+							flex-basis: 100%
+							white-space: unset
+						
+						&.role
+							margin-top: 0.75rem
+
+						&.context, &.description
+							margin-top: 0.3rem

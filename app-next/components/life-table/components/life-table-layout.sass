@@ -43,8 +43,11 @@ $interDetailComponentSpacing: 0.75rem
 			display: none
 			max-width: 85px
 
+		&.description
+			display: none
+
 		@include breakpoint($anyMobile)
-			&.role, &.context
+			&.role, &.context, &.description
 				display: none
 
 			&.disclosure
