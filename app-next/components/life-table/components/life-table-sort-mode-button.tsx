@@ -31,7 +31,7 @@ function spriteReferenceForSortMode(sortMode: SortMode): SpriteReference {
 
 // Indicator
 
-type ModeIndicatorProps = {
+type ModeIndicatorProps = PropsWithClassName & {
 	mode: SortMode
 }
 
@@ -39,7 +39,7 @@ const ModeIndicator: FunctionComponent<ModeIndicatorProps> = props => {
 	const sortModeClassName = classNameForSortMode(props.mode)
 	const spriteHref = spriteReferenceForSortMode(props.mode)
 
-	return <Sprite className={className(styles.mode, sortModeClassName)} href={spriteHref} />
+	return <Sprite className={className(styles.mode, sortModeClassName, props.className)} href={spriteHref} />
 }
 
 // Component
@@ -53,7 +53,7 @@ type Props = PropsWithClassName & {
 const LifeTableSortModeButton: FunctionComponent<Props> = props => (
 	<button className={className(styles.button, props.className)} onClick={props.onClick}>
 		<div className={styles.label}>{props.text}</div>
-		<ModeIndicator mode={props.mode} />
+		<ModeIndicator className={styles.mode} mode={props.mode} />
 	</button>
 )
 
