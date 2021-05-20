@@ -53,12 +53,22 @@ const LifeTableItem: FunctionComponent<Props> = props => {
 				<main className={styles.table}>
 					<div className={styles.interval}>{formattedOpenDateInterval(props.interval)}</div>
 					<div className={styles.format}>{props.format}</div>
+					<div className={styles.role}>
+						<span className={styles.leader}>Role: </span>
+						<span className={styles.content}>{formattedRole(props.role)}</span>
+					</div>
+					<div className={styles.context}>
+						<span className={styles.leader}>Context: </span>
+						<span className={styles.content}>{formattedContext(props.context)}</span>
+					</div>
+					{props.description && (
+						<div className={styles.description}>
+							<span className={styles.content}>{props.description}</span>
+						</div>
+					)}
 					<div className={className(styles.disclosure)}>
 						<button onClick={onDisclosureClick}>({disclosureTextForState(isDisclosed)})</button>
 					</div>
-					<div className={styles.role}>{formattedRole(props.role)}</div>
-					<div className={styles.context}>{formattedContext(props.context)}</div>
-					<div className={styles.description}>{props.description}</div>
 				</main>
 			</div>
 		</section>

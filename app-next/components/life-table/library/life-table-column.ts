@@ -5,7 +5,8 @@ export enum LifeTableColumn {
 	Format = "Format",
 	Disclosure = "Disclosure",
 	Role = "Role",
-	Context = "Context"
+	Context = "Context",
+	Description = "Description"
 }
 
 export const allLifeTableColumn: LifeTableColumn[] = [

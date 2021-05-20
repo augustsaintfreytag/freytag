@@ -7,3 +7,13 @@
 .header
 	> .item
 		@include tableHeaderFont
+
+		// Disclosure
+
+		@include breakpoint($anyDesktop)
+			&.description
+				display: none
+
+		@include breakpoint($anyMobile)
+			&.role, &.context, &.description
+				display: none
