@@ -17,9 +17,10 @@ type ItemDefinition = {
 const items: ItemDefinition[] = [
 	{ column: Column.Span, text: "Span", style: styles.span, isSortable: true },
 	{ column: Column.Format, text: "Format", style: styles.format, isSortable: true },
-	{ column: Column.Disclosure, text: "Disclosure", style: styles.disclosure, isSortable: false },
 	{ column: Column.Role, text: "Role", style: styles.role, isSortable: false },
-	{ column: Column.Context, text: "Context", style: styles.context, isSortable: false }
+	{ column: Column.Context, text: "Context", style: styles.context, isSortable: false },
+	{ column: Column.Description, text: "Description", style: styles.description, isSortable: false },
+	{ column: Column.Disclosure, text: "Disclosure", style: className(styles.disclosure, styles.disclosureDesktop), isSortable: false }
 ]
 
 // Component
