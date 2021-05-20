@@ -71,8 +71,8 @@ const LifeTable: FunctionComponent<Props> = props => {
 				</header>
 				<main>
 					<ol>
-						{data.map((itemData, index) => (
-							<li key={index}>
+						{data.map(itemData => (
+							<li key={itemData.id}>
 								<LifeTableItem {...itemData} />
 							</li>
 						))}

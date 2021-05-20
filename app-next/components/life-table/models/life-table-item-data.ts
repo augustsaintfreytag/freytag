@@ -2,6 +2,7 @@ import { LifeEventKind as Kind } from "~/api/records/life-event/library/life-eve
 import { OpenDateInterval } from "~/utils/date/library/intervals"
 
 export type LifeTableItemData = {
+	id: string
 	name: string
 	kind: Kind
 	interval: OpenDateInterval
