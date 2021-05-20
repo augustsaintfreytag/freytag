@@ -120,16 +120,17 @@
 					&.context, &.description
 						margin-top: 0.3rem
 
-					&.description
+					&.context, &.description
 						padding-right: 2.5rem
 
 						@include breakpoint($anyDesktop)
-							.content
-								display: inline-block
-								max-width: 36rem
+							max-width: 32rem
 
 					&.disclosure
 						margin: 0.75rem 0 0 0
+
+						@include breakpoint($anyDesktop)
+							min-width: 100%
 
 					.leader
 						display: inline

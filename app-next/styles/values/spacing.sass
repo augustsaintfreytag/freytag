@@ -2,11 +2,14 @@
 	
 // Spacing
 
-$pageInlayWidth: 68rem
-$pageInlayWidthMobile: 36rem
+$inlayWidth: 1296px
+$inlayWidthMobile: 576px
 
-$pageInlayPadding: 3.25rem
-$pageInlayPaddingMobile: 3rem
+$inlayPadding: 2.5rem
+$inlayPaddingMobile: 3rem
+
+$textInlayPadding: 3.25rem
+$textInlayPaddingMobile: 3rem
 
 $textInlayWidth: 38rem
 $textInlayWidthMobile: 28rem
@@ -20,14 +23,15 @@ $descriptionParagraphSpacing: 0.85rem
 // Mixins
 
 @mixin inlayed
-	max-width: $pageInlayWidth
+	box-sizing: border-box
 	margin-left: auto
 	margin-right: auto
-	padding: 0
+	padding: 0 $inlayPadding
+	max-width: $inlayWidth
 
 	@include breakpoint($anyMobile)
-		padding: 0 $pageInlayPaddingMobile
-		max-width: $pageInlayWidthMobile
+		padding: 0 $inlayPaddingMobile
+		max-width: $inlayWidthMobile
 
 @mixin notInlayed
 	max-width: unset
@@ -39,13 +43,13 @@ $descriptionParagraphSpacing: 0.85rem
 	max-width: $textInlayWidth
 	margin-left: auto
 	margin-right: auto
-	padding-left: $pageInlayPadding
-	padding-right: $pageInlayPadding
+	padding-left: $textInlayPadding
+	padding-right: $textInlayPadding
 
 	@include breakpoint($anyMobile)
 		max-width: $textInlayWidthMobile
-		padding-left: $pageInlayPaddingMobile
-		padding-right: $pageInlayPaddingMobile
+		padding-left: $textInlayPaddingMobile
+		padding-right: $textInlayPaddingMobile
 
 @mixin listMargin($margin)
 	margin-top: $margin
