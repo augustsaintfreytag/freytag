@@ -45,9 +45,7 @@
 
 				@include breakpoint($anyMobile)
 					padding-right: 0.5rem
-					white-space: nowrap
-					text-overflow: ellipsis
-					overflow: hidden
+					@include ellipsized
 
 				button
 					font-size: inherit
@@ -67,7 +65,7 @@
 
 							display: block
 							flex-basis: 100%
-							white-space: unset
+							@include notEllipsized
 						
 						&.role
 							margin-top: 0.75rem

@@ -95,3 +95,13 @@ $descriptionParagraphSpacing: 0.85rem
 	width: 100%
 	object-fit: cover
 	object-position: center
+
+@mixin ellipsized
+	white-space: nowrap
+	text-overflow: ellipsis
+	overflow: hidden
+
+@mixin notEllipsized
+	white-space: unset
+	text-overflow: unset
+	overflow: unset
