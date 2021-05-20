@@ -96,6 +96,8 @@ $descriptionParagraphSpacing: 0.85rem
 	object-fit: cover
 	object-position: center
 
+// Ellipsis
+
 @mixin ellipsized
 	white-space: nowrap
 	text-overflow: ellipsis
@@ -105,3 +107,15 @@ $descriptionParagraphSpacing: 0.85rem
 	white-space: unset
 	text-overflow: unset
 	overflow: unset
+
+@mixin ellipsizedLines($lines)
+	display: -webkit-box
+	display: -moz-box
+
+	-webkit-line-clamp: $lines
+	-moz-line-clamp: $lines
+
+	-webkit-box-orient: vertical
+	-moz-box-orient: vertical
+	
+	overflow: hidden
