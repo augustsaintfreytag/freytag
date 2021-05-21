@@ -62,7 +62,7 @@ const ImprintPage: Page = () => {
 					</LegalTextBlock>
 				</article>
 				<Divider />
-				<article>
+				<article lang="de-DE">
 					<LegalHeadingBlock heading="Impressum" aside={<>Angaben gemäß §5&nbsp;TMG</>} />
 					<LegalContactBlock decoded={shouldDisplaySensitiveData} />
 					<LegalTextBlock heading="Haftung für Inhalte">

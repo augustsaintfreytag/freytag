@@ -138,7 +138,7 @@ const PrivacyPage: Page = () => {
 					</LegalTextBlock>
 				</article>
 				<Divider />
-				<article>
+				<article lang="de-DE">
 					<LegalHeadingBlock heading="Datenschutzerklärung" aside="Regulation (EU) 2016/679 (DSGVO)" />
 					<LegalTextBlock>
 						<p>Verantwortlicher im Sinne der Datenschutzgesetze, insbesondere der Datenschutzgrundverordnung der europäischen Union, ist:</p>
