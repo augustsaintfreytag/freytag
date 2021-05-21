@@ -4,16 +4,19 @@ $interFigureSpacing: 1.75rem
 $interFigureSpacingMobile: 2.5rem
 
 .block
-	@include inlayed
 	display: flex
 	overflow: hidden
 
+	@include breakpoint($anyDesktop)
+		@include inlayed
+
 	@include breakpoint($phone)
-		@include notInlayed
 		flex-direction: column
+		padding: 0 1rem
 
 	@include breakpoint($tablet)
 		max-width: none
+		padding: 0 1rem
 
 	> figure
 		@include horizontalListMargin($interFigureSpacing)
@@ -27,8 +30,12 @@ $interFigureSpacingMobile: 2.5rem
 			@include margin(0 auto)
 			@include listMargin($interFigureSpacingMobile)
 
-		figcaption
-			@include inlayedText
+		@include breakpoint($tablet)
+
+
+	&.singleImage
+		> figure figcaption
+			@include breakpoint($anyDesktop)
+				@include inlayedText
 
 			@include breakpoint($tablet)
-				@include notInlayed
