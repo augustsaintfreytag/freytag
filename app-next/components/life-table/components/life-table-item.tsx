@@ -54,20 +54,28 @@ const LifeTableItem: FunctionComponent<Props> = props => {
 					<div className={styles.interval}>{formattedOpenDateInterval(props.interval)}</div>
 					<div className={styles.format}>{props.format}</div>
 					<div className={styles.role}>
-						<span className={styles.leader}>Role: </span>
-						<span className={styles.content}>{formattedRole(props.role)}</span>
+						<div>
+							<span className={styles.leader}>Role: </span>
+							<span className={styles.content}>{formattedRole(props.role)}</span>
+						</div>
 					</div>
 					<div className={styles.context}>
-						<span className={styles.leader}>Context: </span>
-						<span className={styles.content}>{formattedContext(props.context)}</span>
+						<div>
+							<span className={styles.leader}>Context: </span>
+							<span className={styles.content}>{formattedContext(props.context)}</span>
+						</div>
 					</div>
 					{props.description && (
 						<div className={styles.description}>
-							<span className={styles.content}>{props.description}</span>
+							<div>
+								<span className={styles.content}>{props.description}</span>
+							</div>
 						</div>
 					)}
 					<div className={className(styles.disclosure)}>
-						<button onClick={onDisclosureClick}>({disclosureTextForState(isDisclosed)})</button>
+						<div>
+							<button onClick={onDisclosureClick}>({disclosureTextForState(isDisclosed)})</button>
+						</div>
 					</div>
 				</main>
 			</div>
