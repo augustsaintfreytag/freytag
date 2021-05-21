@@ -1,6 +1,6 @@
 import { intervalFromFragment } from "~/api/common/functions/date-conversion"
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
-import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
+import { lifeEventKindFromRawValue } from "~/api/records/life-event/library/life-event-kind"
 import { LifeTableItemData } from "~/components/life-table/models/life-table-item-data"
 
 export function lifeTableItemDataFromEvents(lifeEvents: LifeEvent[]): LifeTableItemData[] {
@@ -13,8 +13,9 @@ export function lifeTableItemDataFromEvents(lifeEvents: LifeEvent[]): LifeTableI
 		}
 
 		const item: LifeTableItemData = {
+			id: lifeEvent._id,
 			name: name,
-			kind: lifeEvent.kind as LifeEventKind,
+			kind: lifeEventKindFromRawValue(lifeEvent.kind)!,
 			interval: interval,
 			format: lifeEvent.format,
 			role: lifeEvent.role

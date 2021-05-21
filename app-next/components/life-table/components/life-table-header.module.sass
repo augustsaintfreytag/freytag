@@ -1,5 +1,4 @@
-@import "/styles/values/fonts"
-@import "/styles/values/spacing"
+@import "/styles/values/all"
 @import "life-table-layout.sass"
 
 .table
@@ -8,3 +7,13 @@
 .header
 	> .item
 		@include tableHeaderFont
+
+		// Disclosure
+
+		@include breakpoint($anyDesktop)
+			&.description
+				display: none
+
+		@include breakpoint($anyMobile)
+			&.role, &.context, &.description
+				display: none

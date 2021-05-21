@@ -9,10 +9,11 @@ type Props = PropsWithClassName & {
 	column: Column
 	mode: SortMode
 	onToggle: () => void
+	disabled?: boolean
 }
 
 const LifeTableHeaderItem: FunctionComponent<Props> = props => (
-	<SortModeButton className={props.className} text={props.text} mode={props.mode} onClick={props.onToggle} />
+	<SortModeButton className={props.className} text={props.text} mode={props.mode} onClick={props.onToggle} disabled={props.disabled} />
 )
 
 export default LifeTableHeaderItem
