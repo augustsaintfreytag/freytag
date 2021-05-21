@@ -1,4 +1,5 @@
 import Head from "next/head"
+import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import {
 	LegalContactBlock,
@@ -28,7 +29,7 @@ const ImprintPage: Page = () => {
 						writing a privacy policy, racking up a total bill of $15,950."
 				/>
 				<article>
-					<LegalHeadingBlock heading="Legal Disclosure" aside="Information in accordance with Section 5 TMG" />
+					<LegalHeadingBlock heading="Legal Disclosure" aside={<>Information in accordance with Section&nbsp;5&nbsp;TMG</>} />
 					<LegalSubHeadingBlock heading="Contact Information" />
 					<LegalContactBlock decoded={shouldDisplaySensitiveData} />
 					<LegalSubHeadingBlock heading="Disclaimer" />
@@ -60,8 +61,9 @@ const ImprintPage: Page = () => {
 						<p>Provided by: translate-24h.de</p>
 					</LegalTextBlock>
 				</article>
+				<Divider />
 				<article>
-					<LegalHeadingBlock heading="Impressum" aside="Angaben gemäß §5 TMG" />
+					<LegalHeadingBlock heading="Impressum" aside={<>Angaben gemäß §5&nbsp;TMG</>} />
 					<LegalContactBlock decoded={shouldDisplaySensitiveData} />
 					<LegalTextBlock heading="Haftung für Inhalte">
 						<p>
@@ -92,6 +94,9 @@ const ImprintPage: Page = () => {
 							Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen
 							entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.
 						</p>
+					</LegalTextBlock>
+					<LegalTextBlock>
+						<p>Bereitgestellt von: translate-24h.de</p>
 					</LegalTextBlock>
 				</article>
 			</section>
