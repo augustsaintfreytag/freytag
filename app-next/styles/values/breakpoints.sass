@@ -1,7 +1,10 @@
 @import "~breakpoint-sass"
-	
-$phone: 0px 768px
-$tablet: 769px 1024px
 
-$anyMobile: 0px 1024px
-$anyDesktop: 1025px
+$phoneCutoff: 696px
+$tabletCutoff: 1024px
+
+$phone: 0px $phoneCutoff
+$tablet: ($phoneCutoff + 1) $tabletCutoff
+
+$anyMobile: 0px $tabletCutoff
+$anyDesktop: ($tabletCutoff + 1)
