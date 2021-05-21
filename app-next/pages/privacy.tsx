@@ -32,7 +32,10 @@ const PrivacyPage: Page = () => {
 				<article>
 					<LegalHeadingBlock heading="Privacy Policy" aside="By Regulation (EU) 2016/679 (GDPR)" />
 					<LegalTextBlock>
-						<p>The responsible party by data protection laws, including the European Union General Data Protection Regulation (GDPR), is:</p>
+						<p>
+							The responsible party by data protection laws, including the <br />
+							European Union General Data Protection Regulation is:
+						</p>
 					</LegalTextBlock>
 					<LegalContactBlock decoded={shouldDisplaySensitiveData} />
 					<LegalSubHeadingBlock heading="Your Data Subject Rights" />
@@ -135,10 +138,10 @@ const PrivacyPage: Page = () => {
 					</LegalTextBlock>
 				</article>
 				<Divider />
-				<article>
+				<article lang="de-DE">
 					<LegalHeadingBlock heading="Datenschutzerklärung" aside="Regulation (EU) 2016/679 (DSGVO)" />
 					<LegalTextBlock>
-						<p>Verantwortlicher im Sinne der Datenschutzgesetze, insbesondere der EU-Datenschutzgrundverordnung (DSGVO), ist:</p>
+						<p>Verantwortlicher im Sinne der Datenschutzgesetze, insbesondere der Datenschutzgrundverordnung der europäischen Union, ist:</p>
 					</LegalTextBlock>
 					<LegalContactBlock decoded={shouldDisplaySensitiveData} />
 					<LegalSubHeadingBlock heading="Ihre Betroffenenrechte" />
