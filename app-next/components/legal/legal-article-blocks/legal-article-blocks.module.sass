@@ -9,11 +9,11 @@
 	.subHeading
 		@include subHeadingFont
 		
+	.headingSubtitle
+		@include asideFont
+
 	p, ul
 		@include paragraphFont
-
-	aside
-		@include asideFont
 
 	// Block-Specific Spacing
 	&.headingBlock, &.subHeadingBlock, &.textBlock
@@ -21,14 +21,17 @@
 			margin-top: $firstSectionSpacing
 		> .subHeading
 			margin-top: $secondSectionSpacing
+		> .headingSubtitle
+			margin-top: $headingAsideSpacing
 		> p
 			margin-top: $paragraphSpacing
-		> aside
-			margin-top: $headingAsideSpacing
 
 	&.textBlock
+		hyphens: auto
+		
 		ul
 			padding-left: 1rem
+
 			li
 				list-style: circle
 
@@ -41,7 +44,5 @@
 			margin-top: $secondSectionSpacing
 			@include contactBlockFont
 
-
-	// Decorations
 	a
 		text-decoration: underline

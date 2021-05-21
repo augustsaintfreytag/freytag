@@ -1,27 +1,41 @@
-@import "/styles/values/fonts"
-@import "/styles/values/spacing"
+@import "/styles/values/all"
 	
 @mixin headingFont
 	font-family: $headingFont
 	font-weight: 700
 	font-size: $elementArticleHeadingFontSize
 
+	@include breakpoint($anyMobile)
+		font-size: $elementArticleHeadingFontSizeMobile
+
 @mixin subHeadingFont
 	font-family: $headingFont
 	font-weight: 300
 	font-size: $elementArticleSubHeadingFontSize
+
+	@include breakpoint($anyMobile)
+		font-size: $elementArticleSubHeadingFontSizeMobile
 	
 @mixin asideFont
 	font-family: $headingFont
 	font-size: $elementArticleSubHeadingFontSize
+
+	@include breakpoint($anyMobile)
+		font-size: $elementArticleSubHeadingFontSizeMobile
 
 @mixin paragraphFont
 	font-family: $paragraphFont
 	font-size: $elementTextFontSize
 	line-height: $lineHeight
 	text-align: justify
+	
+	@include breakpoint($anyMobile)
+		font-size: $elementTextFontSizeMobile
 
 @mixin contactBlockFont
 	font-family: $paragraphFont
 	font-size: $elementTextFontSize
 	line-height: $lineHeight
+
+	@include breakpoint($anyMobile)
+		font-size: $elementTextFontSizeMobile
