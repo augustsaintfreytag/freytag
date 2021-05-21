@@ -40,6 +40,7 @@ const LifePage: Page<PageProps & Props> = props => {
 			<Head>
 				<title>{pageTitle("Life")}</title>
 			</Head>
+			<h1 className={styles.semantic}>Life</h1>
 			<section className={styles.page}>
 				<LifeTable data={lifeTableItemData} />
 			</section>
