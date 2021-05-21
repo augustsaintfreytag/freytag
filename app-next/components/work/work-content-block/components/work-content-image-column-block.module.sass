@@ -12,11 +12,11 @@ $interFigureSpacingMobile: 2.5rem
 
 	@include breakpoint($phone)
 		flex-direction: column
-		padding: 0 1rem
+		padding: 0 $textInlayPaddingMobile + 0.25rem
 
 	@include breakpoint($tablet)
 		max-width: none
-		padding: 0 1rem
+		padding: 0 4.25rem
 
 	> figure
 		@include horizontalListMargin($interFigureSpacing)
@@ -37,5 +37,3 @@ $interFigureSpacingMobile: 2.5rem
 		> figure figcaption
 			@include breakpoint($anyDesktop)
 				@include inlayedText
-
-			@include breakpoint($tablet)
