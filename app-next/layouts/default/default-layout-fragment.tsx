@@ -1,10 +1,10 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { FunctionComponent } from "react"
+import { brandTitle } from "~/components/brand/brand-text"
 import Footer from "~/components/footer/footer"
 import Header from "~/components/header/header"
 import { PropsWithAnyChildren } from "~/types/props"
-import { brandTitleText } from "~/utils/brand/functions/brand-text"
 
 type Props = PropsWithAnyChildren & {
 	showsBrand?: boolean
@@ -16,8 +16,8 @@ const DefaultLayoutFragment: FunctionComponent<Props> = props => {
 	return (
 		<>
 			<Head>
-				<meta name="application-name" content={brandTitleText} />
-				<meta name="author" content={brandTitleText} />
+				<meta name="application-name" content={brandTitle()} />
+				<meta name="author" content={brandTitle()} />
 				<meta
 					name="description"
 					content="Folio site of August Saint Freytag, concept and experience designer, video and story artist. Life events, work showcases, features."
