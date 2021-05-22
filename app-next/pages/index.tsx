@@ -69,7 +69,8 @@ const IndexPage: Page<PageProps & Props> = props => {
 						List the string of <InternalLink href="/life" /> events until now.
 					</TextLine>
 					<TextLine>
-						Read and view showcases of <InternalLink href="/work" /> in review.
+						Read and view showcases of <LineBreak />
+						<InternalLink href="/work" /> in review.
 					</TextLine>
 					<TextLine>
 						<div className={styles.line}>As a start, a feature was selected for you.</div>
