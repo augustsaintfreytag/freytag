@@ -2,10 +2,12 @@ import Link from "next/link"
 import { FunctionComponent } from "react"
 import Markdown from "~/components/markdown/markdown"
 import Sprite from "~/components/sprites/sprite"
+import { PropsWithClassName } from "~/types/props"
+import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./work-list-item.module.sass"
 
-type Props = {
+type Props = PropsWithClassName & {
 	headingText: string
 	previewText: string
 	image: URL
@@ -13,7 +15,7 @@ type Props = {
 }
 
 const WorkListItem: FunctionComponent<Props> = props => (
-	<section className={styles.workListItem}>
+	<section className={className(styles.workListItem, props.className)}>
 		<img className={styles.image} src={props.image} />
 		<div className={styles.inlay}>
 			<div className={styles.inlayContent}>
