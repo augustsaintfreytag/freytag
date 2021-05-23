@@ -1,8 +1,16 @@
+@import "/styles/values/all"
 
 .cover
 	display: block
 	width: 100%
+	min-height: 857px
+	height: 72vh
+	overflow: hidden
+
+	@include breakpoint($anyMobile)
+		min-height: unset
+		height: 92vh
 
 	> img
-		width: 100%
-		height: auto
+		@include coverObject
+		object-position: 50% 100%
