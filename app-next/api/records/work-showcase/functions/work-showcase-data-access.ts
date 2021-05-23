@@ -16,7 +16,8 @@ const workShowcaseCollectionFields: Dictionary<string, number> = {
 	slug: 1,
 	name: 1,
 	description: 1,
-	teaserImage: 1
+	teaserImageTrailing: 1,
+	teaserImageCentered: 1
 }
 
 export async function workShowcasesFromApi(): Promise<WorkShowcase[]> {

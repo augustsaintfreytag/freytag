@@ -10,7 +10,8 @@ export type WorkShowcase = CockpitEntry & {
 	slug?: string
 	description?: string
 	titleImage?: ImageRecord
-	teaserImage?: ImageRecord
+	teaserImageTrailing?: ImageRecord
+	teaserImageCentered?: ImageRecord
 	event?: LifeEvent
 	blocks?: WorkShowcaseBlock[]
 }
