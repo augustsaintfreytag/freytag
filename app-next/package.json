@@ -10,19 +10,19 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"breakpoint-sass": "^2.7.1",
+		"breakpoint-sass": "2.7.1",
 		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git",
-		"next": "10.1.2",
+		"next": "10.2.2",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
-		"react-markdown": "6.0.0",
-		"sass": "1.32.8"
+		"react-markdown": "6.0.2",
+		"sass": "1.34.0"
 	},
 	"devDependencies": {
-		"@types/node": "^14.14.28",
-		"@types/react": "^17.0.2",
-		"prettier": "^2.2.1",
-		"prettier-plugin-organize-imports": "^1.1.1",
-		"typescript": "^4.1.5"
+		"@types/node": "^15.6.0",
+		"@types/react": "^17.0.6",
+		"prettier": "^2.3.0",
+		"prettier-plugin-organize-imports": "^2.1.0",
+		"typescript": "^4.2.4"
 	}
 }
