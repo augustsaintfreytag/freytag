@@ -9,10 +9,23 @@ $inlayInterItemSpacingMobile: $pageSubContentSpacing * 0.75
 $inlayImageOffset: 50% 32%
 $inlayImageOffsetMobile: 100% 100%
 
+$itemImageMaxWidth: 1600px
+
 .workListItem
 	position: relative
 	width: 100%
 	height: 30rem
+	overflow: hidden
+
+	background: $elementBackgroundColor
+	background: url("/assets/paper-tile.jpg")
+	background-repeat: tile
+
+	&::after
+		@include overlayPseudoObject
+		max-width: $itemImageMaxWidth
+		border-left: 1rem solid white
+		border-right: 1rem solid white
 
 	@include breakpoint($anyMobile)
 		height: unset
@@ -98,7 +111,10 @@ $inlayImageOffsetMobile: 100% 100%
 					width: $size
 
 	.image
-		overflow: hidden
+		position: relative
+		display: block
+		max-width: $itemImageMaxWidth
+		margin: 0 auto
 		z-index: 1
 
 		@include coverObject
