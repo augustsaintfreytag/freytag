@@ -72,7 +72,7 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 				<title>{pageTitle("Work")}</title>
 			</Head>
 			<section className={styles.page}>
-				<h1 className={styles.semantic}>Work</h1>
+				<h1>Work</h1>
 				<div className={styles.workList}>
 					{workListItemProps.map(props => {
 						return (

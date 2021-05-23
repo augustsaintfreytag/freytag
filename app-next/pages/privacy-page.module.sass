@@ -1,7 +1,11 @@
 @import "/styles/values/all"
+@import "/styles/base/accessibility"
 
 .page
 	padding-bottom: $pageContentSpacing
+
+	h1
+		@include semantic
 
 	article
 		@include inlayedText

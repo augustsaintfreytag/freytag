@@ -23,6 +23,7 @@ const PrivacyPage: Page = () => {
 				<title>{pageTitle("Privacy")}</title>
 			</Head>
 			<section className={styles.page}>
+				<h1>Privacy</h1>
 				<ImageCover
 					src="/assets/privacy-cover.jpg"
 					description="A stack of legal documents in a top-down view, 

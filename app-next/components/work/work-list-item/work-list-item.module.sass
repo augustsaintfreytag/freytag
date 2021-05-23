@@ -7,7 +7,7 @@ $inlayInterItemSpacing: $pageSubContentSpacing
 $inlayInterItemSpacingMobile: $pageSubContentSpacing * 0.75
 
 $inlayImageOffset: 50% 32%
-$inlayImageOffsetMobile: 100% 100%
+$inlayImageOffsetMobile: 50% 38%
 
 $itemImageMaxWidth: 1600px
 
@@ -17,9 +17,10 @@ $itemImageMaxWidth: 1600px
 	height: 30rem
 	overflow: hidden
 
-	background: $elementBackgroundColor
-	background: url("/assets/paper-tile.jpg")
-	background-repeat: tile
+	@include breakpoint($anyDesktop)
+		background: $elementBackgroundColor
+		background: url("/assets/paper-tile.jpg")
+		background-repeat: tile
 
 	&::after
 		@include overlayPseudoObject
@@ -119,6 +120,14 @@ $itemImageMaxWidth: 1600px
 
 		@include coverObject
 		object-position: $inlayImageOffset
+
+		@include breakpoint($anyDesktop)
+			&.imageCentered
+				display: none
+
+		@include breakpoint($anyMobile)
+			&.imageTrailing
+				display: none
 
 		@include breakpoint($anyMobile)
 			object-position: $inlayImageOffsetMobile

@@ -22,6 +22,7 @@ const ImprintPage: Page = () => {
 				<title>{pageTitle("Imprint")}</title>
 			</Head>
 			<section className={styles.page}>
+				<h1>Imprint</h1>
 				<ImageCover
 					src="/assets/imprint-cover.jpg"
 					description="A stack of legal documents in a top-down view, 
