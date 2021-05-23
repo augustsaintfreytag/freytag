@@ -1,20 +1,20 @@
-@import "/styles/values/fonts"
-@import "/styles/values/spacing"
-@import "/styles/values/colors"
-@import "/styles/values/kind-colors"
+@import "/styles/values/all"
+@import "/styles/base/accessibility"
+@import "/styles/indicators/kind-colors"
 @import "life-table-layout.sass"
 
 .table
 	@include table
 
 .item
-	$fixedHeight: 4.5rem
-	$decorativeSpacing: 1.6rem
-
 	position: relative
-	height: $fixedHeight
+	height: 4.5rem
+
+	@include breakpoint($anyMobile)
+		height: 4rem
 
 	.decorative
+		$decorativeSpacing: 1.6rem
 		$decorativeVerticalOffset: 0.3rem
 		$decorativeSize: 0.75rem
 
@@ -40,4 +40,97 @@
 				box-sizing: border-box
 				line-height: 1.5
 				padding-right: 1rem
+
+				@include ellipsizedLines(2)
+
+				@include breakpoint($anyMobile)
+					padding-right: 0.5rem
 				
+				&.disclosure
+					color: $textColorFaded
+					
+					button
+						position: relative
+						cursor: pointer
+
+						&::after
+							@include extendedInteractiveArea
+				
+				button
+					font-size: inherit
+					line-height: inherit
+
+				.leader
+					display: none
+
+
+	// Disclosure
+
+	.inlay
+		main
+			> *
+				@include breakpoint($anyDesktop)
+					&.disclosureMobile, &.description
+						display: none
+
+				@include breakpoint($anyMobile)
+					&.disclosureDesktop, &.role, &.context, &.description
+						display: none
+
+	&.disclosed
+		height: auto
+		
+		&::after
+			$scale: 1.11
+			$scaleAspect: 0.95
+
+			content: ""
+			position: absolute
+			top: 0
+			right: 0
+			bottom: 0
+			left: -1.75rem
+			z-index: -1
+			
+			background: #f8f8f8
+			transform: scaleX($scale * $scaleAspect) scaleY($scale)
+
+		.inlay 
+			main
+				flex-wrap: wrap
+				margin-bottom: 2.5rem
+
+				> *
+					&.interval, &.format
+						// Alignment Correction
+						@include breakpoint($anyDesktop)
+							flex: 0 0 11.58rem
+						@include breakpoint($anyMobile)
+							flex: 0 0 13.625rem
+
+					&.role, &.context, &.description
+						@include notInlayed
+
+						display: block
+						flex-basis: 100%
+					
+					&.role
+						margin-top: 0.75rem
+
+					&.context, &.description
+						margin-top: 0.3rem
+
+					&.context, &.description
+						@include breakpoint($anyDesktop)
+							> div
+								max-width: 44rem
+
+						@include breakpoint($anyMobile)
+							> div
+								padding-right: 2.5rem
+
+					&.disclosure
+						margin: 0.75rem 0 0 0
+
+					.leader
+						display: inline

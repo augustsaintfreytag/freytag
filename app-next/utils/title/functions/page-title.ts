@@ -1,7 +1,7 @@
-import { brandTitleText } from "~/utils/brand/functions/brand-text"
+import { brandTitle } from "~/components/brand/brand-text"
 
 const separatorCharacter = "—"
 
 export function pageTitle(sectionTitle: string): string {
-	return `${sectionTitle} ${separatorCharacter} ${brandTitleText}`
+	return `${sectionTitle} ${separatorCharacter} ${brandTitle}`
 }

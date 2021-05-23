@@ -1,7 +1,7 @@
 import Link from "next/link"
 import { FunctionComponent } from "react"
+import { brandDescriptor, brandTitle } from "~/components/brand/brand-text"
 import { PropsWithAnyChildren, PropsWithHref } from "~/types/props"
-import { headerText } from "~/utils/brand/functions/brand-text"
 import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./header.module.sass"
@@ -42,8 +42,6 @@ const navigationDefinitions: NavigationDefinition[] = [
 	{ href: "/imprint", description: "Imprint" }
 ]
 
-const { title: titleText, descriptor: descriptorText } = headerText()
-
 const Header: FunctionComponent<Props> = props => {
 	return (
 		<header className={styles.header}>
@@ -51,8 +49,8 @@ const Header: FunctionComponent<Props> = props => {
 				<section className={styles.brand}>
 					{props.showsBrand && (
 						<>
-							<h1 className={styles.title}>{titleText}</h1>
-							<div className={styles.descriptors}>{descriptorText}</div>
+							<h1 className={styles.title}>{brandTitle()}</h1>
+							<div className={styles.descriptors}>{brandDescriptor()}</div>
 						</>
 					)}
 				</section>

@@ -66,8 +66,6 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 		return formattedTimeInterval(averageInterval)
 	}, [showcaseIds])
 
-	debugger
-
 	return (
 		<>
 			<Head>

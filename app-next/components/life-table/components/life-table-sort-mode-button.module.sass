@@ -1,6 +1,4 @@
-@import "/styles/values/fonts"
-@import "/styles/values/spacing"
-@import "/styles/values/colors"
+@import "/styles/values/all"
 @import "life-table-layout.sass"
 
 .button
@@ -8,6 +6,9 @@
 
 	display: flex
 	cursor: pointer
+
+	&[disabled]
+		cursor: unset
 	
 	.label
 		@include tableHeaderFont

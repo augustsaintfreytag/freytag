@@ -14,6 +14,10 @@ function isExternalLink(href: URL): boolean {
 	return /https?:\/\//.test(href)
 }
 
+function isLastWordInCollection(index: number, words: string[]): boolean {
+	return index === words.length - 1
+}
+
 const components: Components = {
 	a({ node, inline, className, children, ...props }) {
 		if (!isExternalLink(props.href)) {
@@ -48,7 +52,7 @@ const components: Components = {
 				{words.map((word, index) => (
 					<>
 						<span>{word}</span>
-						{index !== words.length - 1 && <span>&nbsp;</span>}
+						{!isLastWordInCollection(index, words) && <span>&nbsp;</span>}
 					</>
 				))}
 			</strong>

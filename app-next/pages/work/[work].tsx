@@ -82,7 +82,7 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 					})}
 					<WorkDivider />
 					<WorkContentBlock>
-						<p>Initially published {metadata.created}, by August Saint Freytag.</p>
+						<p>Initially published {metadata.created} by August Saint Freytag.</p>
 					</WorkContentBlock>
 				</main>
 			</article>

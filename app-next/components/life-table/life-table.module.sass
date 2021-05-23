@@ -1,13 +1,11 @@
-@import "/styles/values/fonts"
-@import "/styles/values/colors"
-@import "/styles/values/spacing"
-
-$pageTableSpacing: $pageContentSpacing * 0.75
-$interItemSpacing: 0.35rem
+@import "/styles/values/all"
 
 .table
 	@include inlayed
-	margin-top: $pageTableSpacing
+
+	margin-top: 3.75rem
+	padding-left: 1.6rem + $inlayPadding
+	padding-right: $inlayPadding
 
 	> header
 
@@ -15,4 +13,7 @@ $interItemSpacing: 0.35rem
 		margin-top: $pageSubContentSpacing
 	
 		ol > li
-			@include listMargin($interItemSpacing)
+			@include listMargin(0.35rem)
+
+			@include breakpoint($anyMobile)
+				@include listMargin(1.5rem)

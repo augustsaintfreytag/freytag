@@ -10,13 +10,17 @@ import styles from "./life-table-header.module.sass"
 type ItemDefinition = {
 	column: Column
 	text: string
+	style: string
+	isSortable: boolean
 }
 
 const items: ItemDefinition[] = [
-	{ column: Column.Span, text: "Span" },
-	{ column: Column.Format, text: "Format" },
-	{ column: Column.Role, text: "Role" },
-	{ column: Column.Context, text: "Context" }
+	{ column: Column.Span, text: "Span", style: styles.span, isSortable: true },
+	{ column: Column.Format, text: "Format", style: styles.format, isSortable: true },
+	{ column: Column.Role, text: "Role", style: styles.role, isSortable: true },
+	{ column: Column.Context, text: "Context", style: styles.context, isSortable: false },
+	{ column: Column.Description, text: "Description", style: styles.description, isSortable: false },
+	{ column: Column.Disclosure, text: "Disclosure", style: className(styles.disclosure, styles.disclosureDesktop), isSortable: false }
 ]
 
 // Component
@@ -42,14 +46,19 @@ const LifeTableHeader: FunctionComponent<Props> = props => {
 		<section className={className(styles.header, styles.table)}>
 			{items.map((item, index) => (
 				<LifeTableHeaderItem
-					className={styles.item}
 					key={index}
+					className={className(styles.item, item.style)}
 					text={item.text}
 					column={item.column}
 					mode={itemSortModeForColumn(item.column)}
 					onToggle={() => {
+						if (!item.isSortable) {
+							return
+						}
+
 						props.onColumnToggle?.(item.column)
 					}}
+					disabled={!item.isSortable}
 				/>
 			))}
 		</section>

@@ -1,10 +1,11 @@
-@import "/styles/values/fonts"
-@import "/styles/values/colors"
+@import "/styles/values/all"
 
 .footerSection
-	$headerToItemsSpacing: 2.8rem
-	$spriteToTextSpacing: 0.75rem
-	$interItemSpacing: 0.75rem
+	$headerToItemsSpacing: 3rem
+	$headerToItemsSpacingMobile: 1.25rem
+
+	$spriteToTextSpacing: 1rem
+	$spriteToTextSpacingMobile: 1.25rem
 
 	.footerHeader
 		font-family: $elementAccentedHeadingFont
@@ -13,20 +14,36 @@
 		text-transform: uppercase
 		margin-bottom: $headerToItemsSpacing
 
+		@include breakpoint($anyMobile)
+			margin-bottom: $headerToItemsSpacingMobile
+
 	.footerItem
 		display: flex
-		margin: 0 0 $interItemSpacing 0
+		margin: 0 0 0.75rem 0
 
 		.sprite
 			$size: 1rem
+			$sizeMobile: 1.1rem
+
 			height: $size
 			width: $size
+
 			padding: 0.2rem 0 0 0
 			margin: 0 $spriteToTextSpacing 0 0
+
+			@include breakpoint($anyMobile)
+				height: $sizeMobile
+				width: $sizeMobile
+
+				padding-top: 0.25rem
+				margin-right: $spriteToTextSpacingMobile
 
 		.text, .link
 			font-size: 0.95rem
 			line-height: 1.5rem
+
+			@include breakpoint($anyMobile)
+				font-size: 1.0rem
 
 		.text
 			font-family: $elementFont

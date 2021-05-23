@@ -1,19 +1,39 @@
-@import "/styles/values/fonts"
-@import "/styles/values/colors"
-@import "/styles/values/spacing"
+@import "/styles/values/all"
 	
+$interFigureSpacing: 1.75rem
+$interFigureSpacingMobile: 2.5rem
+
 .block
-	@include inlayed
 	display: flex
 	overflow: hidden
 
+	@include breakpoint($anyDesktop)
+		@include inlayed
+
+	@include breakpoint($phone)
+		flex-direction: column
+		padding: 0 $textInlayPaddingMobile + 0.25rem
+
+	@include breakpoint($tablet)
+		max-width: none
+		padding: 0 4.25rem
+
 	> figure
-		@include horizontalListMargin($pageSubContentSpacing)
+		@include horizontalListMargin($interFigureSpacing)
 
 		height: max-content
 		flex: 1 1 100%
 		overflow: hidden
 
-		figcaption
-			@include inlayedText
-			font-size: 0.8rem
+		@include breakpoint($phone)
+			@include noHorizontalListMargin
+			@include margin(0 auto)
+			@include listMargin($interFigureSpacingMobile)
+
+		@include breakpoint($tablet)
+
+
+	&.singleImage
+		> figure figcaption
+			@include breakpoint($anyDesktop)
+				@include inlayedText

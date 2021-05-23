@@ -1,32 +1,43 @@
-@import "/styles/values/colors"
-@import "/styles/values/fonts"
-@import "/styles/values/spacing"
+@import "/styles/values/all"
 @import "/styles/base/accessibility"
-	
-.workListItem
-	$height: 30rem
-	$inlayVerticalOffset: 1.5rem
-	$inlayInterItemSpacing: $pageSubContentSpacing
-	$inlayImageOffset: 50% 32%
 
+$inlaySpacingMobile: 1.3rem
+
+$inlayInterItemSpacing: $pageSubContentSpacing
+$inlayInterItemSpacingMobile: $pageSubContentSpacing * 0.75
+
+$inlayImageOffset: 50% 32%
+$inlayImageOffsetMobile: 100% 100%
+
+.workListItem
 	position: relative
 	width: 100%
-	height: $height
-	background: #ddd4e0
+	height: 30rem
+
+	@include breakpoint($anyMobile)
+		height: unset
 	
 	.inlay
 		position: absolute
 		display: flex
 		justify-content: flex-start
 		align-items: center
+		top: 0
 		height: 100%
 		width: 100%
 		z-index: 2
 
+		@include breakpoint($anyMobile)
+			position: relative
+			display: block
+
 		.inlayContent
 			@include inlayed
-			margin-top: $inlayVerticalOffset
-			box-sizing: border-box
+
+			@include breakpoint($anyMobile)
+				margin-top: $inlaySpacingMobile
+				padding-top: 1.25rem
+				padding-bottom: 1.25rem
 
 			.heading
 				font-family: $headingFont
@@ -36,11 +47,20 @@
 				$textShadowOffset: 0.15rem
 				text-shadow: $textShadowOffset $textShadowOffset 0 rgba(255, 255, 255, 0.5)
 
+				@include breakpoint($anyMobile)
+					font-size: $elementHeadingFontSizeMobile
+					text-shadow: unset
+
 			.preview
 				margin-top: $inlayInterItemSpacing
+				width: 38%
 				font-family: $elementFont
 				font-size: $elementTextFontSize
-				width: 38%
+
+				@include breakpoint($anyMobile)
+					width: 100%
+					margin-top: $inlayInterItemSpacingMobile
+					font-size: $elementTextFontSizeMobile
 
 				p
 					@include listMargin($descriptionParagraphSpacing)
@@ -53,6 +73,9 @@
 				display: inline-block
 				margin-top: $inlayInterItemSpacing
 
+				@include breakpoint($anyMobile)
+					margin-top: $inlayInterItemSpacingMobile
+
 				&::after
 					@include extendedInteractiveArea
 
@@ -61,6 +84,10 @@
 					font-family: $elementFont
 					font-size: $elementTextFontSize
 					margin-right: 0.65rem
+
+					@include breakpoint($anyMobile)
+						font-size: $elementTextFontSizeMobile
+
 				.symbol
 					display: inline-block
 					vertical-align: middle
@@ -71,6 +98,12 @@
 					width: $size
 
 	.image
+		overflow: hidden
+		z-index: 1
+
 		@include coverObject
 		object-position: $inlayImageOffset
-		z-index: 1
+
+		@include breakpoint($anyMobile)
+			object-position: $inlayImageOffsetMobile
+			height: 19rem

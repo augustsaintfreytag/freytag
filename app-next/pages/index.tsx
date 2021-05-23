@@ -6,15 +6,17 @@ import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-
 import { featuredWordShowcaseFromApi } from "~/api/records/work-showcase-feature/functions/work-showcase-feature-data-access"
 import { mappedWorkShowcaseListItemProps } from "~/api/records/work-showcase/functions/work-showcase-prop-mapping"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import BlockTag, { BlockTagAppearance } from "~/components/block-tag/block-tag"
+import { brandTitle } from "~/components/brand/brand-text"
 import Divider from "~/components/divider/divider"
 import IndexCover from "~/components/index-cover/index-cover"
 import InternalLink from "~/components/link/internal-link"
 import Now from "~/components/now/now"
+import LineBreak from "~/components/text-line/line-break"
 import TextLine from "~/components/text-line/text-line"
 import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import LandingLayout from "~/layouts/default/landing-layout"
 import { Page, PageProps } from "~/types/page"
-import { brandTitleText } from "~/utils/brand/functions/brand-text"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./index-page.module.sass"
 
@@ -53,7 +55,7 @@ const IndexPage: Page<PageProps & Props> = props => {
 	return (
 		<>
 			<Head>
-				<title>{brandTitleText}</title>
+				<title>{brandTitle()}</title>
 			</Head>
 			<section className={styles.page}>
 				<IndexCover src={cover} />
@@ -67,19 +69,26 @@ const IndexPage: Page<PageProps & Props> = props => {
 						List the string of <InternalLink href="/life" /> events until now.
 					</TextLine>
 					<TextLine>
-						Read and view showcases of <InternalLink href="/work" /> in review.
+						Read and view showcases of <LineBreak />
+						<InternalLink href="/work" /> in review.
 					</TextLine>
 					<TextLine>
 						<div className={styles.line}>As a start, a feature was selected for you.</div>
 					</TextLine>
 				</section>
-				<section className={styles.feature}>{featureProps && <WorkListItem {...featureProps} />}</section>
+				{featureProps && (
+					<section className={styles.feature}>
+						<BlockTag className={styles.tag} name="Feature" appearance={BlockTagAppearance.Title} />
+						<WorkListItem className={styles.item} {...featureProps} />
+					</section>
+				)}
 				<section className={styles.texts}>
 					<TextLine>
 						See responsibility in the <InternalLink href="/imprint" />.
 					</TextLine>
 					<TextLine>
-						Review how this site does not track you in <InternalLink href="/privacy" />.
+						Review how this site does not track <LineBreak />
+						you in <InternalLink href="/privacy" />.
 					</TextLine>
 					<TextLine>Explore on your own.</TextLine>
 				</section>

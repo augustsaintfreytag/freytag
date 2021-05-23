@@ -1,13 +1,12 @@
-@import "/styles/values/fonts"
-@import "/styles/values/colors"
-@import "/styles/values/spacing"
+@import "/styles/values/all"
 @import "/styles/base/accessibility"
 	
 .header
 	.inlay
 		@include inlayed
 		height: 8rem
-		padding: 1rem 0
+		padding-top: 1rem
+		padding-bottom: 1rem
 
 		display: flex
 		justify-content: space-between
@@ -29,11 +28,11 @@
 
 		.navigation
 			margin: 0.5rem 0
-			width: 260px
+			width: 16.25rem
 
 			.navigationItem
 				font-family: $headingFont
-				font-size: 1.0rem
+				font-size: $pageNavigationFontSize
 
 				a
 					position: relative
@@ -48,3 +47,17 @@
 				display: flex
 				justify-content: space-between
 				
+@include breakpoint($anyMobile)
+	.header
+		.inlay
+			height: unset
+
+			.brand
+				display: none
+
+			.navigation
+				margin: 0.4rem auto
+				width: 24rem
+
+				.navigationItem
+					font-size: $pageNavigationFontSizeMobile
