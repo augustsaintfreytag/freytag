@@ -1,3 +1,5 @@
+@import "/styles/base/api"
+	
 // Fonts
 
 $workSansFont: "Work Sans"
@@ -52,40 +54,54 @@ $paragraphLineHeight: 1.65
 $captionLineHeight: 1.4
 
 @font-face
+	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44edfc4cWorkSans-Regular.ttf")
+
 	font-family: "Work Sans"
 	font-weight: 400
-	src: url("/assets/fonts/WorkSans-Regular.ttf") format("truetype")
+	src: url($fontUrl) format("truetype")
 
 @font-face
+	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44edd2d1WorkSans-Italic.ttf")
+
 	font-family: "Work Sans"
 	font-weight: 400
 	font-style: italic
-	src: url("/assets/fonts/WorkSans-Italic.ttf") format("truetype")
+	src: url($fontUrl) format("truetype")
 
 @font-face
+	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44ed4a91MaisonNeue-Book.ttf")
+
 	font-family: "Maison Neue"
 	font-weight: 400
-	src: url("/assets/fonts/MaisonNeue-Book.ttf") format("truetype")
+	src: url($fontUrl) format("truetype")
 
 @font-face
+	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44ed2040MaisonNeue-Bold.ttf")
+
 	font-family: "Maison Neue"
 	font-weight: 700
-	src: url("/assets/fonts/MaisonNeue-Bold.ttf") format("truetype")
+	src: url($fontUrl) format("truetype")
 
 @font-face
+	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44ecf986MaisonNeue-Black.ttf")
+
 	font-family: "Maison Neue"
 	font-weight: 800
-	src: url("/assets/fonts/MaisonNeue-Black.ttf") format("truetype")
+	src: url($fontUrl) format("truetype")
 
 @font-face
+	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44edad48MaisonNeueMono-Regular.ttf")
+
 	font-family: "Maison Neue Mono"
-	font-weight: 400
-	src: url("/assets/fonts/MaisonNeueMono-Regular.ttf") format("truetype")
+	font-weight: 300
+	src: url($fontUrl) format("truetype")
 
 @font-face
+	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44ed8f54MaisonNeueMono-Bold.ttf")
+
 	font-family: "Maison Neue Mono"
 	font-weight: 700
-	src: url("/assets/fonts/MaisonNeueMono-Bold.ttf") format("truetype")
+	src: url($fontUrl) format("truetype")
 
 // Mixins
 
