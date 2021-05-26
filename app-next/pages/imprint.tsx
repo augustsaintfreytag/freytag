@@ -1,4 +1,10 @@
+import { GetServerSideProps } from "next"
 import Head from "next/head"
+import { ImageFormat } from "~/api/common/library/image-request-preset"
+import { getServerSideApiResponse } from "~/api/props/functions/server-side-props"
+import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
+import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
+import { PageGraphics } from "~/api/records/page-graphics/library/page-graphics"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import {
@@ -8,12 +14,34 @@ import {
 	LegalTextBlock
 } from "~/components/legal/legal-article-blocks/legal-article-blocks"
 import DefaultLayout from "~/layouts/default/default-layout"
-import { Page } from "~/types/page"
+import { Page, PageProps } from "~/types/page"
 import { useSensitiveDataDisplay } from "~/utils/render/sensitive-data-hook"
+import { URL } from "~/utils/routing/library/url"
 import { pageTitle } from "~/utils/title/functions/page-title"
 import styles from "./imprint-page.module.sass"
 
-const ImprintPage: Page = () => {
+// Library
+
+type PageData = {
+	coverImage?: URL
+}
+
+type Props = {
+	data?: PageData
+}
+
+// Page
+
+function mapPageData(pageGraphics: PageGraphics): PageData {
+	return { coverImage: pageGraphics.imprintAsset?.path }
+}
+
+export const getServerSideProps: GetServerSideProps<Props, {}> = async () => {
+	return await getServerSideApiResponse(pageGraphicsFromApi, mapPageData)
+}
+
+const ImprintPage: Page<PageProps & Props> = props => {
+	const coverImageUrl = imageUrlFromComponent(props.data?.coverImage, ImageFormat.ExtraLarge)
 	const shouldDisplaySensitiveData = useSensitiveDataDisplay()
 
 	return (
@@ -24,7 +52,7 @@ const ImprintPage: Page = () => {
 			<section className={styles.page}>
 				<h1>Imprint</h1>
 				<ImageCover
-					src="/assets/imprint-cover.jpg"
+					src={coverImageUrl}
 					description="A stack of legal documents in a top-down view, 
 						the top-most document showing an invoice for legal services, one of which is 
 						writing a privacy policy, racking up a total bill of $15,950."
