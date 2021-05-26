@@ -5,7 +5,7 @@
   vars_files:
     - vars/default.yml
     - vars/parameters.private.yml
-    
+
   vars:
     app_environment: "live"
     ansible_user: "{{ server_user }}"
@@ -16,5 +16,6 @@
     - import_tasks: ./custom/tasks/set-up-app.yml
     - import_tasks: ./custom/tasks/set-up-cockpit.yml
     - import_tasks: ./shared/tasks/set-up-certificates.yml
+    - import_tasks: ./custom/tasks/set-up-certificate-crontab.yml
     - import_tasks: ./custom/tasks/start-services-live.yml
     - import_tasks: ./custom/tasks/set-up-gitlab-listener-configuration.yml
