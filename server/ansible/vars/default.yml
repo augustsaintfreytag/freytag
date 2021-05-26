@@ -5,10 +5,14 @@ host_root: "{{ playbook_dir }}/../.."
 # Server
 server_user: server
 
-server_domains: [
-  {name: "augustfreytag.com", domains: "augustfreytag.com,www.augustfreytag.com"},
-  {name: "cockpit.augustfreytag.com", domains: "cockpit.augustfreytag.com"}
-]
+server_domains:
+  [
+    {
+      name: "augustfreytag.com",
+      domains: "augustfreytag.com,www.augustfreytag.com",
+    },
+    { name: "cockpit.augustfreytag.com", domains: "cockpit.augustfreytag.com" },
+  ]
 
 # App
 app_version: "master"
