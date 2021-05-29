@@ -37,3 +37,12 @@
     - app-repo
     - app-repo-private
     - requires_host
+
+- name: "FILE - Copy private automation files"
+  copy:
+    src: "{{ host_root }}/server/docker/env/parameters.live.private.env"
+    dest: "{{ app_root }}/server/docker/env/parameters.live.private.env"
+  tags:
+    - app-repo
+    - app-repo-private
+    - requires_host
