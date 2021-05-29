@@ -2,23 +2,61 @@
 	
 // Fonts
 
-$workSansFont: "Work Sans"
-$maisonFont: "Maison Neue"
-$maisonMonoFont: "Maison Neue Mono"
+$workSansFontFamily: "Work Sans"
+$maisonFontFamily: "Maison Neue"
+$rationalTWFontFamily: "Rational TW"
 
-$defaultFont: $workSansFont
-$paragraphFont: $workSansFont
-$headingFont: $maisonFont
+@mixin defaultFont
+	font-family: $workSansFontFamily
+	font-weight: 400
 
-$elementHeadingFont: $maisonFont
-$elementAccentedHeadingFont: $maisonMonoFont
-$elementFont: $workSansFont
-$elementAccentedFont: $maisonFont
+@mixin paragraphFont
+	font-family: $workSansFontFamily
+	font-weight: 400
 
-$tagFont: $maisonMonoFont
-$linkFont: $maisonMonoFont
+@mixin paragraphHeadingFont
+	font-family: $maisonFontFamily
+	font-weight: 700
 
-$trailerFont: $workSansFont
+@mixin paragraphSubHeadingFont
+	font-family: $maisonFontFamily
+	font-weight: 400
+
+@mixin titleFont
+	font-family: $maisonFontFamily
+	font-weight: 800
+
+@mixin subTitleFont
+	font-family: $maisonFontFamily
+	font-weight: 400
+
+@mixin headingFont
+	font-family: $maisonFontFamily
+	font-weight: 700
+
+@mixin elementFont
+	font-family: $workSansFontFamily
+	font-weight: 400
+
+@mixin elementAccentedFont
+	font-family: $maisonFontFamily
+	font-weight: 400
+
+@mixin elementHeadingFont
+	font-family: $maisonFontFamily
+	font-weight: 700
+
+@mixin elementAccentedHeadingFont
+	font-family: $rationalTWFontFamily
+	font-weight: 600
+
+@mixin tagFont
+	font-family: $rationalTWFontFamily
+	font-weight: 600
+
+@mixin linkFont
+	font-family: $rationalTWFontFamily
+	font-weight: 400
 
 // Font Sizes
 
@@ -54,54 +92,54 @@ $paragraphLineHeight: 1.65
 $captionLineHeight: 1.4
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44edfc4cWorkSans-Regular.ttf")
+	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-regular.woff2")
 
 	font-family: "Work Sans"
 	font-weight: 400
-	src: url($fontUrl) format("truetype")
+	src: url($fontUrl) format("woff2")
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44edd2d1WorkSans-Italic.ttf")
+	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-italic.woff2")
 
 	font-family: "Work Sans"
 	font-weight: 400
 	font-style: italic
-	src: url($fontUrl) format("truetype")
+	src: url($fontUrl) format("woff2")
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44ed4a91MaisonNeue-Book.ttf")
+	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-book.woff2")
 
 	font-family: "Maison Neue"
 	font-weight: 400
-	src: url($fontUrl) format("truetype")
+	src: url($fontUrl) format("woff2")
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44ed2040MaisonNeue-Bold.ttf")
+	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-bold.woff2")
 
 	font-family: "Maison Neue"
 	font-weight: 700
-	src: url($fontUrl) format("truetype")
+	src: url($fontUrl) format("woff2")
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44ecf986MaisonNeue-Black.ttf")
+	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-black.woff2")
 
 	font-family: "Maison Neue"
 	font-weight: 800
-	src: url($fontUrl) format("truetype")
+	src: url($fontUrl) format("woff2")
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44edad48MaisonNeueMono-Regular.ttf")
+	$fontUrl: assetUrl("/storage/uploads/fonts/rational-tw-book.woff2")
 
-	font-family: "Maison Neue Mono"
-	font-weight: 300
-	src: url($fontUrl) format("truetype")
+	font-family: "Rational TW"
+	font-weight: 400
+	src: url($fontUrl) format("woff2")
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/2021/05/24/60abf44ed8f54MaisonNeueMono-Bold.ttf")
+	$fontUrl: assetUrl("/storage/uploads/fonts/rational-tw-semibold.woff2")
 
-	font-family: "Maison Neue Mono"
-	font-weight: 700
-	src: url($fontUrl) format("truetype")
+	font-family: "Rational TW"
+	font-weight: 600
+	src: url($fontUrl) format("woff2")
 
 // Mixins
 
