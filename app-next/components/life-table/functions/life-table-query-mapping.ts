@@ -1,9 +1,9 @@
 import { NextRouter as Router } from "next/router"
-import { ParsedUrlQuery } from "node:querystring"
 import { lifeEventKindFromRawValue } from "~/api/records/life-event/library/life-event-kind"
 import { LifeTableDataProps } from "~/components/life-table/functions/life-table-data-hook"
 import { lifeTableColumnFromRawValue } from "~/components/life-table/library/life-table-column"
 import { lifeTableSortModeFromRawValue } from "~/components/life-table/library/life-table-sort-mode"
+import { QueryParameters } from "~/types/page"
 import { valueFromRawValue } from "~/utils/routing/functions/query-parameter-value"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
@@ -19,7 +19,7 @@ type Props = LifeTableDataProps
 
 // Query to Props
 
-export function lifeTablePropsFromQuery(query: ParsedUrlQuery): Props | undefined {
+export function lifeTablePropsFromQuery(query: QueryParameters): Props | undefined {
 	const filterBy = valueFromRawValue(query, ParameterKey.FilterKind, lifeEventKindFromRawValue)
 	const sortBy = valueFromRawValue(query, ParameterKey.SortColumn, lifeTableColumnFromRawValue)
 	const mode = valueFromRawValue(query, ParameterKey.SortMode, lifeTableSortModeFromRawValue)
