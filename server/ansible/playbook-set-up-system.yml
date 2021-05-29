@@ -16,4 +16,4 @@
     - import_tasks: ./shared/tasks/set-up-firewall.yml
     - import_tasks: ./shared/tasks/set-up-swift.yml
     - import_tasks: ./shared/tasks/set-up-cockpit-sync.yml
-    - import_tasks: ./shared/tasks/set-up-gitlab-listener.yml
+    - import_tasks: ./shared/tasks/set-up-listener.yml
