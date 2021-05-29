@@ -5,7 +5,7 @@
     cmd: "{{ app_root }}/scripts/compose.sh up -d"
   become: yes
   environment:
-    live: "1"
+    LIVE: "1"
   tags:
     - app-services
     - app-services-start
