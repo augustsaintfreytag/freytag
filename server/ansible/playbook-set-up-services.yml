@@ -12,10 +12,20 @@
     docker_env_root: "{{ app_root }}/server/docker/env"
 
   tasks:
-    - import_tasks: ./custom/tasks/stop-services-live.yml
+    # Manage Services
+    - import_tasks: ./custom/tasks/stop-services.yml
+
+    # Project Set-Up (App & Cockpit)
     - import_tasks: ./custom/tasks/set-up-app.yml
     - import_tasks: ./custom/tasks/set-up-cockpit.yml
+
+    # Certificates
     - import_tasks: ./shared/tasks/set-up-certificates.yml
     - import_tasks: ./custom/tasks/set-up-certificate-crontab.yml
-    - import_tasks: ./custom/tasks/start-services-live.yml
-    - import_tasks: ./custom/tasks/set-up-gitlab-listener-configuration.yml
+
+    # Manage Services
+    - import_tasks: ./custom/tasks/start-services.yml
+
+    # Listener
+    - import_tasks: ./shared/tasks/set-up-listener-service.yml
+    - import_tasks: ./custom/tasks/set-up-listener-config.yml
