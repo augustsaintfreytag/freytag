@@ -12,16 +12,30 @@ export enum DateFormatStyle {
 // Formatting
 
 export function formattedDateInterval(interval: DateInterval): string {
-	return `${formattedDate(interval.start)} ${intervalRangeSymbol} ${formattedDate(interval.end)}`
+	const startComponent = formattedDate(interval.start)
+	const endComponent = formattedDate(interval.end)
+
+	if (startComponent === endComponent) {
+		return endComponent
+	}
+
+	return `${startComponent} ${intervalRangeSymbol} ${endComponent}`
 }
 
 export function formattedOpenDateInterval(interval: OpenDateInterval): string {
-	if (interval.start && interval.end) {
-		return `${formattedDate(interval.start)} ${intervalRangeSymbol} ${formattedDate(interval.end)}`
-	} else if (interval.start && !interval.end) {
-		return `${formattedDate(interval.start)} ${intervalRangeSymbol} PRS.`
-	} else if (interval.end) {
-		return formattedDate(interval.end)
+	const startComponent = interval.start && formattedDate(interval.start)
+	const endComponent = interval.end && formattedDate(interval.end)
+
+	if (startComponent && endComponent) {
+		if (startComponent === endComponent) {
+			return endComponent
+		}
+
+		return `${startComponent} ${intervalRangeSymbol} ${endComponent}`
+	} else if (startComponent && !endComponent) {
+		return `${startComponent} ${intervalRangeSymbol} PRS.`
+	} else if (endComponent) {
+		return endComponent
 	}
 
 	return ""
