@@ -4,6 +4,8 @@ host_root: "{{ playbook_dir }}/../.."
 
 # Server
 server_user: server
+server_certificate_directory: "/etc/letsencrypt"
+server_certificate_log_directory: "/var/log/letsencrypt"
 
 server_domains:
   [
@@ -17,6 +19,12 @@ server_domains:
 # App
 app_version: "next/master"
 app_root: "/var/www/freytag"
+
+# Volumes
+cockpit_docker_volume: "freytag_data_cockpit"
+
+# Listener
+listener_server_port: "8080"
 
 # Dependencies
 dep_swift_release: "https://swift.org/builds/swift-5.4.1-release/ubuntu1804/swift-5.4.1-RELEASE/swift-5.4.1-RELEASE-ubuntu18.04.tar.gz"
