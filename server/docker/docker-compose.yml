@@ -60,7 +60,7 @@ services:
 
   cockpit:
     container_name: freytag_cockpit
-    image: agentejo/cockpit:0.11.2
+    image: agentejo/cockpit:latest
     volumes:
       - data_cockpit:/var/www/html/storage
     restart: unless-stopped
