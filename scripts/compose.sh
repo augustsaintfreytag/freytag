@@ -1,10 +1,16 @@
 #! /usr/bin/env zsh
 
 DEBUG=0
+
 BASEDIR=$(dirname "$0")
 ROOTDIR=$(realpath "$BASEDIR/..")
 DOCKERDIR="$ROOTDIR/server/docker"
-DOCKERENV="$DOCKERDIR/env/parameters.dev.private.env"
+
+if [[ $LIVE == '1' ]]; then
+	DOCKERENV="$DOCKERDIR/env/parameters.live.private.env"
+else
+	DOCKERENV="$DOCKERDIR/env/parameters.dev.private.env"
+fi
 
 set -a
 source "$DOCKERENV"
