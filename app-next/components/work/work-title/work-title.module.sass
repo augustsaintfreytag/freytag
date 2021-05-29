@@ -8,8 +8,7 @@
 
 	> header
 		h1
-			font-family: $headingFont
-			font-weight: 700
+			@include headingFont
 			font-size: $pageHeadingFontSize
 			text-align: center
 
@@ -38,7 +37,6 @@
 					margin: 0 auto
 				
 			.description
-				margin-bottom: 0.1rem
 				flex: auto
 				line-height: 1.5
 

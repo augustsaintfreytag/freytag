@@ -4,16 +4,16 @@
 .block
 	// Fonts
 	.heading
-		@include headingFont
+		@include legalHeadingFont
 		
 	.subHeading
-		@include subHeadingFont
+		@include legalSubHeadingFont
 		
 	.headingSubtitle
-		@include asideFont
+		@include legalAsideFont
 
 	p, ul
-		@include paragraphFont
+		@include legalParagraphFont
 
 	// Block-Specific Spacing
 	&.headingBlock, &.subHeadingBlock, &.textBlock
@@ -42,7 +42,7 @@
 	&.contactBlock
 		> div
 			margin-top: $secondSectionSpacing
-			@include contactBlockFont
+			@include legalContactBlockFont
 
 	a
 		text-decoration: underline

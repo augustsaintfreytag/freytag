@@ -4,24 +4,21 @@ $itemComponentSpacing: 0.5rem
 $interDetailComponentSpacing: 0.75rem
 
 @mixin tableHeaderFont
-	font-family: $elementHeadingFont
-	font-weight: 400
+	@include elementAccentedFont
 	font-size: 1.05rem
 
 	@include breakpoint($anyMobile)
 		font-size: 1.1rem
 
 @mixin tableItemHeadingFont
-	font-family: $elementHeadingFont
-	font-weight: 700
+	@include elementHeadingFont
 	font-size: 1.05rem
 
 	@include breakpoint($anyMobile)
 		font-size: 1.1rem
 
 @mixin tableItemFont
-	font-family: $elementAccentedFont
-	font-weight: 400
+	@include elementAccentedFont
 	font-size: 0.85rem
 
 	@include breakpoint($anyMobile)

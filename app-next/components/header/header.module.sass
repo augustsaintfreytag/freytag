@@ -14,14 +14,12 @@
 
 		.brand
 			.title
-				font-family: $headingFont
-				font-weight: 800
+				@include titleFont
 				font-size: 2.6rem
 				padding: 0.2rem 0
 
 			.descriptors
-				font-family: $headingFont
-				font-weight: 300
+				@include elementAccentedFont
 				font-size: 0.8rem
 				color: $textColorSubFaded
 				padding: 0.2rem 0
@@ -31,7 +29,7 @@
 			width: 16.25rem
 
 			.navigationItem
-				font-family: $headingFont
+				@include elementAccentedFont
 				font-size: $pageNavigationFontSize
 
 				a

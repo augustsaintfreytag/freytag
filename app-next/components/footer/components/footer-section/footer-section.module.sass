@@ -8,8 +8,7 @@
 	$spriteToTextSpacingMobile: 1.25rem
 
 	.footerHeader
-		font-family: $elementAccentedHeadingFont
-		font-weight: 700
+		@include elementAccentedHeadingFont
 		font-size: 1.75rem
 		text-transform: uppercase
 		margin-bottom: $headerToItemsSpacing
@@ -46,10 +45,10 @@
 				font-size: 1.0rem
 
 		.text
-			font-family: $elementFont
+			@include elementFont
 
 		.link
-			font-family: $linkFont
+			@include linkFont
 		
 		&.active
 			opacity: $activeElementFadeOpacity
