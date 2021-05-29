@@ -22,8 +22,8 @@
 
 - name: "FILE - Copy private application environment file"
   copy:
-    src: "{{ host_root }}/{{ app_sub_root }}/.env"
-    dest: "{{ app_root }}/{{ app_sub_root }}/.env"
+    src: "{{ host_root }}/{{ app_sub_root }}/.env.production"
+    dest: "{{ app_root }}/{{ app_sub_root }}/.env.production"
   tags:
     - app-repo
     - app-repo-private
