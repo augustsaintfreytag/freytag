@@ -19,6 +19,7 @@ server_domains:
 # App
 app_version: "next/master"
 app_root: "/var/www/freytag"
+app_sub_root: "app-next"
 
 # Volumes
 cockpit_docker_volume: "freytag_data_cockpit"

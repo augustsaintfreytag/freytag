@@ -20,6 +20,15 @@
   tags:
     - app-repo
 
+- name: "FILE - Copy private application environment file"
+  copy:
+    src: "{{ host_root }}/{{ app_sub_root }}/.env"
+    dest: "{{ app_root }}/{{ app_sub_root }}/.env"
+  tags:
+    - app-repo
+    - app-repo-private
+    - requires_host
+
 - name: "FILE - Copy private automation files"
   copy:
     src: "{{ host_root }}/server/ansible/vars/parameters.private.yml"
