@@ -25,4 +25,8 @@ mkdir "$SERVER_CERTIFICATE_DIRECTORY" &> /dev/null
 mkdir "$SERVER_CERTIFICATE_LOG_DIRECTORY" &> /dev/null
 set -e
 
-docker compose --file $DOCKERDIR/docker-compose.yml --project-directory $ROOTDIR $@
+if [[ $LIVE == '1' ]]; then
+	docker-compose --file $DOCKERDIR/docker-compose.yml --project-directory $ROOTDIR $@
+else
+	docker compose --file $DOCKERDIR/docker-compose.yml --project-directory $ROOTDIR $@	
+fi
