@@ -2,10 +2,6 @@
 
 # "APP_ENVIRONMENT"                     Active environment for services to operate in. Example: "LIVE", "DEV"
 # "APP_STARTUP_CMD"                     Start-up command invoked for App service after setting up dependencies. Example "yarn dev"
-# "COCKPIT_ACCESS_TOKEN"                Private access token used to authenticate with Cockpit to read data.
-# "COCKPIT_PROTOCOL"                    The network protocol used to communicate with Cockpit in the current environment. Example "https"
-# "COCKPIT_HOST_CLIENT"                 The Cockpit hostname used and expected to be reachable on the client-side.
-# "COCKPIT_HOST_SERVER"                 The Cockpit hostname used and expected to be reachable on the server-side.
 # "SERVER_NGINX_CONFIG_FILE"            NGINX configuration file name, mapped into the NGINX container. Example: "nginx.dev.conf"
 # "SERVER_CERTIFICATE_DIRECTORY"        Path to the server's local certificate directory (not in container).
 # "SERVER_CERTIFICATE_LOG_DIRECTORY"    Path to the server's local certificate log output directory (not in container).
