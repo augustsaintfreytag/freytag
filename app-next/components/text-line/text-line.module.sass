@@ -1,10 +1,11 @@
 @import "/styles/values/all"
 	
 .line
-	font-family: $headingFont
+	margin: $pageSubContentSpacing 0
+
+	@include subTitleFont
 	font-size: $highlightFontSize
 	text-align: center
-	margin: $pageSubContentSpacing 0
 
 	@include breakpoint($anyMobile)
 		font-size: $highlightFontSizeMobile

@@ -54,8 +54,7 @@ $itemImageMaxWidth: 1600px
 				padding-bottom: 1.25rem
 
 			.heading
-				font-family: $headingFont
-				font-weight: 700
+				@include headingFont
 				font-size: $elementHeadingFontSize
 				
 				$textShadowOffset: 0.15rem
@@ -66,9 +65,10 @@ $itemImageMaxWidth: 1600px
 					text-shadow: unset
 
 			.preview
-				margin-top: $inlayInterItemSpacing
 				width: 38%
-				font-family: $elementFont
+				margin-top: $inlayInterItemSpacing
+
+				@include elementFont
 				font-size: $elementTextFontSize
 
 				@include breakpoint($anyMobile)
@@ -95,9 +95,10 @@ $itemImageMaxWidth: 1600px
 
 				.text
 					display: inline-block
-					font-family: $elementFont
-					font-size: $elementTextFontSize
 					margin-right: 0.65rem
+					
+					@include elementFont
+					font-size: $elementTextFontSize
 
 					@include breakpoint($anyMobile)
 						font-size: $elementTextFontSizeMobile
