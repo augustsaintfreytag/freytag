@@ -6,4 +6,4 @@
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR/../server/ansible"
 
-ansible-playbook ./playbook-set-up-services.yml --tags="cockpit-update"
+ansible-playbook ./playbook-set-up-services.yml --skip-tags="certificates,cockpit,listener"
