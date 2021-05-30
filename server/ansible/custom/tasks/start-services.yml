@@ -1,5 +1,13 @@
 # Services
 
+- name: "SERVER - Cycle application services"
+  shell:
+    cmd: "docker-compose --file {{ app_root }}/server/docker/docker-compose.yml --project-directory {{ app_root }} --env-file {{ docker_env_root }}/parameters.live.private.env down"
+  become: yes
+  tags:
+    - app-services
+    - app-services-start
+
 - name: "SERVER - Start application services"
   shell:
     cmd: "docker-compose --file {{ app_root }}/server/docker/docker-compose.yml --project-directory {{ app_root }} --env-file {{ docker_env_root }}/parameters.live.private.env up -d"
