@@ -10,7 +10,7 @@ set -a
 source "$DOCKERENV"
 set +a
 
-if [[ $DEBUG == '1' ]]; then
+if [[ $DEBUG == "1" ]]; then
 	APP_STARTUP_CMD="yarn dev-inspect-brk"
 fi
 
