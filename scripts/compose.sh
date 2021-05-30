@@ -1,16 +1,10 @@
 #! /usr/bin/env zsh
 
-DEBUG=0
-
 BASEDIR=$(dirname "$0")
 ROOTDIR=$(realpath "$BASEDIR/..")
-DOCKERDIR="$ROOTDIR/server/docker"
 
-if [[ $LIVE == '1' ]]; then
-	DOCKERENV="$DOCKERDIR/env/parameters.live.private.env"
-else
-	DOCKERENV="$DOCKERDIR/env/parameters.dev.private.env"
-fi
+DOCKERDIR="$ROOTDIR/server/docker"
+DOCKERENV="$DOCKERDIR/env/parameters.dev.private.env"
 
 set -a
 source "$DOCKERENV"
@@ -25,8 +19,4 @@ mkdir "$SERVER_CERTIFICATE_DIRECTORY" &> /dev/null
 mkdir "$SERVER_CERTIFICATE_LOG_DIRECTORY" &> /dev/null
 set -e
 
-if [[ $LIVE == '1' ]]; then
-	docker-compose --file $DOCKERDIR/docker-compose.yml --project-directory $ROOTDIR $@
-else
-	docker compose --file $DOCKERDIR/docker-compose.yml --project-directory $ROOTDIR $@	
-fi
+docker compose --file $DOCKERDIR/docker-compose.yml --project-directory $ROOTDIR $@	
