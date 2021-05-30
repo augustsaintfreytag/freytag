@@ -22,10 +22,11 @@ export type WorkShowcaseBlock = CockpitEntry & {
 	form: string
 	identifierItem: string
 	identifierGroup: string
-	textContent: string
+	textContent?: string
+	subTextContent?: string
 	imageContents?: WorkShowcaseImageComponent[]
-	videoCode: string
-	videoAspectValue: string
+	videoCode?: string
+	videoAspectValue?: string
 }
 
 // Showcase Block Contents (Collection)
