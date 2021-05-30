@@ -1,0 +1,61 @@
+@import "/styles/values/all"
+@import "/styles/base/accessibility"
+	
+.header
+	.inlay
+		@include inlayed
+		height: 8rem
+		padding-top: 1rem
+		padding-bottom: 1rem
+
+		display: flex
+		justify-content: space-between
+		box-sizing: border-box
+
+		.brand
+			.title
+				@include titleFont
+				font-size: 2.6rem
+				padding: 0.2rem 0
+
+			.descriptors
+				@include elementAccentedFont
+				font-size: 0.8rem
+				color: $textColorSubFaded
+				padding: 0.2rem 0
+
+		.navigation
+			margin: 0.5rem 0
+			width: 16.25rem
+
+			.navigationItem
+				@include elementAccentedFont
+				font-size: $pageNavigationFontSize
+
+				a
+					position: relative
+
+					&::after
+						@include extendedInteractiveArea
+
+				&.active
+					opacity: $activeElementFadeOpacity
+
+			ol
+				display: flex
+				justify-content: space-between
+				
+@include breakpoint($anyMobile)
+	.header
+		.inlay
+			height: unset
+
+			.brand
+				display: none
+
+			.navigation
+				margin: 0.4rem auto
+				width: 24rem
+
+				.navigationItem
+					font-size: $pageNavigationFontSizeMobile

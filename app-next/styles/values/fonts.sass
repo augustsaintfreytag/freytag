@@ -1,0 +1,149 @@
+@import "/styles/base/api"
+	
+// Fonts
+
+$workSansFontFamily: "Work Sans"
+$maisonFontFamily: "Maison Neue"
+$rationalTWFontFamily: "Rational TW"
+
+@mixin defaultFont
+	font-family: $workSansFontFamily
+	font-weight: 400
+
+@mixin paragraphFont
+	font-family: $workSansFontFamily
+	font-weight: 400
+
+@mixin paragraphHeadingFont
+	font-family: $maisonFontFamily
+	font-weight: 700
+
+@mixin paragraphSubHeadingFont
+	font-family: $maisonFontFamily
+	font-weight: 400
+
+@mixin titleFont
+	font-family: $maisonFontFamily
+	font-weight: 800
+
+@mixin subTitleFont
+	font-family: $maisonFontFamily
+	font-weight: 400
+
+@mixin headingFont
+	font-family: $maisonFontFamily
+	font-weight: 700
+
+@mixin elementFont
+	font-family: $workSansFontFamily
+	font-weight: 400
+
+@mixin elementAccentedFont
+	font-family: $maisonFontFamily
+	font-weight: 400
+
+@mixin elementHeadingFont
+	font-family: $maisonFontFamily
+	font-weight: 700
+
+@mixin elementAccentedHeadingFont
+	font-family: $rationalTWFontFamily
+	font-weight: 600
+
+@mixin tagFont
+	font-family: $rationalTWFontFamily
+	font-weight: 600
+
+@mixin linkFont
+	font-family: $rationalTWFontFamily
+	font-weight: 400
+
+// Font Sizes
+
+$highlightFontSize: 1.5rem
+$highlightFontSizeMobile: 1.4rem
+
+$pageHeadingFontSize: 2.9rem
+$pageHeadingFontSizeMobile: 2.65rem
+
+$pageNavigationFontSize: 1rem
+$pageNavigationFontSizeMobile: 1.2rem
+
+$elementHeadingFontSize: 2.2rem
+$elementHeadingFontSizeMobile: 1.45rem
+
+$elementTextFontSize: 0.85rem
+$elementTextFontSizeMobile: 0.95rem
+
+$elementArticleHeadingFontSize: 1.6rem
+$elementArticleHeadingFontSizeMobile: 1.8rem
+
+$elementArticleSubHeadingFontSize: 1.4rem
+$elementArticleSubHeadingFontSizeMobile: 1.5rem
+
+$tagTextFontSize: 1rem
+
+$captionFontSize: 0.85rem
+$captionFontSizeMobile: 1rem
+
+// Paragraph Values
+
+$paragraphLineHeight: 1.65
+$captionLineHeight: 1.4
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-regular.woff2")
+
+	font-family: "Work Sans"
+	font-weight: 400
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-italic.woff2")
+
+	font-family: "Work Sans"
+	font-weight: 400
+	font-style: italic
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-book.woff2")
+
+	font-family: "Maison Neue"
+	font-weight: 400
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-bold.woff2")
+
+	font-family: "Maison Neue"
+	font-weight: 700
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-black.woff2")
+
+	font-family: "Maison Neue"
+	font-weight: 800
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/rational-tw-book.woff2")
+
+	font-family: "Rational TW"
+	font-weight: 400
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/rational-tw-semibold.woff2")
+
+	font-family: "Rational TW"
+	font-weight: 600
+	src: url($fontUrl) format("woff2")
+
+// Mixins
+
+@mixin antiAliasedFont
+	font-smoothing: antialiased
+	-moz-osx-font-smoothing: grayscale
+	-webkit-font-smoothing: antialiased

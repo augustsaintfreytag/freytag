@@ -1,0 +1,40 @@
+@import "/styles/values/all"
+
+$itemComponentSpacing: 0.5rem
+$interDetailComponentSpacing: 0.75rem
+
+@mixin tableHeaderFont
+	@include elementAccentedFont
+	font-size: 1.05rem
+
+	@include breakpoint($anyMobile)
+		font-size: 1.1rem
+
+@mixin tableItemHeadingFont
+	@include elementHeadingFont
+	font-size: 1.05rem
+
+	@include breakpoint($anyMobile)
+		font-size: 1.1rem
+
+@mixin tableItemFont
+	@include elementAccentedFont
+	font-size: 0.85rem
+
+	@include breakpoint($anyMobile)
+		font-size: 1rem
+
+@mixin table
+	display: flex
+
+	> *
+		@include horizontalListMargin($interDetailComponentSpacing)
+
+		flex: auto
+		width: 20%
+
+		&.context
+			width: 40%
+
+		&.disclosure
+			max-width: 7.25rem

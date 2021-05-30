@@ -1,0 +1,135 @@
+@import "/styles/values/all"
+@import "/styles/base/accessibility"
+
+$inlaySpacingMobile: 1.3rem
+
+$inlayInterItemSpacing: $pageSubContentSpacing
+$inlayInterItemSpacingMobile: $pageSubContentSpacing * 0.75
+
+$inlayImageOffset: 50% 32%
+$inlayImageOffsetMobile: 50% 38%
+
+$itemImageMaxWidth: 1600px
+
+.workListItem
+	position: relative
+	width: 100%
+	height: 30rem
+	overflow: hidden
+
+	@include breakpoint($anyDesktop)
+		background: $elementBackgroundColor
+		background: url("/assets/paper-tile.jpg")
+		background-repeat: tile
+
+	&::after
+		@include overlayPseudoObject
+		max-width: $itemImageMaxWidth
+		border-left: 1rem solid white
+		border-right: 1rem solid white
+
+	@include breakpoint($anyMobile)
+		height: unset
+	
+	.inlay
+		position: absolute
+		display: flex
+		justify-content: flex-start
+		align-items: center
+		top: 0
+		height: 100%
+		width: 100%
+		z-index: 2
+
+		@include breakpoint($anyMobile)
+			position: relative
+			display: block
+
+		.inlayContent
+			@include inlayed
+
+			@include breakpoint($anyMobile)
+				margin-top: $inlaySpacingMobile
+				padding-top: 1.25rem
+				padding-bottom: 1.25rem
+
+			.heading
+				@include headingFont
+				font-size: $elementHeadingFontSize
+				
+				$textShadowOffset: 0.15rem
+				text-shadow: $textShadowOffset $textShadowOffset 0 rgba(255, 255, 255, 0.5)
+
+				@include breakpoint($anyMobile)
+					font-size: $elementHeadingFontSizeMobile
+					text-shadow: unset
+
+			.preview
+				width: 38%
+				margin-top: $inlayInterItemSpacing
+
+				@include elementFont
+				font-size: $elementTextFontSize
+
+				@include breakpoint($anyMobile)
+					width: 100%
+					margin-top: $inlayInterItemSpacingMobile
+					font-size: $elementTextFontSizeMobile
+
+				p
+					@include listMargin($descriptionParagraphSpacing)
+
+				a
+					text-decoration: underline
+
+			.link
+				position: relative
+				display: inline-block
+				margin-top: $inlayInterItemSpacing
+
+				@include breakpoint($anyMobile)
+					margin-top: $inlayInterItemSpacingMobile
+
+				&::after
+					@include extendedInteractiveArea
+
+				.text
+					display: inline-block
+					margin-right: 0.65rem
+					
+					@include elementFont
+					font-size: $elementTextFontSize
+
+					@include breakpoint($anyMobile)
+						font-size: $elementTextFontSizeMobile
+
+				.symbol
+					display: inline-block
+					vertical-align: middle
+					margin-top: -0.05rem
+
+					$size: 15px
+					height: $size
+					width: $size
+
+	.image
+		position: relative
+		display: block
+		max-width: $itemImageMaxWidth
+		margin: 0 auto
+		z-index: 1
+
+		@include coverObject
+		object-position: $inlayImageOffset
+
+		@include breakpoint($anyDesktop)
+			&.imageCentered
+				display: none
+
+		@include breakpoint($anyMobile)
+			&.imageTrailing
+				display: none
+
+		@include breakpoint($anyMobile)
+			object-position: $inlayImageOffsetMobile
+			height: 19rem

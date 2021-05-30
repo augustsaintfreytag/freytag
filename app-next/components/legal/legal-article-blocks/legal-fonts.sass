@@ -1,0 +1,39 @@
+@import "/styles/values/all"
+	
+@mixin legalHeadingFont
+	@include paragraphHeadingFont
+	font-size: $elementArticleHeadingFontSize
+
+	@include breakpoint($anyMobile)
+		font-size: $elementArticleHeadingFontSizeMobile
+
+@mixin legalSubHeadingFont
+	@include paragraphSubHeadingFont
+	font-size: $elementArticleSubHeadingFontSize
+
+	@include breakpoint($anyMobile)
+		font-size: $elementArticleSubHeadingFontSizeMobile
+	
+@mixin legalAsideFont
+	@include paragraphSubHeadingFont
+	font-size: $elementArticleSubHeadingFontSize
+
+	@include breakpoint($anyMobile)
+		font-size: $elementArticleSubHeadingFontSizeMobile
+
+@mixin legalParagraphFont
+	@include paragraphFont
+	font-size: $elementTextFontSize
+	line-height: $lineHeight
+	text-align: justify
+	
+	@include breakpoint($anyMobile)
+		font-size: $elementTextFontSizeMobile
+
+@mixin legalContactBlockFont
+	@include paragraphFont
+	font-size: $elementTextFontSize
+	line-height: $lineHeight
+
+	@include breakpoint($anyMobile)
+		font-size: $elementTextFontSizeMobile

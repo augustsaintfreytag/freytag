@@ -1,0 +1,24 @@
+// Accessibility Classes
+
+@mixin semantic
+	border: 0
+	clip: rect(0 0 0 0)
+	height: 1px
+	margin: -1px
+	overflow: hidden
+	padding: 0
+	position: absolute
+	width: 1px
+
+// Accessibility Mixins
+
+@mixin extendedInteractiveArea
+	$extensionFactor: 1.55
+	$extensionAspect: 1.25
+
+	content: ""
+	display: block
+	position: absolute
+	width: 100%
+	height: 100%
+	transform: translateY(-100%) scaleX($extensionFactor) scaleY($extensionFactor * $extensionAspect)

@@ -1,0 +1,10 @@
+- name: "CRON - Add tab for certificate renewal"
+  cron:
+    name: "Freytag Server Certificate Renewal"
+    job: "{{ app_root }}/server/scripts/user-update-certificates.sh"
+    day: "01"
+    hour: "22"
+  become: yes
+  tags:
+    - certificates
+    - certificates-cron

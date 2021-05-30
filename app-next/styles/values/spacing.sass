@@ -1,0 +1,135 @@
+@import "/styles/values/breakpoints"
+	
+// Spacing
+
+$inlayWidth: 1296px
+$inlayWidthMobile: 576px
+
+$inlayPadding: 2.5rem
+$inlayPaddingMobile: 3rem
+
+$textInlayPadding: 3.25rem
+$textInlayPaddingMobile: 3rem
+
+$textInlayWidth: 38rem
+$textInlayWidthMobile: 28rem
+
+$pageSpacing: 8.5rem
+$pageContentSpacing: 5rem
+$pageSubContentSpacing: 1.75rem
+
+$descriptionParagraphSpacing: 0.85rem
+
+// Mixins
+
+@mixin inlayed
+	box-sizing: border-box
+	margin-left: auto
+	margin-right: auto
+	padding: 0 $inlayPadding
+	max-width: $inlayWidth
+
+	@include breakpoint($anyMobile)
+		padding: 0 $inlayPaddingMobile
+		max-width: $inlayWidthMobile
+
+@mixin notInlayed
+	max-width: unset
+	margin-left: unset
+	margin-right: unset
+	padding: unset
+
+@mixin inlayedText
+	max-width: $textInlayWidth
+	margin-left: auto
+	margin-right: auto
+	padding-left: $textInlayPadding
+	padding-right: $textInlayPadding
+
+	@include breakpoint($anyMobile)
+		max-width: $textInlayWidthMobile
+		padding-left: $textInlayPaddingMobile
+		padding-right: $textInlayPaddingMobile
+
+@mixin listMargin($margin)
+	margin-top: $margin
+
+	&:first-child
+		margin-top: 0
+
+@mixin noListMargin
+	margin-top: unset
+
+	&:first-child
+		margin-top: unset
+
+@mixin horizontalListMargin($margin)
+	margin-left: $margin
+
+	&:first-child
+		margin-left: 0
+
+@mixin noHorizontalListMargin
+	margin-left: unset
+
+	&:first-child
+		margin-left: unset
+
+@mixin margin($value)
+	margin: $value
+
+	&:first-child
+		margin: $value
+
+@mixin coverImage
+	position: relative
+	width: 100%
+	height: 68vh
+	overflow: hidden
+
+	img
+		z-index: 1
+		@include coverObject
+
+	@include breakpoint($anyMobile)
+		height: 88vh
+
+@mixin coverObject
+	height: 100%
+	width: 100%
+	object-fit: cover
+	object-position: center
+
+@mixin overlayPseudoObject
+	content: ""
+	position: absolute
+	z-index: 1
+	width: 100%
+	height: 100%
+	top: 50%
+	left: 50%
+	transform: translateY(-50%) translateX(-50%)
+
+// Ellipsis
+
+@mixin ellipsized
+	white-space: nowrap
+	text-overflow: ellipsis
+	overflow: hidden
+
+@mixin notEllipsized
+	white-space: unset
+	text-overflow: unset
+	overflow: unset
+
+@mixin ellipsizedLines($lines)
+	display: -webkit-box
+	display: -moz-box
+
+	-webkit-line-clamp: $lines
+	-moz-line-clamp: $lines
+
+	-webkit-box-orient: vertical
+	-moz-box-orient: vertical
+	
+	overflow: hidden

@@ -1,0 +1,19 @@
+@import "/styles/values/all"
+
+.table
+	@include inlayed
+
+	margin-top: 3.75rem
+	padding-left: 1.6rem + $inlayPadding
+	padding-right: $inlayPadding
+
+	> header
+
+	> main
+		margin-top: $pageSubContentSpacing
+	
+		ol > li
+			@include listMargin(0.35rem)
+
+			@include breakpoint($anyMobile)
+				@include listMargin(1.5rem)

@@ -1,0 +1,18 @@
+@import "/styles/values/all"
+	
+$captionSpacing: 0.85rem
+
+.figure
+	img
+		display: block
+		width: 100%
+		height: auto
+
+	figcaption
+		margin-top: $captionSpacing
+		font-size: $captionFontSize
+		color: $textColorFaded
+
+		@include breakpoint($anyMobile)
+			font-size: $captionFontSizeMobile
+			line-height: $captionLineHeight

@@ -1,0 +1,74 @@
+// Globals
+	
+@import "/styles/values/all"
+
+html
+	margin: 0
+	padding: env(safe-area-inset)
+	
+	font-size: 16px
+	-webkit-text-size-adjust: none
+
+	@include breakpoint($anyMobile)
+		font-size: 12px
+
+	@include breakpoint($tablet)
+		font-size: 14px
+
+body
+	padding: 0
+	margin: 0
+
+body
+	min-width: 380px
+
+	@include antiAliasedFont
+	@include defaultFont
+	color: $textColor
+
+a
+	color: unset
+	text-decoration: unset
+	cursor: pointer
+
+	&:not([href])
+		user-select: none
+
+h1, h2, h3, h4, h5, h6
+	font-weight: unset
+	margin: 0
+	padding: 0
+
+ul, ol
+	list-style: none
+	padding: 0
+
+figure
+	margin: 0
+	padding: 0
+
+p
+	margin: 0
+	line-height: $paragraphLineHeight
+
+u
+	display: inline-block
+	text-decoration: none
+
+	&::after
+		content: ""
+		display: block
+		margin-top: -3px
+		border-bottom: 0.2rem solid $textColor
+
+button
+	display: block
+	appearance: none
+	color: unset
+	background: unset
+	border: unset
+	margin: 0
+	padding: 0
+
+	&:hover, &:active
+		color: unset

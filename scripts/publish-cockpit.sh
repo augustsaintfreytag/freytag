@@ -1,4 +1,4 @@
-#! /usr/bin/env bash
+#! /usr/bin/env zsh
 
 # Cockpit Data Pull
 # Instructs live environment to pull previously pushed Cockpit data.

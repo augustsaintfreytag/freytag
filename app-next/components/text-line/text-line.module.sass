@@ -1,0 +1,11 @@
+@import "/styles/values/all"
+	
+.line
+	margin: $pageSubContentSpacing 0
+
+	@include subTitleFont
+	font-size: $highlightFontSize
+	text-align: center
+
+	@include breakpoint($anyMobile)
+		font-size: $highlightFontSizeMobile

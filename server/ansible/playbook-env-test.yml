@@ -1,0 +1,34 @@
+# Playbook for Testing (Ping)
+
+- hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars_files:
+    - vars/default.yml
+
+  tasks:
+    - import_tasks: ./custom/tasks/set-environment.yml
+      vars:
+        env_path: "../env/default.dev.env"
+        env_vars:
+          - message
+          - app_startup_cmd
+          - cockpit_docker_volume
+          - cockpit_protocol
+          - cockpit_host_client
+          - cockpit_host_server
+          - server_nginx_config_file
+          - server_certificate_directory
+          - server_certificate_log_directory
+
+    - import_tasks: ./custom/tasks/set-environment.yml
+      vars:
+        env_path: "../env/parameters.private.env"
+        env_vars:
+          - cockpit_access_token
+          - server_nginx_certificate_provisioning_user
+
+    - name: "DEBUG - Output sampled env var (inside)"
+      debug:
+        msg: "Imported env var from file: '{{ imported_env }}'"

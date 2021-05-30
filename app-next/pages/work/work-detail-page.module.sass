@@ -1,0 +1,18 @@
+@import "/styles/values/all"
+	
+.page
+	padding-bottom: $pageSpacing
+
+	> header
+		.title
+			margin-top: $pageSpacing
+
+	.divider
+		margin-top: $pageSpacing
+		background: #b07cb1
+
+	> main
+		margin-top: $pageSpacing
+
+		> section
+			@include listMargin($pageContentSpacing)

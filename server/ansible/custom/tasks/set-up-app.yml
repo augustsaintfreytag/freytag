@@ -20,6 +20,15 @@
   tags:
     - app-repo
 
+- name: "FILE - Copy private application environment file"
+  copy:
+    src: "{{ host_root }}/{{ app_sub_root }}/.env.production"
+    dest: "{{ app_root }}/{{ app_sub_root }}/.env.production"
+  tags:
+    - app-repo
+    - app-repo-private
+    - requires_host
+
 - name: "FILE - Copy private automation files"
   copy:
     src: "{{ host_root }}/server/ansible/vars/parameters.private.yml"
@@ -33,6 +42,15 @@
   copy:
     src: "{{ host_root }}/server/ansible/inventory/inventory.private.yml"
     dest: "{{ app_root }}/server/ansible/inventory/inventory.private.yml"
+  tags:
+    - app-repo
+    - app-repo-private
+    - requires_host
+
+- name: "FILE - Copy private automation files"
+  copy:
+    src: "{{ host_root }}/server/docker/env/parameters.live.private.env"
+    dest: "{{ app_root }}/server/docker/env/parameters.live.private.env"
   tags:
     - app-repo
     - app-repo-private

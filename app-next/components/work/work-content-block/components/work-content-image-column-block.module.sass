@@ -1,0 +1,39 @@
+@import "/styles/values/all"
+	
+$interFigureSpacing: 1.75rem
+$interFigureSpacingMobile: 2.5rem
+
+.block
+	display: flex
+	overflow: hidden
+
+	@include breakpoint($anyDesktop)
+		@include inlayed
+
+	@include breakpoint($phone)
+		flex-direction: column
+		padding: 0 $textInlayPaddingMobile + 0.25rem
+
+	@include breakpoint($tablet)
+		max-width: none
+		padding: 0 4.25rem
+
+	> figure
+		@include horizontalListMargin($interFigureSpacing)
+
+		height: max-content
+		flex: 1 1 100%
+		overflow: hidden
+
+		@include breakpoint($phone)
+			@include noHorizontalListMargin
+			@include margin(0 auto)
+			@include listMargin($interFigureSpacingMobile)
+
+		@include breakpoint($tablet)
+
+
+	&.singleImage
+		> figure figcaption
+			@include breakpoint($anyDesktop)
+				@include inlayedText

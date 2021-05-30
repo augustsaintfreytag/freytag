@@ -1,0 +1,48 @@
+@import "/styles/values/all"
+@import "/styles/indicators/kind-colors"
+@import "life-table-layout.sass"
+
+$inlaySpacing: 2.75rem
+$interItemSpacing: 2.5rem
+$interComponentSpacing: 0.9rem
+
+$activeItemOpacity: 1.0
+$inactiveItemOpacity: 0.35
+
+.filters
+	padding: $inlaySpacing 0
+	background: $elementBackgroundColor
+	
+	@include breakpoint($anyMobile)
+		overflow: scroll
+
+	.inlay
+		@include inlayed
+		display: flex
+
+		.item
+			display: flex
+			cursor: pointer
+
+			@include horizontalListMargin($interItemSpacing)
+
+			opacity: $inactiveItemOpacity
+
+			&.active
+				opacity: $activeItemOpacity
+
+			.decorative
+				$size: 1.2rem
+				$verticalOffset: 0rem
+
+				height: $size
+				width: $size
+
+				align-self: center
+				margin: 0 $interComponentSpacing $verticalOffset 0
+
+				background: $elementBackgroundColor
+				@include tagBackgroundColors
+
+			.label
+				@include tableHeaderFont
