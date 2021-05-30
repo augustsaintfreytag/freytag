@@ -44,11 +44,11 @@ export function sortedWorkShowcases(showcases: WorkShowcase[]): WorkShowcase[] {
 		const lhsv = lhs._created
 		const rhsv = rhs._created
 
-		if (lhsv > rhsv) {
+		if (lhsv < rhsv) {
 			return 1
 		}
 
-		if (lhsv < rhsv) {
+		if (lhsv > rhsv) {
 			return -1
 		}
 
