@@ -22,6 +22,8 @@ app_root: "/var/www/freytag"
 app_sub_root: "app-next"
 
 # Volumes
+cockpit_sync_root: "/var/www/utility/cockpit"
+cockpit_sync_archive: "archive"
 cockpit_docker_volume: "freytag_data_cockpit"
 
 # Listener
