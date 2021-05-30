@@ -19,24 +19,3 @@ export const allWorkContentBlockKind: WorkContentBlockKind[] = [
 export function workContentBlockKindFromRawValue(rawValue: string): WorkContentBlockKind | undefined {
 	return enumCaseFromRawValue(rawValue, allWorkContentBlockKind)
 }
-
-// Legacy
-
-export type LegacyWorkContentBlockKind = string
-
-export function workContentBlockKindFromLegacy(rawValue: LegacyWorkContentBlockKind): WorkContentBlockKind | undefined {
-	switch (rawValue) {
-		case "Heading":
-			return WorkContentBlockKind.Heading
-		case "Text (Quote)":
-			return WorkContentBlockKind.Quote
-		case "Text (Column)":
-			return WorkContentBlockKind.Text
-		case "Images (Columns)":
-			return WorkContentBlockKind.Images
-		case "Video (Vimeo)":
-			return WorkContentBlockKind.Video
-		default:
-			return undefined
-	}
-}

@@ -10,7 +10,7 @@ import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import Divider from "~/components/divider/divider"
 import WorkContentBlock from "~/components/work/work-content-block/components/work-content-block"
 import { linkPropsForShowcase } from "~/components/work/work-content-block/functions/work-content-block-data-form"
-import { workContentBlockKindFromLegacy } from "~/components/work/work-content-block/library/work-content-block-kind"
+import { workContentBlockKindFromRawValue } from "~/components/work/work-content-block/library/work-content-block-kind"
 import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
@@ -73,7 +73,8 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 				<WorkDivider />
 				<main>
 					{showcase.blocks?.map(block => {
-						const kind = workContentBlockKindFromLegacy(block.form)
+						const kind = workContentBlockKindFromRawValue(block.form)
+
 						if (!kind) {
 							return undefined
 						}
