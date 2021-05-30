@@ -17,7 +17,7 @@ server_domains:
   ]
 
 # App
-app_version: "next/master"
+app_version: "fix/next-autonomous-release"
 app_root: "/var/www/freytag"
 app_sub_root: "app-next"
 
