@@ -1,7 +1,7 @@
 #! /usr/bin/env zsh
 
-# Cockpit Data Pull
-# Instructs live environment to pull previously pushed Cockpit data.
+# Project Update
+# Instructs live environment to pull project data from Git but skip content and infrastructure.
 
 BASEDIR=$(dirname "$0")
 cd "$BASEDIR/../server/ansible"
