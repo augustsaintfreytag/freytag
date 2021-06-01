@@ -21,6 +21,9 @@
 	@include anySafari
 		padding: $paddingSpacing/3 $paddingSpacing $paddingSpacing/8 $paddingSpacing
 
+		@include breakpoint($anyMobile)
+			padding: $paddingSpacing/4 $paddingSpacing $paddingSpacing/4 $paddingSpacing
+
 	// Appearances
 
 	&.asDecorative
