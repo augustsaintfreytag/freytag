@@ -1,12 +1,13 @@
 import { FunctionComponent } from "react"
 import { WorkShowcaseBlock } from "~/api/records/work-showcase/library/work-showcase"
+import { workContentImageAlignmentFromRawValue } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
 import WorkContentHeadingBlock from "~/components/work/work-content-block/components/work-content-heading-block"
 import WorkContentImageColumnBlock from "~/components/work/work-content-block/components/work-content-image-column-block"
 import WorkContentImageHeadingBlock from "~/components/work/work-content-block/components/work-content-image-heading-block"
 import WorkContentQuoteBlock from "~/components/work/work-content-block/components/work-content-quote-block"
 import WorkContentTextBlock from "~/components/work/work-content-block/components/work-content-text-block"
 import WorkContentVideoBlock from "~/components/work/work-content-block/components/work-content-video-block"
-import { imagePropsForBlock } from "~/components/work/work-content-block/functions/work-content-block-data-form"
+import { imageComponentPropsForBlock } from "~/components/work/work-content-block/functions/work-content-block-data-form"
 import { WorkContentBlockKind as Kind } from "~/components/work/work-content-block/library/work-content-block-kind"
 import { PropsWithAnyChildren } from "~/types/props"
 import styles from "./work-content-block.module.sass"
@@ -40,8 +41,8 @@ const WorkContentBlock: FunctionComponent<Props> = props => {
 			})()
 		case Kind.TitleImage:
 			return (() => {
-				const imageProps = imagePropsForBlock(block)
-				const imageURL = imageProps[0].src
+				const imageProps = imageComponentPropsForBlock(block)
+				const imageURL = imageProps[0]?.src
 
 				if (!textContent || !subTextContent || !imageURL) {
 					return null
@@ -59,12 +60,14 @@ const WorkContentBlock: FunctionComponent<Props> = props => {
 			})()
 		case Kind.Images:
 			return (() => {
-				const imageProps = imagePropsForBlock(block)
+				const imageProps = imageComponentPropsForBlock(block)
+				const imageAlignment = workContentImageAlignmentFromRawValue(block.imageAlignment)
+
 				if (!imageProps || !imageProps.length) {
 					return null
 				}
 
-				return <WorkContentImageColumnBlock collection={imageProps} />
+				return <WorkContentImageColumnBlock collection={imageProps} alignment={imageAlignment} />
 			})()
 		case Kind.Quote:
 			return (() => {

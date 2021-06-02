@@ -1,81 +1,118 @@
-import { intervalFromFragment } from "~/api/common/functions/date-conversion"
-import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
-import { ImageRecord, isImageRecord } from "~/api/records/image/library/image-record"
-import { LifeEventKind, lifeEventKindFromRawValue } from "~/api/records/life-event/library/life-event-kind"
-import { WorkShowcase, WorkShowcaseBlock } from "~/api/records/work-showcase/library/work-showcase"
-import { ImageFigureProps } from "~/components/image-figure/image-figure"
-import { OpenDateInterval } from "~/utils/date/library/intervals"
+import { AssetRecord } from "~/api/records/asset/library/asset-record"
+import { assetUrlFromComponent, imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
+import { ImageRecord } from "~/api/records/image/library/image-record"
+import { WorkShowcaseBlock, WorkShowcaseMediaComponent } from "~/api/records/work-showcase/library/work-showcase"
+import { URL } from "~/utils/routing/library/url"
 
-// Link Props
+// Api Media Types
 
-type LinkProperties = {
-	kind: LifeEventKind
-	title: string
-	interval: OpenDateInterval
+enum FieldName {
+	Image = "image",
+	Caption = "caption",
+	Video = "video",
+	Cover = "cover"
 }
 
-export function linkPropsForShowcase(showcase: WorkShowcase): LinkProperties | undefined {
-	const event = showcase.event
+// Media Prop Types
 
-	if (!event) {
-		return undefined
-	}
-
-	const eventKind = lifeEventKindFromRawValue(event.kind)
-	const eventInterval = intervalFromFragment(event)
-
-	if (!eventKind || !eventInterval) {
-		return undefined
-	}
-
-	return {
-		kind: eventKind,
-		title: event.name,
-		interval: eventInterval
-	}
+export enum ComponentPropsKind {
+	Image,
+	Video
 }
 
-// Image Props
+type ImageComponentProps = {
+	kind: ComponentPropsKind
+	src?: URL
+	caption?: string
+}
 
-type Component = ImageRecord | string
+type VideoComponentProps = {
+	kind: ComponentPropsKind
+	src?: URL
+	cover?: URL
+}
 
-function imagePropsForComponentCouple(leftComponent: Component, rightComponent?: Component): ImageFigureProps | undefined {
-	if (!isImageRecord(leftComponent)) {
+type AnyComponentProps = ImageComponentProps | VideoComponentProps
+
+// Couplings: Image + Caption
+// Couplings: Video + Cover
+
+function imageCaptionFromComponent(component?: WorkShowcaseMediaComponent): string | undefined {
+	if (!(component?.field.name === FieldName.Caption)) {
 		return undefined
 	}
 
-	if (typeof rightComponent !== "string") {
+	const caption = component.value as string
+	return caption
+}
+
+function videoCoverFromComponent(component?: WorkShowcaseMediaComponent): AssetRecord | undefined {
+	if (!(component?.field.name === FieldName.Cover)) {
+		return undefined
+	}
+
+	const asset = component.value as AssetRecord
+	return asset
+}
+
+function componentPropsForComponentCouple(
+	leftComponent: WorkShowcaseMediaComponent,
+	rightComponent?: WorkShowcaseMediaComponent
+): AnyComponentProps | undefined {
+	if (leftComponent.field.name === FieldName.Image) {
+		const imageRecord = leftComponent.value as ImageRecord
+		const imageCaption = imageCaptionFromComponent(rightComponent)
+
 		return {
-			src: imageUrlFromComponent(leftComponent.path)
+			kind: ComponentPropsKind.Image,
+			src: imageUrlFromComponent(imageRecord.path),
+			caption: imageCaption
 		}
 	}
 
-	return {
-		src: imageUrlFromComponent(leftComponent.path),
-		caption: rightComponent
+	if (leftComponent.field.name === FieldName.Video) {
+		const videoRecord = leftComponent.value as AssetRecord
+		const videoCover = videoCoverFromComponent(rightComponent)
+
+		return {
+			kind: ComponentPropsKind.Video,
+			src: assetUrlFromComponent(videoRecord.path),
+			cover: imageUrlFromComponent(videoCover?.path)
+		}
 	}
+
+	return undefined
 }
 
-export function imagePropsForBlock(block: WorkShowcaseBlock): ImageFigureProps[] {
-	const imageContents = block.imageContents
+export function componentPropsForBlock(block: WorkShowcaseBlock): AnyComponentProps[] {
+	const mediaContents = block.imageContents
 
-	if (!imageContents) {
+	if (!mediaContents) {
 		return []
 	}
 
-	const imagePropCollection: ImageFigureProps[] = []
+	const propCollection: AnyComponentProps[] = []
 
-	for (let index = 0; index < imageContents.length; index++) {
-		const leftComponent = imageContents[index].value
-		const rightComponent = imageContents[index + 1]?.value
-		const imageProperties = imagePropsForComponentCouple(leftComponent, rightComponent)
+	for (let index = 0; index < mediaContents.length; index++) {
+		const leftComponent = mediaContents[index]
+		const rightComponent = mediaContents[index + 1]
+		const imageProperties = componentPropsForComponentCouple(leftComponent, rightComponent)
 
 		if (!imageProperties) {
 			continue
 		}
 
-		imagePropCollection.push(imageProperties)
+		propCollection.push(imageProperties)
 	}
 
-	return imagePropCollection
+	debugger
+	return propCollection
+}
+
+export function imageComponentPropsForBlock(block: WorkShowcaseBlock): ImageComponentProps[] {
+	return componentPropsForBlock(block).filter(props => props.kind === ComponentPropsKind.Image)
+}
+
+export function videoComponentPropsForBlock(block: WorkShowcaseBlock): ImageComponentProps[] {
+	return componentPropsForBlock(block).filter(props => props.kind === ComponentPropsKind.Video)
 }

@@ -9,7 +9,7 @@ import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import Divider from "~/components/divider/divider"
 import WorkContentBlock from "~/components/work/work-content-block/components/work-content-block"
-import { linkPropsForShowcase } from "~/components/work/work-content-block/functions/work-content-block-data-form"
+import { linkPropsForShowcase } from "~/components/work/work-content-block/functions/work-link-props-data-form"
 import { workContentBlockKindFromRawValue } from "~/components/work/work-content-block/library/work-content-block-kind"
 import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkTitle from "~/components/work/work-title/work-title"
