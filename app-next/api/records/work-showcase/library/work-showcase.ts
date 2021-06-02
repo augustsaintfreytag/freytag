@@ -1,4 +1,5 @@
 import { CockpitEntry } from "cockpit-access"
+import { AssetRecord } from "~/api/records/asset/library/asset-record"
 import { ImageRecord } from "~/api/records/image/library/image-record"
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
 
@@ -24,7 +25,8 @@ export type WorkShowcaseBlock = CockpitEntry & {
 	identifierGroup: string
 	textContent?: string
 	subTextContent?: string
-	imageContents?: WorkShowcaseImageComponent[]
+	imageContents?: WorkShowcaseMediaComponent[]
+	imageAlignment?: string
 	videoCode?: string
 	videoAspectValue?: string
 }
@@ -41,4 +43,8 @@ export type WorkShowcaseBlockContent<ValueObject> = {
 }
 
 export type AnyWorkShowcaseBlockContent = WorkShowcaseBlockContent<any>
-export type WorkShowcaseImageComponent = WorkShowcaseBlockContent<ImageRecord> | WorkShowcaseBlockContent<string>
+
+export type WorkShowcaseMediaComponent =
+	| WorkShowcaseBlockContent<ImageRecord>
+	| WorkShowcaseBlockContent<AssetRecord>
+	| WorkShowcaseBlockContent<string>
