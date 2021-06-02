@@ -7,7 +7,18 @@ $interFigureSpacingMobile: 2.5rem
 	display: flex
 	overflow: hidden
 
-	@include breakpoint($anyDesktop)
+	&.defaultAlignment
+		flex-direction: rows
+
+	&.rowsOnlyAlignment
+		flex-direction: column
+
+		> figure
+			@include noHorizontalListMargin
+			@include listMargin($interFigureSpacing)
+		
+
+	@include breakpoint($desktop)
 		@include inlayed
 
 	@include breakpoint($phone)
