@@ -11,3 +11,11 @@ export function imageUrlFromComponent(component?: string, format: ImageFormat = 
 
 	return CockpitAssetPathForm.cockpitImage(component, imageRequest(format))
 }
+
+export function assetUrlFromComponent(component?: string): URL {
+	if (!component) {
+		return imageFallbackUrl
+	}
+
+	return CockpitAssetPathForm.cockpitAsset(component)
+}
