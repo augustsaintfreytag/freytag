@@ -2,6 +2,7 @@ import { FunctionComponent } from "react"
 import { WorkShowcaseBlock } from "~/api/records/work-showcase/library/work-showcase"
 import WorkContentHeadingBlock from "~/components/work/work-content-block/components/work-content-heading-block"
 import WorkContentImageColumnBlock from "~/components/work/work-content-block/components/work-content-image-column-block"
+import WorkContentImageHeadingBlock from "~/components/work/work-content-block/components/work-content-image-heading-block"
 import WorkContentQuoteBlock from "~/components/work/work-content-block/components/work-content-quote-block"
 import WorkContentTextBlock from "~/components/work/work-content-block/components/work-content-text-block"
 import WorkContentVideoBlock from "~/components/work/work-content-block/components/work-content-video-block"
@@ -26,17 +27,61 @@ const WorkContentBlock: FunctionComponent<Props> = props => {
 		return <WorkContentTextBlock text={`Missing kind or block.`} />
 	}
 
+	const { textContent, subTextContent, imageContents, videoCode, videoAspectValue } = block
+
 	switch (kind) {
 		case Kind.Heading:
-			return <WorkContentHeadingBlock text={block.textContent} />
+			return (() => {
+				if (!textContent) {
+					return null
+				}
+
+				return <WorkContentHeadingBlock text={textContent} />
+			})()
+		case Kind.TitleImage:
+			return (() => {
+				const imageProps = imagePropsForBlock(block)
+				const imageURL = imageProps[0].src
+
+				if (!textContent || !subTextContent || !imageURL) {
+					return null
+				}
+
+				return <WorkContentImageHeadingBlock heading={textContent} subHeading={subTextContent} image={imageURL} />
+			})()
 		case Kind.Text:
-			return <WorkContentTextBlock text={block.textContent} />
+			return (() => {
+				if (!textContent) {
+					return null
+				}
+
+				return <WorkContentTextBlock text={textContent} />
+			})()
 		case Kind.Images:
-			return <WorkContentImageColumnBlock collection={imagePropsForBlock(block)} />
+			return (() => {
+				const imageProps = imagePropsForBlock(block)
+				if (!imageProps || !imageProps.length) {
+					return null
+				}
+
+				return <WorkContentImageColumnBlock collection={imageProps} />
+			})()
 		case Kind.Quote:
-			return <WorkContentQuoteBlock text={block.textContent} />
+			return (() => {
+				if (!textContent) {
+					return null
+				}
+
+				return <WorkContentQuoteBlock text={block.textContent} />
+			})()
 		case Kind.Video:
-			return <WorkContentVideoBlock code={block.videoCode} aspect={block.videoAspectValue} />
+			return (() => {
+				if (!videoCode) {
+					return null
+				}
+
+				return <WorkContentVideoBlock code={videoCode} aspect={videoAspectValue} />
+			})()
 		default:
 			return <WorkContentTextBlock text={`Unsupported block kind '${kind}'`} />
 	}
