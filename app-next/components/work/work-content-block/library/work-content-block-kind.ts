@@ -2,7 +2,7 @@ import { enumCaseFromRawValue } from "~/utils/types/functions/enum-case-conversi
 
 export enum WorkContentBlockKind {
 	Heading = "Heading",
-	TitleImage = "Title Image",
+	ImageTitle = "Image Title",
 	Text = "Text",
 	Quote = "Quote",
 	Images = "Images",
@@ -11,7 +11,7 @@ export enum WorkContentBlockKind {
 
 export const allWorkContentBlockKind: WorkContentBlockKind[] = [
 	WorkContentBlockKind.Heading,
-	WorkContentBlockKind.TitleImage,
+	WorkContentBlockKind.ImageTitle,
 	WorkContentBlockKind.Text,
 	WorkContentBlockKind.Quote,
 	WorkContentBlockKind.Images,

@@ -9,7 +9,7 @@ type Props = {
 	image: URL
 }
 
-const WorkContentImageHeadingBlock: FunctionComponent<Props> = props => (
+const WorkContentImageTitleBlock: FunctionComponent<Props> = props => (
 	<section className={styles.block}>
 		<div className={styles.image}>
 			<img src={props.image} />
@@ -21,4 +21,4 @@ const WorkContentImageHeadingBlock: FunctionComponent<Props> = props => (
 	</section>
 )
 
-export default WorkContentImageHeadingBlock
+export default WorkContentImageTitleBlock

@@ -3,7 +3,7 @@ import { WorkShowcaseBlock } from "~/api/records/work-showcase/library/work-show
 import { workContentImageAlignmentFromRawValue } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
 import WorkContentHeadingBlock from "~/components/work/work-content-block/components/work-content-heading-block"
 import WorkContentImageColumnBlock from "~/components/work/work-content-block/components/work-content-image-column-block"
-import WorkContentImageHeadingBlock from "~/components/work/work-content-block/components/work-content-image-heading-block"
+import WorkContentImageTitleBlock from "~/components/work/work-content-block/components/work-content-image-title-block"
 import WorkContentQuoteBlock from "~/components/work/work-content-block/components/work-content-quote-block"
 import WorkContentTextBlock from "~/components/work/work-content-block/components/work-content-text-block"
 import WorkContentVideoBlock from "~/components/work/work-content-block/components/work-content-video-block"
@@ -39,7 +39,7 @@ const WorkContentBlock: FunctionComponent<Props> = props => {
 
 				return <WorkContentHeadingBlock text={textContent} />
 			})()
-		case Kind.TitleImage:
+		case Kind.ImageTitle:
 			return (() => {
 				const imageProps = imageComponentPropsForBlock(block)
 				const imageURL = imageProps[0]?.src
@@ -48,7 +48,7 @@ const WorkContentBlock: FunctionComponent<Props> = props => {
 					return null
 				}
 
-				return <WorkContentImageHeadingBlock heading={textContent} subHeading={subTextContent} image={imageURL} />
+				return <WorkContentImageTitleBlock heading={textContent} subHeading={subTextContent} image={imageURL} />
 			})()
 		case Kind.Text:
 			return (() => {
