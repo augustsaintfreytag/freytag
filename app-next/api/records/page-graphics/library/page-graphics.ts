@@ -1,9 +1,9 @@
 import { CockpitEntry } from "cockpit-access"
-import { CollectionAssetLink } from "~/api/records/asset/library/collection-asset-link"
+import { ImageLink } from "~/api/records/asset/library/image-link"
 
 export type PageGraphics = CockpitEntry & {
-	indexAsset?: CollectionAssetLink
-	imprintAsset?: CollectionAssetLink
-	privacyAsset?: CollectionAssetLink
-	pageNotFoundAsset?: CollectionAssetLink
+	indexAsset?: ImageLink
+	imprintAsset?: ImageLink
+	privacyAsset?: ImageLink
+	pageNotFoundAsset?: ImageLink
 }

@@ -1,40 +1,33 @@
 import { CockpitEntry } from "cockpit-access"
 import { AssetLink } from "~/api/records/asset/library/asset-link"
-import { CollectionAssetLink } from "~/api/records/asset/library/collection-asset-link"
+import { ImageLink } from "~/api/records/asset/library/image-link"
 import { WorkContentImageAlignment } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
-
-// Library
-
-export enum TextContentFormat {
-	Text = "Text",
-	Heading = "Heading",
-	Quote = "Quote"
-}
+import { WorkShowcaseTextContentFormat } from "~/api/records/work-showcase/library/work-showcase-text-content-format"
 
 // Models
 
-export interface WorkContentText extends CockpitEntry {
+export interface WorkShowcaseContentText extends CockpitEntry {
 	identifierItem: string
 	identifierParent: string
-	format: TextContentFormat
+	format: WorkShowcaseTextContentFormat
 	textContent?: string
 }
 
-export interface WorkContentImages extends CockpitEntry {
+export interface WorkShowcaseContentImages extends CockpitEntry {
 	identifierItem: string
 	identifierParent: string
-	imageContents: CollectionAssetLink[]
+	imageContents: ImageLink[]
 	imageAlignment: WorkContentImageAlignment
 }
 
-export interface WorkContentVideoEmbed extends CockpitEntry {
+export interface WorkShowcaseContentVideoEmbed extends CockpitEntry {
 	identifierItem: string
 	identifierParent: string
 	videoCode: string
 	videoAspectValue?: string
 }
 
-export interface WorkContentTitleCase extends CockpitEntry {
+export interface WorkShowcaseContentTitleCase extends CockpitEntry {
 	identifierItem: string
 	identifierParent: string
 	headingContent: string
@@ -42,4 +35,8 @@ export interface WorkContentTitleCase extends CockpitEntry {
 	imageContent?: AssetLink
 }
 
-export type AnyWorkContent = WorkContentText | WorkContentImages | WorkContentVideoEmbed | WorkContentTitleCase
+export type AnyWorkShowcaseContent =
+	| WorkShowcaseContentText
+	| WorkShowcaseContentImages
+	| WorkShowcaseContentVideoEmbed
+	| WorkShowcaseContentTitleCase

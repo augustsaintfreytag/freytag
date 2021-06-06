@@ -19,5 +19,5 @@ export interface AssetLink {
 }
 
 export function isAssetLink(object: any): object is AssetLink {
-	return typeof object === "object" && typeof object.path === "string" && typeof object.mime === "string"
+	return typeof object === "object" && typeof object.path === "string" && typeof object.mime === "string" && typeof object.size === "number"
 }

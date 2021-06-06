@@ -1,6 +1,7 @@
 import { CockpitEntry } from "cockpit-access"
-import { AssetLink } from "~/api/records/asset/library/asset-link"
+import { ImageLink } from "~/api/records/asset/library/image-link"
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
+import { AnyWorkShowcaseContent } from "~/api/records/work-showcase/library/work-showcase-content"
 
 // Showcase
 
@@ -10,10 +11,10 @@ export interface WorkShowcase extends CockpitEntry {
 	slug: string
 	description: string
 	event?: LifeEvent
-	titleImage?: AssetLink
-	teaserImage?: AssetLink
-	teaserImageCentered?: AssetLink
-	blocks: AnyWorkShowcaseBlockContent[]
+	titleImage?: ImageLink
+	teaserImageTrailing?: ImageLink
+	teaserImageCentered?: ImageLink
+	blocks: ResolvedCollectionLink<AnyWorkShowcaseContent>[]
 }
 
 // Showcase Block Contents (Collection)
@@ -34,5 +35,3 @@ export interface ResolvedCollectionLink<ValueObject> {
 	}
 	value: ValueObject
 }
-
-export type AnyWorkShowcaseBlockContent = ResolvedCollectionLink<AnyWorkShowcaseBlockContent>
