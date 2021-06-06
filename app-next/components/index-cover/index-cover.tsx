@@ -4,7 +4,7 @@ import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./index-cover.module.sass"
 
-type Props = {
+interface Props {
 	src?: URL
 }
 

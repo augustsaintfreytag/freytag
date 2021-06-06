@@ -1,7 +1,7 @@
 import { FunctionComponent, ReactNode, ReactNodeArray } from "react"
 import { URL } from "~/utils/routing/library/url"
 
-type Props = {
+interface Props {
 	href: URL
 	children: ReactNode | ReactNodeArray
 }

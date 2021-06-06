@@ -22,11 +22,11 @@ import styles from "./imprint-page.module.sass"
 
 // Library
 
-type PageData = {
+interface PageData {
 	coverImage?: URL
 }
 
-type Props = {
+interface Props {
 	data?: PageData
 }
 

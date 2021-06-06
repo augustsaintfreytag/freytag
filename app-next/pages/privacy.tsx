@@ -23,11 +23,11 @@ import styles from "./privacy-page.module.sass"
 
 // Library
 
-type PageData = {
+interface PageData {
 	coverImage?: URL
 }
 
-type Props = {
+interface Props {
 	data?: PageData
 }
 

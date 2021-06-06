@@ -47,7 +47,7 @@ function sortedDataFromCollection(data: ItemData[], mode: SortMode, column: Colu
 
 // Library
 
-type DataProps = {
+interface DataProps {
 	filterKind: FilterKind
 	sortColumn: Column
 	sortMode: SortMode
@@ -56,7 +56,7 @@ type DataProps = {
 type SetDataPropsBlock = (props: DataProps) => void
 type SetDataBlock = (data: ItemData[]) => void
 
-type HookProps = {
+interface HookProps {
 	data: ItemData[]
 	sortProps: DataProps
 	setData: SetDataBlock

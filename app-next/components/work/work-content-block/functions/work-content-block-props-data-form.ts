@@ -20,13 +20,13 @@ export enum ComponentPropsKind {
 	Video
 }
 
-type ImageComponentProps = {
+interface ImageComponentProps {
 	kind: ComponentPropsKind
 	src?: URL
 	caption?: string
 }
 
-type VideoComponentProps = {
+interface VideoComponentProps {
 	kind: ComponentPropsKind
 	src?: URL
 	cover?: URL

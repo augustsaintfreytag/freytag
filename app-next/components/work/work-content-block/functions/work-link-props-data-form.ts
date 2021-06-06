@@ -5,7 +5,7 @@ import { OpenDateInterval } from "~/utils/date/library/intervals"
 
 // Link Props
 
-type LinkProperties = {
+interface LinkProperties {
 	kind: LifeEventKind
 	title: string
 	interval: OpenDateInterval

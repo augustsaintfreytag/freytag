@@ -1,8 +1,8 @@
-type CollectionAssetMetadata = {
+interface CollectionAssetMetadata {
 	title?: string
 }
 
-export type CollectionAssetRecord = {
+export interface CollectionAssetRecord {
 	path: string
 	meta?: CollectionAssetMetadata
 }

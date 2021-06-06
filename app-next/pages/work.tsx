@@ -21,11 +21,11 @@ import styles from "./work-page.module.sass"
 
 // Library
 
-type PageData = {
+interface PageData {
 	showcases: WorkShowcase[]
 }
 
-type Props = {
+interface Props {
 	data?: PageData
 }
 

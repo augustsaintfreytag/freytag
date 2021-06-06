@@ -1,4 +1,4 @@
-export type AssetRecord = {
+export interface AssetRecord {
 	path: string
 	title: string
 	description: string

@@ -22,12 +22,12 @@ import styles from "./index-page.module.sass"
 
 // Library
 
-type PageData = {
+interface PageData {
 	cover?: URL
 	feature?: WorkShowcase
 }
 
-type Props = {
+interface Props {
 	data?: PageData
 }
 

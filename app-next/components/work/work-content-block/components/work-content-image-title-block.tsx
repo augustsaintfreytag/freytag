@@ -3,7 +3,7 @@ import Markdown from "~/components/markdown/markdown"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./work-content-image-heading-block.module.sass"
 
-type Props = {
+interface Props {
 	heading: string
 	subHeading: string
 	image: URL

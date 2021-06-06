@@ -25,12 +25,12 @@ const NavigationListItem: FunctionComponent<NavigationListItemProps> = props => 
 
 // Header Component
 
-type Props = {
+interface Props {
 	activeRoute?: URL
 	showsBrand: boolean
 }
 
-type NavigationDefinition = {
+interface NavigationDefinition {
 	href: URL
 	description: string
 }

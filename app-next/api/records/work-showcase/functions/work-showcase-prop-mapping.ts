@@ -4,12 +4,12 @@ import { imageUrlFromComponent } from "~/api/records/asset/functions/image-recor
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import { URL } from "~/utils/routing/library/url"
 
-type ImageProps = {
+interface ImageProps {
 	trailing: URL
 	centered: URL
 }
 
-type Props = {
+interface Props {
 	id: UUID
 	slug?: string
 	headingText: string

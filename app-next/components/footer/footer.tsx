@@ -13,7 +13,7 @@ enum SpriteHref {
 	Medium = "#Medium Symbol"
 }
 
-type NavigationDefinition = {
+interface NavigationDefinition {
 	href: URL
 	description: string
 }
@@ -26,7 +26,7 @@ const navigationDefinitions: NavigationDefinition[] = [
 	{ href: "/privacy", description: "Privacy" }
 ]
 
-type Props = {
+interface Props {
 	activeRoute?: URL
 }
 

@@ -4,7 +4,7 @@ import ImageFigure, { ImageFigureProps } from "~/components/image-figure/image-f
 import { className } from "~/utils/class-names/class-name"
 import styles from "./work-content-image-column-block.module.sass"
 
-type Props = {
+interface Props {
 	collection: ImageFigureProps[]
 	alignment?: WorkContentImageAlignment
 }

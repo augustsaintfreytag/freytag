@@ -25,11 +25,11 @@ const WorkDivider = () => <Divider className={styles.divider} />
 
 // Library
 
-type PageData = {
+interface PageData {
 	showcase: WorkShowcase
 }
 
-type Props = {
+interface Props {
 	data?: PageData
 }
 

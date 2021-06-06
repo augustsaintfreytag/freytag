@@ -4,7 +4,7 @@ import { URL } from "~/utils/routing/library/url"
 
 // Component
 
-type Props = {
+interface Props {
 	children?: string
 }
 

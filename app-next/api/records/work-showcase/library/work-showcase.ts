@@ -5,7 +5,7 @@ import { LifeEvent } from "~/api/records/life-event/library/life-event"
 
 // Showcase
 
-export type WorkShowcase = CockpitEntry & {
+export interface WorkShowcase extends CockpitEntry {
 	display: boolean
 	name: string
 	slug?: string
@@ -19,7 +19,7 @@ export type WorkShowcase = CockpitEntry & {
 
 // Showcase Block
 
-export type WorkShowcaseBlock = CockpitEntry & {
+export interface WorkShowcaseBlock extends CockpitEntry {
 	form: string
 	identifierItem: string
 	identifierGroup: string
@@ -33,7 +33,7 @@ export type WorkShowcaseBlock = CockpitEntry & {
 
 // Showcase Block Contents (Collection)
 
-export type WorkShowcaseBlockContent<ValueObject> = {
+export interface WorkShowcaseBlockContent<ValueObject> {
 	field: {
 		type: string
 		name?: string
