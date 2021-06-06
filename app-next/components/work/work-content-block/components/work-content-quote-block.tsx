@@ -2,7 +2,7 @@ import { FunctionComponent } from "react"
 import Markdown from "~/components/markdown/markdown"
 import styles from "./work-content-quote-block.module.sass"
 
-interface Props {
+export interface Props {
 	text?: string
 }
 

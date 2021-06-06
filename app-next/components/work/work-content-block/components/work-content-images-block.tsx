@@ -2,9 +2,9 @@ import { FunctionComponent } from "react"
 import { WorkContentImageAlignment } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
 import ImageFigure, { ImageFigureProps } from "~/components/image-figure/image-figure"
 import { className } from "~/utils/class-names/class-name"
-import styles from "./work-content-image-column-block.module.sass"
+import styles from "./work-content-images-block.module.sass"
 
-interface Props {
+export interface Props {
 	collection: ImageFigureProps[]
 	alignment?: WorkContentImageAlignment
 }

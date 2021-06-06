@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react"
 import styles from "./work-content-heading-block.module.sass"
 
-interface Props {
+export interface Props {
 	text: string
 }
 

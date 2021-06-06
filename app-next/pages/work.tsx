@@ -36,7 +36,7 @@ function mapPageData(showcases: WorkShowcase[]): PageData {
 	return { showcases }
 }
 
-export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
+export const getServerSideProps: GetServerSideProps<Props, {}> = async () => {
 	return await getServerSideApiResponse<WorkShowcase[], PageData>(workShowcasesFromApi, mapPageData)
 }
 
