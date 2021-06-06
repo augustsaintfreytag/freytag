@@ -1,6 +1,6 @@
 import { assetUrlFromComponent, imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
-import { AssetRecord } from "~/api/records/asset/library/asset-record"
-import { CollectionAssetRecord } from "~/api/records/asset/library/collection-asset-record"
+import { AssetLink } from "~/api/records/asset/library/asset-link"
+import { CollectionAssetLink } from "~/api/records/asset/library/collection-asset-link"
 import { WorkShowcaseBlock, WorkShowcaseMediaComponent } from "~/api/records/work-showcase/library/work-showcase"
 import { URL } from "~/utils/routing/library/url"
 
@@ -46,12 +46,12 @@ function imageCaptionFromComponent(component?: WorkShowcaseMediaComponent): stri
 	return caption
 }
 
-function videoCoverFromComponent(component?: WorkShowcaseMediaComponent): AssetRecord | undefined {
+function videoCoverFromComponent(component?: WorkShowcaseMediaComponent): AssetLink | undefined {
 	if (!(component?.field.name === FieldName.Cover)) {
 		return undefined
 	}
 
-	const asset = component.value as AssetRecord
+	const asset = component.value as AssetLink
 	return asset
 }
 
@@ -60,7 +60,7 @@ function componentPropsForComponentCouple(
 	rightComponent?: WorkShowcaseMediaComponent
 ): AnyComponentProps | undefined {
 	if (leftComponent.field.name === FieldName.Image) {
-		const imageRecord = leftComponent.value as CollectionAssetRecord
+		const imageRecord = leftComponent.value as CollectionAssetLink
 		const imageCaption = imageCaptionFromComponent(rightComponent)
 
 		return {
@@ -71,7 +71,7 @@ function componentPropsForComponentCouple(
 	}
 
 	if (leftComponent.field.name === FieldName.Video) {
-		const videoRecord = leftComponent.value as AssetRecord
+		const videoRecord = leftComponent.value as AssetLink
 		const videoCover = videoCoverFromComponent(rightComponent)
 
 		return {
