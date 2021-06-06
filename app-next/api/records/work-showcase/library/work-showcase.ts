@@ -1,6 +1,6 @@
 import { CockpitEntry } from "cockpit-access"
 import { AssetRecord } from "~/api/records/asset/library/asset-record"
-import { ImageRecord } from "~/api/records/image/library/image-record"
+import { CollectionAssetRecord } from "~/api/records/asset/library/collection-asset-record"
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
 
 // Showcase
@@ -10,9 +10,9 @@ export type WorkShowcase = CockpitEntry & {
 	name: string
 	slug?: string
 	description?: string
-	titleImage?: ImageRecord
-	teaserImageTrailing?: ImageRecord
-	teaserImageCentered?: ImageRecord
+	titleImage?: CollectionAssetRecord
+	teaserImageTrailing?: CollectionAssetRecord
+	teaserImageCentered?: CollectionAssetRecord
 	event?: LifeEvent
 	blocks?: WorkShowcaseBlock[]
 }
@@ -45,6 +45,6 @@ export type WorkShowcaseBlockContent<ValueObject> = {
 export type AnyWorkShowcaseBlockContent = WorkShowcaseBlockContent<any>
 
 export type WorkShowcaseMediaComponent =
-	| WorkShowcaseBlockContent<ImageRecord>
+	| WorkShowcaseBlockContent<CollectionAssetRecord>
 	| WorkShowcaseBlockContent<AssetRecord>
 	| WorkShowcaseBlockContent<string>

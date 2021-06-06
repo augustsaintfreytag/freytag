@@ -1,6 +1,6 @@
+import { assetUrlFromComponent, imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
 import { AssetRecord } from "~/api/records/asset/library/asset-record"
-import { assetUrlFromComponent, imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
-import { ImageRecord } from "~/api/records/image/library/image-record"
+import { CollectionAssetRecord } from "~/api/records/asset/library/collection-asset-record"
 import { WorkShowcaseBlock, WorkShowcaseMediaComponent } from "~/api/records/work-showcase/library/work-showcase"
 import { URL } from "~/utils/routing/library/url"
 
@@ -60,7 +60,7 @@ function componentPropsForComponentCouple(
 	rightComponent?: WorkShowcaseMediaComponent
 ): AnyComponentProps | undefined {
 	if (leftComponent.field.name === FieldName.Image) {
-		const imageRecord = leftComponent.value as ImageRecord
+		const imageRecord = leftComponent.value as CollectionAssetRecord
 		const imageCaption = imageCaptionFromComponent(rightComponent)
 
 		return {

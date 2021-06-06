@@ -1,8 +1,8 @@
 export type AssetRecord = {
 	path: string
 	title: string
-	mime: string
 	description: string
+	mime: string
 	size: number
 }
 
