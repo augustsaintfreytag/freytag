@@ -25,7 +25,7 @@ export function mappedWorkShowcaseListItemProps(showcase: WorkShowcase): Props {
 	const previewText = showcase.description ?? ""
 
 	const image = {
-		trailing: imageUrlFromComponent(showcase.teaserImageTrailing?.path, ImageFormat.Large),
+		trailing: imageUrlFromComponent(showcase.teaserImage?.path, ImageFormat.Large),
 		centered: imageUrlFromComponent(showcase.teaserImageCentered?.path, ImageFormat.Large)
 	}
 
