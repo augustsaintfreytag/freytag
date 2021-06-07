@@ -8,8 +8,8 @@ import {
 	sortedWorkShowcases,
 	workShowcasesFromApi
 } from "~/api/records/work-showcase/functions/work-showcase-data-access"
-import { mappedWorkShowcaseListItemProps } from "~/api/records/work-showcase/functions/work-showcase-prop-mapping"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import { mappedWorkShowcaseListItemProps } from "~/components/work/work-content/functions/work-showcase-prop-mapping"
 import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { Page, PageProps } from "~/types/page"

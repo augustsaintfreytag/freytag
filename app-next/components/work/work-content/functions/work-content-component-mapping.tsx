@@ -11,14 +11,14 @@ import {
 	WorkShowcaseTextContentFormat,
 	workShowcaseTextContentFormatFromRawValue
 } from "~/api/records/work-showcase/library/work-showcase-text-content-format"
-import WorkContentImageColumnBlock from "~/components/work/work-content-block/components/work-content-images-block"
-import WorkContentQuoteBlock from "~/components/work/work-content-block/components/work-content-quote-block"
+import WorkContentImageColumnBlock from "~/components/work/work-content/components/work-content-images-block"
+import WorkContentQuoteBlock from "~/components/work/work-content/components/work-content-quote-block"
 import {
 	default as WorkContentHeadingBlock,
 	default as WorkContentTextBlock
-} from "~/components/work/work-content-block/components/work-content-text-block"
-import WorkContentTitleCaseBlock from "~/components/work/work-content-block/components/work-content-title-case-block"
-import WorkContentVideoBlock from "~/components/work/work-content-block/components/work-content-video-block"
+} from "~/components/work/work-content/components/work-content-text-block"
+import WorkContentTitleCaseBlock from "~/components/work/work-content/components/work-content-title-case-block"
+import WorkContentVideoBlock from "~/components/work/work-content/components/work-content-video-block"
 import {
 	headingContentPropsFromContent,
 	imagesContentPropsFromContent,
@@ -26,8 +26,8 @@ import {
 	textContentPropsFromContent,
 	titleCaseContentPropsFromContent,
 	videoEmbedContentPropsFromContent
-} from "~/components/work/work-content-block/functions/work-content-block-props-mapping"
-import { workContentBlockKindFromRawValue, WorkShowcaseBlockKind as Kind } from "~/components/work/work-content-block/library/work-content-block-kind"
+} from "~/components/work/work-content/functions/work-content-block-props-mapping"
+import { workContentBlockKindFromRawValue, WorkShowcaseBlockKind as Kind } from "~/components/work/work-content/library/work-content-block-kind"
 
 type AnyElement = JSX.Element
 

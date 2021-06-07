@@ -1,5 +1,5 @@
 import { ImageFormat } from "~/api/common/library/image-request-preset"
-import { imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
+import { assetUrlFromComponent, imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
 import {
 	WorkShowcaseContentImages,
 	WorkShowcaseContentText,
@@ -7,12 +7,12 @@ import {
 	WorkShowcaseContentVideoEmbed
 } from "~/api/records/work-showcase/library/work-showcase-content"
 import { workContentImageAlignmentFromRawValue } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
-import { Props as HeadingContentProps } from "~/components/work/work-content-block/components/work-content-heading-block"
-import { Props as ImagesContentProps } from "~/components/work/work-content-block/components/work-content-images-block"
-import { Props as QuoteContentProps } from "~/components/work/work-content-block/components/work-content-quote-block"
-import { Props as TextContentProps } from "~/components/work/work-content-block/components/work-content-text-block"
-import { Props as TitleCaseContentProps } from "~/components/work/work-content-block/components/work-content-title-case-block"
-import { Props as VideoEmbedContentProps } from "~/components/work/work-content-block/components/work-content-video-block"
+import { Props as HeadingContentProps } from "~/components/work/work-content/components/work-content-heading-block"
+import { Props as ImagesContentProps } from "~/components/work/work-content/components/work-content-images-block"
+import { Props as QuoteContentProps } from "~/components/work/work-content/components/work-content-quote-block"
+import { Props as TextContentProps } from "~/components/work/work-content/components/work-content-text-block"
+import { Props as TitleCaseContentProps } from "~/components/work/work-content/components/work-content-title-case-block"
+import { Props as VideoEmbedContentProps } from "~/components/work/work-content/components/work-content-video-block"
 import { URL } from "~/utils/routing/library/url"
 
 export function headingContentPropsFromContent(block: WorkShowcaseContentText): HeadingContentProps {
@@ -57,9 +57,23 @@ export function videoEmbedContentPropsFromContent(block: WorkShowcaseContentVide
 }
 
 export function titleCaseContentPropsFromContent(block: WorkShowcaseContentTitleCase): TitleCaseContentProps {
+	const callToAction = (() => {
+		const [asset, label] = [block.downloadAsset, block.downloadLabel]
+
+		if (!asset || !label) {
+			return undefined
+		}
+
+		return {
+			link: assetUrlFromComponent(asset.path),
+			label: label
+		}
+	})()
+
 	return {
 		heading: block.headingContent,
 		subHeading: block.subContent,
-		image: imageUrlFromComponent(block.imageContent?.path, ImageFormat.Large)
+		image: imageUrlFromComponent(block.imageContent?.path, ImageFormat.Large),
+		callToAction: callToAction
 	}
 }

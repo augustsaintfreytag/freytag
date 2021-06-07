@@ -7,6 +7,10 @@ export interface Props {
 	heading: string
 	subHeading?: string
 	image?: URL
+	callToAction?: {
+		link: URL
+		label: string
+	}
 }
 
 const WorkContentTitleCaseBlock: FunctionComponent<Props> = props => (
