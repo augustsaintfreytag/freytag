@@ -26,7 +26,7 @@ import {
 	textContentPropsFromContent,
 	titleCaseContentPropsFromContent,
 	videoEmbedContentPropsFromContent
-} from "~/components/work/work-content/functions/work-content-block-props-mapping"
+} from "~/components/work/work-content/functions/work-content-props-mapping"
 import { workContentBlockKindFromRawValue, WorkShowcaseBlockKind as Kind } from "~/components/work/work-content/library/work-content-block-kind"
 
 type AnyElement = JSX.Element
