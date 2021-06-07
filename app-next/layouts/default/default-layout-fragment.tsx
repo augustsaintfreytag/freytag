@@ -5,6 +5,7 @@ import { brandTitle } from "~/components/brand/brand-text"
 import Footer from "~/components/footer/footer"
 import Header from "~/components/header/header"
 import { PropsWithAnyChildren } from "~/types/props"
+import { useSensitiveDataDisplay } from "~/utils/render/sensitive-data-hook"
 
 type Props = PropsWithAnyChildren & {
 	showsBrand?: boolean
@@ -12,6 +13,7 @@ type Props = PropsWithAnyChildren & {
 
 const DefaultLayoutFragment: FunctionComponent<Props> = props => {
 	const router = useRouter()
+	const shouldDisplaySensitiveData = useSensitiveDataDisplay()
 
 	return (
 		<>
@@ -26,7 +28,7 @@ const DefaultLayoutFragment: FunctionComponent<Props> = props => {
 			</Head>
 			<Header showsBrand={props.showsBrand ?? false} activeRoute={router.route} />
 			<main>{props.children}</main>
-			<Footer activeRoute={router.route} />
+			<Footer activeRoute={router.route} decoded={shouldDisplaySensitiveData} />
 		</>
 	)
 }
