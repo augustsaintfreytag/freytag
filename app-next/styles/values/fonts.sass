@@ -1,6 +1,66 @@
 @import "/styles/base/api"
 	
-// Fonts
+// Font Includes
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-regular.woff2")
+
+	font-family: "Work Sans"
+	font-weight: 400
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-italic.woff2")
+
+	font-family: "Work Sans"
+	font-weight: 400
+	font-style: italic
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-semibold.woff2")
+
+	font-family: "Work Sans"
+	font-weight: 600
+	font-style: normal
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-book.woff2")
+
+	font-family: "Maison Neue"
+	font-weight: 400
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-bold.woff2")
+
+	font-family: "Maison Neue"
+	font-weight: 700
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-black.woff2")
+
+	font-family: "Maison Neue"
+	font-weight: 800
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/rational-tw-book.woff2")
+
+	font-family: "Rational TW"
+	font-weight: 400
+	src: url($fontUrl) format("woff2")
+
+@font-face
+	$fontUrl: assetUrl("/storage/uploads/fonts/rational-tw-semibold.woff2")
+
+	font-family: "Rational TW"
+	font-weight: 600
+	src: url($fontUrl) format("woff2")
+
+// Font Styles
 
 $workSansFontFamily: "Work Sans"
 $maisonFontFamily: "Maison Neue"
@@ -90,56 +150,6 @@ $captionFontSizeMobile: 1rem
 
 $paragraphLineHeight: 1.65
 $captionLineHeight: 1.4
-
-@font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-regular.woff2")
-
-	font-family: "Work Sans"
-	font-weight: 400
-	src: url($fontUrl) format("woff2")
-
-@font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-italic.woff2")
-
-	font-family: "Work Sans"
-	font-weight: 400
-	font-style: italic
-	src: url($fontUrl) format("woff2")
-
-@font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-book.woff2")
-
-	font-family: "Maison Neue"
-	font-weight: 400
-	src: url($fontUrl) format("woff2")
-
-@font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-bold.woff2")
-
-	font-family: "Maison Neue"
-	font-weight: 700
-	src: url($fontUrl) format("woff2")
-
-@font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-black.woff2")
-
-	font-family: "Maison Neue"
-	font-weight: 800
-	src: url($fontUrl) format("woff2")
-
-@font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/rational-tw-book.woff2")
-
-	font-family: "Rational TW"
-	font-weight: 400
-	src: url($fontUrl) format("woff2")
-
-@font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/rational-tw-semibold.woff2")
-
-	font-family: "Rational TW"
-	font-weight: 600
-	src: url($fontUrl) format("woff2")
 
 // Mixins
 
