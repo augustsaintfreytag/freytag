@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react"
+import CallToAction from "~/components/call-to-action/call-to-action"
 import Markdown from "~/components/markdown/markdown"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./work-content-title-case-block.module.sass"
@@ -22,6 +23,7 @@ const WorkContentTitleCaseBlock: FunctionComponent<Props> = props => (
 		<div className={styles.subHeading}>
 			<Markdown>{props.subHeading}</Markdown>
 		</div>
+		{props.callToAction && <CallToAction className={styles.callToAction} href={props.callToAction.link} text={props.callToAction.label} />}
 	</section>
 )
 
