@@ -92,7 +92,7 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 					</div>
 					{averageShowcaseCreation && (
 						<div>
-							A showcase is published on average every <em>{averageShowcaseCreation}</em>, last released on <em>{lastShowcaseCreation}</em>.
+							A showcase is published on average every <em>{averageShowcaseCreation}</em>, last release on <em>{lastShowcaseCreation}</em>.
 						</div>
 					)}
 				</aside>
