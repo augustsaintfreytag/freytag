@@ -32,7 +32,9 @@ export interface WorkShowcaseContentTitleCase extends CockpitEntry {
 	identifierParent: string
 	headingContent: string
 	subContent?: string
-	imageContent?: AssetLink
+	imageContent?: ImageLink
+	downloadAsset?: AssetLink
+	downloadLabel?: string
 }
 
 export type AnyWorkShowcaseContent =
