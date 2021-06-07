@@ -465,9 +465,9 @@ classnames@2.2.6:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
-"cockpit-access@https://gitlab.com/apricum/cockpit-access.git#fix/asset-path-form":
+"cockpit-access@https://gitlab.com/apricum/cockpit-access.git":
   version "2.0.1"
-  resolved "https://gitlab.com/apricum/cockpit-access.git#59e85894db5ed057721974ee8ba8879a2f7ce3b0"
+  resolved "https://gitlab.com/apricum/cockpit-access.git#1370fb9ed6e1c4235d6b393eaa3428ec33b81e25"
   dependencies:
     axios "^0.21.1"
 
