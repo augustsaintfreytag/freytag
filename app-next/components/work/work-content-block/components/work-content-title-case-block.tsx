@@ -1,15 +1,15 @@
 import { FunctionComponent } from "react"
 import Markdown from "~/components/markdown/markdown"
 import { URL } from "~/utils/routing/library/url"
-import styles from "./work-content-image-heading-block.module.sass"
+import styles from "./work-content-title-case-block.module.sass"
 
-type Props = {
+export interface Props {
 	heading: string
-	subHeading: string
-	image: URL
+	subHeading?: string
+	image?: URL
 }
 
-const WorkContentImageTitleBlock: FunctionComponent<Props> = props => (
+const WorkContentTitleCaseBlock: FunctionComponent<Props> = props => (
 	<section className={styles.block}>
 		<div className={styles.image}>
 			<img src={props.image} />
@@ -21,4 +21,4 @@ const WorkContentImageTitleBlock: FunctionComponent<Props> = props => (
 	</section>
 )
 
-export default WorkContentImageTitleBlock
+export default WorkContentTitleCaseBlock

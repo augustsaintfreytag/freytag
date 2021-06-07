@@ -3,7 +3,7 @@ import { ApiCollection, defaultApiFilter } from "~/api/common/functions/data-acc
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
 
 export async function lifeEventsFromApi(): Promise<LifeEvent[]> {
-	const response = await CockpitDataAccess.recordsInCollection(ApiCollection.Vita, { filter: defaultApiFilter })
+	const response = await CockpitDataAccess.recordsInCollection(ApiCollection.Life, { filter: defaultApiFilter })
 	const entries = response.entries as LifeEvent[]
 
 	return entries

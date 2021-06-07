@@ -1,6 +1,6 @@
 export function enumCaseFromRawValue<Value, RawValue>(rawValue: RawValue, caseValues: Value[]): Value | undefined {
 	for (const caseValue of caseValues) {
-		if (rawValue !== ((caseValue as unknown) as RawValue)) {
+		if (rawValue !== (caseValue as unknown as RawValue)) {
 			continue
 		}
 

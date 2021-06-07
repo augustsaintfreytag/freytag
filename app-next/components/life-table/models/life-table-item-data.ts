@@ -1,7 +1,7 @@
 import { LifeEventKind as Kind } from "~/api/records/life-event/library/life-event-kind"
 import { OpenDateInterval } from "~/utils/date/library/intervals"
 
-export type LifeTableItemData = {
+export interface LifeTableItemData {
 	id: string
 	name: string
 	kind: Kind

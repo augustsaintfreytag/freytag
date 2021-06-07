@@ -21,11 +21,11 @@ import styles from "./work-page.module.sass"
 
 // Library
 
-type PageData = {
+interface PageData {
 	showcases: WorkShowcase[]
 }
 
-type Props = {
+interface Props {
 	data?: PageData
 }
 
@@ -36,7 +36,7 @@ function mapPageData(showcases: WorkShowcase[]): PageData {
 	return { showcases }
 }
 
-export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
+export const getServerSideProps: GetServerSideProps<Props, {}> = async () => {
 	return await getServerSideApiResponse<WorkShowcase[], PageData>(workShowcasesFromApi, mapPageData)
 }
 
@@ -92,7 +92,7 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 					</div>
 					{averageShowcaseCreation && (
 						<div>
-							A showcase is published on average every <em>{averageShowcaseCreation}</em>, last released on <em>{lastShowcaseCreation}</em>.
+							A showcase is published on average every <em>{averageShowcaseCreation}</em>, last release on <em>{lastShowcaseCreation}</em>.
 						</div>
 					)}
 				</aside>

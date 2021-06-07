@@ -1,7 +1,7 @@
 import Head from "next/head"
 import { GetServerSideProps } from "next/types"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
-import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
+import { imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import { featuredWorkShowcaseFromApi } from "~/api/records/work-showcase-feature/functions/work-showcase-feature-data-access"
 import { mappedWorkShowcaseListItemProps } from "~/api/records/work-showcase/functions/work-showcase-prop-mapping"
@@ -22,12 +22,12 @@ import styles from "./index-page.module.sass"
 
 // Library
 
-type PageData = {
+interface PageData {
 	cover?: URL
 	feature?: WorkShowcase
 }
 
-type Props = {
+interface Props {
 	data?: PageData
 }
 

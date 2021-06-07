@@ -18,7 +18,7 @@ const defaultProps: LifeTableDataProps = {
 	sortMode: LifeTableSortMode.Descending
 }
 
-type Props = {
+interface Props {
 	data: LifeTableItemData[]
 }
 

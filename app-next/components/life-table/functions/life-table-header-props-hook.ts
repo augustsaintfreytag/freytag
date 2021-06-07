@@ -3,7 +3,7 @@ import { defaultSortMode, invertedSortMode } from "~/components/life-table/funct
 import { LifeTableColumn as Column } from "~/components/life-table/library/life-table-column"
 import { LifeTableSortMode as SortMode } from "~/components/life-table/library/life-table-sort-mode"
 
-type Props = {
+interface Props {
 	activeColumn: Column
 	activeColumnSortMode: SortMode
 	toggleColumn: (column: Column) => void

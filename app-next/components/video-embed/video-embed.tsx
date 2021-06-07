@@ -2,7 +2,7 @@ import Head from "next/head"
 import { FunctionComponent } from "react"
 import styles from "./video-embed.module.sass"
 
-type Props = {
+interface Props {
 	code: string
 	aspect?: string
 }

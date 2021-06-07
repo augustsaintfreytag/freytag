@@ -1,11 +1,11 @@
 export enum ApiCollection {
-	Vita = "vita",
+	Life = "life",
 	Work = "work"
 }
 
 export enum ApiSingleton {
-	PageGraphics = "pageGraphics",
-	ShowcaseFeature = "showcaseFeature"
+	PageGraphics = "page_graphics",
+	ShowcaseFeature = "showcase_feature"
 }
 
 export const defaultApiFilter = { display: true }

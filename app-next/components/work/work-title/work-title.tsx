@@ -11,7 +11,7 @@ import styles from "./work-title.module.sass"
 
 // Utility
 
-type TagProperties = {
+interface TagProperties {
 	name: string
 	representation: string
 }

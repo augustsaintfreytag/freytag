@@ -1,23 +1,19 @@
 import { enumCaseFromRawValue } from "~/utils/types/functions/enum-case-conversion"
 
-export enum WorkContentBlockKind {
-	Heading = "Heading",
-	ImageTitle = "Image Title",
-	Text = "Text",
-	Quote = "Quote",
-	Images = "Images",
-	Video = "Video"
+export enum WorkShowcaseBlockKind {
+	Text = "text",
+	Images = "images",
+	VideoEmbed = "video_embed",
+	TitleCase = "title_case"
 }
 
-export const allWorkContentBlockKind: WorkContentBlockKind[] = [
-	WorkContentBlockKind.Heading,
-	WorkContentBlockKind.ImageTitle,
-	WorkContentBlockKind.Text,
-	WorkContentBlockKind.Quote,
-	WorkContentBlockKind.Images,
-	WorkContentBlockKind.Video
+export const allWorkContentBlockKind: WorkShowcaseBlockKind[] = [
+	WorkShowcaseBlockKind.Text,
+	WorkShowcaseBlockKind.Images,
+	WorkShowcaseBlockKind.VideoEmbed,
+	WorkShowcaseBlockKind.TitleCase
 ]
 
-export function workContentBlockKindFromRawValue(rawValue: string): WorkContentBlockKind | undefined {
+export function workContentBlockKindFromRawValue(rawValue: string | undefined): WorkShowcaseBlockKind | undefined {
 	return enumCaseFromRawValue(rawValue, allWorkContentBlockKind)
 }
