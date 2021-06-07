@@ -1,11 +1,11 @@
 export type TimeInterval = number
 
-export type DateInterval = {
+export interface DateInterval {
 	start: Date
 	end: Date
 }
 
-export type OpenDateInterval = {
+export interface OpenDateInterval {
 	start?: Date
 	end?: Date
 }

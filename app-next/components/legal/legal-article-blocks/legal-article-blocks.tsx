@@ -6,7 +6,10 @@ import styles from "./legal-article-blocks.module.sass"
 
 type BlockContent = ReactNode | ReactNodeArray | string
 
-type ImprintHeadingBlockProps = { heading: BlockContent; aside: BlockContent }
+interface ImprintHeadingBlockProps {
+	heading: BlockContent
+	aside: BlockContent
+}
 
 export const LegalHeadingBlock: FunctionComponent<ImprintHeadingBlockProps> = props => (
 	<div className={className(styles.block, styles.headingBlock)}>
@@ -15,7 +18,9 @@ export const LegalHeadingBlock: FunctionComponent<ImprintHeadingBlockProps> = pr
 	</div>
 )
 
-type ImprintSubHeadingBlockProps = { heading: BlockContent }
+interface ImprintSubHeadingBlockProps {
+	heading: BlockContent
+}
 
 export const LegalSubHeadingBlock: FunctionComponent<ImprintSubHeadingBlockProps> = props => (
 	<div className={className(styles.block, styles.subHeadingBlock)}>
@@ -23,7 +28,9 @@ export const LegalSubHeadingBlock: FunctionComponent<ImprintSubHeadingBlockProps
 	</div>
 )
 
-type ImprintTextBlockProps = PropsWithAnyChildren & { heading?: BlockContent }
+interface ImprintTextBlockProps extends PropsWithAnyChildren {
+	heading?: BlockContent
+}
 
 export const LegalTextBlock: FunctionComponent<ImprintTextBlockProps> = props => (
 	<div className={className(styles.block, styles.textBlock)}>
@@ -32,7 +39,9 @@ export const LegalTextBlock: FunctionComponent<ImprintTextBlockProps> = props =>
 	</div>
 )
 
-type ImprintContactBlockProps = { decoded: boolean }
+interface ImprintContactBlockProps {
+	decoded: boolean
+}
 
 export const LegalContactBlock: FunctionComponent<ImprintContactBlockProps> = props => (
 	<ContactBlock className={className(styles.block, styles.contactBlock)} decoded={props.decoded} />

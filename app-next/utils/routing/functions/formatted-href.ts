@@ -1,6 +1,10 @@
 import { URL } from "~/utils/routing/library/url"
 
-export type HrefProperties = { href: URL; text: string; isExternal: boolean }
+export interface HrefProperties {
+	href: URL
+	text: string
+	isExternal: boolean
+}
 
 export function formattedHref(url: URL): string {
 	return url.replace(/https?:\/\/(www\.)?/, "")

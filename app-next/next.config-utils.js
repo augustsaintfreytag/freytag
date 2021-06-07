@@ -91,6 +91,8 @@ function firstElement(collection, condition) {
 	return undefined
 }
 
+// Module
+
 module.exports = {
 	injectWebpackDefinitionsIntoSassLoader
 }

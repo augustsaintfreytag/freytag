@@ -7,16 +7,27 @@ $interFigureSpacingMobile: 2.5rem
 	display: flex
 	overflow: hidden
 
-	@include breakpoint($anyDesktop)
-		@include inlayed
+	&.defaultAlignment
+		flex-direction: rows
 
-	@include breakpoint($phone)
+	&.rowsOnlyAlignment
 		flex-direction: column
-		padding: 0 $textInlayPaddingMobile + 0.25rem
+
+		> figure
+			@include noHorizontalListMargin
+			@include listMargin($interFigureSpacing)
+		
+
+	@include breakpoint($desktop)
+		@include inlayed
 
 	@include breakpoint($tablet)
 		max-width: none
 		padding: 0 4.25rem
+
+	@include breakpoint($phone)
+		flex-direction: column
+		padding: 0 $textInlayPaddingMobile + 0.25rem
 
 	> figure
 		@include horizontalListMargin($interFigureSpacing)

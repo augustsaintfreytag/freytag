@@ -54,5 +54,3 @@ export async function getServerSideApiResponse<Response, PageData>(
 		return ServerSideResultNotFound
 	}
 }
-
-// export async function tryAsync<ReturnValue>()

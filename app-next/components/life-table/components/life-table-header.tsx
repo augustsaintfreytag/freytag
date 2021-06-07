@@ -7,7 +7,7 @@ import styles from "./life-table-header.module.sass"
 
 // Definitions
 
-type ItemDefinition = {
+interface ItemDefinition {
 	column: Column
 	text: string
 	style: string
@@ -25,7 +25,7 @@ const items: ItemDefinition[] = [
 
 // Component
 
-type Props = {
+interface Props {
 	activeColumn?: Column
 	activeColumnSortMode?: SortMode
 	onColumnToggle?: (column: Column) => void

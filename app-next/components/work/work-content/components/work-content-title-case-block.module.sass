@@ -1,0 +1,42 @@
+@import "/styles/values/all"
+
+.block
+	padding: 3.5rem 0 5rem 0
+
+	.image
+		@include breakpoint($desktop)
+			@include inlayed
+			max-width: 60rem
+
+		@include breakpoint($tablet)
+			max-width: none
+			padding: 0 6rem
+
+		@include breakpoint($phone)
+			max-width: none
+			padding: 0 3rem
+
+		img
+			@include coverObject
+
+	.heading
+		@include paragraphHeadingFont
+		font-size: $elementHeadingFontSize
+		text-align: center
+		margin-top: 2rem
+
+	.subHeading
+		@include paragraphSubHeadingFont
+		font-size: 1.2rem
+		text-align: center
+		margin-top: 1rem
+		padding: 0 2.5rem
+		
+		@include breakpoint($tablet)
+			padding: 0 10rem
+
+		@include breakpoint($phone)
+			padding: 0 5rem
+
+	.callToAction
+		margin: 2.5rem auto 0 auto

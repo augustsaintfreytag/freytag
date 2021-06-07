@@ -1,43 +1,37 @@
 import { CockpitEntry } from "cockpit-access"
-import { ImageRecord } from "~/api/records/image/library/image-record"
+import { ImageLink } from "~/api/records/asset/library/image-link"
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
+import { AnyWorkShowcaseContent } from "~/api/records/work-showcase/library/work-showcase-content"
 
 // Showcase
 
-export type WorkShowcase = CockpitEntry & {
+export interface WorkShowcase extends CockpitEntry {
 	display: boolean
 	name: string
-	slug?: string
-	description?: string
-	titleImage?: ImageRecord
-	teaserImageTrailing?: ImageRecord
-	teaserImageCentered?: ImageRecord
+	slug: string
+	description: string
 	event?: LifeEvent
-	blocks?: WorkShowcaseBlock[]
-}
-
-// Showcase Block
-
-export type WorkShowcaseBlock = CockpitEntry & {
-	form: string
-	identifierItem: string
-	identifierGroup: string
-	textContent: string
-	imageContents?: WorkShowcaseImageComponent[]
-	videoCode: string
-	videoAspectValue: string
+	titleImage?: ImageLink
+	teaserImageTrailing?: ImageLink
+	teaserImageCentered?: ImageLink
+	blocks: ResolvedCollectionLink<AnyWorkShowcaseContent>[]
 }
 
 // Showcase Block Contents (Collection)
 
-export type WorkShowcaseBlockContent<ValueObject> = {
+export interface CollectionLinkOptions {
+	link: string
+	display: string
+	multiple: boolean
+	limit: boolean
+}
+
+export interface ResolvedCollectionLink<ValueObject> {
 	field: {
 		type: string
 		name?: string
 		label?: string
+		options?: CollectionLinkOptions
 	}
 	value: ValueObject
 }
-
-export type AnyWorkShowcaseBlockContent = WorkShowcaseBlockContent<any>
-export type WorkShowcaseImageComponent = WorkShowcaseBlockContent<ImageRecord> | WorkShowcaseBlockContent<string>

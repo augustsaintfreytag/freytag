@@ -1,0 +1,21 @@
+@import "/styles/values/all"
+	
+.callToAction
+	display: flex
+	align-items: center
+	cursor: pointer
+	
+	background: $elementBackgroundColor
+	padding: 0.5rem 2.75rem
+
+	> *
+		&.label
+			@include paragraphSubHeadingFont
+			font-size: 1.1rem
+
+		&.symbol
+			margin: 0 0 0 0.9rem
+
+			$size: 1.25rem
+			width: $size
+			height: $size

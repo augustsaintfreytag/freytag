@@ -10,7 +10,7 @@ import styles from "./footer-section.module.sass"
 
 // Footer Item
 
-type FooterItemProps = {
+interface FooterItemProps {
 	sprite?: string
 	text: string | ReactElement
 	href?: URL
@@ -69,7 +69,7 @@ export const FooterItem: FunctionComponent<FooterItemProps> = props => {
 
 type FooterItemElement = ReactElement<FooterItemProps>
 
-type FooterSectionProps = {
+interface FooterSectionProps {
 	header: string
 	children: FooterItemElement | FooterItemElement[]
 }

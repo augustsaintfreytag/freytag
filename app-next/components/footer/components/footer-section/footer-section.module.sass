@@ -49,11 +49,12 @@
 
 		.link
 			@include linkFont
+			@include ellipsized
 		
 		&.active
 			opacity: $activeElementFadeOpacity
 
 		&.linkItem
 			.text
-				width: 5.5rem
+				min-width: 5.5rem
 				margin-right: 1.4rem

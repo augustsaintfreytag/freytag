@@ -2,7 +2,7 @@ import { FunctionComponent } from "react"
 import VideoEmbed from "~/components/video-embed/video-embed"
 import styles from "./work-content-video-block.module.sass"
 
-type Props = {
+export interface Props {
 	code: string
 	aspect?: string
 }

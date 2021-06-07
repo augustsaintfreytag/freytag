@@ -1,0 +1,14 @@
+@import "/styles/values/all"
+
+.block
+	@include breakpoint($desktop)
+		@include inlayed
+		max-width: 70rem
+
+	@include breakpoint($tablet)
+		max-width: none
+		padding: 0 4.25rem
+
+	@include breakpoint($phone)
+		flex-direction: column
+		padding: 0 $textInlayPaddingMobile + 0.25rem

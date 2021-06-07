@@ -7,7 +7,7 @@ import styles from "./life-table-filters.module.sass"
 
 // Filter Definitions
 
-export type FilterDefinition = {
+export interface FilterDefinition {
 	kind: FilterKind
 	attribute: string
 	text: string

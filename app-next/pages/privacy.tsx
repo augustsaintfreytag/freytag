@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { getServerSideApiResponse } from "~/api/props/functions/server-side-props"
-import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
+import { imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import { PageGraphics } from "~/api/records/page-graphics/library/page-graphics"
 import Divider from "~/components/divider/divider"
@@ -23,11 +23,11 @@ import styles from "./privacy-page.module.sass"
 
 // Library
 
-type PageData = {
+interface PageData {
 	coverImage?: URL
 }
 
-type Props = {
+interface Props {
 	data?: PageData
 }
 

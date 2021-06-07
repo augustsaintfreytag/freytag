@@ -13,11 +13,11 @@ import styles from "./life-page.module.sass"
 
 // Library
 
-type PageData = {
+interface PageData {
 	lifeEvents: LifeEvent[]
 }
 
-type Props = {
+interface Props {
 	data: PageData
 }
 

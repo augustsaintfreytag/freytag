@@ -4,18 +4,17 @@ import { useMemo } from "react"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { getServerSideApiResponseByQuery } from "~/api/props/functions/server-side-props"
-import { imageUrlFromComponent } from "~/api/records/image/functions/image-record-data-access"
+import { imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
 import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import Divider from "~/components/divider/divider"
-import WorkContentBlock from "~/components/work/work-content-block/components/work-content-block"
-import { linkPropsForShowcase } from "~/components/work/work-content-block/functions/work-content-block-data-form"
-import { workContentBlockKindFromLegacy } from "~/components/work/work-content-block/library/work-content-block-kind"
+import WorkContentClosureBlock from "~/components/work/work-content/components/work-content-closure-block"
+import { workContentComponentForContent } from "~/components/work/work-content/functions/work-content-component-mapping"
+import { linkPropsForShowcase } from "~/components/work/work-content/functions/work-link-props-mapping"
 import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
-import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
 import { pageTitle } from "~/utils/title/functions/page-title"
 import styles from "./work-detail-page.module.sass"
 
@@ -25,11 +24,11 @@ const WorkDivider = () => <Divider className={styles.divider} />
 
 // Library
 
-type PageData = {
+interface PageData {
 	showcase: WorkShowcase
 }
 
-type Props = {
+interface Props {
 	data?: PageData
 }
 
@@ -51,12 +50,17 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 	const link = linkPropsForShowcase(showcase)
 
 	const metadata = useMemo(() => {
-		const created = dateFromTimestamp(showcase._created)
-		const modified = showcase._modified && dateFromTimestamp(showcase._modified)
+		let created: Date | undefined
+		let modified: Date | undefined
+
+		created = dateFromTimestamp(showcase._created)
+		if (showcase._modified) {
+			modified = dateFromTimestamp(showcase._modified)
+		}
 
 		return {
-			created: formattedDate(created, DateFormatStyle.MonthAndYear),
-			modified: modified && formattedDate(modified, DateFormatStyle.MonthAndYear)
+			created,
+			modified
 		}
 	}, [showcase._created, showcase._modified])
 
@@ -72,18 +76,9 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 				</header>
 				<WorkDivider />
 				<main>
-					{showcase.blocks?.map(block => {
-						const kind = workContentBlockKindFromLegacy(block.form)
-						if (!kind) {
-							return undefined
-						}
-
-						return <WorkContentBlock key={block._id} kind={kind} block={block} />
-					})}
+					{showcase.blocks?.map(blockLink => workContentComponentForContent(blockLink))}
 					<WorkDivider />
-					<WorkContentBlock>
-						<p>Initially published {metadata.created} by August Saint Freytag.</p>
-					</WorkContentBlock>
+					<WorkContentClosureBlock metadata={metadata} />
 				</main>
 			</article>
 		</>

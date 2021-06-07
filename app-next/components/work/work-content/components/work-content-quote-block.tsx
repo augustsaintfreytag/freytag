@@ -1,14 +1,14 @@
 import { FunctionComponent } from "react"
-import Markdown from "~/components/markdown/markdown"
+import QuoteMarkdown from "~/components/markdown/quote-markdown"
 import styles from "./work-content-quote-block.module.sass"
 
-type Props = {
+export interface Props {
 	text?: string
 }
 
 const WorkContentQuoteBlock: FunctionComponent<Props> = props => (
 	<section className={styles.block}>
-		<Markdown>{props.text}</Markdown>
+		<QuoteMarkdown>{props.text}</QuoteMarkdown>
 	</section>
 )
 

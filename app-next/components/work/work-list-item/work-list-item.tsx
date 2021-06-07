@@ -7,7 +7,7 @@ import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./work-list-item.module.sass"
 
-type ImageProps = {
+interface ImageProps {
 	trailing: URL
 	centered: URL
 }
