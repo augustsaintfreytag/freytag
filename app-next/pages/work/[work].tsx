@@ -8,14 +8,13 @@ import { imageUrlFromComponent } from "~/api/records/asset/functions/image-recor
 import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import Divider from "~/components/divider/divider"
-import WorkContentTextBlock from "~/components/work/work-content-block/components/work-content-text-block"
+import WorkContentClosureBlock from "~/components/work/work-content-block/components/work-content-closure-block"
 import { workContentComponentForContent } from "~/components/work/work-content-block/functions/work-content-component-mapping"
 import { linkPropsForShowcase } from "~/components/work/work-content-block/functions/work-link-props-mapping"
 import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
-import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
 import { pageTitle } from "~/utils/title/functions/page-title"
 import styles from "./work-detail-page.module.sass"
 
@@ -51,12 +50,17 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 	const link = linkPropsForShowcase(showcase)
 
 	const metadata = useMemo(() => {
-		const created = dateFromTimestamp(showcase._created)
-		const modified = showcase._modified && dateFromTimestamp(showcase._modified)
+		let created: Date | undefined
+		let modified: Date | undefined
+
+		created = dateFromTimestamp(showcase._created)
+		if (showcase._modified) {
+			modified = dateFromTimestamp(showcase._modified)
+		}
 
 		return {
-			created: formattedDate(created, DateFormatStyle.MonthAndYear),
-			modified: modified && formattedDate(modified, DateFormatStyle.MonthAndYear)
+			created,
+			modified
 		}
 	}, [showcase._created, showcase._modified])
 
@@ -74,9 +78,7 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 				<main>
 					{showcase.blocks?.map(blockLink => workContentComponentForContent(blockLink))}
 					<WorkDivider />
-					<WorkContentTextBlock>
-						<p>Initially published {metadata.created} by August Saint Freytag.</p>
-					</WorkContentTextBlock>
+					<WorkContentClosureBlock metadata={metadata} />
 				</main>
 			</article>
 		</>
