@@ -11,12 +11,10 @@ import {
 	WorkShowcaseTextContentFormat,
 	workShowcaseTextContentFormatFromRawValue
 } from "~/api/records/work-showcase/library/work-showcase-text-content-format"
+import WorkContentHeadingBlock from "~/components/work/work-content/components/work-content-heading-block"
 import WorkContentImageColumnBlock from "~/components/work/work-content/components/work-content-images-block"
 import WorkContentQuoteBlock from "~/components/work/work-content/components/work-content-quote-block"
-import {
-	default as WorkContentHeadingBlock,
-	default as WorkContentTextBlock
-} from "~/components/work/work-content/components/work-content-text-block"
+import WorkContentTextBlock from "~/components/work/work-content/components/work-content-text-block"
 import WorkContentTitleCaseBlock from "~/components/work/work-content/components/work-content-title-case-block"
 import WorkContentVideoBlock from "~/components/work/work-content/components/work-content-video-block"
 import {
