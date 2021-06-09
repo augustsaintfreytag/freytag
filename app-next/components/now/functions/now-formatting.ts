@@ -1,5 +1,21 @@
 import { NowDisplayMode } from "~/components/now/library/now-display-mode"
 
+// Data
+
+const monthDescriptions: string[] = (() => {
+	const date = new Date(0)
+	const locale = "en-gb"
+	const descriptions: string[] = []
+
+	for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
+		date.setMonth(monthIndex)
+		const monthDescription = date.toLocaleString(locale, { month: "long" })
+		descriptions.push(monthDescription)
+	}
+
+	return descriptions
+})()
+
 // Formatting
 
 function formattedOrdinal(value: number): string {
