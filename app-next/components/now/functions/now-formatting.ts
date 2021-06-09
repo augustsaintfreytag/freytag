@@ -1,5 +1,38 @@
 import { NowDisplayMode } from "~/components/now/library/now-display-mode"
 
+// Data
+
+const monthDescriptions: string[] = (() => {
+	const date = new Date(0)
+	const locale = "en-gb"
+	const descriptions: string[] = []
+
+	for (let monthIndex = 0; monthIndex < 12; monthIndex++) {
+		date.setMonth(monthIndex)
+		const monthDescription = date.toLocaleString(locale, { month: "long" })
+		descriptions.push(monthDescription)
+	}
+
+	return descriptions
+})()
+
+// Formatting
+
+function formattedOrdinal(value: number): string {
+	const lastDigit = String(value).substr(-1)
+
+	switch (lastDigit) {
+		case "1":
+			return `${value}st`
+		case "2":
+			return `${value}nd`
+		case "3":
+			return `${value}rd`
+		default:
+			return `${value}th`
+	}
+}
+
 function formattedDateComponents(date: Date): { year: string; month: string; day: string } {
 	return {
 		year: date.getFullYear().toString(),
@@ -17,17 +50,21 @@ function formattedNextHour(date: Date): string {
 }
 
 export function nowDisplayText(mode: NowDisplayMode): string {
+	const date = new Date()
+	const { year, month, day } = formattedDateComponents(date)
+
 	switch (mode) {
 		case NowDisplayMode.Now:
 			return "now"
 		case NowDisplayMode.Today:
 			return "today"
 		case NowDisplayMode.Year:
-			return new Date().getFullYear().toString()
+			return `in ${date.getFullYear().toString()}`
 		case NowDisplayMode.Date:
-			const { year, month, day } = formattedDateComponents(new Date())
 			return `on ${year}-${month}-${day}`
 		case NowDisplayMode.NextHour:
-			return `at ${formattedNextHour(new Date())}`
+			return `at ${formattedNextHour(date)}`
+		case NowDisplayMode.DateLocalized:
+			return `on ${monthDescriptions[date.getMonth()]} ${formattedOrdinal(date.getDate())}`
 	}
 }
