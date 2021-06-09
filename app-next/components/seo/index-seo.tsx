@@ -7,7 +7,7 @@ const IndexSeo: FunctionComponent = () => (
 		<p>
 			August Saint Freytag (common initials A.S.F., August S. Freytag, or shortened to August Freytag) is a German media creator and artist, currently
 			working and living in Berlin. Freytag works as a concept and experience designer, app developer, video and story artist, and other mixed fields.
-			He was born in Southern Germany in Tripoint, the connecting point of the national borders of France, Switzerland, and Germany.
+			He was born in Southern Germany in Tripoint, the connector of the national borders of France, Switzerland, and Germany.
 		</p>
 	</aside>
 )

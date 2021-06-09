@@ -59,7 +59,6 @@ const IndexPage: Page<PageProps & Props> = props => {
 			<Head>
 				<title>{joinedPageTitle(`${brandTitle()} | Personal Folio`)}</title>
 			</Head>
-			<IndexSeo />
 			<section className={styles.page}>
 				<IndexCover src={cover} />
 				<section className={styles.texts}>
@@ -96,6 +95,7 @@ const IndexPage: Page<PageProps & Props> = props => {
 					<TextLine>Explore on your own.</TextLine>
 				</section>
 			</section>
+			<IndexSeo />
 		</>
 	)
 }
