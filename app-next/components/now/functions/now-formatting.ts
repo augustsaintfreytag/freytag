@@ -1,5 +1,22 @@
 import { NowDisplayMode } from "~/components/now/library/now-display-mode"
 
+// Formatting
+
+function formattedOrdinal(value: number): string {
+	const lastDigit = String(value).substr(-1)
+
+	switch (lastDigit) {
+		case "1":
+			return `${value}st`
+		case "2":
+			return `${value}nd`
+		case "3":
+			return `${value}rd`
+		default:
+			return `${value}th`
+	}
+}
+
 function formattedDateComponents(date: Date): { year: string; month: string; day: string } {
 	return {
 		year: date.getFullYear().toString(),
