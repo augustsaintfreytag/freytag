@@ -50,17 +50,21 @@ function formattedNextHour(date: Date): string {
 }
 
 export function nowDisplayText(mode: NowDisplayMode): string {
+	const date = new Date()
+	const { year, month, day } = formattedDateComponents(date)
+
 	switch (mode) {
 		case NowDisplayMode.Now:
 			return "now"
 		case NowDisplayMode.Today:
 			return "today"
 		case NowDisplayMode.Year:
-			return new Date().getFullYear().toString()
+			return `in ${date.getFullYear().toString()}`
 		case NowDisplayMode.Date:
-			const { year, month, day } = formattedDateComponents(new Date())
 			return `on ${year}-${month}-${day}`
 		case NowDisplayMode.NextHour:
-			return `at ${formattedNextHour(new Date())}`
+			return `at ${formattedNextHour(date)}`
+		case NowDisplayMode.DateLocalized:
+			return `on ${monthDescriptions[date.getMonth()]} ${formattedOrdinal(date.getDate())}`
 	}
 }

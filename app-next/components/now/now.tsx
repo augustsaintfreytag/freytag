@@ -25,7 +25,6 @@ const Now: FunctionComponent = () => {
 		const updatedMode = nowDisplayMode(updatedIndex)
 		const updatedText = nowDisplayText(updatedMode)
 
-		console.log(`Updating now text, set to index ${updatedIndex}, text '${updatedText}'.`)
 		updateNowDisplayModeIndex(updatedIndex)
 		updateNowText(updatedText)
 	}

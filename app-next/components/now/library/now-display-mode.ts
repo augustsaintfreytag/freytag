@@ -1,9 +1,17 @@
 export enum NowDisplayMode {
 	Now,
 	Year,
-	Date,
 	NextHour,
-	Today
+	Today,
+	Date,
+	DateLocalized
 }
 
-export const nowDisplayModeCases = [NowDisplayMode.Now, NowDisplayMode.Year, NowDisplayMode.NextHour, NowDisplayMode.Today, NowDisplayMode.Date]
+export const nowDisplayModeCases = [
+	NowDisplayMode.Now,
+	NowDisplayMode.Today,
+	NowDisplayMode.NextHour,
+	NowDisplayMode.DateLocalized,
+	NowDisplayMode.Date,
+	NowDisplayMode.Year
+]
