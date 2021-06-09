@@ -9,6 +9,7 @@ import {
 	workShowcasesFromApi
 } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import WorkSeo from "~/components/seo/work-seo"
 import { mappedWorkShowcaseListItemProps } from "~/components/work/work-content/functions/work-showcase-prop-mapping"
 import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import DefaultLayout from "~/layouts/default/default-layout"
@@ -113,6 +114,7 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 					)}
 				</aside>
 			</section>
+			<WorkSeo />
 		</>
 	)
 }
