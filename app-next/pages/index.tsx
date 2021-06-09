@@ -11,6 +11,7 @@ import Divider from "~/components/divider/divider"
 import IndexCover from "~/components/index-cover/index-cover"
 import InternalLink from "~/components/link/internal-link"
 import Now from "~/components/now/now"
+import IndexSeo from "~/components/seo/index-seo"
 import LineBreak from "~/components/text-line/line-break"
 import TextLine from "~/components/text-line/text-line"
 import { mappedWorkShowcaseListItemProps } from "~/components/work/work-content/functions/work-showcase-prop-mapping"
@@ -18,6 +19,7 @@ import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import LandingLayout from "~/layouts/default/landing-layout"
 import { Page, PageProps } from "~/types/page"
 import { URL } from "~/utils/routing/library/url"
+import { joinedPageTitle } from "~/utils/title/functions/page-title"
 import styles from "./index-page.module.sass"
 
 // Library
@@ -55,8 +57,9 @@ const IndexPage: Page<PageProps & Props> = props => {
 	return (
 		<>
 			<Head>
-				<title>{brandTitle()}</title>
+				<title>{joinedPageTitle(`${brandTitle()} | Personal Folio`)}</title>
 			</Head>
+			<IndexSeo />
 			<section className={styles.page}>
 				<IndexCover src={cover} />
 				<section className={styles.texts}>
