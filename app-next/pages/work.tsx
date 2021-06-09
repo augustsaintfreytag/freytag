@@ -57,9 +57,16 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 		return formattedDate(lastCreationDate, DateFormatStyle.DayMonthAndYear)
 	}, [showcaseIds])
 
+	const averageShowcaseCreationDaysThreshold = 90
 	const averageShowcaseCreation = useMemo<string | undefined>(() => {
 		const averageInterval = averageTimeIntervalBetweenShowcases(showcases)
+		const thresholdInterval = averageShowcaseCreationDaysThreshold * 86400
+
 		if (!averageInterval) {
+			return undefined
+		}
+
+		if (averageInterval > thresholdInterval) {
 			return undefined
 		}
 
@@ -88,12 +95,21 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 				</div>
 				<aside className={styles.closure}>
 					<div>
-						There are <em>{denominatorDescription({ singular: "showcase", plural: "showcases" }, showcases.length)}</em> presented here.
+						There are <em>{denominatorDescription({ singular: "showcase", plural: "showcases" }, showcases.length)}</em> presented in total.
 					</div>
-					{averageShowcaseCreation && (
-						<div>
-							A showcase is published on average every <em>{averageShowcaseCreation}</em>, last release on <em>{lastShowcaseCreation}</em>.
-						</div>
+					{lastShowcaseCreation && (
+						<>
+							{averageShowcaseCreation && (
+								<div>
+									A showcase is published on average every <em>{averageShowcaseCreation}</em>, last release on <em>{lastShowcaseCreation}</em>.
+								</div>
+							)}
+							{!averageShowcaseCreation && (
+								<div>
+									Last showcase published on <em>{lastShowcaseCreation}</em>.
+								</div>
+							)}
+						</>
 					)}
 				</aside>
 			</section>
