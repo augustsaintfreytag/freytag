@@ -30,9 +30,7 @@ const Now: FunctionComponent = () => {
 	}
 	return (
 		<div className={styles.now}>
-			<a onClick={onClickNowText}>
-				<u>{nowText}</u>
-			</a>
+			<a onClick={onClickNowText}>{nowText}</a>
 			<Surpassed>next year</Surpassed>
 		</div>
 	)

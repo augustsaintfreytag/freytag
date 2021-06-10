@@ -1,0 +1,13 @@
+@import "/styles/values/all"
+	
+.closure
+	$closureSpacing: 1rem
+
+	@include inlayed
+
+	margin-top: $pageContentSpacing
+	color: $textColorFaded
+	text-align: center
+
+	> div
+		@include listMargin($closureSpacing)

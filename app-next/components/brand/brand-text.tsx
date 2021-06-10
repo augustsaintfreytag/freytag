@@ -21,5 +21,5 @@ export function brandDescriptorFragment(): JSX.Element {
 // Page
 
 export function brandPageDescription(): string {
-	return "Folio of August Saint Freytag, experience and concept designer, video and story artist. View past life events, discover and explore work showcases and stories."
+	return "Folio of August Saint Freytag, experience and concept designer, video and story artist. Discover and explore work showcases and stories, view past life events."
 }

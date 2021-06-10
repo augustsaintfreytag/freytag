@@ -2,7 +2,7 @@ import { FunctionComponent } from "react"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import { useWorkShowcaseReleaseCycleDescription } from "~/components/work/work-closure/functions/work-showcase-release-cycle-description-hook"
 import { denominatorDescription } from "~/utils/description/functions/denominator-description"
-import styles from "./work-page.module.sass"
+import styles from "./work-closure.module.sass"
 
 interface Props {
 	showcases: WorkShowcase[]
