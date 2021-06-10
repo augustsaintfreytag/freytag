@@ -167,6 +167,13 @@ $captionLineHeight: 1.4
 		margin-top: -3px
 		border-bottom: 0.2rem solid $textColor
 
+@mixin underlinedInText
+	@include underlined
+
+	&::after
+		margin-top: 0
+		border-bottom: 0.125rem solid $textColorSubFaded
+
 
 @mixin antiAliasedFont
 	font-smoothing: antialiased
