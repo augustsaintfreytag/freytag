@@ -11,7 +11,8 @@ enum SpriteHref {
 	Vimeo = "#Vimeo Symbol",
 	GitLab = "#GitLab Symbol",
 	Twitter = "#Twitter Symbol",
-	Medium = "#Medium Symbol"
+	Medium = "#Medium Symbol",
+	Instagram = "#Instagram Symbol"
 }
 
 interface NavigationDefinition {
@@ -80,6 +81,7 @@ const Footer: FunctionComponent<Props> = props => {
 					<FooterItem sprite={SpriteHref.Vimeo} text="Vimeo" href="https://vimeo.com/apricum" />
 					<FooterItem sprite={SpriteHref.GitLab} text="GitLab" href="https://gitlab.com/apricum" />
 					<FooterItem sprite={SpriteHref.Twitter} text="Twitter" href="https://twitter.com/augustfreytag" />
+					<FooterItem sprite={SpriteHref.Instagram} text="Instagram" href="https://www.instagram.com/saintaugustfreytag/" />
 					<FooterItem sprite={SpriteHref.Medium} text="Medium" href="https://medium.com/@augustfreytag" />
 				</FooterSection>
 			</div>
