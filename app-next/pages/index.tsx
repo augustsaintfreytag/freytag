@@ -1,5 +1,6 @@
 import Head from "next/head"
 import { GetServerSideProps } from "next/types"
+import { FunctionComponent } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
@@ -34,6 +35,14 @@ interface PageData {
 interface Props {
 	data?: PageData
 }
+
+// Components
+
+const Twitter: FunctionComponent = () => (
+	<ExternalLink href="https://twitter.com/augustfreytag">
+		<TextSpriteLine sprite="#Twitter Symbol">Twitter</TextSpriteLine>
+	</ExternalLink>
+)
 
 // Page
 
@@ -88,11 +97,7 @@ const IndexPage: Page<PageProps & Props> = props => {
 				)}
 				<section className={styles.texts}>
 					<TextLine>
-						Follow me on{" "}
-						<ExternalLink href="https://twitter.com/augustfreytag">
-							<TextSpriteLine sprite="#Twitter Symbol">Twitter</TextSpriteLine>
-						</ExternalLink>{" "}
-						for new announcements.
+						Follow me on <Twitter /> for new announcements.
 					</TextLine>
 					<TextLine>
 						See responsibility in the <InternalLink href="/imprint" />.
