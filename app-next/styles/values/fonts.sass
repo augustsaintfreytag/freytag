@@ -157,6 +157,17 @@ $captionLineHeight: 1.4
 
 // Mixins
 
+@mixin underlined
+	display: inline-block
+	text-decoration: none
+
+	&::after
+		content: ""
+		display: block
+		margin-top: -3px
+		border-bottom: 0.2rem solid $textColor
+
+
 @mixin antiAliasedFont
 	font-smoothing: antialiased
 	-moz-osx-font-smoothing: grayscale

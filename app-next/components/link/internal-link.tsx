@@ -4,9 +4,7 @@ import { PropsWithHref } from "~/types/props"
 
 const InternalLink: FunctionComponent<PropsWithHref> = props => (
 	<Link href={props.href}>
-		<a>
-			<u>{props.href}</u>
-		</a>
+		<a>{props.href}</a>
 	</Link>
 )
 
