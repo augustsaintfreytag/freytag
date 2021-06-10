@@ -2,21 +2,14 @@ import { GetServerSideProps } from "next"
 import Head from "next/head"
 import { useMemo } from "react"
 import { getServerSideApiResponse } from "~/api/props/functions/server-side-props"
-import {
-	averageTimeIntervalBetweenShowcases,
-	lastWorkShowcaseModificationDate,
-	sortedWorkShowcases,
-	workShowcasesFromApi
-} from "~/api/records/work-showcase/functions/work-showcase-data-access"
+import { sortedWorkShowcases, workShowcasesFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import WorkSeo from "~/components/seo/work-seo"
+import WorkClosure from "~/components/work/work-closure/work-closure"
 import { mappedWorkShowcaseListItemProps } from "~/components/work/work-content/functions/work-showcase-prop-mapping"
 import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { Page, PageProps } from "~/types/page"
-import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
-import { formattedTimeInterval } from "~/utils/date/functions/time-formatting"
-import { denominatorDescription } from "~/utils/description/functions/denominator-description"
 import { pageTitle } from "~/utils/title/functions/page-title"
 import styles from "./work-page.module.sass"
 
@@ -49,31 +42,6 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 		return showcases.map(showcase => mappedWorkShowcaseListItemProps(showcase))
 	}, [showcaseIds])
 
-	const lastShowcaseCreation = useMemo<string | undefined>(() => {
-		const lastCreationDate = lastWorkShowcaseModificationDate(showcases)
-		if (!lastCreationDate) {
-			return undefined
-		}
-
-		return formattedDate(lastCreationDate, DateFormatStyle.DayMonthAndYear)
-	}, [showcaseIds])
-
-	const averageShowcaseCreationDaysThreshold = 90
-	const averageShowcaseCreation = useMemo<string | undefined>(() => {
-		const averageInterval = averageTimeIntervalBetweenShowcases(showcases)
-		const thresholdInterval = averageShowcaseCreationDaysThreshold * 86400
-
-		if (!averageInterval) {
-			return undefined
-		}
-
-		if (averageInterval > thresholdInterval) {
-			return undefined
-		}
-
-		return formattedTimeInterval(averageInterval)
-	}, [showcaseIds])
-
 	return (
 		<>
 			<Head>
@@ -94,25 +62,7 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 						)
 					})}
 				</div>
-				<aside className={styles.closure}>
-					<div>
-						There are <em>{denominatorDescription({ singular: "showcase", plural: "showcases" }, showcases.length)}</em> presented in total.
-					</div>
-					{lastShowcaseCreation && (
-						<>
-							{averageShowcaseCreation && (
-								<div>
-									A showcase is published on average every <em>{averageShowcaseCreation}</em>, last release on <em>{lastShowcaseCreation}</em>.
-								</div>
-							)}
-							{!averageShowcaseCreation && (
-								<div>
-									Last showcase published on <em>{lastShowcaseCreation}</em>.
-								</div>
-							)}
-						</>
-					)}
-				</aside>
+				<WorkClosure showcases={showcases} />
 			</section>
 			<WorkSeo />
 		</>
