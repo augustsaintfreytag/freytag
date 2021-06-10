@@ -5,6 +5,14 @@
 
 	@include inlayedText
 
-	p
+	div
 		@include listMargin($paragraphSpacing)
 		text-align: center
+
+		a
+			@include underlinedInText
+
+		.socialSprite
+			$size: 0.9rem
+			height: $size
+			width: $size
