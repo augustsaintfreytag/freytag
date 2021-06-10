@@ -5,8 +5,6 @@
 	$sectionSpacing: 2.2rem
 	$sectionSpacingMobile: 4rem
 
-	$closureSpacing: 1rem
-
 	padding-bottom: $pageContentSpacing
 
 	h1
@@ -19,12 +17,3 @@
 			@include breakpoint($anyMobile)
 				@include listMargin($sectionSpacingMobile)
 
-	.closure
-		@include inlayed
-
-		margin-top: $pageContentSpacing
-		color: $textColorFaded
-		text-align: center
-
-		> div
-			@include listMargin($closureSpacing)
