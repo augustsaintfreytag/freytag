@@ -164,15 +164,18 @@ $captionLineHeight: 1.4
 	&::after
 		content: ""
 		display: block
-		margin-top: -3px
-		border-bottom: 0.2rem solid $textColor
+		border-bottom: 3px solid $textColorSubFaded
 
-@mixin underlinedInText
-	@include underlined
+		@include breakpoint($desktop)
+			transform: translateY(-7px)
 
-	&::after
-		margin-top: 0
-		border-bottom: 0.125rem solid $textColorSubFaded
+		@include breakpoint($tablet)
+			transform: translateY(-6px)
+			border-width: 2.5px
+
+		@include breakpoint($phone)
+			transform: translateY(-6px)
+			border-width: 2.5px
 
 
 @mixin antiAliasedFont
