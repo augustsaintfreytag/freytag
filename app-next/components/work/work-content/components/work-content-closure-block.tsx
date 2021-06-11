@@ -1,4 +1,5 @@
 import { FunctionComponent, useMemo } from "react"
+import LineBreak from "~/components/line-break/line-break"
 import ExternalLink from "~/components/link/external-link"
 import Sprite from "~/components/sprites/sprite"
 import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
@@ -32,7 +33,8 @@ const WorkContentClosureBlock: FunctionComponent<Props> = props => {
 			{!formattedMetadata.created && <div>Published by August Saint Freytag.</div>}
 			{formattedMetadata.created && <div>Initially published {formattedMetadata.created} by August Saint Freytag.</div>}
 			<div>
-				Follow on <Twitter /> to get notified on new publications and updates.
+				Follow on <Twitter /> to get notified of <LineBreak />
+				new publications and updates.
 			</div>
 		</section>
 	)
