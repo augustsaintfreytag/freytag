@@ -39,24 +39,24 @@ function typedTextContentComponentFromContent(block: WorkShowcaseContentText): A
 
 	switch (format) {
 		case WorkShowcaseTextContentFormat.Text:
-			return <WorkContentTextBlock {...textContentPropsFromContent(block)} />
+			return <WorkContentTextBlock key={block._id} {...textContentPropsFromContent(block)} />
 		case WorkShowcaseTextContentFormat.Heading:
-			return <WorkContentHeadingBlock {...headingContentPropsFromContent(block)} />
+			return <WorkContentHeadingBlock key={block._id} {...headingContentPropsFromContent(block)} />
 		case WorkShowcaseTextContentFormat.Quote:
-			return <WorkContentQuoteBlock {...quoteContentPropsFromContent(block)} />
+			return <WorkContentQuoteBlock key={block._id} {...quoteContentPropsFromContent(block)} />
 	}
 }
 
 function imagesContentComponentFromContent(block: WorkShowcaseContentImages): AnyElement {
-	return <WorkContentImageColumnBlock {...imagesContentPropsFromContent(block)} />
+	return <WorkContentImageColumnBlock key={block._id} {...imagesContentPropsFromContent(block)} />
 }
 
 function videoEmbedContentComponentFromContent(block: WorkShowcaseContentVideoEmbed): AnyElement {
-	return <WorkContentVideoBlock {...videoEmbedContentPropsFromContent(block)} />
+	return <WorkContentVideoBlock key={block._id} {...videoEmbedContentPropsFromContent(block)} />
 }
 
 function titleCaseContentComponentFromContent(block: WorkShowcaseContentTitleCase): AnyElement {
-	return <WorkContentTitleCaseBlock {...titleCaseContentPropsFromContent(block)} />
+	return <WorkContentTitleCaseBlock key={block._id} {...titleCaseContentPropsFromContent(block)} />
 }
 
 // Master Mapping
