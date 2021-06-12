@@ -86,7 +86,10 @@ const IndexPage: Page<PageProps & Props> = props => {
 						<InternalLink href="/work" /> in review.
 					</TextLine>
 					<TextLine>
-						<div className={styles.line}>As a start, a feature was selected for you.</div>
+						<div className={styles.line}>
+							As a start, a feature was <LineBreak />
+							selected for you.
+						</div>
 					</TextLine>
 				</section>
 				{featureProps && (
