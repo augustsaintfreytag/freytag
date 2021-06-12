@@ -4,6 +4,8 @@
 	$headerToItemsSpacing: 3rem
 	$headerToItemsSpacingMobile: 1.25rem
 
+	$spriteSize: 1rem
+	$spriteSizeMobile: 1.1rem
 	$spriteToTextSpacing: 1rem
 	$spriteToTextSpacingMobile: 1.25rem
 
@@ -21,20 +23,19 @@
 		margin: 0 0 0.75rem 0
 
 		.sprite
-			$size: 1rem
-			$sizeMobile: 1.1rem
+			height: $spriteSize
+			width: $spriteSize
 
-			height: $size
-			width: $size
-
+			flex: 0 0 $spriteSize
 			padding: 0.2rem 0 0 0
 			margin: 0 $spriteToTextSpacing 0 0
 
 			@include breakpoint($anyMobile)
-				height: $sizeMobile
-				width: $sizeMobile
+				flex: 0 0 $spriteSizeMobile
+				height: $spriteSizeMobile
+				width: $spriteSizeMobile
 
-				padding-top: 0.25rem
+				transform: translateY(-0.05rem)
 				margin-right: $spriteToTextSpacingMobile
 
 		.text, .link
