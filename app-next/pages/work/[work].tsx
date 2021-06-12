@@ -8,6 +8,7 @@ import { imageUrlFromComponent } from "~/api/records/asset/functions/image-recor
 import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import Divider from "~/components/divider/divider"
+import { pageTitle } from "~/components/meta/functions/page-title"
 import WorkContentClosureBlock from "~/components/work/work-content/components/work-content-closure-block"
 import { workContentComponentForContent } from "~/components/work/work-content/functions/work-content-component-mapping"
 import { linkPropsForShowcase } from "~/components/work/work-content/functions/work-link-props-mapping"
@@ -15,7 +16,6 @@ import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
-import { pageTitle } from "~/utils/title/functions/page-title"
 import styles from "./work-detail-page.module.sass"
 
 // Sub Components

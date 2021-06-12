@@ -1,3 +1,5 @@
+import { joinedPageTitle } from "../functions/page-title"
+
 // Title
 
 export function brandTitle(): string {
@@ -8,6 +10,10 @@ export function brandTitleFragment(): JSX.Element {
 	return <>August Saint Freytag</>
 }
 
+export function indexBrandTitle(): string {
+	return joinedPageTitle(`${brandTitle()} / (Personal Folio)`)
+}
+
 // Descriptor
 
 export function brandDescriptor(): string {
@@ -16,10 +22,4 @@ export function brandDescriptor(): string {
 
 export function brandDescriptorFragment(): JSX.Element {
 	return <>Concept&nbsp;and&nbsp;Experience Designer, Video&nbsp;and&nbsp;Story&nbsp;Artist</>
-}
-
-// Page
-
-export function brandPageDescription(): string {
-	return "Folio of August Saint Freytag, experience and concept designer, video and story artist. Discover and explore work showcases and stories, view past life events."
 }

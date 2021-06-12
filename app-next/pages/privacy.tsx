@@ -14,11 +14,11 @@ import {
 	LegalTextBlock
 } from "~/components/legal/legal-article-blocks/legal-article-blocks"
 import ExternalLink from "~/components/link/external-link"
+import { pageTitle } from "~/components/meta/functions/page-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { Page, PageProps } from "~/types/page"
 import { useSensitiveDataDisplay } from "~/utils/render/sensitive-data-hook"
 import { URL } from "~/utils/routing/library/url"
-import { pageTitle } from "~/utils/title/functions/page-title"
 import styles from "./privacy-page.module.sass"
 
 // Library

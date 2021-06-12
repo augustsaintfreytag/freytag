@@ -1,9 +1,9 @@
 import Head from "next/head"
 import { useRouter } from "next/router"
 import { FunctionComponent } from "react"
-import { brandPageDescription, brandTitle } from "~/components/brand/brand-text"
 import Footer from "~/components/footer/footer"
 import Header from "~/components/header/header"
+import { brandTitle } from "~/components/meta/components/brand-text"
 import { PropsWithAnyChildren } from "~/types/props"
 import { useSensitiveDataDisplay } from "~/utils/render/sensitive-data-hook"
 
@@ -20,7 +20,6 @@ const DefaultLayoutFragment: FunctionComponent<Props> = props => {
 			<Head>
 				<meta name="application-name" content={brandTitle()} />
 				<meta name="author" content={brandTitle()} />
-				<meta name="description" content={brandPageDescription()} />
 				<meta name="viewport" content="width=device-width, viewport-fit=cover" />
 			</Head>
 			<Header showsBrand={props.showsBrand ?? false} activeRoute={router.route} />
