@@ -11,7 +11,7 @@ import IndexCover from "~/components/index-cover/index-cover"
 import LineBreak from "~/components/line-break/line-break"
 import ExternalLink from "~/components/link/external-link"
 import InternalLink from "~/components/link/internal-link"
-import MetaTags from "~/components/meta/components/meta-tags"
+import Meta from "~/components/meta/components/meta-tags"
 import Now from "~/components/now/now"
 import IndexSeo from "~/components/seo/index-seo"
 import TextLine from "~/components/text-line/text-line"
@@ -66,7 +66,7 @@ const IndexPage: Page<PageProps & Props> = props => {
 
 	return (
 		<>
-			<MetaTags {...indexPageMetaProps({ coverAsset: props.data?.cover })} />
+			<Meta {...indexPageMetaProps({ coverAsset: props.data?.cover })} />
 			<section className={styles.page}>
 				<IndexCover src={cover} />
 				<section className={styles.texts}>

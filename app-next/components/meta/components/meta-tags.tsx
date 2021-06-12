@@ -19,7 +19,7 @@ export interface Props {
 	href: URL
 }
 
-const MetaTags: FunctionComponent<Props> = props => {
+const Meta: FunctionComponent<Props> = props => {
 	const { title, kind, description, coverImage, href, coverDescription } = props
 
 	return (
@@ -36,4 +36,4 @@ const MetaTags: FunctionComponent<Props> = props => {
 	)
 }
 
-export default MetaTags
+export default Meta
