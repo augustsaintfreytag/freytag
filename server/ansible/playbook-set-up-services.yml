@@ -12,9 +12,6 @@
     docker_env_root: "{{ app_root }}/server/docker/env"
 
   tasks:
-    # Internal
-    - import_tasks: ./custom/tasks/local-override.yml
-
     # Manage Services
     - import_tasks: ./custom/tasks/stop-services.yml
 
