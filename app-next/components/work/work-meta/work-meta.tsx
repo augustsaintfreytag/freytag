@@ -3,9 +3,10 @@ import Meta, { Props as MetaTagsProps } from "~/components/meta/components/meta-
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import { lines } from "~/utils/description/functions/lines"
+import { URL } from "~/utils/routing/library/url"
 
 interface Props {
-	previewAsset?: string
+	previewAsset?: URL
 }
 
 function title(): string {
@@ -23,7 +24,7 @@ function description(): string {
 
 function metaProps(props: Props): MetaTagsProps {
 	return {
-		href: canonicalHref(),
+		href: canonicalHref("/work"),
 		title: title(),
 		description: description(),
 		coverAsset: props.previewAsset

@@ -40,7 +40,7 @@ const LifePage: Page<PageProps & Props> = props => {
 
 	return (
 		<>
-			<LifeMeta coverAsset={props.data.preview} />
+			<LifeMeta previewImage={props.data.preview} />
 			<section className={styles.page}>
 				<h1>Life</h1>
 				<LifeTable data={lifeTableItemData} />
