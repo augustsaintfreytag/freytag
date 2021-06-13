@@ -19,18 +19,27 @@ const monthDescriptions: string[] = (() => {
 // Formatting
 
 function formattedOrdinal(value: number): string {
-	const lastDigit = String(value).substr(-1)
+	const digitString = String(value)
+	const lastDigit = Number(digitString.substr(-1))
+	const secondToLastDigit = digitString.length > 1 ? Number(digitString.substr(-2, 1)) : undefined
 
-	switch (lastDigit) {
-		case "1":
-			return `${value}st`
-		case "2":
-			return `${value}nd`
-		case "3":
-			return `${value}rd`
-		default:
-			return `${value}th`
+	if (secondToLastDigit === 1) {
+		return `${value}th`
 	}
+
+	if (lastDigit === 1) {
+		return `${value}st`
+	}
+
+	if (lastDigit === 2) {
+		return `${value}nd`
+	}
+
+	if (lastDigit === 3) {
+		return `${value}rd`
+	}
+
+	return `${value}th`
 }
 
 function formattedDateComponents(date: Date): { year: string; month: string; day: string } {
