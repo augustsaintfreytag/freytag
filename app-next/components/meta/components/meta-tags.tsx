@@ -12,12 +12,12 @@ export enum MetaResourceKind {
 }
 
 export interface Props {
+	href: URL
 	title: string
 	description?: string
 	kind?: MetaResourceKind
 	coverAsset?: string
 	coverDescription?: string
-	href: URL
 }
 
 const Meta: FunctionComponent<Props> = props => {

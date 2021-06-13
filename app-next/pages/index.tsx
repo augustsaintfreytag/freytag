@@ -27,6 +27,7 @@ import styles from "./index-page.module.sass"
 
 interface PageData {
 	cover?: URL
+	preview?: URL
 	feature?: WorkShowcase
 }
 
@@ -45,12 +46,13 @@ const Twitter: FunctionComponent = () => (
 // Page
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
-	const featureData = await featuredWorkShowcaseFromApi()
-	const coverData = await pageGraphicsFromApi()
+	const feature = await featuredWorkShowcaseFromApi()
+	const pageGraphics = await pageGraphicsFromApi()
 
 	const data: PageData = {
-		cover: coverData?.indexAsset?.path,
-		feature: featureData
+		cover: pageGraphics?.indexAsset?.path,
+		preview: pageGraphics?.indexPreview?.path,
+		feature: feature
 	}
 
 	return {
@@ -65,7 +67,7 @@ const IndexPage: Page<PageProps & Props> = props => {
 
 	return (
 		<>
-			<IndexMeta coverAsset={props.data?.cover} />
+			<IndexMeta coverAsset={props.data?.preview} />
 			<section className={styles.page}>
 				<IndexCover src={cover} />
 				<section className={styles.texts}>
