@@ -4,7 +4,11 @@ import Meta, { Props as MetaTagsProps } from "~/components/meta/components/meta-
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 
 interface Props {
-	coverAsset?: string
+	previewAsset?: string
+}
+
+function title(): string {
+	return indexBrandTitle()
 }
 
 function description(): string {
@@ -13,10 +17,10 @@ function description(): string {
 
 function metaProps(props: Props): MetaTagsProps {
 	return {
-		title: indexBrandTitle(),
 		href: canonicalHref(),
+		title: title(),
 		description: description(),
-		coverAsset: props.coverAsset
+		coverAsset: props.previewAsset
 	}
 }
 

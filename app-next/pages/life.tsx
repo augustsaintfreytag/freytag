@@ -1,5 +1,6 @@
 import { GetServerSideProps } from "next"
 import { useMemo } from "react"
+import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
 import { lifeEventsFromApi } from "~/api/records/life-event/functions/life-event-data-access"
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
@@ -17,7 +18,7 @@ import styles from "./life-page.module.sass"
 
 interface PageData {
 	preview?: URL
-	lifeEvents: LifeEvent[]
+	lifeEvents?: LifeEvent[]
 }
 
 interface Props {
@@ -26,22 +27,16 @@ interface Props {
 
 // Page
 
-export const getServerSideProps: GetServerSideProps<Props, {}> = async () => {
-	const pageGraphics = await pageGraphicsFromApi()
-	const lifeEvents = await lifeEventsFromApi()
-
-	const data: PageData = {
-		preview: pageGraphics?.lifePreview?.path,
-		lifeEvents: lifeEvents
-	}
-
-	return {
-		props: { data }
-	}
-}
+export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
+	getServerSideApiResponses<PageData>(
+		getServerSideApiResponse(lifeEventsFromApi, lifeEvents => ({ lifeEvents })),
+		getServerSideApiResponse(pageGraphicsFromApi, pageGraphics => ({
+			preview: pageGraphics.lifePreview?.path
+		}))
+	)
 
 const LifePage: Page<PageProps & Props> = props => {
-	const lifeTableItemData = useMemo<LifeTableItemData[]>(() => lifeTableItemDataFromEvents(props.data.lifeEvents), [])
+	const lifeTableItemData = useMemo<LifeTableItemData[]>(() => lifeTableItemDataFromEvents(props.data.lifeEvents ?? []), [])
 
 	return (
 		<>

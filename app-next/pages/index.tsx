@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next/types"
 import { FunctionComponent } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
+import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
 import { imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import { featuredWorkShowcaseFromApi } from "~/api/records/work-showcase-feature/functions/work-showcase-feature-data-access"
@@ -45,20 +46,14 @@ const Twitter: FunctionComponent = () => (
 
 // Page
 
-export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
-	const feature = await featuredWorkShowcaseFromApi()
-	const pageGraphics = await pageGraphicsFromApi()
-
-	const data: PageData = {
-		cover: pageGraphics?.indexAsset?.path,
-		preview: pageGraphics?.indexPreview?.path,
-		feature: feature
-	}
-
-	return {
-		props: { data }
-	}
-}
+export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
+	getServerSideApiResponses<PageData>(
+		getServerSideApiResponse(featuredWorkShowcaseFromApi, feature => ({ feature })),
+		getServerSideApiResponse(pageGraphicsFromApi, pageGraphics => ({
+			cover: pageGraphics.indexAsset?.path,
+			preview: pageGraphics.indexPreview?.path
+		}))
+	)
 
 const IndexPage: Page<PageProps & Props> = props => {
 	const feature = props.data?.feature
@@ -67,7 +62,7 @@ const IndexPage: Page<PageProps & Props> = props => {
 
 	return (
 		<>
-			<IndexMeta coverAsset={props.data?.preview} />
+			<IndexMeta previewAsset={props.data?.preview} />
 			<section className={styles.page}>
 				<IndexCover src={cover} />
 				<section className={styles.texts}>
