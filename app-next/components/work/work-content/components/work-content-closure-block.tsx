@@ -19,19 +19,23 @@ const Twitter: FunctionComponent = () => (
 )
 
 const WorkContentClosureBlock: FunctionComponent<Props> = props => {
-	const formattedMetadata = useMemo(() => {
+	const { created, modified } = useMemo(() => {
 		const { created, modified } = props.metadata ?? {}
 
 		return {
-			created: created && formattedDate(created, DateFormatStyle.MonthAndYear),
-			modified: modified && formattedDate(modified, DateFormatStyle.MonthAndYear)
+			created: created && { value: created, description: formattedDate(created, DateFormatStyle.MonthAndYear) },
+			modified: modified && { value: modified, description: formattedDate(modified, DateFormatStyle.MonthAndYear) }
 		}
 	}, [props.metadata?.created, props.metadata?.modified])
 
 	return (
 		<section className={styles.block}>
-			{!formattedMetadata.created && <div>Published by August Saint Freytag.</div>}
-			{formattedMetadata.created && <div>Initially published {formattedMetadata.created} by August Saint Freytag.</div>}
+			{!created && <div>Published by August Saint Freytag.</div>}
+			{created && (
+				<div>
+					Initially published <time dateTime={created.value.toISOString()}>{created.description}</time> by August Saint Freytag.
+				</div>
+			)}
 			<div>
 				Follow on <Twitter /> to get notified of <LineBreak />
 				new publications and updates.
