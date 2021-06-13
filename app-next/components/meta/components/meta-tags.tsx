@@ -13,25 +13,30 @@ export enum MetaResourceKind {
 
 export interface Props {
 	href: URL
+	kind?: MetaResourceKind
+
 	title: string
 	description?: string
-	kind?: MetaResourceKind
 	coverAsset?: string
 	coverDescription?: string
+
+	author?: string
+	section?: string
+	dateCreated?: Date
+	dateModified?: Date
 }
 
 const Meta: FunctionComponent<Props> = props => {
-	const { title, kind, description, coverAsset, href, coverDescription } = props
-	const coverImageUrl = thumbnailUrlFromComponent(coverAsset)
+	const coverImageUrl = thumbnailUrlFromComponent(props.coverAsset)
 
 	return (
 		<Head>
-			<title>{title}</title>
-			<meta name="description" content={description} />
-			<meta property="og:title" content={title} />
-			<meta property="og:type" content={kind ?? MetaResourceKind.Website} />
-			<meta property="og:url" content={href} />
-			<meta property="og:description" content={description} />
+			<title>{props.title}</title>
+			<meta name="description" content={props.description} />
+			<meta property="og:title" content={props.title} />
+			<meta property="og:type" content={props.kind ?? MetaResourceKind.Website} />
+			<meta property="og:url" content={props.href} />
+			<meta property="og:description" content={props.description} />
 			{coverImageUrl && (
 				<>
 					<meta property="og:image" content={coverImageUrl} />
@@ -39,7 +44,11 @@ const Meta: FunctionComponent<Props> = props => {
 					<meta property="og:image:height" content="600" />
 				</>
 			)}
-			{coverDescription && <meta property="og:image:alt" content={coverDescription} />}
+			{props.coverDescription && <meta property="og:image:alt" content={props.coverDescription} />}
+			{props.author && <meta property="og:article:author" content={props.author} />}
+			{props.section && <meta property="og:article:section" content={props.section} />}
+			{props.dateCreated && <meta property="og:article:published_time" content={props.dateCreated.toISOString()} />}
+			{props.dateModified && <meta property="og:article:modified_time" content={props.dateModified.toISOString()} />}
 		</Head>
 	)
 }
