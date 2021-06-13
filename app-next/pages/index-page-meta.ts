@@ -7,8 +7,9 @@ interface Props {
 	coverAsset?: string
 }
 
-const description =
-	"Folio of August Saint Freytag, experience and concept designer, video and story artist. Discover and explore work showcases and stories, view past life events."
+function description(): string {
+	return "Folio of August Saint Freytag, experience and concept designer, video and story artist. Discover and explore work showcases and stories, view past life events."
+}
 
 export function indexPageMetaProps(props: Props): MetaTagsProps {
 	const cover = thumbnailUrlFromComponent(props.coverAsset)
@@ -16,7 +17,7 @@ export function indexPageMetaProps(props: Props): MetaTagsProps {
 	return {
 		title: indexBrandTitle(),
 		href: canonicalHref(),
-		description: description,
+		description: description(),
 		coverImage: cover
 	}
 }

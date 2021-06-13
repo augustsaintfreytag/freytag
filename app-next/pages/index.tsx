@@ -60,13 +60,14 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async context =
 }
 
 const IndexPage: Page<PageProps & Props> = props => {
+	const meta = indexPageMetaProps({ coverAsset: props.data?.cover })
 	const feature = props.data?.feature
 	const featureProps = feature && mappedWorkShowcaseListItemProps(feature)
 	const cover = imageUrlFromComponent(props.data?.cover, ImageFormat.ExtraLarge)
 
 	return (
 		<>
-			<Meta {...indexPageMetaProps({ coverAsset: props.data?.cover })} />
+			<Meta {...meta} />
 			<section className={styles.page}>
 				<IndexCover src={cover} />
 				<section className={styles.texts}>
