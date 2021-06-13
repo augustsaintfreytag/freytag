@@ -1,5 +1,3 @@
-import { joinedPageTitle } from "../functions/page-title"
-
 // Title
 
 export function brandTitle(): string {
@@ -11,7 +9,7 @@ export function brandTitleFragment(): JSX.Element {
 }
 
 export function indexBrandTitle(): string {
-	return joinedPageTitle(`${brandTitle()} / Personal Folio`)
+	return `${brandTitle()} / Personal Folio`
 }
 
 // Descriptor
