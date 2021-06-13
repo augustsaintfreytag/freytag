@@ -1,5 +1,6 @@
 import Head from "next/head"
 import { FunctionComponent } from "react"
+import { thumbnailUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import { URL } from "~/utils/routing/library/url"
 
 export enum MetaResourceKind {
@@ -14,13 +15,14 @@ export interface Props {
 	title: string
 	description?: string
 	kind?: MetaResourceKind
-	coverImage?: URL
+	coverAsset?: string
 	coverDescription?: string
 	href: URL
 }
 
 const Meta: FunctionComponent<Props> = props => {
-	const { title, kind, description, coverImage, href, coverDescription } = props
+	const { title, kind, description, coverAsset, href, coverDescription } = props
+	const coverImageUrl = thumbnailUrlFromComponent(coverAsset)
 
 	return (
 		<Head>
@@ -30,7 +32,13 @@ const Meta: FunctionComponent<Props> = props => {
 			<meta property="og:type" content={kind ?? MetaResourceKind.Website} />
 			<meta property="og:url" content={href} />
 			<meta property="og:description" content={description} />
-			{coverImage && <meta property="og:image" content={coverImage} />}
+			{coverImageUrl && (
+				<>
+					<meta property="og:image" content={coverImageUrl} />
+					<meta property="og:image:width" content="1200" />
+					<meta property="og:image:height" content="600" />
+				</>
+			)}
 			{coverDescription && <meta property="og:image:alt" content={coverDescription} />}
 		</Head>
 	)

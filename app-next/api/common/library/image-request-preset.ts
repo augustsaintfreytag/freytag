@@ -53,6 +53,6 @@ export function thumbnailImageRequest(): CockpitImageRequest {
 		mode: CockpitImageOptions.Mode.Thumbnail,
 		quality: ImageCompressionQuality.default,
 		width: 1200,
-		height: 630
+		height: 600
 	})
 }
