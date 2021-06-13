@@ -2,6 +2,7 @@ import { FunctionComponent } from "react"
 import { indexBrandTitle } from "~/components/meta/components/brand-text"
 import Meta, { Props as MetaTagsProps } from "~/components/meta/components/meta-tags"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
+import { lines } from "~/utils/description/functions/lines"
 
 interface Props {
 	previewAsset?: string
@@ -12,7 +13,10 @@ function title(): string {
 }
 
 function description(): string {
-	return "Folio of August Saint Freytag, experience and concept designer, video and story artist. Discover and explore work showcases and stories, view past life events."
+	return lines(
+		"Folio of August Saint Freytag, permanent exhibition and retrospective of past and current projects.",
+		"Discover work showcases, stories, and past life events."
+	)
 }
 
 function metaProps(props: Props): MetaTagsProps {
