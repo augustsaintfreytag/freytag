@@ -1,10 +1,8 @@
 import { GetServerSideProps } from "next"
-import Head from "next/head"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { getServerSideApiResponse } from "~/api/props/functions/server-side-props"
-import { imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
+import { imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
-import { PageGraphics } from "~/api/records/page-graphics/library/page-graphics"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import {
@@ -14,7 +12,7 @@ import {
 	LegalTextBlock
 } from "~/components/legal/legal-article-blocks/legal-article-blocks"
 import ExternalLink from "~/components/link/external-link"
-import { pageTitle } from "~/components/meta/functions/page-title"
+import PrivacyMeta from "~/components/privacy/privacy-meta"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { Page, PageProps } from "~/types/page"
 import { useSensitiveDataDisplay } from "~/utils/render/sensitive-data-hook"
@@ -24,7 +22,8 @@ import styles from "./privacy-page.module.sass"
 // Library
 
 interface PageData {
-	coverImage?: URL
+	preview?: URL
+	cover?: URL
 }
 
 interface Props {
@@ -33,31 +32,22 @@ interface Props {
 
 // Page
 
-function mapPageData(pageGraphics: PageGraphics): PageData {
-	return { coverImage: pageGraphics.privacyAsset?.path }
-}
-
-export const getServerSideProps: GetServerSideProps<Props, {}> = async () => {
-	return await getServerSideApiResponse(pageGraphicsFromApi, mapPageData)
-}
+export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
+	getServerSideApiResponse(pageGraphicsFromApi, pageGraphics => ({
+		preview: pageGraphics.privacyAsset?.path,
+		cover: pageGraphics.privacyAsset?.path
+	}))
 
 const PrivacyPage: Page<PageProps & Props> = props => {
 	const shouldDisplaySensitiveData = useSensitiveDataDisplay()
-	const coverImageUrl = imageUrlFromComponent(props.data?.coverImage, ImageFormat.ExtraLarge)
+	const coverImageUrl = imageUrlFromComponent(props.data?.cover, ImageFormat.ExtraLarge)
 
 	return (
 		<>
-			<Head>
-				<title>{pageTitle("Privacy")}</title>
-			</Head>
+			<PrivacyMeta previewAsset={props.data?.preview} />
 			<section className={styles.page}>
 				<h1>Privacy</h1>
-				<ImageCover
-					src={coverImageUrl}
-					description="A stack of legal documents in a top-down view, 
-						the top-most document showing an invoice for legal services, one of which is 
-						writing a privacy policy, racking up a total bill of $15,950."
-				/>
+				<ImageCover src={coverImageUrl} />
 				<article>
 					<LegalHeadingBlock heading="Privacy Policy" aside="By Regulation (EU) 2016/679 (GDPR)" />
 					<LegalTextBlock>

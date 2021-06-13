@@ -1,6 +1,6 @@
 import { FunctionComponent, useState } from "react"
 import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
-import { LifeTableItemData } from "~/components/life-table/models/life-table-item-data"
+import { LifeTableItemData } from "~/components/life/life-table/models/life-table-item-data"
 import { className } from "~/utils/class-names/class-name"
 import { formattedOpenDateInterval } from "~/utils/date/functions/date-formatting"
 import styles from "./life-table-item.module.sass"

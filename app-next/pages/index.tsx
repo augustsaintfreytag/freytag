@@ -1,17 +1,18 @@
 import { GetServerSideProps } from "next/types"
 import { FunctionComponent } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
-import { imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
+import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
+import { imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import { featuredWorkShowcaseFromApi } from "~/api/records/work-showcase-feature/functions/work-showcase-feature-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import BlockTag, { BlockTagAppearance } from "~/components/block-tag/block-tag"
 import Divider from "~/components/divider/divider"
-import IndexCover from "~/components/index-cover/index-cover"
+import IndexCover from "~/components/index/index-cover/index-cover"
+import IndexMeta from "~/components/index/index-meta/index-meta"
 import LineBreak from "~/components/line-break/line-break"
 import ExternalLink from "~/components/link/external-link"
 import InternalLink from "~/components/link/internal-link"
-import MetaTags from "~/components/meta/components/meta-tags"
 import Now from "~/components/now/now"
 import IndexSeo from "~/components/seo/index-seo"
 import TextLine from "~/components/text-line/text-line"
@@ -19,7 +20,6 @@ import TextSpriteLine from "~/components/text-line/text-sprite-line"
 import { mappedWorkShowcaseListItemProps } from "~/components/work/work-content/functions/work-showcase-prop-mapping"
 import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import LandingLayout from "~/layouts/default/landing-layout"
-import { indexPageMetaProps } from "~/pages/index-page-meta"
 import { Page, PageProps } from "~/types/page"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./index-page.module.sass"
@@ -28,6 +28,7 @@ import styles from "./index-page.module.sass"
 
 interface PageData {
 	cover?: URL
+	preview?: URL
 	feature?: WorkShowcase
 }
 
@@ -45,19 +46,14 @@ const Twitter: FunctionComponent = () => (
 
 // Page
 
-export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
-	const featureData = await featuredWorkShowcaseFromApi()
-	const coverData = await pageGraphicsFromApi()
-
-	const data: PageData = {
-		cover: coverData?.indexAsset?.path,
-		feature: featureData
-	}
-
-	return {
-		props: { data }
-	}
-}
+export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
+	getServerSideApiResponses<PageData>(
+		getServerSideApiResponse(featuredWorkShowcaseFromApi, feature => ({ feature })),
+		getServerSideApiResponse(pageGraphicsFromApi, pageGraphics => ({
+			cover: pageGraphics.indexAsset?.path,
+			preview: pageGraphics.indexPreview?.path
+		}))
+	)
 
 const IndexPage: Page<PageProps & Props> = props => {
 	const feature = props.data?.feature
@@ -66,7 +62,7 @@ const IndexPage: Page<PageProps & Props> = props => {
 
 	return (
 		<>
-			<MetaTags {...indexPageMetaProps({ coverAsset: props.data?.cover })} />
+			<IndexMeta previewAsset={props.data?.preview} />
 			<section className={styles.page}>
 				<IndexCover src={cover} />
 				<section className={styles.texts}>

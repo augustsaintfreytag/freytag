@@ -1,14 +1,12 @@
 import { GetServerSideProps } from "next"
-import Head from "next/head"
 import { useMemo } from "react"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { getServerSideApiResponseByQuery } from "~/api/props/functions/server-side-props"
-import { imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
+import { imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import Divider from "~/components/divider/divider"
-import { pageTitle } from "~/components/meta/functions/page-title"
 import WorkContentClosureBlock from "~/components/work/work-content/components/work-content-closure-block"
 import { workContentComponentForContent } from "~/components/work/work-content/functions/work-content-component-mapping"
 import { linkPropsForShowcase } from "~/components/work/work-content/functions/work-link-props-mapping"
@@ -16,6 +14,7 @@ import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
+import WorkShowcaseMeta from "../../components/work/work-meta/work-showcase-meta"
 import styles from "./work-detail-page.module.sass"
 
 // Sub Components
@@ -25,7 +24,7 @@ const WorkDivider = () => <Divider className={styles.divider} />
 // Library
 
 interface PageData {
-	showcase: WorkShowcase
+	showcase?: WorkShowcase
 }
 
 interface Props {
@@ -34,13 +33,8 @@ interface Props {
 
 // Page
 
-function mapPageData(showcase: WorkShowcase): PageData {
-	return { showcase }
-}
-
-export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
-	return await getServerSideApiResponseByQuery<WorkShowcase, PageData>(context, "work", workShowcaseFromApi, mapPageData)
-}
+export const getServerSideProps: GetServerSideProps<Props, {}> = async context =>
+	getServerSideApiResponseByQuery(context, "work", workShowcaseFromApi, showcase => ({ showcase }))
 
 const WorkDetailPage: Page<PageProps & Props> = props => {
 	const showcase = props.data!.showcase!
@@ -66,9 +60,7 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 
 	return (
 		<>
-			<Head>
-				<title>{pageTitle(name)}</title>
-			</Head>
+			<WorkShowcaseMeta {...props.data} />
 			<article className={styles.page}>
 				<header>
 					<WorkCover image={cover} />
