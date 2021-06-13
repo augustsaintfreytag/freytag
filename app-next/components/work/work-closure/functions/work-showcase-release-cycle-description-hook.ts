@@ -3,25 +3,37 @@ import * as WorkShwocaseDataAccess from "~/api/records/work-showcase/functions/w
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
 import { formattedTimeInterval } from "~/utils/date/functions/time-formatting"
+import { TimeInterval } from "~/utils/date/library/intervals"
 
 const { averageTimeIntervalBetweenShowcases, lastWorkShowcaseModificationDate } = WorkShwocaseDataAccess
 
-export function useWorkShowcaseReleaseCycleDescription(
-	showcases: WorkShowcase[]
-): [lastShowcaseCreation: string | undefined, averageShowcaseCreation: string | undefined] {
+type Properties<Value> = {
+	value: Value
+	description: string
+}
+
+type ReleaseCycleProperties = {
+	lastShowcaseCreation?: Properties<Date>
+	averageShowcaseCreation?: Properties<TimeInterval>
+}
+
+export function useWorkShowcaseReleaseCycleDescription(showcases: WorkShowcase[]): ReleaseCycleProperties {
 	const showcaseIds = showcases.map(showcase => showcase._id)
 
-	const lastShowcaseCreation = useMemo<string | undefined>(() => {
+	const lastShowcaseCreation = useMemo<Properties<Date> | undefined>(() => {
 		const lastCreationDate = lastWorkShowcaseModificationDate(showcases)
 		if (!lastCreationDate) {
 			return undefined
 		}
 
-		return formattedDate(lastCreationDate, DateFormatStyle.DayMonthAndYear)
+		return {
+			value: lastCreationDate,
+			description: formattedDate(lastCreationDate, DateFormatStyle.DayMonthAndYear)
+		}
 	}, [showcaseIds])
 
 	const averageShowcaseCreationDaysThreshold = 90
-	const averageShowcaseCreation = useMemo<string | undefined>(() => {
+	const averageShowcaseCreation = useMemo<Properties<TimeInterval> | undefined>(() => {
 		const averageInterval = averageTimeIntervalBetweenShowcases(showcases)
 		const thresholdInterval = averageShowcaseCreationDaysThreshold * 86400
 
@@ -33,8 +45,11 @@ export function useWorkShowcaseReleaseCycleDescription(
 			return undefined
 		}
 
-		return formattedTimeInterval(averageInterval)
+		return {
+			value: averageInterval,
+			description: formattedTimeInterval(averageInterval)
+		}
 	}, [showcaseIds])
 
-	return [lastShowcaseCreation, averageShowcaseCreation]
+	return { lastShowcaseCreation, averageShowcaseCreation }
 }
