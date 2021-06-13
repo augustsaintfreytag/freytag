@@ -8,10 +8,10 @@ import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import BlockTag, { BlockTagAppearance } from "~/components/block-tag/block-tag"
 import Divider from "~/components/divider/divider"
 import IndexCover from "~/components/index/index-cover/index-cover"
+import IndexMeta from "~/components/index/index-meta/index-meta"
 import LineBreak from "~/components/line-break/line-break"
 import ExternalLink from "~/components/link/external-link"
 import InternalLink from "~/components/link/internal-link"
-import Meta from "~/components/meta/components/meta-tags"
 import Now from "~/components/now/now"
 import IndexSeo from "~/components/seo/index-seo"
 import TextLine from "~/components/text-line/text-line"
@@ -19,7 +19,6 @@ import TextSpriteLine from "~/components/text-line/text-sprite-line"
 import { mappedWorkShowcaseListItemProps } from "~/components/work/work-content/functions/work-showcase-prop-mapping"
 import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import LandingLayout from "~/layouts/default/landing-layout"
-import { indexPageMetaProps } from "~/pages/index-page-meta"
 import { Page, PageProps } from "~/types/page"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./index-page.module.sass"
@@ -60,14 +59,13 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async context =
 }
 
 const IndexPage: Page<PageProps & Props> = props => {
-	const meta = indexPageMetaProps({ coverAsset: props.data?.cover })
 	const feature = props.data?.feature
 	const featureProps = feature && mappedWorkShowcaseListItemProps(feature)
 	const cover = imageUrlFromComponent(props.data?.cover, ImageFormat.ExtraLarge)
 
 	return (
 		<>
-			<Meta {...meta} />
+			<IndexMeta coverAsset={props.data?.cover} />
 			<section className={styles.page}>
 				<IndexCover src={cover} />
 				<section className={styles.texts}>
