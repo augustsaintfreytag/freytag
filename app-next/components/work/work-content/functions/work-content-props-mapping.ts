@@ -1,5 +1,5 @@
 import { ImageFormat } from "~/api/common/library/image-request-preset"
-import { assetUrlFromComponent, imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
+import { assetUrlFromComponent, imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import {
 	WorkShowcaseContentImages,
 	WorkShowcaseContentText,

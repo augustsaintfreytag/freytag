@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
-import { imageUrlFromComponent } from "~/api/records/asset/functions/image-record-data-access"
+import { imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import ImageCover from "~/components/image-cover/image-cover"
 import InternalLink from "~/components/link/internal-link"
 import TextLine from "~/components/text-line/text-line"
