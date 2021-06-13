@@ -1,21 +1,24 @@
 import { GetServerSideProps } from "next"
-import Head from "next/head"
 import { useMemo } from "react"
+import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
 import { lifeEventsFromApi } from "~/api/records/life-event/functions/life-event-data-access"
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
-import { lifeTableItemDataFromEvents } from "~/components/life-table/functions/life-table-item-data-form"
-import LifeTable from "~/components/life-table/life-table"
-import { LifeTableItemData } from "~/components/life-table/models/life-table-item-data"
+import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
+import LifeMeta from "~/components/life/life-meta/life-meta"
+import { lifeTableItemDataFromEvents } from "~/components/life/life-table/functions/life-table-item-data-form"
+import LifeTable from "~/components/life/life-table/life-table"
+import { LifeTableItemData } from "~/components/life/life-table/models/life-table-item-data"
 import LifeSeo from "~/components/seo/life-seo"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { Page, PageProps } from "~/types/page"
-import { pageTitle } from "~/utils/title/functions/page-title"
+import { URL } from "~/utils/routing/library/url"
 import styles from "./life-page.module.sass"
 
 // Library
 
 interface PageData {
-	lifeEvents: LifeEvent[]
+	preview?: URL
+	lifeEvents?: LifeEvent[]
 }
 
 interface Props {
@@ -24,23 +27,20 @@ interface Props {
 
 // Page
 
-export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
-	const lifeEvents = await lifeEventsFromApi()
-	const data = { lifeEvents }
-
-	return {
-		props: { data }
-	}
-}
+export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
+	getServerSideApiResponses<PageData>(
+		getServerSideApiResponse(lifeEventsFromApi, lifeEvents => ({ lifeEvents })),
+		getServerSideApiResponse(pageGraphicsFromApi, pageGraphics => ({
+			preview: pageGraphics.lifePreview?.path
+		}))
+	)
 
 const LifePage: Page<PageProps & Props> = props => {
-	const lifeTableItemData = useMemo<LifeTableItemData[]>(() => lifeTableItemDataFromEvents(props.data.lifeEvents), [])
+	const lifeTableItemData = useMemo<LifeTableItemData[]>(() => lifeTableItemDataFromEvents(props.data.lifeEvents ?? []), [])
 
 	return (
 		<>
-			<Head>
-				<title>{pageTitle("Life")}</title>
-			</Head>
+			<LifeMeta previewImage={props.data.preview} />
 			<section className={styles.page}>
 				<h1>Life</h1>
 				<LifeTable data={lifeTableItemData} />

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { LifeTableSortMode as SortMode } from "~/components/life-table/library/life-table-sort-mode"
+import { LifeTableSortMode as SortMode } from "~/components/life/life-table/library/life-table-sort-mode"
 import Sprite, { SpriteReference } from "~/components/sprites/sprite"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"

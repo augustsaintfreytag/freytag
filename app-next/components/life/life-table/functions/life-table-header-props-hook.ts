@@ -1,7 +1,7 @@
 import { useState } from "react"
-import { defaultSortMode, invertedSortMode } from "~/components/life-table/functions/life-table-sort-mode"
-import { LifeTableColumn as Column } from "~/components/life-table/library/life-table-column"
-import { LifeTableSortMode as SortMode } from "~/components/life-table/library/life-table-sort-mode"
+import { defaultSortMode, invertedSortMode } from "~/components/life/life-table/functions/life-table-sort-mode"
+import { LifeTableColumn as Column } from "~/components/life/life-table/library/life-table-column"
+import { LifeTableSortMode as SortMode } from "~/components/life/life-table/library/life-table-sort-mode"
 
 interface Props {
 	activeColumn: Column

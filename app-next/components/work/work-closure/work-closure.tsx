@@ -10,7 +10,7 @@ interface Props {
 
 const WorkClosure: FunctionComponent<Props> = props => {
 	const showcases = props.showcases ?? []
-	const [lastShowcaseCreation, averageShowcaseCreation] = useWorkShowcaseReleaseCycleDescription(showcases)
+	const { lastShowcaseCreation, averageShowcaseCreation } = useWorkShowcaseReleaseCycleDescription(showcases)
 
 	return (
 		<aside className={styles.closure}>
@@ -26,7 +26,11 @@ const WorkClosure: FunctionComponent<Props> = props => {
 					)}
 					{!averageShowcaseCreation && (
 						<div>
-							Last showcase published on <em>{lastShowcaseCreation}</em>.
+							Last showcase published on{" "}
+							<em>
+								<time dateTime={lastShowcaseCreation.value.toISOString()}>{lastShowcaseCreation.description}</time>
+							</em>
+							.
 						</div>
 					)}
 				</>

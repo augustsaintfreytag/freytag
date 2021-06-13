@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { FunctionComponent } from "react"
-import { brandDescriptor, brandTitle } from "~/components/brand/brand-text"
+import { brandDescriptor, brandTitle } from "~/components/meta/components/brand-text"
 import { PropsWithAnyChildren, PropsWithHref } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"

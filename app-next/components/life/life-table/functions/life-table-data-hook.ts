@@ -1,9 +1,12 @@
 import { useState } from "react"
-import { valueDescriptionBlockForColumn } from "~/components/life-table/functions/life-table-value-description"
-import { LifeTableColumn as Column } from "~/components/life-table/library/life-table-column"
-import { LifeTableFilterKind as FilterKind, LifeTableFilterKindAll as FilterKindAll } from "~/components/life-table/library/life-table-filter-kind"
-import { LifeTableSortMode as SortMode } from "~/components/life-table/library/life-table-sort-mode"
-import { LifeTableItemData as ItemData } from "~/components/life-table/models/life-table-item-data"
+import { valueDescriptionBlockForColumn } from "~/components/life/life-table/functions/life-table-value-description"
+import { LifeTableColumn as Column } from "~/components/life/life-table/library/life-table-column"
+import {
+	LifeTableFilterKind as FilterKind,
+	LifeTableFilterKindAll as FilterKindAll
+} from "~/components/life/life-table/library/life-table-filter-kind"
+import { LifeTableSortMode as SortMode } from "~/components/life/life-table/library/life-table-sort-mode"
+import { LifeTableItemData as ItemData } from "~/components/life/life-table/models/life-table-item-data"
 
 // Filtering
 

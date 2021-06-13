@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { brandDescriptorFragment, brandTitleFragment } from "~/components/brand/brand-text"
+import { brandDescriptorFragment, brandTitleFragment } from "~/components/meta/components/brand-text"
 import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./index-cover.module.sass"

@@ -1,10 +1,27 @@
-import { GetServerSidePropsContext, GetServerSidePropsResult } from "next"
+import { GetServerSidePropsContext, GetServerSidePropsResult, Redirect } from "next"
 import { UUID } from "~/api/common/library/uuid"
 
-type PromisedServerSideResult<Data> = Promise<GetServerSidePropsResult<{ data?: Data }>>
+type NotFoundResult = { notFound: true }
+type PropsResult<Data> = { props: { data: Data } }
+type RedirectResult = { redirect: Redirect }
+
+type PromisedServerSideResult<Data> = Promise<ServerSideResult<Data>>
+type ServerSideResult<Data> = GetServerSidePropsResult<{ data: Data }>
 type ServerSideContext = GetServerSidePropsContext<{}>
 
-const ServerSideResultNotFound: GetServerSidePropsResult<{}> = { notFound: true }
+function isServerSidePropsResult<Data>(object: any): object is PropsResult<Data> {
+	return typeof object === "object" && typeof object.props === "object"
+}
+
+function isServerSideNotFoundResult(object: any): object is NotFoundResult {
+	return typeof object === "object" && typeof object.notFound === "boolean" && object.notFound === true
+}
+
+function isServerSideRedirectResult(object: any): object is RedirectResult {
+	return typeof object === "object" && typeof object.redirect === "object"
+}
+
+const serverSideResultNotFound: NotFoundResult = { notFound: true }
 
 export async function getServerSideApiResponseByQuery<Response, PageData>(
 	context: ServerSideContext,
@@ -15,14 +32,14 @@ export async function getServerSideApiResponseByQuery<Response, PageData>(
 	const id = context.query[queryKey]
 
 	if (!id || typeof id !== "string") {
-		return ServerSideResultNotFound
+		return serverSideResultNotFound
 	}
 
 	try {
 		const response = await resolveResponse(id)
 
 		if (!response) {
-			return ServerSideResultNotFound
+			return serverSideResultNotFound
 		}
 
 		const data = mapResponse(response)
@@ -31,7 +48,7 @@ export async function getServerSideApiResponseByQuery<Response, PageData>(
 			props: { data }
 		}
 	} catch (error) {
-		return ServerSideResultNotFound
+		return serverSideResultNotFound
 	}
 }
 
@@ -42,7 +59,7 @@ export async function getServerSideApiResponse<Response, PageData>(
 	try {
 		const response = await resolveResponse()
 		if (!response) {
-			return ServerSideResultNotFound
+			return serverSideResultNotFound
 		}
 
 		const data = mapResponse(response)
@@ -51,6 +68,32 @@ export async function getServerSideApiResponse<Response, PageData>(
 			props: { data }
 		}
 	} catch (error) {
-		return ServerSideResultNotFound
+		return serverSideResultNotFound
 	}
+}
+
+export async function getServerSideApiResponses<PageData>(...promises: PromisedServerSideResult<PageData>[]): PromisedServerSideResult<PageData> {
+	const results: ServerSideResult<PageData>[] = await Promise.all(promises)
+	let combinedData: PageData | undefined
+
+	for (const result of results) {
+		if (isServerSidePropsResult(result)) {
+			combinedData = { ...(combinedData ?? {}), ...result.props.data }
+			continue
+		}
+
+		if (isServerSideNotFoundResult(result)) {
+			return serverSideResultNotFound
+		}
+
+		if (isServerSideRedirectResult(result)) {
+			return result
+		}
+	}
+
+	if (!combinedData) {
+		return serverSideResultNotFound
+	}
+
+	return { props: { data: combinedData } }
 }

@@ -47,3 +47,12 @@ export function imageRequest(format: ImageFormat): CockpitImageRequest {
 			throw new TypeError(`Unsupported format '${format}' for image request preset.`)
 	}
 }
+
+export function thumbnailImageRequest(): CockpitImageRequest {
+	return new CockpitImageRequest({
+		mode: CockpitImageOptions.Mode.Thumbnail,
+		quality: ImageCompressionQuality.default,
+		width: 1200,
+		height: 600
+	})
+}

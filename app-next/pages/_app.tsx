@@ -1,6 +1,6 @@
 import type { AppProps as NextAppProps } from "next/app"
 import { Fragment, FunctionComponent } from "react"
-import "~/api/common/config/api-configuration"
+import "~/api/config/api-configuration"
 import Sprites from "~/components/sprites/sprites"
 import "~/styles/base/globals.sass"
 import type { Page } from "~/types/page"
