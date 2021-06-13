@@ -1,5 +1,5 @@
-import { LifeTableColumn as Column } from "~/components/life-table/library/life-table-column"
-import { LifeTableItemData as ItemData } from "~/components/life-table/models/life-table-item-data"
+import { LifeTableColumn as Column } from "~/components/life/life-table/library/life-table-column"
+import { LifeTableItemData as ItemData } from "~/components/life/life-table/models/life-table-item-data"
 import { OpenDateInterval } from "~/utils/date/library/intervals"
 
 const safeSortPaddingLength = 20

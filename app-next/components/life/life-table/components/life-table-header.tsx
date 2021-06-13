@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react"
-import LifeTableHeaderItem from "~/components/life-table/components/life-table-header-item"
-import { LifeTableColumn as Column } from "~/components/life-table/library/life-table-column"
-import { LifeTableSortMode as SortMode } from "~/components/life-table/library/life-table-sort-mode"
+import LifeTableHeaderItem from "~/components/life/life-table/components/life-table-header-item"
+import { LifeTableColumn as Column } from "~/components/life/life-table/library/life-table-column"
+import { LifeTableSortMode as SortMode } from "~/components/life/life-table/library/life-table-sort-mode"
 import { className } from "~/utils/class-names/class-name"
 import styles from "./life-table-header.module.sass"
 

@@ -1,14 +1,17 @@
 import { useRouter } from "next/router"
 import { FunctionComponent, useEffect, useState } from "react"
-import LifeTableFilters from "~/components/life-table/components/life-table-filters"
-import LifeTableHeader from "~/components/life-table/components/life-table-header"
-import { LifeTableDataProps, useLifeTableData } from "~/components/life-table/functions/life-table-data-hook"
-import { useLifeTableHeaderProps } from "~/components/life-table/functions/life-table-header-props-hook"
-import * as LifeTableMapping from "~/components/life-table/functions/life-table-query-mapping"
-import { LifeTableColumn } from "~/components/life-table/library/life-table-column"
-import { LifeTableFilterKind as FilterKind, LifeTableFilterKindAll as FilterKindAll } from "~/components/life-table/library/life-table-filter-kind"
-import { LifeTableSortMode } from "~/components/life-table/library/life-table-sort-mode"
-import { LifeTableItemData } from "~/components/life-table/models/life-table-item-data"
+import LifeTableFilters from "~/components/life/life-table/components/life-table-filters"
+import LifeTableHeader from "~/components/life/life-table/components/life-table-header"
+import { LifeTableDataProps, useLifeTableData } from "~/components/life/life-table/functions/life-table-data-hook"
+import { useLifeTableHeaderProps } from "~/components/life/life-table/functions/life-table-header-props-hook"
+import * as LifeTableMapping from "~/components/life/life-table/functions/life-table-query-mapping"
+import { LifeTableColumn } from "~/components/life/life-table/library/life-table-column"
+import {
+	LifeTableFilterKind as FilterKind,
+	LifeTableFilterKindAll as FilterKindAll
+} from "~/components/life/life-table/library/life-table-filter-kind"
+import { LifeTableSortMode } from "~/components/life/life-table/library/life-table-sort-mode"
+import { LifeTableItemData } from "~/components/life/life-table/models/life-table-item-data"
 import LifeTableItem from "./components/life-table-item"
 import styles from "./life-table.module.sass"
 
