@@ -7,7 +7,7 @@ import { featuredWorkShowcaseFromApi } from "~/api/records/work-showcase-feature
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import BlockTag, { BlockTagAppearance } from "~/components/block-tag/block-tag"
 import Divider from "~/components/divider/divider"
-import IndexCover from "~/components/index-cover/index-cover"
+import IndexCover from "~/components/index/index-cover/index-cover"
 import LineBreak from "~/components/line-break/line-break"
 import ExternalLink from "~/components/link/external-link"
 import InternalLink from "~/components/link/internal-link"
