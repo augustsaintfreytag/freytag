@@ -15,8 +15,8 @@ function title(): string {
 
 function description(): string {
 	return lines(
-		"Folio of August Saint Freytag, permanent exhibition and retrospective of past and current projects.",
-		"Discover work showcases, stories, and past life events."
+		"Public folio, permanent exhibition and project retrospective.",
+		"Discover work showcases, behind the scenes, and life events from then to now."
 	)
 }
 

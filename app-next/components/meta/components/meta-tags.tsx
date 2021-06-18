@@ -2,16 +2,12 @@ import Head from "next/head"
 import { FunctionComponent } from "react"
 import { thumbnailUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import { URL } from "~/utils/routing/library/url"
+import { MetaResourceKind } from "../library/meta-mark-up"
+import TwitterMeta, { Props as TwitterProps } from "./twitter-meta-tags"
 
-export enum MetaResourceKind {
-	Website = "website",
-	Article = "article",
-	Music = "music.song",
-	Film = "video.movie",
-	Video = "video.other"
-}
+// Meta
 
-export interface Props {
+export interface MainProps {
 	href: URL
 	kind?: MetaResourceKind
 
@@ -26,7 +22,7 @@ export interface Props {
 	dateModified?: Date
 }
 
-const Meta: FunctionComponent<Props> = props => {
+const MainMeta: FunctionComponent<MainProps> = props => {
 	const coverImageUrl = thumbnailUrlFromComponent(props.coverAsset)
 
 	return (
@@ -52,5 +48,14 @@ const Meta: FunctionComponent<Props> = props => {
 		</Head>
 	)
 }
+
+export interface Props extends MainProps, TwitterProps {}
+
+const Meta: FunctionComponent<Props> = props => (
+	<>
+		<MainMeta {...props} />
+		<TwitterMeta {...props} />
+	</>
+)
 
 export default Meta
