@@ -1,9 +1,10 @@
 import { FunctionComponent } from "react"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
-import Meta, { MetaResourceKind, Props as MetaTagsProps } from "~/components/meta/components/meta-tags"
+import Meta, { Props as MetaTagsProps } from "~/components/meta/components/meta-tags"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
+import { MetaResourceKind, MetaSocialEmbedKind } from "~/components/meta/library/meta-mark-up"
 import { mappedWorkShowcaseListItemProps } from "~/components/work/work-content/functions/work-showcase-prop-mapping"
 
 interface Props {
@@ -59,7 +60,8 @@ function metaProps(props: Props): MetaTagsProps {
 		author: author(),
 		section: showcase.event?.kind,
 		dateCreated: dateCreated,
-		dateModified: dateModified
+		dateModified: dateModified,
+		socialEmbed: MetaSocialEmbedKind.Cover
 	}
 }
 
