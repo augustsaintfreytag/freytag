@@ -34,7 +34,7 @@ function metaProps(props: Props): MetaTagsProps {
 const IndexMeta: FunctionComponent<Props> = props => (
 	<>
 		<Meta {...metaProps(props)} />
-		<LinkedMetaTag>{JSON.stringify(personSchema)}</LinkedMetaTag>
+		<LinkedMetaTag>{JSON.stringify(personSchema())}</LinkedMetaTag>
 	</>
 )
 
