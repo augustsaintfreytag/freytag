@@ -2,8 +2,8 @@ import Head from "next/head"
 import { FunctionComponent } from "react"
 import { thumbnailUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import { URL } from "~/utils/routing/library/url"
-import { MetaResourceKind } from "../library/meta-mark-up"
-import TwitterMeta, { Props as TwitterProps } from "./twitter-meta-tags"
+import TwitterMeta, { Props as TwitterProps } from "./components/twitter-meta-tags"
+import { MetaResourceKind } from "./library/meta-mark-up"
 
 // Meta
 

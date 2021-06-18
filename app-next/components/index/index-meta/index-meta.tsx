@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react"
 import { indexBrandTitle } from "~/components/meta/components/brand-text"
-import Meta, { Props as MetaTagsProps } from "~/components/meta/components/meta-tags"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
+import Meta, { Props as MetaTagsProps } from "~/components/meta/meta-tags"
 import { lines } from "~/utils/description/functions/lines"
 import { URL } from "~/utils/routing/library/url"
 
