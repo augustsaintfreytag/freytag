@@ -1,5 +1,6 @@
 import { FunctionComponent, useMemo } from "react"
 import FooterSection, { FooterItem } from "~/components/footer/components/footer-section/footer-section"
+import { socialGitLabUrl, socialInstagramUrl, socialMediumUrl, socialTwitterUrl, socialVimeoUrl } from "~/components/meta/functions/social-media"
 import { encoded } from "~/utils/address-obfuscator/functions/rot-13"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./footer.module.sass"
@@ -78,11 +79,11 @@ const Footer: FunctionComponent<Props> = props => {
 					})}
 				</FooterSection>
 				<FooterSection header="Further">
-					<FooterItem sprite={SpriteHref.Vimeo} text="Vimeo" href="https://vimeo.com/apricum" />
-					<FooterItem sprite={SpriteHref.GitLab} text="GitLab" href="https://gitlab.com/apricum" />
-					<FooterItem sprite={SpriteHref.Twitter} text="Twitter" href="https://twitter.com/augustfreytag" />
-					<FooterItem sprite={SpriteHref.Instagram} text="Instagram" href="https://www.instagram.com/saintaugustfreytag/" />
-					<FooterItem sprite={SpriteHref.Medium} text="Medium" href="https://medium.com/@augustfreytag" />
+					<FooterItem sprite={SpriteHref.Vimeo} text="Vimeo" href={socialVimeoUrl()} />
+					<FooterItem sprite={SpriteHref.GitLab} text="GitLab" href={socialGitLabUrl()} />
+					<FooterItem sprite={SpriteHref.Twitter} text="Twitter" href={socialTwitterUrl()} />
+					<FooterItem sprite={SpriteHref.Instagram} text="Instagram" href={socialInstagramUrl()} />
+					<FooterItem sprite={SpriteHref.Medium} text="Medium" href={socialMediumUrl()} />
 				</FooterSection>
 			</div>
 		</footer>
