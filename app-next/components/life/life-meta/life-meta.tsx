@@ -15,8 +15,9 @@ function title(): string {
 
 function description(): string {
 	return lines(
-		"Interactive vita offering an aerial perspective on personal life milestones and projects of August Saint Freytag.",
-		"Records of personal life, work in film and video, photographic series, creations in artwork and graphics, development work (applications and web projects), and commissions."
+		"Interactive vita offering an aerial perspective on personal life milestones and projects.",
+		"Records of personal life, work in film and video, photographic series, creations in artwork and graphics,",
+		"development work (applications and web projects), and commissions."
 	)
 }
 
