@@ -1,6 +1,8 @@
 import { FunctionComponent } from "react"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import LinkedMetaTag from "~/components/meta/components/linked-meta-tag"
+import { articleSchema, Props as ArticleSchemaProps } from "~/components/meta/functions/article-schema"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import { MetaResourceKind, MetaSocialEmbedKind } from "~/components/meta/library/meta-mark-up"
@@ -65,6 +67,34 @@ function metaProps(props: Props): MetaTagsProps {
 	}
 }
 
-const WorkShowcaseMeta: FunctionComponent<Props> = props => <Meta {...metaProps(props)} />
+function articleSchemaProps(props: Props): ArticleSchemaProps | undefined {
+	const showcase = props.showcase
+
+	if (!showcase) {
+		return undefined
+	}
+
+	const { dateCreated, dateModified } = dates(showcase)
+	const articleSchemaProps: ArticleSchemaProps = {
+		dateCreated: dateCreated,
+		dateModified: dateModified,
+		title: showcase.name,
+		coverAsset: showcase.teaserImageCentered?.path
+	}
+
+	return articleSchemaProps
+}
+
+const WorkShowcaseMeta: FunctionComponent<Props> = props => {
+	const linkedMetaProps = articleSchemaProps(props)
+	const linkedMetaData = linkedMetaProps && articleSchema(linkedMetaProps)
+
+	return (
+		<>
+			<Meta {...metaProps(props)} />
+			{linkedMetaData && <LinkedMetaTag>{JSON.stringify(linkedMetaData)}</LinkedMetaTag>}
+		</>
+	)
+}
 
 export default WorkShowcaseMeta
