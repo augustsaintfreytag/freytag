@@ -1,7 +1,9 @@
 import { FunctionComponent } from "react"
 import { indexBrandTitle } from "~/components/meta/components/brand-text"
-import Meta, { Props as MetaTagsProps } from "~/components/meta/components/meta-tags"
+import LinkedMetaTag from "~/components/meta/components/linked-meta-tag"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
+import { personSchema } from "~/components/meta/functions/person-schema"
+import Meta, { Props as MetaTagsProps } from "~/components/meta/meta-tags"
 import { lines } from "~/utils/description/functions/lines"
 import { URL } from "~/utils/routing/library/url"
 
@@ -29,6 +31,11 @@ function metaProps(props: Props): MetaTagsProps {
 	}
 }
 
-const IndexMeta: FunctionComponent<Props> = props => <Meta {...metaProps(props)} />
+const IndexMeta: FunctionComponent<Props> = props => (
+	<>
+		<Meta {...metaProps(props)} />
+		<LinkedMetaTag>{JSON.stringify(personSchema())}</LinkedMetaTag>
+	</>
+)
 
 export default IndexMeta

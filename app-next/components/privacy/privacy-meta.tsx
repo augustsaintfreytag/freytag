@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react"
-import Meta, { Props as MetaTagsProps } from "~/components/meta/components/meta-tags"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
+import Meta, { Props as MetaTagsProps } from "~/components/meta/meta-tags"
 import { lines } from "~/utils/description/functions/lines"
 import { URL } from "~/utils/routing/library/url"
 
@@ -14,7 +14,10 @@ function title(): string {
 }
 
 function description(): string {
-	return lines("Privacy policy and legal disclosure of the overall site.")
+	return lines(
+		"Privacy policy and legal disclosure of the Folio.",
+		"Outlines data collection and processing, digestion of user data for analytics, and information on user tracking."
+	)
 }
 
 function metaProps(props: Props): MetaTagsProps {
