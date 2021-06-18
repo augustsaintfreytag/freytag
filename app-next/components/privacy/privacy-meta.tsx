@@ -14,7 +14,10 @@ function title(): string {
 }
 
 function description(): string {
-	return lines("Privacy policy and legal disclosure of the overall site.")
+	return lines(
+		"Privacy policy and legal disclosure of the Folio.",
+		"Outlines data collection and processing, digestion of user data for analytics, and information on user tracking."
+	)
 }
 
 function metaProps(props: Props): MetaTagsProps {

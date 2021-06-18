@@ -14,7 +14,10 @@ function title(): string {
 }
 
 function description(): string {
-	return lines("Legal disclosure and public required information of the overall site.")
+	return lines(
+		"Legal disclosure and required public information of the Folio.",
+		"Includes responsible parties, content and general accountability disclaimer."
+	)
 }
 
 function metaProps(props: Props): MetaTagsProps {
