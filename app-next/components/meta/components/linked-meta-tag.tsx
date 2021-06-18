@@ -6,7 +6,7 @@ const LinkedMetaTag: FunctionComponent<{ children: string }> = props => {
 
 	return (
 		<Head>
-			<script type="application/json+ld" dangerouslySetInnerHTML={contents}></script>
+			<script type="application/ld+json" id="json-ld-data" dangerouslySetInnerHTML={contents}></script>
 		</Head>
 	)
 }
