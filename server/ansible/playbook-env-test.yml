@@ -24,7 +24,7 @@
 
     - import_tasks: ./custom/tasks/set-environment.yml
       vars:
-        env_path: "../env/parameters.private.env"
+        env_path: "../env/parameters"
         env_vars:
           - cockpit_access_token
           - server_nginx_certificate_provisioning_user
