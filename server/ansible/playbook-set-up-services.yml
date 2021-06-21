@@ -9,7 +9,6 @@
   vars:
     app_environment: "live"
     ansible_user: "{{ server_user }}"
-    docker_env_root: "{{ app_root }}/server/docker/env"
 
   tasks:
     # Manage Services
