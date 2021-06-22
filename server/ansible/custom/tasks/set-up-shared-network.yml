@@ -6,6 +6,7 @@
     driver: bridge
     scope: local
   become: yes
+  ignore_errors: yes
   tags:
     - app-services
     - app-services-network
