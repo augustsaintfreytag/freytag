@@ -1,3 +1,11 @@
+export function appEnvironmentIsProduction(): boolean {
+	return process.env.NODE_ENV === "production"
+}
+
+export function appEnvironmentIsDevelopment(): boolean {
+	return process.env.NODE_ENV !== "production"
+}
+
 export function appProtocol(): string | undefined {
 	return process.env.NEXT_PUBLIC_APP_PROTOCOL
 }
