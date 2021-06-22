@@ -11,7 +11,7 @@
 
 - name: "FILE - Set-up Cockpit sync directory"
   file:
-    path: "{{ cockpit_sync_root }}/{{ cockpit_sync_archive }}"
+    path: "{{ cockpit_sync_directory }}/{{ cockpit_sync_archive }}"
     state: directory
     mode: "0755"
     owner: "server"
@@ -23,7 +23,7 @@
 - name: "DATA - Fetch most recent Cockpit state"
   git:
     repo: "https://{{ gitlab_media_deploy_user }}:{{ gitlab_media_deploy_password }}@gitlab.com/apricum/folio-freytag-media.git"
-    dest: "{{ cockpit_sync_root }}/{{ cockpit_sync_archive }}"
+    dest: "{{ cockpit_sync_directory }}/{{ cockpit_sync_archive }}"
     force: yes
   tags:
     - cockpit
@@ -31,7 +31,7 @@
 
 - name: "DATA - Sync Cockpit state to volume"
   command:
-    chdir: "{{ cockpit_sync_root }}"
+    chdir: "{{ cockpit_sync_directory }}"
     cmd: "cockpit-sync restore --docker-volume {{ cockpit_docker_volume }} --archive ./{{ cockpit_sync_archive }}"
   become: yes
   tags:

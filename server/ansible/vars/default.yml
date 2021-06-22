@@ -8,10 +8,10 @@ server_user: server
 # App
 app_version: "master"
 app_root: "/var/www/freytag"
-app_sub_root: "app-next"
+app_sub_directory: "app-next"
 
 # Volumes
-cockpit_sync_root: "/var/www/utility/cockpit"
+cockpit_sync_directory: "/var/www/utility/cockpit"
 cockpit_sync_archive: "archive"
 cockpit_docker_volume: "freytag_data_cockpit"
 
