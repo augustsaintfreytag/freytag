@@ -4,25 +4,15 @@ host_root: "{{ playbook_dir }}/../.."
 
 # Server
 server_user: server
-server_certificate_directory: "/etc/letsencrypt"
-server_certificate_log_directory: "/var/log/letsencrypt"
-
-server_domains:
-  [
-    {
-      name: "augustfreytag.com",
-      domains: "augustfreytag.com,www.augustfreytag.com",
-    },
-    { name: "cockpit.augustfreytag.com", domains: "cockpit.augustfreytag.com" },
-  ]
+server_shared_network: dropship_shared
 
 # App
 app_version: "master"
 app_root: "/var/www/freytag"
-app_sub_root: "app-next"
+app_sub_directory: "app-next"
 
 # Volumes
-cockpit_sync_root: "/var/www/utility/cockpit"
+cockpit_sync_directory: "/var/www/utility/cockpit"
 cockpit_sync_archive: "archive"
 cockpit_docker_volume: "freytag_data_cockpit"
 

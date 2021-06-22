@@ -1,0 +1,11 @@
+# Shared Docker Network Set-Up
+
+- name: "DOCKER - Create shared network for service communication"
+  docker_network:
+    name: "{{ server_shared_network }}"
+    driver: bridge
+    scope: local
+  become: yes
+  tags:
+    - app-services
+    - app-services-network

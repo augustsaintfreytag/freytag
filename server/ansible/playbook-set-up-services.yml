@@ -7,9 +7,7 @@
     - vars/parameters.private.yml
 
   vars:
-    app_environment: "live"
     ansible_user: "{{ server_user }}"
-    docker_env_root: "{{ app_root }}/server/docker/env"
 
   tasks:
     # Manage Services
@@ -19,9 +17,8 @@
     - import_tasks: ./custom/tasks/set-up-app.yml
     - import_tasks: ./custom/tasks/set-up-cockpit.yml
 
-    # Certificates
-    - import_tasks: ./shared/tasks/set-up-certificates.yml
-    - import_tasks: ./custom/tasks/set-up-certificate-crontab.yml
+    # Shared Network Set-Up
+    - import_tasks: ./custom/tasks/set-up-shared-network.yml
 
     # Manage Services
     - import_tasks: ./custom/tasks/start-services.yml

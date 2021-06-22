@@ -1,6 +1,5 @@
 # GitLab Listener Configuration Set-Up
 ---
-
 - name: "FILE - Remove pre-existing static GitLab Listener configuration"
   file:
     path: "/usr/local/etc/gitlab-listener/listener.plist"

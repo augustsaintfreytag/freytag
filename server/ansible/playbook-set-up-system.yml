@@ -6,11 +6,9 @@
     - vars/default.yml
 
   vars:
-    app_environment: "live"
     ansible_user: "{{ server_user }}"
 
   tasks:
-    # System Requirement Set-Up
     - import_tasks: ./shared/tasks/set-up-ansible.yml
     - import_tasks: ./shared/tasks/set-up-docker.yml
     - import_tasks: ./shared/tasks/set-up-firewall.yml

@@ -22,8 +22,8 @@
 
 - name: "FILE - Copy private application environment file"
   copy:
-    src: "{{ host_root }}/{{ app_sub_root }}/.env.production"
-    dest: "{{ app_root }}/{{ app_sub_root }}/.env.production"
+    src: "{{ host_root }}/{{ app_sub_directory }}/.env.production"
+    dest: "{{ app_root }}/{{ app_sub_directory }}/.env.production"
   tags:
     - app-repo
     - app-repo-private
@@ -49,8 +49,8 @@
 
 - name: "FILE - Copy private automation files"
   copy:
-    src: "{{ host_root }}/server/docker/env/parameters.live.private.env"
-    dest: "{{ app_root }}/server/docker/env/parameters.live.private.env"
+    src: "{{ host_root }}/server/docker/env/parameters.live.env"
+    dest: "{{ app_root }}/server/docker/env/parameters.live.env"
   tags:
     - app-repo
     - app-repo-private
