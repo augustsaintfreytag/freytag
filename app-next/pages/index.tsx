@@ -39,7 +39,7 @@ interface Props {
 // Components
 
 const Twitter: FunctionComponent = () => (
-	<ExternalLink href="https://twitter.com/augustfreytag">
+	<ExternalLink href="https://twitter.com/augustfreytag" name="Twitter Link" context="Index Content">
 		<TextSpriteLine sprite="#Twitter Symbol">Twitter</TextSpriteLine>
 	</ExternalLink>
 )

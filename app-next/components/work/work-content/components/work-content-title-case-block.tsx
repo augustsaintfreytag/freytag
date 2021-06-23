@@ -23,7 +23,14 @@ const WorkContentTitleCaseBlock: FunctionComponent<Props> = props => (
 		<div className={styles.subHeading}>
 			<Markdown>{props.subHeading}</Markdown>
 		</div>
-		{props.callToAction && <CallToAction className={styles.callToAction} href={props.callToAction.link} text={props.callToAction.label} />}
+		{props.callToAction && (
+			<CallToAction
+				name={`${props.heading}, ${props.callToAction.label}`}
+				className={styles.callToAction}
+				href={props.callToAction.link}
+				text={props.callToAction.label}
+			/>
+		)}
 	</section>
 )
 
