@@ -20,6 +20,7 @@ interface FooterItemProps {
 type FooterItemLinkProps = PropsWithAnyChildren & {
 	href: URL
 	external?: boolean
+	name?: string
 }
 
 function hrefPropertiesFromProps(url: URL | undefined): HrefProperties | undefined {
@@ -32,7 +33,11 @@ function hrefPropertiesFromProps(url: URL | undefined): HrefProperties | undefin
 
 const FooterItemLink: FunctionComponent<FooterItemLinkProps> = props => {
 	if (props.external) {
-		return <ExternalLink href={props.href}>{props.children}</ExternalLink>
+		return (
+			<ExternalLink href={props.href} name={props.name} context="Footer Item">
+				{props.children}
+			</ExternalLink>
+		)
 	}
 
 	return (
@@ -55,7 +60,7 @@ export const FooterItem: FunctionComponent<FooterItemProps> = props => {
 	}
 
 	return (
-		<FooterItemLink href={linkProperties.href} external={linkProperties.isExternal}>
+		<FooterItemLink name={`${linkProperties.text} Link`} href={linkProperties.href} external={linkProperties.isExternal}>
 			<div className={className(styles.footerItem, styles.linkItem, props.active && styles.active)}>
 				{props.sprite && <Sprite className={styles.sprite} href={props.sprite} />}
 				<div className={styles.text}>{props.text}</div>
