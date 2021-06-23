@@ -13,7 +13,7 @@ export interface Props {
 }
 
 const Twitter: FunctionComponent = () => (
-	<ExternalLink href="https://twitter.com/augustfreytag">
+	<ExternalLink href="https://twitter.com/augustfreytag" name="Twitter Link" context="Work Content Closure">
 		<Sprite className={styles.socialSprite} href="#Twitter Symbol" /> Twitter
 	</ExternalLink>
 )
