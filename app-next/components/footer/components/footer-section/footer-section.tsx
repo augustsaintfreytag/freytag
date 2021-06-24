@@ -15,6 +15,7 @@ interface FooterItemProps {
 	text: string | ReactElement
 	href?: URL
 	active?: boolean
+	name?: string
 }
 
 type FooterItemLinkProps = PropsWithAnyChildren & {
@@ -60,7 +61,7 @@ export const FooterItem: FunctionComponent<FooterItemProps> = props => {
 	}
 
 	return (
-		<FooterItemLink name={`${linkProperties.text} Link`} href={linkProperties.href} external={linkProperties.isExternal}>
+		<FooterItemLink name={`${props.name} Link`} href={linkProperties.href} external={linkProperties.isExternal}>
 			<div className={className(styles.footerItem, styles.linkItem, props.active && styles.active)}>
 				{props.sprite && <Sprite className={styles.sprite} href={props.sprite} />}
 				<div className={styles.text}>{props.text}</div>
