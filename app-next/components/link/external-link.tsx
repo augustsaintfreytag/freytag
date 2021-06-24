@@ -12,7 +12,13 @@ interface Props {
 const trackClick = (name: string, context: string | undefined, href: URL) => track("External Link", { name, context, href })
 
 const ExternalLink: FunctionComponent<Props> = props => (
-	<a href={props.href} target="_blank" rel="noopener" onClick={() => props.name && trackClick(props.name, props.context, props.href)}>
+	<a
+		href={props.href}
+		target="_blank"
+		rel="noopener"
+		title={props.name}
+		onClick={() => props.name && trackClick(props.name, props.context, props.href)}
+	>
 		{props.children}
 	</a>
 )

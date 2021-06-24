@@ -79,11 +79,11 @@ const Footer: FunctionComponent<Props> = props => {
 					})}
 				</FooterSection>
 				<FooterSection header="Further">
-					<FooterItem sprite={SpriteHref.Vimeo} text="Vimeo" href={socialVimeoUrl()} />
-					<FooterItem sprite={SpriteHref.GitLab} text="GitLab" href={socialGitLabUrl()} />
-					<FooterItem sprite={SpriteHref.Twitter} text="Twitter" href={socialTwitterUrl()} />
-					<FooterItem sprite={SpriteHref.Instagram} text="Instagram" href={socialInstagramUrl()} />
-					<FooterItem sprite={SpriteHref.Medium} text="Medium" href={socialMediumUrl()} />
+					<FooterItem sprite={SpriteHref.Vimeo} text="Vimeo" href={socialVimeoUrl()} name="Vimeo" />
+					<FooterItem sprite={SpriteHref.GitLab} text="GitLab" href={socialGitLabUrl()} name="GitLab" />
+					<FooterItem sprite={SpriteHref.Twitter} text="Twitter" href={socialTwitterUrl()} name="Twitter" />
+					<FooterItem sprite={SpriteHref.Instagram} text="Instagram" href={socialInstagramUrl()} name="Instagram" />
+					<FooterItem sprite={SpriteHref.Medium} text="Medium" href={socialMediumUrl()} name="Medium" />
 				</FooterSection>
 			</div>
 		</footer>
