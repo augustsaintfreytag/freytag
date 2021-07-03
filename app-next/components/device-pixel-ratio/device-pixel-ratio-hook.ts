@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { addGlobalMediaMatchListener, removeGlobalMediaMatchListener } from "~/components/device-pixel-ratio/functions/device-pixel-ratio-media-match"
 
 // Library
 
@@ -7,7 +8,6 @@ export type DotsPerPixel = number
 // Constants
 
 const defaultFallbackDevicePixelRatio: DotsPerPixel = 1.0
-const devicePixelRatioMatchQuery = "screen and (resolution: 1dppx)"
 
 // Ratio
 
@@ -17,16 +17,6 @@ function safeDevicePixelRatio(): DotsPerPixel {
 	}
 
 	return window.devicePixelRatio
-}
-
-// Media Match
-
-function mediaMatch(): MediaQueryList | undefined {
-	if (typeof window === "undefined" || typeof window.matchMedia === "undefined") {
-		return undefined
-	}
-
-	return window.matchMedia(devicePixelRatioMatchQuery)
 }
 
 // Hook
@@ -39,10 +29,10 @@ export default function useDevicePixelRatio(): DotsPerPixel {
 			setActiveRatio(safeDevicePixelRatio())
 		}
 
-		mediaMatch()?.addEventListener("change", onEventChange, false)
+		addGlobalMediaMatchListener(onEventChange)
 
 		return () => {
-			mediaMatch()?.removeEventListener("change", onEventChange)
+			removeGlobalMediaMatchListener(onEventChange)
 		}
 	}, [])
 
