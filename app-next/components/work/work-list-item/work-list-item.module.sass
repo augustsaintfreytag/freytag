@@ -18,9 +18,7 @@ $itemImageMaxWidth: 1600px
 	overflow: hidden
 
 	@include breakpoint($anyDesktop)
-		background: $elementBackgroundColor
-		background: url("/assets/paper-tile.jpg")
-		background-repeat: tile
+		@include paperTile
 
 	&::after
 		@include overlayPseudoObject
