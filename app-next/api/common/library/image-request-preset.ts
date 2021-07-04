@@ -4,7 +4,7 @@ import { CockpitImageOptions, CockpitImageRequest } from "cockpit-access"
 
 enum ImageCompressionQuality {
 	low = 65,
-	default = 85,
+	default = 80,
 	high = 95
 }
 

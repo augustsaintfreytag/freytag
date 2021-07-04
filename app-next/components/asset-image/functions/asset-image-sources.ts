@@ -15,7 +15,7 @@ type ScaledURLCouple = [URL, URL]
 
 const retinaResolutionScaleFactor = 2
 const mobileResolutionScaleFactor = 0.5
-const retinaQualityOptimizationFactor = 0.9
+const retinaQualityOptimizationFactor = 1.0
 
 function roundedResolutionValue(value: number | undefined, factor: number): number {
 	return Math.round((value ?? 0) * factor)
