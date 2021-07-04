@@ -4,8 +4,8 @@ import { CockpitImageOptions, CockpitImageRequest } from "cockpit-access"
 
 enum ImageCompressionQuality {
 	low = 65,
-	default = 80,
-	high = 90
+	default = 85,
+	high = 95
 }
 
 export enum ImageFormat {
@@ -19,12 +19,6 @@ export enum ImageFormat {
 
 export function imageRequest(format: ImageFormat): CockpitImageRequest {
 	switch (format) {
-		case ImageFormat.Small:
-			return new CockpitImageRequest({
-				mode: CockpitImageOptions.Mode.BestFit,
-				width: 600,
-				quality: ImageCompressionQuality.default
-			})
 		case ImageFormat.Regular:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
@@ -34,13 +28,13 @@ export function imageRequest(format: ImageFormat): CockpitImageRequest {
 		case ImageFormat.Large:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
-				width: 1200,
+				width: 1300,
 				quality: ImageCompressionQuality.default
 			})
 		case ImageFormat.ExtraLarge:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
-				width: 1800,
+				width: 1900,
 				quality: ImageCompressionQuality.default
 			})
 		default:

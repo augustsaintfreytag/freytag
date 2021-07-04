@@ -13,7 +13,7 @@ type ScaledURLCouple = [URL, URL]
 
 // Sources
 
-const retinaResolutionScaleFactor = 1.5
+const retinaResolutionScaleFactor = 2
 const mobileResolutionScaleFactor = 0.5
 const retinaQualityOptimizationFactor = 0.9
 
