@@ -3,6 +3,7 @@ import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { fallbackImageComponent } from "~/components/asset-image/functions/asset-image-fallback"
 import { desktopMediaQuery, mobileMediaQuery } from "~/components/asset-image/functions/asset-image-media"
 import { scaledViewportImageSources } from "~/components/asset-image/functions/asset-image-sources"
+import useRenderDevicePixelRatio from "~/components/device-pixel-ratio/render-device-pixel-ratio-hook"
 import { PropsWithClassName } from "~/types/props"
 import { URLComponent } from "~/utils/routing/library/url"
 
@@ -25,10 +26,16 @@ const ViewportAssetImage: FunctionComponent<Props> = props => {
 	const [desktopBase, desktopDouble] = scaledSources.desktop
 	const [mobileBase, mobileDouble] = scaledSources.mobile
 
+	const devicePixelRatio = useRenderDevicePixelRatio()
+
 	return (
 		<picture>
-			<source srcSet={`${mobileBase} 1x, ${mobileDouble} 2x`} media={`(min-width: 0px) and (max-width: ${mobileBreakpoint}px)`} />
-			<source srcSet={`${desktopBase} 1x, ${desktopDouble} 2x`} media={`(min-width: ${mobileBreakpoint + 1}px)`} />
+			{devicePixelRatio <= 1 && <source srcSet={`${mobileBase}&dppx=${devicePixelRatio}`} media={mobileMediaQuery} />}
+			{devicePixelRatio > 1 && <source srcSet={`${mobileDouble}&dppx=${devicePixelRatio}`} media={mobileMediaQuery} />}
+
+			{devicePixelRatio <= 1 && <source srcSet={`${desktopBase}&dppx=${devicePixelRatio}`} media={desktopMediaQuery} />}
+			{devicePixelRatio > 1 && <source srcSet={`${desktopDouble}&dppx=${devicePixelRatio}`} media={desktopMediaQuery} />}
+
 			<img className={props.className} />
 		</picture>
 	)
