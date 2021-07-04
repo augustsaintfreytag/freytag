@@ -7,7 +7,7 @@ export type DotsPerPixel = number
 
 // Constants
 
-const defaultFallbackDevicePixelRatio: DotsPerPixel = 1.0
+export const defaultFallbackDevicePixelRatio: DotsPerPixel = 1.0
 
 // Ratio
 
@@ -21,8 +21,8 @@ function safeDevicePixelRatio(): DotsPerPixel {
 
 // Hook
 
-export default function useDevicePixelRatio(): DotsPerPixel {
-	const [activeRatio, setActiveRatio] = useState<DotsPerPixel>(safeDevicePixelRatio())
+export default function useDevicePixelRatio(initialValue?: DotsPerPixel): [DotsPerPixel, () => void] {
+	const [activeRatio, setActiveRatio] = useState<DotsPerPixel>(initialValue ?? safeDevicePixelRatio())
 
 	useEffect(() => {
 		const onEventChange = () => {
@@ -36,5 +36,9 @@ export default function useDevicePixelRatio(): DotsPerPixel {
 		}
 	}, [])
 
-	return activeRatio
+	const updateRatio = () => {
+		setActiveRatio(safeDevicePixelRatio())
+	}
+
+	return [activeRatio, updateRatio]
 }
