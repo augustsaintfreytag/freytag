@@ -1,11 +1,12 @@
 import { FunctionComponent } from "react"
+import ImageCover from "~/components/image-cover/image-cover"
 import { brandDescriptorFragment, brandTitleFragment } from "~/components/meta/components/brand-text"
 import { className } from "~/utils/class-names/class-name"
-import { URL } from "~/utils/routing/library/url"
+import { URLComponent } from "~/utils/routing/library/url"
 import styles from "./index-cover.module.sass"
 
 interface Props {
-	src?: URL
+	src?: URLComponent
 }
 
 const IndexCover: FunctionComponent<Props> = props => (
@@ -16,7 +17,7 @@ const IndexCover: FunctionComponent<Props> = props => (
 		<div className={className(styles.subheading, styles.centered)}>
 			<h2>{brandDescriptorFragment()}</h2>
 		</div>
-		<img src={props.src ?? "/assets/image-fallback.png"} />
+		<ImageCover className={styles.image} src={props.src} />
 	</section>
 )
 

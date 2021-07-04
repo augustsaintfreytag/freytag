@@ -3,16 +3,13 @@
 .cover
 	position: relative
 	width: 100%
-	height: 82vh
 	overflow: hidden
 
 	@include breakpoint($anyMobile)
-		height: 88vh
 		min-height: 36rem
 
-	img
-		z-index: 1
-		@include coverObject
+	.image
+		z-index: 0
 
 	.heading
 		h1
@@ -36,6 +33,7 @@
 		h2
 			position: relative
 			top: 5rem
+			z-index: 2
 
 			@include subTitleFont
 			font-size: 1.1rem

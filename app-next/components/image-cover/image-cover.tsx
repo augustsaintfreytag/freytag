@@ -7,7 +7,7 @@ import { URLComponent } from "~/utils/routing/library/url"
 import styles from "./image-cover.module.sass"
 
 type Props = PropsWithClassName & {
-	src: URLComponent
+	src?: URLComponent
 	description?: string
 }
 

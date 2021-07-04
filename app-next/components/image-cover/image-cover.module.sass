@@ -3,14 +3,15 @@
 .cover
 	display: block
 	width: 100%
-	min-height: 857px
-	height: 72vh
+	min-height: 55rem
+	max-height: 75rem
+	height: 84vh
 	overflow: hidden
 
 	@include breakpoint($anyMobile)
 		min-height: unset
-		height: 92vh
+		height: 88vh
 
-	> img
+	.image
 		@include coverObject
 		object-position: 50% 100%
