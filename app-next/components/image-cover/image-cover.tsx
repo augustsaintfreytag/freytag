@@ -13,7 +13,7 @@ type Props = PropsWithClassName & {
 
 const ImageCover: FunctionComponent<Props> = props => (
 	<div className={className(props.className, styles.cover)}>
-		<AssetImage src={props.src} format={ImageFormat.ExtraLarge} alt={props.description} />
+		<AssetImage className={styles.image} src={props.src} format={ImageFormat.ExtraLarge} alt={props.description} />
 	</div>
 )
 
