@@ -1,22 +1,24 @@
 import { FunctionComponent } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
-import { scaledImageSources } from "~/components/asset-image/functions/asset-image-sources"
+import { fallbackImageComponent } from "~/components/asset-image/functions/asset-image-fallback"
+import ViewportAssetImage from "~/components/asset-image/viewport-asset-image"
 import { PropsWithClassName } from "~/types/props"
 import { URLComponent } from "~/utils/routing/library/url"
 
 // Component
 
 interface Props extends PropsWithClassName {
-	src: URLComponent
+	src?: URLComponent
 	format?: ImageFormat
 	alt?: string
 }
 
 const AssetImage: FunctionComponent<Props> = props => {
-	const baseFormat = props.format ?? ImageFormat.Regular
-	const [singleSizePath, doubleSizePath] = scaledImageSources(props.src, baseFormat)
+	const source = props.src ?? fallbackImageComponent
+	const format = props.format ?? ImageFormat.Regular
+	const sources = { desktop: source, mobile: source }
 
-	return <img className={props.className} src={singleSizePath} srcSet={`${singleSizePath} 1x, ${doubleSizePath} 2x`} alt={props.alt} />
+	return <ViewportAssetImage src={sources} format={format} alt={props.alt} />
 }
 
 export default AssetImage
