@@ -1,13 +1,10 @@
 import { FunctionComponent } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { fallbackImageComponent } from "~/components/asset-image/functions/asset-image-fallback"
+import { desktopMediaQuery, mobileMediaQuery } from "~/components/asset-image/functions/asset-image-media"
 import { scaledViewportImageSources } from "~/components/asset-image/functions/asset-image-sources"
 import { PropsWithClassName } from "~/types/props"
 import { URLComponent } from "~/utils/routing/library/url"
-
-// Values
-
-const mobileBreakpoint = 1024
 
 // Component
 
