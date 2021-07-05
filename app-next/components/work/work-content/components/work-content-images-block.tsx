@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
 import { WorkContentImageAlignment } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
-import ImageFigure, { ImageFigureProps } from "~/components/image-figure/image-figure"
+import WorkImageFigure, { ImageFigureProps } from "~/components/work/work-image-figure/work-image-figure"
 import { className } from "~/utils/class-names/class-name"
 import styles from "./work-content-images-block.module.sass"
 
@@ -24,7 +24,7 @@ const WorkContentImageColumnBlock: FunctionComponent<Props> = props => {
 	return (
 		<section className={className(styles.block, contentStyle, alignmentStyle)}>
 			{props.collection.map(elementProps => (
-				<ImageFigure key={elementProps.src} {...elementProps} />
+				<WorkImageFigure key={elementProps.src} {...elementProps} />
 			))}
 		</section>
 	)
