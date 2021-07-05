@@ -18,7 +18,7 @@ const AssetImage: FunctionComponent<Props> = props => {
 	const format = props.format ?? ImageFormat.Regular
 	const sources = { desktop: source, mobile: source }
 
-	return <ViewportAssetImage src={sources} format={format} alt={props.alt} />
+	return <ViewportAssetImage className={props.className} src={sources} format={format} alt={props.alt} />
 }
 
 export default AssetImage
