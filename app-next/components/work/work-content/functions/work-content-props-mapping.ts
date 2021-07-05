@@ -38,13 +38,14 @@ export function imagesContentPropsFromContent(block: WorkShowcaseContentImages):
 
 	const collection: { src?: URL; caption?: string }[] = block.imageContents.map(imageContent => {
 		return {
-			src: imageUrlFromComponent(imageContent.path, imageFormat),
+			src: imageContent.path,
+			imageFormat: imageFormat,
 			caption: imageContent.meta?.title
 		}
 	})
 
 	return {
-		collection,
+		collection: collection,
 		alignment: workContentImageAlignmentFromRawValue(block.imageAlignment)
 	}
 }
