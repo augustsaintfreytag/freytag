@@ -22,13 +22,13 @@ export function imageRequest(format: ImageFormat): CockpitImageRequest {
 		case ImageFormat.Regular:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
-				width: 800,
+				width: 700,
 				quality: ImageCompressionQuality.default
 			})
 		case ImageFormat.Large:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
-				width: 1300,
+				width: 1400,
 				quality: ImageCompressionQuality.default
 			})
 		case ImageFormat.ExtraLarge:
