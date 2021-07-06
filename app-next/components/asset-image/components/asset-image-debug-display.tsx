@@ -1,7 +1,7 @@
 import { FunctionComponent, RefObject, useEffect, useMemo, useState } from "react"
 import { DotsPerPixel } from "~/components/device-pixel-ratio/device-pixel-ratio-hook"
-import { PropsWithClassName } from "~/types/props"
 import { URL } from "~/utils/routing/library/url"
+import styles from "./asset-image-debug-display.module.sass"
 
 // Helper
 
@@ -17,7 +17,7 @@ function assetProperties(source: URL): { mode?: string; width?: string; quality?
 	}
 }
 
-interface ImageDebugDisplayProps extends PropsWithClassName {
+interface ImageDebugDisplayProps {
 	imageRef: RefObject<HTMLImageElement>
 	ratio: DotsPerPixel
 }
@@ -49,7 +49,7 @@ const ImageDebugDisplay: FunctionComponent<ImageDebugDisplayProps> = props => {
 		return () => ref()?.removeEventListener("load", onImageLoad)
 	}, [])
 
-	return <span className={props.className}>{description}</span>
+	return <span className={styles.debug}>{description}</span>
 }
 
 export default ImageDebugDisplay

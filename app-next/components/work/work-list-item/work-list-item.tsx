@@ -1,15 +1,17 @@
 import Link from "next/link"
 import { FunctionComponent } from "react"
+import { ImageFormat } from "~/api/common/library/image-request-preset"
+import ViewportAssetImage from "~/components/asset-image/viewport-asset-image"
 import Markdown from "~/components/markdown/markdown"
 import Sprite from "~/components/sprites/sprite"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
-import { URL } from "~/utils/routing/library/url"
+import { URL, URLComponent } from "~/utils/routing/library/url"
 import styles from "./work-list-item.module.sass"
 
 interface ImageProps {
-	trailing: URL
-	centered: URL
+	trailing: URLComponent
+	centered: URLComponent
 }
 
 type Props = PropsWithClassName & {
@@ -21,8 +23,7 @@ type Props = PropsWithClassName & {
 
 const WorkListItem: FunctionComponent<Props> = props => (
 	<section className={className(styles.workListItem, props.className)}>
-		<img className={className(styles.image, styles.imageTrailing)} src={props.image.trailing} />
-		<img className={className(styles.image, styles.imageCentered)} src={props.image.centered} />
+		<ViewportAssetImage className={styles.image} src={{ desktop: props.image.trailing, mobile: props.image.centered }} format={ImageFormat.Large} />
 		<div className={styles.inlay}>
 			<div className={styles.inlayContent}>
 				<h2 className={styles.heading}>{props.headingText}</h2>

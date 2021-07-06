@@ -3,7 +3,9 @@
 .block
 	padding: 3.5rem 0 5rem 0
 
-	.image
+	.cover
+		position: relative
+
 		@include breakpoint($desktop)
 			@include inlayed
 			max-width: 60rem
@@ -16,7 +18,7 @@
 			max-width: none
 			padding: 0 3rem
 
-		img
+		.image
 			@include coverObject
 
 	.heading

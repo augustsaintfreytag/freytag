@@ -7,7 +7,6 @@ import { scaledViewportImageSources } from "~/components/asset-image/functions/a
 import useRenderDevicePixelRatio from "~/components/device-pixel-ratio/render-device-pixel-ratio-hook"
 import { PropsWithClassName } from "~/types/props"
 import { URLComponent } from "~/utils/routing/library/url"
-import styles from "./viewport-asset-image.module.sass"
 
 // Configuration
 
@@ -36,7 +35,7 @@ const ViewportAssetImage: FunctionComponent<Props> = props => {
 	const devicePixelRatio = useRenderDevicePixelRatio()
 
 	return (
-		<picture className={styles.holder}>
+		<picture>
 			{!devicePixelRatio ||
 				(devicePixelRatio <= 1 && (
 					<>
@@ -53,7 +52,7 @@ const ViewportAssetImage: FunctionComponent<Props> = props => {
 			)}
 
 			<img className={props.className} ref={imageRef} />
-			{showsDebugState && <ImageDebugDisplay className={styles.debug} imageRef={imageRef} ratio={devicePixelRatio} />}
+			{showsDebugState && <ImageDebugDisplay imageRef={imageRef} ratio={devicePixelRatio} />}
 		</picture>
 	)
 }

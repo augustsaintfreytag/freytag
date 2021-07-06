@@ -15,10 +15,10 @@ interface Props extends PropsWithClassName {
 
 const AssetImage: FunctionComponent<Props> = props => {
 	const source = props.src ?? fallbackImageComponent
-	const format = props.format ?? ImageFormat.Regular
+	const format = props.format
 	const sources = { desktop: source, mobile: source }
 
-	return <ViewportAssetImage src={sources} format={format} alt={props.alt} />
+	return <ViewportAssetImage className={props.className} src={sources} format={format} alt={props.alt} />
 }
 
 export default AssetImage

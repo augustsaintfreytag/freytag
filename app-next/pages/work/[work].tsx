@@ -1,9 +1,7 @@
 import { GetServerSideProps } from "next"
 import { useMemo } from "react"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
-import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { getServerSideApiResponseByQuery } from "~/api/props/functions/server-side-props"
-import { imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import Divider from "~/components/divider/divider"
@@ -39,7 +37,7 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async context =
 const WorkDetailPage: Page<PageProps & Props> = props => {
 	const showcase = props.data!.showcase!
 	const name = showcase.name
-	const cover = imageUrlFromComponent(showcase.titleImage?.path, ImageFormat.ExtraLarge)
+	const cover = showcase.titleImage?.path
 	const abstract = showcase.description ?? "…"
 	const link = linkPropsForShowcase(showcase)
 
