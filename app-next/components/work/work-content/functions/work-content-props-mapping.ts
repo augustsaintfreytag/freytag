@@ -1,5 +1,4 @@
 import { ImageFormat } from "~/api/common/library/image-request-preset"
-import { assetUrlFromComponent, imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import {
 	WorkShowcaseContentImages,
 	WorkShowcaseContentText,
@@ -66,7 +65,7 @@ export function titleCaseContentPropsFromContent(block: WorkShowcaseContentTitle
 		}
 
 		return {
-			link: assetUrlFromComponent(asset.path),
+			link: asset.path,
 			label: label
 		}
 	})()
@@ -74,7 +73,7 @@ export function titleCaseContentPropsFromContent(block: WorkShowcaseContentTitle
 	return {
 		heading: block.headingContent,
 		subHeading: block.subContent,
-		image: imageUrlFromComponent(block.imageContent?.path, ImageFormat.Large),
+		cover: block.imageContent?.path,
 		callToAction: callToAction
 	}
 }
