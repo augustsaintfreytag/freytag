@@ -2,8 +2,8 @@ import { FunctionComponent, useRef } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
 import ImageDebugDisplay from "~/components/asset-image/components/asset-image-debug-display"
 import { fallbackImageComponent } from "~/components/asset-image/functions/asset-image-fallback"
-import { desktopMediaQuery, mobileMediaQuery } from "~/components/asset-image/functions/asset-image-media"
-import { scaledViewportImageSources } from "~/components/asset-image/functions/asset-image-sources"
+import { desktopMediaQuery, phoneMediaQuery, tabletMediaQuery } from "~/components/asset-image/functions/asset-image-media"
+import { scaledDistinctImageSources } from "~/components/asset-image/functions/asset-image-sources"
 import useRenderDevicePixelRatio from "~/components/device-pixel-ratio/render-device-pixel-ratio-hook"
 import { PropsWithClassName } from "~/types/props"
 import { URLComponent } from "~/utils/routing/library/url"
@@ -27,27 +27,26 @@ const ViewportAssetImage: FunctionComponent<Props> = props => {
 	}
 
 	const format = props.format ?? ImageFormat.Regular
-	const scaledSources = scaledViewportImageSources(sourceComponents, format)
-	const [desktopBase, desktopDouble] = scaledSources.desktop
-	const [mobileBase, mobileDouble] = scaledSources.mobile
+	const sources = scaledDistinctImageSources(sourceComponents, format)
 
 	const imageRef = useRef<HTMLImageElement>(null)
 	const devicePixelRatio = useRenderDevicePixelRatio()
 
 	return (
 		<picture>
-			{!devicePixelRatio ||
-				(devicePixelRatio <= 1 && (
-					<>
-						<source srcSet={`${mobileBase}&dppx=${devicePixelRatio}`} media={mobileMediaQuery} />
-						<source srcSet={`${desktopBase}&dppx=${devicePixelRatio}`} media={desktopMediaQuery} />
-					</>
-				))}
+			{devicePixelRatio <= 1 && (
+				<>
+					<source srcSet={`${sources.phone[0]}&dppx=${devicePixelRatio}`} media={phoneMediaQuery} />
+					<source srcSet={`${sources.tablet[0]}&dppx=${devicePixelRatio}`} media={tabletMediaQuery} />
+					<source srcSet={`${sources.desktop[0]}&dppx=${devicePixelRatio}`} media={desktopMediaQuery} />
+				</>
+			)}
 
 			{devicePixelRatio > 1 && (
 				<>
-					<source srcSet={`${mobileDouble}&dppx=${devicePixelRatio}`} media={mobileMediaQuery} />
-					<source srcSet={`${desktopDouble}&dppx=${devicePixelRatio}`} media={desktopMediaQuery} />
+					<source srcSet={`${sources.phone[1]}&dppx=${devicePixelRatio}`} media={phoneMediaQuery} />
+					<source srcSet={`${sources.tablet[1]}&dppx=${devicePixelRatio}`} media={tabletMediaQuery} />
+					<source srcSet={`${sources.desktop[1]}&dppx=${devicePixelRatio}`} media={desktopMediaQuery} />
 				</>
 			)}
 
