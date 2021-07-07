@@ -1,6 +1,6 @@
 @import "/styles/values/all"
 @import "/styles/base/accessibility"
-	
+
 .page
 	padding-bottom: $pageSpacing
 
@@ -15,7 +15,8 @@
 
 	.feature
 		position: relative
-		margin-top: $pageSpacing
+		max-width: $ultraWideItemMaxWidth
+		margin: $pageSpacing auto 0 auto
 		
 		@include breakpoint($anyMobile)
 			> section
