@@ -1,7 +1,5 @@
 import { GetServerSideProps } from "next"
-import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { getServerSideApiResponse } from "~/api/props/functions/server-side-props"
-import { imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
@@ -38,7 +36,6 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
 	}))
 
 const ImprintPage: Page<PageProps & Props> = props => {
-	const coverImageUrl = imageUrlFromComponent(props.data?.cover, ImageFormat.ExtraLarge)
 	const shouldDisplaySensitiveData = useSensitiveDataDisplay()
 
 	return (
@@ -47,7 +44,7 @@ const ImprintPage: Page<PageProps & Props> = props => {
 			<section className={styles.page}>
 				<h1>Imprint</h1>
 				<ImageCover
-					src={coverImageUrl}
+					src={props.data?.cover}
 					description="A stack of legal documents in a top-down view, 
 						the top-most document showing an invoice for legal services, one of which is 
 						writing a privacy policy, racking up a total bill of $15,950."
