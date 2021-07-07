@@ -31,7 +31,7 @@ const ImageDebugDisplay: FunctionComponent<ImageDebugDisplayProps> = props => {
 		}
 
 		const { mode, width, quality } = assetProperties(imageSource)
-		const description = `Mode "${mode}", Width ${width}px, Quality ${quality}%, DDPX ${props.ratio}`
+		const description = `Mode "${mode}", Width ${width}px, Quality ${quality}%, DPPX ${props.ratio}`
 
 		return description
 	}
