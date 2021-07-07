@@ -1,11 +1,12 @@
-import { FunctionComponent, useRef } from "react"
+import { FunctionComponent, useMemo, useRef } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
 import ImageDebugDisplay from "~/components/asset-image/components/asset-image-debug-display"
 import { fallbackImageComponent } from "~/components/asset-image/functions/asset-image-fallback"
 import { scaledDistinctImageSources, ScaledURLCouples } from "~/components/asset-image/functions/asset-image-sources"
 import { desktopMediaQuery, phoneMediaQuery, tabletMediaQuery } from "~/components/asset-image/library/media-query-values"
-import useRenderDevicePixelRatio from "~/components/device-pixel-ratio/render-device-pixel-ratio-hook"
+import useDevicePixelRatio, { DotsPerPixel } from "~/components/device-pixel-ratio/device-pixel-ratio-hook"
 import { PropsWithClassName } from "~/types/props"
+import { useInitialRenderState } from "~/utils/render/initial-render-hook"
 import { URLComponent } from "~/utils/routing/library/url"
 
 // Configuration
@@ -19,7 +20,15 @@ enum SourceDevicePixelRatio {
 	Double = 1
 }
 
-const SourceSet: FunctionComponent<{ sources: ScaledURLCouples; sourceIndex: number }> = props => {
+function sourceDevicePixelRatioForValue(ratio: DotsPerPixel): SourceDevicePixelRatio {
+	if (ratio > 1) {
+		return SourceDevicePixelRatio.Double
+	}
+
+	return SourceDevicePixelRatio.Base
+}
+
+const SingleSourceSet: FunctionComponent<{ sources: ScaledURLCouples; sourceIndex: number }> = props => {
 	const { sources, sourceIndex } = props
 
 	return (
@@ -27,6 +36,18 @@ const SourceSet: FunctionComponent<{ sources: ScaledURLCouples; sourceIndex: num
 			<source srcSet={`${sources.phone[sourceIndex]}`} media={phoneMediaQuery} />
 			<source srcSet={`${sources.tablet[sourceIndex]}`} media={tabletMediaQuery} />
 			<source srcSet={`${sources.desktop[sourceIndex]}`} media={desktopMediaQuery} />
+		</>
+	)
+}
+
+const ScaledSourceSet: FunctionComponent<{ sources: ScaledURLCouples }> = props => {
+	const { sources } = props
+
+	return (
+		<>
+			<source srcSet={`${sources.phone[0]} 1x, ${sources.phone[1]} 2x`} media={phoneMediaQuery} />
+			<source srcSet={`${sources.tablet[0]} 1x, ${sources.tablet[1]} 2x`} media={tabletMediaQuery} />
+			<source srcSet={`${sources.desktop[0]} 1x, ${sources.desktop[1]} 2x`} media={desktopMediaQuery} />
 		</>
 	)
 }
@@ -40,21 +61,30 @@ interface Props extends PropsWithClassName {
 }
 
 const ViewportAssetImage: FunctionComponent<Props> = props => {
-	const sourceURLComponents = {
-		desktop: props.src.desktop ?? fallbackImageComponent,
-		mobile: props.src.mobile ?? fallbackImageComponent
-	}
+	const sources = useMemo(() => {
+		const sourceURLComponents = {
+			desktop: props.src.desktop ?? fallbackImageComponent,
+			mobile: props.src.mobile ?? fallbackImageComponent
+		}
 
-	const format = props.format ?? ImageFormat.Regular
-	const sources = scaledDistinctImageSources(sourceURLComponents, format)
+		const format = props.format ?? ImageFormat.Regular
+		const sources = scaledDistinctImageSources(sourceURLComponents, format)
 
+		return sources
+	}, [props.src])
+
+	const didInitialRender = useInitialRenderState()
+	const [devicePixelRatio] = useDevicePixelRatio()
 	const imageRef = useRef<HTMLImageElement>(null)
-	const devicePixelRatio = useRenderDevicePixelRatio()
 
 	return (
 		<picture>
-			{devicePixelRatio <= 1 && <SourceSet sources={sources} sourceIndex={SourceDevicePixelRatio.Base} />}
-			{devicePixelRatio > 1 && <SourceSet sources={sources} sourceIndex={SourceDevicePixelRatio.Double} />}
+			{didInitialRender ? (
+				<SingleSourceSet sources={sources} sourceIndex={sourceDevicePixelRatioForValue(devicePixelRatio)} />
+			) : (
+				<ScaledSourceSet sources={sources} />
+			)}
+
 			<img className={props.className} ref={imageRef} />
 			{showsDebugState && <ImageDebugDisplay imageRef={imageRef} ratio={devicePixelRatio} />}
 		</picture>

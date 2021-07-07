@@ -64,8 +64,8 @@ export function scaledImageSources(component: URLComponent, viewport: Viewport, 
 	baseSizeImageRequest.width = roundedResolutionValue(baseSizeImageRequest.width, scaleFactor)
 	doubleSizeImageRequest.width = roundedResolutionValue(doubleSizeImageRequest.width, scaleFactor)
 
-	const singleSizeSource = CockpitAssetPathForm.cockpitImage(component, baseSizeImageRequest)
-	const doubleSizeSource = CockpitAssetPathForm.cockpitImage(component, doubleSizeImageRequest)
+	const singleSizeSource = `${CockpitAssetPathForm.cockpitImage(component, baseSizeImageRequest)}&dppx=1`
+	const doubleSizeSource = `${CockpitAssetPathForm.cockpitImage(component, doubleSizeImageRequest)}&dppx=2`
 
 	return [singleSizeSource, doubleSizeSource]
 }

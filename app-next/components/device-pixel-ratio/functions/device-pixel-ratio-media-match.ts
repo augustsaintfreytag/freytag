@@ -1,6 +1,6 @@
 // Constants
 
-const devicePixelRatioMatchQuery = "screen and (resolution: 1dppx)"
+const devicePixelRatioMatchQuery = "screen and (resolution: 1dppx), screen and (-webkit-device-pixel-ratio: 1)"
 
 // Media Match
 
