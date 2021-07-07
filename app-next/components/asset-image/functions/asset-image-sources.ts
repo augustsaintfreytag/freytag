@@ -1,5 +1,11 @@
 import { CockpitAssetPathForm, CockpitImageRequest } from "cockpit-access"
 import { ImageFormat, imageRequest } from "~/api/common/library/image-request-preset"
+import {
+	phoneResolutionScaleFactor,
+	retinaQualityOptimizationFactor,
+	retinaResolutionScaleFactor,
+	tabletResolutionScaleFactor
+} from "~/components/asset-image/library/scale-values"
 import { URL, URLComponent } from "~/utils/routing/library/url"
 
 // Library
@@ -13,11 +19,6 @@ export enum Viewport {
 type ScaledURLCouple = [URL, URL]
 
 // Sources
-
-const retinaResolutionScaleFactor = 1.75
-const phoneResolutionScaleFactor = 0.7
-const tabletResolutionScaleFactor = 0.8
-const retinaQualityOptimizationFactor = 0.9
 
 function roundedResolutionValue(value: number | undefined, factor: number): number {
 	return Math.round((value ?? 0) * factor)
