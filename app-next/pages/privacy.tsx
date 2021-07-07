@@ -1,7 +1,5 @@
 import { GetServerSideProps } from "next"
-import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { getServerSideApiResponse } from "~/api/props/functions/server-side-props"
-import { imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
@@ -40,14 +38,13 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
 
 const PrivacyPage: Page<PageProps & Props> = props => {
 	const shouldDisplaySensitiveData = useSensitiveDataDisplay()
-	const coverImageUrl = imageUrlFromComponent(props.data?.cover, ImageFormat.ExtraLarge)
 
 	return (
 		<>
 			<PrivacyMeta previewAsset={props.data?.preview} />
 			<section className={styles.page}>
 				<h1>Privacy</h1>
-				<ImageCover src={coverImageUrl} />
+				<ImageCover src={props.data?.cover} />
 				<article>
 					<LegalHeadingBlock heading="Privacy Policy" aside="By Regulation (EU) 2016/679 (GDPR)" />
 					<LegalTextBlock>

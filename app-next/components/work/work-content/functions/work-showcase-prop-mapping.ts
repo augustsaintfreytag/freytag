@@ -1,6 +1,4 @@
-import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { UUID } from "~/api/common/library/uuid"
-import { imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import { URL } from "~/utils/routing/library/url"
 
@@ -25,8 +23,8 @@ export function mappedWorkShowcaseListItemProps(showcase: WorkShowcase): Props {
 	const previewText = showcase.description ?? ""
 
 	const image = {
-		trailing: imageUrlFromComponent(showcase.teaserImageTrailing?.path, ImageFormat.Large),
-		centered: imageUrlFromComponent(showcase.teaserImageCentered?.path, ImageFormat.Large)
+		trailing: showcase.teaserImageTrailing?.path!,
+		centered: showcase.teaserImageCentered?.path!
 	}
 
 	const href = `/work/${showcase.slug}`
