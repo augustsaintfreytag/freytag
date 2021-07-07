@@ -6,7 +6,8 @@ import { URL, URLComponent } from "~/utils/routing/library/url"
 
 export enum Viewport {
 	Desktop,
-	Mobile
+	Tablet,
+	Phone
 }
 
 type ScaledURLCouple = [URL, URL]
@@ -14,8 +15,9 @@ type ScaledURLCouple = [URL, URL]
 // Sources
 
 const retinaResolutionScaleFactor = 1.75
-const mobileResolutionScaleFactor = 0.5
-const retinaQualityOptimizationFactor = 1.0
+const phoneResolutionScaleFactor = 0.7
+const tabletResolutionScaleFactor = 0.8
+const retinaQualityOptimizationFactor = 0.9
 
 function roundedResolutionValue(value: number | undefined, factor: number): number {
 	return Math.round((value ?? 0) * factor)
@@ -36,13 +38,23 @@ function scaledImageRequests(baseFormat: ImageFormat): [CockpitImageRequest, Coc
 	return [baseSizeImageRequest, doubleSizeImageRequest]
 }
 
+function imageRequestWidthScaleFactor(viewport: Viewport): number {
+	switch (viewport) {
+		case Viewport.Phone:
+			return phoneResolutionScaleFactor
+		case Viewport.Tablet:
+			return tabletResolutionScaleFactor
+		case Viewport.Desktop:
+			return 1.0
+	}
+}
+
 export function scaledImageSources(component: URLComponent, viewport: Viewport, baseFormat: ImageFormat): ScaledURLCouple {
 	const [baseSizeImageRequest, doubleSizeImageRequest] = scaledImageRequests(baseFormat)
+	const scaleFactor = imageRequestWidthScaleFactor(viewport)
 
-	if (viewport === Viewport.Mobile) {
-		baseSizeImageRequest.width = roundedResolutionValue(baseSizeImageRequest.width, mobileResolutionScaleFactor)
-		doubleSizeImageRequest.width = roundedResolutionValue(doubleSizeImageRequest.width, mobileResolutionScaleFactor)
-	}
+	baseSizeImageRequest.width = roundedResolutionValue(baseSizeImageRequest.width, scaleFactor)
+	doubleSizeImageRequest.width = roundedResolutionValue(doubleSizeImageRequest.width, scaleFactor)
 
 	const singleSizeSource = CockpitAssetPathForm.cockpitImage(component, baseSizeImageRequest)
 	const doubleSizeSource = CockpitAssetPathForm.cockpitImage(component, doubleSizeImageRequest)
@@ -50,12 +62,13 @@ export function scaledImageSources(component: URLComponent, viewport: Viewport, 
 	return [singleSizeSource, doubleSizeSource]
 }
 
-export function scaledViewportImageSources(
+export function scaledDistinctImageSources(
 	components: { desktop: URLComponent; mobile: URLComponent },
 	baseFormat: ImageFormat
-): { desktop: ScaledURLCouple; mobile: ScaledURLCouple } {
+): { desktop: ScaledURLCouple; tablet: ScaledURLCouple; phone: ScaledURLCouple } {
 	const scaledDesktopSources = scaledImageSources(components.desktop, Viewport.Desktop, baseFormat)
-	const scaledMobileSources = scaledImageSources(components.mobile, Viewport.Mobile, baseFormat)
+	const scaledTabletSources = scaledImageSources(components.mobile, Viewport.Tablet, baseFormat)
+	const scaledPhoneSources = scaledImageSources(components.mobile, Viewport.Phone, baseFormat)
 
-	return { desktop: scaledDesktopSources, mobile: scaledMobileSources }
+	return { desktop: scaledDesktopSources, tablet: scaledTabletSources, phone: scaledPhoneSources }
 }
