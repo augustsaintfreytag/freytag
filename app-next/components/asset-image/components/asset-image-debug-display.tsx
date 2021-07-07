@@ -5,15 +5,17 @@ import styles from "./asset-image-debug-display.module.sass"
 
 // Helper
 
-function assetProperties(source: URL): { mode?: string; width?: string; quality?: string } {
-	const mode = source.match(/m=(.+?)&/)?.[1]
-	const width = source.match(/w=(.+?)&/)?.[1]
-	const quality = source.match(/q=(.+?)&/)?.[1]
+function assetProperties(source: URL): { mode?: string; width?: string; quality?: string; dppx?: string } {
+	const mode = source.match(/m=(\w+)/)?.[1]
+	const width = source.match(/w=(\d+)/)?.[1]
+	const quality = source.match(/q=(\d+)/)?.[1]
+	const dppx = source.match(/dppx=(\d+)/)?.[1]
 
 	return {
 		mode,
 		width,
-		quality
+		quality,
+		dppx
 	}
 }
 
@@ -30,8 +32,12 @@ const ImageDebugDisplay: FunctionComponent<ImageDebugDisplayProps> = props => {
 			return "<No Source>"
 		}
 
-		const { mode, width, quality } = assetProperties(imageSource)
-		const description = `Mode "${mode}", Width ${width}px, Quality ${quality}%, DPPX ${props.ratio}`
+		const { mode, width, quality, dppx } = assetProperties(imageSource)
+		let description = `Mode "${mode}", Width ${width}px, Quality ${quality}%, Ratio ${dppx}dppx`
+
+		if (props.ratio !== Number(dppx)) {
+			description += ` (Should be: ${props.ratio}dppx)`
+		}
 
 		return description
 	}
