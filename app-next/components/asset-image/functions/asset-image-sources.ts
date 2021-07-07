@@ -16,7 +16,14 @@ export enum Viewport {
 	Phone
 }
 
-type ScaledURLCouple = [URL, URL]
+export interface ScaledValues<Value> {
+	desktop: Value
+	tablet: Value
+	phone: Value
+}
+
+export type ScaledURLCouple = [URL, URL]
+export type ScaledURLCouples = ScaledValues<ScaledURLCouple>
 
 // Sources
 
