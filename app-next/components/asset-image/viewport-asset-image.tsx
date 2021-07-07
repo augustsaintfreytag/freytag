@@ -5,14 +5,13 @@ import { fallbackImageComponent } from "~/components/asset-image/functions/asset
 import { scaledDistinctImageSources, ScaledURLCouples } from "~/components/asset-image/functions/asset-image-sources"
 import { desktopMediaQuery, phoneMediaQuery, tabletMediaQuery } from "~/components/asset-image/library/media-query-values"
 import useDevicePixelRatio, { DotsPerPixel } from "~/components/device-pixel-ratio/device-pixel-ratio-hook"
-import { appEnvironmentIsDevelopment } from "~/components/meta/library/app"
 import { PropsWithClassName } from "~/types/props"
 import { useInitialRenderState } from "~/utils/render/initial-render-hook"
 import { URLComponent } from "~/utils/routing/library/url"
 
 // Configuration
 
-const showsDebugState = appEnvironmentIsDevelopment()
+const showsDebugState = false
 
 // Source Set
 
