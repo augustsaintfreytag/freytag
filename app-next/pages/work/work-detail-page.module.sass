@@ -1,18 +1,39 @@
-@import "/styles/values/all"
-	
+@import "/styles/values/all"	
+
 .page
-	padding-bottom: $pageSpacing
+	$interContentSpacing: $pageSpacing
+	$interContentSpacingMobile: $pageSpacing * 0.85
+	$interContentBlockSpacing: $pageContentSpacing
+	$interContentBlockSpacingMobile: $pageContentSpacing * 0.85
+
+	padding-bottom: $interContentSpacing
+
+	@include breakpoint($anyMobile)
+		padding-bottom: $interContentSpacingMobile
+
 
 	> header
 		.title
-			margin-top: $pageSpacing
+			margin-top: $interContentSpacing
+
+			@include breakpoint($anyMobile)
+				margin-top: $interContentSpacingMobile
 
 	.divider
-		margin-top: $pageSpacing
+		margin-top: $interContentSpacing
 		background: #b07cb1
 
+		@include breakpoint($anyMobile)
+			margin-top: $interContentSpacingMobile
+
 	> main
-		margin-top: $pageSpacing
+		margin-top: $interContentSpacing
+
+		@include breakpoint($anyMobile)
+			margin-top: $interContentSpacingMobile
 
 		> section
-			@include listMargin($pageContentSpacing)
+			@include listMargin($interContentBlockSpacing)
+
+			@include breakpoint($anyMobile)
+				@include listMargin($interContentBlockSpacingMobile)
