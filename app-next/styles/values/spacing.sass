@@ -102,7 +102,9 @@ $ultraWideItemMaxWidth: 112rem
 	object-fit: cover
 	object-position: center
 
-@mixin coverImageWithBreakpoints($heightModifier: 0vh, $minHeightModifier: 0rem)
+@mixin coverImageWithBreakpoints($heightModifier: 0vh, $minHeightModifier: 0rem, $maxHeightModifier: 0rem)
+	max-height: 65rem + $maxHeightModifier
+
 	@include breakpoint($desktop)
 		height: 85vh + $heightModifier
 		min-height: 55rem + $minHeightModifier
