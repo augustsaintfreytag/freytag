@@ -12,9 +12,11 @@ $captionSpacing: 0.85rem
 
 	figcaption
 		margin-top: $captionSpacing
-		font-size: $captionFontSize
 		color: $textColorFaded
+		line-height: $captionLineHeight
+
+		@include breakpoint($anyDesktop)
+			font-size: $captionFontSize
 
 		@include breakpoint($anyMobile)
 			font-size: $captionFontSizeMobile
-			line-height: $captionLineHeight
