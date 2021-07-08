@@ -58,7 +58,7 @@ function imageRequestWidthScaleFactor(viewport: Viewport): number {
 		case Viewport.Tablet:
 			return scaleFactors.tabletResolution
 		case Viewport.Desktop:
-			return 1.0
+			return scaleFactors.desktopResolution
 	}
 }
 
