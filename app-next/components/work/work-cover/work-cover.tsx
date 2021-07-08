@@ -11,7 +11,7 @@ type Props = PropsWithClassName & {
 
 const WorkCover: FunctionComponent<Props> = props => (
 	<section className={className(props.className, styles.cover)}>
-		<ImageCover src={props.image} />
+		<ImageCover className={styles.image} src={props.image} />
 	</section>
 )
 
