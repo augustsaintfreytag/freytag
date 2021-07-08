@@ -2,6 +2,7 @@ import { FunctionComponent, useMemo, useRef } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
 import ImageDebugDisplay from "~/components/asset-image/components/asset-image-debug-display"
 import { fallbackImageComponent } from "~/components/asset-image/functions/asset-image-fallback"
+import { applicableViewportImageFormats, scaledDistinctImageSources } from "~/components/asset-image/functions/asset-image-sources"
 import { desktopMediaQuery, phoneMediaQuery, tabletMediaQuery } from "~/components/asset-image/library/media-query-values"
 import { ViewportImageFormats, ViewportURLCouples } from "~/components/asset-image/library/viewport-sources"
 import useDevicePixelRatio, { DotsPerPixel } from "~/components/device-pixel-ratio/device-pixel-ratio-hook"
@@ -11,7 +12,7 @@ import { URLComponent } from "~/utils/routing/library/url"
 
 // Configuration
 
-const showsDebugState = false
+const showsDebugState = true
 
 // Source Set
 
@@ -57,6 +58,7 @@ const ScaledSourceSet: FunctionComponent<{ sources: ViewportURLCouples }> = prop
 interface Props extends PropsWithClassName {
 	src: { desktop?: URLComponent; mobile?: URLComponent }
 	format?: ImageFormat
+	formats?: ViewportImageFormats
 	alt?: string
 }
 
@@ -67,8 +69,8 @@ const ViewportAssetImage: FunctionComponent<Props> = props => {
 			mobile: props.src.mobile ?? fallbackImageComponent
 		}
 
-		const format = props.format ?? ImageFormat.Regular
-		const sources = scaledDistinctImageSources(sourceURLComponents, format)
+		const formats = applicableViewportImageFormats(props, ImageFormat.Regular)
+		const sources = scaledDistinctImageSources(sourceURLComponents, formats)
 
 		return sources
 	}, [props.src])
