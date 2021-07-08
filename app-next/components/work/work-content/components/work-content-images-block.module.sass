@@ -31,17 +31,12 @@ $interFigureSpacingMobile: 2.5rem
 
 	> figure
 		@include horizontalListMargin($interFigureSpacing)
-
-		height: max-content
 		flex: 1 1 100%
-		overflow: hidden
 
 		@include breakpoint($phone)
 			@include noHorizontalListMargin
 			@include margin(0 auto)
 			@include listMargin($interFigureSpacingMobile)
-
-		@include breakpoint($tablet)
 
 
 	&.singleImage
