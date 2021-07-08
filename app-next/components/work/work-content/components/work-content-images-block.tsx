@@ -32,8 +32,6 @@ const WorkContentImageColumnBlock: FunctionComponent<Props> = props => {
 	const contentStyle = contentHasMultipleImages ? styles.multipleImages : styles.singleImage
 	const contentFormats = contentImageFormats(contentAlignment, contentHasMultipleImages)
 
-	const contentFormat = contentAlignment === WorkContentImageAlignment.RowsOnly || !contentHasMultipleImages ? ImageFormat.Large : ImageFormat.Regular
-
 	return (
 		<section className={className(styles.block, contentStyle, alignmentStyle)}>
 			{props.collection.map(elementProps => (

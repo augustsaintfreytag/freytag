@@ -2,13 +2,9 @@
 
 .cover
 	position: relative
-	width: 100%
-	overflow: hidden
-
-	@include breakpoint($anyMobile)
-		min-height: 36rem
 
 	.image
+		@include coverImageWithBreakpoints	
 		z-index: 0
 
 	.heading
