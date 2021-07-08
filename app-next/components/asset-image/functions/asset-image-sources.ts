@@ -6,24 +6,13 @@ import {
 	retinaResolutionScaleFactor,
 	tabletResolutionScaleFactor
 } from "~/components/asset-image/library/scale-values"
-import { URL, URLComponent } from "~/utils/routing/library/url"
+import { scaleFactors } from "~/components/asset-image/library/scale-values"
+import { Viewport } from "~/components/asset-image/library/viewport"
+import { ViewportImageFormats, ViewportURLCouple } from "~/components/asset-image/library/viewport-sources"
+import { URLComponent } from "~/utils/routing/library/url"
 
-// Library
-
-export enum Viewport {
-	Desktop,
-	Tablet,
-	Phone
 }
 
-export interface ScaledValues<Value> {
-	desktop: Value
-	tablet: Value
-	phone: Value
-}
-
-export type ScaledURLCouple = [URL, URL]
-export type ScaledURLCouples = ScaledValues<ScaledURLCouple>
 
 // Sources
 
@@ -57,7 +46,7 @@ function imageRequestWidthScaleFactor(viewport: Viewport): number {
 	}
 }
 
-export function scaledImageSources(component: URLComponent, viewport: Viewport, baseFormat: ImageFormat): ScaledURLCouple {
+export function scaledImageSources(component: URLComponent, viewport: Viewport, baseFormat: ImageFormat): ViewportURLCouple {
 	const [baseSizeImageRequest, doubleSizeImageRequest] = scaledImageRequests(baseFormat)
 	const scaleFactor = imageRequestWidthScaleFactor(viewport)
 
@@ -73,10 +62,10 @@ export function scaledImageSources(component: URLComponent, viewport: Viewport, 
 export function scaledDistinctImageSources(
 	components: { desktop: URLComponent; mobile: URLComponent },
 	baseFormat: ImageFormat
-): { desktop: ScaledURLCouple; tablet: ScaledURLCouple; phone: ScaledURLCouple } {
 	const scaledDesktopSources = scaledImageSources(components.desktop, Viewport.Desktop, baseFormat)
 	const scaledTabletSources = scaledImageSources(components.mobile, Viewport.Tablet, baseFormat)
 	const scaledPhoneSources = scaledImageSources(components.mobile, Viewport.Phone, baseFormat)
+): { desktop: ViewportURLCouple; tablet: ViewportURLCouple; phone: ViewportURLCouple } {
 
 	return { desktop: scaledDesktopSources, tablet: scaledTabletSources, phone: scaledPhoneSources }
 }
