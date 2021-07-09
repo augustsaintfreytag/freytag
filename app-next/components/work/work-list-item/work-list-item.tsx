@@ -23,7 +23,11 @@ type Props = PropsWithClassName & {
 
 const WorkListItem: FunctionComponent<Props> = props => (
 	<section className={className(styles.workListItem, props.className)}>
-			<ViewportImageSet className={styles.image} src={{ desktop: props.image.trailing, mobile: props.image.centered }} format={ImageFormat.Large} />
+		<Link href={props.href}>
+			<a>
+				<ViewportImageSet className={styles.image} src={{ desktop: props.image.trailing, mobile: props.image.centered }} format={ImageFormat.Large} />
+			</a>
+		</Link>
 		<div className={styles.inlay}>
 			<div className={styles.inlayContent}>
 				<h2 className={styles.heading}>{props.headingText}</h2>
