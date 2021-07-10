@@ -3,10 +3,12 @@
 // Spacing
 
 $inlayWidth: 80rem
-$inlayWidthMobile: 36rem
+$inlayWidthTablet: 45rem
+$inlayWidthPhone: 36rem
 
 $inlayPadding: 2.5rem
-$inlayPaddingMobile: 3rem
+$inlayPaddingTablet: 2.5rem
+$inlayPaddingPhone: 3rem
 
 $textInlayPadding: 3.25rem
 $textInlayPaddingMobile: 3rem
@@ -28,12 +30,18 @@ $ultraWideItemMaxWidth: 112rem
 	box-sizing: border-box
 	margin-left: auto
 	margin-right: auto
-	padding: 0 $inlayPadding
-	max-width: $inlayWidth
+	
+	@include breakpoint($desktop)
+		padding: 0 $inlayPadding
+		max-width: $inlayWidth
 
-	@include breakpoint($anyMobile)
-		padding: 0 $inlayPaddingMobile
-		max-width: $inlayWidthMobile
+	@include breakpoint($tablet)
+		padding: 0 $inlayPaddingTablet
+		max-width: $inlayWidthTablet
+
+	@include breakpoint($phone)
+		padding: 0 $inlayPaddingPhone
+		max-width: $inlayWidthPhone
 
 @mixin notInlayed
 	max-width: unset
@@ -110,7 +118,7 @@ $ultraWideItemMaxWidth: 112rem
 		min-height: 55rem + $minHeightModifier
 
 	@include breakpoint($tablet)
-		height: 78vh + $heightModifier
+		height: 87vh + $heightModifier
 		min-height: 40rem + $minHeightModifier
 
 	@include breakpoint($phone)

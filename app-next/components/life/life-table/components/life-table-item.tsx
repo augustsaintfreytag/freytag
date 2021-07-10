@@ -49,7 +49,9 @@ const LifeTableItem: FunctionComponent<Props> = props => {
 		<section className={className(styles.item, isDisclosed && styles.disclosed)}>
 			<div className={styles.decorative} data-tag-representation={kindAttributeValue(props.kind)}></div>
 			<div className={styles.inlay}>
-				<header>{props.name}</header>
+				<header>
+					<button onClick={onDisclosureClick}>{props.name}</button>
+				</header>
 				<main className={styles.table}>
 					<div className={styles.interval}>{formattedOpenDateInterval(props.interval)}</div>
 					<div className={styles.format}>{props.format}</div>
@@ -72,11 +74,6 @@ const LifeTableItem: FunctionComponent<Props> = props => {
 							</div>
 						</div>
 					)}
-					<div className={className(styles.disclosure)}>
-						<div>
-							<button onClick={onDisclosureClick}>({disclosureTextForState(isDisclosed)})</button>
-						</div>
-					</div>
 				</main>
 			</div>
 		</section>

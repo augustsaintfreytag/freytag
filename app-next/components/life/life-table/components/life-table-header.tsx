@@ -15,12 +15,11 @@ interface ItemDefinition {
 }
 
 const items: ItemDefinition[] = [
-	{ column: Column.Span, text: "Span", style: styles.span, isSortable: true },
+	{ column: Column.Span, text: "Span", style: styles.interval, isSortable: true },
 	{ column: Column.Format, text: "Format", style: styles.format, isSortable: true },
 	{ column: Column.Role, text: "Role", style: styles.role, isSortable: true },
 	{ column: Column.Context, text: "Context", style: styles.context, isSortable: false },
-	{ column: Column.Description, text: "Description", style: styles.description, isSortable: false },
-	{ column: Column.Disclosure, text: "Disclosure", style: className(styles.disclosure, styles.disclosureDesktop), isSortable: false }
+	{ column: Column.Description, text: "Description", style: styles.description, isSortable: false }
 ]
 
 // Component
