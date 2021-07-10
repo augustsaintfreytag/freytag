@@ -13,6 +13,11 @@
 	@include breakpoint($anyMobile)
 		height: 4rem
 
+	button
+		cursor: pointer
+		font: inherit
+		line-height: inherit
+
 	.decorative
 		$decorativeSpacing: 1.6rem
 		$decorativeVerticalOffset: 0.3rem
@@ -45,37 +50,19 @@
 
 				@include breakpoint($anyMobile)
 					padding-right: 0.5rem
-				
-				&.disclosure
-					color: $textColorFaded
-					
-					button
-						position: relative
-						cursor: pointer
-
-						&::after
-							@include extendedInteractiveArea
-				
-				button
-					font-size: inherit
-					line-height: inherit
 
 				.leader
 					display: none
 
+				&.description
+					@include breakpoint($anyDesktop)
+						display: none
+
+				&.role, &.context, &.description
+					@include breakpoint($anyMobile)
+						display: none
 
 	// Disclosure
-
-	.inlay
-		main
-			> *
-				@include breakpoint($anyDesktop)
-					&.disclosureMobile, &.description
-						display: none
-
-				@include breakpoint($anyMobile)
-					&.disclosureDesktop, &.role, &.context, &.description
-						display: none
 
 	&.disclosed
 		height: auto
@@ -101,13 +88,6 @@
 				margin-bottom: 2.5rem
 
 				> *
-					&.interval, &.format
-						// Alignment Correction
-						@include breakpoint($anyDesktop)
-							flex: 0 0 11.58rem
-						@include breakpoint($anyMobile)
-							flex: 0 0 13.625rem
-
 					&.role, &.context, &.description
 						@include notInlayed
 

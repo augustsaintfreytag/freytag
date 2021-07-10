@@ -10,10 +10,10 @@
 
 		// Disclosure
 
-		@include breakpoint($anyDesktop)
-			&.description
+		&.description
+			@include breakpoint($anyDesktop)
 				display: none
 
-		@include breakpoint($anyMobile)
-			&.role, &.context, &.description
+		&.role, &.context, &.description
+			@include breakpoint($anyMobile)
 				display: none
