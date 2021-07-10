@@ -11,9 +11,13 @@
 		// Disclosure
 
 		&.description
-			@include breakpoint($anyDesktop)
+			@include breakpoint($desktop)
+				display: none
+
+		&.context, &.description
+			@include breakpoint($tablet)
 				display: none
 
 		&.role, &.context, &.description
-			@include breakpoint($anyMobile)
+			@include breakpoint($phone)
 				display: none

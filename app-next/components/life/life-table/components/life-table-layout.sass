@@ -34,10 +34,14 @@ $interDetailComponentSpacing: 0.75rem
 		width: 20%
 
 		&.interval
-			max-width: 14rem
+			@include breakpoint($desktop)
+				max-width: 13rem
+
+			@include breakpoint($tablet)
+				max-width: 10.5rem
+
+			@include breakpoint($phone)
+				max-width: 14rem
 
 		&.context
 			width: 40%
-
-		&.disclosure
-			max-width: 7.25rem

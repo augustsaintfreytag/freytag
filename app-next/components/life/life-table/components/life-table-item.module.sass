@@ -16,6 +16,7 @@
 	button
 		cursor: pointer
 		font: inherit
+		text-align: inherit
 		line-height: inherit
 
 	.decorative
@@ -35,6 +36,10 @@
 	.inlay
 		header
 			@include tableItemHeadingFont
+
+			> button
+				@include ellipsized
+				width: 100%
 			
 		main
 			margin-top: $itemComponentSpacing
@@ -55,11 +60,15 @@
 					display: none
 
 				&.description
-					@include breakpoint($anyDesktop)
+					@include breakpoint($desktop)
+						display: none
+
+				&.context, &.description
+					@include breakpoint($tablet)
 						display: none
 
 				&.role, &.context, &.description
-					@include breakpoint($anyMobile)
+					@include breakpoint($phone)
 						display: none
 
 	// Disclosure
@@ -108,9 +117,6 @@
 						@include breakpoint($anyMobile)
 							> div
 								padding-right: 2.5rem
-
-					&.disclosure
-						margin: 0.75rem 0 0 0
 
 					.leader
 						display: inline

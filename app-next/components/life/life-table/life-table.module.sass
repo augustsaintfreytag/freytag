@@ -4,8 +4,18 @@
 	@include inlayed
 
 	margin-top: 3.75rem
-	padding-left: 1.6rem + $inlayPadding
-	padding-right: $inlayPadding
+	
+	@include breakpoint($desktop)
+		padding-left: 1.6rem + $inlayPadding
+		padding-right: $inlayPadding
+
+	@include breakpoint($tablet)
+		padding-left: 1.6rem + $inlayPaddingTablet
+		padding-right: $inlayPaddingTablet
+
+	@include breakpoint($phone)
+		padding-left: 1.6rem + $inlayPaddingPhone
+		padding-right: $inlayPaddingPhone
 
 	> main
 		margin-top: $pageSubContentSpacing
