@@ -18,7 +18,9 @@ const NavigationListItem: FunctionComponent<NavigationListItemProps> = props => 
 
 	return (
 		<li className={className(styles.navigationItem, isActive && styles.active)}>
-			<Link href={props.href}>{props.children}</Link>
+			<Link href={props.href}>
+				<a>{props.children}</a>
+			</Link>
 		</li>
 	)
 }
