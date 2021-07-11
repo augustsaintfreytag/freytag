@@ -23,8 +23,8 @@ export function mappedHighlightMarkdownElement({ node, inline, className, childr
 		<strong className={className} {...props}>
 			{words.map((word, index) => (
 				<>
-					<span>{word}</span>
-					{!isLastWordInCollection(index, words) && <span>&nbsp;</span>}
+					<span key={`${props.key}-${index}-word`}>{word}</span>
+					{!isLastWordInCollection(index, words) && <span key={`${props.key}-${index}-space`}>&nbsp;</span>}
 				</>
 			))}
 		</strong>

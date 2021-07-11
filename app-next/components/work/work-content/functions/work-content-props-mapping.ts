@@ -34,7 +34,6 @@ export function quoteContentPropsFromContent(block: WorkShowcaseContentText): Qu
 
 export function imagesContentPropsFromContent(block: WorkShowcaseContentImages): ImagesContentProps {
 	const imageFormat = block.imageContents.length > 1 ? ImageFormat.Regular : ImageFormat.Large
-
 	const collection: { src?: URL; caption?: string }[] = block.imageContents.map(imageContent => {
 		return {
 			src: imageContent.path,

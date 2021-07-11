@@ -64,6 +64,10 @@ function titleCaseContentComponentFromContent(block: WorkShowcaseContentTitleCas
 export function workContentComponentForContent(blockLink: ResolvedCollectionLink<AnyWorkShowcaseContent>): AnyElement {
 	const kind = workContentBlockKindFromRawValue(blockLink.field.name)
 
+	if (!kind) {
+		return <></>
+	}
+
 	switch (kind) {
 		case Kind.Text:
 			return typedTextContentComponentFromContent(blockLink.value as WorkShowcaseContentText)
@@ -73,7 +77,5 @@ export function workContentComponentForContent(blockLink: ResolvedCollectionLink
 			return videoEmbedContentComponentFromContent(blockLink.value as WorkShowcaseContentVideoEmbed)
 		case Kind.TitleCase:
 			return titleCaseContentComponentFromContent(blockLink.value as WorkShowcaseContentTitleCase)
-		default:
-			return <></>
 	}
 }

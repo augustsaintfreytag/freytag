@@ -2,8 +2,9 @@ import { FunctionComponent, useMemo, useRef } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
 import ImageDebugDisplay from "~/components/asset-image/components/asset-image-debug-display"
 import { fallbackImageComponent } from "~/components/asset-image/functions/asset-image-fallback"
-import { scaledDistinctImageSources, ScaledURLCouples } from "~/components/asset-image/functions/asset-image-sources"
+import { applicableViewportImageFormats, scaledDistinctImageSources } from "~/components/asset-image/functions/asset-image-sources"
 import { desktopMediaQuery, phoneMediaQuery, tabletMediaQuery } from "~/components/asset-image/library/media-query-values"
+import { ViewportImageFormats, ViewportURLCouples } from "~/components/asset-image/library/viewport-sources"
 import useDevicePixelRatio, { DotsPerPixel } from "~/components/device-pixel-ratio/device-pixel-ratio-hook"
 import { PropsWithClassName } from "~/types/props"
 import { useInitialRenderState } from "~/utils/render/initial-render-hook"
@@ -11,7 +12,7 @@ import { URLComponent } from "~/utils/routing/library/url"
 
 // Configuration
 
-const showsDebugState = true
+const showsDebugState = false
 
 // Source Set
 
@@ -28,7 +29,7 @@ function sourceDevicePixelRatioForValue(ratio: DotsPerPixel): SourceDevicePixelR
 	return SourceDevicePixelRatio.Base
 }
 
-const SingleSourceSet: FunctionComponent<{ sources: ScaledURLCouples; sourceIndex: number }> = props => {
+const SingleSourceSet: FunctionComponent<{ sources: ViewportURLCouples; sourceIndex: number }> = props => {
 	const { sources, sourceIndex } = props
 
 	return (
@@ -40,7 +41,7 @@ const SingleSourceSet: FunctionComponent<{ sources: ScaledURLCouples; sourceInde
 	)
 }
 
-const ScaledSourceSet: FunctionComponent<{ sources: ScaledURLCouples }> = props => {
+const ScaledSourceSet: FunctionComponent<{ sources: ViewportURLCouples }> = props => {
 	const { sources } = props
 
 	return (
@@ -57,18 +58,19 @@ const ScaledSourceSet: FunctionComponent<{ sources: ScaledURLCouples }> = props 
 interface Props extends PropsWithClassName {
 	src: { desktop?: URLComponent; mobile?: URLComponent }
 	format?: ImageFormat
+	formats?: ViewportImageFormats
 	alt?: string
 }
 
-const ViewportAssetImage: FunctionComponent<Props> = props => {
+const ViewportImageSet: FunctionComponent<Props> = props => {
 	const sources = useMemo(() => {
 		const sourceURLComponents = {
 			desktop: props.src.desktop ?? fallbackImageComponent,
 			mobile: props.src.mobile ?? fallbackImageComponent
 		}
 
-		const format = props.format ?? ImageFormat.Regular
-		const sources = scaledDistinctImageSources(sourceURLComponents, format)
+		const formats = applicableViewportImageFormats(props, ImageFormat.Regular)
+		const sources = scaledDistinctImageSources(sourceURLComponents, formats)
 
 		return sources
 	}, [props.src])
@@ -91,4 +93,4 @@ const ViewportAssetImage: FunctionComponent<Props> = props => {
 	)
 }
 
-export default ViewportAssetImage
+export default ViewportImageSet

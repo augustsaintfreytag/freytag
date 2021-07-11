@@ -6,25 +6,14 @@ $inlaySpacingMobile: 1.3rem
 $inlayInterItemSpacing: $pageSubContentSpacing
 $inlayInterItemSpacingMobile: $pageSubContentSpacing * 0.75
 
-$inlayImageOffset: 50% 32%
-$inlayImageOffsetMobile: 50% 38%
-
-$itemImageMaxWidth: 1600px
+$inlayImageOffset: 50% 55%
+$inlayImageOffsetMobile: 50% 55%
 
 .workListItem
 	position: relative
 	width: 100%
 	height: 30rem
 	overflow: hidden
-
-	@include breakpoint($anyDesktop)
-		@include paperTile
-
-	&::after
-		@include overlayPseudoObject
-		max-width: $itemImageMaxWidth
-		border-left: 1rem solid white
-		border-right: 1rem solid white
 
 	@include breakpoint($anyMobile)
 		height: unset
@@ -113,20 +102,11 @@ $itemImageMaxWidth: 1600px
 	.image
 		position: relative
 		display: block
-		max-width: $itemImageMaxWidth
 		margin: 0 auto
 		z-index: 1
 
 		@include coverObject
 		object-position: $inlayImageOffset
-
-		@include breakpoint($anyDesktop)
-			&.imageCentered
-				display: none
-
-		@include breakpoint($anyMobile)
-			&.imageTrailing
-				display: none
 
 		@include breakpoint($anyMobile)
 			object-position: $inlayImageOffsetMobile

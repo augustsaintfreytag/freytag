@@ -9,7 +9,6 @@ enum ImageCompressionQuality {
 }
 
 export enum ImageFormat {
-	Small = "s",
 	Regular = "r",
 	Large = "l",
 	ExtraLarge = "xl"
@@ -34,7 +33,7 @@ export function imageRequest(format: ImageFormat): CockpitImageRequest {
 		case ImageFormat.ExtraLarge:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
-				width: 1900,
+				width: 2100,
 				quality: ImageCompressionQuality.default
 			})
 		default:

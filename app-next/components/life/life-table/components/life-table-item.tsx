@@ -8,16 +8,23 @@ import styles from "./life-table-item.module.sass"
 // Formatting
 
 function formattedRole(role: string | undefined): string {
-	return role ?? "Any"
+	if (!role) {
+		return "—"
+	}
+
+	return role
 }
 
 function formattedContext(context: string | undefined): string {
-	let text = context ?? ""
-	if (text && text[text.length - 1] !== ".") {
-		text += "."
+	if (!context) {
+		return "—"
 	}
 
-	return text
+	if (context && context[context.length - 1] !== ".") {
+		context += "."
+	}
+
+	return context
 }
 
 function kindAttributeValue(kind: LifeEventKind): string {
@@ -49,7 +56,9 @@ const LifeTableItem: FunctionComponent<Props> = props => {
 		<section className={className(styles.item, isDisclosed && styles.disclosed)}>
 			<div className={styles.decorative} data-tag-representation={kindAttributeValue(props.kind)}></div>
 			<div className={styles.inlay}>
-				<header>{props.name}</header>
+				<header>
+					<button onClick={onDisclosureClick}>{props.name}</button>
+				</header>
 				<main className={styles.table}>
 					<div className={styles.interval}>{formattedOpenDateInterval(props.interval)}</div>
 					<div className={styles.format}>{props.format}</div>
@@ -72,11 +81,6 @@ const LifeTableItem: FunctionComponent<Props> = props => {
 							</div>
 						</div>
 					)}
-					<div className={className(styles.disclosure)}>
-						<div>
-							<button onClick={onDisclosureClick}>({disclosureTextForState(isDisclosed)})</button>
-						</div>
-					</div>
 				</main>
 			</div>
 		</section>

@@ -37,7 +37,7 @@ const WorkContentClosureBlock: FunctionComponent<Props> = props => {
 				</div>
 			)}
 			<div>
-				Follow on <Twitter /> to get notified of <LineBreak />
+				Follow me on <Twitter /> to get notified of <LineBreak />
 				new publications and updates.
 			</div>
 		</section>

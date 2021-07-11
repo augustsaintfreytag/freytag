@@ -1,29 +1,34 @@
 import { CockpitAssetPathForm, CockpitImageRequest } from "cockpit-access"
 import { ImageFormat, imageRequest } from "~/api/common/library/image-request-preset"
-import {
-	phoneResolutionScaleFactor,
-	retinaQualityOptimizationFactor,
-	retinaResolutionScaleFactor,
-	tabletResolutionScaleFactor
-} from "~/components/asset-image/library/scale-values"
-import { URL, URLComponent } from "~/utils/routing/library/url"
+import { scaleFactors } from "~/components/asset-image/library/scale-values"
+import { Viewport } from "~/components/asset-image/library/viewport"
+import { ViewportImageFormats, ViewportURLCouple } from "~/components/asset-image/library/viewport-sources"
+import { URLComponent } from "~/utils/routing/library/url"
 
-// Library
+// Modelling
 
-export enum Viewport {
-	Desktop,
-	Tablet,
-	Phone
+export function applicableViewportImageFormats(
+	props: { format?: ImageFormat; formats?: ViewportImageFormats },
+	defaultFormat: ImageFormat
+): ViewportImageFormats {
+	if (props.formats) {
+		return props.formats
+	}
+
+	if (props.format) {
+		return uniformViewportImageFormats(props.format)
+	}
+
+	return uniformViewportImageFormats(defaultFormat)
 }
 
-export interface ScaledValues<Value> {
-	desktop: Value
-	tablet: Value
-	phone: Value
+export function uniformViewportImageFormats(format: ImageFormat): ViewportImageFormats {
+	return {
+		desktop: format,
+		tablet: format,
+		phone: format
+	}
 }
-
-export type ScaledURLCouple = [URL, URL]
-export type ScaledURLCouples = ScaledValues<ScaledURLCouple>
 
 // Sources
 
@@ -39,8 +44,8 @@ function scaledImageRequests(baseFormat: ImageFormat): [CockpitImageRequest, Coc
 	const baseSizeImageRequest = imageRequest(baseFormat)
 	const doubleSizeImageRequest = new CockpitImageRequest({
 		mode: baseSizeImageRequest.mode,
-		width: roundedResolutionValue(baseSizeImageRequest.width, retinaResolutionScaleFactor),
-		quality: roundedQualityValue(baseSizeImageRequest.quality, retinaQualityOptimizationFactor)
+		width: roundedResolutionValue(baseSizeImageRequest.width, scaleFactors.retinaResolution),
+		quality: roundedQualityValue(baseSizeImageRequest.quality, scaleFactors.retinaQualityOptimization)
 	})
 
 	return [baseSizeImageRequest, doubleSizeImageRequest]
@@ -49,15 +54,15 @@ function scaledImageRequests(baseFormat: ImageFormat): [CockpitImageRequest, Coc
 function imageRequestWidthScaleFactor(viewport: Viewport): number {
 	switch (viewport) {
 		case Viewport.Phone:
-			return phoneResolutionScaleFactor
+			return scaleFactors.phoneResolution
 		case Viewport.Tablet:
-			return tabletResolutionScaleFactor
+			return scaleFactors.tabletResolution
 		case Viewport.Desktop:
-			return 1.0
+			return scaleFactors.desktopResolution
 	}
 }
 
-export function scaledImageSources(component: URLComponent, viewport: Viewport, baseFormat: ImageFormat): ScaledURLCouple {
+export function scaledImageSources(component: URLComponent, viewport: Viewport, baseFormat: ImageFormat): ViewportURLCouple {
 	const [baseSizeImageRequest, doubleSizeImageRequest] = scaledImageRequests(baseFormat)
 	const scaleFactor = imageRequestWidthScaleFactor(viewport)
 
@@ -72,11 +77,11 @@ export function scaledImageSources(component: URLComponent, viewport: Viewport, 
 
 export function scaledDistinctImageSources(
 	components: { desktop: URLComponent; mobile: URLComponent },
-	baseFormat: ImageFormat
-): { desktop: ScaledURLCouple; tablet: ScaledURLCouple; phone: ScaledURLCouple } {
-	const scaledDesktopSources = scaledImageSources(components.desktop, Viewport.Desktop, baseFormat)
-	const scaledTabletSources = scaledImageSources(components.mobile, Viewport.Tablet, baseFormat)
-	const scaledPhoneSources = scaledImageSources(components.mobile, Viewport.Phone, baseFormat)
+	formats: ViewportImageFormats
+): { desktop: ViewportURLCouple; tablet: ViewportURLCouple; phone: ViewportURLCouple } {
+	const scaledDesktopSources = scaledImageSources(components.desktop, Viewport.Desktop, formats.desktop)
+	const scaledTabletSources = scaledImageSources(components.mobile, Viewport.Tablet, formats.tablet)
+	const scaledPhoneSources = scaledImageSources(components.mobile, Viewport.Phone, formats.phone)
 
 	return { desktop: scaledDesktopSources, tablet: scaledTabletSources, phone: scaledPhoneSources }
 }

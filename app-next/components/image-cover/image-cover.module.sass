@@ -4,15 +4,10 @@
 	position: relative
 	display: block
 	width: 100%
-	min-height: 55rem
-	max-height: 75rem
-	height: 84vh
 	overflow: hidden
 
-	@include breakpoint($anyMobile)
-		min-height: unset
-		height: 88vh
+	@include coverImageWithBreakpoints()
 
 	.image
 		@include coverObject
-		object-position: 50% 100%
+		object-position: 62% 62%

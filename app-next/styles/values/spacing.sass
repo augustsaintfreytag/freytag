@@ -2,11 +2,13 @@
 	
 // Spacing
 
-$inlayWidth: 1296px
-$inlayWidthMobile: 576px
+$inlayWidth: 80rem
+$inlayWidthTablet: 45rem
+$inlayWidthPhone: 36rem
 
 $inlayPadding: 2.5rem
-$inlayPaddingMobile: 3rem
+$inlayPaddingTablet: 2.5rem
+$inlayPaddingPhone: 3rem
 
 $textInlayPadding: 3.25rem
 $textInlayPaddingMobile: 3rem
@@ -20,18 +22,26 @@ $pageSubContentSpacing: 1.75rem
 
 $descriptionParagraphSpacing: 0.85rem
 
+$ultraWideItemMaxWidth: 112rem
+
 // Mixins
 
 @mixin inlayed
 	box-sizing: border-box
 	margin-left: auto
 	margin-right: auto
-	padding: 0 $inlayPadding
-	max-width: $inlayWidth
+	
+	@include breakpoint($desktop)
+		padding: 0 $inlayPadding
+		max-width: $inlayWidth
 
-	@include breakpoint($anyMobile)
-		padding: 0 $inlayPaddingMobile
-		max-width: $inlayWidthMobile
+	@include breakpoint($tablet)
+		padding: 0 $inlayPaddingTablet
+		max-width: $inlayWidthTablet
+
+	@include breakpoint($phone)
+		padding: 0 $inlayPaddingPhone
+		max-width: $inlayWidthPhone
 
 @mixin notInlayed
 	max-width: unset
@@ -99,6 +109,21 @@ $descriptionParagraphSpacing: 0.85rem
 	width: 100%
 	object-fit: cover
 	object-position: center
+
+@mixin coverImageWithBreakpoints($heightModifier: 0vh, $minHeightModifier: 0rem, $maxHeightModifier: 0rem)
+	max-height: 65rem + $maxHeightModifier
+
+	@include breakpoint($desktop)
+		height: 80vh + $heightModifier
+		min-height: 55rem + $minHeightModifier
+
+	@include breakpoint($tablet)
+		height: 87vh + $heightModifier
+		min-height: 40rem + $minHeightModifier
+
+	@include breakpoint($phone)
+		height: 83vh + $heightModifier
+		min-height: 40rem + $minHeightModifier
 
 @mixin overlayPseudoObject
 	content: ""

@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
-import AssetImage from "~/components/asset-image/asset-image"
+import ViewportImage from "~/components/asset-image/viewport-image"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { URLComponent } from "~/utils/routing/library/url"
@@ -13,7 +13,7 @@ type Props = PropsWithClassName & {
 
 const ImageCover: FunctionComponent<Props> = props => (
 	<div className={className(props.className, styles.cover)}>
-		<AssetImage className={styles.image} src={props.src} format={ImageFormat.ExtraLarge} alt={props.description} />
+		<ViewportImage className={styles.image} src={props.src} format={ImageFormat.ExtraLarge} alt={props.description} />
 	</div>
 )
 
