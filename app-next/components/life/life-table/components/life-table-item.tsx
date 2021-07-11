@@ -8,16 +8,23 @@ import styles from "./life-table-item.module.sass"
 // Formatting
 
 function formattedRole(role: string | undefined): string {
-	return role ?? "Any"
+	if (!role) {
+		return "—"
+	}
+
+	return role
 }
 
 function formattedContext(context: string | undefined): string {
-	let text = context ?? ""
-	if (text && text[text.length - 1] !== ".") {
-		text += "."
+	if (!context) {
+		return "—"
 	}
 
-	return text
+	if (context && context[context.length - 1] !== ".") {
+		context += "."
+	}
+
+	return context
 }
 
 function kindAttributeValue(kind: LifeEventKind): string {
