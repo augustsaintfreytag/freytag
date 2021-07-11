@@ -44,7 +44,7 @@ function scaledImageRequests(baseFormat: ImageFormat): [CockpitImageRequest, Coc
 	const baseSizeImageRequest = imageRequest(baseFormat)
 	const doubleSizeImageRequest = new CockpitImageRequest({
 		mode: baseSizeImageRequest.mode,
-		width: roundedResolutionValue(baseSizeImageRequest.width, scaleFactors.retinaQualityOptimization),
+		width: roundedResolutionValue(baseSizeImageRequest.width, scaleFactors.retinaResolution),
 		quality: roundedQualityValue(baseSizeImageRequest.quality, scaleFactors.retinaQualityOptimization)
 	})
 
