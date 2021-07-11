@@ -1,4 +1,5 @@
 import { Address, addressRegister, APIToken, Context, Protocol } from "cockpit-access"
+import { appEnvironmentIsDevelopment } from "~/components/meta/library/app"
 import { URL } from "~/utils/routing/library/url"
 
 const protocol = process.env.NEXT_PUBLIC_COCKPIT_PROTOCOL
@@ -53,8 +54,10 @@ const defaultAddress: Address = {
 
 addressRegister.registerDefault(defaultAddress)
 
-console.log(
-	`Registered default address with server-side '${defaultAddress.protocol(Context.Server)}://${defaultAddress.host(
-		Context.Server
-	)}' and client-side '${defaultAddress.protocol(Context.Client)}://${defaultAddress.host(Context.Client)}'.`
-)
+if (appEnvironmentIsDevelopment()) {
+	console.log(
+		`Registered default address with server-side '${defaultAddress.protocol(Context.Server)}://${defaultAddress.host(
+			Context.Server
+		)}' and client-side '${defaultAddress.protocol(Context.Client)}://${defaultAddress.host(Context.Client)}'.`
+	)
+}
