@@ -1,6 +1,4 @@
 import { FunctionComponent } from "react"
-import { ImageFormat } from "~/api/common/library/image-request-preset"
-import { imageUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
 import ImageCover from "~/components/image-cover/image-cover"
 import ExternalLink from "~/components/link/external-link"
 import InternalLink from "~/components/link/internal-link"
@@ -15,11 +13,10 @@ const Vimeo: FunctionComponent = () => <ExternalLink href="https://vimeo.com/apr
 
 const Error404Page: Page = () => {
 	const coverImage = "/storage/uploads/2021/05/24/60abebf04b24cerror-cover.jpg"
-	const coverImageUrl = imageUrlFromComponent(coverImage, ImageFormat.ExtraLarge)
 
 	return (
 		<section className={styles.page}>
-			<ImageCover src={coverImageUrl} />
+			<ImageCover src={coverImage} />
 			<section className={styles.inlay}>
 				<div>
 					<TextLine>Some other places to start:</TextLine>
