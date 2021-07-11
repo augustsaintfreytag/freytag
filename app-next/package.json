@@ -7,18 +7,18 @@
 		"dev": "next dev",
 		"dev-inspect": "node --inspect=0.0.0.0:9229 node_modules/.bin/next dev",
 		"dev-inspect-brk": "node --inspect-brk=0.0.0.0:9229 node_modules/.bin/next dev",
-		"live": "next build && next start",
+		"live": "rm -rf .next/* && next build && next start",
 		"build": "next build",
 		"start": "next start"
 	},
 	"dependencies": {
 		"breakpoint-sass": "2.7.1",
 		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git",
-		"next": "10.2.2",
+		"next": "10.2.3",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
 		"react-markdown": "6.0.2",
-		"sass": "1.34.0"
+		"sass": "1.35.2"
 	},
 	"devDependencies": {
 		"@types/node": "^15.6.0",
