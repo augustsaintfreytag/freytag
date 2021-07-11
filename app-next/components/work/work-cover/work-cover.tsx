@@ -1,8 +1,9 @@
 import { FunctionComponent } from "react"
 import ImageCover from "~/components/image-cover/image-cover"
-import Sprite from "~/components/sprites/sprite"
+import WorkOrientationNotice from "~/components/work/work-orientation-notice/work-orientation-notice"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
+import { useStateWithDelayedRender } from "~/utils/render/delayed-render-hook"
 import { URLComponent } from "~/utils/routing/library/url"
 import styles from "./work-cover.module.sass"
 
@@ -10,14 +11,15 @@ type Props = PropsWithClassName & {
 	image?: URLComponent
 }
 
-const WorkCover: FunctionComponent<Props> = props => (
-	<section className={className(props.className, styles.cover)}>
-		<div className={styles.orientationNotice}>
-			<Sprite className={styles.symbol} href="#Phone Rotation To Portrait Symbol" />
-			<div className={styles.message}>Best in landscape.</div>
-		</div>
-		<ImageCover className={styles.image} src={props.image} />
-	</section>
-)
+const WorkCover: FunctionComponent<Props> = props => {
+	const showsHighlight = useStateWithDelayedRender()
+
+	return (
+		<section className={className(props.className, styles.cover)}>
+			<WorkOrientationNotice showsHighlight={showsHighlight} />
+			<ImageCover className={styles.image} src={props.image} />
+		</section>
+	)
+}
 
 export default WorkCover
