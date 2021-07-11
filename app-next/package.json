@@ -7,7 +7,7 @@
 		"dev": "next dev",
 		"dev-inspect": "node --inspect=0.0.0.0:9229 node_modules/.bin/next dev",
 		"dev-inspect-brk": "node --inspect-brk=0.0.0.0:9229 node_modules/.bin/next dev",
-		"live": "next build && next start",
+		"live": "rm -rf .next/* && next build && next start",
 		"build": "next build",
 		"start": "next start"
 	},
