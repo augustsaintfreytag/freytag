@@ -9,8 +9,5 @@ module.exports = {
 	webpack(config) {
 		injectWebpackDefinitionsIntoSassLoader(config)
 		return config
-	},
-	future: {
-		webpack5: true
 	}
 }
