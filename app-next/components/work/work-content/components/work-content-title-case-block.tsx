@@ -20,7 +20,9 @@ export interface Props {
 const WorkContentTitleCaseBlock: FunctionComponent<Props> = props => (
 	<section className={styles.block}>
 		<div className={styles.cover}>
-			<ViewportImage className={styles.image} src={props.cover} format={ImageFormat.Large} />
+			<div className={styles.inlay}>
+				<ViewportImage className={styles.image} src={props.cover} format={ImageFormat.Large} />
+			</div>
 		</div>
 		<h2 className={styles.heading}>{props.heading}</h2>
 		<div className={styles.subHeading}>

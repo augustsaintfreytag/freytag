@@ -16,8 +16,13 @@
 		@include breakpoint($phone)
 			max-width: 48rem
 
-		.image
-			@include coverObject
+		.inlay
+			background: $elementBackgroundColor
+
+			.image
+				@include coverObject
+				display: block
+			
 
 	.heading
 		@include paragraphHeadingFont
