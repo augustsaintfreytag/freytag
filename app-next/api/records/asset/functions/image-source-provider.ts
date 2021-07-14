@@ -1,15 +1,16 @@
 import { CockpitAssetPathForm } from "cockpit-access"
-import { ImageFormat, imageRequest, thumbnailImageRequest } from "~/api/common/library/image-request-preset"
+import { imageRequest, thumbnailImageRequest } from "~/api/common/library/image-request-preset"
+import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import { URL } from "~/utils/routing/library/url"
 
 const imageFallbackUrl: URL = "/assets/image-fallback.png"
 
-export function imageUrlFromComponent(component?: string, format: ImageFormat = ImageFormat.Regular): URL {
+export function imageUrlFromComponent(component?: string, size: AssetImageSize = AssetImageSize.Regular): URL {
 	if (!component) {
 		return imageFallbackUrl
 	}
 
-	return CockpitAssetPathForm.cockpitImage(component, imageRequest(format))
+	return CockpitAssetPathForm.cockpitImage(component, imageRequest(size))
 }
 
 export function thumbnailUrlFromComponent(component?: string): URL | undefined {

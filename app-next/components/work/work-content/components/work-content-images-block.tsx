@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react"
-import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { WorkContentImageAlignment } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
-import { uniformViewportImageFormats } from "~/components/asset-image/functions/asset-image-sources"
-import { ViewportImageFormats } from "~/components/asset-image/library/viewport-sources"
+import { uniformViewportAssetImageFormats } from "~/components/asset-image/functions/asset-image-prop-mapping"
+import { AssetImageSize } from "~/components/asset-image/library/image-size"
+import { ViewportAssetImageFormats } from "~/components/asset-image/library/viewport-sources"
 import WorkImageFigure, { ImageFigureProps } from "~/components/work/work-image-figure/work-image-figure"
 import { className } from "~/utils/class-names/class-name"
 import styles from "./work-content-images-block.module.sass"
@@ -12,15 +12,15 @@ export interface Props {
 	alignment?: WorkContentImageAlignment
 }
 
-function contentImageFormats(alignment: WorkContentImageAlignment, contentHasMultipleImages: boolean): ViewportImageFormats {
+function contentImageFormats(alignment: WorkContentImageAlignment, contentHasMultipleImages: boolean): ViewportAssetImageFormats {
 	if (alignment === WorkContentImageAlignment.RowsOnly || !contentHasMultipleImages) {
-		return uniformViewportImageFormats(ImageFormat.Large)
+		return uniformViewportAssetImageFormats({ size: AssetImageSize.Large })
 	}
 
 	return {
-		desktop: ImageFormat.Regular,
-		tablet: ImageFormat.Regular,
-		phone: ImageFormat.Large
+		desktop: { size: AssetImageSize.Regular },
+		tablet: { size: AssetImageSize.Large },
+		phone: { size: AssetImageSize.Large }
 	}
 }
 

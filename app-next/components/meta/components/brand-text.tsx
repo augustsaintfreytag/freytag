@@ -19,5 +19,5 @@ export function brandDescriptor(): string {
 }
 
 export function brandDescriptorFragment(): JSX.Element {
-	return <>Concept&nbsp;and&nbsp;Experience Designer, Video&nbsp;and&nbsp;Story&nbsp;Artist</>
+	return <>Concept&nbsp;and Experience&nbsp;Designer, Video&nbsp;and&nbsp;Story&nbsp;Artist</>
 }

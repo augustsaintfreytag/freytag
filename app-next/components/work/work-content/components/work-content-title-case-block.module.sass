@@ -5,21 +5,24 @@
 
 	.cover
 		position: relative
+		@include inlayed
 
 		@include breakpoint($desktop)
-			@include inlayed
 			max-width: 60rem
 
 		@include breakpoint($tablet)
-			max-width: none
-			padding: 0 6rem
+			max-width: 48rem
 
 		@include breakpoint($phone)
-			max-width: none
-			padding: 0 3rem
+			max-width: 48rem
 
-		.image
-			@include coverObject
+		.inlay
+			background: $elementBackgroundColor
+
+			.image
+				@include coverObject
+				display: block
+			
 
 	.heading
 		@include paragraphHeadingFont

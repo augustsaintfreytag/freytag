@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react"
-import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { fallbackImageComponent } from "~/components/asset-image/functions/asset-image-fallback"
-import { ViewportImageFormats } from "~/components/asset-image/library/viewport-sources"
+import { AssetImageFormat } from "~/components/asset-image/library/asset-image-format"
+import { ViewportAssetImageFormats } from "~/components/asset-image/library/viewport-sources"
 import ViewportImageSet from "~/components/asset-image/viewport-image-set"
 import { PropsWithClassName } from "~/types/props"
 import { URLComponent } from "~/utils/routing/library/url"
@@ -10,8 +10,8 @@ import { URLComponent } from "~/utils/routing/library/url"
 
 interface Props extends PropsWithClassName {
 	src?: URLComponent
-	format?: ImageFormat
-	formats?: ViewportImageFormats
+	format?: AssetImageFormat
+	formats?: ViewportAssetImageFormats
 	alt?: string
 }
 

@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
-import { ImageFormat } from "~/api/common/library/image-request-preset"
 import { assetUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
+import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import ViewportImage from "~/components/asset-image/viewport-image"
 import CallToAction from "~/components/call-to-action/call-to-action"
 import Markdown from "~/components/markdown/markdown"
@@ -20,7 +20,9 @@ export interface Props {
 const WorkContentTitleCaseBlock: FunctionComponent<Props> = props => (
 	<section className={styles.block}>
 		<div className={styles.cover}>
-			<ViewportImage className={styles.image} src={props.cover} format={ImageFormat.Large} />
+			<div className={styles.inlay}>
+				<ViewportImage className={styles.image} src={props.cover} format={{ size: AssetImageSize.Large }} />
+			</div>
 		</div>
 		<h2 className={styles.heading}>{props.heading}</h2>
 		<div className={styles.subHeading}>
