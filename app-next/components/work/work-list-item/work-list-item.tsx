@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { FunctionComponent } from "react"
-import { ImageFormat } from "~/api/common/library/image-request-preset"
+import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import ViewportImageSet from "~/components/asset-image/viewport-image-set"
 import Markdown from "~/components/markdown/markdown"
 import Sprite from "~/components/sprites/sprite"
@@ -25,7 +25,11 @@ const WorkListItem: FunctionComponent<Props> = props => (
 	<section className={className(styles.workListItem, props.className)}>
 		<Link href={props.href}>
 			<a>
-				<ViewportImageSet className={styles.image} src={{ desktop: props.image.trailing, mobile: props.image.centered }} format={ImageFormat.Large} />
+				<ViewportImageSet
+					className={styles.image}
+					src={{ desktop: props.image.trailing, mobile: props.image.centered }}
+					format={{ size: AssetImageSize.Large }}
+				/>
 			</a>
 		</Link>
 		<div className={styles.inlay}>

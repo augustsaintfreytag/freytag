@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react"
-import { ImageFormat } from "~/api/common/library/image-request-preset"
+import { AssetImageSize } from "~/components/asset-image/library/image-size"
+import { ViewportAssetImageFormats } from "~/components/asset-image/library/viewport-sources"
 import ViewportImage from "~/components/asset-image/viewport-image"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
@@ -11,10 +12,20 @@ type Props = PropsWithClassName & {
 	description?: string
 }
 
-const ImageCover: FunctionComponent<Props> = props => (
-	<div className={className(props.className, styles.cover)}>
-		<ViewportImage className={styles.image} src={props.src} format={ImageFormat.ExtraLarge} alt={props.description} />
-	</div>
-)
+const ImageCover: FunctionComponent<Props> = props => {
+	const size = AssetImageSize.ExtraLarge
+	const height = 1400
+	const formats: ViewportAssetImageFormats = {
+		desktop: { size },
+		tablet: { size, crop: { height, factor: 0.7 } },
+		phone: { size, crop: { height, factor: 0.7 } }
+	}
+
+	return (
+		<div className={className(props.className, styles.cover)}>
+			<ViewportImage className={styles.image} src={props.src} formats={formats} alt={props.description} />
+		</div>
+	)
+}
 
 export default ImageCover

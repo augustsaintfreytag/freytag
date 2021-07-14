@@ -1,35 +1,16 @@
-import { CockpitAssetPathForm, CockpitImageRequest } from "cockpit-access"
-import { ImageFormat, imageRequest } from "~/api/common/library/image-request-preset"
+import { CockpitAssetPathForm, CockpitImageOptions, CockpitImageRequest } from "cockpit-access"
+import { imageRequest } from "~/api/common/library/image-request-preset"
+import { AssetImageCropValues, AssetImageFormat } from "~/components/asset-image/library/asset-image-format"
+import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import { scaleFactors } from "~/components/asset-image/library/scale-values"
 import { Viewport } from "~/components/asset-image/library/viewport"
-import { ViewportImageFormats, ViewportURLCouple } from "~/components/asset-image/library/viewport-sources"
+import { ViewportAssetImageFormats, ViewportURLCouple } from "~/components/asset-image/library/viewport-sources"
 import { DotsPerPixel } from "~/components/device-pixel-ratio/device-pixel-ratio-hook"
 import { URLComponent } from "~/utils/routing/library/url"
 
-// Modeling
+// Library
 
-export function applicableViewportImageFormats(
-	props: { format?: ImageFormat; formats?: ViewportImageFormats },
-	defaultFormat: ImageFormat
-): ViewportImageFormats {
-	if (props.formats) {
-		return props.formats
-	}
-
-	if (props.format) {
-		return uniformViewportImageFormats(props.format)
-	}
-
-	return uniformViewportImageFormats(defaultFormat)
-}
-
-export function uniformViewportImageFormats(format: ImageFormat): ViewportImageFormats {
-	return {
-		desktop: format,
-		tablet: format,
-		phone: format
-	}
-}
+type ImageRequests = [CockpitImageRequest, CockpitImageRequest]
 
 // Calculation
 
@@ -43,8 +24,8 @@ function roundedQualityValue(value: number | undefined, factor: number): number 
 
 // Request Form
 
-function scaledImageRequests(baseFormat: ImageFormat): [CockpitImageRequest, CockpitImageRequest] {
-	const baseSizeImageRequest = imageRequest(baseFormat)
+function baseImageRequests(baseSize: AssetImageSize): ImageRequests {
+	const baseSizeImageRequest = imageRequest(baseSize)
 	const doubleSizeImageRequest = new CockpitImageRequest({
 		mode: baseSizeImageRequest.mode,
 		width: roundedResolutionValue(baseSizeImageRequest.width, scaleFactors.retinaResolution),
@@ -52,6 +33,26 @@ function scaledImageRequests(baseFormat: ImageFormat): [CockpitImageRequest, Coc
 	})
 
 	return [baseSizeImageRequest, doubleSizeImageRequest]
+}
+
+function viewportScaledImageRequests(requests: ImageRequests, viewport: Viewport): ImageRequests {
+	const scaleFactor = imageRequestWidthScaleFactor(viewport)
+
+	for (const request of requests) {
+		request.width = roundedResolutionValue(request.width, scaleFactor)
+	}
+
+	return requests
+}
+
+function croppedImageRequests(requests: ImageRequests, crop: AssetImageCropValues): ImageRequests {
+	for (const request of requests) {
+		request.mode = CockpitImageOptions.Mode.Thumbnail
+		request.height = crop.height
+		request.width = roundedResolutionValue(request.width, crop.factor)
+	}
+
+	return requests
 }
 
 function imageRequestWidthScaleFactor(viewport: Viewport): number {
@@ -82,22 +83,21 @@ export function sourceDevicePixelRatioForValue(ratio: DotsPerPixel): SourceDevic
 
 // Source Form
 
-export function scaledImageSources(component: URLComponent, viewport: Viewport, baseFormat: ImageFormat): ViewportURLCouple {
-	const [baseSizeImageRequest, doubleSizeImageRequest] = scaledImageRequests(baseFormat)
-	const scaleFactor = imageRequestWidthScaleFactor(viewport)
+export function scaledImageSources(component: URLComponent, viewport: Viewport, format: AssetImageFormat): ViewportURLCouple {
+	let requests = baseImageRequests(format.size)
+	requests = viewportScaledImageRequests(requests, viewport)
+	requests = (format.crop && croppedImageRequests(requests, format.crop)) ?? requests
 
-	baseSizeImageRequest.width = roundedResolutionValue(baseSizeImageRequest.width, scaleFactor)
-	doubleSizeImageRequest.width = roundedResolutionValue(doubleSizeImageRequest.width, scaleFactor)
-
-	const singleSizeSource = `${CockpitAssetPathForm.cockpitImage(component, baseSizeImageRequest)}&dppx=1`
-	const doubleSizeSource = `${CockpitAssetPathForm.cockpitImage(component, doubleSizeImageRequest)}&dppx=2`
+	const [baseSizeImageRequest, doubleSizeImageRequest] = requests
+	const singleSizeSource = CockpitAssetPathForm.cockpitImage(component, baseSizeImageRequest) + "&dppx=1"
+	const doubleSizeSource = CockpitAssetPathForm.cockpitImage(component, doubleSizeImageRequest) + "&dppx=2"
 
 	return [singleSizeSource, doubleSizeSource]
 }
 
 export function scaledDistinctImageSources(
 	components: { desktop: URLComponent; mobile: URLComponent },
-	formats: ViewportImageFormats
+	formats: ViewportAssetImageFormats
 ): { desktop: ViewportURLCouple; tablet: ViewportURLCouple; phone: ViewportURLCouple } {
 	const scaledDesktopSources = scaledImageSources(components.desktop, Viewport.Desktop, formats.desktop)
 	const scaledTabletSources = scaledImageSources(components.mobile, Viewport.Tablet, formats.tablet)

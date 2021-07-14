@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { ViewportImageFormats } from "~/components/asset-image/library/viewport-sources"
+import { ViewportAssetImageFormats } from "~/components/asset-image/library/viewport-sources"
 import ViewportImage from "~/components/asset-image/viewport-image"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
@@ -8,7 +8,7 @@ import styles from "./work-image-figure.module.sass"
 
 type Props = PropsWithClassName & {
 	src?: URLComponent
-	formats?: ViewportImageFormats
+	formats?: ViewportAssetImageFormats
 	caption?: string
 }
 
