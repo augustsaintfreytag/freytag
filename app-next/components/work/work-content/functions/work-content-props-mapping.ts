@@ -1,4 +1,3 @@
-import { ImageFormat } from "~/api/common/library/image-request-preset"
 import {
 	WorkShowcaseContentImages,
 	WorkShowcaseContentText,
@@ -6,6 +5,7 @@ import {
 	WorkShowcaseContentVideoEmbed
 } from "~/api/records/work-showcase/library/work-showcase-content"
 import { workContentImageAlignmentFromRawValue } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
+import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import { Props as HeadingContentProps } from "~/components/work/work-content/components/work-content-heading-block"
 import { Props as ImagesContentProps } from "~/components/work/work-content/components/work-content-images-block"
 import { Props as QuoteContentProps } from "~/components/work/work-content/components/work-content-quote-block"
@@ -33,7 +33,7 @@ export function quoteContentPropsFromContent(block: WorkShowcaseContentText): Qu
 }
 
 export function imagesContentPropsFromContent(block: WorkShowcaseContentImages): ImagesContentProps {
-	const imageFormat = block.imageContents.length > 1 ? ImageFormat.Regular : ImageFormat.Large
+	const imageFormat = block.imageContents.length > 1 ? AssetImageSize.Regular : AssetImageSize.Large
 	const collection: { src?: URL; caption?: string }[] = block.imageContents.map(imageContent => {
 		return {
 			src: imageContent.path,
