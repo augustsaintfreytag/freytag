@@ -1,11 +1,16 @@
-import { CockpitAssetPathForm, CockpitImageRequest } from "cockpit-access"
+import { CockpitAssetPathForm, CockpitImageOptions, CockpitImageRequest } from "cockpit-access"
 import { imageRequest } from "~/api/common/library/image-request-preset"
+import { AssetImageCropValues, AssetImageFormat } from "~/components/asset-image/library/asset-image-format"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import { scaleFactors } from "~/components/asset-image/library/scale-values"
 import { Viewport } from "~/components/asset-image/library/viewport"
 import { ViewportAssetImageFormats, ViewportURLCouple } from "~/components/asset-image/library/viewport-sources"
 import { DotsPerPixel } from "~/components/device-pixel-ratio/device-pixel-ratio-hook"
 import { URLComponent } from "~/utils/routing/library/url"
+
+// Library
+
+type ImageRequests = [CockpitImageRequest, CockpitImageRequest]
 
 // Calculation
 
@@ -19,7 +24,7 @@ function roundedQualityValue(value: number | undefined, factor: number): number 
 
 // Request Form
 
-function scaledImageRequests(baseSize: AssetImageSize): [CockpitImageRequest, CockpitImageRequest] {
+function baseImageRequests(baseSize: AssetImageSize): ImageRequests {
 	const baseSizeImageRequest = imageRequest(baseSize)
 	const doubleSizeImageRequest = new CockpitImageRequest({
 		mode: baseSizeImageRequest.mode,
@@ -28,6 +33,26 @@ function scaledImageRequests(baseSize: AssetImageSize): [CockpitImageRequest, Co
 	})
 
 	return [baseSizeImageRequest, doubleSizeImageRequest]
+}
+
+function viewportScaledImageRequests(requests: ImageRequests, viewport: Viewport): ImageRequests {
+	const scaleFactor = imageRequestWidthScaleFactor(viewport)
+
+	for (const request of requests) {
+		request.width = roundedResolutionValue(request.width, scaleFactor)
+	}
+
+	return requests
+}
+
+function croppedImageRequests(requests: ImageRequests, crop: AssetImageCropValues): ImageRequests {
+	for (const request of requests) {
+		request.mode = CockpitImageOptions.Mode.Thumbnail
+		request.height = crop.height
+		request.width = roundedResolutionValue(request.width, crop.factor)
+	}
+
+	return requests
 }
 
 function imageRequestWidthScaleFactor(viewport: Viewport): number {
@@ -58,13 +83,12 @@ export function sourceDevicePixelRatioForValue(ratio: DotsPerPixel): SourceDevic
 
 // Source Form
 
-export function scaledImageSources(component: URLComponent, viewport: Viewport, baseSize: AssetImageSize): ViewportURLCouple {
-	const [baseSizeImageRequest, doubleSizeImageRequest] = scaledImageRequests(baseSize)
-	const scaleFactor = imageRequestWidthScaleFactor(viewport)
+export function scaledImageSources(component: URLComponent, viewport: Viewport, format: AssetImageFormat): ViewportURLCouple {
+	let requests = baseImageRequests(format.size)
+	requests = viewportScaledImageRequests(requests, viewport)
+	requests = (format.crop && croppedImageRequests(requests, format.crop)) ?? requests
 
-	baseSizeImageRequest.width = roundedResolutionValue(baseSizeImageRequest.width, scaleFactor)
-	doubleSizeImageRequest.width = roundedResolutionValue(doubleSizeImageRequest.width, scaleFactor)
-
+	const [baseSizeImageRequest, doubleSizeImageRequest] = requests
 	const singleSizeSource = CockpitAssetPathForm.cockpitImage(component, baseSizeImageRequest) + "&dppx=1"
 	const doubleSizeSource = CockpitAssetPathForm.cockpitImage(component, doubleSizeImageRequest) + "&dppx=2"
 
@@ -75,9 +99,9 @@ export function scaledDistinctImageSources(
 	components: { desktop: URLComponent; mobile: URLComponent },
 	formats: ViewportAssetImageFormats
 ): { desktop: ViewportURLCouple; tablet: ViewportURLCouple; phone: ViewportURLCouple } {
-	const scaledDesktopSources = scaledImageSources(components.desktop, Viewport.Desktop, formats.desktop.size)
-	const scaledTabletSources = scaledImageSources(components.mobile, Viewport.Tablet, formats.tablet.size)
-	const scaledPhoneSources = scaledImageSources(components.mobile, Viewport.Phone, formats.phone.size)
+	const scaledDesktopSources = scaledImageSources(components.desktop, Viewport.Desktop, formats.desktop)
+	const scaledTabletSources = scaledImageSources(components.mobile, Viewport.Tablet, formats.tablet)
+	const scaledPhoneSources = scaledImageSources(components.mobile, Viewport.Phone, formats.phone)
 
 	return { desktop: scaledDesktopSources, tablet: scaledTabletSources, phone: scaledPhoneSources }
 }
