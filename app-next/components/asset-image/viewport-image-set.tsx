@@ -1,14 +1,12 @@
 import { FunctionComponent, useMemo, useRef } from "react"
-import { ImageFormat } from "~/api/common/library/image-request-preset"
 import ImageDebugDisplay from "~/components/asset-image/components/asset-image-debug-display"
 import { ScaledSourceSet, SingleSourceSet } from "~/components/asset-image/components/asset-image-source-sets"
 import { fallbackImageComponent } from "~/components/asset-image/functions/asset-image-fallback"
-import {
-	applicableViewportImageFormats,
-	scaledDistinctImageSources,
-	sourceDevicePixelRatioForValue
-} from "~/components/asset-image/functions/asset-image-sources"
-import { ViewportImageFormats } from "~/components/asset-image/library/viewport-sources"
+import { applicableAssetImageFormatsFromProps } from "~/components/asset-image/functions/asset-image-prop-mapping"
+import { scaledDistinctImageSources, sourceDevicePixelRatioForValue } from "~/components/asset-image/functions/asset-image-sources"
+import { AssetImageFormat } from "~/components/asset-image/library/asset-image-format"
+import { AssetImageSize } from "~/components/asset-image/library/image-size"
+import { ViewportAssetImageFormats } from "~/components/asset-image/library/viewport-sources"
 import useDevicePixelRatio from "~/components/device-pixel-ratio/device-pixel-ratio-hook"
 import { PropsWithClassName } from "~/types/props"
 import { useInitialRenderState } from "~/utils/render/initial-render-hook"
@@ -20,10 +18,13 @@ const showsDebugState = false
 
 // Component
 
-interface Props extends PropsWithClassName {
+interface ImageFormatProps {
+	format?: AssetImageFormat
+	formats?: ViewportAssetImageFormats
+}
+
+interface Props extends PropsWithClassName, ImageFormatProps {
 	src: { desktop?: URLComponent; mobile?: URLComponent }
-	format?: ImageFormat
-	formats?: ViewportImageFormats
 	alt?: string
 }
 
@@ -34,7 +35,7 @@ const ViewportImageSet: FunctionComponent<Props> = props => {
 			mobile: props.src.mobile ?? fallbackImageComponent
 		}
 
-		const formats = applicableViewportImageFormats(props, ImageFormat.Regular)
+		const formats = applicableAssetImageFormatsFromProps(props, { size: AssetImageSize.Regular })
 		const sources = scaledDistinctImageSources(sourceURLComponents, formats)
 
 		return sources
