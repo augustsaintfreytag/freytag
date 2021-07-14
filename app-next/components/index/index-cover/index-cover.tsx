@@ -11,11 +11,11 @@ interface Props {
 
 const IndexCover: FunctionComponent<Props> = props => (
 	<section className={styles.cover}>
-		<div className={className(styles.heading, styles.centered)}>
-			<h1>{brandTitleFragment()}</h1>
-		</div>
-		<div className={className(styles.subheading, styles.centered)}>
-			<h2>{brandDescriptorFragment()}</h2>
+		<div className={className(styles.headings)}>
+			<div className={styles.inlay}>
+				<h1>{brandTitleFragment()}</h1>
+				<h2>{brandDescriptorFragment()}</h2>
+			</div>
 		</div>
 		<ImageCover className={styles.image} src={props.src} />
 	</section>
