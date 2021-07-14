@@ -12,7 +12,7 @@ import styles from "./404-page.module.sass"
 const Vimeo: FunctionComponent = () => <ExternalLink href="https://vimeo.com/apricum">Vimeo</ExternalLink>
 
 const Error404Page: Page = () => {
-	const coverImage = "/storage/uploads/2021/05/24/60abebf04b24cerror-cover.jpg"
+	const coverImage = "/storage/uploads/2021/07/14/Cover-Shot-Ripped-Demult-D2-R4_uid_60eee5eecefef.jpg"
 
 	return (
 		<section className={styles.page}>
