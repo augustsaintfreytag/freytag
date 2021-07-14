@@ -3,9 +3,10 @@ import { ImageFormat, imageRequest } from "~/api/common/library/image-request-pr
 import { scaleFactors } from "~/components/asset-image/library/scale-values"
 import { Viewport } from "~/components/asset-image/library/viewport"
 import { ViewportImageFormats, ViewportURLCouple } from "~/components/asset-image/library/viewport-sources"
+import { DotsPerPixel } from "~/components/device-pixel-ratio/device-pixel-ratio-hook"
 import { URLComponent } from "~/utils/routing/library/url"
 
-// Modelling
+// Modeling
 
 export function applicableViewportImageFormats(
 	props: { format?: ImageFormat; formats?: ViewportImageFormats },
@@ -30,7 +31,7 @@ export function uniformViewportImageFormats(format: ImageFormat): ViewportImageF
 	}
 }
 
-// Sources
+// Calculation
 
 function roundedResolutionValue(value: number | undefined, factor: number): number {
 	return Math.round((value ?? 0) * factor)
@@ -39,6 +40,8 @@ function roundedResolutionValue(value: number | undefined, factor: number): numb
 function roundedQualityValue(value: number | undefined, factor: number): number {
 	return Math.round((value ?? 0) * factor * 100) / 100
 }
+
+// Request Form
 
 function scaledImageRequests(baseFormat: ImageFormat): [CockpitImageRequest, CockpitImageRequest] {
 	const baseSizeImageRequest = imageRequest(baseFormat)
@@ -61,6 +64,23 @@ function imageRequestWidthScaleFactor(viewport: Viewport): number {
 			return scaleFactors.desktopResolution
 	}
 }
+
+// Source Access by Ratio
+
+export enum SourceDevicePixelRatio {
+	Base = 0,
+	Double = 1
+}
+
+export function sourceDevicePixelRatioForValue(ratio: DotsPerPixel): SourceDevicePixelRatio {
+	if (ratio > 1) {
+		return SourceDevicePixelRatio.Double
+	}
+
+	return SourceDevicePixelRatio.Base
+}
+
+// Source Form
 
 export function scaledImageSources(component: URLComponent, viewport: Viewport, baseFormat: ImageFormat): ViewportURLCouple {
 	const [baseSizeImageRequest, doubleSizeImageRequest] = scaledImageRequests(baseFormat)

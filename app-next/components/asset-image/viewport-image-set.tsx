@@ -1,11 +1,15 @@
 import { FunctionComponent, useMemo, useRef } from "react"
 import { ImageFormat } from "~/api/common/library/image-request-preset"
 import ImageDebugDisplay from "~/components/asset-image/components/asset-image-debug-display"
+import { ScaledSourceSet, SingleSourceSet } from "~/components/asset-image/components/asset-image-source-sets"
 import { fallbackImageComponent } from "~/components/asset-image/functions/asset-image-fallback"
-import { applicableViewportImageFormats, scaledDistinctImageSources } from "~/components/asset-image/functions/asset-image-sources"
-import { desktopMediaQuery, phoneMediaQuery, tabletMediaQuery } from "~/components/asset-image/library/media-query-values"
-import { ViewportImageFormats, ViewportURLCouples } from "~/components/asset-image/library/viewport-sources"
-import useDevicePixelRatio, { DotsPerPixel } from "~/components/device-pixel-ratio/device-pixel-ratio-hook"
+import {
+	applicableViewportImageFormats,
+	scaledDistinctImageSources,
+	sourceDevicePixelRatioForValue
+} from "~/components/asset-image/functions/asset-image-sources"
+import { ViewportImageFormats } from "~/components/asset-image/library/viewport-sources"
+import useDevicePixelRatio from "~/components/device-pixel-ratio/device-pixel-ratio-hook"
 import { PropsWithClassName } from "~/types/props"
 import { useInitialRenderState } from "~/utils/render/initial-render-hook"
 import { URLComponent } from "~/utils/routing/library/url"
@@ -13,45 +17,6 @@ import { URLComponent } from "~/utils/routing/library/url"
 // Configuration
 
 const showsDebugState = false
-
-// Source Set
-
-enum SourceDevicePixelRatio {
-	Base = 0,
-	Double = 1
-}
-
-function sourceDevicePixelRatioForValue(ratio: DotsPerPixel): SourceDevicePixelRatio {
-	if (ratio > 1) {
-		return SourceDevicePixelRatio.Double
-	}
-
-	return SourceDevicePixelRatio.Base
-}
-
-const SingleSourceSet: FunctionComponent<{ sources: ViewportURLCouples; sourceIndex: number }> = props => {
-	const { sources, sourceIndex } = props
-
-	return (
-		<>
-			<source srcSet={`${sources.phone[sourceIndex]}`} media={phoneMediaQuery} />
-			<source srcSet={`${sources.tablet[sourceIndex]}`} media={tabletMediaQuery} />
-			<source srcSet={`${sources.desktop[sourceIndex]}`} media={desktopMediaQuery} />
-		</>
-	)
-}
-
-const ScaledSourceSet: FunctionComponent<{ sources: ViewportURLCouples }> = props => {
-	const { sources } = props
-
-	return (
-		<>
-			<source srcSet={`${sources.phone[0]} 1x, ${sources.phone[1]} 2x`} media={phoneMediaQuery} />
-			<source srcSet={`${sources.tablet[0]} 1x, ${sources.tablet[1]} 2x`} media={tabletMediaQuery} />
-			<source srcSet={`${sources.desktop[0]} 1x, ${sources.desktop[1]} 2x`} media={desktopMediaQuery} />
-		</>
-	)
-}
 
 // Component
 
