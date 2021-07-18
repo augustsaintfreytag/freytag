@@ -9,7 +9,6 @@ interface Props {
 const TypoFragment: FunctionComponent<Props> = props => {
 	const { text } = props
 	const [leftWords, rightWords] = splitWords(text)
-	const hasLeftWords = leftWords.length > 0
 
 	return (
 		<>
