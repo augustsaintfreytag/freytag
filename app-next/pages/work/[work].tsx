@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next"
-import { useMemo } from "react"
+import { FunctionComponent, useMemo } from "react"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
+import { ColorValue } from "~/api/common/library/color-value"
 import { getServerSideApiResponseByQuery } from "~/api/props/functions/server-side-props"
 import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
@@ -17,7 +18,11 @@ import styles from "./work-detail-page.module.sass"
 
 // Sub Components
 
-const WorkDivider = () => <Divider className={styles.divider} />
+interface WorkDividerProps {
+	color?: ColorValue
+}
+
+const WorkDivider: FunctionComponent<WorkDividerProps> = props => <Divider className={styles.divider} color={props.color} />
 
 // Library
 
@@ -37,8 +42,9 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async context =
 const WorkDetailPage: Page<PageProps & Props> = props => {
 	const showcase = props.data!.showcase!
 	const name = showcase.name
-	const cover = showcase.titleImage?.path
 	const abstract = showcase.description ?? "…"
+	const cover = showcase.titleImage?.path
+	const accentColor = showcase.accentColor
 	const link = linkPropsForShowcase(showcase)
 
 	const metadata = useMemo(() => {
@@ -64,10 +70,10 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 					<WorkCover image={cover} />
 					<WorkTitle className={styles.title} title={name} abstract={abstract} link={link} />
 				</header>
-				<WorkDivider />
+				<WorkDivider color={accentColor} />
 				<main>
 					{showcase.blocks?.map(blockLink => workContentComponentForContent(blockLink))}
-					<WorkDivider />
+					<WorkDivider color={accentColor} />
 					<WorkContentClosureBlock metadata={metadata} />
 				</main>
 			</article>
