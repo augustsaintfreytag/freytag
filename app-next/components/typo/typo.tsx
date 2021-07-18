@@ -1,4 +1,5 @@
-import { FunctionComponent } from "react"
+import { Children, FunctionComponent } from "react"
+import { PropsWithAnyChildren } from "~/types/props"
 
 // Utility
 
@@ -18,14 +19,8 @@ export function typo(text: string): string {
 	return leftWords.join(" ") + " " + rightWords.join("&nbsp;")
 }
 
-// Component
-
-interface Props {
-	children: string
-}
-
-const Typo: FunctionComponent<Props> = props => {
-	const [leftWords, rightWords] = splitWords(props.children)
+function typoFragment(text: string): JSX.Element {
+	const [leftWords, rightWords] = splitWords(text)
 
 	return (
 		<>
@@ -35,6 +30,30 @@ const Typo: FunctionComponent<Props> = props => {
 					<>&nbsp;{word}</>
 				))}
 			</>
+		</>
+	)
+}
+
+// Component
+
+interface Props extends PropsWithAnyChildren {
+	// children: string
+}
+
+const Typo: FunctionComponent<Props> = props => {
+	const numberOfChildren = Children.count(props.children)
+
+	return (
+		<>
+			{Children.map(props.children, (child, index) => {
+				const isLastChild = index === numberOfChildren - 1
+
+				if (!isLastChild || typeof child !== "string") {
+					return child
+				}
+
+				return typoFragment(child)
+			})}
 		</>
 	)
 }
