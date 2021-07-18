@@ -5,6 +5,11 @@ import { PropsWithAnyChildren } from "~/types/props"
 
 function splitWords(text: string): [string[], string[]] {
 	const words = text.split(" ")
+
+	if (words.length < 2) {
+		return [words, []]
+	}
+
 	const pivot = Math.max(0, words.length - 2)
 	const leftWords = words.slice(0, pivot)
 	const rightWords = words.slice(pivot, words.length)
@@ -36,9 +41,7 @@ function typoFragment(text: string): JSX.Element {
 
 // Component
 
-interface Props extends PropsWithAnyChildren {
-	// children: string
-}
+interface Props extends PropsWithAnyChildren {}
 
 const Typo: FunctionComponent<Props> = props => {
 	const numberOfChildren = Children.count(props.children)
