@@ -13,5 +13,9 @@ export function splitWords(text: string): [string[], string[]] {
 }
 
 export function joinSplitWords(words: string[]): string {
+	if (!words.length) {
+		return ""
+	}
+
 	return words.join(" ") + " "
 }
