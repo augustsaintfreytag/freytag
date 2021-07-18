@@ -1,16 +1,17 @@
-export function splitWords(text: string): [string[], string[], boolean, boolean] {
+export function splitWords(text: string): [string[], string[]] {
 	const words = text.split(" ")
 
 	if (words.length < 2) {
-		return [words, [], words.length > 0, false]
+		return [words, []]
 	}
 
 	const pivot = Math.max(0, words.length - 2)
 	const leftWords = words.slice(0, pivot)
 	const rightWords = words.slice(pivot, words.length)
 
-	const hasLeftWords = leftWords.length > 0
-	const hasRightWords = rightWords.length > 0
+	return [leftWords, rightWords]
+}
 
-	return [leftWords, rightWords, hasLeftWords, hasRightWords]
+export function joinSplitWords(words: string[]): string {
+	return words.join(" ") + " "
 }

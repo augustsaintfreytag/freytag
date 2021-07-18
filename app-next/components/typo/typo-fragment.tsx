@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react"
-import { splitWords } from "~/components/typo/functions/typo-word-split"
+import { joinSplitWords, splitWords } from "~/components/typo/functions/typo-word-split"
+import styles from "./typo.module.sass"
 
 interface Props {
 	text: string
@@ -7,13 +8,13 @@ interface Props {
 
 const TypoFragment: FunctionComponent<Props> = props => {
 	const { text } = props
-	const [leftWords, rightWords, hasLeftWords, hasRightWords] = splitWords(text)
+	const [leftWords, rightWords] = splitWords(text)
+	const hasLeftWords = leftWords.length > 0
 
 	return (
 		<>
-			<>{leftWords.join(" ")}</>
-			{hasLeftWords && <> </>}
-			<span style={{ backgroundColor: "yellow", hyphens: "none", whiteSpace: "nowrap" }}>{rightWords.join(" ")}</span>
+			<>{joinSplitWords(leftWords)}</>
+			<span className={styles.wrap}>{rightWords.join(" ")}</span>
 		</>
 	)
 }
