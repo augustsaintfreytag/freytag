@@ -1,9 +1,26 @@
 import { FunctionComponent, useMemo } from "react"
-import LineBreak from "~/components/line-break/line-break"
 import ExternalLink from "~/components/link/external-link"
 import Sprite from "~/components/sprites/sprite"
+import Typo from "~/components/typo/typo"
 import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
 import styles from "./work-content-closure-block.module.sass"
+
+// Library
+
+interface MetadataDate {
+	value: Date
+	description: string
+}
+
+// Components
+
+const Twitter: FunctionComponent = () => (
+	<ExternalLink href="https://twitter.com/augustfreytag" name="Twitter Link" context="Work Content Closure">
+		<Sprite className={styles.socialSprite} href="#Twitter Symbol" /> Twitter
+	</ExternalLink>
+)
+
+// Block
 
 export interface Props {
 	metadata?: {
@@ -12,14 +29,8 @@ export interface Props {
 	}
 }
 
-const Twitter: FunctionComponent = () => (
-	<ExternalLink href="https://twitter.com/augustfreytag" name="Twitter Link" context="Work Content Closure">
-		<Sprite className={styles.socialSprite} href="#Twitter Symbol" /> Twitter
-	</ExternalLink>
-)
-
 const WorkContentClosureBlock: FunctionComponent<Props> = props => {
-	const { created, modified } = useMemo(() => {
+	const { created, modified } = useMemo<{ created?: MetadataDate; modified?: MetadataDate }>(() => {
 		const { created, modified } = props.metadata ?? {}
 
 		return {
@@ -28,17 +39,22 @@ const WorkContentClosureBlock: FunctionComponent<Props> = props => {
 		}
 	}, [props.metadata?.created, props.metadata?.modified])
 
+	const Time = (created: MetadataDate) => <time dateTime={created.value.toISOString()}>{created.description}</time>
+
 	return (
 		<section className={styles.block}>
 			{!created && <div>Published by August Saint Freytag.</div>}
 			{created && (
 				<div>
-					Initially published <time dateTime={created.value.toISOString()}>{created.description}</time> by August Saint Freytag.
+					<Typo>
+						Initially published <Time {...created} /> by August Saint Freytag.
+					</Typo>
 				</div>
 			)}
 			<div>
-				Follow me on <Twitter /> to get notified of <LineBreak />
-				new publications and updates.
+				<Typo>
+					Follow me on <Twitter /> to get notified of new publications and updates.
+				</Typo>
 			</div>
 		</section>
 	)
