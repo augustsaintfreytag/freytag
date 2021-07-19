@@ -1,5 +1,5 @@
 import { Children, FunctionComponent } from "react"
-import TypoFragment from "~/components/typo/typo-fragment"
+import { TypoFragment } from "~/components/typo/typo-fragment"
 import { PropsWithAnyChildren } from "~/types/props"
 
 // Component
