@@ -1,8 +1,9 @@
 import { FunctionComponent, ReactNode, ReactNodeArray } from "react"
 import { track } from "~/components/analytics/functions/track"
+import { PropsWithClassName } from "~/types/props"
 import { URL } from "~/utils/routing/library/url"
 
-interface Props {
+interface Props extends PropsWithClassName {
 	href: URL
 	children: ReactNode | ReactNodeArray
 	name?: string
@@ -13,6 +14,7 @@ const trackClick = (name: string, context: string | undefined, href: URL) => tra
 
 const ExternalLink: FunctionComponent<Props> = props => (
 	<a
+		className={props.className}
 		href={props.href}
 		target="_blank"
 		rel="noopener"
