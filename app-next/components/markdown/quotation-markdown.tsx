@@ -13,7 +13,7 @@ const components: MarkdownComponents = {
 	strong: mappedHighlightMarkdownElement
 }
 
-const Markdown: FunctionComponent<Props> = props => {
+const QuotationMarkdown: FunctionComponent<Props> = props => {
 	return (
 		<ReactMarkdown components={components} skipHtml>
 			{props.children ?? ""}
@@ -21,4 +21,4 @@ const Markdown: FunctionComponent<Props> = props => {
 	)
 }
 
-export default Markdown
+export default QuotationMarkdown
