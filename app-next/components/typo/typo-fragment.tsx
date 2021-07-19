@@ -7,7 +7,7 @@ interface Props {
 	text: string
 }
 
-const NonWrappingTypoFragment: FunctionComponent<PropsWithAnyChildren> = props => {
+export const NonWrappingTypoFragment: FunctionComponent<PropsWithAnyChildren> = props => {
 	return <span className={styles.wrap}>{props.children}</span>
 }
 
