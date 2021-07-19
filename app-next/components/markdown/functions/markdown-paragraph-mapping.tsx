@@ -1,7 +1,7 @@
 import { AnchorHTMLAttributes } from "react"
 import { MarkdownComponentArgs } from "~/components/markdown/library/types"
 import { splitChildren } from "~/components/typo/functions/typo-children-split"
-import TypoFragment from "~/components/typo/typo-fragment"
+import { TypoFragment } from "~/components/typo/typo-fragment"
 
 type Args = MarkdownComponentArgs & AnchorHTMLAttributes<HTMLParagraphElement>
 
