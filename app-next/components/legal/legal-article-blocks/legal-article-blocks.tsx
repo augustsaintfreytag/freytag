@@ -1,7 +1,10 @@
 import { FunctionComponent, ReactNode, ReactNodeArray } from "react"
 import ContactBlock from "~/components/contact-block/contact-block"
+import ExternalLink from "~/components/link/external-link"
+import Typo from "~/components/typo/typo"
 import { PropsWithAnyChildren } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
+import { URL } from "~/utils/routing/library/url"
 import styles from "./legal-article-blocks.module.sass"
 
 type BlockContent = ReactNode | ReactNodeArray | string
@@ -37,6 +40,18 @@ export const LegalTextBlock: FunctionComponent<ImprintTextBlockProps> = props =>
 		{props.heading && <h4 className={styles.subHeading}>{props.heading}</h4>}
 		{props.children}
 	</div>
+)
+
+export const LegalParagraph: FunctionComponent<PropsWithAnyChildren> = props => (
+	<p>
+		<Typo>{props.children}</Typo>
+	</p>
+)
+
+export const LegalLink: FunctionComponent<PropsWithAnyChildren & { href: URL; unformatted?: boolean }> = props => (
+	<ExternalLink className={className(styles.link, props.unformatted && styles.unformatted)} href={props.href}>
+		{props.children}
+	</ExternalLink>
 )
 
 interface ImprintContactBlockProps {
