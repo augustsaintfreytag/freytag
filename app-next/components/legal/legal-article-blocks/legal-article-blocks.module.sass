@@ -27,7 +27,7 @@
 			margin-top: $paragraphSpacing
 
 	&.textBlock
-		hyphens: auto
+		@include wrappingFont
 		
 		ul
 			padding-left: 1rem
@@ -43,6 +43,5 @@
 		> div
 			margin-top: $secondSectionSpacing
 			@include legalContactBlockFont
-
 	a
 		text-decoration: underline

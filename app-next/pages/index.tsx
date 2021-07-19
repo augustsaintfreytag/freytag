@@ -8,7 +8,6 @@ import BlockTag, { BlockTagAppearance } from "~/components/block-tag/block-tag"
 import Divider from "~/components/divider/divider"
 import IndexCover from "~/components/index/index-cover/index-cover"
 import IndexMeta from "~/components/index/index-meta/index-meta"
-import LineBreak from "~/components/line-break/line-break"
 import ExternalLink from "~/components/link/external-link"
 import InternalLink from "~/components/link/internal-link"
 import Now from "~/components/now/now"
@@ -72,15 +71,9 @@ const IndexPage: Page<PageProps & Props> = props => {
 						List the string of <InternalLink href="/life" /> events until now.
 					</TextLine>
 					<TextLine>
-						Read and view showcases of <LineBreak />
-						<InternalLink href="/work" /> in review.
+						Read and view showcases of <InternalLink href="/work" /> in review.
 					</TextLine>
-					<TextLine>
-						<div className={styles.line}>
-							As a start, a feature was <LineBreak />
-							selected for you.
-						</div>
-					</TextLine>
+					<TextLine>As a start, a feature was selected for you.</TextLine>
 				</section>
 				{featureProps && (
 					<section className={styles.feature}>
@@ -96,8 +89,7 @@ const IndexPage: Page<PageProps & Props> = props => {
 						See responsibility in the <InternalLink href="/imprint" />.
 					</TextLine>
 					<TextLine>
-						Review how this site does not track <LineBreak />
-						you in <InternalLink href="/privacy" />.
+						Review how this site does not track you in <InternalLink href="/privacy" />.
 					</TextLine>
 				</section>
 			</section>

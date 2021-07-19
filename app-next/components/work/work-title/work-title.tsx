@@ -2,6 +2,7 @@ import { FunctionComponent, useMemo } from "react"
 import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
 import BlockTag from "~/components/block-tag/block-tag"
 import Markdown from "~/components/markdown/markdown"
+import Typo from "~/components/typo/typo"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { formattedOpenDateInterval } from "~/utils/date/functions/date-formatting"
@@ -46,14 +47,18 @@ const WorkTitle: FunctionComponent<Props> = props => {
 	return (
 		<section className={className(props.className, styles.workTitle)}>
 			<header>
-				<h1>{title}</h1>
+				<h1>
+					<Typo>{title}</Typo>
+				</h1>
 			</header>
 			<main>
 				{link && tag && (
 					<div className={styles.link}>
 						<BlockTag className={styles.tag} name={tag.name} representation={tag.representation} />
 						<div className={styles.description}>
-							{link.title} ({formattedLinkInterval})
+							<Typo>
+								{link.title} ({formattedLinkInterval})
+							</Typo>
 						</div>
 					</div>
 				)}
