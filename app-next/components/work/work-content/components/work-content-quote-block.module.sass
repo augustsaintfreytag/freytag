@@ -14,8 +14,10 @@
 		$highlightColor: yellow
 		$highlightSpacing: 0.4rem
 		$highlightSpacingAspect: 1.0
+
 		$highlightHeightPercentage: 60%
 		$highlightOffsetPercentage: 2.5%
+		$highlightSkew: -12deg
 		
 		font-weight: inherit
 		white-space: pre-wrap
@@ -25,15 +27,7 @@
 			position: relative
 			display: inline-block
 
-			&::after
-				content: ""
-				position: absolute
-				z-index: -1
-				width: 100%
-				height: $highlightHeightPercentage
-				top: 50%
-				left: 50%
-				transform: translateY(-50%) translateX(-50% + $highlightOffsetPercentage) skew(-12deg, 0deg)
+			@include inlineCode($highlightHeightPercentage, $highlightOffsetPercentage, $highlightSkew)
 				background: $highlightColor
 				padding: ($highlightSpacing) ($highlightSpacing * $highlightSpacingAspect)
 

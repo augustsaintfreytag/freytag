@@ -1,0 +1,28 @@
+@import "/styles/values/breakpoints"
+
+// Overlays
+
+@mixin overlayPseudoObject
+	content: ""
+	position: absolute
+	z-index: 1
+	width: 100%
+	height: 100%
+	top: 50%
+	left: 50%
+	transform: translateY(-50%) translateX(-50%)
+	
+// Inline Code
+
+@mixin inlineOverlay($heightPercentage: 50%, $offsetPercentage: 0%, $skewX: 0deg)
+	&::after
+		content: ""
+		position: absolute
+		z-index: -1
+		width: 100%
+		height: $heightPercentage
+		top: 50%
+		left: 50%
+		transform: translateY(-50%) translateX(-50% + $offsetPercentage) skew($skewX, 0deg)
+
+		@content
