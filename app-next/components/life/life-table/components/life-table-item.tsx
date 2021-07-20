@@ -1,6 +1,7 @@
 import { FunctionComponent, useState } from "react"
 import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
 import { LifeTableItemData } from "~/components/life/life-table/models/life-table-item-data"
+import Typo from "~/components/typo/typo"
 import { className } from "~/utils/class-names/class-name"
 import { formattedOpenDateInterval } from "~/utils/date/functions/date-formatting"
 import styles from "./life-table-item.module.sass"
@@ -71,13 +72,17 @@ const LifeTableItem: FunctionComponent<Props> = props => {
 					<div className={styles.context}>
 						<div>
 							<span className={styles.leader}>Context: </span>
-							<span className={styles.content}>{formattedContext(props.context)}</span>
+							<span className={styles.content}>
+								<Typo>{formattedContext(props.context)}</Typo>
+							</span>
 						</div>
 					</div>
 					{props.description && (
 						<div className={styles.description}>
 							<div>
-								<span className={styles.content}>{props.description}</span>
+								<span className={styles.content}>
+									<Typo>{props.description}</Typo>
+								</span>
 							</div>
 						</div>
 					)}
