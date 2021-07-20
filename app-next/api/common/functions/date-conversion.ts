@@ -5,9 +5,19 @@ export function dateFromTimestamp(timestamp: number): Date {
 	return new Date(timestamp * 1000)
 }
 
+function dateFromString(value: string): Date | undefined {
+	const date = CockpitDateConversion.dateFromString(value)
+
+	if (!date?.valueOf()) {
+		return undefined
+	}
+
+	return date
+}
+
 export function intervalFromFragment(fragment: { dateStarted: string; dateEnded: string }): DateInterval | OpenDateInterval | undefined {
-	const startDate = CockpitDateConversion.dateFromString(fragment.dateStarted)
-	const endDate = CockpitDateConversion.dateFromString(fragment.dateEnded)
+	const startDate = dateFromString(fragment.dateStarted)
+	const endDate = dateFromString(fragment.dateEnded)
 
 	if (startDate && endDate) {
 		return {

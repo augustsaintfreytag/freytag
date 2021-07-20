@@ -1,4 +1,5 @@
 import { Children, FunctionComponent } from "react"
+import { splitChildren } from "~/components/typo/functions/typo-children-split"
 import { NonWrappingTypoFragment, TypoFragment } from "~/components/typo/typo-fragment"
 import { PropsWithAnyChildren } from "~/types/props"
 
@@ -15,9 +16,7 @@ const Typo: FunctionComponent<Props> = props => {
 	const lastChild = children[numberOfChildren - 1]
 
 	if (typeof lastChild === "string" && lastChild.length < stubCharacterThreshold) {
-		const pivot = numberOfChildren - 2
-		const leftChildren = children.slice(0, pivot)
-		const rightChildren = children.slice(pivot, numberOfChildren)
+		const [leftChildren, rightChildren] = splitChildren(children)
 
 		return (
 			<>
