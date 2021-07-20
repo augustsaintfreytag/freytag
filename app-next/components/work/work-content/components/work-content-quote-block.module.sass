@@ -13,9 +13,7 @@
 	strong
 		$highlightColor: yellow
 		$highlightSpacing: 0.4rem
-		$highlightSpacingAspect: 1.0
-
-		$highlightHeightPercentage: 60%
+		$highlightSpacingAspect: 0.75
 		$highlightOffsetPercentage: 2.5%
 		$highlightSkew: -12deg
 		
@@ -27,7 +25,7 @@
 			position: relative
 			display: inline-block
 
-			@include inlineOverlay($highlightHeightPercentage, $highlightOffsetPercentage, $highlightSkew)
+			@include inlineOverlay($highlightOffsetPercentage, $highlightSkew)
 				background: $highlightColor
 				padding: ($highlightSpacing) ($highlightSpacing * $highlightSpacingAspect)
 
