@@ -37,3 +37,30 @@
 
 			@include breakpoint($anyMobile)
 				@include listMargin($interContentBlockSpacingMobile)
+
+	> aside
+		position: fixed
+		top: 5rem
+		left: 5rem
+		opacity: 0.5
+
+		ol > li
+			position: relative
+			@include listMargin(1.0rem)
+
+			&::before
+				content: ""
+				position: absolute
+				top: 45%
+				left: 0
+				width: 0.75rem
+				height: 0.15rem
+				background: $textColor
+			
+			svg
+				$size: 2.5rem
+				width: $size
+				height: $size
+				margin-left: 2rem
+
+				fill: $textColor

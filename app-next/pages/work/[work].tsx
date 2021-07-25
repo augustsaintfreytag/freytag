@@ -10,6 +10,7 @@ import WorkContentClosureBlock from "~/components/work/work-content/components/w
 import { workContentComponentForContent } from "~/components/work/work-content/functions/work-content-component-mapping"
 import { linkPropsForShowcase } from "~/components/work/work-content/functions/work-link-props-mapping"
 import WorkCover from "~/components/work/work-cover/work-cover"
+import WorkNavigator from "~/components/work/work-navigator/work-navigator"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
@@ -76,6 +77,9 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 					<WorkDivider color={accentColor} />
 					<WorkContentClosureBlock metadata={metadata} />
 				</main>
+				<aside>
+					<WorkNavigator blockLinks={showcase.blocks} />
+				</aside>
 			</article>
 		</>
 	)
