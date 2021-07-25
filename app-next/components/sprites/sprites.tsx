@@ -75,6 +75,36 @@ const Sprites = () => (
 				</g>
 			</g>
 		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 117" id="Image Block One Symbol">
+			<path d="M0 0h228v101H0zm45 107h93v10H45z"></path>
+		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 117" id="Image Block Two Symbol">
+			<path d="M0 0h109v101H0zm119 0h109v101H119zM0 107h93v10H0zm119 0h93v10h-93z"></path>
+		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 97" id="Image Block Three Symbol">
+			<path d="M0 0h69v81H0zm79.5.354h69v80.293h-69zM159 0h69v81h-69zM0 87h57v10H0zm79.5-.353h57v10h-57zM159 87h57v10h-57z"></path>
+		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 228 84.675" id="Image Block Four Symbol">
+			<path d="M0 0h49.5v68.35H0zm59.5 0H109v68.35H59.5zM119 0h49.5v68.35H119zm59.5 0H228v68.35h-49.5zM0 74.675h41v10H0zm59.5-.325h41v10h-41zm59.5.325h41v10h-41zm59.5-.325h41v10h-41z"></path>
+		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 71.002" id="Quote Block Symbol">
+			<path d="M138 71.003H0v-71h138v71zM44.157 18.095L33.282 36.563l10.875 18.564h11.625L44.813 36.563l10.969-18.468zm-18.657 0L14.625 36.563 25.5 55.127h11.625L26.158 36.563l10.967-18.468zm74.21 0l10.967 18.467L99.71 55.126h11.625l10.688-18.564-10.688-18.468H99.71zm-18.751 0l11.064 18.467-11.064 18.564h11.625l10.877-18.564-10.877-18.468H80.959z"></path>
+		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 19" id="Heading Block Symbol">
+			<path d="M0 0h180v19H0z"></path>
+		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 138 100" id="Text Block Symbol">
+			<path d="M0 0h138v45H0zm0 55h123v45H0z"></path>
+		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 110.5 111.675" id="Title Case Block Symbol">
+			<path d="M0 0h110.5v68.35H0zm31.75 85.675h47v10h-47zm-19 16h85v10h-85z"></path>
+		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 99" id="Title Block Symbol">
+			<path d="M0 0h180v23H0zm21 40h138v59H21z"></path>
+		</symbol>
+		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 227.999 137.002" id="Video Block Symbol">
+			<path d="M227.999 137.001h-228v-137h228v137zm-130.5-91v45l39-22.5-39-22.5z"></path>
+		</symbol>
 	</svg>
 )
 
