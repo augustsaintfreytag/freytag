@@ -8,7 +8,11 @@ enum Appearance {
 	Title
 }
 
-type Props = PropsWithClassName & { appearance?: Appearance; name: string; representation?: string }
+interface Props extends PropsWithClassName {
+	appearance?: Appearance
+	name: string
+	representation?: string
+}
 
 function styleForAppearance(appearance: Appearance): string {
 	switch (appearance) {
