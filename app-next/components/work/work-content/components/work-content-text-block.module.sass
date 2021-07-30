@@ -22,3 +22,16 @@
 		@include inlineOverlay
 			background: $codeInlineBackgroundColor
 			padding: 0.25rem 0
+
+	h3
+		@include headingFont
+		font-size: $elementArticleHeadingFontSize
+
+		@include breakpoint($anyMobile)
+			font-size: $elementArticleHeadingFontSizeMobile
+
+	h4
+		font-size: $elementArticleSubHeadingFontSize
+
+		@include breakpoint($anyMobile)
+			font-size: $elementArticleSubHeadingFontSizeMobile
