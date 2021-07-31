@@ -72,7 +72,7 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 				</header>
 				<WorkDivider color={accentColor} />
 				<main>
-					{showcase.blocks?.map(blockLink => workContentComponentForContent(blockLink))}
+					{showcase.blocks?.map(blockLink => workContentComponentForContent(showcase, blockLink))}
 					<WorkDivider color={accentColor} />
 					<WorkContentClosureBlock metadata={metadata} />
 				</main>
