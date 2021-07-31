@@ -1,6 +1,6 @@
 import { FunctionComponent, useMemo } from "react"
 import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
-import BlockTag from "~/components/block-tag/block-tag"
+import BlockTag, { BlockTagAppearance } from "~/components/block-tag/block-tag"
 import Markdown from "~/components/markdown/markdown"
 import Typo from "~/components/typo/typo"
 import { PropsWithClassName } from "~/types/props"
@@ -54,7 +54,7 @@ const WorkTitle: FunctionComponent<Props> = props => {
 			<main>
 				{link && tag && (
 					<div className={styles.link}>
-						<BlockTag className={styles.tag} name={tag.name} representation={tag.representation} />
+						<BlockTag className={styles.tag} name={tag.name} appearance={BlockTagAppearance.Title} representation={tag.representation} />
 						<div className={styles.description}>
 							<Typo>
 								{link.title} ({formattedLinkInterval})
