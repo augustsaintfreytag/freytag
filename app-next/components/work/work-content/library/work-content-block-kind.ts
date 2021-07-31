@@ -1,6 +1,7 @@
 import { enumCaseFromRawValue } from "~/utils/types/functions/enum-case-conversion"
 
 export enum WorkContentBlockKind {
+	Divider = "divider",
 	Text = "text",
 	Images = "images",
 	VideoEmbed = "video_embed",
@@ -8,6 +9,7 @@ export enum WorkContentBlockKind {
 }
 
 export const allWorkContentBlockKind: WorkContentBlockKind[] = [
+	WorkContentBlockKind.Divider,
 	WorkContentBlockKind.Text,
 	WorkContentBlockKind.Images,
 	WorkContentBlockKind.VideoEmbed,
