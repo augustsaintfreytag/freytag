@@ -77,15 +77,13 @@ export function lastWorkShowcaseModificationDate(showcases: WorkShowcase[]): Dat
 	return showcaseDates[showcaseDates.length - 1]
 }
 
-const averageTimeIntervalSampleSize = 5
-
-export function averageTimeIntervalBetweenShowcases(showcases: WorkShowcase[]): TimeInterval | undefined {
+export function averageTimeIntervalBetweenShowcases(showcases: WorkShowcase[], numberOfSamples: number = 5): TimeInterval | undefined {
 	if (showcases.length < 2) {
 		return undefined
 	}
 
-	const showcaseDates = sortedWorkShowcaseDates(showcases)
-	const showcaseSelection = showcaseDates.slice(Math.max(0, -averageTimeIntervalSampleSize - 1)).reverse()
+	const showcaseDates = sortedWorkShowcaseDates(showcases).reverse()
+	const showcaseSelection = showcaseDates.slice(0, numberOfSamples)
 	const intervalDifferences = showcaseSelection.reduce((differences: TimeInterval[], date: Date, index: number) => {
 		const subsequentDate = showcaseSelection[index + 1]
 		if (!subsequentDate) {

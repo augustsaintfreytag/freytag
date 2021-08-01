@@ -1,11 +1,11 @@
 import { useMemo } from "react"
-import * as WorkShwocaseDataAccess from "~/api/records/work-showcase/functions/work-showcase-data-access"
+import * as WorkShowcaseDataAccess from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
 import { formattedTimeInterval } from "~/utils/date/functions/time-formatting"
 import { TimeInterval } from "~/utils/date/library/intervals"
 
-const { averageTimeIntervalBetweenShowcases, lastWorkShowcaseModificationDate } = WorkShwocaseDataAccess
+const { averageTimeIntervalBetweenShowcases, lastWorkShowcaseModificationDate } = WorkShowcaseDataAccess
 
 type Properties<Value> = {
 	value: Value
@@ -32,16 +32,19 @@ export function useWorkShowcaseReleaseCycleDescription(showcases: WorkShowcase[]
 		}
 	}, [showcaseIds])
 
+	const useCycleThreshold = true
 	const averageShowcaseCreationDaysThreshold = 90
+	const numberOfShowcaseSamples = 5
+
 	const averageShowcaseCreation = useMemo<Properties<TimeInterval> | undefined>(() => {
-		const averageInterval = averageTimeIntervalBetweenShowcases(showcases)
+		const averageInterval = averageTimeIntervalBetweenShowcases(showcases, numberOfShowcaseSamples)
 		const thresholdInterval = averageShowcaseCreationDaysThreshold * 86400
 
 		if (!averageInterval) {
 			return undefined
 		}
 
-		if (averageInterval > thresholdInterval) {
+		if (useCycleThreshold && averageInterval > thresholdInterval) {
 			return undefined
 		}
 
