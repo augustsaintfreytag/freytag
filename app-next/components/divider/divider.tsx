@@ -9,13 +9,8 @@ interface Props extends PropsWithClassName {
 }
 
 const Divider: FunctionComponent<Props> = props => {
-	const style: CSSProperties = {}
-
-	if (props.color) {
-		style.backgroundColor = props.color
-	}
-
-	return <div className={className(styles.divider, props.className)} style={{ backgroundColor: props.color }}></div>
+	const style = { "--accent-color": props.color } as CSSProperties
+	return <div className={className(styles.divider, props.className)} style={style}></div>
 }
 
 export default Divider
