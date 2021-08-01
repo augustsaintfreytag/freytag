@@ -6,7 +6,7 @@ import { AssetImageSize } from "~/components/asset-image/library/image-size"
 enum ImageCompressionQuality {
 	low = 65,
 	default = 80,
-	high = 95
+	high = 92
 }
 
 // Preset Supply
@@ -22,13 +22,13 @@ export function imageRequest(size: AssetImageSize): CockpitImageRequest {
 		case AssetImageSize.Large:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
-				width: 1400,
+				width: 1800,
 				quality: ImageCompressionQuality.default
 			})
 		case AssetImageSize.ExtraLarge:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
-				width: 2100,
+				width: 2200,
 				quality: ImageCompressionQuality.default
 			})
 		default:
