@@ -17,5 +17,7 @@ export const lifeEventKindColors: Dictionary<string, ColorValue> = {
 
 export function colorForLifeEventKind(kind: LifeEventKind): ColorValue {
 	const key = kind.toString().toLowerCase()
-	return lifeEventKindColors[key] ?? fallbackLifeEventKindColor
+	const color = lifeEventKindColors[key] ?? fallbackLifeEventKindColor
+
+	return color
 }
