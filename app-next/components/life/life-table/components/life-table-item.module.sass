@@ -1,6 +1,5 @@
 @import "/styles/values/all"
 @import "/styles/base/accessibility"
-@import "/styles/indicators/kind-colors"
 @import "life-table-layout.sass"
 
 .table
@@ -30,8 +29,7 @@
 		height: $decorativeSize
 		width: $decorativeSize
 		
-		background: #333
-		@include tagBackgroundColors
+		background: var(--accent-color, $spriteFillColor)
 
 	.inlay
 		header

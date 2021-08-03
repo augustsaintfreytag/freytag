@@ -1,9 +1,11 @@
 import { FunctionComponent, useState } from "react"
 import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
+import { colorForLifeEventKind } from "~/components/life/life-event/functions/life-event-kind-colors"
 import { LifeTableItemData } from "~/components/life/life-table/models/life-table-item-data"
 import Typo from "~/components/typo/typo"
 import { className } from "~/utils/class-names/class-name"
 import { formattedOpenDateInterval } from "~/utils/date/functions/date-formatting"
+import { propertiesWithStyleVariables } from "~/utils/style/functions/style-properties"
 import styles from "./life-table-item.module.sass"
 
 // Formatting
@@ -48,13 +50,15 @@ type Props = LifeTableItemData
 
 const LifeTableItem: FunctionComponent<Props> = props => {
 	const [isDisclosed, setIsDisclosed] = useState(false)
+	const color = colorForLifeEventKind(props.kind)
+	const style = propertiesWithStyleVariables({ accentColor: color })
 
 	const onDisclosureClick = () => {
 		setIsDisclosed(!isDisclosed)
 	}
 
 	return (
-		<section className={className(styles.item, isDisclosed && styles.disclosed)}>
+		<section className={className(styles.item, isDisclosed && styles.disclosed)} style={style}>
 			<div className={styles.decorative} data-tag-representation={kindAttributeValue(props.kind)}></div>
 			<div className={styles.inlay}>
 				<header>

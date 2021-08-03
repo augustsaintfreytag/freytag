@@ -1,5 +1,4 @@
 @import "/styles/values/all"
-@import "/styles/indicators/kind-colors"
 @import "life-table-layout.sass"
 
 $inlaySpacing: 2.75rem
@@ -41,8 +40,7 @@ $inactiveItemOpacity: 0.35
 				align-self: center
 				margin: 0 $interComponentSpacing $verticalOffset 0
 
-				background: $elementBackgroundColor
-				@include tagBackgroundColors
+				background: var(--accent-color, $elementBackgroundColor)
 
 			.label
 				@include tableHeaderFont
