@@ -1,32 +1,18 @@
 @import "/styles/values/all"
 @import "/styles/base/vendors"
-@import "/styles/indicators/kind-colors"
 
 .tag
 	width: fit-content
-	line-height: 1.3
 	text-transform: uppercase
-	
-	padding: 0.1rem 0.4rem 0.05rem 0.4rem
 
-	@include anySafari
-		padding: 0.13rem 0.4rem 0.05rem 0.4rem
+	font-size: 1rem
+	line-height: 1rem
+	padding: 5px 8px 3px 8px
 
 	@include breakpoint($anyMobile)
-		padding: 0.1rem 0.4rem 0.1rem 0.4rem
+		padding: 3px 7px 3px 7px
 
 	@include tagFont
-	font-size: $tagTextFontSize
 	
 	color: $textColorOnDark
-	background: $tagBackgroundColor
-
-	@include tagBackgroundColors
-
-	// Appearances
-
-	&.asTitle
-		background: $tagBackgroundColor
-
-	// &.asDecorative
-		// …
+	background: var(--accent-color, $tagBackgroundColor)

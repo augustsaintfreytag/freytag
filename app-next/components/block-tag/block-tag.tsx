@@ -1,38 +1,23 @@
 import { FunctionComponent } from "react"
+import { ColorValue } from "~/api/common/library/color-value"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
+import { propertiesWithStyleVariables } from "~/utils/style/functions/style-properties"
 import styles from "./block-tag.module.sass"
 
-enum Appearance {
-	Decorative,
-	Title
-}
-
 interface Props extends PropsWithClassName {
-	appearance?: Appearance
 	name: string
-	representation?: string
-}
-
-function styleForAppearance(appearance: Appearance): string {
-	switch (appearance) {
-		case Appearance.Decorative:
-			return styles.asDecorative
-		case Appearance.Title:
-			return styles.asTitle
-	}
+	color?: ColorValue
 }
 
 const BlockTag: FunctionComponent<Props> = props => {
-	const style = className(styles.tag, styleForAppearance(props.appearance ?? Appearance.Decorative), props.className)
+	const style = propertiesWithStyleVariables({ accentColor: props.color })
 
 	return (
-		<div className={style} data-tag-representation={props.representation}>
+		<div className={className(styles.tag, props.className)} style={style}>
 			{props.name}
 		</div>
 	)
 }
 
 export default BlockTag
-
-export const BlockTagAppearance = Appearance
