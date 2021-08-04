@@ -26,11 +26,6 @@ $inactiveLabelOpacity: 0.35
 
 			@include horizontalListMargin($interItemSpacing)
 
-			opacity: $inactiveItemOpacity
-
-			&.active
-				opacity: $activeItemOpacity
-
 			.decorative
 				$size: 1.2rem
 				$verticalOffset: 0rem
@@ -42,6 +37,14 @@ $inactiveLabelOpacity: 0.35
 				margin: 0 $interComponentSpacing $verticalOffset 0
 
 				background: var(--accent-color, #d6d6d6)
+				opacity: $inactiveDecorativeOpacity
 
 			.label
 				@include tableHeaderFont
+				opacity: $inactiveLabelOpacity
+
+			&.active
+				.decorative
+					opacity: $activeItemOpacity
+				.label
+					opacity: $activeItemOpacity
