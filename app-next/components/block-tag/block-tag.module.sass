@@ -14,5 +14,7 @@
 
 	@include tagFont
 	
-	color: $textColorOnDark
+	color: $textColorFadedOnDark
 	background: var(--accent-color, $tagBackgroundColor)
+	filter: saturate(0.5) contrast(1.15) brightness(1.2)
+	box-shadow: 0.15rem 0.15rem 0 rgba(255, 255, 255, 0.35)
