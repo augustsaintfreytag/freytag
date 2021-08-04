@@ -53,10 +53,14 @@ function queryParametersFromProps(props: Props | undefined): Dictionary<string, 
 	return query
 }
 
-export function setQueryFromLifeTableProps(router: Router, props: Props | undefined) {
+export function setQueryFromLifeTableProps(router: Router, props: Props | undefined, hash?: string) {
 	const parameters = queryParametersFromProps(props)
 	const currentRoute = router.pathname
-	const route = { pathname: currentRoute, query: parameters }
+	const route: Dictionary<string, any> = { pathname: currentRoute, query: parameters }
+
+	if (hash) {
+		route.hash = hash
+	}
 
 	router.replace(route, undefined, routerTransitionOptions)
 }
