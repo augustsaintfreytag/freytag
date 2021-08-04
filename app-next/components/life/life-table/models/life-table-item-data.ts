@@ -11,4 +11,5 @@ export interface LifeTableItemData {
 	role?: string
 	context?: string
 	description?: string
+	highlighted?: boolean
 }
