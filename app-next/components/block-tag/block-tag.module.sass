@@ -5,16 +5,37 @@
 	width: fit-content
 	text-transform: uppercase
 
-	font-size: 1rem
-	line-height: 1rem
-	padding: 5px 8px 3px 8px
-
-	@include breakpoint($anyMobile)
-		padding: 3px 7px 3px 7px
-
 	@include tagFont
 	
 	color: $textColorFadedOnDark
 	background: var(--accent-color, $tagBackgroundColor)
 	filter: saturate(0.5) contrast(1.15) brightness(1.2)
 	box-shadow: 0.15rem 0.15rem 0 rgba(255, 255, 255, 0.35)
+
+	// Appearances
+
+	&.appearanceDefault
+		font-size: 1rem
+		line-height: 1rem
+		padding: 5px 8px 3px 8px
+
+		@include breakpoint($anyMobile)
+			padding: 3px 7px 3px 7px
+
+	&.appearanceDecorative
+		font-size: 0.75rem
+		line-height: 0.75rem
+		padding: 4px 6px 3px 6px
+
+		@include breakpoint($anyMobile)
+			font-size: 0.85rem
+			line-height: 0.85rem
+			padding: 4px 5px 2px 5px
+
+	&.appearanceTitle
+		font-size: 1.25rem
+		line-height: 1.25rem
+		padding: 5px 8px 5px 8px
+
+		@include breakpoint($anyMobile)
+			padding: 5px 8px 4px 8px

@@ -5,6 +5,7 @@ import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-
 import { featuredWorkShowcaseFromApi } from "~/api/records/work-showcase-feature/functions/work-showcase-feature-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import BlockTag from "~/components/block-tag/block-tag"
+import { BlockTagAppearance } from "~/components/block-tag/library/block-tag-appearance"
 import Divider from "~/components/divider/divider"
 import IndexCover from "~/components/index/index-cover/index-cover"
 import IndexMeta from "~/components/index/index-meta/index-meta"
@@ -77,7 +78,7 @@ const IndexPage: Page<PageProps & Props> = props => {
 				</section>
 				{featureProps && (
 					<section className={styles.feature}>
-						<BlockTag className={styles.tag} name="Feature" />
+						<BlockTag className={styles.tag} name="Feature" appearance={BlockTagAppearance.Title} />
 						<WorkListItem className={styles.item} {...featureProps} />
 					</section>
 				)}

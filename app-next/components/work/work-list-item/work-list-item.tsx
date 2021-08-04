@@ -5,6 +5,7 @@ import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import ViewportImageSet from "~/components/asset-image/viewport-image-set"
 import BlockTag from "~/components/block-tag/block-tag"
 import { useTagPropertiesForLifeEvent } from "~/components/block-tag/functions/life-event-block-tag-hook"
+import { BlockTagAppearance } from "~/components/block-tag/library/block-tag-appearance"
 import Markdown from "~/components/markdown/markdown"
 import Sprite from "~/components/sprites/sprite"
 import { PropsWithClassName } from "~/types/props"
@@ -43,7 +44,7 @@ const WorkListItem: FunctionComponent<Props> = props => {
 			</Link>
 			<div className={styles.inlay}>
 				<div className={styles.inlayContent}>
-					<BlockTag className={styles.tag} name={tag.name} color={tag.color} />
+					<BlockTag className={styles.tag} name={tag.name} color={tag.color} appearance={BlockTagAppearance.Decorative} />
 					<h2 className={styles.heading}>{props.headingText}</h2>
 					<div className={styles.preview}>
 						<Markdown>{props.previewText}</Markdown>
