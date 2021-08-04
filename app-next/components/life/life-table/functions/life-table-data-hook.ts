@@ -66,22 +66,29 @@ interface HookProps {
 	setDataProps: SetDataPropsBlock
 }
 
+// Functions
+
+function preparedData(rawData: ItemData[], props: DataProps): ItemData[] {
+	const filteredData = filteredDataFromCollection(rawData, props.filterKind)
+	const sortedData = sortedDataFromCollection(filteredData, props.sortMode, props.sortColumn)
+
+	return sortedData
+}
+
 // Hook
 
 export type LifeTableDataProps = DataProps
 
 export function useLifeTableData(initialData: ItemData[], initialDataProps: DataProps): HookProps {
 	const [rawData, setRawData] = useState<ItemData[]>(initialData)
-	const [displayableData, setDisplayableData] = useState<ItemData[]>(initialData)
 	const [props, setProps] = useState<DataProps>(initialDataProps)
+	const [displayableData, setDisplayableData] = useState<ItemData[]>(preparedData(initialData, initialDataProps))
 
 	function setDataProps(props: DataProps) {
 		setProps(props)
 
-		const filteredData = filteredDataFromCollection(rawData, props.filterKind)
-		const sortedData = sortedDataFromCollection(filteredData, props.sortMode, props.sortColumn)
-
-		setDisplayableData(sortedData)
+		const data = preparedData(rawData, props)
+		setDisplayableData(data)
 	}
 
 	function setData(data: ItemData[]) {
