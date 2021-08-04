@@ -35,6 +35,7 @@ type Props = LifeTableItemData
 
 const LifeTableItem: FunctionComponent<Props> = props => {
 	const [isDisclosed, setIsDisclosed] = useState(false)
+	const isHighlighted = props.highlighted ?? false
 	const color = colorForLifeEventKind(props.kind)
 	const style = propertiesWithStyleVariables({ accentColor: color })
 
@@ -43,7 +44,7 @@ const LifeTableItem: FunctionComponent<Props> = props => {
 	}
 
 	return (
-		<section className={className(styles.item, isDisclosed && styles.disclosed)} style={style}>
+		<section className={className(styles.item, isDisclosed && styles.disclosed, isHighlighted && styles.highlighted)} style={style}>
 			<div className={styles.decorative}></div>
 			<div className={styles.inlay}>
 				<header>
