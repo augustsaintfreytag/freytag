@@ -14,7 +14,7 @@ interface ImageProps {
 	centered: URLComponent
 }
 
-type Props = PropsWithClassName & {
+interface Props extends PropsWithClassName {
 	headingText: string
 	previewText: string
 	image: ImageProps
