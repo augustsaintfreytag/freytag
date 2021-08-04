@@ -2,6 +2,22 @@
 @import "/styles/base/accessibility"
 @import "life-table-layout.sass"
 
+@mixin itemHighlight($color)
+	&::after
+		$scale: 1.11
+		$scaleAspect: 0.95
+
+		content: ""
+		position: absolute
+		top: 0
+		right: 0
+		bottom: 0
+		left: -1.75rem
+		z-index: -1
+		
+		background: $color
+		transform: scaleX($scale * $scaleAspect) scaleY($scale)
+
 .table
 	@include table
 
@@ -69,25 +85,17 @@
 					@include breakpoint($phone)
 						display: none
 
+	// Highlight
+
+	&.highlighted
+		@include itemHighlight($elementHighlightColor)
+
 	// Disclosure
 
 	&.disclosed
 		height: auto
 		
-		&::after
-			$scale: 1.11
-			$scaleAspect: 0.95
-
-			content: ""
-			position: absolute
-			top: 0
-			right: 0
-			bottom: 0
-			left: -1.75rem
-			z-index: -1
-			
-			background: #f8f8f8
-			transform: scaleX($scale * $scaleAspect) scaleY($scale)
+		@include itemHighlight(#f8f8f8)
 
 		.inlay 
 			main
