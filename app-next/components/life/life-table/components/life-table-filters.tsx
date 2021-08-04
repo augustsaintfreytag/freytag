@@ -65,7 +65,7 @@ const LifeTableFilters: FunctionComponent<Props> = props => {
 								props.onFilterChange?.(definition.kind)
 							}}
 						>
-							<div className={styles.decorative} data-tag-representation={definition.attribute} />
+							<div className={styles.decorative} />
 							<span className={styles.label}>{definition.text}</span>
 						</button>
 					)
