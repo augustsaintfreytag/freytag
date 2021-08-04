@@ -6,11 +6,9 @@
 	text-transform: uppercase
 
 	@include tagFont
+	color: $textColorOnDark
 	
-	color: $textColorFadedOnDark
 	background: var(--accent-color, $tagBackgroundColor)
-	filter: saturate(0.5) contrast(1.15) brightness(1.2)
-	box-shadow: 0.15rem 0.15rem 0 rgba(255, 255, 255, 0.35)
 
 	// Appearances
 
@@ -23,6 +21,10 @@
 			padding: 3px 7px 3px 7px
 
 	&.appearanceDecorative
+		color: $textColorFadedOnDark
+		filter: saturate(0.5) contrast(1.15) brightness(1.2)
+		box-shadow: 0.15rem 0.15rem 0 rgba(255, 255, 255, 0.35)
+
 		font-size: 0.75rem
 		line-height: 0.75rem
 		padding: 4px 6px 3px 6px
