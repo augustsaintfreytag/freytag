@@ -6,7 +6,8 @@ $interItemSpacing: 2.5rem
 $interComponentSpacing: 0.9rem
 
 $activeItemOpacity: 1.0
-$inactiveItemOpacity: 0.35
+$inactiveDecorativeOpacity: 0.65
+$inactiveLabelOpacity: 0.35
 
 .filters
 	padding: $inlaySpacing 0
@@ -25,11 +26,6 @@ $inactiveItemOpacity: 0.35
 
 			@include horizontalListMargin($interItemSpacing)
 
-			opacity: $inactiveItemOpacity
-
-			&.active
-				opacity: $activeItemOpacity
-
 			.decorative
 				$size: 1.2rem
 				$verticalOffset: 0rem
@@ -40,7 +36,15 @@ $inactiveItemOpacity: 0.35
 				align-self: center
 				margin: 0 $interComponentSpacing $verticalOffset 0
 
-				background: var(--accent-color, $elementBackgroundColor)
+				background: var(--accent-color, #d6d6d6)
+				opacity: $inactiveDecorativeOpacity
 
 			.label
 				@include tableHeaderFont
+				opacity: $inactiveLabelOpacity
+
+			&.active
+				.decorative
+					opacity: $activeItemOpacity
+				.label
+					opacity: $activeItemOpacity

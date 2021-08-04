@@ -49,17 +49,16 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 			<section className={styles.page}>
 				<h1>Work</h1>
 				<div className={styles.workList}>
-					{workListItemProps.map(props => {
-						return (
-							<WorkListItem
-								headingText={props.headingText}
-								previewText={props.previewText}
-								image={props.image}
-								href={props.href}
-								key={props.id}
-							></WorkListItem>
-						)
-					})}
+					{workListItemProps.map(props => (
+						<WorkListItem
+							headingText={props.headingText}
+							previewText={props.previewText}
+							image={props.image}
+							href={props.href}
+							key={props.id}
+							link={props.link}
+						></WorkListItem>
+					))}
 				</div>
 				<WorkClosure showcases={showcases} />
 			</section>
