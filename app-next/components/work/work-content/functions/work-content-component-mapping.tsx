@@ -60,14 +60,18 @@ function titleCaseContentComponentFromContent(block: WorkShowcaseContentTitleCas
 	return <WorkContentTitleCaseBlock key={block._id} {...titleCaseContentPropsFromContent(block)} />
 }
 
-function dividerComponent(content: WorkShowcase): AnyElement {
-	const key = `${content._id}-divider`
+function dividerComponent(content: WorkShowcase, index: number): AnyElement {
+	const key = `${content._id}-divider-${index}`
 	return <Divider key={key} color={content.accentColor} />
 }
 
 // Master Mapping
 
-export function workContentComponentForContent(content: WorkShowcase, blockLink: ResolvedCollectionLink<AnyWorkShowcaseContent>): AnyElement {
+export function workContentComponentForContent(
+	content: WorkShowcase,
+	index: number,
+	blockLink: ResolvedCollectionLink<AnyWorkShowcaseContent>
+): AnyElement {
 	const kind = workContentBlockKindFromRawValue(blockLink.field.name)
 
 	if (!kind) {
@@ -84,6 +88,6 @@ export function workContentComponentForContent(content: WorkShowcase, blockLink:
 		case Kind.TitleCase:
 			return titleCaseContentComponentFromContent(blockLink.value as WorkShowcaseContentTitleCase)
 		case Kind.Divider:
-			return dividerComponent(content)
+			return dividerComponent(content, index)
 	}
 }
