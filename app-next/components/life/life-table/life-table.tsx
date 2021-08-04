@@ -1,10 +1,15 @@
 import { useRouter } from "next/router"
 import { FunctionComponent, useEffect, useState } from "react"
+import { locationHash } from "~/components/content-anchor/functions/location-hash"
 import LifeTableFilters from "~/components/life/life-table/components/life-table-filters"
 import LifeTableHeader from "~/components/life/life-table/components/life-table-header"
 import { LifeTableDataProps, useLifeTableData } from "~/components/life/life-table/functions/life-table-data-hook"
 import { useLifeTableHeaderProps } from "~/components/life/life-table/functions/life-table-header-props-hook"
-import * as LifeTableMapping from "~/components/life/life-table/functions/life-table-query-mapping"
+import {
+	lifeTablePropsAreEqual,
+	lifeTablePropsFromQuery,
+	setQueryFromLifeTableProps
+} from "~/components/life/life-table/functions/life-table-query-mapping"
 import { LifeTableColumn } from "~/components/life/life-table/library/life-table-column"
 import {
 	LifeTableFilterKind as FilterKind,
@@ -27,11 +32,12 @@ interface Props {
 
 const LifeTable: FunctionComponent<Props> = props => {
 	const router = useRouter()
-	const initialProps = LifeTableMapping.lifeTablePropsFromQuery(router.query) ?? defaultProps
+	const initialProps = lifeTablePropsFromQuery(router.query) ?? defaultProps
 
 	const [activeFilterKind, setActiveFilterKind] = useState<FilterKind>(initialProps.filterKind)
 	const { activeColumn, activeColumnSortMode, toggleColumn } = useLifeTableHeaderProps(initialProps.sortColumn, initialProps.sortMode)
 	const { data, setDataProps } = useLifeTableData(props.data, initialProps)
+	const highlightId = locationHash()
 
 	useEffect(() => {
 		const dataProps = {
@@ -43,14 +49,14 @@ const LifeTable: FunctionComponent<Props> = props => {
 		setDataProps(dataProps)
 
 		const routeAssignableProps = (() => {
-			if (LifeTableMapping.lifeTablePropsAreEqual(dataProps, defaultProps)) {
+			if (lifeTablePropsAreEqual(dataProps, defaultProps)) {
 				return undefined
 			}
 
 			return dataProps
 		})()
 
-		LifeTableMapping.setQueryFromLifeTableProps(router, routeAssignableProps)
+		setQueryFromLifeTableProps(router, routeAssignableProps)
 	}, [activeFilterKind, activeColumn, activeColumnSortMode])
 
 	return (
@@ -74,11 +80,16 @@ const LifeTable: FunctionComponent<Props> = props => {
 				</header>
 				<main>
 					<ol>
-						{data.map(itemData => (
-							<li key={itemData.id}>
-								<LifeTableItem {...itemData} />
-							</li>
-						))}
+						{data.map(itemData => {
+							const isHighlighted = highlightId === itemData.id
+							const props = { ...itemData, highlighted: isHighlighted }
+
+							return (
+								<li key={props.id} id={props.id}>
+									<LifeTableItem {...props} />
+								</li>
+							)
+						})}
 					</ol>
 				</main>
 			</section>

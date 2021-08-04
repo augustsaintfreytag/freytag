@@ -21,7 +21,8 @@ const WorkClosure: FunctionComponent<Props> = props => {
 				<>
 					{averageShowcaseCreation && (
 						<div>
-							A showcase is published on average every <em>{averageShowcaseCreation}</em>, last release on <em>{lastShowcaseCreation}</em>.
+							A showcase is published on average every <em>{averageShowcaseCreation.description}</em>, last release on{" "}
+							<em>{lastShowcaseCreation.description}</em>.
 						</div>
 					)}
 					{!averageShowcaseCreation && (

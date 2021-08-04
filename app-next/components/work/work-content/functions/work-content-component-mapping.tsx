@@ -1,5 +1,5 @@
 import React from "react"
-import { ResolvedCollectionLink } from "~/api/records/work-showcase/library/work-showcase"
+import { ResolvedCollectionLink, WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import {
 	AnyWorkShowcaseContent,
 	WorkShowcaseContentImages,
@@ -11,6 +11,7 @@ import {
 	WorkShowcaseTextContentFormat,
 	workShowcaseTextContentFormatFromRawValue
 } from "~/api/records/work-showcase/library/work-showcase-text-content-format"
+import Divider from "~/components/divider/divider"
 import WorkContentHeadingBlock from "~/components/work/work-content/components/work-content-heading-block"
 import WorkContentImageColumnBlock from "~/components/work/work-content/components/work-content-images-block"
 import WorkContentQuoteBlock from "~/components/work/work-content/components/work-content-quote-block"
@@ -25,7 +26,7 @@ import {
 	titleCaseContentPropsFromContent,
 	videoEmbedContentPropsFromContent
 } from "~/components/work/work-content/functions/work-content-props-mapping"
-import { workContentBlockKindFromRawValue, WorkShowcaseBlockKind as Kind } from "~/components/work/work-content/library/work-content-block-kind"
+import { WorkContentBlockKind as Kind, workContentBlockKindFromRawValue } from "~/components/work/work-content/library/work-content-block-kind"
 
 type AnyElement = JSX.Element
 
@@ -59,9 +60,18 @@ function titleCaseContentComponentFromContent(block: WorkShowcaseContentTitleCas
 	return <WorkContentTitleCaseBlock key={block._id} {...titleCaseContentPropsFromContent(block)} />
 }
 
+function dividerComponent(content: WorkShowcase, index: number): AnyElement {
+	const key = `${content._id}-divider-${index}`
+	return <Divider key={key} color={content.accentColor} />
+}
+
 // Master Mapping
 
-export function workContentComponentForContent(blockLink: ResolvedCollectionLink<AnyWorkShowcaseContent>): AnyElement {
+export function workContentComponentForContent(
+	content: WorkShowcase,
+	index: number,
+	blockLink: ResolvedCollectionLink<AnyWorkShowcaseContent>
+): AnyElement {
 	const kind = workContentBlockKindFromRawValue(blockLink.field.name)
 
 	if (!kind) {
@@ -77,5 +87,7 @@ export function workContentComponentForContent(blockLink: ResolvedCollectionLink
 			return videoEmbedContentComponentFromContent(blockLink.value as WorkShowcaseContentVideoEmbed)
 		case Kind.TitleCase:
 			return titleCaseContentComponentFromContent(blockLink.value as WorkShowcaseContentTitleCase)
+		case Kind.Divider:
+			return dividerComponent(content, index)
 	}
 }

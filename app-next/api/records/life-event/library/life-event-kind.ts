@@ -1,21 +1,21 @@
 import { enumCaseFromRawValue } from "~/utils/types/functions/enum-case-conversion"
 
 export enum LifeEventKind {
-	External = "External",
 	Life = "Life",
-	Film = "Film",
+	External = "External",
 	Development = "Development",
+	Photography = "Photography",
 	Artwork = "Artwork",
-	Photography = "Photography"
+	Film = "Film"
 }
 
 export const allLifeEventKinds: LifeEventKind[] = [
 	LifeEventKind.Life,
 	LifeEventKind.External,
-	LifeEventKind.Film,
 	LifeEventKind.Development,
 	LifeEventKind.Artwork,
-	LifeEventKind.Photography
+	LifeEventKind.Photography,
+	LifeEventKind.Film
 ]
 
 export function lifeEventKindFromRawValue(rawValue: string): LifeEventKind | undefined {

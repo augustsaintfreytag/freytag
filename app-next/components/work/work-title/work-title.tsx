@@ -1,6 +1,7 @@
 import { FunctionComponent, useMemo } from "react"
 import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
 import BlockTag from "~/components/block-tag/block-tag"
+import { useTagPropertiesForLifeEvent } from "~/components/block-tag/functions/life-event-block-tag-hook"
 import Markdown from "~/components/markdown/markdown"
 import Typo from "~/components/typo/typo"
 import { PropsWithClassName } from "~/types/props"
@@ -10,15 +11,12 @@ import { OpenDateInterval } from "~/utils/date/library/intervals"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./work-title.module.sass"
 
-// Utility
+// Hooks
 
-interface TagProperties {
-	name: string
-	representation: string
-}
-
-function tagPropertiesForKind(kind: LifeEventKind): TagProperties | undefined {
-	return { name: kind, representation: kind.toLowerCase() }
+function useFormattedInterval(interval?: OpenDateInterval): string | undefined {
+	return useMemo(() => {
+		return interval && formattedOpenDateInterval(interval)
+	}, [interval])
 }
 
 // Component
@@ -36,13 +34,8 @@ type Props = PropsWithClassName & {
 
 const WorkTitle: FunctionComponent<Props> = props => {
 	const { title, abstract, link } = props
-	const tag: TagProperties | undefined = useMemo(() => {
-		return link && tagPropertiesForKind(link?.kind)
-	}, [link])
-
-	const formattedLinkInterval: string | undefined = useMemo(() => {
-		return link && formattedOpenDateInterval(link.interval)
-	}, [link])
+	const tag = useTagPropertiesForLifeEvent(link?.kind)
+	const interval = useFormattedInterval(link?.interval)
 
 	return (
 		<section className={className(props.className, styles.workTitle)}>
@@ -54,10 +47,10 @@ const WorkTitle: FunctionComponent<Props> = props => {
 			<main>
 				{link && tag && (
 					<div className={styles.link}>
-						<BlockTag className={styles.tag} name={tag.name} representation={tag.representation} />
+						<BlockTag className={styles.tag} name={tag.name} color={tag.color} />
 						<div className={styles.description}>
 							<Typo>
-								{link.title} ({formattedLinkInterval})
+								{link.title} ({interval})
 							</Typo>
 						</div>
 					</div>
