@@ -1,8 +1,9 @@
+import { UUID } from "~/api/common/library/uuid"
 import { LifeEventKind as Kind } from "~/api/records/life-event/library/life-event-kind"
 import { OpenDateInterval } from "~/utils/date/library/intervals"
 
 export interface LifeTableItemData {
-	id: string
+	id: UUID
 	name: string
 	kind: Kind
 	interval: OpenDateInterval

@@ -53,6 +53,9 @@ const LifeTable: FunctionComponent<Props> = props => {
 		LifeTableMapping.setQueryFromLifeTableProps(router, routeAssignableProps)
 	}, [activeFilterKind, activeColumn, activeColumnSortMode])
 
+	const hash = window?.location.hash
+	debugger
+
 	return (
 		<>
 			<LifeTableFilters
@@ -75,7 +78,7 @@ const LifeTable: FunctionComponent<Props> = props => {
 				<main>
 					<ol>
 						{data.map(itemData => (
-							<li key={itemData.id}>
+							<li key={itemData.id} id={itemData.id}>
 								<LifeTableItem {...itemData} />
 							</li>
 						))}
