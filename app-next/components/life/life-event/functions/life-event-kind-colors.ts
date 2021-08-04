@@ -5,14 +5,12 @@ import { Dictionary } from "~/utils/types/library/dictionary"
 const fallbackLifeEventKindColor: ColorValue = "#1c1c1c"
 
 export const lifeEventKindColors: Dictionary<string, ColorValue> = {
-	all: "#d6d6d6",
-	external: "#f0e9b1",
-	life: "#f0b6c1",
-	film: "#473ff8",
-	development: "#a180c6",
-	artwork: "#a0d3dd",
-	photography: "#3ff8d4",
-	writing: "#fcbd47"
+	life: "#d3caae",
+	external: "#d3acb3",
+	development: "#c197c1",
+	artwork: "#83aec1",
+	photography: "#e58187",
+	film: "#7a97cb"
 }
 
 export function colorForLifeEventKind(kind: LifeEventKind): ColorValue {
