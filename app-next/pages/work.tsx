@@ -4,7 +4,7 @@ import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import { sortedWorkShowcases, workShowcasesFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
-import WorkSeo from "~/components/seo/work-seo"
+import WorkListSeo from "~/components/seo/work-list-seo"
 import WorkClosure from "~/components/work/work-closure/work-closure"
 import { mappedWorkShowcaseListItemProps } from "~/components/work/work-content/functions/work-showcase-prop-mapping"
 import WorkListItem from "~/components/work/work-list-item/work-list-item"
@@ -62,7 +62,7 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 				</div>
 				<WorkClosure showcases={showcases} />
 			</section>
-			<WorkSeo />
+			<WorkListSeo />
 		</>
 	)
 }

@@ -1,7 +1,11 @@
 import { FunctionComponent } from "react"
 import SeoBlock from "~/components/seo/seo-block"
 
-const WorkSeo: FunctionComponent = () => (
+interface Props {
+	aside?: string
+}
+
+const WorkListSeo: FunctionComponent<Props> = props => (
 	<SeoBlock>
 		<p>Collection of work showcases, a personal view into past and current projects of August Saint Freytag.</p>
 		<p>
@@ -12,4 +16,4 @@ const WorkSeo: FunctionComponent = () => (
 	</SeoBlock>
 )
 
-export default WorkSeo
+export default WorkListSeo
