@@ -11,6 +11,7 @@ export interface WorkShowcase extends CockpitEntry {
 	name: string
 	slug: string
 	description: string
+	aside?: string
 	event?: LifeEvent
 	titleImage?: ImageLink
 	teaserImageTrailing?: ImageLink
