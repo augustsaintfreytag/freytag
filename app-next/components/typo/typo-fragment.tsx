@@ -14,11 +14,13 @@ export const NonWrappingTypoFragment: FunctionComponent<PropsWithAnyChildren> = 
 export const TypoFragment: FunctionComponent<Props> = props => {
 	const { text } = props
 	const [leftWords, rightWords] = splitWords(text)
+	const joinedLeftWords = joinSplitWords(leftWords, true)
+	const joinedRightWords = joinSplitWords(rightWords, false)
 
 	return (
 		<>
-			<>{joinSplitWords(leftWords)}</>
-			<NonWrappingTypoFragment>{rightWords.join(" ")}</NonWrappingTypoFragment>
+			<>{joinedLeftWords}</>
+			{joinedRightWords && <NonWrappingTypoFragment>{joinedRightWords}</NonWrappingTypoFragment>}
 		</>
 	)
 }
