@@ -12,10 +12,16 @@ export function splitWords(text: string): [string[], string[]] {
 	return [leftWords, rightWords]
 }
 
-export function joinSplitWords(words: string[]): string {
+export function joinSplitWords(words: string[], cap: boolean): string {
 	if (!words.length) {
 		return ""
 	}
 
-	return words.join(" ") + " "
+	let joinedWords = words.join(" ")
+
+	if (cap) {
+		joinedWords += " "
+	}
+
+	return joinedWords
 }
