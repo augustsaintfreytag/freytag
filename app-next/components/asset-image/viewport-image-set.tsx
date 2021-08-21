@@ -53,7 +53,7 @@ const ViewportImageSet: FunctionComponent<Props> = props => {
 				<ScaledSourceSet sources={sources} />
 			)}
 
-			<img className={props.className} ref={imageRef} />
+			<img className={props.className} ref={imageRef} loading="lazy" />
 			{showsDebugState && <ImageDebugDisplay imageRef={imageRef} ratio={devicePixelRatio} />}
 		</picture>
 	)

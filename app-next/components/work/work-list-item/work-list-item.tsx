@@ -1,7 +1,8 @@
 import Link from "next/link"
-import { FunctionComponent } from "react"
+import { FunctionComponent, useMemo } from "react"
 import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
+import { ViewportAssetImageFormats } from "~/components/asset-image/library/viewport-sources"
 import ViewportImageSet from "~/components/asset-image/viewport-image-set"
 import BlockTag from "~/components/block-tag/block-tag"
 import { useTagPropertiesForLifeEvent } from "~/components/block-tag/functions/life-event-block-tag-hook"
@@ -30,16 +31,24 @@ interface Props extends PropsWithClassName {
 
 const WorkListItem: FunctionComponent<Props> = props => {
 	const tag = useTagPropertiesForLifeEvent(props.link?.kind)
+	const images = { desktop: props.image.trailing, mobile: props.image.centered }
+	const formats = useMemo(() => {
+		const size = AssetImageSize.ExtraLarge
+		const height = 800
+		const formats: ViewportAssetImageFormats = {
+			desktop: { size },
+			tablet: { size, crop: { height, factor: 0.6 } },
+			phone: { size, crop: { height, factor: 0.45 } }
+		}
+
+		return formats
+	}, [])
 
 	return (
 		<section className={className(styles.workListItem, props.className)}>
 			<Link href={props.href}>
 				<a>
-					<ViewportImageSet
-						className={styles.image}
-						src={{ desktop: props.image.trailing, mobile: props.image.centered }}
-						format={{ size: AssetImageSize.Large }}
-					/>
+					<ViewportImageSet className={styles.image} src={images} formats={formats} />
 				</a>
 			</Link>
 			<div className={styles.inlay}>

@@ -112,6 +112,10 @@ $inlayImageOffsetMobile: 50% 55%
 		@include coverObject
 		object-position: $inlayImageOffset
 
-		@include breakpoint($anyMobile)
+		@include breakpoint($phone)
 			object-position: $inlayImageOffsetMobile
-			height: 19rem
+			height: 20rem
+
+		@include breakpoint($tablet)
+			object-position: $inlayImageOffsetMobile
+			height: 26rem
