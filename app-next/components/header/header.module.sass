@@ -48,12 +48,6 @@
 				@include breakpoint($anyMobile)
 					font-size: $pageNavigationFontSizeMobile
 
-				.navigationItem a
-					position: relative
-
-					&::after
-						@include extendedInteractiveArea
-
 				&.active
 					opacity: $activeElementFadeOpacity
 

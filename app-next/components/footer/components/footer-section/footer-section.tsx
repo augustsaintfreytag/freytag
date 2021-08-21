@@ -54,20 +54,24 @@ export const FooterItem: FunctionComponent<FooterItemProps> = props => {
 	if (!linkProperties) {
 		return (
 			<div className={styles.footerItem}>
-				{props.sprite && <Sprite className={styles.sprite} href={props.sprite} />}
-				<div className={styles.text}>{props.text}</div>
+				<div className={className(styles.inlay)}>
+					{props.sprite && <Sprite className={styles.sprite} href={props.sprite} />}
+					<div className={styles.text}>{props.text}</div>
+				</div>
 			</div>
 		)
 	}
 
 	return (
-		<FooterItemLink name={`${props.name} Link`} href={linkProperties.href} external={linkProperties.isExternal}>
-			<div className={className(styles.footerItem, styles.linkItem, props.active && styles.active)}>
-				{props.sprite && <Sprite className={styles.sprite} href={props.sprite} />}
-				<div className={styles.text}>{props.text}</div>
-				<div className={styles.link}>{linkProperties.text}</div>
-			</div>
-		</FooterItemLink>
+		<div className={className(styles.footerItem, props.active && styles.active)}>
+			<FooterItemLink name={`${props.name} Link`} href={linkProperties.href} external={linkProperties.isExternal}>
+				<div className={className(styles.inlay)}>
+					{props.sprite && <Sprite className={styles.sprite} href={props.sprite} />}
+					<div className={styles.text}>{props.text}</div>
+					<div className={styles.link}>{linkProperties.text}</div>
+				</div>
+			</FooterItemLink>
+		</div>
 	)
 }
 

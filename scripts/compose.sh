@@ -14,4 +14,8 @@ if [[ $DEBUG == "1" ]]; then
 	APP_STARTUP_CMD="yarn dev-inspect-brk"
 fi
 
+if [[ $DEBUG_PRODUCTION == "1" ]]; then
+	APP_STARTUP_CMD="yarn live"
+fi
+
 docker compose --file $DOCKERDIR/docker-compose.yml --project-name=freytag --project-directory $ROOTDIR $@
