@@ -45,10 +45,12 @@ function viewportScaledImageRequests(requests: ImageRequests, viewport: Viewport
 	return requests
 }
 
-function croppedImageRequests(requests: ImageRequests, crop: AssetImageCropValues): ImageRequests {
+function croppedImageRequests(requests: ImageRequests, viewport: Viewport, crop: AssetImageCropValues): ImageRequests {
+	const scaleFactor = imageRequestWidthScaleFactor(viewport)
+
 	for (const request of requests) {
 		request.mode = CockpitImageOptions.Mode.Thumbnail
-		request.height = crop.height
+		request.height = roundedResolutionValue(crop.height, scaleFactor)
 		request.width = roundedResolutionValue(request.width, crop.factor)
 	}
 
@@ -86,7 +88,7 @@ export function sourceDevicePixelRatioForValue(ratio: DotsPerPixel): SourceDevic
 export function scaledImageSources(component: URLComponent, viewport: Viewport, format: AssetImageFormat): ViewportURLCouple {
 	let requests = baseImageRequests(format.size)
 	requests = viewportScaledImageRequests(requests, viewport)
-	requests = (format.crop && croppedImageRequests(requests, format.crop)) ?? requests
+	requests = (format.crop && croppedImageRequests(requests, viewport, format.crop)) ?? requests
 
 	const [baseSizeImageRequest, doubleSizeImageRequest] = requests
 	const singleSizeSource = CockpitAssetPathForm.cockpitImage(component, baseSizeImageRequest) + "&dppx=1"
