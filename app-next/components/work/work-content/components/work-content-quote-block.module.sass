@@ -9,6 +9,7 @@
 	
 	> *
 		line-height: 1.85
+		@include listMargin(1.25rem)
 
 	strong
 		$highlightColor: yellow
@@ -28,6 +29,9 @@
 			@include inlineOverlay($highlightOffsetPercentage, $highlightSkew)
 				background: $highlightColor
 				padding: ($highlightSpacing) ($highlightSpacing * $highlightSpacingAspect)
+
+	a
+		text-decoration: underline
 
 	.quotes
 		font-size: 2rem

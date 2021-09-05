@@ -1,5 +1,6 @@
 import { FunctionComponent } from "react"
 import ReactMarkdown from "react-markdown"
+import { mappedAnchorMarkdownElement } from "~/components/markdown/functions/markdown-anchor-mapping"
 import { mappedHighlightMarkdownElement } from "~/components/markdown/functions/markdown-highlight-mapping"
 import { MarkdownComponents } from "~/components/markdown/library/types"
 
@@ -10,7 +11,8 @@ interface Props {
 }
 
 const components: MarkdownComponents = {
-	strong: mappedHighlightMarkdownElement
+	strong: mappedHighlightMarkdownElement,
+	a: mappedAnchorMarkdownElement
 }
 
 const QuotationMarkdown: FunctionComponent<Props> = props => {
