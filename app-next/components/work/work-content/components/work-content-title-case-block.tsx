@@ -7,8 +7,28 @@ import Markdown from "~/components/markdown/markdown"
 import { URL, URLComponent } from "~/utils/routing/library/url"
 import styles from "./work-content-title-case-block.module.sass"
 
+// Child Components
+
+const Heading: FunctionComponent<{ content: string }> = props => <h2 className={styles.heading}>{props.content}</h2>
+
+const SubHeading: FunctionComponent<{ content: string }> = props => (
+	<div className={styles.subHeading}>
+		<Markdown>{props.content}</Markdown>
+	</div>
+)
+
+const Cover: FunctionComponent<{ content: URLComponent }> = props => (
+	<div className={styles.cover}>
+		<div className={styles.inlay}>
+			<ViewportImage className={styles.image} src={props.content} format={{ size: AssetImageSize.Large }} />
+		</div>
+	</div>
+)
+
+// Component
+
 export interface Props {
-	heading: string
+	heading?: string
 	subHeading?: string
 	cover?: URLComponent
 	callToAction?: {
@@ -19,15 +39,9 @@ export interface Props {
 
 const WorkContentTitleCaseBlock: FunctionComponent<Props> = props => (
 	<section className={styles.block}>
-		<div className={styles.cover}>
-			<div className={styles.inlay}>
-				<ViewportImage className={styles.image} src={props.cover} format={{ size: AssetImageSize.Large }} />
-			</div>
-		</div>
-		<h2 className={styles.heading}>{props.heading}</h2>
-		<div className={styles.subHeading}>
-			<Markdown>{props.subHeading}</Markdown>
-		</div>
+		{props.cover && <Cover content={props.cover} />}
+		{props.heading && <Heading content={props.heading} />}
+		{props.subHeading && <SubHeading content={props.subHeading} />}
 		{props.callToAction && (
 			<CallToAction
 				name={`${props.heading}, ${props.callToAction.label}`}
