@@ -53,7 +53,7 @@ const WorkContentClosureBlock: FunctionComponent<Props> = props => {
 			)}
 			<div>
 				<Typo>
-					Follow me on <Twitter /> to get notified of new publications and updates.
+					Follow on <Twitter /> to get notified of new publications and updates.
 				</Typo>
 			</div>
 		</section>
