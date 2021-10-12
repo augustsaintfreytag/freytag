@@ -28,7 +28,7 @@ interface Props extends PropsWithClassName, ImageFormatProps {
 	alt?: string
 }
 
-const ViewportImageSet: FunctionComponent<Props> = props => {
+const AssetImageSet: FunctionComponent<Props> = props => {
 	const sources = useMemo(() => {
 		const sourceURLComponents = {
 			desktop: props.src.desktop ?? fallbackImageComponent,
@@ -59,4 +59,4 @@ const ViewportImageSet: FunctionComponent<Props> = props => {
 	)
 }
 
-export default ViewportImageSet
+export default AssetImageSet

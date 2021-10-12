@@ -1,7 +1,7 @@
 import { FunctionComponent, useMemo } from "react"
+import AssetImage from "~/components/asset-image/asset-image"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import { ViewportAssetImageFormats } from "~/components/asset-image/library/viewport-sources"
-import ViewportImage from "~/components/asset-image/viewport-image"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { URLComponent } from "~/utils/routing/library/url"
@@ -26,7 +26,7 @@ const ImageCover: FunctionComponent<Props> = props => {
 	}, [])
 	return (
 		<div className={className(props.className, styles.cover)}>
-			<ViewportImage className={styles.image} src={props.src} formats={formats} alt={props.description} />
+			<AssetImage className={styles.image} src={props.src} formats={formats} alt={props.description} />
 		</div>
 	)
 }
