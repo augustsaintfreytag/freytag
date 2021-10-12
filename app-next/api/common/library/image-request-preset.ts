@@ -4,7 +4,7 @@ import { AssetImageSize } from "~/components/asset-image/library/image-size"
 // Library
 
 enum ImageCompressionQuality {
-	low = 65,
+	low = 70,
 	default = 80,
 	high = 92
 }
@@ -13,6 +13,12 @@ enum ImageCompressionQuality {
 
 export function imageRequest(size: AssetImageSize): CockpitImageRequest {
 	switch (size) {
+		case AssetImageSize.Small:
+			return new CockpitImageRequest({
+				mode: CockpitImageOptions.Mode.BestFit,
+				width: 200,
+				quality: ImageCompressionQuality.low
+			})
 		case AssetImageSize.Regular:
 			return new CockpitImageRequest({
 				mode: CockpitImageOptions.Mode.BestFit,
