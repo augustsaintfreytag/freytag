@@ -18,6 +18,7 @@ export interface WorkShowcaseContentImages extends CockpitEntry {
 	identifierParent: string
 	imageContents: ImageLink[]
 	imageAlignment: WorkContentImageAlignment
+	decorative?: boolean
 }
 
 export interface WorkShowcaseContentVideoEmbed extends CockpitEntry {
