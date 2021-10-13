@@ -22,12 +22,16 @@ $interFigureSpacingMobile: 2.5rem
 		@include inlayed
 
 	@include breakpoint($tablet)
-		max-width: none
 		padding: 0 4.25rem
 
 	@include breakpoint($phone)
 		flex-direction: column
 		padding: 0 $textInlayPaddingMobile + 0.25rem
+		
+		img
+			width: auto!important
+			max-width: 100%
+			max-height: 150vh
 
 	> figure
 		@include horizontalListMargin($interFigureSpacing)
