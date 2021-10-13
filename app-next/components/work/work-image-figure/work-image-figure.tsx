@@ -10,10 +10,12 @@ type Props = PropsWithClassName & {
 	src?: URLComponent
 	formats?: ViewportAssetImageFormats
 	caption?: string
+	anchor?: string
 }
 
 const WorkImageFigure: FunctionComponent<Props> = props => (
 	<figure className={className(styles.figure, props.className)}>
+		<span className={styles.anchor} id={props.anchor}></span>
 		<div className={styles.inlay}>
 			<AssetImage className={styles.image} src={props.src} formats={props.formats} />
 		</div>
