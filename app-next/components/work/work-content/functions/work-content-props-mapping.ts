@@ -84,14 +84,7 @@ export function titleCaseContentPropsFromContent(block: WorkShowcaseContentTitle
 }
 
 export function contactSheetContentPropsFromContent(showcase: WorkShowcase): ContactSheetContentProps {
-	const imageBlocks = showcase.blocks
-		.filter(blockLink => {
-			const kind = workContentBlockKindFromRawValue(blockLink.field.name)
-			return kind === WorkContentBlockKind.Images
-		})
-		.map(imageBlockLink => {
-			return imageBlockLink.value as WorkShowcaseContentImages
-		})
+	const imageBlocks = contentImageBlocks(showcase)
 
 	const props: ContactSheetContentProps = {
 		images: []
@@ -107,6 +100,24 @@ export function contactSheetContentPropsFromContent(showcase: WorkShowcase): Con
 	}
 
 	return props
+}
+
+function contentImageBlocks(showcase: WorkShowcase): WorkShowcaseContentImages[] {
+	return showcase.blocks.reduce((blocks: WorkShowcaseContentImages[], blockLink) => {
+		const kind = workContentBlockKindFromRawValue(blockLink.field.name)
+
+		if (kind !== WorkContentBlockKind.Images) {
+			return blocks
+		}
+
+		const imageBlock = blockLink.value as WorkShowcaseContentImages
+		if (imageBlock.decorative) {
+			return blocks
+		}
+
+		blocks.push(imageBlock)
+		return blocks
+	}, [])
 }
 
 // Utility
