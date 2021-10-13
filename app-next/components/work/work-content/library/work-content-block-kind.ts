@@ -5,7 +5,8 @@ export enum WorkContentBlockKind {
 	Text = "text",
 	Images = "images",
 	VideoEmbed = "video_embed",
-	TitleCase = "title_case"
+	TitleCase = "title_case",
+	ContactSheet = "contact_sheet"
 }
 
 export const allWorkContentBlockKind: WorkContentBlockKind[] = [
@@ -13,7 +14,8 @@ export const allWorkContentBlockKind: WorkContentBlockKind[] = [
 	WorkContentBlockKind.Text,
 	WorkContentBlockKind.Images,
 	WorkContentBlockKind.VideoEmbed,
-	WorkContentBlockKind.TitleCase
+	WorkContentBlockKind.TitleCase,
+	WorkContentBlockKind.ContactSheet
 ]
 
 export function workContentBlockKindFromRawValue(rawValue: string | undefined): WorkContentBlockKind | undefined {

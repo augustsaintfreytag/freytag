@@ -1,3 +1,5 @@
+import { ImageLink } from "~/api/records/asset/library/image-link"
+import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import {
 	WorkShowcaseContentImages,
 	WorkShowcaseContentText,
@@ -6,13 +8,16 @@ import {
 } from "~/api/records/work-showcase/library/work-showcase-content"
 import { workContentImageAlignmentFromRawValue } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
+import { Props as ContactSheetContentProps } from "~/components/work/work-content/components/work-content-contact-sheet-block"
 import { Props as HeadingContentProps } from "~/components/work/work-content/components/work-content-heading-block"
 import { Props as ImagesContentProps } from "~/components/work/work-content/components/work-content-images-block"
 import { Props as QuoteContentProps } from "~/components/work/work-content/components/work-content-quote-block"
 import { Props as TextContentProps } from "~/components/work/work-content/components/work-content-text-block"
 import { Props as TitleCaseContentProps } from "~/components/work/work-content/components/work-content-title-case-block"
 import { Props as VideoEmbedContentProps } from "~/components/work/work-content/components/work-content-video-block"
-import { URL } from "~/utils/routing/library/url"
+import { WorkContentBlockKind, workContentBlockKindFromRawValue } from "~/components/work/work-content/library/work-content-block-kind"
+import { ImageFigureProps } from "~/components/work/work-image-figure/work-image-figure"
+import { hashValue } from "~/utils/hash/hash"
 
 export function headingContentPropsFromContent(block: WorkShowcaseContentText): HeadingContentProps {
 	return {
@@ -32,10 +37,11 @@ export function quoteContentPropsFromContent(block: WorkShowcaseContentText): Qu
 	}
 }
 
-export function imagesContentPropsFromContent(block: WorkShowcaseContentImages): ImagesContentProps {
+export function imagesContentPropsFromContent(showcase: WorkShowcase, block: WorkShowcaseContentImages): ImagesContentProps {
 	const imageFormat = block.imageContents.length > 1 ? AssetImageSize.Regular : AssetImageSize.Large
-	const collection: { src?: URL; caption?: string }[] = block.imageContents.map(imageContent => {
+	const collection: ImageFigureProps[] = block.imageContents.map(imageContent => {
 		return {
+			anchor: imageAnchorIdentifier(showcase, imageContent),
 			src: imageContent.path,
 			imageFormat: imageFormat,
 			caption: imageContent.meta?.title
@@ -75,4 +81,36 @@ export function titleCaseContentPropsFromContent(block: WorkShowcaseContentTitle
 		cover: block.imageContent?.path,
 		callToAction: callToAction
 	}
+}
+
+export function contactSheetContentPropsFromContent(showcase: WorkShowcase): ContactSheetContentProps {
+	const imageBlocks = showcase.blocks
+		.filter(blockLink => {
+			const kind = workContentBlockKindFromRawValue(blockLink.field.name)
+			return kind === WorkContentBlockKind.Images
+		})
+		.map(imageBlockLink => {
+			return imageBlockLink.value as WorkShowcaseContentImages
+		})
+
+	const props: ContactSheetContentProps = {
+		images: []
+	}
+
+	for (const imageBlock of imageBlocks) {
+		for (const imageContent of imageBlock.imageContents) {
+			props.images.push({
+				anchor: imageAnchorIdentifier(showcase, imageContent),
+				image: imageContent
+			})
+		}
+	}
+
+	return props
+}
+
+// Utility
+
+function imageAnchorIdentifier(showcase: WorkShowcase, image: ImageLink): string {
+	return `${showcase._id}-${hashValue(image.path)}`
 }

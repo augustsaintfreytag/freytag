@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { FunctionComponent } from "react"
 import { ImageLink } from "~/api/records/asset/library/image-link"
 import AssetImage from "~/components/asset-image/asset-image"
@@ -19,7 +20,11 @@ const WorkContentContactSheetBlock: FunctionComponent<Props> = props => (
 			<ol>
 				{props.images.map(definition => (
 					<li key={definition.anchor}>
-						<AssetImage className={styles.image} src={definition.image.path} format={{ size: AssetImageSize.Small }} />
+						<Link href={`#${definition.anchor}`}>
+							<a>
+								<AssetImage className={styles.image} src={definition.image.path} format={{ size: AssetImageSize.Small }} />
+							</a>
+						</Link>
 					</li>
 				))}
 			</ol>
