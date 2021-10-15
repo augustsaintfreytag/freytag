@@ -17,6 +17,17 @@
 		height: 100%
 
 		.inlay
+			position: relative
+
+			@include breakpoint($desktop)
+				top: -5rem
+
+			@include breakpoint($tablet)
+				top: -3.5rem
+
+			@include breakpoint($phone)
+				top: -2.5rem
+
 			h1
 				position: relative
 				z-index: 2
