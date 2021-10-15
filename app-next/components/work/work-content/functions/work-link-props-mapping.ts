@@ -9,6 +9,7 @@ interface LinkProperties {
 	kind: LifeEventKind
 	title: string
 	interval: OpenDateInterval
+	wantsReducedAppearance?: boolean
 }
 
 export function linkPropsForShowcase(showcase: WorkShowcase): LinkProperties | undefined {
@@ -28,6 +29,7 @@ export function linkPropsForShowcase(showcase: WorkShowcase): LinkProperties | u
 	return {
 		kind: eventKind,
 		title: event.name,
-		interval: eventInterval
+		interval: eventInterval,
+		wantsReducedAppearance: showcase.reducedEventAppearance ?? false
 	}
 }
