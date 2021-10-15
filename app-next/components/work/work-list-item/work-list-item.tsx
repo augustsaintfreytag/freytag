@@ -1,9 +1,9 @@
 import Link from "next/link"
 import { FunctionComponent, useMemo } from "react"
 import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
+import AssetImageSet from "~/components/asset-image/asset-image-set"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import { ViewportAssetImageFormats } from "~/components/asset-image/library/viewport-sources"
-import ViewportImageSet from "~/components/asset-image/viewport-image-set"
 import BlockTag from "~/components/block-tag/block-tag"
 import { useTagPropertiesForLifeEvent } from "~/components/block-tag/functions/life-event-block-tag-hook"
 import { BlockTagAppearance } from "~/components/block-tag/library/block-tag-appearance"
@@ -48,7 +48,7 @@ const WorkListItem: FunctionComponent<Props> = props => {
 		<section className={className(styles.workListItem, props.className)}>
 			<Link href={props.href}>
 				<a>
-					<ViewportImageSet className={styles.image} src={images} formats={formats} />
+					<AssetImageSet className={styles.image} src={images} formats={formats} />
 				</a>
 			</Link>
 			<div className={styles.inlay}>

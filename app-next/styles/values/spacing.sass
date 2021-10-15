@@ -19,6 +19,7 @@ $textInlayWidthMobile: 28rem
 $pageSpacing: 8.5rem
 $pageContentSpacing: 5rem
 $pageSubContentSpacing: 1.75rem
+$pageAnchorOffset: -2rem
 
 $descriptionParagraphSpacing: 0.85rem
 
@@ -124,6 +125,12 @@ $ultraWideItemMaxWidth: 112rem
 	@include breakpoint($phone)
 		height: 85vh + $heightModifier
 		min-height: 40rem + $minHeightModifier
+
+@mixin pageAnchor
+	position: absolute
+	inset: $pageAnchorOffset 0 0 0
+	height: 0
+	width: 0
 
 // Ellipsis
 

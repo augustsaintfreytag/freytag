@@ -18,6 +18,7 @@ interface Props {
 
 const WorkSeo: FunctionComponent<Props> = props => {
 	const { blocks: asideBlocks, hasBlocks: hasAside } = asideLines(props.aside)
+
 	return (
 		<SeoBlock>
 			{hasAside &&

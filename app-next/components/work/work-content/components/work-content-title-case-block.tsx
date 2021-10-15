@@ -1,7 +1,7 @@
 import { FunctionComponent, useMemo } from "react"
 import { assetUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
+import AssetImage from "~/components/asset-image/asset-image"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
-import ViewportImage from "~/components/asset-image/viewport-image"
 import CallToAction from "~/components/call-to-action/call-to-action"
 import Markdown from "~/components/markdown/markdown"
 import { URL, URLComponent } from "~/utils/routing/library/url"
@@ -20,7 +20,7 @@ const SubHeading: FunctionComponent<{ content: string }> = props => (
 const Cover: FunctionComponent<{ content: URLComponent }> = props => (
 	<div className={styles.cover}>
 		<div className={styles.inlay}>
-			<ViewportImage className={styles.image} src={props.content} format={{ size: AssetImageSize.Large }} />
+			<AssetImage className={styles.image} src={props.content} format={{ size: AssetImageSize.Large }} />
 		</div>
 	</div>
 )

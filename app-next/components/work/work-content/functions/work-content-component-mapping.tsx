@@ -12,6 +12,7 @@ import {
 	workShowcaseTextContentFormatFromRawValue
 } from "~/api/records/work-showcase/library/work-showcase-text-content-format"
 import Divider from "~/components/divider/divider"
+import WorkContentContactSheetBlock from "~/components/work/work-content/components/work-content-contact-sheet-block"
 import WorkContentHeadingBlock from "~/components/work/work-content/components/work-content-heading-block"
 import WorkContentImageColumnBlock from "~/components/work/work-content/components/work-content-images-block"
 import WorkContentQuoteBlock from "~/components/work/work-content/components/work-content-quote-block"
@@ -19,6 +20,7 @@ import WorkContentTextBlock from "~/components/work/work-content/components/work
 import WorkContentTitleCaseBlock from "~/components/work/work-content/components/work-content-title-case-block"
 import WorkContentVideoBlock from "~/components/work/work-content/components/work-content-video-block"
 import {
+	contactSheetContentPropsFromContent,
 	headingContentPropsFromContent,
 	imagesContentPropsFromContent,
 	quoteContentPropsFromContent,
@@ -48,8 +50,8 @@ function typedTextContentComponentFromContent(block: WorkShowcaseContentText): A
 	}
 }
 
-function imagesContentComponentFromContent(block: WorkShowcaseContentImages): AnyElement {
-	return <WorkContentImageColumnBlock key={block._id} {...imagesContentPropsFromContent(block)} />
+function imagesContentComponentFromContent(showcase: WorkShowcase, block: WorkShowcaseContentImages): AnyElement {
+	return <WorkContentImageColumnBlock key={block._id} {...imagesContentPropsFromContent(showcase, block)} />
 }
 
 function videoEmbedContentComponentFromContent(block: WorkShowcaseContentVideoEmbed): AnyElement {
@@ -60,15 +62,19 @@ function titleCaseContentComponentFromContent(block: WorkShowcaseContentTitleCas
 	return <WorkContentTitleCaseBlock key={block._id} {...titleCaseContentPropsFromContent(block)} />
 }
 
-function dividerComponent(content: WorkShowcase, index: number): AnyElement {
-	const key = `${content._id}-divider-${index}`
-	return <Divider key={key} color={content.accentColor} />
+function dividerComponent(showcase: WorkShowcase, index: number): AnyElement {
+	const key = `${showcase._id}-divider-${index}`
+	return <Divider key={key} color={showcase.accentColor} />
+}
+
+function contactSheetComponent(showcase: WorkShowcase): AnyElement {
+	return <WorkContentContactSheetBlock key={`${showcase._id}-contact-sheet`} {...contactSheetContentPropsFromContent(showcase)} />
 }
 
 // Master Mapping
 
 export function workContentComponentForContent(
-	content: WorkShowcase,
+	showcase: WorkShowcase,
 	index: number,
 	blockLink: ResolvedCollectionLink<AnyWorkShowcaseContent>
 ): AnyElement {
@@ -79,15 +85,17 @@ export function workContentComponentForContent(
 	}
 
 	switch (kind) {
+		case Kind.Divider:
+			return dividerComponent(showcase, index)
 		case Kind.Text:
 			return typedTextContentComponentFromContent(blockLink.value as WorkShowcaseContentText)
 		case Kind.Images:
-			return imagesContentComponentFromContent(blockLink.value as WorkShowcaseContentImages)
+			return imagesContentComponentFromContent(showcase, blockLink.value as WorkShowcaseContentImages)
 		case Kind.VideoEmbed:
 			return videoEmbedContentComponentFromContent(blockLink.value as WorkShowcaseContentVideoEmbed)
 		case Kind.TitleCase:
 			return titleCaseContentComponentFromContent(blockLink.value as WorkShowcaseContentTitleCase)
-		case Kind.Divider:
-			return dividerComponent(content, index)
+		case Kind.ContactSheet:
+			return contactSheetComponent(showcase)
 	}
 }
