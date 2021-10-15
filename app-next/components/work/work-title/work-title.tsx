@@ -1,4 +1,4 @@
-import { FunctionComponent, useMemo } from "react"
+import { FunctionComponent } from "react"
 import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
 import BlockTag from "~/components/block-tag/block-tag"
 import { useTagPropertiesForLifeEvent } from "~/components/block-tag/functions/life-event-block-tag-hook"
@@ -11,31 +11,36 @@ import { OpenDateInterval } from "~/utils/date/library/intervals"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./work-title.module.sass"
 
-// Hooks
-
-function useFormattedInterval(interval?: OpenDateInterval): string | undefined {
-	return useMemo(() => {
-		return interval && formattedOpenDateInterval(interval)
-	}, [interval])
-}
-
 // Component
 
-type Props = PropsWithClassName & {
+interface LinkProps {
+	href?: URL
+	kind: LifeEventKind
+	title: string
+	interval: OpenDateInterval
+	wantsReducedAppearance?: boolean
+}
+
+interface Props extends PropsWithClassName {
 	title: string
 	abstract: string
-	link?: {
-		href?: URL
-		kind: LifeEventKind
-		title: string
-		interval: OpenDateInterval
+	link?: LinkProps
+}
+
+function formattedLinkTitle(props: LinkProps): string {
+	const interval = props.interval
+	const formattedInterval = (interval && formattedOpenDateInterval(interval)) ?? "Unknown Time"
+
+	if (props.wantsReducedAppearance) {
+		return formattedInterval
 	}
+
+	return `${props.title} (${formattedInterval})`
 }
 
 const WorkTitle: FunctionComponent<Props> = props => {
 	const { title, abstract, link } = props
 	const tag = useTagPropertiesForLifeEvent(link?.kind)
-	const interval = useFormattedInterval(link?.interval)
 
 	return (
 		<section className={className(props.className, styles.workTitle)}>
@@ -49,9 +54,7 @@ const WorkTitle: FunctionComponent<Props> = props => {
 					<div className={styles.link}>
 						<BlockTag className={styles.tag} name={tag.name} color={tag.color} />
 						<div className={styles.description}>
-							<Typo>
-								{link.title} ({interval})
-							</Typo>
+							<Typo>{formattedLinkTitle(link)}</Typo>
 						</div>
 					</div>
 				)}
