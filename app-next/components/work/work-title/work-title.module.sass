@@ -25,25 +25,13 @@
 			align-items: center
 			justify-content: space-around
 
-			@include breakpoint($anyMobile)
-				display: block
-				width: 100%
-
 			.tag
 				margin-right: 1rem
 				flex: 0 0 auto
-
-				@include breakpoint($anyMobile)
-					margin: 0 auto
 				
 			.description
 				flex: auto
 				line-height: 1.5
-
-				@include breakpoint($anyMobile)
-					margin: 0.7rem auto 0 auto
-					max-width: 68%
-					text-align: center
 
 		.abstract
 			text-align: center
@@ -55,3 +43,18 @@
 
 			a
 				text-decoration: underline
+
+	@include breakpoint($anyMobile)
+		&.defaultAppearance
+			> main .link
+
+				display: block
+				width: 100%
+
+				.tag
+					margin: 0 auto
+
+				.description
+					margin: 0.7rem auto 0 auto
+					max-width: 68%
+					text-align: center

@@ -27,6 +27,14 @@ interface Props extends PropsWithClassName {
 	link?: LinkProps
 }
 
+function appearanceClassName(wantsReducedAppearance?: boolean): string {
+	if (wantsReducedAppearance) {
+		return styles.reducedAppearance
+	}
+
+	return styles.defaultAppearance
+}
+
 function formattedLinkTitle(props: LinkProps): string {
 	const interval = props.interval
 	const formattedInterval = (interval && formattedOpenDateInterval(interval)) ?? "Unknown Time"
@@ -43,7 +51,7 @@ const WorkTitle: FunctionComponent<Props> = props => {
 	const tag = useTagPropertiesForLifeEvent(link?.kind)
 
 	return (
-		<section className={className(props.className, styles.workTitle)}>
+		<section className={className(props.className, styles.workTitle, appearanceClassName(link?.wantsReducedAppearance))}>
 			<header>
 				<h1>
 					<Typo>{title}</Typo>
