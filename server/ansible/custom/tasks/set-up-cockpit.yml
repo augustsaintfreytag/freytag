@@ -14,6 +14,7 @@
     path: "{{ cockpit_sync_directory }}/{{ cockpit_sync_archive }}"
     state: directory
     mode: "0755"
+    recurse: yes
     owner: "server"
   become: yes
   tags:
