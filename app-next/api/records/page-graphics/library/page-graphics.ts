@@ -8,6 +8,8 @@ export type PageGraphics = CockpitEntry & {
 	lifePreview?: ImageLink
 	workAsset?: ImageLink
 	workPreview?: ImageLink
+	themesAsset?: ImageLink
+	themesPreview?: ImageLink
 	imprintAsset?: ImageLink
 	privacyAsset?: ImageLink
 	pageNotFoundAsset?: ImageLink
