@@ -1,7 +1,9 @@
 import { Color } from "~/utils/colors/models/color"
 
-export function valueFromHex(value: string): number {
-	return parseInt(value, 16)
+// Hexadecimal
+
+function valueFromHexDescription(value: string): number {
+	return parseInt(value, 16) / 255
 }
 
 export function colorFromHex(value: string): Color | undefined {
