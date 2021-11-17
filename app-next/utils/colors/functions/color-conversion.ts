@@ -8,7 +8,7 @@ function valueFromHexDescription(value: string): number {
 }
 
 export function colorFromHex(value: string): Color | undefined {
-	const components = value.match(/.{1,2}/g) ?? []
+	const components = value.replace("#", "").match(/.{1,2}/g) ?? []
 
 	if (components.length !== 3) {
 		return undefined
