@@ -1,0 +1,24 @@
+@import "/styles/values/all"
+
+.themePreview
+	$themeNameFontSize: 1.4rem
+	$themeDescriptionFontSize: 1rem
+
+	ol.colorRow
+		display: flex
+
+		li.colorBlock
+			$colorSize: 2.75rem
+			width: $colorSize
+			height: $colorSize
+
+	.name
+		@include elementHeadingFont
+		font-size: $themeNameFontSize
+		margin-top: 1rem
+
+	.description
+		@include paragraphFont
+		font-size: $themeDescriptionFontSize
+		line-height: $paragraphLineHeight
+		margin-top: 1.6rem
