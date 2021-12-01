@@ -2,5 +2,28 @@
 @import "/styles/base/accessibility"
 
 .page
-	h1
-		@include semantic
+	$interContentSpacing: $pageContentSpacing
+	$interContentSpacingMobile: $pageContentSpacing * 0.85
+
+	.cover
+		@include coverImageWithBreakpoints(-33vh, -25rem, 0rem)
+
+	.title
+		margin-top: $interContentSpacing
+
+		@include breakpoint($anyMobile)
+			margin-top: $interContentSpacingMobile
+
+	.list
+		@include inlayed
+		margin-top: $interContentSpacing
+
+		> ol
+			display: flex
+			flex-wrap: wrap
+			align-content: space-around
+			justify-content: center
+			column-gap: 6rem
+			row-gap: 4rem
+
+			> li
