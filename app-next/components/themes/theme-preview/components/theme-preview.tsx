@@ -18,7 +18,7 @@ const ThemePreview: FunctionComponent<Props> = props => (
 		<ol className={styles.colorRow}>
 			{props.colors.map((color, index) => {
 				const key = `${color.key}-${index}`
-				return <li key={key} className={styles.colorBlock} style={{ backgroundColor: color.rgb }}></li>
+				return <li key={key} style={{ backgroundColor: color.rgb }}></li>
 			})}
 		</ol>
 		<h3 className={styles.name}>{props.name}</h3>

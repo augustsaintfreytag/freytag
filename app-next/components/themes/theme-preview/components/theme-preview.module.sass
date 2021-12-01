@@ -4,10 +4,13 @@
 	$themeNameFontSize: 1.4rem
 	$themeDescriptionFontSize: 1rem
 
+	width: min-content			// `min-content` uses color row
+	overflow: hidden
+
 	ol.colorRow
 		display: flex
 
-		li.colorBlock
+		> li
 			$colorSize: 2.75rem
 			width: $colorSize
 			height: $colorSize
@@ -22,3 +25,4 @@
 		font-size: $themeDescriptionFontSize
 		line-height: $paragraphLineHeight
 		margin-top: 1.6rem
+		padding-right: 10%
