@@ -1,9 +1,5 @@
-import { CSSProperties } from "react"
-
-const style: CSSProperties = { display: "none" }
-
-const Sprites = () => (
-	<svg width="0" height="0" style={style}>
+const CommonSprites = () => (
+	<svg width="0" height="0" style={{ display: "none" }}>
 		<symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 18 15.602" id="Vimeo Symbol">
 			<path d="M17.991 3.611q-.121 2.631-3.67 7.214c-2.447 3.2-4.516 4.777-6.225 4.777-1.034 0-1.925-.972-2.654-2.924-.495-1.763-.945-3.544-1.448-5.325-.54-1.943-1.115-2.915-1.745-2.915a5.912 5.912 0 00-1.4.855L0 4.194c.9-.783 1.763-1.565 2.627-2.348A5.994 5.994 0 015.289.229c1.4-.144 2.267.828 2.591 2.879.351 2.222.594 3.6.729 4.138.387 1.835.837 2.735 1.331 2.735.378 0 .945-.576 1.7-1.772a6.968 6.968 0 001.214-2.726q.163-1.539-1.214-1.539a3.342 3.342 0 00-1.331.3Q11.631-.114 15.373.007q2.78.078 2.618 3.604z"></path>
 		</symbol>
@@ -78,4 +74,4 @@ const Sprites = () => (
 	</svg>
 )
 
-export default Sprites
+export default CommonSprites
