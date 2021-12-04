@@ -1,5 +1,5 @@
 import { Theme, ThemePackage } from "~/api/records/themes/library/theme"
-import { ThemeEditorFormat } from "~/api/records/themes/library/theme-editor-format"
+import { allThemeEditorFormats, ThemeEditorFormat } from "~/api/records/themes/library/theme-editor-format"
 import { ThemeLightness } from "~/api/records/themes/library/theme-lightness"
 import { Props as ThemePreviewProps } from "~/components/themes/theme-preview/components/theme-preview"
 import { Props as ThemeTagProps } from "~/components/themes/theme-tag/components/theme-tag"
@@ -14,7 +14,7 @@ export function themePreviewPropsFromTheme(theme: Theme): ThemePreviewProps {
 		name: theme.name,
 		description: theme.description,
 		colors: colorCollectionFromTheme(theme),
-		tags: themeTagProps(theme),
+		tags: themeTagProps(theme, true),
 		link: {
 			id: theme._id
 		}
@@ -23,14 +23,22 @@ export function themePreviewPropsFromTheme(theme: Theme): ThemePreviewProps {
 
 // Tag Props
 
-function themeTagProps(theme: Theme): ThemeTagProps[] {
+function themeTagProps(theme: Theme, summarizeFormats: boolean = false): ThemeTagProps[] {
 	const props: ThemeTagProps[] = []
 
 	props.push(themeTagPropsForLightness(theme.lightness))
 
-	for (const themePackageBlock of theme.packages) {
-		const packageProps = themeTagPropsForPackage(themePackageBlock.value)
-		props.push(packageProps)
+	const themePackages = theme.packages.map(block => block.value)
+	if (!summarizeFormats) {
+		for (const themePackage of themePackages) {
+			const packageProps = themeTagPropsForIndividualPackage(themePackage)
+			props.push(packageProps)
+		}
+	} else {
+		const summarizedPackageProps = themeTagPropsForSummarizedPackages(themePackages)
+		if (summarizedPackageProps) {
+			props.push(summarizedPackageProps)
+		}
 	}
 
 	return props
@@ -45,13 +53,37 @@ function themeTagPropsForLightness(lightness: ThemeLightness): ThemeTagProps {
 	}
 }
 
-function themeTagPropsForPackage(themePackage: ThemePackage): ThemeTagProps {
+function themeTagPropsForIndividualPackage(themePackage: ThemePackage): ThemeTagProps {
 	switch (themePackage.format) {
 		case ThemeEditorFormat.Intermediate:
 			return Tags.intermediateThemeTag()
 		case ThemeEditorFormat.Xcode:
 			return Tags.xcodeThemeTag()
 	}
+}
+
+function themeTagPropsForSummarizedPackages(themePackages: ThemePackage[]): ThemeTagProps | undefined {
+	const themeFormats = themeFormatSet(themePackages)
+
+	if (themeFormats.size === 0) {
+		return undefined
+	}
+
+	if (allThemeEditorFormats.length === themeFormats.size) {
+		return Tags.formatThemeTag(Tags.allFormats)
+	}
+
+	return Tags.formatThemeTag(themeFormats.size)
+}
+
+function themeFormatSet(themePackages: ThemePackage[]): Set<ThemeEditorFormat> {
+	const themeFormats = new Set<ThemeEditorFormat>()
+
+	themePackages.forEach(themePackage => {
+		themeFormats.add(themePackage.format)
+	})
+
+	return themeFormats
 }
 
 // Color Props

@@ -24,12 +24,15 @@ export function darkThemeTag(): ThemeTagProps {
 
 export function formatThemeTag(numberOfFormats: number): ThemeTagProps {
 	const designation = numberOfFormats === 1 ? "Format" : "Formats"
+	const description = numberOfFormats === allFormats ? "All" : String(numberOfFormats)
 
 	return {
-		name: `${numberOfFormats} ${designation}`,
+		name: `${description} ${designation}`,
 		symbol: ThemeSymbols.Format
 	}
 }
+
+export const allFormats = -1
 
 export function intermediateThemeTag(): ThemeTagProps {
 	return { name: "Intermediate", symbol: ThemeSymbols.IntermediateFormat }
