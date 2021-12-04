@@ -2,6 +2,7 @@
 
 .themePreview
 	$themeNameFontSize: 1.4rem
+	$themeNameLineHeight: $themeNameFontSize * 1.35
 	$themeDescriptionFontSize: 1rem
 
 	width: min-content			// `min-content` uses color row
@@ -15,10 +16,25 @@
 			width: $colorSize
 			height: $colorSize
 
-	.name
-		@include elementHeadingFont
-		font-size: $themeNameFontSize
+	header
 		margin-top: 1rem
+
+		.name
+			display: inline-block
+			vertical-align: top
+
+			@include elementHeadingFont
+			font-size: $themeNameFontSize
+			line-height: $themeNameLineHeight
+
+		.tags
+			display: inline-flex
+			align-items: center
+			column-gap: 0.35rem
+
+			vertical-align: top
+			height: $themeNameLineHeight
+			margin-left: 2.5rem
 
 	.description
 		@include paragraphFont
