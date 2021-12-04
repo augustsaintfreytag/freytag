@@ -1,4 +1,6 @@
 import { CockpitEntry } from "cockpit-access"
+import { ThemeEditorFormat } from "./theme-editor-format"
+import { ThemeLightness } from "./theme-lightness"
 
 export interface Theme extends CockpitEntry {
 	display: boolean
@@ -9,11 +11,6 @@ export interface Theme extends CockpitEntry {
 	packages: ThemePackageBlock[]
 }
 
-export enum ThemeLightness {
-	Light = "Light",
-	Dark = "Dark"
-}
-
 export interface ThemePackage {
 	format: ThemeEditorFormat
 	file: string
@@ -21,9 +18,4 @@ export interface ThemePackage {
 
 export interface ThemePackageBlock {
 	value: ThemePackage
-}
-
-export enum ThemeEditorFormat {
-	Intermediate = "Intermediate",
-	Xcode = "Xcode"
 }
