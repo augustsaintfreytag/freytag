@@ -1,9 +1,13 @@
-import { Theme, ThemeEditorFormat, ThemeLightness, ThemePackage } from "~/api/records/themes/library/theme"
+import { Theme, ThemePackage } from "~/api/records/themes/library/theme"
+import { ThemeEditorFormat } from "~/api/records/themes/library/theme-editor-format"
+import { ThemeLightness } from "~/api/records/themes/library/theme-lightness"
 import { Props as ThemePreviewProps } from "~/components/themes/theme-preview/components/theme-preview"
 import { Props as ThemeTagProps } from "~/components/themes/theme-tag/components/theme-tag"
-import { darkThemeTag, lightThemeTag, universalThemeTag, xcodeThemeTag } from "~/components/themes/theme-tag/functions/theme-tag-models"
+import * as Tags from "~/components/themes/theme-tag/functions/theme-tag-models"
 import { colorFromHex } from "~/utils/colors/functions/color-conversion"
 import { Color } from "~/utils/colors/models/color"
+
+// Preview Props
 
 export function themePreviewPropsFromTheme(theme: Theme): ThemePreviewProps {
 	return {
@@ -16,6 +20,8 @@ export function themePreviewPropsFromTheme(theme: Theme): ThemePreviewProps {
 		}
 	}
 }
+
+// Tag Props
 
 function themeTagProps(theme: Theme): ThemeTagProps[] {
 	const props: ThemeTagProps[] = []
@@ -33,20 +39,22 @@ function themeTagProps(theme: Theme): ThemeTagProps[] {
 function themeTagPropsForLightness(lightness: ThemeLightness): ThemeTagProps {
 	switch (lightness) {
 		case ThemeLightness.Light:
-			return lightThemeTag()
+			return Tags.lightThemeTag()
 		case ThemeLightness.Dark:
-			return darkThemeTag()
+			return Tags.darkThemeTag()
 	}
 }
 
 function themeTagPropsForPackage(themePackage: ThemePackage): ThemeTagProps {
 	switch (themePackage.format) {
 		case ThemeEditorFormat.Intermediate:
-			return universalThemeTag()
+			return Tags.intermediateThemeTag()
 		case ThemeEditorFormat.Xcode:
-			return xcodeThemeTag()
+			return Tags.xcodeThemeTag()
 	}
 }
+
+// Color Props
 
 function colorCollectionFromTheme(theme: Theme): Color[] {
 	const hexColorDescriptions = JSON.parse(theme.colors) as string[]

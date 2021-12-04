@@ -4,7 +4,7 @@ enum ThemeSymbols {
 	LightMode = "#Light Mode Symbol",
 	DarkMode = "#Dark Mode Symbol",
 	Format = "#Format Symbol",
-	UniversalFormat = "#Universal Format",
+	IntermediateFormat = "#Intermediate Format",
 	XcodeFormat = "#Xcode Format",
 	VSCodeFormat = "#VSCode Format",
 	TerminalFormat = "#Terminal Format"
@@ -13,7 +13,7 @@ enum ThemeSymbols {
 // Lightness
 
 export function lightThemeTag(): ThemeTagProps {
-	return { name: "light", symbol: ThemeSymbols.LightMode }
+	return { name: "Light", symbol: ThemeSymbols.LightMode }
 }
 
 export function darkThemeTag(): ThemeTagProps {
@@ -31,8 +31,8 @@ export function formatThemeTag(numberOfFormats: number): ThemeTagProps {
 	}
 }
 
-export function universalThemeTag(): ThemeTagProps {
-	return { name: "Universal", symbol: ThemeSymbols.UniversalFormat }
+export function intermediateThemeTag(): ThemeTagProps {
+	return { name: "Intermediate", symbol: ThemeSymbols.IntermediateFormat }
 }
 
 export function xcodeThemeTag(): ThemeTagProps {
