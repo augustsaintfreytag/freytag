@@ -1,6 +1,6 @@
 const ThemeSprites = () => (
-	<svg width="0" height="0" style={{ display: "none" }}>
-		<symbol id="Format Symbol" xmlns="http://www.w3.org/2000/svg" width="19.323" height="19.323" viewBox="0 0 19.323 19.323">
+	<svg style={{ display: "none" }}>
+		<symbol id="Format Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.323 19.323">
 			<g transform="translate(-8 -8)">
 				<path
 					d="M21.687,32.1H10.415A2.418,2.418,0,0,1,8,29.687V18.415A2.418,2.418,0,0,1,10.415,16H21.687A2.418,2.418,0,0,1,24.1,18.415V29.687A2.418,2.418,0,0,1,21.687,32.1ZM10.415,17.61a.806.806,0,0,0-.805.805V29.687a.806.806,0,0,0,.805.805H21.687a.806.806,0,0,0,.805-.805V18.415a.806.806,0,0,0-.805-.805Z"
@@ -12,14 +12,14 @@ const ThemeSprites = () => (
 				/>
 			</g>
 		</symbol>
-		<symbol id="Terminal Format" xmlns="http://www.w3.org/2000/svg" width="25.277" height="22.749" viewBox="0 0 25.277 22.749">
+		<symbol id="Terminal Format" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.277 22.749">
 			<g transform="translate(4 4)">
 				<path d="M105.674,125.44l-1.567,1.567,3.665,3.665L104.12,134.3l1.58,1.58,5.207-5.207Z" transform="translate(-101.939 -123.272)" />
-				<rect width="6.155" height="2.528" transform="translate(8.803 11.166)" />
+				<rect transform="translate(8.803 11.166)" />
 				<path d="M0,21.333V44.082H25.277V21.333ZM22.749,41.554H2.528V23.861H22.749Z" transform="translate(-4 -25.333)" />
 			</g>
 		</symbol>
-		<symbol id="Intermediate Format" xmlns="http://www.w3.org/2000/svg" width="26.849" height="26.851" viewBox="0 0 26.849 26.851">
+		<symbol id="Intermediate Format" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.849 26.851">
 			<g transform="translate(38.418 0.097)">
 				<path
 					d="M-3.958,20.851a2,2,0,0,1-1.47-.554c-.647-.647-.729-1.662-.244-3.017a17.555,17.555,0,0,1,1.941-3.6l.091-.137h0c.256-.379.535-.777.832-1.185A11.389,11.389,0,0,1-.6-.612a11.389,11.389,0,0,1,12.973-2.21A25.335,25.335,0,0,1,16.586-5.4,5.825,5.825,0,0,1,18.833-6a2.007,2.007,0,0,1,1.479.557c.647.647.729,1.662.243,3.018a17.555,17.555,0,0,1-1.943,3.6c-.28.42-.589.863-.921,1.319a11.389,11.389,0,0,1-2.21,12.973,11.389,11.389,0,0,1-12.973,2.21c-.454.331-.9.64-1.319.921a17.566,17.566,0,0,1-3.6,1.943A4.689,4.689,0,0,1-3.958,20.851Zm2.019-5.975A10.9,10.9,0,0,0-3.833,18.7c.371-.05,1.563-.348,4.089-2.067l.265-.182a11.533,11.533,0,0,1-2.1-2.1c-.119.172-.234.341-.344.5Zm6.426,1.281a9.151,9.151,0,0,0,2.955.486,9.227,9.227,0,0,0,9.216-9.216,9.148,9.148,0,0,0-.486-2.955,78.156,78.156,0,0,1-5.547,6.137A78.153,78.153,0,0,1,4.487,16.157ZM7.442-1.789A9.214,9.214,0,0,0,2.348,15.1,73.214,73.214,0,0,0,9.1,9.088a73.2,73.2,0,0,0,6.016-6.755A9.179,9.179,0,0,0,7.442-1.789Zm6.921.2a11.532,11.532,0,0,1,2.1,2.1q.094-.135.182-.265A11.574,11.574,0,0,0,18.717-3.84a4.808,4.808,0,0,0-1.435.491A21.861,21.861,0,0,0,14.363-1.594Z"
@@ -27,7 +27,7 @@ const ThemeSprites = () => (
 				/>
 			</g>
 		</symbol>
-		<symbol id="Xcode Format" xmlns="http://www.w3.org/2000/svg" width="25.43" height="22.523" viewBox="0 0 25.43 22.523">
+		<symbol id="Xcode Format" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25.43 22.523">
 			<g transform="translate(0 0)">
 				<path
 					d="M142.3,155.989a1.864,1.864,0,0,0-3.415-.45l-.287.5-.287-.5a1.867,1.867,0,0,0-2.547-.682h0a1.867,1.867,0,0,0-.682,2.547l1.363,2.361-5.03,8.713h-3.667a1.864,1.864,0,1,0,0,3.729H141.91l-2.153-3.729h-4.033l6.394-11.074A1.852,1.852,0,0,0,142.3,155.989Z"
@@ -40,7 +40,7 @@ const ThemeSprites = () => (
 				<path d="M164.052,531.522l-.367.635a1.864,1.864,0,0,0,3.229,1.864l1.443-2.5Z" transform="translate(-161.534 -512.431)" />
 			</g>
 		</symbol>
-		<symbol id="VS Code Format" xmlns="http://www.w3.org/2000/svg" width="24.106" height="23.968" viewBox="0 0 24.106 23.968">
+		<symbol id="VS Code Format" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24.106 23.968">
 			<g transform="translate(45 -4)">
 				<path
 					d="M23.193,2.8,18.229.407A1.5,1.5,0,0,0,16.517.7L.267,15.515A1,1,0,0,0,.268,17L1.6,18.206a1,1,0,0,0,1.282.057L22.446,3.418a1,1,0,0,1,1.6.794V4.154A1.506,1.506,0,0,0,23.193,2.8Z"
@@ -61,7 +61,7 @@ const ThemeSprites = () => (
 				/>
 			</g>
 		</symbol>
-		<symbol id="Any Lightness Symbol" xmlns="http://www.w3.org/2000/svg" width="23.059" height="29.965" viewBox="0 0 23.059 29.965">
+		<symbol id="Any Lightness Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.059 29.965">
 			<g transform="translate(0 30.651) rotate(-90)">
 				<path
 					d="M-4939.391-6693.117a7.909,7.909,0,0,1-7.9-7.9,7.91,7.91,0,0,1,7.9-7.9c.076,0,.151,0,.226,0v15.8Z"
@@ -84,7 +84,7 @@ const ThemeSprites = () => (
 				<path d="M0,0H1.756V5.267H0Z" transform="translate(4.494 5.051) rotate(-45)" />
 			</g>
 		</symbol>
-		<symbol id="Light Mode Symbol" xmlns="http://www.w3.org/2000/svg" width="29.965" height="29.965" viewBox="0 0 29.965 29.965">
+		<symbol id="Light Mode Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.965 29.965">
 			<circle cx="7.901" cy="7.901" r="7.901" transform="translate(7.082 7.082)" />
 			<path d="M241,0h1.756V5.326H241Z" transform="translate(-226.895)" />
 			<path d="M241,421h1.756v5.326H241Z" transform="translate(-226.895 -396.361)" />
@@ -95,7 +95,7 @@ const ThemeSprites = () => (
 			<path d="M0,0H1.756V5.267H0Z" transform="translate(21.186 22.432) rotate(-45)" />
 			<path d="M0,0H1.756V5.267H0Z" transform="translate(3.808 5.051) rotate(-45)" />
 		</symbol>
-		<symbol id="Dark Mode Symbol" xmlns="http://www.w3.org/2000/svg" width="21.708" height="22.933" viewBox="0 0 21.708 22.933">
+		<symbol id="Dark Mode Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 21.708 22.933">
 			<path
 				d="M11.489,22.931A11.164,11.164,0,0,0,21.731,16.47a8.755,8.755,0,0,1-3.691.728A9.019,9.019,0,0,1,9.032,8.19,9.336,9.336,0,0,1,13.89.136,17.12,17.12,0,0,0,11.489,0a11.465,11.465,0,0,0,0,22.93Zm0,0"
 				transform="translate(-0.023 0.001)"
