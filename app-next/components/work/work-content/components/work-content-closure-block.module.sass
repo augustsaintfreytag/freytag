@@ -1,18 +1,9 @@
 @import "/styles/values/all"
 	
-.block
-	$paragraphSpacing: $pageSubContentSpacing * 0.8
-
-	@include inlayedText
-
-	div
-		@include listMargin($paragraphSpacing)
-		
-		text-align: center
-		line-height: 1.6rem
-
-		.socialSprite
-			$size: 0.9rem
-			height: $size
-			width: $size
-			transform: translateY(1px)
+.closure
+	.socialSprite
+		$size: 0.9rem
+		height: $size
+		width: $size
+		transform: translateY(1px)
+		fill: $textColorFaded

@@ -1,4 +1,5 @@
 import { FunctionComponent, useMemo } from "react"
+import ContentClosure from "~/components/content-closure/content-closure"
 import ExternalLink from "~/components/link/external-link"
 import Sprite from "~/components/sprites/sprite"
 import Typo from "~/components/typo/typo"
@@ -42,7 +43,7 @@ const WorkContentClosureBlock: FunctionComponent<Props> = props => {
 	const Time = (created: MetadataDate) => <time dateTime={created.value.toISOString()}>{created.description}</time>
 
 	return (
-		<section className={styles.block}>
+		<ContentClosure className={styles.closure}>
 			{!created && <div>Published by August Saint Freytag.</div>}
 			{created && (
 				<div>
@@ -56,7 +57,7 @@ const WorkContentClosureBlock: FunctionComponent<Props> = props => {
 					Follow on <Twitter /> to get notified of new publications and updates.
 				</Typo>
 			</div>
-		</section>
+		</ContentClosure>
 	)
 }
 

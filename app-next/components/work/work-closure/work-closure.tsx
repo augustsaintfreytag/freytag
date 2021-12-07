@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import ContentClosure from "~/components/content-closure/content-closure"
 import { useWorkShowcaseReleaseCycleDescription } from "~/components/work/work-closure/functions/work-showcase-release-cycle-description-hook"
 import { denominatorDescription } from "~/utils/description/functions/denominator-description"
-import styles from "./work-closure.module.sass"
 
 interface Props {
 	showcases: WorkShowcase[]
@@ -13,7 +13,7 @@ const WorkClosure: FunctionComponent<Props> = props => {
 	const { lastShowcaseCreation, averageShowcaseCreation } = useWorkShowcaseReleaseCycleDescription(showcases)
 
 	return (
-		<aside className={styles.closure}>
+		<ContentClosure>
 			<div>
 				There are <em>{denominatorDescription({ singular: "showcase", plural: "showcases" }, showcases.length)}</em> presented in total.
 			</div>
@@ -36,7 +36,7 @@ const WorkClosure: FunctionComponent<Props> = props => {
 					)}
 				</>
 			)}
-		</aside>
+		</ContentClosure>
 	)
 }
 
