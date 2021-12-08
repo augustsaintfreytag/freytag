@@ -9,13 +9,12 @@ interface Props {
 }
 
 const WorkClosure: FunctionComponent<Props> = props => {
-	const showcases = props.showcases ?? []
-	const { lastRecordCreation, averageRecordCreation } = useRecordCreationStatistics(showcases)
+	const { lastRecordCreation, averageRecordCreation } = useRecordCreationStatistics(props.showcases)
 
 	return (
 		<ContentClosure>
 			<div>
-				There are <em>{denominatorDescription({ singular: "showcase", plural: "showcases" }, showcases.length)}</em> presented in total.
+				There are <em>{denominatorDescription({ singular: "showcase", plural: "showcases" }, props.showcases.length)}</em> presented in total.
 			</div>
 			{lastRecordCreation && (
 				<>
