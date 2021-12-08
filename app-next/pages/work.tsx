@@ -2,7 +2,8 @@ import { GetServerSideProps } from "next"
 import { useMemo } from "react"
 import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
-import { sortedWorkShowcases, workShowcasesFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
+import { sortedTypedRecord } from "~/api/records/statistics/functions/record-sorting"
+import { workShowcasesFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import WorkClosure from "~/components/work/work-closure/work-closure"
 import { mappedWorkShowcaseListItemProps } from "~/components/work/work-content/functions/work-showcase-prop-mapping"
@@ -30,7 +31,7 @@ interface Props {
 export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
 	getServerSideApiResponses<PageData>(
 		getServerSideApiResponse(workShowcasesFromApi, showcases => ({
-			showcases: sortedWorkShowcases(showcases)
+			showcases: sortedTypedRecord(showcases)
 		})),
 		getServerSideApiResponse(pageGraphicsFromApi, pageGraphics => ({ preview: pageGraphics.workPreview?.path }))
 	)
