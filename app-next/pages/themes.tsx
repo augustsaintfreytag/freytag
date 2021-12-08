@@ -1,4 +1,5 @@
 import type { GetServerSideProps } from "next"
+import Link from "next/link"
 import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import { themesFromApi } from "~/api/records/themes/functions/theme-data-access"
@@ -80,7 +81,11 @@ const ThemesPage: Page<PageProps & Props> = props => {
 
 							return (
 								<li>
-									<ThemePreview {...props} />
+									<Link href={`/themes/${props.link.slug ?? props.link.id}`}>
+										<a>
+											<ThemePreview {...props} />
+										</a>
+									</Link>
 								</li>
 							)
 						})}

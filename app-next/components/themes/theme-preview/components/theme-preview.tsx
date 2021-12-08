@@ -9,7 +9,7 @@ export interface Props {
 	description: string
 	colors: Color[]
 	tags: ThemeTagProps[]
-	link?: {
+	link: {
 		id: UUID
 		slug?: string
 	}
