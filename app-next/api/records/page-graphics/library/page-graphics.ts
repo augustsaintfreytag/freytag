@@ -1,7 +1,7 @@
-import { CockpitEntry } from "cockpit-access"
+import { CockpitRecord } from "cockpit-access"
 import { ImageLink } from "~/api/records/asset/library/image-link"
 
-export type PageGraphics = CockpitEntry & {
+export type PageGraphics = CockpitRecord & {
 	indexAsset?: ImageLink
 	indexPreview?: ImageLink
 	lifeAsset?: ImageLink

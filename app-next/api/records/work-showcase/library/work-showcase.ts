@@ -1,4 +1,4 @@
-import { CockpitEntry } from "cockpit-access"
+import { CockpitRecord } from "cockpit-access"
 import { ColorValue } from "~/api/common/library/color-value"
 import { ImageLink } from "~/api/records/asset/library/image-link"
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
@@ -6,7 +6,7 @@ import { AnyWorkShowcaseContent } from "~/api/records/work-showcase/library/work
 
 // Showcase
 
-export interface WorkShowcase extends CockpitEntry {
+export interface WorkShowcase extends CockpitRecord {
 	display: boolean
 	name: string
 	slug: string
