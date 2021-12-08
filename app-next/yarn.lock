@@ -507,7 +507,7 @@ classnames@2.2.6:
 
 "cockpit-access@https://gitlab.com/apricum/cockpit-access.git":
   version "2.0.1"
-  resolved "https://gitlab.com/apricum/cockpit-access.git#1370fb9ed6e1c4235d6b393eaa3428ec33b81e25"
+  resolved "https://gitlab.com/apricum/cockpit-access.git#462a452e853cd90509773c2e64ba50daf44422db"
   dependencies:
     axios "^0.21.1"
 

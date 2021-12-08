@@ -1,12 +1,16 @@
 import type { GetServerSideProps } from "next"
+import Link from "next/link"
 import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import { themesFromApi } from "~/api/records/themes/functions/theme-data-access"
 import { Theme } from "~/api/records/themes/library/theme"
+import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import Meta from "~/components/meta/meta-tags"
+import ThemeSprites from "~/components/sprites/theme-sprites"
+import ThemeClosure from "~/components/themes/theme-closure/theme-closure"
 import ThemePreview from "~/components/themes/theme-preview/components/theme-preview"
 import { themePreviewPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
 import WorkTitle from "~/components/work/work-title/work-title"
@@ -50,9 +54,11 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
 
 const ThemesPage: Page<PageProps & Props> = props => {
 	const themes = props.data?.themes ?? []
+
 	return (
 		<>
 			<Meta href={canonicalHref("/imprint")} title={pageTitle("Themes")} />
+			<ThemeSprites />
 			<section className={styles.page}>
 				<ImageCover
 					className={styles.cover}
@@ -70,17 +76,23 @@ const ThemesPage: Page<PageProps & Props> = props => {
 				/>
 				<section className={styles.list}>
 					<ol>
-						{props.data?.themes?.map(theme => {
+						{themes.map(theme => {
 							const props = themePreviewPropsFromTheme(theme)
 
 							return (
 								<li>
-									<ThemePreview {...props} />
+									<Link href={`/themes/${props.link.slug ?? props.link.id}`}>
+										<a>
+											<ThemePreview {...props} />
+										</a>
+									</Link>
 								</li>
 							)
 						})}
 					</ol>
 				</section>
+				<Divider />
+				<ThemeClosure themes={themes} />
 			</section>
 		</>
 	)

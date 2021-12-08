@@ -1,42 +1,41 @@
 import { FunctionComponent } from "react"
+import { useRecordCreationStatistics } from "~/api/records/statistics/functions/record-creation-statistics-hook"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
-import { useWorkShowcaseReleaseCycleDescription } from "~/components/work/work-closure/functions/work-showcase-release-cycle-description-hook"
+import ContentClosure from "~/components/content-closure/content-closure"
 import { denominatorDescription } from "~/utils/description/functions/denominator-description"
-import styles from "./work-closure.module.sass"
 
 interface Props {
 	showcases: WorkShowcase[]
 }
 
 const WorkClosure: FunctionComponent<Props> = props => {
-	const showcases = props.showcases ?? []
-	const { lastShowcaseCreation, averageShowcaseCreation } = useWorkShowcaseReleaseCycleDescription(showcases)
+	const { lastRecordCreation, averageRecordCreation } = useRecordCreationStatistics(props.showcases)
 
 	return (
-		<aside className={styles.closure}>
+		<ContentClosure>
 			<div>
-				There are <em>{denominatorDescription({ singular: "showcase", plural: "showcases" }, showcases.length)}</em> presented in total.
+				There are <em>{denominatorDescription({ singular: "showcase", plural: "showcases" }, props.showcases.length)}</em> presented in total.
 			</div>
-			{lastShowcaseCreation && (
+			{lastRecordCreation && (
 				<>
-					{averageShowcaseCreation && (
+					{averageRecordCreation && (
 						<div>
-							A showcase is published on average every <em>{averageShowcaseCreation.description}</em>, last release on{" "}
-							<em>{lastShowcaseCreation.description}</em>.
+							A showcase is published on average every <em>{averageRecordCreation.description}</em>, last release on{" "}
+							<em>{lastRecordCreation.description}</em>.
 						</div>
 					)}
-					{!averageShowcaseCreation && (
+					{!averageRecordCreation && (
 						<div>
 							Last showcase published on{" "}
 							<em>
-								<time dateTime={lastShowcaseCreation.value.toISOString()}>{lastShowcaseCreation.description}</time>
+								<time dateTime={lastRecordCreation.value.toISOString()}>{lastRecordCreation.description}</time>
 							</em>
 							.
 						</div>
 					)}
 				</>
 			)}
-		</aside>
+		</ContentClosure>
 	)
 }
 

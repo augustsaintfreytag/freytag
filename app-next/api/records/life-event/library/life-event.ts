@@ -1,6 +1,6 @@
-import { CockpitEntry } from "cockpit-access"
+import { CockpitRecord } from "cockpit-access"
 
-export type LifeEvent = CockpitEntry & {
+export type LifeEvent = CockpitRecord & {
 	display: boolean
 	name: string
 	kind: string
