@@ -2,11 +2,14 @@
 @import "/styles/base/accessibility"
 
 .page
-	$interContentSpacing: $pageContentSpacing
-	$interContentSpacingMobile: $pageContentSpacing * 0.85
+	$interContentSpacing: $pageSpacing
+	$interContentSpacingMobile: $pageSpacing * 0.85
+
+	padding-bottom: $pageContentSpacing
 
 	.cover
-		@include coverImageWithBreakpoints(-33vh, -25rem, 0rem)
+		@include coverImageWithBreakpoints(-15vh, -7rem, 0rem)		// Reduced height cover.
+		// @include coverImageWithBreakpoints()
 
 	.title
 		margin-top: $interContentSpacing
@@ -25,5 +28,3 @@
 			justify-content: center
 			column-gap: 6rem
 			row-gap: 4rem
-
-			> li
