@@ -1,7 +1,7 @@
 import type { AppProps as NextAppProps } from "next/app"
 import { Fragment, FunctionComponent } from "react"
 import "~/api/config/api-configuration"
-import Sprites from "~/components/sprites/sprites"
+import CommonSprites from "~/components/sprites/common-sprites"
 import "~/styles/base/globals.sass"
 import type { Page } from "~/types/page"
 
@@ -17,7 +17,7 @@ const App: FunctionComponent<AppProps> = props => {
 
 	return (
 		<>
-			<Sprites />
+			<CommonSprites />
 			<Layout>
 				<Component {...pageProps} />
 			</Layout>
