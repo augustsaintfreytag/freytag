@@ -3,26 +3,9 @@
 .menu
 	@include inlayed
 	background: $elementBackgroundColor
-
-	$menuPadding: $pageSubContentSpacing * 0.75
 	
 	> ol
 		margin: 0
 		display: flex
 		justify-content: center
 		column-gap: 2.5rem
-
-	// Menu Item
-
-	.menuItem
-		.inlay
-			display: flex
-			column-gap: 0.65rem
-			align-items: center
-			padding: $menuPadding 0
-
-			.symbol
-				$size: 1.1rem
-				height: $size
-				width: $size
-			.text
