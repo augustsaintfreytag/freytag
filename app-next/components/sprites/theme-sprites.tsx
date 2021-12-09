@@ -1,5 +1,53 @@
 const ThemeSprites = () => (
 	<svg style={{ display: "none" }}>
+		<symbol id="Arrow Left Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.912 17.912">
+			<g transform="translate(-53.724)">
+				<path d="M.923,0V2.936h6.6L0,10.464l2.2,2.2L9.73,5.137v6.6h2.936V0Z" transform="translate(62.68 17.912) rotate(-135)" />
+			</g>
+		</symbol>
+		<symbol id="Arrow Right Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 17.912 17.912">
+			<path d="M.923,0V2.936h6.6L0,10.464l2.2,2.2L9.73,5.137v6.6h2.936V0Z" transform="translate(8.956) rotate(45)" />
+		</symbol>
+		<symbol id="Edit Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 23.952 23.952">
+			<path
+				d="M24.633,6.763,19.189,1.319a1.089,1.089,0,0,0-1.539,0L1.319,17.65A1.089,1.089,0,0,0,1,18.42v5.444a1.089,1.089,0,0,0,1.089,1.089H7.532a1.089,1.089,0,0,0,.77-.319L24.633,8.3A1.089,1.089,0,0,0,24.633,6.763ZM7.082,22.774h-3.9v-3.9L15.153,6.894l3.9,3.9ZM20.6,9.259l-3.9-3.9L18.42,3.628l3.9,3.9Z"
+				transform="translate(-1 -1)"
+			/>
+		</symbol>
+		<symbol id="Theme Gallery Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.222 23.188">
+			<g transform="translate(-13)">
+				<g transform="translate(13)" fill="none" stroke-width="1.75">
+					<rect width="13.197" height="6.324" stroke="none" />
+					<rect x="0.875" y="0.875" width="11.447" height="4.574" fill="none" />
+				</g>
+				<g transform="translate(13 8.432)" fill="none" stroke-width="1.75">
+					<rect width="13.197" height="6.324" stroke="none" />
+					<rect x="0.875" y="0.875" width="11.447" height="4.574" fill="none" />
+				</g>
+				<g transform="translate(13 16.864)" fill="none" stroke-width="1.75">
+					<rect width="13.197" height="6.324" stroke="none" />
+					<rect x="0.875" y="0.875" width="11.447" height="4.574" fill="none" />
+				</g>
+				<g transform="translate(29.025)" fill="none" stroke-width="1.75">
+					<rect width="13.197" height="6.324" stroke="none" />
+					<rect x="0.875" y="0.875" width="11.447" height="4.574" fill="none" />
+				</g>
+				<g transform="translate(29.025 8.432)" fill="none" stroke-width="1.75">
+					<rect width="13.197" height="6.324" stroke="none" />
+					<rect x="0.875" y="0.875" width="11.447" height="4.574" fill="none" />
+				</g>
+				<g transform="translate(29.025 16.864)" fill="none" stroke-width="1.75">
+					<rect width="13.197" height="6.324" stroke="none" />
+					<rect x="0.875" y="0.875" width="11.447" height="4.574" fill="none" />
+				</g>
+			</g>
+		</symbol>
+		<symbol id="Share Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.001 27.732">
+			<g transform="translate(-57.874 0)">
+				<path d="M19,19H0V0H6V2H2V17H17V2H13V0h6V19Z" transform="translate(57.874 8.731)" />
+				<path d="M2.773,0V2.07H7.431L0,9.5l1.553,1.553L8.984,3.623V8.281h2.07V0Z" transform="translate(59.558 7.816) rotate(-45)" />
+			</g>
+		</symbol>
 		<symbol id="Format Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.323 19.323">
 			<g transform="translate(-8 -8)">
 				<path
@@ -57,7 +105,7 @@ const ThemeSprites = () => (
 				<path
 					d="M17.023,24.123a1.5,1.5,0,0,0,1.2-.046l4.96-2.387a1.506,1.506,0,0,0,.853-1.357V4.15a1.505,1.505,0,0,0-.853-1.357L18.218.406A1.5,1.5,0,0,0,16.507.7l-9.5,8.663L2.875,6.221a1,1,0,0,0-1.281.057L.268,7.485a1,1,0,0,0,0,1.485l3.587,3.272L.267,15.514A1,1,0,0,0,.268,17l1.327,1.207a1,1,0,0,0,1.281.057l4.136-3.14,9.5,8.663A1.5,1.5,0,0,0,17.023,24.123Zm.988-17.35-7.2,5.469,7.2,5.469Z"
 					transform="translate(-44.939 3.742)"
-					fill-rule="evenodd"
+					fillRule="evenodd"
 				/>
 			</g>
 		</symbol>
