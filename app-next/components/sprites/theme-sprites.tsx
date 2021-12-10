@@ -15,13 +15,13 @@ const ThemeSprites = () => (
 			></path>
 		</symbol>
 		<symbol id="Share Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 19.001 27.732">
-			<g transform="translate(-57.874 -1)">
+			<g transform="translate(-57.874 -2)">
 				<path d="M19,19H0V0H6V2H2V17H17V2H13V0h6V19Z" transform="translate(57.874 8.731)"></path>
 				<path d="M2.773,0V2.07H7.431L0,9.5l1.553,1.553L8.984,3.623V8.281h2.07V0Z" transform="translate(59.558 7.816) rotate(-45)"></path>
 			</g>
 		</symbol>
 		<symbol id="Gallery Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 29.222 23.188">
-			<g transform="translate(-13 0)">
+			<g transform="translate(-13 -0.5)">
 				<path d="M1.75,1.75V4.574h9.7V1.75H1.75M0,0H13.2V6.324H0Z" transform="translate(13)"></path>
 				<path d="M1.75,1.75V4.574h9.7V1.75H1.75M0,0H13.2V6.324H0Z" transform="translate(13 8.432)"></path>
 				<path d="M1.75,1.75V4.574h9.7V1.75H1.75M0,0H13.2V6.324H0Z" transform="translate(13 16.864)"></path>
