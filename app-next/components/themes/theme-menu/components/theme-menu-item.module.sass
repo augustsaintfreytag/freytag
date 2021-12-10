@@ -4,13 +4,19 @@
 	$itemPadding: $pageSubContentSpacing * 0.75
 
 	.inlay
-		display: flex
-		column-gap: 0.65rem
-		align-items: center
+		$itemSize: 1.1rem
 		padding: $itemPadding 0
 
+		> *
+			display: inline-block
+			vertical-align: middle
+
 		.symbol
-			$size: 1.1rem
+			$size: $itemSize
 			height: $size
 			width: $size
+			overflow: visible
+
 		.text
+			margin-left: 0.5rem
+			line-height: $itemSize
