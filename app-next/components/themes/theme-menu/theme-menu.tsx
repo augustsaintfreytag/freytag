@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import ThemeMenuItem, { ThemeMenuSprite } from "~/components/themes/theme-menu/components/theme-menu-item"
+import { ThemeMenuSprite } from "~/components/themes/theme-menu/library/theme-menu-sprite"
 import styles from "./theme-menu.module.sass"
 
 const ThemeMenu: FunctionComponent = () => (

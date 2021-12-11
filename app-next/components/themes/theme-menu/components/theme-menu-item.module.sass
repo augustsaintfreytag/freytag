@@ -6,6 +6,7 @@
 	.inlay
 		$itemSize: 1.1rem
 		padding: $itemPadding 0
+		
 
 		> *
 			display: inline-block
@@ -20,3 +21,10 @@
 		.text
 			margin-left: 0.5rem
 			line-height: $itemSize
+
+		&.plain
+			cursor: default
+
+	&.disabled
+		.inlay
+			opacity: 0.5
