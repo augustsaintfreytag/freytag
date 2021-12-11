@@ -4,14 +4,16 @@ import { URL } from "~/utils/routing/library/url"
 
 // Sharing
 
-export function shareTheme(theme: Theme) {
+export async function shareTheme(theme: Theme) {
 	const shareData: ShareData = {
 		title: themeNameForSharing(theme),
 		text: themeDescriptionForSharing(theme),
 		url: themeCanonicalRef(theme)
 	}
 
-	window.navigator.share(shareData)
+	try {
+		await window.navigator.share(shareData)
+	} catch {}
 }
 
 export function navigatorHasSharingSupport(): boolean {
