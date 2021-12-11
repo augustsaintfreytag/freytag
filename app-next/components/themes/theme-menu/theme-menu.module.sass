@@ -2,6 +2,7 @@
 	
 .menu	
 	background: $elementBackgroundColor
+	$menuItemSpacing: 3.5rem
 	
 	> ol
 		width: fit-content
@@ -10,4 +11,4 @@
 
 		> li
 			display: inline-block
-			@include horizontalListMargin(3.5rem)
+			@include horizontalListMargin($menuItemSpacing)
