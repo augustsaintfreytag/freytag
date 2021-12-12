@@ -32,6 +32,7 @@ export async function getServerSideApiResponseByQuery<Response, PageData>(
 	const id = context.query[queryKey]
 
 	if (!id || typeof id !== "string") {
+		console.error(`Could not get server-side record, missing id for query key '${queryKey}'.`)
 		return serverSideResultNotFound
 	}
 
@@ -39,7 +40,7 @@ export async function getServerSideApiResponseByQuery<Response, PageData>(
 		const response = await resolveResponse(id)
 
 		if (!response) {
-			return serverSideResultNotFound
+			throw new TypeError(`Resolve did not return a record.`)
 		}
 
 		const data = mapResponse(response)
@@ -48,6 +49,7 @@ export async function getServerSideApiResponseByQuery<Response, PageData>(
 			props: { data }
 		}
 	} catch (error) {
+		console.error(`Could not get server-side record '${id}' for query key '${queryKey}'. ${error}`)
 		return serverSideResultNotFound
 	}
 }
