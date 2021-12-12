@@ -14,7 +14,7 @@ export function themePreviewPropsFromTheme(theme: Theme): ThemePreviewProps {
 		name: theme.name,
 		description: theme.description,
 		colors: colorCollectionFromTheme(theme),
-		tags: themeTagProps(theme, true),
+		tags: themeTagPropsFromTheme(theme, true),
 		link: {
 			id: theme._id
 		}
@@ -23,7 +23,7 @@ export function themePreviewPropsFromTheme(theme: Theme): ThemePreviewProps {
 
 // Tag Props
 
-function themeTagProps(theme: Theme, summarizeFormats: boolean = false): ThemeTagProps[] {
+export function themeTagPropsFromTheme(theme: Theme, summarizeFormats: boolean = false): ThemeTagProps[] {
 	const props: ThemeTagProps[] = []
 
 	props.push(themeTagPropsForLightness(theme.lightness))
