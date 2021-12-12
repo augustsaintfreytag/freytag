@@ -1,10 +1,12 @@
 import Link from "next/link"
 import { FunctionComponent } from "react"
-import { PropsWithHref } from "~/types/props"
+import { PropsWithAnyChildren, PropsWithHref } from "~/types/props"
 
-const InternalLink: FunctionComponent<PropsWithHref> = props => (
+interface Props extends PropsWithHref, PropsWithAnyChildren {}
+
+const InternalLink: FunctionComponent<Props> = props => (
 	<Link href={props.href}>
-		<a>{props.href}</a>
+		<a>{props.children ?? props.href}</a>
 	</Link>
 )
 

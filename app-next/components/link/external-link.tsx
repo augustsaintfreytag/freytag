@@ -1,11 +1,10 @@
-import { FunctionComponent, ReactNode, ReactNodeArray } from "react"
+import { FunctionComponent } from "react"
 import { track } from "~/components/analytics/functions/track"
-import { PropsWithClassName } from "~/types/props"
+import { PropsWithAnyChildren, PropsWithClassName } from "~/types/props"
 import { URL } from "~/utils/routing/library/url"
 
-interface Props extends PropsWithClassName {
+interface Props extends PropsWithClassName, PropsWithAnyChildren {
 	href: URL
-	children: ReactNode | ReactNodeArray
 	name?: string
 	context?: string
 }
@@ -21,7 +20,7 @@ const ExternalLink: FunctionComponent<Props> = props => (
 		title={props.name}
 		onClick={() => props.name && trackClick(props.name, props.context, props.href)}
 	>
-		{props.children}
+		{props.children ?? props.href}
 	</a>
 )
 

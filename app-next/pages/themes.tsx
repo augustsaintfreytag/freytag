@@ -1,11 +1,11 @@
 import type { GetServerSideProps } from "next"
-import Link from "next/link"
 import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import { themesFromApi } from "~/api/records/themes/functions/theme-data-access"
 import { Theme } from "~/api/records/themes/library/theme"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
+import InternalLink from "~/components/link/internal-link"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import Meta from "~/components/meta/meta-tags"
@@ -81,11 +81,9 @@ const ThemesPage: Page<PageProps & Props> = props => {
 
 							return (
 								<li>
-									<Link href={`/themes/${props.link.slug ?? props.link.id}`}>
-										<a>
-											<ThemePreview {...props} />
-										</a>
-									</Link>
+									<InternalLink href={`/themes/${props.link.id}`}>
+										<ThemePreview {...props} />
+									</InternalLink>
 								</li>
 							)
 						})}
