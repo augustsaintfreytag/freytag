@@ -28,7 +28,7 @@ function themeTagProps(theme: Theme, summarizeFormats: boolean = false): ThemeTa
 
 	props.push(themeTagPropsForLightness(theme.lightness))
 
-	const themePackages = theme.packages.map(block => block.value)
+	const themePackages = theme.packages?.map(block => block.value) ?? []
 	if (!summarizeFormats) {
 		for (const themePackage of themePackages) {
 			const packageProps = themeTagPropsForIndividualPackage(themePackage)
