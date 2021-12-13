@@ -3,14 +3,17 @@ import { getServerSideApiResponseByQuery } from "~/api/props/functions/server-si
 import { themeFromApi } from "~/api/records/themes/functions/theme-data-access"
 import { Theme } from "~/api/records/themes/library/theme"
 import ImageCover from "~/components/image-cover/image-cover"
+import Markdown from "~/components/markdown/markdown"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import Meta from "~/components/meta/meta-tags"
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import ThemeMenu from "~/components/themes/theme-menu/theme-menu"
+import { themeTagPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
+import ThemeTitle from "~/components/themes/theme-title/theme-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
-import styles from "./theme-page.module.sass"
+import styles from "./theme-detail-page.module.sass"
 
 // Library
 
@@ -29,6 +32,7 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async context =
 
 const ThemePage: Page<PageProps & Props> = props => {
 	const theme = props.data!.theme
+	const tags = themeTagPropsFromTheme(theme, false)
 	const cover = theme.cover?.path
 
 	return (
@@ -38,8 +42,14 @@ const ThemePage: Page<PageProps & Props> = props => {
 			<section className={styles.page}>
 				<header>
 					<ImageCover className={styles.cover} /> {/* TODO: Use `cover` value for `src` */}
+					<ThemeMenu themes={{ current: theme }} />
 				</header>
-				<ThemeMenu themes={{ current: theme }} />
+				<main>
+					<ThemeTitle className={styles.title} text={theme.name} tags={tags} />
+					<div className={styles.abstract}>
+						<Markdown>{theme.description}</Markdown>
+					</div>
+				</main>
 			</section>
 		</>
 	)

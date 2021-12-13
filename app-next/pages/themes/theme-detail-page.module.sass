@@ -1,0 +1,26 @@
+@import "/styles/values/all"
+
+.page
+	$interContentSpacing: $pageSpacing
+	$interContentSpacingMobile: $pageSpacing * 0.85
+
+	$interSubContentSpacing: 4rem
+
+	padding-bottom: $interContentSpacing
+
+	header
+		.cover
+			@include coverImageWithBreakpoints(-15vh, -7rem, 0rem)		// Reduced height cover.
+			filter: brightness(0.75) sepia() hue-rotate(200deg)			// Placeholder color fill.
+
+	main
+		.title
+			margin-top: $interContentSpacing
+
+		.abstract
+			text-align: center
+			max-width: 29rem
+			margin: $interSubContentSpacing auto 0 auto
+
+			p
+				@include listMargin($descriptionParagraphSpacing)
