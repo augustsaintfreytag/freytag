@@ -32,8 +32,15 @@
 			@include breakpoint($anyMobile)
 				font-size: $elementTextFontSizeMobile
 
+			color: $textColorOnDark
+
 		.value
 			opacity: 0.35
 
 		.label
 			
+
+	&.isLight
+		.inlay
+			.value, .label
+				color: $textColor

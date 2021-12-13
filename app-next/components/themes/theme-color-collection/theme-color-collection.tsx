@@ -11,13 +11,14 @@ import styles from "./theme-color-collection.module.sass"
 interface ItemProps {
 	color: Color
 	label: string
+	light?: boolean
 }
 
 const ThemeColorCollectionItem: FunctionComponent<ItemProps> = props => {
 	const style = propertiesWithStyleVariables({ fillColor: props.color.rgb })
 
 	return (
-		<div className={styles.item} style={style}>
+		<div className={className(styles.item, props.light && styles.isLight)} style={style}>
 			<div className={styles.inlay}>
 				<div className={styles.value}>{props.color.hex}</div>
 				<div className={styles.label}>{props.label}</div>
@@ -53,7 +54,7 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 
 					return (
 						<li key={`${index}-${color.key}-${label}`}>
-							<ThemeColorCollectionItem color={color} label={label} />
+							<ThemeColorCollectionItem color={color} label={label} light={color.isLight} />
 						</li>
 					)
 				})}
