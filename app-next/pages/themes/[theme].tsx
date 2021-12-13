@@ -8,12 +8,29 @@ import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import Meta from "~/components/meta/meta-tags"
 import ThemeSprites from "~/components/sprites/theme-sprites"
+import ThemeColorCollection from "~/components/themes/theme-color-collection/theme-color-collection"
 import ThemeMenu from "~/components/themes/theme-menu/theme-menu"
 import { themeTagPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
 import ThemeTitle from "~/components/themes/theme-title/theme-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
+import { colorsFromEncodedData } from "~/utils/colors/functions/color-conversion"
 import styles from "./theme-detail-page.module.sass"
+
+// Data
+
+const themeColorLabels: string[] = [
+	"Background",
+	"Foreground",
+	"Keywords",
+	"Reference Types",
+	"Value Types",
+	"Functions",
+	"Constants",
+	"Variables",
+	"Strings",
+	"Numbers"
+]
 
 // Library
 
@@ -34,6 +51,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 	const theme = props.data!.theme
 	const tags = themeTagPropsFromTheme(theme, false)
 	const cover = theme.cover?.path
+	const colors = colorsFromEncodedData(theme.colors)
 
 	return (
 		<>
@@ -46,6 +64,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 				</header>
 				<main>
 					<ThemeTitle className={styles.title} text={theme.name} tags={tags} />
+					<ThemeColorCollection className={styles.colors} colors={colors ?? []} labels={themeColorLabels} />
 					<div className={styles.abstract}>
 						<Markdown>{theme.description}</Markdown>
 					</div>
