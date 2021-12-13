@@ -3,18 +3,42 @@ export class Color {
 	green: number
 	blue: number
 
+	// Init
+
 	constructor(red: number, green: number, blue: number) {
-		this.red = red
-		this.green = green
-		this.blue = blue
+		this.red = Color.limit(red)
+		this.green = Color.limit(green)
+		this.blue = Color.limit(blue)
 	}
+
+	static limit(value: number): number {
+		return Math.min(Math.max(value, 0), 1)
+	}
+
+	// Value
 
 	get key(): string {
 		return `${this.red},${this.green},${this.blue}`
 	}
 
 	get rgb(): string {
-		const [red, green, blue] = [this.red * 255, this.green * 255, this.blue * 255]
+		const [red, green, blue] = [Color.rgbComponent(this.red), Color.rgbComponent(this.green), Color.rgbComponent(this.blue)]
 		return `rgb(${red}, ${green}, ${blue})`
+	}
+
+	get hex(): string {
+		const [red, green, blue] = [Color.hexComponent(this.red), Color.hexComponent(this.green), Color.hexComponent(this.blue)]
+		return `#${red}${green}${blue}`
+	}
+
+	static rgbComponent(value: number): number {
+		return Math.round(value * 255)
+	}
+
+	static hexComponent(value: number): string {
+		const boundedValue = Math.round(value * 255)
+		const formattedValue = boundedValue.toString(16).padStart(2, "0").toUpperCase()
+
+		return formattedValue
 	}
 }
