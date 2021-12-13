@@ -1,6 +1,34 @@
 import { ColorValue } from "~/api/common/library/color-value"
 import { Color } from "~/utils/colors/models/color"
 
+// Encoded Hexadecimal
+
+export function colorsFromEncodedData(data: string): Color[] | undefined {
+	const colorDescriptions = JSON.parse(data)
+	if (!isEncodedColorCollection(colorDescriptions)) {
+		return undefined
+	}
+
+	const colors = colorDescriptions
+		.map(description => {
+			const color = colorFromHex(description)
+
+			if (!color) {
+				console.warn(`Could not decode hex color description '${description}' to color.`)
+				return undefined
+			}
+
+			return color
+		})
+		.filter(color => color) as Color[]
+
+	return colors
+}
+
+function isEncodedColorCollection(value: any): value is string[] {
+	return Array.isArray(value) && value.every(element => typeof element === "string")
+}
+
 // Hexadecimal
 
 function valueFromHexDescription(value: string): number {
