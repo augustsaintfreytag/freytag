@@ -40,16 +40,17 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 		<section className={className(styles.collection, props.className)}>
 			<ol>
 				{range(0, 10).map(index => {
-					const color = colors[index]
-					if (!color) {
-						return (
-							<li key={`${index}-fallback`}>
-								<ThemeColorCollectionItem color={Color.placeholder} label="<No Colour>" />
-							</li>
-						)
-					}
+					const [color, label] = (() => {
+						const color = colors[index]
+						const label = labels[index] ?? "<None>"
 
-					const label = labels[index] ?? "<None>"
+						if (!color) {
+							return [Color.placeholder, label]
+						}
+
+						return [color, label]
+					})()
+
 					return (
 						<li key={`${index}-${color.key}-${label}`}>
 							<ThemeColorCollectionItem color={color} label={label} />
