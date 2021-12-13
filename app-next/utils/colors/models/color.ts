@@ -3,6 +3,28 @@ export class Color {
 	green: number
 	blue: number
 
+	// Defaults
+
+	static get white(): Color {
+		return new Color(1, 1, 1)
+	}
+
+	static get black(): Color {
+		return new Color(0, 0, 0)
+	}
+
+	static get placeholder(): Color {
+		return new Color(0.96, 0.96, 0.96)
+	}
+
+	static get random(): Color {
+		return new Color(this.randomComponent(), this.randomComponent(), this.randomComponent())
+	}
+
+	static randomComponent(): number {
+		return Math.round(Math.random() * 1000) / 1000
+	}
+
 	// Init
 
 	constructor(red: number, green: number, blue: number) {
