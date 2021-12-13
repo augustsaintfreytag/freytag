@@ -63,4 +63,18 @@ export class Color {
 
 		return formattedValue
 	}
+
+	// Analysis
+
+	get luma(): number {
+		return 0.2126 * this.red + 0.7152 * this.green + 0.0722 * this.blue
+	}
+
+	get isDark(): boolean {
+		return this.luma < 0.75
+	}
+
+	get isLight(): boolean {
+		return !this.isDark
+	}
 }
