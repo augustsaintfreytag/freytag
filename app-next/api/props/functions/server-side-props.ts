@@ -9,21 +9,21 @@ type PromisedServerSideResult<Data> = Promise<ServerSideResult<Data>>
 type ServerSideResult<Data> = GetServerSidePropsResult<{ data: Data }>
 type ServerSideContext = GetServerSidePropsContext<{}>
 
-function isServerSidePropsResult<Data>(object: any): object is PropsResult<Data> {
+export function isServerSidePropsResult<Data>(object: any): object is PropsResult<Data> {
 	return typeof object === "object" && typeof object.props === "object"
 }
 
-function isServerSideNotFoundResult(object: any): object is NotFoundResult {
+export function isServerSideNotFoundResult(object: any): object is NotFoundResult {
 	return typeof object === "object" && typeof object.notFound === "boolean" && object.notFound === true
 }
 
-function isServerSideRedirectResult(object: any): object is RedirectResult {
+export function isServerSideRedirectResult(object: any): object is RedirectResult {
 	return typeof object === "object" && typeof object.redirect === "object"
 }
 
 const serverSideResultNotFound: NotFoundResult = { notFound: true }
 
-export async function getServerSideApiResponseByQuery<Response, PageData>(
+export async function getServerSideResponseByQuery<Response, PageData>(
 	context: ServerSideContext,
 	queryKey: string,
 	resolveResponse: (id: UUID) => Promise<Response | undefined>,
@@ -54,7 +54,7 @@ export async function getServerSideApiResponseByQuery<Response, PageData>(
 	}
 }
 
-export async function getServerSideApiResponse<Response, PageData>(
+export async function getServerSideResponse<Response, PageData>(
 	resolveResponse: () => Promise<Response | undefined>,
 	mapResponse: (response: Response) => PageData
 ): PromisedServerSideResult<PageData> {
@@ -74,7 +74,7 @@ export async function getServerSideApiResponse<Response, PageData>(
 	}
 }
 
-export async function getServerSideApiResponses<PageData>(...promises: PromisedServerSideResult<PageData>[]): PromisedServerSideResult<PageData> {
+export async function getServerSideResponses<PageData>(...promises: PromisedServerSideResult<PageData>[]): PromisedServerSideResult<PageData> {
 	const results: ServerSideResult<PageData>[] = await Promise.all(promises)
 	let combinedData: PageData | undefined
 
