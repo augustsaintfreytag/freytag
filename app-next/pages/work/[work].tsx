@@ -1,7 +1,7 @@
 import { GetServerSideProps } from "next"
 import { FunctionComponent, useMemo } from "react"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
-import { ColorValue } from "~/api/common/library/color-value"
+import { ColorDescription } from "~/api/common/library/color-description"
 import { getServerSideApiResponseByQuery } from "~/api/props/functions/server-side-props"
 import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
@@ -20,7 +20,7 @@ import styles from "./work-detail-page.module.sass"
 // Sub Components
 
 interface WorkDividerProps {
-	color?: ColorValue
+	color?: ColorDescription
 }
 
 const WorkDivider: FunctionComponent<WorkDividerProps> = props => <Divider className={styles.divider} color={props.color} />
