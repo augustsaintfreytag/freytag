@@ -1,9 +1,9 @@
-import { Context } from "cockpit-access"
 import type { GetServerSideProps } from "next"
+import { RecordError } from "~/api/common/errors/record-error"
 import { getServerSideResponseByQuery, isServerSidePropsResult } from "~/api/props/functions/server-side-props"
-import { assetUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
 import { themeFromApi } from "~/api/records/themes/functions/theme-data-access"
-import { decodedIntermediateThemeFromData, themePackageFromTheme } from "~/api/records/themes/functions/theme-package-decoding"
+import { intermediateThemeFileFromApi } from "~/api/records/themes/functions/theme-file-data-access"
+import { themePackageFromTheme } from "~/api/records/themes/functions/theme-package-decoding"
 import { Theme } from "~/api/records/themes/library/theme"
 import { ThemeEditorFormat } from "~/api/records/themes/library/theme-editor-format"
 import ImageCover from "~/components/image-cover/image-cover"
@@ -58,28 +58,20 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async context =
 	}
 
 	const theme = resultFromQuery.props.data.theme
-	const themePackage = themePackageFromTheme(theme, ThemeEditorFormat.Intermediate)
-	const themePackagePath = themePackage?.file.path
-	const themePackageUrl = assetUrlFromComponent(themePackagePath, Context.Server)
-
-	if (!themePackageUrl) {
-		console.error(`Theme '${theme.name}' does not have an intermediate theme package or package URL, can not fetch.`)
-		return resultFromQuery
-	}
 
 	try {
-		const themePackageResponse = await fetch(themePackageUrl)
-		const themePackageData = await themePackageResponse.text()
-		const themeFile = decodedIntermediateThemeFromData(themePackageData)
+		const themePackage = themePackageFromTheme(theme, ThemeEditorFormat.Intermediate)
 
-		if (!themeFile) {
-			throw new TypeError(`Theme could not be decoded.`)
+		if (!themePackage) {
+			throw new RecordError(`Theme package does not have an intermediate theme package or package URL.`)
 		}
 
-		resultFromQuery.props.data.file = themeFile
+		const intermediateThemeFile = await intermediateThemeFileFromApi(themePackage)
+		resultFromQuery.props.data.file = intermediateThemeFile
+
 		return resultFromQuery
 	} catch (error) {
-		console.error(`Could not fetch intermediate theme package for theme '${theme.name}' from '${themePackageUrl}'.`, error)
+		console.error(`Could not fetch intermediate theme package for theme '${theme.name}'.`, error)
 		return resultFromQuery
 	}
 }
