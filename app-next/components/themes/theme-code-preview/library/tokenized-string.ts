@@ -1,4 +1,4 @@
-import { ThemeFormatKey } from "~/components/themes/theme-demo/library/theme-format-key"
+import { ThemeFormatKey } from "~/components/themes/theme-code-preview/library/theme-format-key"
 
 // Token
 
