@@ -22,21 +22,6 @@ import { colorsFromEncodedData } from "~/utils/colors/functions/color-conversion
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
 import styles from "./theme-detail-page.module.sass"
 
-// Data
-
-const themeColorLabels: string[] = [
-	"Background",
-	"Foreground",
-	"Keywords",
-	"Reference Types",
-	"Value Types",
-	"Functions",
-	"Constants",
-	"Variables",
-	"Strings",
-	"Numbers"
-]
-
 // Library
 
 interface PageData {
@@ -95,7 +80,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 				</header>
 				<main>
 					<ThemeTitle className={styles.title} text={theme.name} tags={tags} />
-					<ThemeColorCollection className={styles.colors} colors={colors ?? []} labels={themeColorLabels} />
+					<ThemeColorCollection className={styles.colors} colors={colors ?? []} />
 					<div className={styles.abstract}>
 						<Markdown>{theme.description}</Markdown>
 					</div>
