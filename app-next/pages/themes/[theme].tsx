@@ -12,6 +12,7 @@ import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import Meta from "~/components/meta/meta-tags"
 import ThemeSprites from "~/components/sprites/theme-sprites"
+import ThemeCodePreview from "~/components/themes/theme-code-preview/theme-code-preview"
 import ThemeColorCollection from "~/components/themes/theme-color-collection/theme-color-collection"
 import ThemeMenu from "~/components/themes/theme-menu/theme-menu"
 import { themeTagPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
@@ -84,6 +85,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 					<div className={styles.abstract}>
 						<Markdown>{theme.description}</Markdown>
 					</div>
+					<ThemeCodePreview className={styles.demo} theme={file} />
 				</main>
 			</section>
 		</>
