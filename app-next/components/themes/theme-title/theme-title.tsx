@@ -16,11 +16,11 @@ const ThemeTitle: FunctionComponent<Props> = props => {
 	return (
 		<section className={className(styles.block, props.className)}>
 			<h1>
-				<Typo>{text}</Typo>
+				<Typo>{text} Theme</Typo>
 			</h1>
 			<ul className={styles.tags}>
 				{tags.map(tag => (
-					<li className={styles.tag}>
+					<li key={tag.name} className={styles.tag}>
 						<ThemeTag key={tag.name} name={tag.name} symbol={tag.symbol} />
 					</li>
 				))}
