@@ -2,7 +2,7 @@ import { GetServerSideProps } from "next"
 import { FunctionComponent, useMemo } from "react"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
 import { ColorDescription } from "~/api/common/library/color-description"
-import { getServerSideApiResponseByQuery } from "~/api/props/functions/server-side-props"
+import { getServerSideResponseByQuery } from "~/api/props/functions/server-side-props"
 import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import Divider from "~/components/divider/divider"
@@ -38,7 +38,7 @@ interface Props {
 // Page
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async context =>
-	getServerSideApiResponseByQuery(context, "work", workShowcaseFromApi, showcase => ({ showcase }))
+	getServerSideResponseByQuery(context, "work", workShowcaseFromApi, showcase => ({ showcase }))
 
 const WorkDetailPage: Page<PageProps & Props> = props => {
 	const showcase = props.data!.showcase!

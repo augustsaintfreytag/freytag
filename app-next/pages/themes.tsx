@@ -1,5 +1,5 @@
 import type { GetServerSideProps } from "next"
-import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
+import { getServerSideResponse, getServerSideResponses } from "~/api/props/functions/server-side-props"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import { themesFromApi } from "~/api/records/themes/functions/theme-data-access"
 import { Theme } from "~/api/records/themes/library/theme"
@@ -34,8 +34,8 @@ interface Props {
 // Page
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
-	getServerSideApiResponses<PageData>(
-		getServerSideApiResponse(pageGraphicsFromApi, pageGraphics => {
+	getServerSideResponses<PageData>(
+		getServerSideResponse(pageGraphicsFromApi, pageGraphics => {
 			if (!pageGraphics.themesPreview || !pageGraphics.themesAsset) {
 				return {}
 			}
@@ -45,7 +45,7 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
 				cover: pageGraphics.themesAsset.path
 			}
 		}),
-		getServerSideApiResponse(themesFromApi, themes => {
+		getServerSideResponse(themesFromApi, themes => {
 			return {
 				themes: themes
 			}

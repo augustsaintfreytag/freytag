@@ -1,5 +1,5 @@
 import { GetServerSideProps } from "next"
-import { getServerSideApiResponse } from "~/api/props/functions/server-side-props"
+import { getServerSideResponse } from "~/api/props/functions/server-side-props"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
@@ -31,7 +31,7 @@ interface Props {
 // Page
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
-	getServerSideApiResponse(pageGraphicsFromApi, pageGraphics => ({
+	getServerSideResponse(pageGraphicsFromApi, pageGraphics => ({
 		preview: pageGraphics.imprintAsset?.path,
 		cover: pageGraphics.imprintAsset?.path
 	}))

@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next"
 import { useMemo } from "react"
-import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
+import { getServerSideResponse, getServerSideResponses } from "~/api/props/functions/server-side-props"
 import { lifeEventsFromApi } from "~/api/records/life-event/functions/life-event-data-access"
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
@@ -28,9 +28,9 @@ interface Props {
 // Page
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
-	getServerSideApiResponses<PageData>(
-		getServerSideApiResponse(lifeEventsFromApi, lifeEvents => ({ lifeEvents })),
-		getServerSideApiResponse(pageGraphicsFromApi, pageGraphics => ({
+	getServerSideResponses<PageData>(
+		getServerSideResponse(lifeEventsFromApi, lifeEvents => ({ lifeEvents })),
+		getServerSideResponse(pageGraphicsFromApi, pageGraphics => ({
 			preview: pageGraphics.lifePreview?.path
 		}))
 	)
