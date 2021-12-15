@@ -4,19 +4,20 @@
 	@include inlayed
 
 	.window
-		margin: 0 8%
+		margin: 0 5%
+		overflow: hidden
 
 		code
 			display: block
-			margin: 2rem 2.25rem
+			margin: 2rem 2.75rem
 
 			@include codeFont
 			color: $textColorOnDark
 
 			.lineNumber
 				color: $textColorFadedOnDark
-				padding-right: 1.85rem
-				white-space: pre
+				padding-right: 2.75rem
+				white-space: pre-wrap
 
 			.lineContent
-				white-space: pre
+				white-space: pre-wrap
