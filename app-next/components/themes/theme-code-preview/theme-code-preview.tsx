@@ -21,10 +21,11 @@ const ThemeCodePreview: FunctionComponent<Props> = props => {
 	const numberOfLines = tokensByLine.length
 	const lineNumberPadding = String(numberOfLines).length
 	const formattedLineIndex = (lineIndex: number) => String(lineIndex + 1).padStart(lineNumberPadding, " ")
+	const backgroundColor = colorFromIntermediateTheme(theme, ThemeFormatKey.Background)
 
 	return (
 		<section className={className(styles.block, props.className)}>
-			<FauxWindow className={styles.window} controls>
+			<FauxWindow className={styles.window} background={backgroundColor.rgb} controls>
 				<code>
 					{tokensByLine.map((tokens, lineIndex) => (
 						<div key={`code-line-${lineIndex}`}>
@@ -34,10 +35,10 @@ const ThemeCodePreview: FunctionComponent<Props> = props => {
 									const kind = token.kind ?? ThemeFormatKey.Foreground
 									const word = token.word
 									const color = theme ? colorFromIntermediateTheme(theme, kind) : Color.black
-									const style: CSSProperties = { color: color.hex }
+									const lineStyle: CSSProperties = { color: color.hex }
 
 									return (
-										<span key={`code-${lineIndex}-${tokenIndex}-${kind}`} style={style}>
+										<span key={`code-${lineIndex}-${tokenIndex}-${kind}`} style={lineStyle}>
 											{word}
 										</span>
 									)
