@@ -21,7 +21,7 @@ export function isServerSideRedirectResult(object: any): object is RedirectResul
 	return typeof object === "object" && typeof object.redirect === "object"
 }
 
-const serverSideResultNotFound: NotFoundResult = { notFound: true }
+export const serverSideResultNotFound: NotFoundResult = { notFound: true }
 
 export async function getServerSideResponseByQuery<Response, PageData>(
 	context: ServerSideContext,

@@ -1,6 +1,6 @@
 import type { GetServerSideProps } from "next"
 import { RecordError } from "~/api/common/errors/record-error"
-import { getServerSideResponseByQuery, isServerSidePropsResult } from "~/api/props/functions/server-side-props"
+import { getServerSideResponseByQuery, isServerSidePropsResult, serverSideResultNotFound } from "~/api/props/functions/server-side-props"
 import { themeFromApi } from "~/api/records/themes/functions/theme-data-access"
 import { intermediateThemeFileFromApi } from "~/api/records/themes/functions/theme-file-data-access"
 import { themePackageFromTheme } from "~/api/records/themes/functions/theme-package-decoding"
@@ -58,13 +58,13 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async context =
 		return resultFromQuery
 	} catch (error) {
 		console.error(`Could not fetch intermediate theme package for theme '${theme.name}'.`, error)
-		return resultFromQuery
+		return serverSideResultNotFound
 	}
 }
 
 const ThemePage: Page<PageProps & Props> = props => {
 	const theme = props.data!.theme
-	const file = props.data!.file
+	const intermediateThemeFile = props.data!.file
 
 	const tags = themeTagPropsFromTheme(theme, false)
 	const cover = theme.cover?.path
@@ -85,7 +85,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 					<div className={styles.abstract}>
 						<Markdown>{theme.description}</Markdown>
 					</div>
-					<ThemeCodePreview className={styles.demo} theme={file} />
+					<ThemeCodePreview className={styles.demo} theme={intermediateThemeFile} />
 				</main>
 			</section>
 		</>
