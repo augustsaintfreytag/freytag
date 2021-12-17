@@ -15,6 +15,17 @@ interface Props extends PropsWithClassName {
 
 const ThemeCodePreview: FunctionComponent<Props> = props => {
 	const theme = props.theme
+
+	if (!theme) {
+		return (
+			<section className={className(styles.block, props.className)}>
+				<FauxWindow className={styles.window} controls>
+					<code>Preview not available. Theme does not have an intermediate format package.</code>
+				</FauxWindow>
+			</section>
+		)
+	}
+
 	const tokenizedString = swiftTokenizedString()
 	const tokensByLine = tokenizedStringByLines(tokenizedString)
 
