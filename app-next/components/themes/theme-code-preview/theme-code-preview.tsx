@@ -1,8 +1,8 @@
 import { CSSProperties, FunctionComponent } from "react"
 import FauxWindow from "~/components/faux-window/faux-window"
+import { tokenizedStringByLines } from "~/components/themes/theme-code-preview/functions/tokenized-string-line-split"
 import { swiftTokenizedString } from "~/components/themes/theme-code-preview/functions/tokenized-string-presets"
 import { colorFromIntermediateTheme, ThemeFormatKey } from "~/components/themes/theme-code-preview/library/theme-format-key"
-import { SyntaxToken } from "~/components/themes/theme-code-preview/library/tokenized-string"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { Color } from "~/utils/colors/models/color"
@@ -16,21 +16,7 @@ interface Props extends PropsWithClassName {
 const ThemeCodePreview: FunctionComponent<Props> = props => {
 	const theme = props.theme
 	const tokenizedString = swiftTokenizedString()
-	const tokensByLine = (() => {
-		const lines: SyntaxToken[][] = []
-		let lastSplitIndex = 0
-
-		tokenizedString.tokens.forEach((token, index) => {
-			if (token.word !== "\n" && index !== tokenizedString.tokens.length - 1) {
-				return
-			}
-
-			lines.push(tokenizedString.tokens.slice(lastSplitIndex, index + 1))
-			lastSplitIndex = index + 1
-		})
-
-		return lines
-	})()
+	const tokensByLine = tokenizedStringByLines(tokenizedString)
 
 	const numberOfLines = tokensByLine.length
 	const lineNumberPadding = String(numberOfLines).length
