@@ -23,6 +23,250 @@ function newLine(): SyntaxToken {
 
 // Presets
 
+export function typeScriptTokenizedString(): TokenizedString {
+	const tokens: SyntaxToken[] = []
+
+	tokens.push(
+		{ word: "/**", kind: ThemeFormatKey.CommentDocumentation },
+		space(),
+		{ word: "Model of metadata associated with stored objects.", kind: ThemeFormatKey.CommentDocumentation },
+		{ word: "*/", kind: ThemeFormatKey.CommentDocumentation },
+		newLine(),
+		{ word: "class", kind: ThemeFormatKey.Keyword },
+		space(),
+		{ word: "ObjectMetadata", kind: ThemeFormatKey.DeclarationType },
+		space(),
+		{ word: "implements", kind: ThemeFormatKey.Keyword },
+		space(),
+		{ word: "Hashable", kind: ThemeFormatKey.ReferenceTypeSystem },
+		{ word: "," },
+		space(),
+		{ word: "ObjectProperty", kind: ThemeFormatKey.ReferenceTypeProject },
+		space(),
+		{ word: "{" },
+		newLine(),
+		indent(),
+		{ word: "id", kind: ThemeFormatKey.DeclarationAny },
+		{ word: ":" },
+		space(),
+		{ word: "UUID", kind: ThemeFormatKey.ReferenceTypeSystem },
+		newLine(),
+		indent(),
+		{ word: "created", kind: ThemeFormatKey.DeclarationAny },
+		{ word: ":" },
+		space(),
+		{ word: "Date", kind: ThemeFormatKey.ReferenceTypeSystem },
+		newLine(),
+		indent(),
+		{ word: "owners", kind: ThemeFormatKey.DeclarationAny },
+		{ word: ":" },
+		space(),
+		{ word: "Set", kind: ThemeFormatKey.ReferenceTypeSystem },
+		{ word: "<" },
+		{ word: "OwnerIdentifier", kind: ThemeFormatKey.ValueTypeProject },
+		{ word: ">" },
+		newLine(),
+		indent(),
+		{ word: "data", kind: ThemeFormatKey.DeclarationAny },
+		{ word: ":" },
+		space(),
+		{ word: "string", kind: ThemeFormatKey.GlobalTypeSystem },
+		newLine(),
+		indent(),
+		space(),
+		newLine(),
+		indent(),
+		{ word: "constructor", kind: ThemeFormatKey.Keyword },
+		{ word: "(" },
+		{ word: "id", kind: ThemeFormatKey.FunctionParameter },
+		{ word: ":" },
+		space(),
+		{ word: "UUID", kind: ThemeFormatKey.ReferenceTypeSystem },
+		{ word: "," },
+		space(),
+		{ word: "created", kind: ThemeFormatKey.FunctionParameter },
+		{ word: ":" },
+		space(),
+		{ word: "Date", kind: ThemeFormatKey.ReferenceTypeSystem },
+		{ word: "," },
+		space(),
+		{ word: "owners", kind: ThemeFormatKey.FunctionParameter },
+		{ word: ":" },
+		space(),
+		{ word: "Set", kind: ThemeFormatKey.ReferenceTypeSystem },
+		{ word: "<" },
+		{ word: "OwnerIdentifier", kind: ThemeFormatKey.ValueTypeProject },
+		{ word: ">" },
+		{ word: "," },
+		space(),
+		{ word: "data", kind: ThemeFormatKey.FunctionParameter },
+		{ word: ":" },
+		space(),
+		{ word: "string", kind: ThemeFormatKey.ReferenceTypeSystem },
+		{ word: ")" },
+		space(),
+		{ word: "{" },
+		newLine(),
+		indent(),
+		indent(),
+		{ word: "this", kind: ThemeFormatKey.VariableProject },
+		{ word: "." },
+		{ word: "id", kind: ThemeFormatKey.VariableProject },
+		space(),
+		{ word: "=" },
+		space(),
+		{ word: "id", kind: ThemeFormatKey.VariableProject },
+		newLine(),
+		indent(),
+		indent(),
+		{ word: "this", kind: ThemeFormatKey.VariableProject },
+		{ word: "." },
+		{ word: "created", kind: ThemeFormatKey.VariableProject },
+		space(),
+		{ word: "=" },
+		space(),
+		{ word: "created", kind: ThemeFormatKey.VariableProject },
+		newLine(),
+		indent(),
+		indent(),
+		{ word: "this", kind: ThemeFormatKey.VariableProject },
+		{ word: "." },
+		{ word: "owners", kind: ThemeFormatKey.VariableProject },
+		space(),
+		{ word: "=" },
+		space(),
+		{ word: "owners", kind: ThemeFormatKey.VariableProject },
+		newLine(),
+		indent(),
+		indent(),
+		{ word: "this", kind: ThemeFormatKey.VariableProject },
+		{ word: "." },
+		{ word: "data", kind: ThemeFormatKey.VariableProject },
+		space(),
+		{ word: "=" },
+		space(),
+		{ word: "data", kind: ThemeFormatKey.VariableProject },
+		newLine(),
+		indent(),
+		{ word: "}" },
+		newLine(),
+		{ word: "}" },
+		newLine()
+	)
+
+	tokens.push(space(), newLine())
+
+	tokens.push(
+		{ word: "type", kind: ThemeFormatKey.Keyword },
+		space(),
+		{ word: "GroupedObjects", kind: ThemeFormatKey.DeclarationType },
+		space(),
+		{ word: "=" },
+		space(),
+		{ word: "Dictionary", kind: ThemeFormatKey.ReferenceTypeSystem },
+		{ word: "<" },
+		{ word: "ObjectGroup", kind: ThemeFormatKey.ReferenceTypeProject },
+		{ word: "," },
+		space(),
+		{ word: "Set", kind: ThemeFormatKey.ReferenceTypeSystem },
+		{ word: "<" },
+		{ word: "Object", kind: ThemeFormatKey.ValueTypeProject },
+		{ word: ">" },
+		{ word: ">" },
+		newLine(),
+		space(),
+		newLine(),
+		{ word: "/**", kind: ThemeFormatKey.CommentDocumentation },
+		space(),
+		{ word: "Functionality to create collections of objects grouped by intrinsic properties.", kind: ThemeFormatKey.CommentDocumentation },
+		{ word: "*/", kind: ThemeFormatKey.CommentDocumentation },
+		newLine(),
+		{ word: "export", kind: ThemeFormatKey.Keyword },
+		space(),
+		{ word: "interface", kind: ThemeFormatKey.Keyword },
+		space(),
+		{ word: "ObjectProvider", kind: ThemeFormatKey.DeclarationType },
+		space(),
+		{ word: "{" },
+		newLine(),
+		indent(),
+		{ word: "groupedObjects", kind: ThemeFormatKey.FunctionProject },
+		{ word: "(" },
+		{ word: "collection", kind: ThemeFormatKey.FunctionParameter },
+		{ word: ":" },
+		space(),
+		{ word: "Object", kind: ThemeFormatKey.ReferenceTypeProject },
+		{ word: "[]" },
+		{ word: ")" },
+		{ word: ":" },
+		space(),
+		{ word: "GroupedObjects", kind: ThemeFormatKey.ValueTypeProject },
+		newLine(),
+		{ word: "}" }
+	)
+
+	tokens.push(space(), newLine())
+
+	tokens.push(
+		{ word: "/**", kind: ThemeFormatKey.CommentDocumentation },
+		space(),
+		{ word: "Metadata describing a report of stored objects.", kind: ThemeFormatKey.CommentDocumentation },
+		{ word: "*/", kind: ThemeFormatKey.CommentDocumentation },
+		newLine(),
+		{ word: "class", kind: ThemeFormatKey.Keyword },
+		space(),
+		{ word: "ObjectReport", kind: ThemeFormatKey.DeclarationType },
+		space(),
+		{ word: "{" },
+		newLine(),
+		indent(),
+		{ word: "id", kind: ThemeFormatKey.DeclarationAny },
+		{ word: ":" },
+		space(),
+		{ word: "UUID", kind: ThemeFormatKey.ReferenceTypeSystem },
+		space(),
+		{ word: "=" },
+		space(),
+		{ word: "randomUUID", kind: ThemeFormatKey.FunctionSystem },
+		{ word: "()" },
+		newLine(),
+		indent(),
+		{ word: "name", kind: ThemeFormatKey.DeclarationAny },
+		{ word: ":" },
+		space(),
+		{ word: "string", kind: ThemeFormatKey.GlobalTypeSystem },
+		space(),
+		{ word: "=" },
+		space(),
+		{ word: '"Most Recent"', kind: ThemeFormatKey.String },
+		newLine(),
+		indent(),
+		{ word: "kind", kind: ThemeFormatKey.DeclarationAny },
+		{ word: ":" },
+		space(),
+		{ word: "ReportKind", kind: ThemeFormatKey.ValueTypeProject },
+		space(),
+		{ word: "=" },
+		space(),
+		{ word: "ReportKind", kind: ThemeFormatKey.ValueTypeProject },
+		{ word: ".LastInterval", kind: ThemeFormatKey.ConstantProject },
+		newLine(),
+		indent(),
+		{ word: "numberOfEntries", kind: ThemeFormatKey.DeclarationAny },
+		{ word: ":" },
+		space(),
+		{ word: "Int", kind: ThemeFormatKey.ValueTypeSystem },
+		space(),
+		{ word: "=" },
+		space(),
+		{ word: "400", kind: ThemeFormatKey.Number },
+		newLine(),
+		{ word: "}" }
+	)
+
+	return new TokenizedString(tokens)
+}
+
 export function swiftTokenizedString(): TokenizedString {
 	const tokens: SyntaxToken[] = []
 
@@ -204,37 +448,3 @@ export function swiftTokenizedString(): TokenizedString {
 
 	return new TokenizedString(tokens)
 }
-
-/*
-struct Owner {
-	typealias Identifier = UUID
-}
-
-protocol ObjectProperty {}
-
-struct ObjectMetadata: Hashable, ObjectProperty {
-	let id: UUID
-	let created: Date
-	let owners: Set<Owner.Identifier>
-	let data: String
-}
-
-typealias Object = AnyHashable
-typealias ObjectGroup = String
-
-protocol ObjectProvider {
-	func groupedObjects(_ collection: [Object]) -> [ObjectGroup: Set<Object>]
-}
-
-enum ReportKind {
-	case lastInterval
-}
-
-/// Metadata describing a report of stored objects.
-struct ObjectReport {
-	let id = UUID()
-	var name: String = "Most Recent"
-	var kind: ReportKind = .lastInterval
-	var numberOfEntries: Int = 400
-}
-*/
