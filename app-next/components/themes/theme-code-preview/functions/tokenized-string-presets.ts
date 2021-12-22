@@ -202,7 +202,8 @@ export function typeScriptTokenizedString(): TokenizedString {
 		space(),
 		{ word: "GroupedObjects", kind: ThemeFormatKey.ValueTypeProject },
 		newLine(),
-		{ word: "}" }
+		{ word: "}" },
+		newLine()
 	)
 
 	tokens.push(space(), newLine())
