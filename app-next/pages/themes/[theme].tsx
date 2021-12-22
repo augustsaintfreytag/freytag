@@ -12,8 +12,11 @@ import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import Meta from "~/components/meta/meta-tags"
 import ThemeSprites from "~/components/sprites/theme-sprites"
-import { swiftTokenizedString } from "~/components/themes/theme-code-preview/functions/tokenized-string-presets"
-import { TokenizedString } from "~/components/themes/theme-code-preview/library/tokenized-string"
+import {
+	markdownTokenizedString,
+	swiftTokenizedString,
+	typeScriptTokenizedString
+} from "~/components/themes/theme-code-preview/functions/tokenized-string-presets"
 import ThemeCodePreviews, { CodeContent } from "~/components/themes/theme-code-previews/theme-code-previews"
 import ThemeColorCollection from "~/components/themes/theme-color-collection/theme-color-collection"
 import ThemeMenu from "~/components/themes/theme-menu/theme-menu"
@@ -64,24 +67,6 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async context =
 	}
 }
 
-const codePreviewContent: CodeContent[] = [
-	{
-		name: "Swift",
-		symbol: "#Swift Symbol",
-		content: swiftTokenizedString()
-	},
-	{
-		name: "TypeScript",
-		symbol: "#TypeScript Symbol",
-		content: new TokenizedString([{ word: "TypeScript Content" }])
-	},
-	{
-		name: "Markdown",
-		symbol: "#Markdown Symbol",
-		content: new TokenizedString([{ word: "Markdown Content" }])
-	}
-]
-
 const ThemePage: Page<PageProps & Props> = props => {
 	const theme = props.data!.theme
 	const intermediateThemeFile = props.data!.file
@@ -89,6 +74,24 @@ const ThemePage: Page<PageProps & Props> = props => {
 	const tags = themeTagPropsFromTheme(theme, false)
 	const cover = theme.cover?.path
 	const colors = colorsFromEncodedData(theme.colors)
+
+	const codePreviewContent: CodeContent[] = [
+		{
+			name: "Swift",
+			symbol: "#Swift Symbol",
+			content: swiftTokenizedString()
+		},
+		{
+			name: "TypeScript",
+			symbol: "#TypeScript Symbol",
+			content: typeScriptTokenizedString()
+		},
+		{
+			name: "Markdown",
+			symbol: "#Markdown Symbol",
+			content: markdownTokenizedString()
+		}
+	]
 
 	return (
 		<>
