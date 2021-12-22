@@ -21,14 +21,15 @@ interface Props extends PropsWithClassName {
 
 const ThemeCodePreviews: FunctionComponent<Props> = props => {
 	const { theme, content } = props
-	const [selectedContent, setSelectedContent] = useState<CodeContent | undefined>(content[0])
+	const [selectedContentIndex, setSelectedContentIndex] = useState<number>(0)
+	const selectedContent = content[selectedContentIndex]
 
 	return (
 		<section className={className(styles.previews, props.className)}>
 			<div className={styles.content}>{selectedContent && <ThemeCodePreview theme={theme} content={selectedContent.content} />}</div>
 			<div className={styles.selector}>
-				{content.map(item => (
-					<ActionButton key={item.name} text={item.name} symbol={item.symbol} onClick={() => setSelectedContent(item)} />
+				{content.map((item, index) => (
+					<ActionButton key={item.name} text={item.name} symbol={item.symbol} onClick={() => setSelectedContentIndex(index)} />
 				))}
 			</div>
 		</section>
