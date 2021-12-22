@@ -40,9 +40,9 @@ const ThemeCodePreview: FunctionComponent<Props> = props => {
 			<FauxWindow className={styles.window} background={backgroundColor.rgb} controls>
 				<code>
 					{tokensByLine.map((tokens, lineIndex) => (
-						<div key={`code-line-${lineIndex}`}>
-							<span className={styles.lineNumber}>{formattedLineIndex(lineIndex)}</span>
-							<span className={styles.lineContent}>
+						<div className={styles.line} key={`code-line-${lineIndex}`}>
+							<div className={styles.lineNumber}>{formattedLineIndex(lineIndex)}</div>
+							<div className={styles.lineContent}>
 								{tokens.map((token, tokenIndex) => {
 									const kind = token.kind ?? ThemeFormatKey.Foreground
 									const word = token.word
@@ -55,7 +55,7 @@ const ThemeCodePreview: FunctionComponent<Props> = props => {
 										</span>
 									)
 								})}
-							</span>
+							</div>
 						</div>
 					))}
 				</code>
