@@ -454,18 +454,38 @@ export function markdownTokenizedString(): TokenizedString {
 	const tokens: SyntaxToken[] = [
 		{ word: "#", kind: ThemeFormatKey.Keyword },
 		space(),
-		{ word: "Scene Description", kind: ThemeFormatKey.String },
+		{ word: "Scene Description", kind: ThemeFormatKey.CommentSectionHeader },
 		newLine(),
 		space(),
 		newLine(),
-		{
-			word: "We open to the interior of a newsroom in Paris. It is daytime. A typically busy day. On hold with the phone cradled under an ear, Will sorts through a bundle of mail dropped on his desk."
-		},
+		{ word: "We open to the interior of a " },
+		{ word: "*", kind: ThemeFormatKey.Keyword },
+		{ word: "newsroom", kind: ThemeFormatKey.GlobalTypeSystem },
+		{ word: "*", kind: ThemeFormatKey.Keyword },
+		{ word: " in Paris." },
+		space(),
+		{ word: "It is " },
+		{ word: "*", kind: ThemeFormatKey.Keyword },
+		{ word: "daytime", kind: ThemeFormatKey.GlobalTypeSystem },
+		{ word: "*", kind: ThemeFormatKey.Keyword },
+		{ word: ", a typically busy day. On hold, with the " },
+		{ word: "*", kind: ThemeFormatKey.Keyword },
+		{ word: "phone", kind: ThemeFormatKey.GlobalTypeSystem },
+		{ word: "*", kind: ThemeFormatKey.Keyword },
+		{ word: " cradled under an ear, Will sorts through a " },
+		{ word: "*", kind: ThemeFormatKey.Keyword },
+		{ word: "bundle of mail", kind: ThemeFormatKey.GlobalTypeSystem },
+		{ word: "*", kind: ThemeFormatKey.Keyword },
+		{ word: " dropped on his desk." },
 		newLine(),
 		space(),
 		newLine(),
+		{ word: "Will speaks into the " },
+		{ word: "*", kind: ThemeFormatKey.Keyword },
+		{ word: "phone", kind: ThemeFormatKey.GlobalTypeSystem },
+		{ word: "*", kind: ThemeFormatKey.Keyword },
 		{
-			word: 'Will speaks into the phone, without pauses, "William Bloom with the Associated Press, if I could just…" He\'s put back on hold. Returning to the mail, he finds a hand-addressed envelope. He rips it open.'
+			word: `, without pauses, "William Bloom with the Associated Press, if I could just…" He's put back on hold. Returning to the mail, he finds a hand-addressed envelope. He rips it open.`
 		}
 	]
 
