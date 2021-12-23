@@ -1,39 +1,47 @@
-import { GetServerSidePropsContext, GetServerSidePropsResult, Redirect } from "next"
-import { UUID } from "~/api/common/library/uuid"
+import type { UUID } from "~/api/common/library/uuid"
+import {
+	isServerSideNotFoundResponse,
+	isServerSidePropsResponse,
+	isServerSideRedirectResponse
+} from "~/api/props/functions/server-side-response-guards"
+import { serverSideNotFoundResponse } from "~/api/props/functions/server-side-response-presets"
+import type { PromisedServerSideResponse, ServerSideContext, ServerSideResponse } from "~/api/props/library/server-side-response"
 
-type NotFoundResult = { notFound: true }
-type PropsResult<Data> = { props: { data: Data } }
-type RedirectResult = { redirect: Redirect }
+// Direct Fetch
 
-type PromisedServerSideResult<Data> = Promise<ServerSideResult<Data>>
-type ServerSideResult<Data> = GetServerSidePropsResult<{ data: Data }>
-type ServerSideContext = GetServerSidePropsContext<{}>
+export async function getServerSideResponse<Response, PageData>(
+	resolveResponse: () => Promise<Response | undefined>,
+	mapResponse: (response: Response) => PageData
+): PromisedServerSideResponse<PageData> {
+	try {
+		const response = await resolveResponse()
+		if (!response) {
+			return serverSideNotFoundResponse
+		}
 
-export function isServerSidePropsResult<Data>(object: any): object is PropsResult<Data> {
-	return typeof object === "object" && typeof object.props === "object"
+		const data = mapResponse(response)
+
+		return {
+			props: { data }
+		}
+	} catch (error) {
+		return serverSideNotFoundResponse
+	}
 }
 
-export function isServerSideNotFoundResult(object: any): object is NotFoundResult {
-	return typeof object === "object" && typeof object.notFound === "boolean" && object.notFound === true
-}
-
-export function isServerSideRedirectResult(object: any): object is RedirectResult {
-	return typeof object === "object" && typeof object.redirect === "object"
-}
-
-export const serverSideResultNotFound: NotFoundResult = { notFound: true }
+// Query-Defined Fetch
 
 export async function getServerSideResponseByQuery<Response, PageData>(
 	context: ServerSideContext,
 	queryKey: string,
 	resolveResponse: (id: UUID) => Promise<Response | undefined>,
 	mapResponse: (response: Response) => PageData
-): PromisedServerSideResult<PageData> {
+): PromisedServerSideResponse<PageData> {
 	const id = context.query[queryKey]
 
 	if (!id || typeof id !== "string") {
 		console.error(`Could not get server-side record, missing id for query key '${queryKey}'.`)
-		return serverSideResultNotFound
+		return serverSideNotFoundResponse
 	}
 
 	try {
@@ -50,52 +58,54 @@ export async function getServerSideResponseByQuery<Response, PageData>(
 		}
 	} catch (error) {
 		console.error(`Could not get server-side record '${id}' for query key '${queryKey}'. ${error}`)
-		return serverSideResultNotFound
+		return serverSideNotFoundResponse
 	}
 }
 
-export async function getServerSideResponse<Response, PageData>(
-	resolveResponse: () => Promise<Response | undefined>,
-	mapResponse: (response: Response) => PageData
-): PromisedServerSideResult<PageData> {
-	try {
-		const response = await resolveResponse()
-		if (!response) {
-			return serverSideResultNotFound
-		}
+// Sequential Fetch
 
-		const data = mapResponse(response)
+type ResultBlock<PageData> = (previousResult?: ServerSideResponse<PageData>) => PromisedServerSideResponse<PageData>
 
-		return {
-			props: { data }
+export async function getServerSideResponses<PageData>(...blocks: ResultBlock<PageData>[]): PromisedServerSideResponse<PageData> {
+	let aggregateResult: ServerSideResponse<PageData> | undefined
+
+	for (const block of blocks) {
+		const blockResult = await block(aggregateResult)
+		aggregateResult = validateAndMergeServerSideResponses(blockResult, aggregateResult)
+
+		if (isServerSideNotFoundResponse(aggregateResult)) {
+			return aggregateResult
 		}
-	} catch (error) {
-		return serverSideResultNotFound
 	}
+
+	return aggregateResult ?? serverSideNotFoundResponse
 }
 
-export async function getServerSideResponses<PageData>(...promises: PromisedServerSideResult<PageData>[]): PromisedServerSideResult<PageData> {
-	const results: ServerSideResult<PageData>[] = await Promise.all(promises)
-	let combinedData: PageData | undefined
+// Merging & Processing
 
-	for (const result of results) {
-		if (isServerSidePropsResult(result)) {
-			combinedData = { ...(combinedData ?? {}), ...result.props.data }
-			continue
-		}
-
-		if (isServerSideNotFoundResult(result)) {
-			return serverSideResultNotFound
-		}
-
-		if (isServerSideRedirectResult(result)) {
-			return result
-		}
+function mergeServerSideResponses<PageData>(result: ServerSideResponse<PageData>, data?: PageData): ServerSideResponse<PageData> {
+	if (isServerSidePropsResponse(result)) {
+		return wrappedServerSideResult({ ...data, ...result.props.data })
 	}
 
-	if (!combinedData) {
-		return serverSideResultNotFound
+	return result
+}
+
+function validateAndMergeServerSideResponses<PageData>(
+	result: ServerSideResponse<PageData>,
+	aggregate?: ServerSideResponse<PageData>
+): ServerSideResponse<PageData> {
+	if (isServerSidePropsResponse(result)) {
+		return wrappedServerSideResult({ ...aggregate, ...result.props.data })
 	}
 
-	return { props: { data: combinedData } }
+	if (isServerSideRedirectResponse(result)) {
+		return result
+	}
+
+	return serverSideNotFoundResponse
+}
+
+function wrappedServerSideResult<PageData>(data: PageData): ServerSideResponse<PageData> {
+	return { props: { data: { ...data } } }
 }
