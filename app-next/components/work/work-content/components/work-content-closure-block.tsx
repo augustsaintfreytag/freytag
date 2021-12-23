@@ -1,22 +1,16 @@
 import { FunctionComponent, useMemo } from "react"
 import ContentClosure from "~/components/content-closure/content-closure"
 import ExternalTwitterLink from "~/components/link/external-twitter-link"
+import Time from "~/components/time/time"
 import Typo from "~/components/typo/typo"
 import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
 import styles from "./work-content-closure-block.module.sass"
-
-// Library
-
-interface MetadataDate {
-	value: Date
-	description: string
-}
 
 // Components
 
 const Twitter = () => <ExternalTwitterLink context="Work Content Closure" />
 
-// Block
+// Closure
 
 export interface Props {
 	metadata?: {
@@ -34,8 +28,6 @@ const WorkContentClosureBlock: FunctionComponent<Props> = props => {
 			modified: modified && { value: modified, description: formattedDate(modified, DateFormatStyle.MonthAndYear) }
 		}
 	}, [props.metadata?.created, props.metadata?.modified])
-
-	const Time = (created: MetadataDate) => <time dateTime={created.value.toISOString()}>{created.description}</time>
 
 	return (
 		<ContentClosure className={styles.closure}>
