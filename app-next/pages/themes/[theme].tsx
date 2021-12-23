@@ -1,6 +1,7 @@
 import type { GetServerSideProps } from "next"
 import { RecordError } from "~/api/common/errors/record-error"
 import { getServerSideResponseByQuery, isServerSidePropsResult, serverSideResultNotFound } from "~/api/props/functions/server-side-props"
+import { assetUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
 import { themeFromApi } from "~/api/records/themes/functions/theme-data-access"
 import { intermediateThemeFileFromApi } from "~/api/records/themes/functions/theme-file-data-access"
 import { themePackageFromTheme } from "~/api/records/themes/functions/theme-package-decoding"
@@ -21,6 +22,7 @@ import {
 } from "~/components/themes/theme-code-preview/functions/tokenized-string-presets"
 import ThemeCodePreviews, { CodeContent } from "~/components/themes/theme-code-previews/theme-code-previews"
 import ThemeColorCollection from "~/components/themes/theme-color-collection/theme-color-collection"
+import ThemeDownloads, { ItemProps as ThemeDownloadItem } from "~/components/themes/theme-downloads/theme-downloads"
 import ThemeMenu from "~/components/themes/theme-menu/theme-menu"
 import { themeTagPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
 import ThemeTitle from "~/components/themes/theme-title/theme-title"
@@ -76,6 +78,14 @@ const ThemePage: Page<PageProps & Props> = props => {
 	const tags = themeTagPropsFromTheme(theme, false)
 	const cover = theme.cover?.path
 	const colors = colorsFromEncodedData(theme.colors)
+	const downloads: ThemeDownloadItem[] =
+		theme.packages?.map(themePackage => {
+			const format = themePackage.value.format
+			const path = themePackage.value.file.path
+			const href = assetUrlFromComponent(path)
+
+			return { format, href }
+		}) ?? []
 
 	const codePreviewContent: CodeContent[] = [
 		{
@@ -111,6 +121,8 @@ const ThemePage: Page<PageProps & Props> = props => {
 						<Markdown>{theme.description}</Markdown>
 					</div>
 					<ThemeCodePreviews className={styles.previews} theme={intermediateThemeFile} content={codePreviewContent} />
+					<Divider className={styles.divider} />
+					<ThemeDownloads className={styles.downloads} name={theme.name} items={downloads} />
 					<Divider className={styles.divider} />
 					<ThemeClosure theme={theme} />
 				</main>
