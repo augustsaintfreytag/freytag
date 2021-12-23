@@ -1,0 +1,36 @@
+@import "/styles/values/all"
+	
+.item
+	display: flex
+	align-items: center
+	cursor: pointer
+	width: 100%
+	column-gap: 1.75rem
+	
+	background: $elementBackgroundColor
+	padding: 0.55rem 3rem
+
+	.symbol
+		$size: 1.25rem
+		width: $size
+		height: $size
+		fill: $textColor
+		flex: 0 0 auto
+		
+	.text
+		width: 100%
+
+		.heading
+			@include buttonFont
+			@include ellipsized
+
+		.format
+			margin-top: 0.1rem
+			@include codeFont
+			font-size: $captionFontSize
+			color: $textColorFaded
+			@include ellipsized
+
+			@include breakpoint($anyMobile)
+				font-size: $captionFontSizeMobile
+	
