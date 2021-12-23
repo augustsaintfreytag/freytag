@@ -1,0 +1,18 @@
+@import "/styles/values/all"
+
+.block
+	h1
+		@include headingFont
+		font-size: $pageHeadingFontSize
+		text-align: center
+
+		@include breakpoint($anyMobile)
+			font-size: $pageHeadingFontSizeMobile
+
+	.tags
+		width: fit-content
+		margin: 1.5rem auto 0 auto
+
+		> .tag
+			display: inline-block
+			@include horizontalListMargin(0.35rem)

@@ -1,5 +1,5 @@
 import { FunctionComponent, useMemo } from "react"
-import { assetUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
+import { assetUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
 import AssetImage from "~/components/asset-image/asset-image"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import CallToAction from "~/components/call-to-action/call-to-action"
@@ -32,7 +32,7 @@ export interface Props {
 	subHeading?: string
 	cover?: URLComponent
 	callToAction?: {
-		link: URL
+		href: URL
 		label: string
 	}
 }
@@ -56,7 +56,7 @@ const WorkContentTitleCaseBlock: FunctionComponent<Props> = props => {
 				<CallToAction
 					name={actionName}
 					className={styles.callToAction}
-					href={assetUrlFromComponent(props.callToAction.link)}
+					href={assetUrlFromComponent(props.callToAction.href)}
 					text={props.callToAction.label}
 				/>
 			)}

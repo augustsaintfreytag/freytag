@@ -1,24 +1,37 @@
 import { FunctionComponent } from "react"
-import { useRecordCreationStatistics } from "~/api/records/statistics/functions/record-creation-statistics-hook"
+import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
 import { Theme } from "~/api/records/themes/library/theme"
 import ContentClosure from "~/components/content-closure/content-closure"
+import ExternalTwitterLink from "~/components/link/external-twitter-link"
+import Time, { TimeProperties } from "~/components/time/time"
+import Typo from "~/components/typo/typo"
+import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
+
+// Components
+
+const Twitter = () => <ExternalTwitterLink context="Theme Closure" />
+
+// Closure
 
 interface Props {
-	themes: Theme[]
+	theme: Theme
 }
 
 const ThemeClosure: FunctionComponent<Props> = props => {
-	const { lastRecordCreation } = useRecordCreationStatistics(props.themes)
+	const creationDate = dateFromTimestamp(props.theme._created)
+	const creationTimeProperties: TimeProperties = { value: creationDate, description: formattedDate(creationDate, DateFormatStyle.MonthAndYear) }
 
 	return (
 		<ContentClosure>
-			<div>There are {props.themes.length} themes in the Studio.</div>
 			<div>
-				Last theme was created and published on{" "}
-				<em>
-					<time dateTime={lastRecordCreation?.value.toISOString()}>{lastRecordCreation?.description ?? "<Unknown>"}</time>
-				</em>
-				.
+				<Typo>
+					Theme created and compiled <Time {...creationTimeProperties} /> by August Saint Freytag.
+				</Typo>
+			</div>
+			<div>
+				<Typo>
+					Follow on <Twitter /> to get notified of new publications and updates.
+				</Typo>
 			</div>
 		</ContentClosure>
 	)

@@ -29,7 +29,7 @@ export async function workShowcasesFromApi(): Promise<WorkShowcase[]> {
 
 export async function workShowcaseFromApi(slug: string): Promise<WorkShowcase | undefined> {
 	const filter = { ...defaultApiFilter, slug: slug }
-	const response = await CockpitDataAccess.recordsInCollection(ApiCollection.Work, { filter: filter })
+	const response = await CockpitDataAccess.recordsInCollection(ApiCollection.Work, { filter })
 	const firstEntry = response.entries[0] as WorkShowcase | undefined
 
 	return firstEntry

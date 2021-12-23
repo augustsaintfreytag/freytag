@@ -1,8 +1,8 @@
 import { GetServerSideProps } from "next"
 import { FunctionComponent, useMemo } from "react"
 import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
-import { ColorValue } from "~/api/common/library/color-value"
-import { getServerSideApiResponseByQuery } from "~/api/props/functions/server-side-props"
+import { ColorDescription } from "~/api/common/library/color-description"
+import { getServerSideResponseByQuery } from "~/api/props/functions/server-side-props"
 import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import Divider from "~/components/divider/divider"
@@ -20,7 +20,7 @@ import styles from "./work-detail-page.module.sass"
 // Sub Components
 
 interface WorkDividerProps {
-	color?: ColorValue
+	color?: ColorDescription
 }
 
 const WorkDivider: FunctionComponent<WorkDividerProps> = props => <Divider className={styles.divider} color={props.color} />
@@ -38,7 +38,7 @@ interface Props {
 // Page
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async context =>
-	getServerSideApiResponseByQuery(context, "work", workShowcaseFromApi, showcase => ({ showcase }))
+	getServerSideResponseByQuery(context, "work", workShowcaseFromApi, showcase => ({ showcase }))
 
 const WorkDetailPage: Page<PageProps & Props> = props => {
 	const showcase = props.data!.showcase!

@@ -1,6 +1,7 @@
 import { FunctionComponent } from "react"
 import { UUID } from "~/api/common/library/uuid"
 import ThemeTag, { Props as ThemeTagProps } from "~/components/themes/theme-tag/components/theme-tag"
+import Typo from "~/components/typo/typo"
 import { Color } from "~/utils/colors/models/color"
 import styles from "./theme-preview.module.sass"
 
@@ -24,14 +25,18 @@ const ThemePreview: FunctionComponent<Props> = props => (
 			})}
 		</ol>
 		<header>
-			<h3 className={styles.name}>{props.name}</h3>
+			<h3 className={styles.name}>
+				<Typo>{props.name}</Typo>
+			</h3>
 			<div className={styles.tags}>
 				{props.tags.map(tag => (
 					<ThemeTag key={tag.name} name={tag.name} symbol={tag.symbol} />
 				))}
 			</div>
 		</header>
-		<div className={styles.description}>{props.description}</div>
+		<div className={styles.description}>
+			<Typo>{props.description}</Typo>
+		</div>
 	</section>
 )
 

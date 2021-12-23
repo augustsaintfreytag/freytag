@@ -1,0 +1,30 @@
+@import "/styles/values/all"
+
+.menuItem
+	$itemPadding: $pageSubContentSpacing * 0.75
+
+	.inlay
+		$itemSize: 1.1rem
+		padding: $itemPadding 0
+		
+
+		> *
+			display: inline-block
+			vertical-align: middle
+
+		.symbol
+			$size: $itemSize
+			height: $size
+			width: $size
+			overflow: visible
+
+		.text
+			margin-left: 0.5rem
+			line-height: $itemSize
+
+		&.plain
+			cursor: default
+
+	&.disabled
+		.inlay
+			opacity: 0.5

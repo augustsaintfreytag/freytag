@@ -1,0 +1,42 @@
+@import "/styles/values/all"
+	
+.block
+	@include inlayed
+
+	.window
+		@include breakpoint($anyDesktop)
+			margin: 0 7.5%
+
+		@include breakpoint($anyMobile)
+			margin: 0
+
+		code
+			display: block
+			padding: 2rem 2.75rem
+			overflow: hidden
+
+			@include codeFont
+			color: $textColorOnDark
+
+			.line
+				$paneFactor: 0.935
+				font-size: $elementTextFontSize
+				line-height: 1.25rem
+
+				@include breakpoint($anyMobile)
+					font-size: $elementTextFontSizeMobile
+					line-height: 1.35rem
+
+				.lineNumber, .lineContent
+					display: inline-block
+					vertical-align: top
+					white-space: pre-wrap
+				
+				.lineNumber
+					width: 100% - 100% * $paneFactor
+					box-sizing: border-box
+					color: $textColorFadedOnDark
+
+				.lineContent
+					width: 100% * $paneFactor
+					
