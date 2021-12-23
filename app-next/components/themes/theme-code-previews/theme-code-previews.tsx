@@ -32,6 +32,7 @@ const ThemeCodePreviews: FunctionComponent<Props> = props => {
 					<RadioActionButton
 						key={item.name}
 						text={item.name}
+						title={`View theme preview for ${item.name}`}
 						symbol={item.symbol}
 						active={index === selectedContentIndex}
 						onClick={() => setSelectedContentIndex(index)}
