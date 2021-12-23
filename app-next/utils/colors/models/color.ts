@@ -1,4 +1,10 @@
-export class Color {
+export interface ColorValue {
+	red: number
+	green: number
+	blue: number
+}
+
+export class Color implements ColorValue {
 	red: number
 	green: number
 	blue: number
@@ -35,6 +41,10 @@ export class Color {
 
 	static limit(value: number): number {
 		return Math.min(Math.max(value, 0), 1)
+	}
+
+	static fromValue(value: ColorValue): Color {
+		return new Color(value.red, value.green, value.blue)
 	}
 
 	// Value

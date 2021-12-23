@@ -1,0 +1,21 @@
+@import "/styles/values/all"
+
+.button
+	border: 1px solid $textColor
+	padding: 0.15rem 0.5rem
+
+	&.decorated
+		.text
+			margin-left: 0.65rem
+
+	> *
+		display: inline-block
+		vertical-align: middle
+
+	.symbol
+		$size: 1rem
+		height: $size
+		width: $size
+
+	.text
+		@include buttonFont

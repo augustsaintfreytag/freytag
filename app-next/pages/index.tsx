@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next/types"
 import { FunctionComponent } from "react"
-import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
+import { getServerSideResponse, getServerSideResponses } from "~/api/props/functions/server-side-props"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import { featuredWorkShowcaseFromApi } from "~/api/records/work-showcase-feature/functions/work-showcase-feature-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
@@ -45,9 +45,9 @@ const Twitter: FunctionComponent = () => (
 // Page
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
-	getServerSideApiResponses<PageData>(
-		getServerSideApiResponse(featuredWorkShowcaseFromApi, feature => ({ feature })),
-		getServerSideApiResponse(pageGraphicsFromApi, pageGraphics => ({
+	getServerSideResponses<PageData>(
+		getServerSideResponse(featuredWorkShowcaseFromApi, feature => ({ feature })),
+		getServerSideResponse(pageGraphicsFromApi, pageGraphics => ({
 			cover: pageGraphics.indexAsset?.path,
 			preview: pageGraphics.indexPreview?.path
 		}))

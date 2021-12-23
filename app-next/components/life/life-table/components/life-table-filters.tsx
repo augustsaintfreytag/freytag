@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { ColorValue } from "~/api/common/library/color-value"
+import { ColorDescription } from "~/api/common/library/color-description"
 import { allLifeEventKinds } from "~/api/records/life-event/library/life-event-kind"
 import { colorForLifeEventKind } from "~/components/life/life-event/functions/life-event-kind-colors"
 import {
@@ -17,7 +17,7 @@ export interface FilterDefinition {
 	kind: FilterKind
 	attribute: string
 	text: string
-	color?: ColorValue
+	color?: ColorDescription
 }
 
 const filterDefinitions = (() => {

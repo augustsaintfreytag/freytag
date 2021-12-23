@@ -1,5 +1,5 @@
 import { FunctionComponent, useMemo } from "react"
-import { assetUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
+import { assetUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
 import AssetImage from "~/components/asset-image/asset-image"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import CallToAction from "~/components/call-to-action/call-to-action"

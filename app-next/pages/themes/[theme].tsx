@@ -1,13 +1,23 @@
 import type { GetServerSideProps } from "next"
-import { getServerSideApiResponseByQuery } from "~/api/props/functions/server-side-props"
+import { RecordError } from "~/api/common/errors/record-error"
+import { getServerSideResponseByQuery, isServerSidePropsResult, serverSideResultNotFound } from "~/api/props/functions/server-side-props"
 import { themeFromApi } from "~/api/records/themes/functions/theme-data-access"
+import { intermediateThemeFileFromApi } from "~/api/records/themes/functions/theme-file-data-access"
+import { themePackageFromTheme } from "~/api/records/themes/functions/theme-package-decoding"
 import { Theme } from "~/api/records/themes/library/theme"
+import { ThemeEditorFormat } from "~/api/records/themes/library/theme-editor-format"
 import ImageCover from "~/components/image-cover/image-cover"
 import Markdown from "~/components/markdown/markdown"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import Meta from "~/components/meta/meta-tags"
 import ThemeSprites from "~/components/sprites/theme-sprites"
+import {
+	markdownTokenizedString,
+	swiftTokenizedString,
+	typeScriptTokenizedString
+} from "~/components/themes/theme-code-preview/functions/tokenized-string-presets"
+import ThemeCodePreviews, { CodeContent } from "~/components/themes/theme-code-previews/theme-code-previews"
 import ThemeColorCollection from "~/components/themes/theme-color-collection/theme-color-collection"
 import ThemeMenu from "~/components/themes/theme-menu/theme-menu"
 import { themeTagPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
@@ -15,27 +25,14 @@ import ThemeTitle from "~/components/themes/theme-title/theme-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { colorsFromEncodedData } from "~/utils/colors/functions/color-conversion"
+import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
 import styles from "./theme-detail-page.module.sass"
-
-// Data
-
-const themeColorLabels: string[] = [
-	"Background",
-	"Foreground",
-	"Keywords",
-	"Reference Types",
-	"Value Types",
-	"Functions",
-	"Constants",
-	"Variables",
-	"Strings",
-	"Numbers"
-]
 
 // Library
 
 interface PageData {
 	theme: Theme
+	file?: IntermediateTheme
 }
 
 interface Props {
@@ -44,14 +41,57 @@ interface Props {
 
 // Page
 
-export const getServerSideProps: GetServerSideProps<Props, {}> = async context =>
-	getServerSideApiResponseByQuery(context, "theme", themeFromApi, theme => ({ theme }))
+export const getServerSideProps: GetServerSideProps<Props, {}> = async context => {
+	const resultFromQuery = await getServerSideResponseByQuery<Theme, PageData>(context, "theme", themeFromApi, theme => ({ theme }))
+
+	if (!isServerSidePropsResult(resultFromQuery)) {
+		return resultFromQuery
+	}
+
+	const theme = resultFromQuery.props.data.theme
+
+	try {
+		const themePackage = themePackageFromTheme(theme, ThemeEditorFormat.Intermediate)
+
+		if (!themePackage) {
+			throw new RecordError(`Theme package does not have an intermediate theme package or package URL.`)
+		}
+
+		const intermediateThemeFile = await intermediateThemeFileFromApi(themePackage)
+		resultFromQuery.props.data.file = intermediateThemeFile
+
+		return resultFromQuery
+	} catch (error) {
+		console.error(`Could not fetch intermediate theme package for theme '${theme.name}'.`, error)
+		return serverSideResultNotFound
+	}
+}
 
 const ThemePage: Page<PageProps & Props> = props => {
 	const theme = props.data!.theme
+	const intermediateThemeFile = props.data!.file
+
 	const tags = themeTagPropsFromTheme(theme, false)
 	const cover = theme.cover?.path
 	const colors = colorsFromEncodedData(theme.colors)
+
+	const codePreviewContent: CodeContent[] = [
+		{
+			name: "Swift",
+			symbol: "#Swift Symbol",
+			content: swiftTokenizedString()
+		},
+		{
+			name: "TypeScript",
+			symbol: "#TypeScript Symbol",
+			content: typeScriptTokenizedString()
+		},
+		{
+			name: "Markdown",
+			symbol: "#Markdown Symbol",
+			content: markdownTokenizedString()
+		}
+	]
 
 	return (
 		<>
@@ -64,10 +104,11 @@ const ThemePage: Page<PageProps & Props> = props => {
 				</header>
 				<main>
 					<ThemeTitle className={styles.title} text={theme.name} tags={tags} />
-					<ThemeColorCollection className={styles.colors} colors={colors ?? []} labels={themeColorLabels} />
+					<ThemeColorCollection className={styles.colors} colors={colors ?? []} />
 					<div className={styles.abstract}>
 						<Markdown>{theme.description}</Markdown>
 					</div>
+					<ThemeCodePreviews className={styles.demo} theme={intermediateThemeFile} content={codePreviewContent} />
 				</main>
 			</section>
 		</>

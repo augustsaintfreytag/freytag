@@ -1,6 +1,6 @@
 import Head from "next/head"
 import { FunctionComponent } from "react"
-import { thumbnailUrlFromComponent } from "~/api/records/asset/functions/image-source-provider"
+import { thumbnailUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
 import { URL } from "~/utils/routing/library/url"
 import TwitterMeta, { Props as TwitterProps } from "./components/twitter-meta-tags"
 import { MetaResourceKind } from "./library/meta-mark-up"

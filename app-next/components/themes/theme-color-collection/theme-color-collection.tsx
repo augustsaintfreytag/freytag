@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react"
+import { themeColorLabels } from "~/components/themes/theme-color-collection/library/theme-color-labels"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { Color } from "~/utils/colors/models/color"
@@ -31,11 +32,15 @@ const ThemeColorCollectionItem: FunctionComponent<ItemProps> = props => {
 
 interface Props extends PropsWithClassName {
 	colors: Color[]
-	labels: string[]
 }
 
 const ThemeColorCollection: FunctionComponent<Props> = props => {
-	const { colors, labels } = props
+	const colors = props.colors
+	const labels = themeColorLabels
+
+	if (colors.length !== labels.length) {
+		console.warn(`Expected exactly ${labels.length} colors, but got ${colors.length}. Need exact number of colors for mapping.`)
+	}
 
 	return (
 		<section className={className(styles.collection, props.className)}>
