@@ -1,8 +1,8 @@
 import { CSSProperties, FunctionComponent } from "react"
 import FauxWindow from "~/components/faux-window/faux-window"
 import { tokenizedStringByLines } from "~/components/themes/theme-code-preview/functions/tokenized-string-line-split"
-import { swiftTokenizedString } from "~/components/themes/theme-code-preview/functions/tokenized-string-presets"
 import { colorFromIntermediateTheme, ThemeFormatKey } from "~/components/themes/theme-code-preview/library/theme-format-key"
+import { TokenizedString } from "~/components/themes/theme-code-preview/library/tokenized-string"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { Color } from "~/utils/colors/models/color"
@@ -11,6 +11,7 @@ import styles from "./theme-code-preview.module.sass"
 
 interface Props extends PropsWithClassName {
 	theme?: IntermediateTheme
+	content?: TokenizedString
 }
 
 const ThemeCodePreview: FunctionComponent<Props> = props => {
@@ -26,7 +27,7 @@ const ThemeCodePreview: FunctionComponent<Props> = props => {
 		)
 	}
 
-	const tokenizedString = swiftTokenizedString()
+	const tokenizedString = props.content ?? new TokenizedString([])
 	const tokensByLine = tokenizedStringByLines(tokenizedString)
 
 	const numberOfLines = tokensByLine.length
@@ -39,9 +40,9 @@ const ThemeCodePreview: FunctionComponent<Props> = props => {
 			<FauxWindow className={styles.window} background={backgroundColor.rgb} controls>
 				<code>
 					{tokensByLine.map((tokens, lineIndex) => (
-						<div key={`code-line-${lineIndex}`}>
-							<span className={styles.lineNumber}>{formattedLineIndex(lineIndex)}</span>
-							<span className={styles.lineContent}>
+						<div className={styles.line} key={`code-line-${lineIndex}`}>
+							<div className={styles.lineNumber}>{formattedLineIndex(lineIndex)}</div>
+							<div className={styles.lineContent}>
 								{tokens.map((token, tokenIndex) => {
 									const kind = token.kind ?? ThemeFormatKey.Foreground
 									const word = token.word
@@ -54,7 +55,7 @@ const ThemeCodePreview: FunctionComponent<Props> = props => {
 										</span>
 									)
 								})}
-							</span>
+							</div>
 						</div>
 					))}
 				</code>
