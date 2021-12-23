@@ -10,6 +10,9 @@
 	background: $elementBackgroundColor
 	padding: 0.55rem 3rem
 
+	@include breakpoint($anyMobile)
+		padding: 0.5rem 2rem
+
 	.symbol
 		$size: 1.25rem
 		width: $size
@@ -18,7 +21,8 @@
 		flex: 0 0 auto
 		
 	.text
-		width: 100%
+		flex: 1 1 auto
+		overflow: hidden
 
 		.heading
 			@include buttonFont
