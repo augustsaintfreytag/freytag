@@ -87,6 +87,9 @@ const ThemePage: Page<PageProps & Props> = props => {
 			return { format, href }
 		}) ?? []
 
+	const accentColor = colors?.[2]
+	const ThemeDivider = () => <Divider className={styles.divider} color={accentColor?.rgb} />
+
 	const codePreviewContent: CodeContent[] = [
 		{
 			name: "Swift",
@@ -121,9 +124,9 @@ const ThemePage: Page<PageProps & Props> = props => {
 						<Markdown>{theme.description}</Markdown>
 					</div>
 					<ThemeCodePreviews className={styles.previews} theme={intermediateThemeFile} content={codePreviewContent} />
-					<Divider className={styles.divider} />
+					<ThemeDivider />
 					<ThemeDownloads className={styles.downloads} name={theme.name} items={downloads} />
-					<Divider className={styles.divider} />
+					<ThemeDivider />
 					<ThemeClosure theme={theme} />
 				</main>
 			</section>
