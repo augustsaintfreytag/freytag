@@ -4,6 +4,10 @@
 	border: 1px solid $textColor
 	padding: 0.15rem 0.5rem
 
+	&.decorated
+		.text
+			margin-left: 0.65rem
+
 	> *
 		display: inline-block
 		vertical-align: middle
@@ -15,7 +19,3 @@
 
 	.text
 		@include buttonFont
-
-	&.decorated
-		.text
-			margin-left: 0.65rem

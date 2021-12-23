@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react"
-import ActionButton from "~/components/action-button/action-button"
+import RadioActionButton from "~/components/action-button/radio-action-button"
 import { SpriteReference } from "~/components/sprites/sprite"
 import { TokenizedString } from "~/components/themes/theme-code-preview/library/tokenized-string"
 import ThemeCodePreview from "~/components/themes/theme-code-preview/theme-code-preview"
@@ -29,7 +29,14 @@ const ThemeCodePreviews: FunctionComponent<Props> = props => {
 			<div className={styles.content}>{selectedContent && <ThemeCodePreview theme={theme} content={selectedContent.content} />}</div>
 			<div className={styles.selector}>
 				{content.map((item, index) => (
-					<ActionButton key={item.name} text={item.name} symbol={item.symbol} onClick={() => setSelectedContentIndex(index)} />
+					<RadioActionButton
+						key={item.name}
+						text={item.name}
+						title={`View theme preview for ${item.name}`}
+						symbol={item.symbol}
+						active={index === selectedContentIndex}
+						onClick={() => setSelectedContentIndex(index)}
+					/>
 				))}
 			</div>
 		</section>
