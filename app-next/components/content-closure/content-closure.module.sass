@@ -3,7 +3,12 @@
 .closure
 	$closureSpacing: 1rem
 
-	@include inlayed
+	@include breakpoint($anyDesktop)
+		@include inlayed
+
+	@include breakpoint($anyMobile)
+		margin-left: 5rem
+		margin-right: 5rem
 
 	margin-top: $pageContentSpacing
 	text-align: center
@@ -11,3 +16,4 @@
 
 	> div
 		@include listMargin($closureSpacing)
+		line-height: $paragraphLineHeight
