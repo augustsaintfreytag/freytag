@@ -32,7 +32,7 @@ export interface Props {
 	subHeading?: string
 	cover?: URLComponent
 	callToAction?: {
-		link: URL
+		href: URL
 		label: string
 	}
 }
@@ -56,7 +56,7 @@ const WorkContentTitleCaseBlock: FunctionComponent<Props> = props => {
 				<CallToAction
 					name={actionName}
 					className={styles.callToAction}
-					href={assetUrlFromComponent(props.callToAction.link)}
+					href={assetUrlFromComponent(props.callToAction.href)}
 					text={props.callToAction.label}
 				/>
 			)}
