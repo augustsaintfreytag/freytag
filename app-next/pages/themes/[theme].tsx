@@ -6,12 +6,14 @@ import { intermediateThemeFileFromApi } from "~/api/records/themes/functions/the
 import { themePackageFromTheme } from "~/api/records/themes/functions/theme-package-decoding"
 import { Theme } from "~/api/records/themes/library/theme"
 import { ThemeEditorFormat } from "~/api/records/themes/library/theme-editor-format"
+import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import Markdown from "~/components/markdown/markdown"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import Meta from "~/components/meta/meta-tags"
 import ThemeSprites from "~/components/sprites/theme-sprites"
+import ThemeClosure from "~/components/themes/theme-closure/theme-closure"
 import {
 	markdownTokenizedString,
 	swiftTokenizedString,
@@ -108,7 +110,9 @@ const ThemePage: Page<PageProps & Props> = props => {
 					<div className={styles.abstract}>
 						<Markdown>{theme.description}</Markdown>
 					</div>
-					<ThemeCodePreviews className={styles.demo} theme={intermediateThemeFile} content={codePreviewContent} />
+					<ThemeCodePreviews className={styles.previews} theme={intermediateThemeFile} content={codePreviewContent} />
+					<Divider className={styles.divider} />
+					<ThemeClosure theme={theme} />
 				</main>
 			</section>
 		</>
