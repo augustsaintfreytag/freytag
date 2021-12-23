@@ -1,13 +1,10 @@
 import { FunctionComponent } from "react"
 import ActionButton from "~/components/action-button/action-button"
-import { SpriteReference } from "~/components/sprites/sprite"
 import { className } from "~/utils/class-names/class-name"
+import { Props as ActionButtonProps } from "./action-button"
 import styles from "./radio-action-button.module.sass"
 
-interface Props {
-	symbol?: SpriteReference
-	text?: string
-	onClick?: () => void
+interface Props extends ActionButtonProps {
 	active?: boolean
 }
 

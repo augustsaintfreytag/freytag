@@ -4,9 +4,10 @@ import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import styles from "./action-button.module.sass"
 
-interface Props extends PropsWithClassName {
+export interface Props extends PropsWithClassName {
 	symbol?: SpriteReference
 	text?: string
+	title?: string
 	onClick?: () => void
 	symbolClassName?: string
 	textClassName?: string
@@ -18,6 +19,7 @@ const ActionButton: FunctionComponent<Props> = props => {
 	return (
 		<button
 			className={className(styles.button, isDecorated ? styles.decorated : styles.undecorated, props.className)}
+			title={props.title}
 			onClick={() => props.onClick?.()}
 		>
 			{props.symbol && <Sprite className={className(styles.symbol, props.symbolClassName)} href={props.symbol} />}
