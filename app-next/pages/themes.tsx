@@ -10,9 +10,9 @@ import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import Meta from "~/components/meta/meta-tags"
 import ThemeSprites from "~/components/sprites/theme-sprites"
-import ThemeClosure from "~/components/themes/theme-closure/theme-closure"
 import ThemePreview from "~/components/themes/theme-preview/components/theme-preview"
 import { themePreviewPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
+import ThemesClosure from "~/components/themes/themes-closure/themes-closure"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
@@ -90,7 +90,7 @@ const ThemesPage: Page<PageProps & Props> = props => {
 					</ol>
 				</section>
 				<Divider />
-				<ThemeClosure themes={themes} />
+				<ThemesClosure themes={themes} />
 			</section>
 		</>
 	)
