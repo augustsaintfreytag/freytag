@@ -1,7 +1,7 @@
 import { FunctionComponent, useMemo } from "react"
 import ContentClosure from "~/components/content-closure/content-closure"
 import ExternalTwitterLink from "~/components/link/external-twitter-link"
-import Time from "~/components/time/time"
+import Time, { TimeProperties } from "~/components/time/time"
 import Typo from "~/components/typo/typo"
 import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
 import styles from "./work-content-closure-block.module.sass"
@@ -20,7 +20,7 @@ export interface Props {
 }
 
 const WorkContentClosureBlock: FunctionComponent<Props> = props => {
-	const { created, modified } = useMemo<{ created?: MetadataDate; modified?: MetadataDate }>(() => {
+	const { created, modified } = useMemo<{ created?: TimeProperties; modified?: TimeProperties }>(() => {
 		const { created, modified } = props.metadata ?? {}
 
 		return {

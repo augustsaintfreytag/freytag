@@ -50,6 +50,10 @@ $rationalTWFontFamily: "Rational TW"
 	@include fontFamily($maisonFontFamily)
 	font-weight: 700
 
+@mixin elementSubHeadingFont
+	@include fontFamily($maisonFontFamily)
+	font-weight: 400
+
 @mixin buttonFont
 	@include fontFamily($maisonFontFamily)
 	font-weight: 400
@@ -88,11 +92,17 @@ $highlightFontSizeMobile: 1.4rem
 $pageHeadingFontSize: 2.9rem
 $pageHeadingFontSizeMobile: 2.65rem
 
+$pageSubHeadingFontSize: 2.2rem
+$pageSubHeadingFontSizeMobile: 1.45rem
+
 $pageNavigationFontSize: 1rem
 $pageNavigationFontSizeMobile: 1.2rem
 
-$elementHeadingFontSize: 2.2rem
-$elementHeadingFontSizeMobile: 1.45rem
+$elementHeadingFontSize: 1.7rem
+$elementHeadingFontSizeMobile: 1.7rem
+
+$elementSubHeadingFontSize: 1.1rem
+$elementSubHeadingFontSizeMobile: 1.1rem
 
 $elementTextFontSize: 0.85rem
 $elementTextFontSizeMobile: 1rem
@@ -138,3 +148,28 @@ $captionLineHeight: 1.4
 	font-smoothing: antialiased
 	-moz-osx-font-smoothing: grayscale
 	-webkit-font-smoothing: antialiased
+
+
+// Ellipsis
+
+@mixin ellipsized
+	white-space: nowrap
+	text-overflow: ellipsis
+	overflow: hidden
+
+@mixin notEllipsized
+	white-space: unset
+	text-overflow: unset
+	overflow: unset
+
+@mixin ellipsizedLines($lines)
+	display: -webkit-box
+	display: -moz-box
+
+	-webkit-line-clamp: $lines
+	-moz-line-clamp: $lines
+
+	-webkit-box-orient: vertical
+	-moz-box-orient: vertical
+	
+	overflow: hidden
