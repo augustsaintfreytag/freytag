@@ -5,14 +5,20 @@ import {
 	isServerSideRedirectResponse
 } from "~/api/props/functions/server-side-response-guards"
 import { serverSideNotFoundResponse } from "~/api/props/functions/server-side-response-presets"
-import type { PromisedServerSideResponse, ServerSideContext, ServerSideResponse } from "~/api/props/library/server-side-response"
+import type { ServerSideContext, ServerSideResponse } from "~/api/props/library/server-side-response"
+
+// Library
+
+type PromisedResponse<Data> = Promise<ServerSideResponse<Data>>
+type PromisedResponseOrFallback<Data> = Promise<ServerSideResponse<Data> | undefined>
+type AggregatingResultBlock<PageData> = (previousResponse?: ServerSideResponse<PageData>) => PromisedResponse<PageData>
 
 // Direct Fetch
 
 export async function getServerSideResponse<Response, PageData>(
 	resolveResponse: () => Promise<Response | undefined>,
 	mapResponse: (response: Response) => PageData
-): PromisedServerSideResponse<PageData> {
+): PromisedResponse<PageData> {
 	try {
 		const response = await resolveResponse()
 		if (!response) {
@@ -36,7 +42,7 @@ export async function getServerSideResponseByQuery<Response, PageData>(
 	queryKey: string,
 	resolveResponse: (id: UUID) => Promise<Response | undefined>,
 	mapResponse: (response: Response) => PageData
-): PromisedServerSideResponse<PageData> {
+): PromisedResponse<PageData> {
 	const id = context.query[queryKey]
 
 	if (!id || typeof id !== "string") {
@@ -64,43 +70,81 @@ export async function getServerSideResponseByQuery<Response, PageData>(
 
 // Sequential Fetch
 
-type ResultBlock<PageData> = (previousResult?: ServerSideResponse<PageData>) => PromisedServerSideResponse<PageData>
+export async function getServerSideResponses<PageData>(...blocks: PromisedResponse<PageData>[]): PromisedResponse<PageData> {
+	const responses = await Promise.all(blocks)
+	let aggregateResponse: ServerSideResponse<PageData> | undefined
 
-export async function getServerSideResponses<PageData>(...blocks: ResultBlock<PageData>[]): PromisedServerSideResponse<PageData> {
-	let aggregateResult: ServerSideResponse<PageData> | undefined
+	for (const response of responses) {
+		aggregateResponse = validateAndMergeServerSideResponses(response, aggregateResponse)
 
-	for (const block of blocks) {
-		const blockResult = await block(aggregateResult)
-		aggregateResult = validateAndMergeServerSideResponses(blockResult, aggregateResult)
-
-		if (isServerSideNotFoundResponse(aggregateResult)) {
-			return aggregateResult
+		if (isServerSideNotFoundResponse(aggregateResponse)) {
+			return aggregateResponse
 		}
 	}
 
-	return aggregateResult ?? serverSideNotFoundResponse
+	return aggregateResponse ?? serverSideNotFoundResponse
+}
+
+export async function getAggregatingServerSideResponses<PageData>(...blocks: AggregatingResultBlock<PageData>[]): PromisedResponse<PageData> {
+	let aggregateResponse: ServerSideResponse<PageData> | undefined
+
+	for (const block of blocks) {
+		const response = await block(aggregateResponse)
+
+		if (!response) {
+			continue
+		}
+
+		aggregateResponse = validateAndMergeServerSideResponses(response, aggregateResponse)
+
+		if (isServerSideNotFoundResponse(aggregateResponse)) {
+			return aggregateResponse
+		}
+	}
+
+	return aggregateResponse ?? serverSideNotFoundResponse
+}
+
+export function discardingServerSideError<PageData>(block: AggregatingResultBlock<PageData>): AggregatingResultBlock<PageData> {
+	return async (previousResponse?: ServerSideResponse<PageData>): PromisedResponse<PageData> => {
+		const blockResponse = await block(previousResponse)
+
+		if (!isServerSidePropsResponse(blockResponse)) {
+			if (!previousResponse) {
+				console.error(
+					`Could not proceed discarding error for server-side fetch, no previous response or fallback provided. Will return not found fallback response.`
+				)
+
+				return serverSideNotFoundResponse
+			}
+
+			return previousResponse
+		}
+
+		return blockResponse
+	}
 }
 
 // Merging & Processing
 
-function mergeServerSideResponses<PageData>(result: ServerSideResponse<PageData>, data?: PageData): ServerSideResponse<PageData> {
-	if (isServerSidePropsResponse(result)) {
-		return wrappedServerSideResult({ ...data, ...result.props.data })
+function mergeServerSideResponses<PageData>(response: ServerSideResponse<PageData>, data?: PageData): ServerSideResponse<PageData> {
+	if (isServerSidePropsResponse(response)) {
+		return wrappedServerSideResult({ ...data, ...response.props.data })
 	}
 
-	return result
+	return response
 }
 
 function validateAndMergeServerSideResponses<PageData>(
-	result: ServerSideResponse<PageData>,
+	response: ServerSideResponse<PageData>,
 	aggregate?: ServerSideResponse<PageData>
 ): ServerSideResponse<PageData> {
-	if (isServerSidePropsResponse(result)) {
-		return wrappedServerSideResult({ ...aggregate, ...result.props.data })
+	if (isServerSidePropsResponse(response)) {
+		return wrappedServerSideResult({ ...aggregate, ...response.props.data })
 	}
 
-	if (isServerSideRedirectResponse(result)) {
-		return result
+	if (isServerSideRedirectResponse(response)) {
+		return response
 	}
 
 	return serverSideNotFoundResponse
