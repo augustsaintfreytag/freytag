@@ -1,39 +1,53 @@
-import { GetServerSidePropsContext, GetServerSidePropsResult, Redirect } from "next"
-import { UUID } from "~/api/common/library/uuid"
+import type { UUID } from "~/api/common/library/uuid"
+import {
+	isServerSideNotFoundResponse,
+	isServerSidePropsResponse,
+	isServerSideRedirectResponse
+} from "~/api/props/functions/server-side-response-guards"
+import { serverSideNotFoundResponse } from "~/api/props/functions/server-side-response-presets"
+import type { ServerSideContext, ServerSideResponse } from "~/api/props/library/server-side-response"
 
-type NotFoundResult = { notFound: true }
-type PropsResult<Data> = { props: { data: Data } }
-type RedirectResult = { redirect: Redirect }
+// Library
 
-type PromisedServerSideResult<Data> = Promise<ServerSideResult<Data>>
-type ServerSideResult<Data> = GetServerSidePropsResult<{ data: Data }>
-type ServerSideContext = GetServerSidePropsContext<{}>
+type PromisedResponse<Data> = Promise<ServerSideResponse<Data>>
+type PromisedResponseOrFallback<Data> = Promise<ServerSideResponse<Data> | undefined>
+type AggregatingResultBlock<PageData> = (previousResponse?: ServerSideResponse<PageData>) => PromisedResponse<PageData>
 
-export function isServerSidePropsResult<Data>(object: any): object is PropsResult<Data> {
-	return typeof object === "object" && typeof object.props === "object"
+// Direct Fetch
+
+export async function getServerSideResponse<Response, PageData>(
+	resolveResponse: () => Promise<Response | undefined>,
+	mapResponse: (response: Response) => PageData
+): PromisedResponse<PageData> {
+	try {
+		const response = await resolveResponse()
+		if (!response) {
+			return serverSideNotFoundResponse
+		}
+
+		const data = mapResponse(response)
+
+		return {
+			props: { data }
+		}
+	} catch (error) {
+		return serverSideNotFoundResponse
+	}
 }
 
-export function isServerSideNotFoundResult(object: any): object is NotFoundResult {
-	return typeof object === "object" && typeof object.notFound === "boolean" && object.notFound === true
-}
-
-export function isServerSideRedirectResult(object: any): object is RedirectResult {
-	return typeof object === "object" && typeof object.redirect === "object"
-}
-
-export const serverSideResultNotFound: NotFoundResult = { notFound: true }
+// Query-Defined Fetch
 
 export async function getServerSideResponseByQuery<Response, PageData>(
 	context: ServerSideContext,
 	queryKey: string,
 	resolveResponse: (id: UUID) => Promise<Response | undefined>,
 	mapResponse: (response: Response) => PageData
-): PromisedServerSideResult<PageData> {
+): PromisedResponse<PageData> {
 	const id = context.query[queryKey]
 
 	if (!id || typeof id !== "string") {
 		console.error(`Could not get server-side record, missing id for query key '${queryKey}'.`)
-		return serverSideResultNotFound
+		return serverSideNotFoundResponse
 	}
 
 	try {
@@ -50,52 +64,91 @@ export async function getServerSideResponseByQuery<Response, PageData>(
 		}
 	} catch (error) {
 		console.error(`Could not get server-side record '${id}' for query key '${queryKey}'. ${error}`)
-		return serverSideResultNotFound
+		return serverSideNotFoundResponse
 	}
 }
 
-export async function getServerSideResponse<Response, PageData>(
-	resolveResponse: () => Promise<Response | undefined>,
-	mapResponse: (response: Response) => PageData
-): PromisedServerSideResult<PageData> {
-	try {
-		const response = await resolveResponse()
-		if (!response) {
-			return serverSideResultNotFound
+// Sequential Fetch
+
+export async function getServerSideResponses<PageData>(...blocks: PromisedResponse<PageData>[]): PromisedResponse<PageData> {
+	const responses = await Promise.all(blocks)
+	let aggregateResponse: ServerSideResponse<PageData> | undefined
+
+	for (const response of responses) {
+		aggregateResponse = validateAndMergeServerSideResponses(response, aggregateResponse)
+
+		if (isServerSideNotFoundResponse(aggregateResponse)) {
+			return aggregateResponse
+		}
+	}
+
+	return aggregateResponse ?? serverSideNotFoundResponse
+}
+
+export async function getAggregatingServerSideResponses<PageData>(...blocks: AggregatingResultBlock<PageData>[]): PromisedResponse<PageData> {
+	let aggregateResponse: ServerSideResponse<PageData> | undefined
+
+	for (const block of blocks) {
+		const response = await block(aggregateResponse)
+		aggregateResponse = validateAndMergeServerSideResponses(response, aggregateResponse)
+
+		if (isServerSideNotFoundResponse(aggregateResponse)) {
+			return aggregateResponse
+		}
+	}
+
+	return aggregateResponse ?? serverSideNotFoundResponse
+}
+
+export function discardingServerSideError<PageData>(block: AggregatingResultBlock<PageData>): AggregatingResultBlock<PageData> {
+	return async (previousResponse?: ServerSideResponse<PageData>): PromisedResponse<PageData> => {
+		const blockResponse = await block(previousResponse)
+
+		if (!isServerSidePropsResponse(blockResponse)) {
+			if (!previousResponse) {
+				console.error(
+					`Could not proceed discarding error for server-side fetch, no previous response or fallback provided. Will return not found fallback response.`
+				)
+
+				return serverSideNotFoundResponse
+			}
+
+			return previousResponse
 		}
 
-		const data = mapResponse(response)
-
-		return {
-			props: { data }
-		}
-	} catch (error) {
-		return serverSideResultNotFound
+		return blockResponse
 	}
 }
 
-export async function getServerSideResponses<PageData>(...promises: PromisedServerSideResult<PageData>[]): PromisedServerSideResult<PageData> {
-	const results: ServerSideResult<PageData>[] = await Promise.all(promises)
-	let combinedData: PageData | undefined
+// Merging & Processing
 
-	for (const result of results) {
-		if (isServerSidePropsResult(result)) {
-			combinedData = { ...(combinedData ?? {}), ...result.props.data }
-			continue
-		}
-
-		if (isServerSideNotFoundResult(result)) {
-			return serverSideResultNotFound
-		}
-
-		if (isServerSideRedirectResult(result)) {
-			return result
-		}
+function mergeServerSideResponses<PageData>(response: ServerSideResponse<PageData>, data?: PageData): ServerSideResponse<PageData> {
+	if (isServerSidePropsResponse(response)) {
+		return wrappedServerSideResult({ ...data, ...response.props.data })
 	}
 
-	if (!combinedData) {
-		return serverSideResultNotFound
+	return response
+}
+
+function validateAndMergeServerSideResponses<PageData>(
+	response: ServerSideResponse<PageData>,
+	aggregate?: ServerSideResponse<PageData>
+): ServerSideResponse<PageData> {
+	if (isServerSideRedirectResponse(response)) {
+		return response
 	}
 
-	return { props: { data: combinedData } }
+	if (isServerSideNotFoundResponse(response)) {
+		return response
+	}
+
+	if (isServerSidePropsResponse(response)) {
+		return wrappedServerSideResult({ ...aggregate, ...response.props.data })
+	}
+
+	return serverSideNotFoundResponse
+}
+
+function wrappedServerSideResult<PageData>(data: PageData): ServerSideResponse<PageData> {
+	return { props: { data: { ...data } } }
 }
