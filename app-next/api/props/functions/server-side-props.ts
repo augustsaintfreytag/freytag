@@ -90,11 +90,6 @@ export async function getAggregatingServerSideResponses<PageData>(...blocks: Agg
 
 	for (const block of blocks) {
 		const response = await block(aggregateResponse)
-
-		if (!response) {
-			continue
-		}
-
 		aggregateResponse = validateAndMergeServerSideResponses(response, aggregateResponse)
 
 		if (isServerSideNotFoundResponse(aggregateResponse)) {
