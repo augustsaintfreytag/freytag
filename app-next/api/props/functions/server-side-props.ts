@@ -134,12 +134,16 @@ function validateAndMergeServerSideResponses<PageData>(
 	response: ServerSideResponse<PageData>,
 	aggregate?: ServerSideResponse<PageData>
 ): ServerSideResponse<PageData> {
-	if (isServerSidePropsResponse(response)) {
-		return wrappedServerSideResult({ ...aggregate, ...response.props.data })
-	}
-
 	if (isServerSideRedirectResponse(response)) {
 		return response
+	}
+
+	if (isServerSideNotFoundResponse(response)) {
+		return response
+	}
+
+	if (isServerSidePropsResponse(response)) {
+		return wrappedServerSideResult({ ...aggregate, ...response.props.data })
 	}
 
 	return serverSideNotFoundResponse
