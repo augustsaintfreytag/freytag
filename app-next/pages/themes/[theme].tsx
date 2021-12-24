@@ -35,6 +35,17 @@ import { colorsFromEncodedData } from "~/utils/colors/functions/color-conversion
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
 import styles from "./theme-detail-page.module.sass"
 
+// Library
+
+interface PageData {
+	theme: Theme
+	file?: IntermediateTheme
+}
+
+interface Props {
+	data?: PageData
+}
+
 // Fetch
 
 async function getServerSideThemeFileProps(response?: ServerSideResponse<PageData>): Promise<ServerSideResponse<PageData>> {
@@ -42,7 +53,7 @@ async function getServerSideThemeFileProps(response?: ServerSideResponse<PageDat
 		return serverSideNotFoundResponse
 	}
 
-	const theme = response.props.data.theme
+	const theme = response.props.data.theme!
 
 	try {
 		const themePackage = themePackageFromTheme(theme, ThemeEditorFormat.Intermediate)
@@ -59,17 +70,6 @@ async function getServerSideThemeFileProps(response?: ServerSideResponse<PageDat
 		console.error(`Could not fetch intermediate theme package for theme '${theme.name}'.`, error)
 		return response
 	}
-}
-
-// Library
-
-interface PageData {
-	theme: Theme
-	file?: IntermediateTheme
-}
-
-interface Props {
-	data?: PageData
 }
 
 // Page
