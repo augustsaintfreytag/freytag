@@ -11,7 +11,7 @@ export interface Theme extends CockpitRecord {
 	cover?: ImageLink
 	colors: string
 	lightness: ThemeLightness
-	packages?: ThemePackageBlock[]
+	packages?: ThemePackageRecord[]
 }
 
 export interface ThemePackage {
@@ -19,6 +19,6 @@ export interface ThemePackage {
 	file: AssetLink
 }
 
-export interface ThemePackageBlock {
+export interface ThemePackageRecord {
 	value: ThemePackage
 }
