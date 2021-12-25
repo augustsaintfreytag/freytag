@@ -68,11 +68,11 @@ const ThemeMenuItem: FunctionComponent<Props> = props => {
 	const viewMode = viewModeForProps(props)
 
 	return (
-		<li className={className(styles.menuItem, props.disabled && styles.disabled)}>
+		<div className={className(styles.menuItem, props.disabled && styles.disabled)}>
 			{viewMode === ViewMode.Plain && <Inlay className={styles.plain} {...props} />}
 			{viewMode === ViewMode.Event && <EventWrappedInlay {...props} />}
 			{viewMode === ViewMode.Link && <LinkWrappedInlay {...props} />}
-		</li>
+		</div>
 	)
 }
 

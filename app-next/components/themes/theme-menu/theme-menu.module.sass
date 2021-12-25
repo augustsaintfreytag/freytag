@@ -1,14 +1,14 @@
 @import "/styles/values/all"
-	
+
 .menu	
 	background: $elementBackgroundColor
 	$menuItemSpacing: 3.5rem
 	
-	> ol
+	> nav
 		width: fit-content
 		margin: 0 auto
 		@include inlayed
 
-		> li
+		> *
 			display: inline-block
 			@include horizontalListMargin($menuItemSpacing)

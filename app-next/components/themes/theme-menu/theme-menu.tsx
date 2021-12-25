@@ -34,13 +34,13 @@ const ThemeMenu: FunctionComponent<Props> = props => {
 
 	return (
 		<section className={styles.menu}>
-			<ol>
+			<nav>
 				<ThemeMenuItem symbol={ThemeMenuSprite.Gallery} text="Return to Gallery" href="/themes" />
 				<ThemeMenuItem symbol={ThemeMenuSprite.ShareTheme} text="Share Theme" onClick={() => shareTheme(theme)} disabled={!allowsSharing} />
 				<ThemeMenuItem symbol={ThemeMenuSprite.CustomizeTheme} text="Customise Theme" disabled />
 				<ThemeMenuItem symbol={ThemeMenuSprite.PreviousTheme} text="Previous Theme" href={themeHref(previousTheme)} disabled={!previousTheme} />
 				<ThemeMenuItem symbol={ThemeMenuSprite.NextTheme} text="Next Theme" href={themeHref(nextTheme)} disabled={!nextTheme} />
-			</ol>
+			</nav>
 		</section>
 	)
 }
