@@ -69,10 +69,10 @@ const ThemesPage: Page<PageProps & Props> = props => {
 				<WorkTitle
 					className={styles.title}
 					title="Themes"
-					abstract="Colour themes designed and built for Xcode, the primary development 
-					environment for Apple platforms, and Visual Studio Code, the popular extensible 
-					editor for web development. A collection of distinct original palettes 
-					for a new splash of colour for code of any language."
+					abstract="Diverse and distinct colour themes, designed and compiled from an assortment 
+					of ten base colours. Download options for *Xcode*, the primary development environment for 
+					Apple platforms,  *Visual Studio Code*, the popular extensible development environment, and 
+					other formats, available in dark and light variants."
 				/>
 				<section className={styles.list}>
 					<ol>
