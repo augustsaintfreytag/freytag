@@ -6,10 +6,8 @@ import { Theme } from "~/api/records/themes/library/theme"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import InternalLink from "~/components/link/internal-link"
-import { canonicalHref } from "~/components/meta/functions/canonical-href"
-import { pageTitle } from "~/components/meta/functions/page-title"
-import Meta from "~/components/meta/meta-tags"
 import ThemeSprites from "~/components/sprites/theme-sprites"
+import ThemeMeta from "~/components/themes/thema-meta/theme-meta"
 import ThemePreview from "~/components/themes/theme-preview/components/theme-preview"
 import { themePreviewPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
 import ThemesClosure from "~/components/themes/themes-closure/themes-closure"
@@ -36,13 +34,9 @@ interface Props {
 export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
 	getServerSideResponses<PageData>(
 		getServerSideResponse(pageGraphicsFromApi, pageGraphics => {
-			if (!pageGraphics.themesPreview || !pageGraphics.themesAsset) {
-				return {}
-			}
-
 			return {
-				preview: pageGraphics.themesPreview.path,
-				cover: pageGraphics.themesAsset.path
+				preview: pageGraphics.themesPreview?.path,
+				cover: pageGraphics.themesAsset?.path
 			}
 		}),
 		getServerSideResponse(themesFromApi, themes => {
@@ -57,7 +51,7 @@ const ThemesPage: Page<PageProps & Props> = props => {
 
 	return (
 		<>
-			<Meta href={canonicalHref("/imprint")} title={pageTitle("Themes")} />
+			<ThemeMeta previewAsset={props.data?.preview} />
 			<ThemeSprites />
 			<section className={styles.page}>
 				<ImageCover
@@ -69,10 +63,10 @@ const ThemesPage: Page<PageProps & Props> = props => {
 				<WorkTitle
 					className={styles.title}
 					title="Themes"
-					abstract="Diverse and distinct colour themes, designed and compiled from an assortment 
-					of ten base colours. Download options for *Xcode*, the primary development environment for 
-					Apple platforms,  *Visual Studio Code*, the popular extensible development environment, and 
-					other formats, available in dark and light variants."
+					abstract="Diverse and distinct colour themes in light and dark variants, designed and compiled 
+					from an assortment of ten base colours. Download options for *Xcode*, the primary development 
+					environment for Apple platforms,  *Visual Studio Code*, the popular extensible development 
+					environment, and other formats."
 				/>
 				<section className={styles.list}>
 					<ol>
