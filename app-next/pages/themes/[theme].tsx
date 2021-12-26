@@ -89,11 +89,12 @@ const ThemePage: Page<PageProps & Props> = props => {
 	const colors = colorsFromEncodedData(theme.colors)
 	const downloads =
 		theme.packages?.map(themePackage => {
+			const name = themePackage.value.format
 			const format = themePackage.value.format
 			const path = themePackage.value.file.path
 			const href = assetUrlFromComponent(path)
 
-			return { format, href }
+			return { name, format, href }
 		}) ?? []
 
 	const accentColor = colors?.[2]
