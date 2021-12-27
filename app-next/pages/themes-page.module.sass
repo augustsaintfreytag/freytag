@@ -17,8 +17,12 @@
 			margin-top: $interContentSpacingMobile
 
 	.list
-		@include inlayed
-		margin-top: $interContentSpacing
+		@include breakpoint($anyDesktop)
+			@include inlayed
+			margin-top: $interContentSpacing
+
+		@include breakpoint($anyMobile)
+			margin: $interContentSpacing 2rem 0 2rem
 
 		> ol
 			display: flex
