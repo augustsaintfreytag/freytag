@@ -1,8 +1,6 @@
 @import "/styles/values/all"
 
 .block
-	@include inlayed
-
 	.heading
 		@include inlayedText
 		@include elementHeadingFont
@@ -11,6 +9,7 @@
 		margin-top: 2rem
 
 	.introduction
+		@include inlayedText
 		@include elementSubHeadingFont
 		font-size: $elementSubHeadingFontSize
 		text-align: center
@@ -20,8 +19,7 @@
 		margin-top: 2rem
 
 		ul
-			@include breakpoint($anyDesktop)
-				@include inlayedText
+			@include inlayedText
 
 			> li
 				@include breakpoint($anyDesktop)
