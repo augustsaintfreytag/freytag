@@ -2,12 +2,16 @@
 
 .menu	
 	background: $elementBackgroundColor
-	$menuItemSpacing: 3.5rem
+	$menuItemSpacing: 1rem
 	
 	> nav
 		width: fit-content
 		margin: 0 auto
-		@include inlayed
+		
+		@include breakpoint($anyDesktop)
+			@include inlayed
+
+		@include breakpoint($anyMobile)
 
 		> *
 			display: inline-block

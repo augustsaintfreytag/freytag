@@ -12,7 +12,10 @@ import styles from "./theme-menu-item.module.sass"
 interface Props {
 	disabled?: boolean
 	symbol: ThemeMenuSprite
-	text: string
+	text: {
+		short: string
+		full: string
+	}
 	href?: URL
 	onClick?: () => void
 }
@@ -44,20 +47,21 @@ function viewModeForProps(props: Props): ViewMode | undefined {
 // Child Components
 
 const Inlay: FunctionComponent<Props & PropsWithClassName> = props => (
-	<div className={className(styles.inlay, props.className)}>
+	<div className={className(styles.inlay, props.className)} title={props.text.full}>
 		<Sprite className={styles.symbol} href={props.symbol} />
-		<div className={styles.text}>{props.text}</div>
+		<div className={className(styles.text, styles.full)}>{props.text.full}</div>
+		<div className={className(styles.text, styles.short)}>{props.text.short}</div>
 	</div>
 )
 
 const EventWrappedInlay: FunctionComponent<Props> = props => (
-	<a onClick={props.onClick}>
+	<a onClick={props.onClick} title={props.text.full}>
 		<Inlay {...props} />
 	</a>
 )
 
 const LinkWrappedInlay: FunctionComponent<Props> = props => (
-	<InternalLink href={props.href ?? ""}>
+	<InternalLink href={props.href ?? ""} title={props.text.full}>
 		<Inlay {...props} />
 	</InternalLink>
 )
