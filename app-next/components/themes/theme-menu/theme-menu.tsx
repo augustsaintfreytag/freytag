@@ -7,6 +7,14 @@ import { useAfterInitialRender } from "~/utils/render/initial-render-hook"
 import { URL } from "~/utils/routing/library/url"
 import styles from "./theme-menu.module.sass"
 
+const itemTexts = {
+	returnToGallery: { short: "Gallery", full: "Return to Gallery" },
+	shareTheme: { short: "Share", full: "Share Theme" },
+	customizeTheme: { short: "Customise", full: "Customise Theme" },
+	previousTheme: { short: "Previous", full: "Previous Theme" },
+	nextTheme: { short: "Next", full: "Next Theme" }
+}
+
 interface Props {
 	themes: {
 		current: Theme
@@ -35,11 +43,16 @@ const ThemeMenu: FunctionComponent<Props> = props => {
 	return (
 		<section className={styles.menu}>
 			<nav>
-				<ThemeMenuItem symbol={ThemeMenuSprite.Gallery} text="Return to Gallery" href="/themes" />
-				<ThemeMenuItem symbol={ThemeMenuSprite.ShareTheme} text="Share Theme" onClick={() => shareTheme(theme)} disabled={!allowsSharing} />
-				<ThemeMenuItem symbol={ThemeMenuSprite.CustomizeTheme} text="Customise Theme" disabled />
-				<ThemeMenuItem symbol={ThemeMenuSprite.PreviousTheme} text="Previous Theme" href={themeHref(previousTheme)} disabled={!previousTheme} />
-				<ThemeMenuItem symbol={ThemeMenuSprite.NextTheme} text="Next Theme" href={themeHref(nextTheme)} disabled={!nextTheme} />
+				<ThemeMenuItem symbol={ThemeMenuSprite.Gallery} text={itemTexts.returnToGallery} href="/themes" />
+				<ThemeMenuItem symbol={ThemeMenuSprite.ShareTheme} text={itemTexts.shareTheme} onClick={() => shareTheme(theme)} disabled={!allowsSharing} />
+				<ThemeMenuItem symbol={ThemeMenuSprite.CustomizeTheme} text={itemTexts.customizeTheme} disabled />
+				<ThemeMenuItem
+					symbol={ThemeMenuSprite.PreviousTheme}
+					text={itemTexts.previousTheme}
+					href={themeHref(previousTheme)}
+					disabled={!previousTheme}
+				/>
+				<ThemeMenuItem symbol={ThemeMenuSprite.NextTheme} text={itemTexts.nextTheme} href={themeHref(nextTheme)} disabled={!nextTheme} />
 			</nav>
 		</section>
 	)

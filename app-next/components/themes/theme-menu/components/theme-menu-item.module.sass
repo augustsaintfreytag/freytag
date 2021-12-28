@@ -5,25 +5,36 @@
 
 	.inlay
 		$itemSize: 1.1rem
-		padding: $itemPadding 0
-		
+		$itemSizeMobile: 1.35rem
 
 		> *
 			display: inline-block
 			vertical-align: middle
 
 		.symbol
-			$size: $itemSize
-			height: $size
-			width: $size
-			overflow: visible
+			@include size($itemSize)
 
 		.text
-			margin-left: 0.5rem
+			margin-left: 0.75rem
 			line-height: $itemSize
 
 		&.plain
 			cursor: default
+
+		@include breakpoint($desktop)
+			.text.short
+				display: none
+
+		@include breakpoint($tablet)
+			.text.full
+				display: none
+
+		@include breakpoint($phone)
+			.symbol
+				@include size($itemSizeMobile)
+			.text
+				display: none
+				margin: 0
 
 	&.disabled
 		.inlay

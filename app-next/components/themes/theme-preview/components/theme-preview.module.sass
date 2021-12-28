@@ -8,17 +8,15 @@
 	width: min-content			// `min-content` uses color row
 	overflow: hidden
 
-	> *
-		// Additional width (not visible)
-		padding-right: 0rem
-
 	.colorRow
 		display: flex
 
 		> li
-			$colorSize: 2.75rem
-			width: $colorSize
-			height: $colorSize
+			@include breakpoint($anyDesktop)
+				@include size(2.75rem)
+
+			@include breakpoint($anyMobile)
+				@include size(2.5rem)
 
 	header
 		margin-top: 1rem
@@ -41,6 +39,7 @@
 			margin-left: 2.5rem
 
 	.description
+		@include wrappingFont
 		@include paragraphFont
 		font-size: $themeDescriptionFontSize
 		line-height: $paragraphLineHeight

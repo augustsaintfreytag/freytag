@@ -2,13 +2,27 @@
 
 .menu	
 	background: $elementBackgroundColor
-	$menuItemSpacing: 3.5rem
 	
 	> nav
 		width: fit-content
 		margin: 0 auto
-		@include inlayed
+		
+		@include breakpoint($anyDesktop)
+			@include inlayed
 
 		> *
 			display: inline-block
-			@include horizontalListMargin($menuItemSpacing)
+			padding: 1.5rem 0.9rem
+
+			@include breakpoint($desktop)
+				@include horizontalListMargin(1rem)
+
+			@include breakpoint($tablet)
+				@include horizontalListMargin(1.85rem)
+
+			@include breakpoint($phone)
+				@include horizontalListMargin(1.85rem)
+
+
+
+
