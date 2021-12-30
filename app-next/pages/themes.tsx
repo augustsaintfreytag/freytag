@@ -11,7 +11,7 @@ import ThemeMeta from "~/components/themes/thema-meta/theme-meta"
 import ThemePreview from "~/components/themes/theme-preview/components/theme-preview"
 import { themePreviewPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
 import ThemesClosure from "~/components/themes/themes-closure/themes-closure"
-import WorkTitle from "~/components/work/work-title/work-title"
+import ThemesTitle from "~/components/themes/themes-title/themes-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import type { URL } from "~/utils/routing/library/url"
@@ -60,7 +60,7 @@ const ThemesPage: Page<PageProps & Props> = props => {
 					description="A marble statue's head with colourful plants sprouting 
 					out its top, heavily stylised in an 80s vaporwave aesthetic."
 				/>
-				<WorkTitle
+				<ThemesTitle
 					className={styles.title}
 					title="Themes"
 					abstract="Diverse and distinct colour themes in light and dark variants, designed and compiled 

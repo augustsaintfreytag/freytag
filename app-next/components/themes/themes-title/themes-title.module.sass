@@ -1,0 +1,25 @@
+@import "/styles/values/all"
+
+.block
+	$interContentSpacing: 4rem
+	$interSubContentSpacing: 1.4rem
+
+	> header
+		@include inlayed
+
+		h1
+			@include headingFont
+			font-size: $pageHeadingFontSize
+			text-align: center
+
+			@include breakpoint($anyMobile)
+				font-size: $pageHeadingFontSizeMobile
+
+	> main
+		margin-top: $interContentSpacing
+		@include inlayedText
+
+		.abstract
+			text-align: center
+			max-width: 29rem
+			margin: $interSubContentSpacing auto 0 auto
