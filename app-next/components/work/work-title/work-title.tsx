@@ -51,7 +51,7 @@ const WorkTitle: FunctionComponent<Props> = props => {
 	const tag = useTagPropertiesForLifeEvent(link?.kind)
 
 	return (
-		<section className={className(props.className, styles.workTitle, appearanceClassName(link?.wantsReducedAppearance))}>
+		<section className={className(props.className, styles.block, appearanceClassName(link?.wantsReducedAppearance))}>
 			<header>
 				<h1>
 					<Typo>{title}</Typo>
