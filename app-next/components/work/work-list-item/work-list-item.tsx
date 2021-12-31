@@ -7,8 +7,8 @@ import { ViewportAssetImageFormats } from "~/components/asset-image/library/view
 import BlockTag from "~/components/block-tag/block-tag"
 import { useTagPropertiesForLifeEvent } from "~/components/block-tag/functions/life-event-block-tag-hook"
 import { BlockTagAppearance } from "~/components/block-tag/library/block-tag-appearance"
+import DecoratedInternalLink from "~/components/link/decorated-internal-link"
 import Markdown from "~/components/markdown/markdown"
-import Sprite from "~/components/sprites/sprite"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { URL, URLComponent } from "~/utils/routing/library/url"
@@ -58,14 +58,7 @@ const WorkListItem: FunctionComponent<Props> = props => {
 					<div className={styles.preview}>
 						<Markdown>{props.previewText}</Markdown>
 					</div>
-					<Link href={props.href}>
-						<a>
-							<div className={styles.link}>
-								<div className={styles.text}>Read Now</div>
-								<Sprite className={styles.symbol} href="#Arrow Top Right" />
-							</div>
-						</a>
-					</Link>
+					<DecoratedInternalLink className={styles.link} href={props.href} text="Read Now" compact />
 				</div>
 			</div>
 		</section>
