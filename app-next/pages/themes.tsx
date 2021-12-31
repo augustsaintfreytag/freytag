@@ -67,7 +67,7 @@ const ThemesPage: Page<PageProps & Props> = props => {
 							const props = themePreviewPropsFromTheme(theme)
 
 							return (
-								<li>
+								<li key={`${props.name}-${props.link.id}`}>
 									<InternalLink href={`/themes/${props.link.id}`}>
 										<ThemePreview {...props} />
 									</InternalLink>
