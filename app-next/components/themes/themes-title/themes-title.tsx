@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react"
+import DecoratedInternalLink from "~/components/link/decorated-internal-link"
 import Markdown from "~/components/markdown/markdown"
 import Typo from "~/components/typo/typo"
 import { PropsWithClassName } from "~/types/props"
@@ -24,6 +25,7 @@ const ThemesTitle: FunctionComponent<Props> = props => {
 						environment, and mood. Packages available for popular editors and development environments.
 					</Markdown>
 				</div>
+				<DecoratedInternalLink className={styles.link} href="/work/theme-studio" text="Read More" />
 			</main>
 		</section>
 	)

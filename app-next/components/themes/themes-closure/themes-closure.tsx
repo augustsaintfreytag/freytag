@@ -13,7 +13,7 @@ const ThemesClosure: FunctionComponent<Props> = props => {
 
 	return (
 		<ContentClosure>
-			<div>There are {props.themes.length} packages in the Theme Studio.</div>
+			<div>There are {props.themes.length} themes available in total.</div>
 			{lastRecordCreation && (
 				<div>
 					Last theme was created and published on <Time {...lastRecordCreation} />.
