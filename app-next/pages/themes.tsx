@@ -60,14 +60,7 @@ const ThemesPage: Page<PageProps & Props> = props => {
 					description="A marble statue's head with colourful plants sprouting 
 					out its top, heavily stylised in an 80s vaporwave aesthetic."
 				/>
-				<ThemesTitle
-					className={styles.title}
-					title="Themes"
-					abstract="Diverse and distinct colour themes in light and dark variants, designed and compiled 
-					from an assortment of ten base colours. Download options for *Xcode*, the primary development 
-					environment for Apple platforms,  *Visual Studio Code*, the popular extensible development 
-					environment, and other formats."
-				/>
+				<ThemesTitle className={styles.title} />
 				<section className={styles.list}>
 					<ol>
 						{themes.map(theme => {

@@ -7,24 +7,22 @@ import styles from "./themes-title.module.sass"
 
 // Component
 
-interface Props extends PropsWithClassName {
-	title: string
-	abstract: string
-}
+interface Props extends PropsWithClassName {}
 
 const ThemesTitle: FunctionComponent<Props> = props => {
-	const { title, abstract } = props
-
 	return (
 		<section className={className(props.className, styles.block)}>
 			<header>
 				<h1>
-					<Typo>{title}</Typo>
+					<Typo>Themes</Typo>
 				</h1>
 			</header>
 			<main>
 				<div className={styles.abstract}>
-					<Markdown>{abstract}</Markdown>
+					<Markdown>
+						Explore a varied collection of colour themes with light and dark variants. Find a distinct colour palette to match your preference,
+						environment, and mood. Packages available for popular editors and development environments.
+					</Markdown>
 				</div>
 			</main>
 		</section>
