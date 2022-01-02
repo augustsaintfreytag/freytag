@@ -6,22 +6,52 @@
 	@include inlayedText
 	@include wrappingFont
 
-	p
+	> p, > ul, > pre, > code
 		@include listMargin($paragraphSpacing)
 
 	a
 		text-decoration: underline
 
-	code
+	code		
+		// Code Fence Style
+
+		@include codeFont
 		position: relative
 		display: inline-block
 		padding: 0 0.25rem
-		
-		@include codeFont
+		line-height: $paragraphLineHeight
 
 		@include inlineOverlay
 			background: $codeInlineBackgroundColor
 			padding: 0.25rem 0
+
+		// Keyboard Shortcut Style
+
+		> strong
+			@include systemSymbolsFont
+			font-size: 1.2rem
+			line-height: 1.4
+			letter-spacing: 0.15rem
+			padding: 0 0.25rem
+
+	pre > code
+		// Code Block Style
+
+		@include codeFont
+		display: block
+		line-height: $paragraphLineHeight
+
+		@include nonWrappingFont
+		white-space: pre-wrap
+		word-break: break-all
+		
+		$verticalPadding: 0.75rem
+		$horizontalPadding: 0.75rem
+
+		padding: $verticalPadding $horizontalPadding
+
+		@include withInlineOverlay
+			padding: $verticalPadding 0
 
 	h3
 		@include headingFont
@@ -30,8 +60,19 @@
 		@include breakpoint($anyMobile)
 			font-size: $elementArticleHeadingFontSizeMobile
 
+		&:not(:first-child)
+			margin-top: 3.5rem
+
 	h4
 		font-size: $elementArticleSubHeadingFontSize
 
 		@include breakpoint($anyMobile)
 			font-size: $elementArticleSubHeadingFontSizeMobile
+
+		&:not(:first-child)
+			margin-top: 3rem
+
+	ul
+		padding-left: 2.5rem
+		list-style: square
+		line-height: $paragraphLineHeight

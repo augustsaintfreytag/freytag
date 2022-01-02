@@ -26,3 +26,7 @@
 		transform: translateY(-50%) translateX(-50% + $offsetPercentage) skew($skewX, 0deg)
 
 		@content
+
+@mixin withInlineOverlay
+	&::after
+		@content
