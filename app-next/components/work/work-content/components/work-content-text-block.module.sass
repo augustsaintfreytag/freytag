@@ -12,16 +12,35 @@
 	a
 		text-decoration: underline
 
-	code
+	code		
 		position: relative
-		display: inline-block
-		padding: 0 0.25rem
-		
-		@include codeFont
 
 		@include inlineOverlay
 			background: $codeInlineBackgroundColor
 			padding: 0.25rem 0
+
+		&[data-appearance="code"]
+			@include codeFont
+			display: inline-block
+			padding: 0 0.25rem
+			line-height: $paragraphLineHeight
+
+		&[data-appearance="code-block"]
+			@include codeFont
+			display: block
+			padding: 1.75rem 1.0rem
+			line-height: $paragraphLineHeight
+
+			@include nonWrappingFont
+			white-space: pre-wrap
+			word-break: break-all
+
+		&[data-appearance="keyboard-shortcut"]
+			@include systemSymbolsFont
+			font-size: 1.2rem
+			line-height: 1.4
+			letter-spacing: 0.15rem
+			padding: 0 0.25rem
 
 	h3
 		@include headingFont
