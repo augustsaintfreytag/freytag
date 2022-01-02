@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react"
 import ReactMarkdown from "react-markdown"
 import { mappedAnchorMarkdownElement } from "~/components/markdown/functions/markdown-anchor-mapping"
-import { mappedParagraphMarkdownElement } from "~/components/markdown/functions/markdown-paragraph-mapping"
+import { mappedTextMarkdownElement } from "~/components/markdown/functions/markdown-text-mapping"
 import { MarkdownComponents } from "~/components/markdown/library/types"
 
 // Component
@@ -12,7 +12,7 @@ interface Props {
 
 const components: MarkdownComponents = {
 	a: mappedAnchorMarkdownElement,
-	p: mappedParagraphMarkdownElement
+	p: mappedTextMarkdownElement
 }
 
 const Markdown: FunctionComponent<Props> = props => {
