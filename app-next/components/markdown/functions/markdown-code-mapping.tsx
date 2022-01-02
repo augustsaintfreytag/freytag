@@ -31,34 +31,13 @@ function childText(children: ReactNode[] & ReactNode): string | undefined {
 	return children[0]
 }
 
-enum Appearance {
-	Code = "code",
-	CodeBlock = "code-block",
-	KeyboardShortcut = "keyboard-shortcut"
-}
-
-function appearanceForChildren(children: ReactNode[] & ReactNode): Appearance {
-	const elementText = childText(children)
-
-	if (!elementText) {
-		return Appearance.Code
-	}
-
-	if (isMultiLine(elementText)) {
-		return Appearance.CodeBlock
-	}
-
-	if (isKeyboardShortcut(elementText)) {
-		return Appearance.KeyboardShortcut
-	}
-
-	return Appearance.Code
-}
-
 export function mappedCodeMarkdownElement({ node, inline, className, children, ...props }: Args) {
+	const text = childText(children)
+	const textIsKeyboardShortcut = (text && isKeyboardShortcut(text)) ?? false
+
 	return (
-		<code className={className} {...props} data-appearance={appearanceForChildren(children)}>
-			{children}
+		<code className={className} {...props}>
+			{textIsKeyboardShortcut ? <strong>{children}</strong> : children}
 		</code>
 	)
 }
