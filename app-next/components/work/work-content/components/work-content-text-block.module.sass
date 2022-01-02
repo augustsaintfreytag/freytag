@@ -6,7 +6,7 @@
 	@include inlayedText
 	@include wrappingFont
 
-	p
+	p, ul
 		@include listMargin($paragraphSpacing)
 
 	a
@@ -30,8 +30,19 @@
 		@include breakpoint($anyMobile)
 			font-size: $elementArticleHeadingFontSizeMobile
 
+		&:not(:first-child)
+			margin-top: 3.5rem
+
 	h4
 		font-size: $elementArticleSubHeadingFontSize
 
 		@include breakpoint($anyMobile)
 			font-size: $elementArticleSubHeadingFontSizeMobile
+
+		&:not(:first-child)
+			margin-top: 3rem
+
+	ul
+		padding-left: 2.5rem
+		list-style: square
+		line-height: $paragraphLineHeight
