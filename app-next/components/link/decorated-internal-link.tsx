@@ -11,8 +11,8 @@ interface Props extends PropsWithClassName, PropsWithHref {
 }
 
 const DecoratedInternalLink: FunctionComponent<Props> = props => (
-	<InternalLink href={props.href} title={props.text}>
-		<div className={className(styles.link, props.compact && styles.compact, props.className)}>
+	<InternalLink className={className(styles.link, props.compact && styles.compact, props.className)} href={props.href} title={props.text}>
+		<div>
 			<div className={styles.text}>{props.text}</div>
 			<Sprite className={styles.symbol} href="#Arrow Top Right" />
 		</div>
