@@ -25,7 +25,11 @@ const ThemesTitle: FunctionComponent<Props> = props => {
 						environment, and mood. Code previews and download packages available in popular editor formats.
 					</Markdown>
 				</div>
-				<DecoratedInternalLink className={styles.link} href="/work/theme-studio" text="Learn More" />
+				<div className={styles.links}>
+					<DecoratedInternalLink className={styles.link} href="/work/theme-studio" text="What is this?" />
+					<DecoratedInternalLink className={styles.link} href="/work/theme-studio#next-steps" text="Next Steps" />
+					<DecoratedInternalLink className={styles.link} href="/work/theme-studio#faq" text="FAQ" />
+				</div>
 			</main>
 		</section>
 	)

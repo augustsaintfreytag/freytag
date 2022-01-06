@@ -61,7 +61,7 @@ const ThemesPage: Page<PageProps & Props> = props => {
 					backdrop of light to dark purple with the text 'Theme Studio' repeating itself over it."
 				/>
 				<ThemesTitle className={styles.title} />
-				<section className={styles.list}>
+				<section className={styles.list} id="gallery">
 					<ol>
 						{themes.map(theme => {
 							const props = themePreviewPropsFromTheme(theme)

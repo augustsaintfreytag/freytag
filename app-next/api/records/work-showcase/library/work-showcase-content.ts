@@ -3,6 +3,7 @@ import { AssetLink } from "~/api/records/asset/library/asset-link"
 import { ImageLink } from "~/api/records/asset/library/image-link"
 import { WorkContentImageAlignment } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
 import { WorkShowcaseTextContentFormat } from "~/api/records/work-showcase/library/work-showcase-text-content-format"
+import { URL } from "~/utils/routing/library/url"
 
 // Models
 
@@ -34,8 +35,9 @@ export interface WorkShowcaseContentTitleCase extends CockpitRecord {
 	headingContent: string
 	subContent?: string
 	imageContent?: ImageLink
-	downloadAsset?: AssetLink
-	downloadLabel?: string
+	linkAsset?: AssetLink
+	linkTarget?: URL
+	linkLabel?: string
 }
 
 export type AnyWorkShowcaseContent =

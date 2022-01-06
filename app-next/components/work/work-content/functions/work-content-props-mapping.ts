@@ -1,3 +1,4 @@
+import { assetUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
 import { ImageLink } from "~/api/records/asset/library/image-link"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import {
@@ -63,16 +64,23 @@ export function videoEmbedContentPropsFromContent(block: WorkShowcaseContentVide
 
 export function titleCaseContentPropsFromContent(block: WorkShowcaseContentTitleCase): TitleCaseContentProps {
 	const callToAction = (() => {
-		const [asset, label] = [block.downloadAsset, block.downloadLabel]
+		const [asset, target, label] = [block.linkAsset, block.linkTarget, block.linkLabel]
 
-		if (!asset || !label) {
-			return undefined
+		if (label && target) {
+			return {
+				href: target,
+				label: label
+			}
 		}
 
-		return {
-			link: asset.path,
-			label: label
+		if (label && asset) {
+			return {
+				href: assetUrlFromComponent(asset.path),
+				label: label
+			}
 		}
+
+		return undefined
 	})()
 
 	return {

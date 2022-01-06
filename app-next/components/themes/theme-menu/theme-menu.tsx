@@ -43,7 +43,7 @@ const ThemeMenu: FunctionComponent<Props> = props => {
 	return (
 		<section className={styles.menu}>
 			<nav>
-				<ThemeMenuItem symbol={ThemeMenuSprite.Gallery} text={itemTexts.returnToGallery} href="/themes" />
+				<ThemeMenuItem symbol={ThemeMenuSprite.Gallery} text={itemTexts.returnToGallery} href="/themes#gallery" />
 				<ThemeMenuItem symbol={ThemeMenuSprite.ShareTheme} text={itemTexts.shareTheme} onClick={() => shareTheme(theme)} disabled={!allowsSharing} />
 				<ThemeMenuItem symbol={ThemeMenuSprite.CustomizeTheme} text={itemTexts.customizeTheme} disabled />
 				<ThemeMenuItem
