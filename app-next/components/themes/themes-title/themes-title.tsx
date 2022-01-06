@@ -21,11 +21,11 @@ const ThemesTitle: FunctionComponent<Props> = props => {
 			<main>
 				<div className={styles.abstract}>
 					<Markdown>
-						Explore a varied collection of colour themes with light and dark variants. Find a distinct colour palette to match your preference,
-						environment, and mood. Packages available for popular editors and development environments.
+						Explore a varied collection of colour themes in light and dark variants. Find a distinct colour palette to match your preference,
+						environment, and mood. Code previews and download packages available in popular editor formats.
 					</Markdown>
 				</div>
-				<DecoratedInternalLink className={styles.link} href="/work/theme-studio" text="Read More" />
+				<DecoratedInternalLink className={styles.link} href="/work/theme-studio" text="Learn More" />
 			</main>
 		</section>
 	)
