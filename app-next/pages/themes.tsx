@@ -57,8 +57,8 @@ const ThemesPage: Page<PageProps & Props> = props => {
 				<ImageCover
 					className={styles.cover}
 					src={props.data?.cover}
-					description="A marble statue's head with colourful plants sprouting 
-					out its top, heavily stylised in an 80s vaporwave aesthetic."
+					description="The cover artwork for the 'Theme Studio'. It shows a ringed planet on a vibrant 
+					backdrop of light to dark purple with the text 'Theme Studio' repeating itself over it."
 				/>
 				<ThemesTitle className={styles.title} />
 				<section className={styles.list}>

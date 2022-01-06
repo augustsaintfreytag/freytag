@@ -30,7 +30,11 @@ function isEncodedColorCollection(value: any): value is string[] {
 
 // Hexadecimal
 
-function colorExpressionFromHexDescription(value: string): number {
+function colorExpressionFromHexDescription(value: string): number | undefined {
+	if (value.length !== 2) {
+		return undefined
+	}
+
 	return parseInt(value, 16) / 255
 }
 
@@ -44,6 +48,10 @@ export function colorFromHexDescription(value: string): Color | undefined {
 	const red = colorExpressionFromHexDescription(components[0])
 	const green = colorExpressionFromHexDescription(components[1])
 	const blue = colorExpressionFromHexDescription(components[2])
+
+	if (red === undefined || green === undefined || blue === undefined) {
+		return undefined
+	}
 
 	return new Color(red, green, blue)
 }
