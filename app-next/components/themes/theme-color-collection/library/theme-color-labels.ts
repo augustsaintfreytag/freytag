@@ -1,4 +1,4 @@
-export const themeColorLabels: string[] = [
+export const themeColorNames: string[] = [
 	"Background",
 	"Foreground",
 	"Keywords",
