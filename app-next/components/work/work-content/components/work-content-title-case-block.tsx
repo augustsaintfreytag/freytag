@@ -1,9 +1,9 @@
 import { FunctionComponent, useMemo } from "react"
-import { assetUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
 import AssetImage from "~/components/asset-image/asset-image"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import CallToAction from "~/components/call-to-action/call-to-action"
 import Markdown from "~/components/markdown/markdown"
+import { className } from "~/utils/class-names/class-name"
 import { URL, URLComponent } from "~/utils/routing/library/url"
 import styles from "./work-content-title-case-block.module.sass"
 
@@ -48,17 +48,12 @@ const WorkContentTitleCaseBlock: FunctionComponent<Props> = props => {
 	}, [])
 
 	return (
-		<section className={styles.block}>
+		<section className={className(styles.block, (props.heading || props.subHeading) && styles.titled)}>
 			{props.cover && <Cover content={props.cover} />}
 			{props.heading && <Heading content={props.heading} />}
 			{props.subHeading && <SubHeading content={props.subHeading} />}
 			{props.callToAction && (
-				<CallToAction
-					name={actionName}
-					className={styles.callToAction}
-					href={assetUrlFromComponent(props.callToAction.href)}
-					text={props.callToAction.label}
-				/>
+				<CallToAction name={actionName} className={styles.callToAction} href={props.callToAction.href} text={props.callToAction.label} />
 			)}
 		</section>
 	)
