@@ -18,7 +18,7 @@ export interface Props extends PropsWithClassName {
 	href: URL
 }
 
-const trackClick = (name: string, href: URL) => track(`Theme Download`, { name, href })
+const trackClick = (name: string, href: URL) => track("Theme Download", { name, href })
 
 const ThemeDownloadItem: FunctionComponent<Props> = props => {
 	const purpose = themeFormatPurposeDescriptionForEditorFormat(props.format)
