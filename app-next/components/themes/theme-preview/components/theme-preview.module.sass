@@ -4,19 +4,29 @@
 	$themeNameFontSize: 1.4rem
 	$themeNameLineHeight: $themeNameFontSize * 1.35
 	$themeDescriptionFontSize: 1rem
+	
+	$colorSize: 2.75rem
+	$colorSizeMobile: 2.5rem
+	
+	$numberOfColors: 10
 
-	width: min-content			// `min-content` uses color row
 	overflow: hidden
+
+	@include breakpoint($anyDesktop)
+		width: $numberOfColors * $colorSize
+
+	@include breakpoint($anyMobile)
+		width: $numberOfColors * $colorSizeMobile
 
 	.colorRow
 		display: flex
 
 		> li
 			@include breakpoint($anyDesktop)
-				@include size(2.75rem)
+				@include size($colorSize)
 
 			@include breakpoint($anyMobile)
-				@include size(2.5rem)
+				@include size($colorSizeMobile)
 
 	header
 		margin-top: 1rem
