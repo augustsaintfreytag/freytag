@@ -29,8 +29,6 @@ const ThemeDownloadItem: FunctionComponent<Props> = props => {
 	const itemFormat = themeFileDescriptionForEditorFormat(props.format)
 	const itemFileName = fileNameFromPath(props.name, props.href)
 
-	debugger
-
 	return (
 		<a href={props.href} title={itemTitle} onClick={() => trackClick(props.name, props.href)} download={itemFileName}>
 			<button className={className(styles.item, props.className)}>
