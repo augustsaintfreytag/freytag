@@ -7,6 +7,7 @@ interface Props extends PropsWithClassName, PropsWithAnyChildren {
 	href: URL
 	name?: string
 	context?: string
+	untracked?: boolean
 }
 
 const trackClick = (name: string, context: string | undefined, href: URL) => track("External Link", { name, context, href })
@@ -18,7 +19,7 @@ const ExternalLink: FunctionComponent<Props> = props => (
 		target="_blank"
 		rel="noopener"
 		title={props.name}
-		onClick={() => props.name && trackClick(props.name, props.context, props.href)}
+		onClick={() => !props.untracked && props.name && trackClick(props.name, props.context, props.href)}
 	>
 		{props.children ?? props.href}
 	</a>
