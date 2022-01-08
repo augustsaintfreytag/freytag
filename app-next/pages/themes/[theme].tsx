@@ -4,7 +4,7 @@ import { getAggregatingServerSideResponses, getServerSideResponseByQuery } from 
 import { isServerSidePropsResponse } from "~/api/props/functions/server-side-response-guards"
 import { serverSideNotFoundResponse } from "~/api/props/functions/server-side-response-presets"
 import { ServerSideResponse } from "~/api/props/library/server-side-response"
-import { assetUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
+import { routedAssetUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
 import { themeFromApi } from "~/api/records/themes/functions/theme-data-access"
 import { intermediateThemeFileFromApi } from "~/api/records/themes/functions/theme-file-data-access"
 import { themePackageFromTheme } from "~/api/records/themes/functions/theme-package-decoding"
@@ -92,7 +92,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 			const name = themePackage.value.format
 			const format = themePackage.value.format
 			const path = themePackage.value.file.path
-			const href = assetUrlFromComponent(path)
+			const href = routedAssetUrlFromComponent(path)
 
 			return { name, format, href }
 		}) ?? []
