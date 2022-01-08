@@ -1,11 +1,11 @@
 import { Address, addressRegister, APIToken, Context, Protocol } from "cockpit-access"
-import { appEnvironmentIsDevelopment } from "~/components/meta/library/app"
+import { appEnvironmentIsDevelopment, cockpitHostClient, cockpitHostServer, cockpitProtocol, cockpitToken } from "~/components/meta/library/app"
 import { URL } from "~/utils/routing/library/url"
 
-const protocol = process.env.NEXT_PUBLIC_COCKPIT_PROTOCOL
-const hostClient = process.env.NEXT_PUBLIC_COCKPIT_HOST_CLIENT
-const hostServer = process.env.NEXT_PUBLIC_COCKPIT_HOST_SERVER
-const token = process.env.NEXT_PUBLIC_COCKPIT_ACCESS_TOKEN
+const protocol = cockpitProtocol()
+const hostClient = cockpitHostClient()
+const hostServer = cockpitHostServer()
+const token = cockpitToken()
 
 if (!protocol || !hostClient || !hostServer || !token) {
 	throw new Error(`Missing cockpit access parameters from environment, protocol, host or token not defined.`)
