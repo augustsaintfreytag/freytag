@@ -29,7 +29,7 @@ const ThemeDownloadItem: FunctionComponent<Props> = props => {
 	const itemFormat = themeFileDescriptionForEditorFormat(props.format)
 
 	return (
-		<a href={props.href} title={title} onClick={() => trackClick(props.name, props.href)}>
+		<a href={props.href} title={title} onClick={() => trackClick(props.name, props.href)} download>
 			<button className={className(styles.item, props.className)}>
 				<Sprite className={styles.symbol} href={symbol} />
 				<div className={styles.text}>
