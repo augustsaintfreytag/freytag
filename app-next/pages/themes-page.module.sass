@@ -18,8 +18,8 @@
 
 	.list
 		@include breakpoint($anyDesktop)
+			margin: $interContentSpacing 0 $interContentSpacing 0
 			@include inlayed
-			margin-top: $interContentSpacing
 
 		@include breakpoint($anyMobile)
 			margin: $interContentSpacing 2rem 0 2rem
@@ -27,7 +27,9 @@
 		> ol
 			display: flex
 			flex-wrap: wrap
-			align-content: space-around
 			justify-content: center
 			column-gap: 6rem
 			row-gap: 4rem
+
+			> li
+				flex: 0 1 auto
