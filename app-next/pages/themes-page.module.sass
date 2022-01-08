@@ -22,14 +22,25 @@
 			@include inlayed
 
 		@include breakpoint($anyMobile)
-			margin: $interContentSpacing 2rem 0 2rem
+			margin: $interContentSpacing 2rem $interContentSpacing 2rem
 
 		> ol
-			display: flex
-			flex-wrap: wrap
-			justify-content: center
+			display: grid
+			grid-template-columns: repeat(2, 1fr)
+			grid-template-rows: auto
 			column-gap: 6rem
 			row-gap: 4rem
+			width: max-content
+			margin: 0 auto
 
-			> li
-				flex: 0 1 auto
+			@include breakpoint($tablet)
+				column-gap: 4.5rem
+				row-gap: 3.5rem
+
+			@include breakpoint(0px $tabletCutoff - 200)
+				grid-template-columns: 1fr
+
+			@include breakpoint($phone)
+				grid-template-columns: 1fr
+				row-gap: 3.5rem
+				
