@@ -1,11 +1,11 @@
 import { useMemo } from "react"
-import { ColorValue } from "~/api/common/library/color-value"
+import { ColorDescription } from "~/api/common/library/color-description"
 import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
 import { colorForLifeEventKind } from "~/components/life/life-event/functions/life-event-kind-colors"
 
 interface TagProperties {
 	name: string
-	color?: ColorValue
+	color?: ColorDescription
 }
 
 const tagFallbackName = "Standalone"

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { ColorValue } from "~/api/common/library/color-value"
+import { ColorDescription } from "~/api/common/library/color-description"
 import { BlockTagAppearance as Appearance } from "~/components/block-tag/library/block-tag-appearance"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
@@ -19,7 +19,7 @@ function classNameForAppearance(appearance: Appearance): string {
 
 interface Props extends PropsWithClassName {
 	name: string
-	color?: ColorValue
+	color?: ColorDescription
 	appearance?: Appearance
 }
 
