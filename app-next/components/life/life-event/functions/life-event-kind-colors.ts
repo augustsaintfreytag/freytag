@@ -1,10 +1,10 @@
-import { ColorValue } from "~/api/common/library/color-value"
+import { ColorDescription } from "~/api/common/library/color-description"
 import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
-const fallbackLifeEventKindColor: ColorValue = "#1c1c1c"
+const fallbackLifeEventKindColor: ColorDescription = "#1c1c1c"
 
-export const lifeEventKindColors: Dictionary<string, ColorValue> = {
+export const lifeEventKindColors: Dictionary<string, ColorDescription> = {
 	life: "#d3caae",
 	external: "#d3acb3",
 	development: "#c197c1",
@@ -13,7 +13,7 @@ export const lifeEventKindColors: Dictionary<string, ColorValue> = {
 	film: "#7a97cb"
 }
 
-export function colorForLifeEventKind(kind: LifeEventKind): ColorValue {
+export function colorForLifeEventKind(kind: LifeEventKind): ColorDescription {
 	const key = kind.toString().toLowerCase()
 	const color = lifeEventKindColors[key] ?? fallbackLifeEventKindColor
 
