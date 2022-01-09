@@ -1,0 +1,46 @@
+@import "/styles/values/all"
+	
+.window
+	padding: 1.2rem 1.25rem
+	
+	background: var(--background, $elementBackgroundColorDark)
+	color: $textColorOnDark
+	border-radius: 0.75rem
+
+	> header
+		position: relative
+
+		.controls
+			$controlSize: 0.85rem
+			height: 1rem
+
+			.control
+				display: inline-block
+				height: $controlSize
+				width: $controlSize
+				background: rgba(255, 255, 255, 0.25)
+				border: 0.5px solid rgba(75, 75, 75, 0.5)
+				border-radius: $controlSize
+				box-sizing: border-box
+
+				@include horizontalListMargin(0.35rem)
+
+			&.hasEnabledControls .control
+				&.close
+					background: #FF6058
+
+				&.minimize
+					background: #FEBC2E
+
+				&.zoom
+					background: #28C840
+				
+		.title
+			@include elementHeadingFont
+			line-height: 1rem
+			text-align: center
+			position: absolute
+			inset: 0
+
+	> main
+		margin-top: 1rem

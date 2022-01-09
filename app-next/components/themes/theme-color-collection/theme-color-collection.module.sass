@@ -1,0 +1,54 @@
+@import "/styles/values/all"
+	
+.collection
+	@include breakpoint($anyDesktop)
+		@include inlayed
+
+	@include breakpoint($anyMobile)
+		margin: 0 2rem
+
+	ol
+		display: grid
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+		grid-template-rows: auto
+		gap: 0.5rem
+		grid-auto-flow: row
+
+		> li
+			height: 15rem
+			background: #fafafa
+
+		@include breakpoint($phone)
+			grid-template-columns: 1fr 1fr
+
+.item
+	position: relative
+	background: var(--fill-color)
+	width: 100%
+	height: 100%
+
+	.inlay
+		position: absolute
+		bottom: 0
+		padding: 1rem 1.25rem
+		overflow: hidden
+
+		.value, .label
+			@include codeFont
+			font-size: $elementTextFontSize
+
+			@include breakpoint($anyMobile)
+				font-size: $elementTextFontSizeMobile
+
+			color: $textColorOnDark
+
+		.value
+			opacity: 0.35
+
+		.label
+			@include wrappingFont
+
+	&.isLight
+		.inlay
+			.value, .label
+				color: $textColor

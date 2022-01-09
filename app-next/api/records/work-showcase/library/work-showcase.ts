@@ -1,12 +1,12 @@
-import { CockpitEntry } from "cockpit-access"
-import { ColorValue } from "~/api/common/library/color-value"
+import { CockpitRecord } from "cockpit-access"
+import { ColorDescription } from "~/api/common/library/color-description"
 import { ImageLink } from "~/api/records/asset/library/image-link"
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
 import { AnyWorkShowcaseContent } from "~/api/records/work-showcase/library/work-showcase-content"
 
 // Showcase
 
-export interface WorkShowcase extends CockpitEntry {
+export interface WorkShowcase extends CockpitRecord {
 	display: boolean
 	name: string
 	slug: string
@@ -17,7 +17,7 @@ export interface WorkShowcase extends CockpitEntry {
 	titleImage?: ImageLink
 	teaserImageTrailing?: ImageLink
 	teaserImageCentered?: ImageLink
-	accentColor?: ColorValue
+	accentColor?: ColorDescription
 	blocks: ResolvedCollectionLink<AnyWorkShowcaseContent>[]
 }
 

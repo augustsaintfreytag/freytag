@@ -12,7 +12,7 @@ interface Props extends PropsWithClassName {
 	text: string
 }
 
-const trackClick = (name: string, href: URL) => track(`Call to Action`, { name, href })
+const trackClick = (name: string, href: URL) => track("Call to Action", { name, href })
 
 const CallToAction: FunctionComponent<Props> = props => (
 	<a href={props.href} title={props.name} onClick={() => trackClick(props.name, props.href)}>

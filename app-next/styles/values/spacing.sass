@@ -27,6 +27,10 @@ $ultraWideItemMaxWidth: 112rem
 
 // Mixins
 
+@mixin size($value)
+	width: $value
+	height: $value
+
 @mixin inlayed
 	box-sizing: border-box
 	margin-left: auto
@@ -131,27 +135,3 @@ $ultraWideItemMaxWidth: 112rem
 	inset: $pageAnchorOffset 0 0 0
 	height: 0
 	width: 0
-
-// Ellipsis
-
-@mixin ellipsized
-	white-space: nowrap
-	text-overflow: ellipsis
-	overflow: hidden
-
-@mixin notEllipsized
-	white-space: unset
-	text-overflow: unset
-	overflow: unset
-
-@mixin ellipsizedLines($lines)
-	display: -webkit-box
-	display: -moz-box
-
-	-webkit-line-clamp: $lines
-	-moz-line-clamp: $lines
-
-	-webkit-box-orient: vertical
-	-moz-box-orient: vertical
-	
-	overflow: hidden

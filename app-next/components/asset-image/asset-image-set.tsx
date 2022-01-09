@@ -53,7 +53,7 @@ const AssetImageSet: FunctionComponent<Props> = props => {
 				<ScaledSourceSet sources={sources} />
 			)}
 
-			<img className={props.className} ref={imageRef} loading="lazy" />
+			<img className={props.className} ref={imageRef} loading="lazy" alt={props.alt} />
 			{showsDebugState && <ImageDebugDisplay imageRef={imageRef} ratio={devicePixelRatio} />}
 		</picture>
 	)

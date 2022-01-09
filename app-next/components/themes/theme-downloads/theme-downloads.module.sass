@@ -1,0 +1,36 @@
+@import "/styles/values/all"
+
+.block
+	.heading
+		@include inlayedText
+		@include elementHeadingFont
+		font-size: $elementHeadingFontSize
+		text-align: center
+		margin-top: 2rem
+
+	.introduction
+		@include inlayedText
+		@include elementSubHeadingFont
+		font-size: $elementSubHeadingFontSize
+		text-align: center
+		margin-top: 3rem
+
+	.list
+		margin-top: 2rem
+
+		ul
+			@include inlayedText
+
+			> li
+				@include breakpoint($anyDesktop)
+					margin: 1rem 7.5%
+
+				@include breakpoint($anyMobile)
+					margin: 1rem 0
+
+				@include listMargin(1rem)
+	
+	.description
+		@include inlayedText
+		@include wrappingFont
+		margin-top: 2.5rem

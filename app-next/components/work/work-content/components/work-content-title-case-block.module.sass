@@ -7,14 +7,16 @@
 		position: relative
 		@include inlayed
 
+		$coverSize: 58rem
+
 		@include breakpoint($desktop)
-			max-width: 60rem
+			max-width: $coverSize
 
 		@include breakpoint($tablet)
-			max-width: 48rem
+			max-width: $coverSize * 0.8
 
 		@include breakpoint($phone)
-			max-width: 48rem
+			max-width: $coverSize * 0.8
 
 		.inlay
 			background: $elementBackgroundColor
@@ -25,16 +27,16 @@
 			
 
 	.heading
-		@include paragraphHeadingFont
+		@include elementHeadingFont
 		font-size: $elementHeadingFontSize
 		text-align: center
 		margin-top: 2rem
 
 	.subHeading
-		@include paragraphSubHeadingFont
-		font-size: 1.2rem
+		@include elementSubHeadingFont
+		font-size: $elementSubHeadingFontSize
 		text-align: center
-		margin-top: 1rem
+		margin-top: 0.9rem
 		padding: 0 2.5rem
 		
 		@include breakpoint($tablet)
@@ -45,3 +47,7 @@
 
 	.callToAction
 		margin: 2.5rem auto 0 auto
+		
+	&:not(&.titled)
+		.callToAction
+			margin-top: 0

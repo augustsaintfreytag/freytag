@@ -1,26 +1,16 @@
 import { FunctionComponent, useMemo } from "react"
-import ExternalLink from "~/components/link/external-link"
-import Sprite from "~/components/sprites/sprite"
+import ContentClosure from "~/components/content-closure/content-closure"
+import ExternalTwitterLink from "~/components/link/external-twitter-link"
+import Time, { TimeProperties } from "~/components/time/time"
 import Typo from "~/components/typo/typo"
 import { DateFormatStyle, formattedDate } from "~/utils/date/functions/date-formatting"
 import styles from "./work-content-closure-block.module.sass"
 
-// Library
-
-interface MetadataDate {
-	value: Date
-	description: string
-}
-
 // Components
 
-const Twitter: FunctionComponent = () => (
-	<ExternalLink href="https://twitter.com/augustfreytag" name="Twitter Link" context="Work Content Closure">
-		<Sprite className={styles.socialSprite} href="#Twitter Symbol" /> Twitter
-	</ExternalLink>
-)
+const Twitter = () => <ExternalTwitterLink context="Work Content Closure" />
 
-// Block
+// Closure
 
 export interface Props {
 	metadata?: {
@@ -30,7 +20,7 @@ export interface Props {
 }
 
 const WorkContentClosureBlock: FunctionComponent<Props> = props => {
-	const { created, modified } = useMemo<{ created?: MetadataDate; modified?: MetadataDate }>(() => {
+	const { created, modified } = useMemo<{ created?: TimeProperties; modified?: TimeProperties }>(() => {
 		const { created, modified } = props.metadata ?? {}
 
 		return {
@@ -39,10 +29,8 @@ const WorkContentClosureBlock: FunctionComponent<Props> = props => {
 		}
 	}, [props.metadata?.created, props.metadata?.modified])
 
-	const Time = (created: MetadataDate) => <time dateTime={created.value.toISOString()}>{created.description}</time>
-
 	return (
-		<section className={styles.block}>
+		<ContentClosure className={styles.closure}>
 			{!created && <div>Published by August Saint Freytag.</div>}
 			{created && (
 				<div>
@@ -56,7 +44,7 @@ const WorkContentClosureBlock: FunctionComponent<Props> = props => {
 					Follow on <Twitter /> to get notified of new publications and updates.
 				</Typo>
 			</div>
-		</section>
+		</ContentClosure>
 	)
 }
 

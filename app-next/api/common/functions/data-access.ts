@@ -1,6 +1,7 @@
 export enum ApiCollection {
 	Life = "life",
-	Work = "work"
+	Work = "work",
+	Themes = "themes"
 }
 
 export enum ApiSingleton {

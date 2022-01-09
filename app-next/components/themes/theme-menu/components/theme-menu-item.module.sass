@@ -1,0 +1,48 @@
+@import "/styles/values/all"
+@import "/styles/base/vendors"
+
+.menuItem
+	$itemPadding: $pageSubContentSpacing * 0.75
+
+	.inlay
+		$itemSize: 1.1rem
+		$itemSizeMobile: 1.35rem
+
+		> *
+			display: inline-block
+			vertical-align: middle
+
+		.symbol
+			@include size($itemSize)
+			overflow: visible
+			
+			transform: translateY(-1px)
+
+			@include anyMozilla
+				transform: translateY(0)
+
+		.text
+			margin-left: 0.75rem
+			line-height: $itemSize
+
+		&.plain
+			cursor: default
+
+		@include breakpoint($desktop)
+			.text.short
+				display: none
+
+		@include breakpoint($tablet)
+			.text.full
+				display: none
+
+		@include breakpoint($phone)
+			.symbol
+				@include size($itemSizeMobile)
+			.text
+				display: none
+				margin: 0
+
+	&.disabled
+		.inlay
+			opacity: 0.35

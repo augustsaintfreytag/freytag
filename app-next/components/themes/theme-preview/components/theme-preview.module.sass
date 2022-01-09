@@ -1,0 +1,56 @@
+@import "/styles/values/all"
+
+.themePreview
+	$themeNameFontSize: 1.4rem
+	$themeNameLineHeight: $themeNameFontSize * 1.35
+	$themeDescriptionFontSize: 1rem
+	
+	$colorSize: 2.75rem
+	$colorSizeMobile: 2.5rem
+	
+	$numberOfColors: 10
+
+	overflow: hidden
+
+	@include breakpoint($anyDesktop)
+		width: $numberOfColors * $colorSize
+
+	@include breakpoint($anyMobile)
+		width: $numberOfColors * $colorSizeMobile
+
+	.colorRow
+		display: flex
+
+		> li
+			@include breakpoint($anyDesktop)
+				@include size($colorSize)
+
+			@include breakpoint($anyMobile)
+				@include size($colorSizeMobile)
+
+	header
+		margin-top: 1rem
+
+		.name
+			display: inline-block
+			vertical-align: top
+
+			@include elementHeadingFont
+			font-size: $themeNameFontSize
+			line-height: $themeNameLineHeight
+
+		.tags
+			display: inline-flex
+			align-items: center
+			column-gap: 0.35rem
+
+			vertical-align: top
+			height: $themeNameLineHeight
+			margin-left: 2.5rem
+
+	.description
+		@include paragraphFont
+		font-size: $themeDescriptionFontSize
+		line-height: $paragraphLineHeight
+		margin-top: 1.6rem
+		padding-right: 7.5%

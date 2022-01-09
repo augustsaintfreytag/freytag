@@ -1,0 +1,36 @@
+@import "/styles/values/all"
+
+.page
+	$interContentSpacing: 7rem
+	$interContentSpacingMobile: $interContentSpacing * 0.85
+	$interSubContentSpacing: 4rem
+
+	padding-bottom: $pageSpacing
+
+	header
+		.cover
+			@include coverImageWithBreakpoints()
+
+	main
+		.divider
+			margin-top: $interContentSpacing
+
+		.title
+			margin-top: $pageSpacing
+
+		.abstract
+			margin: $interSubContentSpacing auto 0 auto
+			@include inlayedText
+			@include wrappingFont
+
+			p
+				@include listMargin($descriptionParagraphSpacing)
+		
+		.colors
+			margin-top: $interContentSpacing
+
+		.previews
+			margin-top: $interContentSpacing
+
+		.downloads
+			margin-top: $interContentSpacing

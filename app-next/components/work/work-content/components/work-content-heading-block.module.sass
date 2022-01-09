@@ -5,5 +5,8 @@
 
 	h2
 		@include headingFont
-		font-size: $elementHeadingFontSize
+		font-size: $pageSubHeadingFontSize
 		text-align: center
+
+		@include breakpoint($anyMobile)
+			font-size: $pageSubHeadingFontSizeMobile

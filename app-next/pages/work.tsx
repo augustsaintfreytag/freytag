@@ -1,13 +1,14 @@
 import { GetServerSideProps } from "next"
 import { useMemo } from "react"
-import { getServerSideApiResponse, getServerSideApiResponses } from "~/api/props/functions/server-side-props"
+import { getServerSideResponse, getServerSideResponses } from "~/api/props/functions/server-side-props"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
-import { sortedWorkShowcases, workShowcasesFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
+import { sortedTypedRecord } from "~/api/records/statistics/functions/record-sorting"
+import { workShowcasesFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
 import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
 import WorkClosure from "~/components/work/work-closure/work-closure"
 import { mappedWorkShowcaseListItemProps } from "~/components/work/work-content/functions/work-showcase-prop-mapping"
 import WorkListItem from "~/components/work/work-list-item/work-list-item"
-import WorkMeta from "~/components/work/work-meta/work-meta"
+import WorkMeta from "~/components/work/work-meta/works-meta"
 import WorkListSeo from "~/components/work/work-seo/work-list-seo"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { Page, PageProps } from "~/types/page"
@@ -28,11 +29,11 @@ interface Props {
 // Page
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async () =>
-	getServerSideApiResponses<PageData>(
-		getServerSideApiResponse(workShowcasesFromApi, showcases => ({
-			showcases: sortedWorkShowcases(showcases)
+	getServerSideResponses<PageData>(
+		getServerSideResponse(workShowcasesFromApi, showcases => ({
+			showcases: sortedTypedRecord(showcases)
 		})),
-		getServerSideApiResponse(pageGraphicsFromApi, pageGraphics => ({ preview: pageGraphics.workPreview?.path }))
+		getServerSideResponse(pageGraphicsFromApi, pageGraphics => ({ preview: pageGraphics.workPreview?.path }))
 	)
 
 const WorkListingPage: Page<PageProps & Props> = props => {

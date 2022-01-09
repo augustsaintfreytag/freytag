@@ -15,14 +15,10 @@
 		width: min-content
 
 	.mode
-		$size: 1.2rem
-		$verticalOffset: 0rem
-
-		height: $size
-		width: $size
+		@include size(1.2rem)
 
 		align-self: center
-		margin: 0 0 $verticalOffset $interComponentSpacing
+		margin: 0 0 0 $interComponentSpacing
 
 		&.modeNone
 			fill: $spriteFillColorFaded

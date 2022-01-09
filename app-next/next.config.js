@@ -1,5 +1,7 @@
 const { injectWebpackDefinitionsIntoSassLoader } = require("./next.config-utils")
+
 const locale = process.env.NEXT_PUBLIC_APP_LOCALE
+const cockpitToken = process.env.NEXT_PUBLIC_COCKPIT_ACCESS_TOKEN
 
 module.exports = {
 	i18n: {
@@ -9,5 +11,13 @@ module.exports = {
 	webpack(config) {
 		injectWebpackDefinitionsIntoSassLoader(config)
 		return config
+	},
+	rewrites() {
+		return [
+			{
+				source: "/cockpit/:path*",
+				destination: `http://cockpit/:path*?token=${cockpitToken}`
+			}
+		]
 	}
 }

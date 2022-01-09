@@ -25,6 +25,7 @@ const navigationDefinitions: NavigationDefinition[] = [
 	{ href: "/", description: "Home" },
 	{ href: "/life", description: "Life" },
 	{ href: "/work", description: "Work" },
+	{ href: "/themes", description: "Themes" },
 	{ href: "/imprint", description: "Imprint" },
 	{ href: "/privacy", description: "Privacy" }
 ]
