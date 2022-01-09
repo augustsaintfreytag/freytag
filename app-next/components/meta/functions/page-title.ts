@@ -1,4 +1,4 @@
-import { brandTitle } from "~/components/meta/components/brand-text"
+import { brandTitle } from "~/components/meta/components/brand-meta-data"
 
 const separatorCharacter = "—"
 

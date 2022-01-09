@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { indexBrandTitle } from "~/components/meta/components/brand-text"
+import { indexBrandTitle } from "~/components/meta/components/brand-meta-data"
 import LinkedMetaTag from "~/components/meta/components/linked-meta-tag"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { personSchema } from "~/components/meta/functions/person-schema"

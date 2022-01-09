@@ -10,7 +10,7 @@ import WorkContentClosureBlock from "~/components/work/work-content/components/w
 import { workContentComponentForContent } from "~/components/work/work-content/functions/work-content-component-mapping"
 import { linkPropsForShowcase } from "~/components/work/work-content/functions/work-link-props-mapping"
 import WorkCover from "~/components/work/work-cover/work-cover"
-import WorkShowcaseMeta from "~/components/work/work-meta/work-showcase-meta"
+import WorkShowcaseMeta from "~/components/work/work-meta/work-meta"
 import WorkSeo from "~/components/work/work-seo/work-seo"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"

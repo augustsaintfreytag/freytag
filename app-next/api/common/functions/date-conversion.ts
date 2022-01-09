@@ -1,4 +1,4 @@
-import { CockpitDateConversion } from "cockpit-access"
+import { CockpitDateConversion, CockpitRecord } from "cockpit-access"
 import { DateInterval, OpenDateInterval } from "~/utils/date/library/intervals"
 
 export function dateFromTimestamp(timestamp: number): Date {
@@ -35,4 +35,18 @@ export function intervalFromFragment(fragment: { dateStarted: string; dateEnded:
 	}
 
 	return undefined
+}
+
+export function datesFromRecord(record: CockpitRecord): { dateCreated?: Date; dateModified?: Date } {
+	let dates: { dateCreated?: Date; dateModified?: Date } = {}
+
+	if (record._created) {
+		dates.dateCreated = dateFromTimestamp(record._created)
+	}
+
+	if (record._modified) {
+		dates.dateModified = dateFromTimestamp(record._modified)
+	}
+
+	return dates
 }

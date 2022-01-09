@@ -13,10 +13,8 @@ import { ThemeEditorFormat } from "~/api/records/themes/library/theme-editor-for
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import Markdown from "~/components/markdown/markdown"
-import { canonicalHref } from "~/components/meta/functions/canonical-href"
-import { pageTitle } from "~/components/meta/functions/page-title"
-import Meta from "~/components/meta/meta-tags"
 import ThemeSprites from "~/components/sprites/theme-sprites"
+import ThemeMeta from "~/components/themes/thema-meta/theme-meta"
 import ThemeClosure from "~/components/themes/theme-closure/theme-closure"
 import {
 	markdownTokenizedString,
@@ -120,7 +118,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 
 	return (
 		<>
-			<Meta href={canonicalHref(`/theme/${theme._id}`)} title={pageTitle(`${theme.name} Theme`)} />
+			<ThemeMeta theme={theme} />
 			<ThemeSprites />
 			<section className={styles.page}>
 				<header>
