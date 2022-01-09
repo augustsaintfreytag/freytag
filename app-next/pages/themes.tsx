@@ -7,7 +7,7 @@ import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import InternalLink from "~/components/link/internal-link"
 import ThemeSprites from "~/components/sprites/theme-sprites"
-import ThemeMeta from "~/components/themes/thema-meta/theme-meta"
+import ThemesMeta from "~/components/themes/thema-meta/themes-meta"
 import ThemePreview from "~/components/themes/theme-preview/components/theme-preview"
 import { themePreviewPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
 import ThemesClosure from "~/components/themes/themes-closure/themes-closure"
@@ -51,7 +51,7 @@ const ThemesPage: Page<PageProps & Props> = props => {
 
 	return (
 		<>
-			<ThemeMeta previewAsset={props.data?.preview} />
+			<ThemesMeta coverAsset={props.data?.preview} />
 			<ThemeSprites />
 			<section className={styles.page}>
 				<ImageCover
