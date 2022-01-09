@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
 import DecoratedInternalLink from "~/components/link/decorated-internal-link"
-import { themeStudioAbstract } from "~/components/themes/thema-meta/theme-meta-data"
+import { themeStudioIntroduction } from "~/components/themes/thema-meta/theme-meta-data"
 import Typo from "~/components/typo/typo"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
@@ -20,7 +20,7 @@ const ThemesTitle: FunctionComponent<Props> = props => {
 			</header>
 			<main>
 				<div className={styles.abstract}>
-					<p>{themeStudioAbstract()}</p>
+					<p>{themeStudioIntroduction()}</p>
 				</div>
 				<div className={styles.links}>
 					<DecoratedInternalLink className={styles.link} href="/work/theme-studio" text="What is this?" />
