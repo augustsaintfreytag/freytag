@@ -34,6 +34,17 @@ interface Props extends PropsWithClassName {
 	colors: Color[]
 }
 
+function mappedColorAndLabel(colors: Color[], labels: string[], index: number): [color: Color, label: string] {
+	const color = colors[index]
+	const label = labels[index] ?? "<None>"
+
+	if (!color) {
+		return [Color.placeholder, label]
+	}
+
+	return [color, label]
+}
+
 const ThemeColorCollection: FunctionComponent<Props> = props => {
 	const colors = props.colors
 	const labels = themeColorNames
@@ -46,16 +57,7 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 		<section className={className(styles.collection, props.className)}>
 			<ol>
 				{range(0, 10).map(index => {
-					const [color, label] = (() => {
-						const color = colors[index]
-						const label = labels[index] ?? "<None>"
-
-						if (!color) {
-							return [Color.placeholder, label]
-						}
-
-						return [color, label]
-					})()
+					const [color, label] = mappedColorAndLabel(colors, labels, index)
 
 					return (
 						<li key={`${index}-${color.key}-${label}`}>
