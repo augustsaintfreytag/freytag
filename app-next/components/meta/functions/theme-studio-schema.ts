@@ -13,9 +13,8 @@ export function themeStudioSchema(props: Props): WithContext<WebApplication> {
 	return {
 		"@context": "https://schema.org",
 		"@type": "WebApplication",
-		applicationCategory: "Directory",
-		applicationSubCategory: "Color Theme Directory",
 		name: "Theme Studio",
+		alternateName: "Theme Studio by August Saint Freytag",
 		abstract: themeStudioDescription(),
 		url: themeStudioCanonicalHref(),
 		image: coverImageUrl,

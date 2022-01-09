@@ -9,7 +9,7 @@ const Analytics: FunctionComponent<Props> = props => (
 	<>
 		{!props.disabled && (
 			<Head>
-				<script async defer data-domain="augustfreytag.com" src="https://analytics.augustfreytag.com/js/plausible.js"></script>
+				<script async defer data-domain="augustfreytag.com" src="/ps.js"></script>
 			</Head>
 		)}
 	</>

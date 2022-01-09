@@ -17,6 +17,14 @@ module.exports = {
 			{
 				source: "/cockpit/:path*",
 				destination: `http://cockpit/:path*?token=${cockpitToken}`
+			},
+			{
+				source: "/ps/:path*",
+				destination: "http://plausible:8000/:path*"
+			},
+			{
+				source: "/ps.js",
+				destination: "http://plausible:8000/js/plausible.js"
 			}
 		]
 	}
