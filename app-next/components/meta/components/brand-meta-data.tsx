@@ -1,7 +1,11 @@
 // Title
 
-export function brandTitle(): string {
+export function authorTitle(): string {
 	return "August Saint Freytag"
+}
+
+export function brandTitle(): string {
+	return authorTitle()
 }
 
 export function brandTitleFragment(): JSX.Element {

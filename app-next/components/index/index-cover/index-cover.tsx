@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
 import ImageCover from "~/components/image-cover/image-cover"
-import { brandDescriptorFragment, brandTitleFragment } from "~/components/meta/components/brand-text"
+import { brandDescriptorFragment, brandTitleFragment } from "~/components/meta/components/brand-meta-data"
 import { className } from "~/utils/class-names/class-name"
 import { URLComponent } from "~/utils/routing/library/url"
 import styles from "./index-cover.module.sass"
