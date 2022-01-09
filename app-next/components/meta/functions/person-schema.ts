@@ -21,8 +21,8 @@ export function personSchema(): WithContext<Person> {
 		alternateName: "August Freytag",
 		gender: "male",
 		nationality: "German",
-		description: "Filmmaker & Media Creator",
-		disambiguatingDescription: "Media Creator, Experience Designer, Concept Designer, Artist",
+		description: "Designer & Media Creator",
+		disambiguatingDescription: "Mixed Media Creator, Experience Designer, Concept Designer, Filmmaker, Artist",
 		url: "https://augustfreytag.com",
 		image: profileImages,
 		sameAs: [socialVimeoUrl(), socialTwitterUrl(), socialInstagramUrl(), socialGitLabUrl(), socialMediumUrl()]
