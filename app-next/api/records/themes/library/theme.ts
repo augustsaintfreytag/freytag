@@ -7,6 +7,7 @@ import { ThemeLightness } from "./theme-lightness"
 export interface Theme extends CockpitRecord {
 	display: boolean
 	name: string
+	slug?: string
 	description: string
 	cover?: ImageLink
 	colors: string
