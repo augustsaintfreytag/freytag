@@ -50,8 +50,7 @@ const PrivacyPage: Page<PageProps & Props> = props => {
 					<LegalHeadingBlock heading="Privacy Policy" aside="By Regulation (EU) 2016/679 (GDPR)" />
 					<LegalTextBlock>
 						<LegalParagraph>
-							The responsible party by data protection laws, including the <br />
-							European Union General Data Protection Regulation is:
+							The responsible party by data protection laws, including the European Union General Data Protection Regulation is:
 						</LegalParagraph>
 					</LegalTextBlock>
 					<LegalContactBlock decoded={shouldDisplaySensitiveData} />

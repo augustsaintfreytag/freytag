@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
-import ArticleMarkdown from "~/components/markdown/article-markdown"
 import ThemeDownloadItem, { Props as ItemProps } from "~/components/themes/theme-downloads/components/theme-download-item"
+import WorkContentTextBlock from "~/components/work/work-content/components/work-content-text-block"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import styles from "./theme-downloads.module.sass"
@@ -37,10 +37,10 @@ const ThemeDownloads: FunctionComponent<Props> = props => {
 				<div className={styles.introduction}>This theme is not currently available in any format.</div>
 			)}
 			<div className={styles.description}>
-				<ArticleMarkdown>
+				<WorkContentTextBlock>
 					All colour themes are created from a *hand-picked colour palette* in the Intermediate theme format (`intertheme`). Formats of specific
 					editors are created by converting intermediate themes to the respective format.
-				</ArticleMarkdown>
+				</WorkContentTextBlock>
 			</div>
 		</section>
 	)

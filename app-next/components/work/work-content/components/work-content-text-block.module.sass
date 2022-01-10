@@ -13,7 +13,7 @@
 		text-decoration: underline
 
 	code		
-		// Code Fence Style
+		// Inline Code Style
 		@include codeFont
 		position: relative
 		display: inline-block
@@ -22,7 +22,6 @@
 
 		@include inlineOverlay
 			background: $codeInlineBackgroundColor
-			padding: 0.25rem 0
 
 		// Keyboard Shortcut Style
 		> strong
@@ -42,7 +41,7 @@
 		white-space: pre-wrap
 		word-break: break-all
 		
-		$verticalPadding: 0.75rem
+		$verticalPadding: 0.35rem
 		$horizontalPadding: 0.75rem
 
 		padding: $verticalPadding $horizontalPadding
