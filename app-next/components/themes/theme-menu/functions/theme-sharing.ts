@@ -1,4 +1,5 @@
 import { Theme } from "~/api/records/themes/library/theme"
+import { track } from "~/components/analytics/functions/track"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { appEnvironmentIsDevelopment } from "~/components/meta/library/app"
 import { URL } from "~/utils/routing/library/url"
@@ -18,6 +19,7 @@ export async function shareTheme(theme: Theme) {
 
 	try {
 		await window.navigator.share(shareData)
+		track("Theme Share", { name: theme.name, href: shareData.url })
 	} catch (error) {
 		appEnvironmentIsDevelopment() && console.warn(`Could not share theme. ${error}`)
 	}
