@@ -70,7 +70,7 @@ const ThemesPage: Page<PageProps & Props> = props => {
 
 							return (
 								<li key={`${props.name}-${props.link.id}`}>
-									<InternalLink href={`/themes/${props.link.id}`}>
+									<InternalLink href={`/themes/${props.link.slug ?? props.link.id}`}>
 										<ThemePreview {...props} />
 									</InternalLink>
 								</li>

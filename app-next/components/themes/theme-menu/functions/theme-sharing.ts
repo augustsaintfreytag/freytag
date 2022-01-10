@@ -1,19 +1,26 @@
 import { Theme } from "~/api/records/themes/library/theme"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
+import { appEnvironmentIsDevelopment } from "~/components/meta/library/app"
 import { URL } from "~/utils/routing/library/url"
 
 // Sharing
 
+/** Open the navigator sharing dialog for the given theme.
+ *
+ *  This function may skew towards sharing a `url` or `text`.
+ *  Example: "text: themeDescriptionForSharing(theme)".
+ */
 export async function shareTheme(theme: Theme) {
 	const shareData: ShareData = {
 		title: themeNameForSharing(theme),
-		text: themeDescriptionForSharing(theme),
 		url: themeCanonicalRef(theme)
 	}
 
 	try {
 		await window.navigator.share(shareData)
-	} catch {}
+	} catch (error) {
+		appEnvironmentIsDevelopment() && console.warn(`Could not share theme. ${error}`)
+	}
 }
 
 export function navigatorHasSharingSupport(): boolean {
@@ -27,7 +34,7 @@ export function navigatorHasSharingSupport(): boolean {
 // Sharing Data
 
 function themeNameForSharing(theme: Theme): string {
-	return `${theme.name} Theme (ASFTS)`
+	return `${theme.name} Theme`
 }
 
 function themeDescriptionForSharing(theme: Theme): string {
@@ -36,5 +43,5 @@ function themeDescriptionForSharing(theme: Theme): string {
 }
 
 function themeCanonicalRef(theme: Theme): URL {
-	return canonicalHref(`/themes/${theme._id}`)
+	return canonicalHref(`/themes/${theme.slug ?? theme._id}`)
 }
