@@ -3,6 +3,7 @@ import { getServerSideResponse, getServerSideResponses } from "~/api/props/funct
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import { themesFromApi } from "~/api/records/themes/functions/theme-data-access"
 import { Theme } from "~/api/records/themes/library/theme"
+import ContentAnchor from "~/components/content-anchor/components/content-anchor"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import InternalLink from "~/components/link/internal-link"
@@ -61,7 +62,8 @@ const ThemesPage: Page<PageProps & Props> = props => {
 					backdrop of light to dark purple with the text 'Theme Studio' repeating itself over it."
 				/>
 				<ThemesTitle className={styles.title} />
-				<section className={styles.list} id="gallery">
+				<section className={styles.list}>
+					<ContentAnchor anchor="gallery" />
 					<ol>
 						{themes.map(theme => {
 							const props = themePreviewPropsFromTheme(theme)
