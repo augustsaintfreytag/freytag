@@ -14,7 +14,7 @@ export function themePreviewPropsFromTheme(theme: Theme): ThemePreviewProps {
 		name: theme.name,
 		description: theme.description,
 		colors: colorCollectionFromTheme(theme) ?? [],
-		tags: themeTagPropsFromTheme(theme, true),
+		tags: themeTagPropsFromTheme(theme, false, false),
 		link: {
 			id: theme._id,
 			slug: theme.slug
@@ -24,19 +24,25 @@ export function themePreviewPropsFromTheme(theme: Theme): ThemePreviewProps {
 
 // Tag Props
 
-export function themeTagPropsFromTheme(theme: Theme, summarizeFormats: boolean = false): ThemeTagProps[] {
+export function themeTagPropsFromTheme(theme: Theme, summarizeFormats: boolean = false, includeDefaults: boolean = true): ThemeTagProps[] {
 	const props: ThemeTagProps[] = []
 
 	props.push(themeTagPropsForLightness(theme.lightness))
 
 	const themePackages = theme.packages?.map(block => block.value) ?? []
+	const themeFormats = themeFormatSet(themePackages)
+
+	if (!includeDefaults) {
+		themeFormats.delete(ThemeEditorFormat.Intermediate)
+	}
+
 	if (!summarizeFormats) {
-		for (const themePackage of themePackages) {
-			const packageProps = themeTagPropsForIndividualPackage(themePackage)
+		for (const themeFormat of themeFormats) {
+			const packageProps = themeTagPropsForIndividualPackage(themeFormat)
 			props.push(packageProps)
 		}
 	} else {
-		const summarizedPackageProps = themeTagPropsForSummarizedPackages(themePackages)
+		const summarizedPackageProps = themeTagPropsForSummarizedPackages(themeFormats)
 		if (summarizedPackageProps) {
 			props.push(summarizedPackageProps)
 		}
@@ -54,8 +60,8 @@ function themeTagPropsForLightness(lightness: ThemeLightness): ThemeTagProps {
 	}
 }
 
-function themeTagPropsForIndividualPackage(themePackage: ThemePackage): ThemeTagProps {
-	switch (themePackage.format) {
+function themeTagPropsForIndividualPackage(themeFormat: ThemeEditorFormat): ThemeTagProps {
+	switch (themeFormat) {
 		case ThemeEditorFormat.Intermediate:
 			return Tags.intermediateThemeTag()
 		case ThemeEditorFormat.Xcode:
@@ -63,14 +69,12 @@ function themeTagPropsForIndividualPackage(themePackage: ThemePackage): ThemeTag
 	}
 }
 
-function themeTagPropsForSummarizedPackages(themePackages: ThemePackage[]): ThemeTagProps | undefined {
-	const themeFormats = themeFormatSet(themePackages)
-
+function themeTagPropsForSummarizedPackages(themeFormats: Set<ThemeEditorFormat>): ThemeTagProps | undefined {
 	if (themeFormats.size === 0) {
 		return undefined
 	}
 
-	if (allThemeEditorFormats.length === themeFormats.size) {
+	if (themeFormats.size > 1 && themeFormats.size === allThemeEditorFormats.length) {
 		return Tags.formatThemeTag(Tags.allFormats)
 	}
 

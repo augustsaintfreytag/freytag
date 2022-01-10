@@ -82,7 +82,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 	const theme = props.data!.theme
 	const intermediateThemeFile = props.data!.file
 
-	const tags = themeTagPropsFromTheme(theme, false)
+	const tags = themeTagPropsFromTheme(theme, false, true)
 	const cover = theme.cover?.path
 	const colors = colorsFromEncodedData(theme.colors)
 	const downloads =
