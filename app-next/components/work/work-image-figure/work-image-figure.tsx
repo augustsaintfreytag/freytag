@@ -16,7 +16,7 @@ type Props = PropsWithClassName & {
 
 const WorkImageFigure: FunctionComponent<Props> = props => (
 	<figure className={className(styles.figure, props.className)}>
-		<ContentAnchor anchor={props.anchor} />
+		{props.anchor && <ContentAnchor anchor={props.anchor} />}
 		<div className={styles.inlay}>
 			<AssetImage className={styles.image} src={props.src} formats={props.formats} />
 		</div>
