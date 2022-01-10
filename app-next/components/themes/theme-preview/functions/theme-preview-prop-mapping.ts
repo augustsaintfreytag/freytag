@@ -16,7 +16,8 @@ export function themePreviewPropsFromTheme(theme: Theme): ThemePreviewProps {
 		colors: colorCollectionFromTheme(theme) ?? [],
 		tags: themeTagPropsFromTheme(theme, true),
 		link: {
-			id: theme._id
+			id: theme._id,
+			slug: theme.slug
 		}
 	}
 }
