@@ -12,7 +12,6 @@ import { Theme } from "~/api/records/themes/library/theme"
 import { ThemeEditorFormat } from "~/api/records/themes/library/theme-editor-format"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
-import Markdown from "~/components/markdown/markdown"
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import ThemeMeta from "~/components/themes/thema-meta/theme-meta"
 import ThemeClosure from "~/components/themes/theme-closure/theme-closure"
@@ -27,6 +26,7 @@ import ThemeDownloads from "~/components/themes/theme-downloads/theme-downloads"
 import ThemeMenu from "~/components/themes/theme-menu/theme-menu"
 import { themeTagPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
 import ThemeTitle from "~/components/themes/theme-title/theme-title"
+import WorkContentTextBlock from "~/components/work/work-content/components/work-content-text-block"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { colorsFromEncodedData } from "~/utils/colors/functions/color-conversion"
@@ -129,7 +129,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 					<ThemeTitle className={styles.title} text={theme.name} tags={tags} />
 					<ThemeColorCollection className={styles.colors} colors={colors ?? []} />
 					<div className={styles.abstract}>
-						<Markdown>{theme.description}</Markdown>
+						<WorkContentTextBlock>{theme.description}</WorkContentTextBlock>
 					</div>
 					<ThemeCodePreviews className={styles.previews} theme={intermediateThemeFile} content={codePreviewContent} />
 					<ThemeDivider />
