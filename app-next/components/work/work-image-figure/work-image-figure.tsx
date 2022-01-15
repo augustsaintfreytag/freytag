@@ -18,7 +18,7 @@ const WorkImageFigure: FunctionComponent<Props> = props => (
 	<figure className={className(styles.figure, props.className)}>
 		{props.anchor && <ContentAnchor anchor={props.anchor} />}
 		<div className={styles.inlay}>
-			<AssetImage className={styles.image} src={props.src} formats={props.formats} />
+			<AssetImage className={styles.image} src={props.src} formats={props.formats} lazy />
 		</div>
 		{props.caption && <figcaption>{props.caption}</figcaption>}
 	</figure>

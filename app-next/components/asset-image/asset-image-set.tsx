@@ -26,6 +26,7 @@ interface ImageFormatProps {
 interface Props extends PropsWithClassName, ImageFormatProps {
 	src: { desktop?: URLComponent; mobile?: URLComponent }
 	alt?: string
+	lazy?: boolean
 }
 
 const AssetImageSet: FunctionComponent<Props> = props => {
@@ -53,7 +54,7 @@ const AssetImageSet: FunctionComponent<Props> = props => {
 				<ScaledSourceSet sources={sources} />
 			)}
 
-			<img className={props.className} ref={imageRef} loading="lazy" alt={props.alt} />
+			<img className={props.className} ref={imageRef} loading={props.lazy ? "lazy" : undefined} alt={props.alt} />
 			{showsDebugState && <ImageDebugDisplay imageRef={imageRef} ratio={devicePixelRatio} />}
 		</picture>
 	)

@@ -22,7 +22,7 @@ const WorkContentContactSheetBlock: FunctionComponent<Props> = props => (
 					<li key={definition.anchor}>
 						<Link href={`#${definition.anchor}`}>
 							<a>
-								<AssetImage className={styles.image} src={definition.image.path} format={{ size: AssetImageSize.Small }} />
+								<AssetImage className={styles.image} src={definition.image.path} format={{ size: AssetImageSize.Small }} lazy />
 							</a>
 						</Link>
 					</li>
