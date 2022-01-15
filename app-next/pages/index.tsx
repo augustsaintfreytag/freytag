@@ -9,7 +9,7 @@ import { BlockTagAppearance } from "~/components/block-tag/library/block-tag-app
 import Divider from "~/components/divider/divider"
 import IndexCover from "~/components/index/index-cover/index-cover"
 import IndexMeta from "~/components/index/index-meta/index-meta"
-import IndexSeo from "~/components/index/index-seo/index-seo"
+import IndexReiteration from "~/components/index/index-reiteration/index-reiteration"
 import ExternalLink from "~/components/link/external-link"
 import InternalLink from "~/components/link/internal-link"
 import Now from "~/components/now/now"
@@ -62,6 +62,7 @@ const IndexPage: Page<PageProps & Props> = props => {
 			<IndexMeta previewAsset={props.data?.preview} />
 			<section className={styles.page}>
 				<IndexCover src={props.data?.cover} />
+				<IndexReiteration />
 				<section className={styles.texts}>
 					<TextLine>My name is August Saint Freytag.</TextLine>
 					<TextLine>
@@ -94,7 +95,6 @@ const IndexPage: Page<PageProps & Props> = props => {
 					</TextLine>
 				</section>
 			</section>
-			<IndexSeo />
 		</>
 	)
 }

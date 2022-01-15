@@ -11,7 +11,7 @@ import { workContentComponentForContent } from "~/components/work/work-content/f
 import { linkPropsForShowcase } from "~/components/work/work-content/functions/work-link-props-mapping"
 import WorkCover from "~/components/work/work-cover/work-cover"
 import WorkShowcaseMeta from "~/components/work/work-meta/work-meta"
-import WorkSeo from "~/components/work/work-seo/work-seo"
+import WorkReiteration from "~/components/work/work-reiteration/work-reiteration"
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
@@ -70,7 +70,7 @@ const WorkDetailPage: Page<PageProps & Props> = props => {
 				<header>
 					<WorkCover image={cover} />
 					<WorkTitle className={styles.title} title={name} abstract={abstract} link={link} />
-					<WorkSeo aside={showcase.aside} />
+					<WorkReiteration aside={showcase.aside} />
 				</header>
 				<WorkDivider color={accentColor} />
 				<main>
