@@ -13,6 +13,7 @@ interface Props extends PropsWithClassName {
 	format?: AssetImageFormat
 	formats?: ViewportAssetImageFormats
 	alt?: string
+	lazy?: boolean
 }
 
 const AssetImage: FunctionComponent<Props> = props => {
@@ -20,7 +21,7 @@ const AssetImage: FunctionComponent<Props> = props => {
 	const { format, formats } = props
 	const sources = { desktop: source, mobile: source }
 
-	return <AssetImageSet className={props.className} src={sources} format={format} formats={formats} alt={props.alt} />
+	return <AssetImageSet className={props.className} src={sources} format={format} formats={formats} alt={props.alt} lazy={props.lazy} />
 }
 
 export default AssetImage
