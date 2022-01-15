@@ -12,6 +12,7 @@ import ThemesMeta from "~/components/themes/thema-meta/themes-meta"
 import ThemePreview from "~/components/themes/theme-preview/components/theme-preview"
 import { themePreviewPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
 import ThemesClosure from "~/components/themes/themes-closure/themes-closure"
+import ThemesReiteration from "~/components/themes/themes-reiteration/themes-reiteration"
 import ThemesTitle from "~/components/themes/themes-title/themes-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
@@ -58,10 +59,11 @@ const ThemesPage: Page<PageProps & Props> = props => {
 				<ImageCover
 					className={styles.cover}
 					src={props.data?.cover}
-					description="The cover artwork for the 'Theme Studio'. It shows a ringed planet on a vibrant 
+					description="The cover artwork studio page. It shows a ringed planet on a vibrant 
 					backdrop of light to dark purple with the text 'Theme Studio' repeating itself over it."
 				/>
 				<ThemesTitle className={styles.title} />
+				<ThemesReiteration />
 				<section className={styles.list}>
 					<ContentAnchor anchor="gallery" />
 					<ol>
