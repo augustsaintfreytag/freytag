@@ -5,7 +5,7 @@ import { lifeEventsFromApi } from "~/api/records/life-event/functions/life-event
 import { LifeEvent } from "~/api/records/life-event/library/life-event"
 import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
 import LifeMeta from "~/components/life/life-meta/life-meta"
-import LifeSeo from "~/components/life/life-seo/life-seo"
+import LifeReiteration from "~/components/life/life-reiteration/life-reiteration"
 import { lifeTableItemDataFromEvents } from "~/components/life/life-table/functions/life-table-item-data-form"
 import LifeTable from "~/components/life/life-table/life-table"
 import { LifeTableItemData } from "~/components/life/life-table/models/life-table-item-data"
@@ -43,9 +43,9 @@ const LifePage: Page<PageProps & Props> = props => {
 			<LifeMeta previewImage={props.data.preview} />
 			<section className={styles.page}>
 				<h1>Life</h1>
+				<LifeReiteration />
 				<LifeTable data={lifeTableItemData} />
 			</section>
-			<LifeSeo />
 		</>
 	)
 }

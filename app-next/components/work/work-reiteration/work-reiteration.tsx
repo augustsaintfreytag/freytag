@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import SeoBlock from "~/components/seo/seo-block"
+import Reiteration from "~/components/reiteration/reiteration"
 
 // Utility
 
@@ -16,17 +16,17 @@ interface Props {
 	aside?: string
 }
 
-const WorkSeo: FunctionComponent<Props> = props => {
+const WorkReiteration: FunctionComponent<Props> = props => {
 	const { blocks: asideBlocks, hasBlocks: hasAside } = asideLines(props.aside)
 
 	return (
-		<SeoBlock>
+		<Reiteration>
 			{hasAside &&
 				asideBlocks.map((block, index) => {
 					return <p key={index}>{block}</p>
 				})}
-		</SeoBlock>
+		</Reiteration>
 	)
 }
 
-export default WorkSeo
+export default WorkReiteration

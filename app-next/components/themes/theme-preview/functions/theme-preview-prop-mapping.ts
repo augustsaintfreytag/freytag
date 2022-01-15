@@ -29,7 +29,7 @@ export function themeTagPropsFromTheme(theme: Theme, summarizeFormats: boolean =
 
 	props.push(themeTagPropsForLightness(theme.lightness))
 
-	const themePackages = theme.packages?.map(block => block.value) ?? []
+	const themePackages = themePackagesFromTheme(theme)
 	const themeFormats = themeFormatSet(themePackages)
 
 	if (!includeDefaults) {
@@ -81,7 +81,7 @@ function themeTagPropsForSummarizedPackages(themeFormats: Set<ThemeEditorFormat>
 	return Tags.formatThemeTag(themeFormats.size)
 }
 
-function themeFormatSet(themePackages: ThemePackage[]): Set<ThemeEditorFormat> {
+export function themeFormatSet(themePackages: ThemePackage[]): Set<ThemeEditorFormat> {
 	const themeFormats = new Set<ThemeEditorFormat>()
 
 	themePackages.forEach(themePackage => {
@@ -89,6 +89,10 @@ function themeFormatSet(themePackages: ThemePackage[]): Set<ThemeEditorFormat> {
 	})
 
 	return themeFormats
+}
+
+export function themePackagesFromTheme(theme: Theme): ThemePackage[] {
+	return theme.packages?.map(element => element.value) ?? []
 }
 
 // Color Props

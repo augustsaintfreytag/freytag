@@ -9,7 +9,7 @@ import WorkClosure from "~/components/work/work-closure/work-closure"
 import { mappedWorkShowcaseListItemProps } from "~/components/work/work-content/functions/work-showcase-prop-mapping"
 import WorkListItem from "~/components/work/work-list-item/work-list-item"
 import WorkMeta from "~/components/work/work-meta/works-meta"
-import WorkListSeo from "~/components/work/work-seo/work-list-seo"
+import WorkListReiteration from "~/components/work/work-reiteration/work-list-reiteration"
 import DefaultLayout from "~/layouts/default/default-layout"
 import { Page, PageProps } from "~/types/page"
 import { URL } from "~/utils/routing/library/url"
@@ -49,6 +49,7 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 			<WorkMeta previewAsset={props.data?.preview} />
 			<section className={styles.page}>
 				<h1>Work</h1>
+				<WorkListReiteration />
 				<div className={styles.workList}>
 					{workListItemProps.map(props => (
 						<WorkListItem
@@ -63,7 +64,6 @@ const WorkListingPage: Page<PageProps & Props> = props => {
 				</div>
 				<WorkClosure showcases={showcases} />
 			</section>
-			<WorkListSeo />
 		</>
 	)
 }

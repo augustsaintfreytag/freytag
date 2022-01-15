@@ -24,7 +24,12 @@ import ThemeCodePreviews, { CodeContent } from "~/components/themes/theme-code-p
 import ThemeColorCollection from "~/components/themes/theme-color-collection/theme-color-collection"
 import ThemeDownloads from "~/components/themes/theme-downloads/theme-downloads"
 import ThemeMenu from "~/components/themes/theme-menu/theme-menu"
-import { themeTagPropsFromTheme } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
+import {
+	themeFormatSet,
+	themePackagesFromTheme,
+	themeTagPropsFromTheme
+} from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
+import ThemeReiteration from "~/components/themes/theme-reiteration/theme-reiteration"
 import ThemeTitle from "~/components/themes/theme-title/theme-title"
 import WorkContentTextBlock from "~/components/work/work-content/components/work-content-text-block"
 import DefaultLayout from "~/layouts/default/default-layout"
@@ -85,11 +90,12 @@ const ThemePage: Page<PageProps & Props> = props => {
 	const tags = themeTagPropsFromTheme(theme, false, true)
 	const cover = theme.cover?.path
 	const colors = colorsFromEncodedData(theme.colors)
+	const packages = themePackagesFromTheme(theme)
 	const downloads =
-		theme.packages?.map(themePackage => {
-			const name = themePackage.value.format
-			const format = themePackage.value.format
-			const path = themePackage.value.file.path
+		packages.map(themePackage => {
+			const name = themePackage.format
+			const format = themePackage.format
+			const path = themePackage.file.path
 			const href = routedAssetUrlFromComponent(path)
 
 			return { name, format, href }
@@ -127,6 +133,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 				</header>
 				<main>
 					<ThemeTitle className={styles.title} text={theme.name} tags={tags} />
+					<ThemeReiteration name={theme.name} formats={themeFormatSet(packages)} />
 					<ThemeColorCollection className={styles.colors} colors={colors ?? []} />
 					<div className={styles.abstract}>
 						<WorkContentTextBlock>{theme.description}</WorkContentTextBlock>
