@@ -48,7 +48,7 @@ const WorkListItem: FunctionComponent<Props> = props => {
 		<section className={className(styles.workListItem, props.className)}>
 			<Link href={props.href}>
 				<a>
-					<AssetImageSet className={styles.image} src={images} formats={formats} />
+					<AssetImageSet className={styles.image} src={images} formats={formats} lazy />
 				</a>
 			</Link>
 			<div className={styles.inlay}>
