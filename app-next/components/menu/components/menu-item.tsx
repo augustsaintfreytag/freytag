@@ -1,17 +1,16 @@
 import { FunctionComponent } from "react"
 import InternalLink from "~/components/link/internal-link"
-import Sprite from "~/components/sprites/sprite"
-import { ThemeMenuSprite } from "~/components/themes/theme-menu/library/theme-menu-sprite"
+import Sprite, { SpriteReference } from "~/components/sprites/sprite"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"
-import styles from "./theme-menu-item.module.sass"
+import styles from "./menu-item.module.sass"
 
 // Props
 
 interface Props {
 	disabled?: boolean
-	symbol: ThemeMenuSprite
+	symbol: SpriteReference
 	text: {
 		short: string
 		full: string
@@ -68,7 +67,7 @@ const LinkWrappedInlay: FunctionComponent<Props> = props => (
 
 // Component
 
-const ThemeMenuItem: FunctionComponent<Props> = props => {
+const MenuItem: FunctionComponent<Props> = props => {
 	const viewMode = viewModeForProps(props)
 
 	return (
@@ -80,4 +79,4 @@ const ThemeMenuItem: FunctionComponent<Props> = props => {
 	)
 }
 
-export default ThemeMenuItem
+export default MenuItem
