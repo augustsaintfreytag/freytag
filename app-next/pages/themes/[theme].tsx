@@ -15,12 +15,8 @@ import ImageCover from "~/components/image-cover/image-cover"
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import ThemeMeta from "~/components/themes/thema-meta/theme-meta"
 import ThemeClosure from "~/components/themes/theme-closure/theme-closure"
-import {
-	markdownTokenizedString,
-	swiftTokenizedString,
-	typeScriptTokenizedString
-} from "~/components/themes/theme-code-preview/functions/tokenized-string-presets"
-import ThemeCodePreviews, { CodeContent } from "~/components/themes/theme-code-previews/theme-code-previews"
+import { themeCodePreviewContent } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content"
+import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
 import ThemeColorCollection from "~/components/themes/theme-color-collection/theme-color-collection"
 import ThemeDownloads from "~/components/themes/theme-downloads/theme-downloads"
 import ThemeMenu from "~/components/themes/theme-menu/theme-menu"
@@ -103,24 +99,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 
 	const accentColor = colors?.[2]
 	const ThemeDivider = () => <Divider className={styles.divider} color={accentColor?.rgb} />
-
-	const codePreviewContent: CodeContent[] = [
-		{
-			name: "Swift",
-			symbol: "#Swift Symbol",
-			content: swiftTokenizedString()
-		},
-		{
-			name: "TypeScript",
-			symbol: "#TypeScript Symbol",
-			content: typeScriptTokenizedString()
-		},
-		{
-			name: "Markdown",
-			symbol: "#Markdown Symbol",
-			content: markdownTokenizedString()
-		}
-	]
+	const codePreviewContent = themeCodePreviewContent()
 
 	return (
 		<>
