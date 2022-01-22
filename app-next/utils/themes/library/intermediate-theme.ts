@@ -1,8 +1,8 @@
 import { ColorValue } from "~/utils/colors/models/color"
 
 export interface IntermediateTheme {
-	format: string
-	version: string
+	_format: string
+	_version: string
 
 	foreground: ColorValue
 	background: ColorValue
@@ -41,4 +41,13 @@ export interface IntermediateTheme {
 	string: ColorValue
 	character: ColorValue
 	url: ColorValue
+}
+
+export function isIntermediateTheme(value: any): value is IntermediateTheme {
+	return (
+		typeof value === "object" &&
+		typeof value._format === "string" &&
+		typeof value._version === "string" &&
+		value._format === "CTU Intermediate Theme Format"
+	)
 }
