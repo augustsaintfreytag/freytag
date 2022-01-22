@@ -35,7 +35,8 @@ function logModulePerformance() {
 // Hook
 
 export function useThemeUtility(deferLoading: boolean = false): [instance: WebAssemblyModule | undefined, isLoading: boolean, load: () => void] {
-	const [isLoading, setIsLoading] = useState(true)
+	const isPreloaded = moduleInstance !== undefined
+	const [isLoading, setIsLoading] = useState(!isPreloaded)
 
 	const load = () => {
 		if (isLoading) {
