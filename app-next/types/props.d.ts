@@ -1,4 +1,4 @@
-import { ReactNode, ReactText } from "react"
+import { ReactElement, ReactNode, ReactNodeArray, ReactPortal, ReactText } from "react"
 import { URL } from "~/utils/routing/library/url"
 
 export type AnyChild =
@@ -6,9 +6,9 @@ export type AnyChild =
 	| number
 	| boolean
 	| {}
-	| React.ReactElement<any, string | React.JSXElementConstructor<any>>
-	| React.ReactNodeArray
-	| React.ReactPortal
+	| ReactElement<any, string | React.JSXElementConstructor<any>>
+	| ReactNodeArray
+	| ReactPortal
 	| null
 	| undefined
 
