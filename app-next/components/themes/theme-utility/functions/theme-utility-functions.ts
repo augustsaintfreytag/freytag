@@ -1,5 +1,5 @@
 import WebAssemblyModule, { MemoryAddress } from "webassembly-module"
-import { isModuleError } from "~/components/themes/theme-utility/library/module-error"
+import { errorFromResults } from "~/components/themes/theme-utility/functions/theme-utility-error-decoding"
 import { Color, isColorValue } from "~/utils/colors/models/color"
 
 export async function echoMessageViaModule(module: WebAssemblyModule, message: string): Promise<string | undefined> {
@@ -13,19 +13,37 @@ export async function generateRandomColorViaModule(module: WebAssemblyModule): P
 	try {
 		const encodedResults = await module.callStreamingFunction<string>("generateRandomColor")
 		const results = JSON.parse(encodedResults ?? "")
+		const error = errorFromResults(results)
 
-		if (isModuleError(results)) {
-			const error = results
-			throw new Error(`Error '${error.kind}', ${error.description}.`)
+		if (error) {
+			throw error
 		}
 
 		if (!isColorValue(results)) {
-			throw new TypeError(`Encoded color from module does not have a valid type.`)
+			throw new TypeError(`Encoded color value from module does not have a valid type.`)
 		}
 
 		return Color.fromValue(results)
 	} catch (error) {
 		console.error(`Could not generate random color via module. ${error}`)
+		return undefined
+	}
+}
+
+export async function describeColor(module: WebAssemblyModule, colorDescription: string): Promise<string | undefined> {
+	try {
+		const inputPointer = await module.initializeStringValue(colorDescription)
+		const encodedResults = await module.callStreamingFunctionWithArgument<string, MemoryAddress>("describeColor", inputPointer)
+		const results = JSON.parse(encodedResults ?? "")
+		const error = errorFromResults(results)
+
+		if (error) {
+			throw error
+		}
+
+		return results
+	} catch (error) {
+		console.error(`Could not describe color description '${colorDescription}' via module. ${error}`)
 		return undefined
 	}
 }
