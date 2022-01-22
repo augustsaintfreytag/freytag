@@ -4,6 +4,10 @@ export interface ColorValue {
 	blue: number
 }
 
+export function isColorValue(value: any): value is ColorValue {
+	return value && typeof value === "object" && value.red && value.green && value.blue
+}
+
 export class Color implements ColorValue {
 	red: number
 	green: number
