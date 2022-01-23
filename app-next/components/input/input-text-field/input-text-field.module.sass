@@ -1,0 +1,30 @@
+@import "/styles/values/all"
+	
+$captionSpacing: 0.65rem
+$horizontalSpacing: 1.5rem
+$verticalSpacing: 0.85rem
+
+.block
+	input
+		appearance: none
+		border: none
+		margin: 0
+		padding: $verticalSpacing $horizontalSpacing
+		background: $elementBackgroundColor
+		width: 100%
+
+		@include elementFont
+		font-size: 1rem
+
+	label
+		display: block
+		margin-top: $captionSpacing
+		margin-left: $horizontalSpacing
+		line-height: $captionLineHeight
+		color: $textColorFaded
+
+		@include breakpoint($anyDesktop)
+			font-size: $captionFontSize
+
+		@include breakpoint($anyMobile)
+			font-size: $captionFontSizeMobile
