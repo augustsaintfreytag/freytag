@@ -17,9 +17,10 @@ interface ItemProps {
 
 const ThemeColorCollectionItem: FunctionComponent<ItemProps> = props => {
 	const style = propertiesWithStyleVariables({ fillColor: props.color.rgb })
+	const colorIsWhite = props.color.rgb === Color.white.rgb
 
 	return (
-		<div className={className(styles.item, props.light && styles.isLight)} style={style}>
+		<div className={className(styles.item, props.light && styles.isLight, colorIsWhite && styles.isWhite)} style={style}>
 			<div className={styles.inlay}>
 				<div className={styles.value}>{props.color.hex}</div>
 				<div className={styles.label}>{props.label}</div>
