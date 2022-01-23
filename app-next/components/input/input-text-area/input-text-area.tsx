@@ -1,23 +1,16 @@
 import { FunctionComponent } from "react"
-import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import InputEnclosure from "../input-enclosure/input-enclosure"
-import styles from "./input-text-field.module.sass"
+import { Props as RawProps } from "../input-text-field/input-text-field"
+import styles from "./input-text-area.module.sass"
 
-export interface Props extends PropsWithClassName {
-	name: string
-	placeholder?: string
-	value?: string
-	setValue?: (value: string) => void
-}
+type Props = RawProps
 
-const InputTextField: FunctionComponent<Props> = props => (
+const InputTextArea: FunctionComponent<Props> = props => (
 	<InputEnclosure className={className(styles.block, props.className)} name={props.name}>
-		<input
-			id={props.name}
-			type="text"
-			value={props.value}
+		<textarea
 			placeholder={props.placeholder}
+			value={props.value}
 			onChange={event => {
 				const newValue = event.target.value
 				props.setValue?.(newValue)
@@ -26,4 +19,4 @@ const InputTextField: FunctionComponent<Props> = props => (
 	</InputEnclosure>
 )
 
-export default InputTextField
+export default InputTextArea
