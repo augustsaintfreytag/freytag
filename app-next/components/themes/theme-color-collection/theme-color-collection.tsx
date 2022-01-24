@@ -4,31 +4,8 @@ import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { Color } from "~/utils/colors/models/color"
 import { range } from "~/utils/range/range"
-import { propertiesWithStyleVariables } from "~/utils/style/functions/style-properties"
+import ThemeColorCollectionItem from "./components/theme-color-collection-item"
 import styles from "./theme-color-collection.module.sass"
-
-// Item
-
-interface ItemProps {
-	color: Color
-	label: string
-	light?: boolean
-}
-
-const ThemeColorCollectionItem: FunctionComponent<ItemProps> = props => {
-	const style = propertiesWithStyleVariables({ fillColor: props.color.rgb })
-	const colorIsLight = props.light ?? false
-	const colorIsWhite = props.color.rgb === Color.white.rgb
-
-	return (
-		<div className={className(styles.item, colorIsLight && styles.isLight, colorIsWhite && styles.isWhite)} style={style}>
-			<div className={styles.inlay}>
-				<div className={styles.value}>{props.color.hex}</div>
-				<div className={styles.label}>{props.label}</div>
-			</div>
-		</div>
-	)
-}
 
 // Collection
 
