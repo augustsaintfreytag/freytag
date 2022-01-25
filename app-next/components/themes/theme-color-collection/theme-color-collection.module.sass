@@ -1,6 +1,8 @@
 @import "/styles/values/all"
 	
 .collection
+	position: relative
+
 	@include breakpoint($anyDesktop)
 		@include inlayed
 
@@ -15,8 +17,18 @@
 		grid-auto-flow: row
 
 		> li
+			position: relative
 			height: 15rem
 			background: #fafafa
+
+			button
+				display: block
+				appearance: none
+				position: absolute
+				inset: 0
+				height: 100%
+				width: 100%
+				background: transparent
 
 		@include breakpoint($phone)
 			grid-template-columns: 1fr 1fr
