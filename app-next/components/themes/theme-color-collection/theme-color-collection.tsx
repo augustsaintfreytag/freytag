@@ -19,6 +19,7 @@ const colorChangeDebounceTime: TimeInterval = 20
 interface Props extends PropsWithClassName {
 	colors: Color[]
 	setColor?: (index: number, color: Color) => void
+	editable?: boolean
 }
 
 function mappedColorAndLabel(colors: Color[], labels: string[], index: number): [color: Color, label: string] {
@@ -35,13 +36,13 @@ function mappedColorAndLabel(colors: Color[], labels: string[], index: number): 
 const ThemeColorCollection: FunctionComponent<Props> = props => {
 	const colors = props.colors
 	const labels = themeColorNames
-	const colorInput = useRef<HTMLInputElement>(null)
-	const colorButtons = range(0, colors.length).map(() => useRef<HTMLButtonElement>(null))
 
 	if (colors.length !== labels.length) {
 		console.warn(`Expected exactly ${labels.length} colors, but got ${colors.length}. Need exact number of colors for mapping.`)
 	}
 
+	const colorInput = useRef<HTMLInputElement>(null)
+	const colorButtons = range(0, colors.length).map(() => useRef<HTMLButtonElement>(null))
 	const [colorInputIndex, setColorInputIndex] = useState<number | undefined>(undefined)
 	const [colorInputValue, setColorInputValue] = useState<string>("")
 
@@ -105,18 +106,20 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 					return (
 						<li key={`${index}-${label}`}>
 							<ThemeColorCollectionItem color={color} label={label} light={color.isLight} />
-							<button className={styles.edit} ref={colorButtons[index]} onClick={_ => onColorAction(index)}></button>
+							{props.editable && <button className={styles.edit} ref={colorButtons[index]} onClick={_ => onColorAction(index)}></button>}
 						</li>
 					)
 				})}
 			</ol>
-			<input
-				type="color"
-				ref={colorInput}
-				className={styles.colorInput}
-				value={colorInputValue}
-				onChange={event => onColorInputChange(event.target.value)}
-			/>
+			{props.editable && (
+				<input
+					type="color"
+					ref={colorInput}
+					className={styles.colorInput}
+					value={colorInputValue}
+					onChange={event => onColorInputChange(event.target.value)}
+				/>
+			)}
 		</section>
 	)
 }
