@@ -1,12 +1,18 @@
 import { FunctionComponent, useEffect, useRef, useState } from "react"
+import { useDebouncedCallback } from "use-debounce"
 import { themeColorNames } from "~/components/themes/theme-color-collection/library/theme-color-labels"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { colorFromHexDescription } from "~/utils/colors/functions/color-conversion"
 import { Color } from "~/utils/colors/models/color"
+import { TimeInterval } from "~/utils/date/library/intervals"
 import { range } from "~/utils/range/range"
 import ThemeColorCollectionItem from "./components/theme-color-collection-item"
 import styles from "./theme-color-collection.module.sass"
+
+// Configuration
+
+const colorChangeDebounceTime: TimeInterval = 20
 
 // Collection
 
@@ -39,15 +45,17 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 	const [colorInputIndex, setColorInputIndex] = useState<number | undefined>(undefined)
 	const [colorInputValue, setColorInputValue] = useState<string>("")
 
-	useEffect(() => {
-		if (colorInputIndex === undefined) {
-			return
-		}
+	useEffect(
+		useDebouncedCallback(() => {
+			if (colorInputIndex === undefined) {
+				return
+			}
 
-		const newColor = colorFromHexDescription(colorInputValue)!
-		console.log(`Color input value is '${colorInputValue}', formed color '${newColor?.rgb ?? "<None>"}'.`)
-		props.setColor?.(colorInputIndex, newColor)
-	}, [colorInputValue])
+			const newColor = colorFromHexDescription(colorInputValue)!
+			props.setColor?.(colorInputIndex, newColor)
+		}, colorChangeDebounceTime),
+		[colorInputValue]
+	)
 
 	const focusColorInput = (index: number) => {
 		const button = colorButtons[index].current
@@ -73,7 +81,10 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 		input.style.inset = `${colorPosition.y}px 0 0 ${colorPosition.x}px`
 		input.style.width = `${colorBounds.width}px`
 
-		requestAnimationFrame(() => input.click())
+		requestAnimationFrame(() => {
+			input.focus()
+			input.click()
+		})
 	}
 
 	const onColorAction = (index: number) => {
@@ -92,7 +103,7 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 					const [color, label] = mappedColorAndLabel(colors, labels, index)
 
 					return (
-						<li key={`${index}-${color.key}-${label}`}>
+						<li key={`${index}-${label}`}>
 							<ThemeColorCollectionItem color={color} label={label} light={color.isLight} />
 							<button className={styles.edit} ref={colorButtons[index]} onClick={_ => onColorAction(index)}></button>
 						</li>
