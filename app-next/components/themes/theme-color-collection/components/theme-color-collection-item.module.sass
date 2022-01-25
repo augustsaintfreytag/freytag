@@ -11,7 +11,7 @@
 
 	.inlay
 		position: absolute
-		bottom: 0
+		inset: auto 0 0 0
 		padding: 1rem 1.25rem
 		overflow: hidden
 
@@ -28,7 +28,9 @@
 			opacity: 0.35
 
 		.label
-			@include wrappingFont
+			width: 100%
+			@include ellipsized
+			padding-right: 1rem
 
 	&.isLight
 		.inlay
