@@ -1,4 +1,5 @@
 import type { GetServerSideProps } from "next"
+import { useMemo } from "react"
 import { RecordError } from "~/api/common/errors/record-error"
 import { getAggregatingServerSideResponses, getServerSideResponseByQuery } from "~/api/props/functions/server-side-props"
 import { isServerSidePropsResponse } from "~/api/props/functions/server-side-response-guards"
@@ -99,7 +100,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 
 	const accentColor = colors?.[2]
 	const ThemeDivider = () => <Divider className={styles.divider} color={accentColor?.rgb} />
-	const codePreviewContent = themeCodePreviewContent()
+	const codePreviewContent = useMemo(() => themeCodePreviewContent(), [])
 
 	return (
 		<>
