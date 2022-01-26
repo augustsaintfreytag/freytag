@@ -31,8 +31,16 @@ export class Color implements ColorValue {
 		return new Color(this.randomComponent(), this.randomComponent(), this.randomComponent())
 	}
 
-	static randomComponent(): number {
+	private static randomComponent(): number {
 		return Math.round(Math.random() * 1000) / 1000
+	}
+
+	static get randomAesthetic(): Color {
+		return new Color(this.randomAestheticComponent(), this.randomAestheticComponent(), this.randomAestheticComponent())
+	}
+
+	private static randomAestheticComponent(): number {
+		return Math.round(500 + Math.random() * 500) / 1000
 	}
 
 	// Init
