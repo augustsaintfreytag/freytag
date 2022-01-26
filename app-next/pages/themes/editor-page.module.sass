@@ -1,11 +1,25 @@
 @import "/styles/values/all"
 
+$inputSpacing: 3.5rem
+
 .page
 	padding-bottom: $pageSpacing
 
 	.title
 		margin-top: $pageSpacing
 
-	> div, > pre
-		margin-top: $pageSpacing * 0.5
-		@include inlayedText
+	.inputs
+		margin-top: $pageSpacing
+
+		.input
+			width: 35rem
+			margin: $inputSpacing auto 0 auto
+
+	.tutorial
+		margin-top: $pageContentSpacing
+
+	.colors
+		margin-top: $pageContentSpacing
+
+	.previews
+		margin-top: $pageContentSpacing

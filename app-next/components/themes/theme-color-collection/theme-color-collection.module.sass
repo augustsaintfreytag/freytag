@@ -1,6 +1,8 @@
 @import "/styles/values/all"
 	
 .collection
+	position: relative
+
 	@include breakpoint($anyDesktop)
 		@include inlayed
 
@@ -15,40 +17,23 @@
 		grid-auto-flow: row
 
 		> li
+			position: relative
 			height: 15rem
 			background: #fafafa
+
+			.edit
+				display: block
+				appearance: none
+				position: absolute
+				inset: 0
+				height: 100%
+				width: 100%
+				background: transparent
 
 		@include breakpoint($phone)
 			grid-template-columns: 1fr 1fr
 
-.item
-	position: relative
-	background: var(--fill-color)
-	width: 100%
-	height: 100%
-
-	.inlay
+	.colorInput
 		position: absolute
-		bottom: 0
-		padding: 1rem 1.25rem
-		overflow: hidden
-
-		.value, .label
-			@include codeFont
-			font-size: $elementTextFontSize
-
-			@include breakpoint($anyMobile)
-				font-size: $elementTextFontSizeMobile
-
-			color: $textColorOnDark
-
-		.value
-			opacity: 0.35
-
-		.label
-			@include wrappingFont
-
-	&.isLight
-		.inlay
-			.value, .label
-				color: $textColor
+		inset: 0
+		visibility: hidden

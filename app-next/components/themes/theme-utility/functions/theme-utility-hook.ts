@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import WebAssemblyModule, { fetchWebAssemblyModuleData, instantiateWebAssemblyModule } from "webassembly-module"
 import { performanceMeasure, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { URL } from "~/utils/routing/library/url"
@@ -34,15 +34,26 @@ function logModulePerformance() {
 
 // Hook
 
-export function useThemeUtility(deferLoading: boolean = false): [instance: WebAssemblyModule | undefined, isLoading: boolean, load: () => void] {
-	const isPreloaded = moduleInstance !== undefined
-	const [isLoading, setIsLoading] = useState(!isPreloaded)
+export function useThemeUtility(
+	deferLoading: boolean = false
+): [instance: WebAssemblyModule | undefined, isLoading: boolean, load: () => Promise<void>] {
+	const [isLoading, setIsLoading] = useState(!false)
 
-	const load = () => {
-		if (isLoading) {
-			setUpModule().then(() => setIsLoading(false))
-		}
-	}
+	const load = useMemo(
+		() => async () => {
+			if (moduleInstance) {
+				setIsLoading(false)
+				return
+			}
+
+			if (isLoading) {
+				await setUpModule()
+				setIsLoading(false)
+				return
+			}
+		},
+		[]
+	)
 
 	useEffect(() => {
 		if (!deferLoading) {
@@ -51,4 +62,8 @@ export function useThemeUtility(deferLoading: boolean = false): [instance: WebAs
 	}, [])
 
 	return [moduleInstance, isLoading, load]
+}
+
+export function useDeferredThemeUtility(): [instance: WebAssemblyModule | undefined, isLoading: boolean, load: () => Promise<void>] {
+	return useThemeUtility(true)
 }
