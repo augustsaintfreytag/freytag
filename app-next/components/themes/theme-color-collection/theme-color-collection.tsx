@@ -8,6 +8,7 @@ import { Color } from "~/utils/colors/models/color"
 import { TimeInterval } from "~/utils/date/library/intervals"
 import { range } from "~/utils/range/range"
 import ThemeColorCollectionItem from "./components/theme-color-collection-item"
+import { focusColorInputOnEventSource } from "./functions/color-input-actions"
 import styles from "./theme-color-collection.module.sass"
 
 // Configuration
@@ -59,33 +60,10 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 	)
 
 	const focusColorInput = (index: number) => {
-		const button = colorButtons[index].current
-		const input = colorInput.current
+		const input = colorInput
+		const button = colorButtons[index]
 
-		if (!button || !input) {
-			console.error(`Could not position and show color input, missing element references.`)
-			return
-		}
-
-		const positionTarget = button.parentElement!
-		const colorBounds = {
-			x: positionTarget.offsetLeft,
-			y: positionTarget.offsetTop,
-			width: positionTarget.clientWidth,
-			height: positionTarget.clientHeight
-		}
-
-		const inputVerticalOffset = 5
-		const inputDummyHeight = input.clientHeight
-		const colorPosition = { x: colorBounds.x, y: colorBounds.y + colorBounds.height - inputDummyHeight + inputVerticalOffset }
-
-		input.style.inset = `${colorPosition.y}px 0 0 ${colorPosition.x}px`
-		input.style.width = `${colorBounds.width}px`
-
-		requestAnimationFrame(() => {
-			input.focus()
-			input.click()
-		})
+		focusColorInputOnEventSource(input, button)
 	}
 
 	const onColorAction = (index: number) => {
