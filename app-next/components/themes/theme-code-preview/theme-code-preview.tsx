@@ -21,7 +21,7 @@ const ThemeCodePreview: FunctionComponent<Props> = props => {
 		return (
 			<section className={className(styles.block, props.className)}>
 				<FauxWindow className={styles.window} controls>
-					<code>Preview not available. Theme does not have an intermediate format package.</code>
+					<code>Preview not available for this theme package.</code>
 				</FauxWindow>
 			</section>
 		)
