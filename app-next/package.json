@@ -20,6 +20,7 @@
 		"react-markdown": "6.0.2",
 		"sass": "1.35.2",
 		"use-async-effect": "^2.2.5",
+		"use-debounce": "^7.0.1",
 		"webassembly-module": "https://gitlab.com/apricum/webassembly-module.git#preview"
 	},
 	"devDependencies": {
