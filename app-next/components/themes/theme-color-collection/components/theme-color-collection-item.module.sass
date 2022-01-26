@@ -1,0 +1,41 @@
+@import "/styles/values/all"
+	
+.item
+	box-sizing: border-box
+	position: relative
+	width: 100%
+	height: 100%
+	border: 1px solid transparent
+	background: var(--fill-color)
+	transition: background 0.25s linear
+
+	.inlay
+		position: absolute
+		inset: auto 0 0 0
+		padding: 1rem 1.25rem
+		overflow: hidden
+
+		.value, .label
+			@include codeFont
+			font-size: $elementTextFontSize
+
+			@include breakpoint($anyMobile)
+				font-size: $elementTextFontSizeMobile
+
+			color: $textColorOnDark
+
+		.value
+			opacity: 0.35
+
+		.label
+			width: 100%
+			@include ellipsized
+			padding-right: 1rem
+
+	&.isLight
+		.inlay
+			.value, .label
+				color: $textColor
+
+	&.isWhite
+		border: 1px solid $elementBorderColor
