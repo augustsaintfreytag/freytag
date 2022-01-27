@@ -177,6 +177,34 @@ const ThemeSprites = () => (
 				/>
 			</g>
 		</symbol>
+		<symbol id="Copy Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.136 26.136">
+			<g transform="translate(-1 -1)">
+				<path d="M20.166,28.166H1V9H20.166ZM2.742,26.424H18.424V10.742H2.742Z" transform="translate(0 -1.03)" />
+				<path d="M28.166,20.166H19.454V9.712H9V1H28.166ZM21.2,18.424h5.227V2.742H10.742V7.97H21.2Z" transform="translate(-1.03)" />
+				<rect width="17" height="16" transform="translate(2 9.648)" />
+			</g>
+		</symbol>
+		<symbol id="Import Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 26.136 26.136">
+			<g transform="translate(-1 -1)">
+				<path d="M20.166,28.166H1V9H20.166ZM2.742,26.424H18.424V10.742H2.742Z" transform="translate(0 -1.03)" />
+				<path d="M28.166,20.166H19.454V9.712H9V1H28.166ZM21.2,18.424h5.227V2.742H10.742V7.97H21.2Z" transform="translate(-1.03)" />
+				<path d="M8.947,2.025H25.992V19.263H19.586V8.625H8.947Z" />
+			</g>
+		</symbol>
+		<symbol id="Randomize Symbol" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22.939 26.488">
+			<g transform="translate(-34.297)">
+				<path
+					d="M45.767,0,34.3,6.622V19.866l11.47,6.622,11.47-6.622V6.622Zm-.778,24.242-9.135-5.274V8.419l9.135,5.274V24.242ZM36.631,7.071,45.767,1.8,54.9,7.071l-9.135,5.274Zm19.049,11.9-9.135,5.274V13.693L55.68,8.419Z"
+					fill="#1c1c1c"
+				/>
+				<circle cx="1.037" cy="1.037" r="1.037" transform="translate(44.729 6.034)" />
+				<circle cx="1.037" cy="1.037" r="1.037" transform="translate(51.835 12.207)" />
+				<circle cx="1.037" cy="1.037" r="1.037" transform="translate(48.256 18.431)" />
+				<circle cx="1.037" cy="1.037" r="1.037" transform="translate(37.622 12.207)" />
+				<circle cx="1.037" cy="1.037" r="1.037" transform="translate(39.386 15.319)" />
+				<circle cx="1.037" cy="1.037" r="1.037" transform="translate(41.201 18.431)" />
+			</g>
+		</symbol>
 	</svg>
 )
 
