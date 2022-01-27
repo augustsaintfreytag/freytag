@@ -31,16 +31,24 @@ export class Color implements ColorValue {
 		return new Color(this.randomComponent(), this.randomComponent(), this.randomComponent())
 	}
 
+	static get randomLight(): Color {
+		return new Color(this.randomLightComponent(), this.randomLightComponent(), this.randomLightComponent())
+	}
+
+	static get randomDark(): Color {
+		return new Color(this.randomDarkComponent(), this.randomDarkComponent(), this.randomDarkComponent())
+	}
+
 	private static randomComponent(): number {
 		return Math.round(Math.random() * 1000) / 1000
 	}
 
-	static get randomAesthetic(): Color {
-		return new Color(this.randomAestheticComponent(), this.randomAestheticComponent(), this.randomAestheticComponent())
+	private static randomLightComponent(): number {
+		return Math.round(500 + Math.random() * 500) / 1000
 	}
 
-	private static randomAestheticComponent(): number {
-		return Math.round(500 + Math.random() * 500) / 1000
+	private static randomDarkComponent(): number {
+		return Math.round(Math.random() * 500) / 1000
 	}
 
 	// Init
@@ -57,6 +65,10 @@ export class Color implements ColorValue {
 
 	static fromValue(value: ColorValue): Color {
 		return new Color(value.red, value.green, value.blue)
+	}
+
+	get jittered(): Color {
+		return new Color(this.red + (Math.random() - 0.5) / 10, this.green + (Math.random() - 0.5) / 10, this.blue + (Math.random() - 0.5) / 10)
 	}
 
 	// Value
