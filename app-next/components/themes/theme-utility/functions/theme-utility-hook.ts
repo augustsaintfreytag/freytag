@@ -8,26 +8,26 @@ const modulePath: URL = `/color-theme-assembly.min.wasm`
 let moduleInstance: WebAssemblyModule | undefined
 
 enum PerformanceKey {
-	moduleFetch = "theme-utility-module-fetch",
-	moduleInit = "theme-utility-module-init"
+	ModuleFetch = "theme-utility-module-fetch",
+	ModuleInit = "theme-utility-module-init"
 }
 
 async function setUpModule() {
-	startPerformanceMeasure(PerformanceKey.moduleFetch)
+	startPerformanceMeasure(PerformanceKey.ModuleFetch)
 	const moduleData = await fetchWebAssemblyModuleData(modulePath)
-	stopPerformanceMeasure(PerformanceKey.moduleFetch)
+	stopPerformanceMeasure(PerformanceKey.ModuleFetch)
 
-	startPerformanceMeasure(PerformanceKey.moduleInit)
+	startPerformanceMeasure(PerformanceKey.ModuleInit)
 	moduleInstance = await instantiateWebAssemblyModule(moduleData)
-	stopPerformanceMeasure(PerformanceKey.moduleInit)
+	stopPerformanceMeasure(PerformanceKey.ModuleInit)
 
 	logModulePerformance()
 }
 
 function logModulePerformance() {
 	console.log(
-		`Loaded theme utility module in ${performanceMeasure(PerformanceKey.moduleFetch).duration}ms, initialized in ${
-			performanceMeasure(PerformanceKey.moduleInit).duration
+		`Loaded theme utility module in ${performanceMeasure(PerformanceKey.ModuleFetch).duration}ms, initialized in ${
+			performanceMeasure(PerformanceKey.ModuleInit).duration
 		}ms.`
 	)
 }
