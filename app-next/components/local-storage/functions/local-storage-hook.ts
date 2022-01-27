@@ -52,3 +52,22 @@ export function useLocalStorageState<Value>(key: string, initialValue: Value): [
 
 	return [presentedValue, setValueBlock]
 }
+
+type EncodeBlock<Value> = (value: Value) => string
+type DecodeBlock<Value> = (value: string) => Value
+
+export function useEncodedLocalStorageState<Value>(
+	key: string,
+	encodeBlock: EncodeBlock<Value>,
+	decodeBlock: DecodeBlock<Value>,
+	initialValue: Value
+): [value: Value, setValueBlock: SetValueBlock<Value>] {
+	const [storedValue, setStoredValue] = useLocalStorageState<string>(key, encodeBlock(initialValue))
+
+	const setValueBlock = (newValue: Value) => {
+		setStoredValue(encodeBlock(newValue))
+	}
+
+	const processedValue = decodeBlock(storedValue)
+	return [processedValue, setValueBlock]
+}
