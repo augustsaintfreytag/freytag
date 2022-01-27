@@ -1,4 +1,5 @@
 import { FunctionComponent } from "react"
+import ActionButtonStack from "~/components/action-button/action-button-stack"
 import RadioActionButton from "~/components/action-button/radio-action-button"
 import { useLocalStorageState } from "~/components/local-storage/functions/local-storage-hook"
 import { SpriteReference } from "~/components/sprites/sprite"
@@ -30,7 +31,7 @@ const ThemeCodePreviews: FunctionComponent<Props> = props => {
 	return (
 		<section className={className(styles.previews, props.className)}>
 			<div className={styles.content}>{selectedContent && <ThemeCodePreview theme={theme} content={selectedContent.content} />}</div>
-			<div className={styles.selector}>
+			<ActionButtonStack className={styles.selector}>
 				{content.map((item, index) => (
 					<RadioActionButton
 						key={item.name}
@@ -41,7 +42,7 @@ const ThemeCodePreviews: FunctionComponent<Props> = props => {
 						onClick={() => setSelectedContentIndex(index)}
 					/>
 				))}
-			</div>
+			</ActionButtonStack>
 		</section>
 	)
 }

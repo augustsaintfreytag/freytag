@@ -10,6 +10,7 @@ interface Props extends ActionButtonProps {
 
 const RadioActionButton: FunctionComponent<Props> = props => {
 	const isActive = props.active ?? true
+
 	return (
 		<ActionButton
 			className={className(styles.button, isActive && styles.active)}
