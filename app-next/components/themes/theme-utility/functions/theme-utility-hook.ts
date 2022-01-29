@@ -13,6 +13,10 @@ enum PerformanceKey {
 }
 
 async function setUpModule() {
+	if (moduleInstance) {
+		return
+	}
+
 	startPerformanceMeasure(PerformanceKey.ModuleFetch)
 	const moduleData = await fetchWebAssemblyModuleData(modulePath)
 	stopPerformanceMeasure(PerformanceKey.ModuleFetch)
@@ -40,11 +44,6 @@ export function useThemeUtility(
 
 	const load = useMemo(
 		() => async () => {
-			if (moduleInstance) {
-				setIsLoading(false)
-				return
-			}
-
 			if (isLoading) {
 				await setUpModule()
 				setIsLoading(false)
