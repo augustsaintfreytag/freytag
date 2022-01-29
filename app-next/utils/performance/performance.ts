@@ -11,7 +11,9 @@ export function stopPerformanceMeasure(key: string) {
 /** Returns the performance entry for the last measurement of the given key. */
 export function performanceMeasure(key: string): PerformanceEntry {
 	performance.measure(key, `${key}:start`, `${key}:end`)
-	return performance.getEntriesByName(key)[0]
+	const entries = performance.getEntriesByName(key)
+
+	return entries[entries.length - 1]
 }
 
 /** Returns the formatted measured duration using the global `performance` type.
