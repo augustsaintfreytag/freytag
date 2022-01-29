@@ -2,6 +2,7 @@ import type { GetServerSideProps } from "next"
 import { useEffect, useMemo, useState } from "react"
 import InputTextArea from "~/components/input/input-text-area/input-text-area"
 import TitleInputTextField from "~/components/input/title-input-text-field/title-input-text-field"
+import { useEncodedLocalStorageState } from "~/components/local-storage/functions/local-storage-hook"
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import { themeCodePreviewContent } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
@@ -15,8 +16,8 @@ import WorkContentTextBlock from "~/components/work/work-content/components/work
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
-import { Color } from "~/utils/colors/models/color"
-import { performanceMeasure, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
+import { Color, ColorValue } from "~/utils/colors/models/color"
+import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { range } from "~/utils/range/range"
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
 import styles from "./editor-page.module.sass"
@@ -42,6 +43,22 @@ interface Props {
 	data?: PageData
 }
 
+function useEditorColors(initialColors: Color[]): [colors: Color[], setColors: (newColors: Color[]) => void] {
+	const encodeColors = (colors: Color[]) => JSON.stringify(colors)
+	const decodeColors = (value: string) => {
+		try {
+			const colorValues = JSON.parse(value) as ColorValue[]
+			const colors = colorValues.map(colorValue => Color.fromValue(colorValue))
+
+			return colors
+		} catch {
+			return []
+		}
+	}
+
+	return useEncodedLocalStorageState<Color[]>("theme-editor-colors", encodeColors, decodeColors, initialColors)
+}
+
 // Page
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async () => {
@@ -51,7 +68,7 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async () => {
 const EditorPage: Page<PageProps & Props> = () => {
 	const [themeName, setThemeName] = useState("")
 	const [themeDescription, setThemeDescription] = useState("")
-	const [themeColors, setThemeColors] = useState<Color[]>(defaultColors)
+	const [themeColors, setThemeColors] = useEditorColors(defaultColors)
 
 	const onColorCollectionSet = (index: number, newColor: Color) => {
 		const newColors = [...themeColors]
@@ -68,26 +85,25 @@ const EditorPage: Page<PageProps & Props> = () => {
 	const themePreviewContent = useMemo(() => themeCodePreviewContent(), [])
 
 	useEffect(() => {
-		if (!isLoadingThemeUtility) {
-			loadThemeUtility()
-		}
+		loadThemeUtility()
 	}, [])
 
 	useEffect(() => {
+		if (!themeUtility) {
+			return
+		}
+
 		const currentColorKey = keyForColors(themeColors)
 		if (currentColorKey === lastUsedColorKey) {
 			return
 		}
 
 		;(async () => {
-			// Wait for theme utility load if not already preloaded.
-			await loadThemeUtility()
-
 			startPerformanceMeasure(PerformanceKey.GenerateTheme)
-			const theme = await generateThemeViaModule(themeUtility!, themeColors)
+			const theme = await generateThemeViaModule(themeUtility, themeColors)
 			stopPerformanceMeasure(PerformanceKey.GenerateTheme)
 
-			console.log(`Generated theme from all colors in ${performanceMeasure(PerformanceKey.GenerateTheme).duration}ms.`)
+			console.log(`Generated theme from all colors in ${performanceMeasureDuration(PerformanceKey.GenerateTheme)}.`)
 
 			if (!theme) {
 				console.error(`Could not generate theme from colors '${themeColors.map(color => color.hex)}'.`)
