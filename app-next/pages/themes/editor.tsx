@@ -118,7 +118,7 @@ const EditorPage: Page<PageProps & Props> = () => {
 		<>
 			<ThemeSprites />
 			<section className={styles.page}>
-				<ThemeEditorMenu />
+				<ThemeEditorMenu theme={generatedTheme} />
 				<ThemeEditorTitle className={styles.title} />
 				<div className={styles.inputs}>
 					<TitleInputTextField
