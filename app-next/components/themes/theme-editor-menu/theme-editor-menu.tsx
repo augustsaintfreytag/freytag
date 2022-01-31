@@ -1,6 +1,8 @@
 import { FunctionComponent } from "react"
+import { useFileObjectURL } from "~/components/file-object/file-object-url-hook"
 import MenuItem from "~/components/menu/components/menu-item"
 import Menu from "~/components/menu/menu"
+import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
 
 const itemProps = {
 	returnToGallery: { symbol: "#Gallery Symbol", short: "Gallery", full: "Return to Gallery" },
@@ -10,15 +12,26 @@ const itemProps = {
 	submitDraft: { symbol: "#Submit Symbol", short: "Submit", full: "Submit Theme" }
 }
 
-interface Props {}
+interface Props {
+	theme?: IntermediateTheme
+}
 
 const ThemeEditorMenu: FunctionComponent<Props> = props => {
+	const themeFileName = "theme-editor-draft.intertheme"
+	const themeFileURL = useFileObjectURL(themeFileName, "application/json", props.theme)
+
 	return (
 		<Menu>
 			<MenuItem symbol={itemProps.returnToGallery.symbol} text={itemProps.returnToGallery} href="/themes#gallery" />
 			<MenuItem symbol={itemProps.saveDraft.symbol} text={itemProps.saveDraft} href="#" disabled />
 			<MenuItem symbol={itemProps.loadDraft.symbol} text={itemProps.loadDraft} href="#" disabled />
-			<MenuItem symbol={itemProps.downloadTheme.symbol} text={itemProps.downloadTheme} href="#" disabled />
+			<MenuItem
+				symbol={itemProps.downloadTheme.symbol}
+				text={itemProps.downloadTheme}
+				href={themeFileURL}
+				download={themeFileName}
+				disabled={!themeFileURL}
+			/>
 			<MenuItem symbol={itemProps.submitDraft.symbol} text={itemProps.submitDraft} href="#" disabled />
 		</Menu>
 	)

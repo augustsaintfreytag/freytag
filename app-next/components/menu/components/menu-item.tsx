@@ -16,6 +16,7 @@ interface Props {
 		full: string
 	}
 	href?: URL
+	download?: boolean | string
 	onClick?: () => void
 }
 
@@ -24,7 +25,8 @@ interface Props {
 enum ViewMode {
 	Plain,
 	Event,
-	Link
+	Link,
+	Download
 }
 
 function viewModeForProps(props: Props): ViewMode | undefined {
@@ -34,6 +36,10 @@ function viewModeForProps(props: Props): ViewMode | undefined {
 
 	if (props.onClick) {
 		return ViewMode.Event
+	}
+
+	if (props.download) {
+		return ViewMode.Download
 	}
 
 	if (props.href) {
@@ -54,15 +60,21 @@ const Inlay: FunctionComponent<Props & PropsWithClassName> = props => (
 )
 
 const EventWrappedInlay: FunctionComponent<Props> = props => (
-	<a onClick={props.onClick} title={props.text.full}>
+	<a title={props.text.full} onClick={props.onClick}>
 		<Inlay {...props} />
 	</a>
 )
 
 const LinkWrappedInlay: FunctionComponent<Props> = props => (
-	<InternalLink href={props.href ?? ""} title={props.text.full}>
+	<InternalLink title={props.text.full} href={props.href ?? ""}>
 		<Inlay {...props} />
 	</InternalLink>
+)
+
+const DownloadWrappedInlay: FunctionComponent<Props> = props => (
+	<a title={props.text.full} href={props.href} download={props.download}>
+		<Inlay {...props} />
+	</a>
 )
 
 // Component
@@ -74,6 +86,7 @@ const MenuItem: FunctionComponent<Props> = props => {
 		<div className={className(styles.menuItem, props.disabled && styles.disabled)}>
 			{viewMode === ViewMode.Plain && <Inlay className={styles.plain} {...props} />}
 			{viewMode === ViewMode.Event && <EventWrappedInlay {...props} />}
+			{viewMode === ViewMode.Download && <DownloadWrappedInlay {...props} />}
 			{viewMode === ViewMode.Link && <LinkWrappedInlay {...props} />}
 		</div>
 	)
