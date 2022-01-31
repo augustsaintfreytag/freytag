@@ -21,7 +21,7 @@ const ThemeEditorColors: FunctionComponent<Props> = props => {
 
 	return (
 		<div className={className(styles.block, props.className)}>
-			<ThemeColorCollection className={styles.colors} colors={props.colors} setColor={onColorSet} editable />
+			<ThemeColorCollection className={styles.colors} colors={props.colors} setColor={onColorSet} compact editable />
 			<ThemeEditorColorMenu className={styles.colorMenu} getColors={() => props.colors} onChangeColors={props.onColorCollectionSet} />
 		</div>
 	)
