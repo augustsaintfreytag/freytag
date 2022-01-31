@@ -118,7 +118,13 @@ const ThemePage: Page<PageProps & Props> = props => {
 					<div className={styles.abstract}>
 						<WorkContentTextBlock>{theme.description}</WorkContentTextBlock>
 					</div>
-					<ThemeCodePreviews className={styles.previews} theme={intermediateThemeFile} content={codePreviewContent} />
+					<ThemeCodePreviews
+						className={styles.previews}
+						contentClassName={styles.previewsContent}
+						theme={intermediateThemeFile}
+						content={codePreviewContent}
+						windowed
+					/>
 					<ThemeDivider />
 					<ThemeDownloads className={styles.downloads} name={theme.name} items={downloads} />
 					<ThemeDivider />

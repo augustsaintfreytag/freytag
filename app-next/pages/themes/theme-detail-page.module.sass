@@ -33,5 +33,12 @@
 			@include inlayed
 			margin-top: $interContentSpacing
 
+			.previewsContent
+				@include breakpoint($anyDesktop)
+					margin: 0 7.5%
+
+				@include breakpoint($anyMobile)
+					margin: 0
+
 		.downloads
 			margin-top: $interContentSpacing
