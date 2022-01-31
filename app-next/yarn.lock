@@ -2411,7 +2411,7 @@ watchpack@2.1.1:
 
 "webassembly-module@https://gitlab.com/apricum/webassembly-module.git#preview":
   version "0.1.0"
-  resolved "https://gitlab.com/apricum/webassembly-module.git#3e4ec91f11280826a4a78cc7c8fbb4c252905cc9"
+  resolved "https://gitlab.com/apricum/webassembly-module.git#c85851245655ad211a8219db529c464411c02042"
   dependencies:
     "@wasmer/wasi" "^0.10.0"
     "@wasmer/wasmfs" "^0.10.0"
