@@ -3,7 +3,7 @@ import FauxWindow from "~/components/faux-window/faux-window"
 import { tokenizedStringByLines } from "~/components/themes/theme-code-preview/functions/tokenized-string-line-split"
 import { colorFromIntermediateTheme, ThemeFormatKey } from "~/components/themes/theme-code-preview/library/theme-format-key"
 import { SyntaxToken, TokenizedString } from "~/components/themes/theme-code-preview/library/tokenized-string"
-import { PropsWithClassName } from "~/types/props"
+import { PropsWithAnyChildren, PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { Color } from "~/utils/colors/models/color"
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
@@ -14,6 +14,7 @@ import styles from "./theme-code-preview.module.sass"
 interface CodeProps {
 	theme: IntermediateTheme
 	tokensByLine: SyntaxToken[][]
+	windowed?: boolean
 }
 
 const Code: FunctionComponent<CodeProps> = props => {
@@ -50,11 +51,39 @@ const Code: FunctionComponent<CodeProps> = props => {
 
 const CodeFallback: FunctionComponent = () => <code>Preview not available for this theme package.</code>
 
+// Enclosure Component
+
+interface EnclosureProps extends PropsWithClassName, PropsWithAnyChildren {
+	background?: Color
+	windowed?: boolean
+}
+
+const Enclosure: FunctionComponent<EnclosureProps> = props => {
+	if (!props.windowed) {
+		const style: CSSProperties = { background: props.background?.rgb }
+
+		return (
+			<section className={className(styles.block, props.className)} style={style}>
+				<div className={styles.content}>{props.children}</div>
+			</section>
+		)
+	}
+
+	return (
+		<section className={className(styles.block, props.className)}>
+			<FauxWindow className={styles.window} background={props.background?.rgb} controls>
+				{props.children}
+			</FauxWindow>
+		</section>
+	)
+}
+
 // Main Component
 
 interface Props extends PropsWithClassName {
 	theme?: IntermediateTheme
 	content?: TokenizedString
+	windowed?: boolean
 }
 
 const ThemeCodePreview: FunctionComponent<Props> = props => {
@@ -62,11 +91,9 @@ const ThemeCodePreview: FunctionComponent<Props> = props => {
 
 	if (!theme) {
 		return (
-			<section className={className(styles.block, props.className)}>
-				<FauxWindow className={styles.window} controls>
-					<CodeFallback />
-				</FauxWindow>
-			</section>
+			<Enclosure className={className(props.className, props.windowed && styles.isWindowed)} windowed={props.windowed}>
+				<CodeFallback />
+			</Enclosure>
 		)
 	}
 
@@ -75,11 +102,9 @@ const ThemeCodePreview: FunctionComponent<Props> = props => {
 	const backgroundColor = colorFromIntermediateTheme(theme, ThemeFormatKey.Background)
 
 	return (
-		<section className={className(styles.block, props.className)}>
-			<FauxWindow className={styles.window} background={backgroundColor.rgb} controls>
-				<Code theme={theme} tokensByLine={tokensByLine} />
-			</FauxWindow>
-		</section>
+		<Enclosure className={className(props.className, props.windowed && styles.isWindowed)} background={backgroundColor} windowed={props.windowed}>
+			<Code theme={theme} tokensByLine={tokensByLine} />
+		</Enclosure>
 	)
 }
 

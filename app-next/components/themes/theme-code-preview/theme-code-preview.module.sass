@@ -1,55 +1,51 @@
 @import "/styles/values/all"
 	
 .block
-	.window
-		@include breakpoint($anyDesktop)
-			margin: 0 7.5%
+	.content
+		padding: 1.2rem 1.25rem
 
-		@include breakpoint($anyMobile)
-			margin: 0
+	code
+		display: block
+		overflow: hidden
 
-		code
-			display: block
-			overflow: hidden
+		@include codeFont
+		color: $textColorOnDark
 
-			@include codeFont
-			color: $textColorOnDark
+		@include breakpoint($desktop)
+			padding: 2rem 2.75rem
 
-			@include breakpoint($desktop)
-				padding: 2rem 2.75rem
+		@include breakpoint($tablet)
+			padding: 1.5rem 2.25rem
 
-			@include breakpoint($tablet)
-				padding: 1.5rem 2.25rem
+		@include breakpoint($phone)
+			padding: 1rem 1rem
 
-			@include breakpoint($phone)
-				padding: 1rem 1rem
+		.line
+			display: flex
+			align-items: flex-start
+			column-gap: 2.5rem
+			font-size: $elementTextFontSize
+			line-height: 1.25rem
 
-			.line
-				display: flex
-				align-items: flex-start
-				column-gap: 2.5rem
-				font-size: $elementTextFontSize
-				line-height: 1.25rem
+			@include breakpoint($anyMobile)
+				column-gap: 1.75rem
+				font-size: $elementTextFontSizeMobile
+				line-height: 1.35rem
 
-				@include breakpoint($anyMobile)
-					column-gap: 1.75rem
-					font-size: $elementTextFontSizeMobile
-					line-height: 1.35rem
+			.lineNumber, .lineContent
+				white-space: pre-wrap
+			
+			.lineNumber
+				flex: 0 0 2.5rem
+				box-sizing: border-box
+				text-align: right
+				justify-self: flex-end
+				color: rgba(220, 220, 220, 0.65)
 
-				.lineNumber, .lineContent
-					white-space: pre-wrap
+			.lineContent
+				flex: 1 1 auto
+
+				span
+					transition: color 0.25s linear
 				
-				.lineNumber
-					flex: 0 0 2.5rem
-					box-sizing: border-box
-					text-align: right
-					justify-self: flex-end
-					color: rgba(220, 220, 220, 0.65)
-
-				.lineContent
-					flex: 1 1 auto
-
-					span
-						transition: color 0.25s linear
-					
-					
+				
