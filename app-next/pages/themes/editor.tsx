@@ -6,8 +6,7 @@ import { useEncodedLocalStorageState } from "~/components/local-storage/function
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import { themeCodePreviewContent } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
-import ThemeColorCollection from "~/components/themes/theme-color-collection/theme-color-collection"
-import ThemeEditorColorMenu from "~/components/themes/theme-editor-color-menu/theme-editor-color-menu"
+import ThemeEditorColors from "~/components/themes/theme-editor-colors/theme-editor-colors"
 import ThemeEditorMenu from "~/components/themes/theme-editor-menu/theme-editor-menu"
 import ThemeEditorTitle from "~/components/themes/theme-editor-title/theme-editor-title"
 import { generateThemeViaModule } from "~/components/themes/theme-utility/functions/theme-utility-functions"
@@ -69,13 +68,6 @@ const EditorPage: Page<PageProps & Props> = () => {
 	const [themeName, setThemeName] = useState("")
 	const [themeDescription, setThemeDescription] = useState("")
 	const [themeColors, setThemeColors] = useEditorColors(defaultColors)
-
-	const onColorCollectionSet = (index: number, newColor: Color) => {
-		const newColors = [...themeColors]
-		newColors[index] = newColor
-
-		setThemeColors(newColors)
-	}
 
 	const keyForColors = (colors: Color[]): string => colors.map(color => color.key).join("/")
 
@@ -142,15 +134,16 @@ const EditorPage: Page<PageProps & Props> = () => {
 						selected line-up. The description should give a brief introduction to where the theme comes from and for what it might be best used.
 					</WorkContentTextBlock>
 				</div>
-				<ThemeColorCollection className={styles.colors} colors={themeColors} setColor={onColorCollectionSet} editable />
-				<ThemeEditorColorMenu className={styles.colorMenu} getColors={() => themeColors} onChangeColors={newColors => setThemeColors(newColors)} />
+				<div className={styles.colorsAndPreview}>
+					<ThemeEditorColors className={styles.colors} colors={themeColors} onColorCollectionSet={setThemeColors} />
+					<ThemeCodePreviews className={styles.previews} theme={generatedTheme} content={themePreviewContent} />
+				</div>
 				<div className={styles.tutorial}>
 					<WorkContentTextBlock>
 						Click each colour cell to edit and specify input colours. Themes are created from a sequence of *ten base colours*. An intermediate theme
 						is generated and updated in real-time and previewed directly in the code display.
 					</WorkContentTextBlock>
 				</div>
-				<ThemeCodePreviews className={styles.previews} theme={generatedTheme} content={themePreviewContent} />
 			</section>
 		</>
 	)
