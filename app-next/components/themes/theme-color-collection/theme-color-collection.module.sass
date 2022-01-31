@@ -3,18 +3,13 @@
 .collection
 	position: relative
 
-	@include breakpoint($anyDesktop)
-		@include inlayed
-
-	@include breakpoint($anyMobile)
-		margin: 0 2rem
-
 	ol
 		display: grid
 		grid-template-columns: 1fr 1fr 1fr 1fr 1fr
 		grid-template-rows: auto
 		gap: 0.5rem
 		grid-auto-flow: row
+		margin: 0
 
 		> li
 			position: relative
