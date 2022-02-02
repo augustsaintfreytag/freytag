@@ -2,7 +2,7 @@ import { ThemeFormatKey } from "~/components/themes/theme-code-preview/library/t
 
 // Token
 
-export interface SyntaxToken {
+export type SyntaxTokenValue = {
 	word: string
 	kind?: ThemeFormatKey
 }

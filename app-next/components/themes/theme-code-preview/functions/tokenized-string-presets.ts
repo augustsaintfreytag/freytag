@@ -1,5 +1,5 @@
 import { ThemeFormatKey } from "~/components/themes/theme-code-preview/library/theme-format-key"
-import { SyntaxToken, TokenizedString } from "../library/tokenized-string"
+import { SyntaxToken, SyntaxTokenValue, TokenizedString } from "../library/tokenized-string"
 
 // Whitespace
 
@@ -24,7 +24,7 @@ function newLine(): SyntaxToken {
 // Presets
 
 export function typeScriptTokenizedString(): TokenizedString {
-	const tokens: SyntaxToken[] = []
+	const tokens: SyntaxTokenValue[] = []
 
 	tokens.push(
 		{ word: "/**", kind: ThemeFormatKey.CommentDocumentation },
@@ -269,7 +269,7 @@ export function typeScriptTokenizedString(): TokenizedString {
 }
 
 export function swiftTokenizedString(): TokenizedString {
-	const tokens: SyntaxToken[] = []
+	const tokens: SyntaxTokenValue[] = []
 
 	tokens.push(
 		{ word: "///", kind: ThemeFormatKey.CommentDocumentation },
