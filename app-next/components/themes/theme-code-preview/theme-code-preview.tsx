@@ -63,18 +63,18 @@ const Enclosure: FunctionComponent<EnclosureProps> = props => {
 		const style: CSSProperties = { background: props.background?.rgb }
 
 		return (
-			<section className={className(styles.block, props.className)} style={style}>
+			<div className={className(styles.block, props.className)} style={style}>
 				<div className={styles.content}>{props.children}</div>
-			</section>
+			</div>
 		)
 	}
 
 	return (
-		<section className={className(styles.block, props.className)}>
+		<div className={className(styles.block, props.className)}>
 			<FauxWindow className={styles.window} background={props.background?.rgb} controls>
 				{props.children}
 			</FauxWindow>
-		</section>
+		</div>
 	)
 }
 

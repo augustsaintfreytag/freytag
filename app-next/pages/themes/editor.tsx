@@ -112,7 +112,7 @@ const EditorPage: Page<PageProps & Props> = () => {
 			<section className={styles.page}>
 				<ThemeEditorMenu theme={generatedTheme} />
 				<ThemeEditorTitle className={styles.title} />
-				<div className={styles.inputs}>
+				<section className={styles.inputs}>
 					<TitleInputTextField
 						className={className(styles.input, styles.nameInput)}
 						value={themeName}
@@ -127,23 +127,23 @@ const EditorPage: Page<PageProps & Props> = () => {
 						name={"Description"}
 						placeholder="Enter theme description…"
 					/>
-				</div>
-				<div className={styles.tutorial}>
+				</section>
+				<section className={styles.tutorial}>
 					<WorkContentTextBlock>
 						Choose a short and fitting name for your theme. Good names give a hint of the included colours and communicate the intention behind the
 						selected line-up. The description should give a brief introduction to where the theme comes from and for what it might be best used.
 					</WorkContentTextBlock>
-				</div>
-				<div className={styles.colorsAndPreview}>
+				</section>
+				<section className={styles.colorsAndPreview}>
 					<ThemeEditorColors className={styles.colors} colors={themeColors} onColorCollectionSet={setThemeColors} />
-					<ThemeCodePreviews className={styles.previews} theme={generatedTheme} content={themePreviewContent} />
-				</div>
-				<div className={styles.tutorial}>
+					<ThemeCodePreviews className={styles.previews} theme={generatedTheme} content={themePreviewContents} />
+				</section>
+				<section className={styles.tutorial}>
 					<WorkContentTextBlock>
 						Click each colour cell to edit and specify input colours. Themes are created from a sequence of *ten base colours*. An intermediate theme
 						is generated and updated in real-time and previewed directly in the code display.
 					</WorkContentTextBlock>
-				</div>
+				</section>
 			</section>
 		</>
 	)

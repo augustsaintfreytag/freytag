@@ -1,9 +1,17 @@
 @import "/styles/values/all"
 	
 .previews
+	display: flex
+	flex-direction: column
+
 	.content
+		flex: 1 1 auto
+
+		.preview
+			height: 100%
 
 	.selector
+		flex: 0 0 auto
 		@include inlayed
 		width: fit-content
 		margin: $pageSubContentSpacing auto 0 auto

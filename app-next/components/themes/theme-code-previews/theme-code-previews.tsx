@@ -31,9 +31,9 @@ const ThemeCodePreviews: FunctionComponent<Props> = props => {
 	const selectedContent = content[selectedContentIndex]
 
 	return (
-		<section className={className(styles.previews, props.className)}>
+		<div className={className(styles.previews, props.className)}>
 			<div className={className(styles.content, props.contentClassName)}>
-				{selectedContent && <ThemeCodePreview theme={theme} content={selectedContent.content} windowed={props.windowed} />}
+				{selectedContent && <ThemeCodePreview className={styles.preview} theme={theme} content={selectedContent.content} windowed={props.windowed} />}
 			</div>
 			<ActionButtonStack className={styles.selector}>
 				{content.map((item, index) => (
@@ -47,7 +47,7 @@ const ThemeCodePreviews: FunctionComponent<Props> = props => {
 					/>
 				))}
 			</ActionButtonStack>
-		</section>
+		</div>
 	)
 }
 

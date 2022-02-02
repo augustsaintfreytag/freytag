@@ -18,14 +18,21 @@ $inputSpacing: 3.5rem
 	.tutorial
 		margin-top: $pageContentSpacing
 
-	.colors
+	.colorsAndPreview
 		@include inlayed
 		margin-top: $pageContentSpacing
+		display: flex
+		max-height: 76rem
 
-	.colorMenu
-		@include inlayed
-		width: fit-content
-		margin: $pageSubContentSpacing auto 0 auto
+		> *
+			max-height: 100%
 
-	.previews
-		margin-top: $pageContentSpacing
+		.colors
+			flex: 1 1 auto
+			width: 40%
+
+		.previews
+			flex: 1 1 auto
+			$spacing: 3rem
+			width: calc(60% - #{$spacing})
+			margin-left: $spacing
