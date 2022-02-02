@@ -22,20 +22,39 @@ $inputSpacing: 3.5rem
 		margin-top: $pageContentSpacing
 
 	.colorsAndPreview
-		@include inlayed
-		margin-top: $pageContentSpacing
-		display: flex
-		max-height: 76rem
+		@include breakpoint($desktop)
+			@include inlayed
+			margin-top: $pageContentSpacing
+			display: flex
+			max-height: 76rem
 
-		> *
-			max-height: 100%
+			> *
+				max-height: 100%
 
-		.colors
-			flex: 1 1 auto
-			width: 40%
+			.colors
+				flex: 1 1 auto
+				width: 40%
 
-		.previews
-			flex: 1 1 auto
-			$spacing: 3rem
-			width: calc(60% - #{$spacing})
-			margin-left: $spacing
+			.previews
+				flex: 1 1 auto
+				$spacing: 3rem
+				width: calc(60% - #{$spacing})
+				margin-left: $spacing
+
+		@include breakpoint($tablet)
+			.colors
+				margin: $pageContentSpacing auto 0 auto
+				padding: 0 $inlayPaddingTablet
+				max-width: 35rem
+			.previews
+				padding: 0 5rem
+				margin-top: $pageContentSpacing
+
+		@include breakpoint($phone)
+			.colors
+				margin: $pageContentSpacing auto 0 auto
+				padding: 0 $inlayPaddingPhone
+			.previews
+				margin: $pageContentSpacing auto 0 auto
+				padding: 0 $inlayPaddingPhone
+				max-width: $inlayWidthPhone
