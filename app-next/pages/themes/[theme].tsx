@@ -16,7 +16,7 @@ import ImageCover from "~/components/image-cover/image-cover"
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import ThemeMeta from "~/components/themes/thema-meta/theme-meta"
 import ThemeClosure from "~/components/themes/theme-closure/theme-closure"
-import { themeCodePreviewContent } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content"
+import { themeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/tokenized-string-formatting"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
 import ThemeColorCollection from "~/components/themes/theme-color-collection/theme-color-collection"
 import ThemeDownloads from "~/components/themes/theme-downloads/theme-downloads"
@@ -100,7 +100,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 
 	const accentColor = colors?.[2]
 	const ThemeDivider = () => <Divider className={styles.divider} color={accentColor?.rgb} />
-	const codePreviewContent = useMemo(() => themeCodePreviewContent(), [])
+	const codePreviewContent = useMemo(() => themeCodePreviewContents(), [])
 
 	return (
 		<>

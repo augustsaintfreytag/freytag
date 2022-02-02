@@ -1,30 +1,19 @@
 import { ThemeFormatKey } from "~/components/themes/theme-code-preview/library/theme-format-key"
-import { SyntaxToken, TokenizedString } from "../library/tokenized-string"
+import { SyntaxToken, SyntaxTokenValue, TokenizedString } from "../library/tokenized-string"
 
-// Whitespace
+// Form
 
-function space(): SyntaxToken {
-	return {
-		word: " "
-	}
-}
+const [space, indent, newLine] = [() => SyntaxToken.space, () => SyntaxToken.indent, () => SyntaxToken.newLine]
 
-function indent(): SyntaxToken {
-	return {
-		word: "    "
-	}
-}
-
-function newLine(): SyntaxToken {
-	return {
-		word: "\n"
-	}
+function tokenizedString(values: SyntaxTokenValue[]): TokenizedString {
+	const tokens = values.map(SyntaxToken.fromValue)
+	return new TokenizedString(tokens)
 }
 
 // Presets
 
 export function typeScriptTokenizedString(): TokenizedString {
-	const tokens: SyntaxToken[] = []
+	const tokens: SyntaxTokenValue[] = []
 
 	tokens.push(
 		{ word: "/**", kind: ThemeFormatKey.CommentDocumentation },
@@ -265,11 +254,11 @@ export function typeScriptTokenizedString(): TokenizedString {
 		{ word: "}" }
 	)
 
-	return new TokenizedString(tokens)
+	return tokenizedString(tokens)
 }
 
 export function swiftTokenizedString(): TokenizedString {
-	const tokens: SyntaxToken[] = []
+	const tokens: SyntaxTokenValue[] = []
 
 	tokens.push(
 		{ word: "///", kind: ThemeFormatKey.CommentDocumentation },
@@ -447,7 +436,7 @@ export function swiftTokenizedString(): TokenizedString {
 		newLine()
 	)
 
-	return new TokenizedString(tokens)
+	return tokenizedString(tokens)
 }
 
 export function markdownTokenizedString(): TokenizedString {
@@ -489,5 +478,5 @@ export function markdownTokenizedString(): TokenizedString {
 		}
 	]
 
-	return new TokenizedString(tokens)
+	return tokenizedString(tokens)
 }

@@ -2,10 +2,14 @@ import { SyntaxToken, TokenizedString } from "~/components/themes/theme-code-pre
 
 export function tokenizedStringByLines(tokenizedString: TokenizedString): SyntaxToken[][] {
 	const lines: SyntaxToken[][] = []
+
+	const lastTokenIndex = tokenizedString.tokens.length - 1
+	const newLineWord = SyntaxToken.newLine.word
+
 	let lastSplitIndex = 0
 
 	tokenizedString.tokens.forEach((token, index) => {
-		if (token.word !== "\n" && index !== tokenizedString.tokens.length - 1) {
+		if (token.word !== newLineWord && index !== lastTokenIndex) {
 			return
 		}
 

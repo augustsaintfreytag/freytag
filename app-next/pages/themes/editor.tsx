@@ -4,7 +4,7 @@ import InputTextArea from "~/components/input/input-text-area/input-text-area"
 import TitleInputTextField from "~/components/input/title-input-text-field/title-input-text-field"
 import { useEncodedLocalStorageState } from "~/components/local-storage/functions/local-storage-hook"
 import ThemeSprites from "~/components/sprites/theme-sprites"
-import { themeCodePreviewContent } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content"
+import { useThemeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content-hook"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
 import ThemeEditorColors from "~/components/themes/theme-editor-colors/theme-editor-colors"
 import ThemeEditorMenu from "~/components/themes/theme-editor-menu/theme-editor-menu"
@@ -74,7 +74,7 @@ const EditorPage: Page<PageProps & Props> = () => {
 	const [lastUsedColorKey, setLastUsedColorKey] = useState<string | undefined>(undefined)
 	const [generatedTheme, setGeneratedTheme] = useState<IntermediateTheme | undefined>(undefined)
 	const [themeUtility, isLoadingThemeUtility, loadThemeUtility] = useDeferredThemeUtility()
-	const themePreviewContent = useMemo(() => themeCodePreviewContent(), [])
+	const themePreviewContents = useThemeCodePreviewContents()
 
 	useEffect(() => {
 		loadThemeUtility()
