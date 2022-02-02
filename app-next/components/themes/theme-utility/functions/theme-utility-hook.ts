@@ -1,9 +1,8 @@
 import { useEffect, useMemo, useState } from "react"
 import WebAssemblyModule, { fetchWebAssemblyModuleData, instantiateWebAssemblyModule } from "webassembly-module"
+import { dropshipHostClient } from "~/components/meta/library/app"
 import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { URL } from "~/utils/routing/library/url"
-
-const modulePath: URL = `/color-theme-assembly.min.wasm`
 
 let moduleInstance: WebAssemblyModule | undefined
 
@@ -12,13 +11,24 @@ enum PerformanceKey {
 	ModuleInit = "theme-utility-module-init"
 }
 
+function moduleVersion(): string | undefined {
+	return process.env.NEXT_PUBLIC_COLOR_THEME_UTILITY_VERSION
+}
+
+function modulePath(): URL {
+	const dropshipHost = dropshipHostClient()
+	const moduleName = `color-theme-assembly-${moduleVersion()}.min.wasm`
+
+	return `https://${dropshipHost}/${moduleName}`
+}
+
 async function setUpModule() {
 	if (moduleInstance) {
 		return
 	}
 
 	startPerformanceMeasure(PerformanceKey.ModuleFetch)
-	const moduleData = await fetchWebAssemblyModuleData(modulePath)
+	const moduleData = await fetchWebAssemblyModuleData(modulePath())
 	stopPerformanceMeasure(PerformanceKey.ModuleFetch)
 
 	startPerformanceMeasure(PerformanceKey.ModuleInit)
