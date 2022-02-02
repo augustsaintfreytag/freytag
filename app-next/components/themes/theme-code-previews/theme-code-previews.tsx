@@ -9,7 +9,7 @@ import { className } from "~/utils/class-names/class-name"
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
 import styles from "./theme-code-previews.module.sass"
 
-export interface CodeContent {
+export interface ThemeCodePreviewContent {
 	name: string
 	symbol: SpriteReference
 	content: TokenizedString
@@ -19,7 +19,7 @@ interface Props {
 	className?: string
 	contentClassName?: string
 	theme?: IntermediateTheme
-	content: CodeContent[]
+	content: ThemeCodePreviewContent[]
 	windowed?: boolean
 }
 
