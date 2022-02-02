@@ -430,7 +430,7 @@ export function swiftTokenizedString(): TokenizedString {
 		space(),
 		{ word: "=" },
 		space(),
-		{ word: "400", kind: ThemeFormatKey.String },
+		{ word: "400", kind: ThemeFormatKey.Number },
 		newLine(),
 		{ word: "}" },
 		newLine()
