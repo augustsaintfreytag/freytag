@@ -1,11 +1,7 @@
-import {
-	markdownTokenizedString,
-	swiftTokenizedString,
-	typeScriptTokenizedString
-} from "~/components/themes/theme-code-preview/functions/tokenized-string-presets"
-import { CodeContent } from "~/components/themes/theme-code-previews/theme-code-previews"
+import { ThemeCodePreviewContent } from "~/components/themes/theme-code-previews/theme-code-previews"
+import { markdownTokenizedString, swiftTokenizedString, typeScriptTokenizedString } from "./tokenized-string-presets"
 
-export function themeCodePreviewContent(): CodeContent[] {
+export function themeCodePreviewContents(): ThemeCodePreviewContent[] {
 	return [
 		{
 			name: "Swift",
