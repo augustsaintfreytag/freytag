@@ -27,7 +27,12 @@
 				@include listMargin($descriptionParagraphSpacing)
 		
 		.colors
-			margin-top: $interContentSpacing
+			@include breakpoint($anyDesktop)
+				margin-top: $interContentSpacing
+				@include inlayed
+
+			@include breakpoint($anyMobile)
+				margin: $interContentSpacing 2rem 0 2rem
 
 		.previews
 			@include inlayed
