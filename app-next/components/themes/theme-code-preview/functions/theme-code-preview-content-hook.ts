@@ -3,7 +3,7 @@ import { ThemeCodePreviewContent } from "~/components/themes/theme-code-previews
 import { themeCodePreviewContents } from "./theme-code-preview-content"
 import { formattedTruncatedTokenizedString } from "./tokenized-string-formatting"
 
-const themePreviewNumberOfBlocks = 2
+const themePreviewNumberOfBlocks = 3
 const themePreviewContentNumberOfLines = 40
 
 export function useThemeCodePreviewContents(): ThemeCodePreviewContent[] {
