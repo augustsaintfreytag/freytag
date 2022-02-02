@@ -5,20 +5,22 @@ import { useLocalStorageState } from "~/components/local-storage/functions/local
 import { SpriteReference } from "~/components/sprites/sprite"
 import { TokenizedString } from "~/components/themes/theme-code-preview/library/tokenized-string"
 import ThemeCodePreview from "~/components/themes/theme-code-preview/theme-code-preview"
-import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
 import styles from "./theme-code-previews.module.sass"
 
-export interface CodeContent {
+export interface ThemeCodePreviewContent {
 	name: string
 	symbol: SpriteReference
 	content: TokenizedString
 }
 
-interface Props extends PropsWithClassName {
+interface Props {
+	className?: string
+	contentClassName?: string
 	theme?: IntermediateTheme
-	content: CodeContent[]
+	content: ThemeCodePreviewContent[]
+	windowed?: boolean
 }
 
 const selectedContentKey = "theme-code-preview-format"
@@ -29,8 +31,10 @@ const ThemeCodePreviews: FunctionComponent<Props> = props => {
 	const selectedContent = content[selectedContentIndex]
 
 	return (
-		<section className={className(styles.previews, props.className)}>
-			<div className={styles.content}>{selectedContent && <ThemeCodePreview theme={theme} content={selectedContent.content} />}</div>
+		<div className={className(styles.previews, props.className)}>
+			<div className={className(styles.content, props.contentClassName)}>
+				{selectedContent && <ThemeCodePreview className={styles.preview} theme={theme} content={selectedContent.content} windowed={props.windowed} />}
+			</div>
 			<ActionButtonStack className={styles.selector}>
 				{content.map((item, index) => (
 					<RadioActionButton
@@ -43,7 +47,7 @@ const ThemeCodePreviews: FunctionComponent<Props> = props => {
 					/>
 				))}
 			</ActionButtonStack>
-		</section>
+		</div>
 	)
 }
 

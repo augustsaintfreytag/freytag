@@ -1,13 +1,13 @@
 import type { GetServerSideProps } from "next"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import InputTextArea from "~/components/input/input-text-area/input-text-area"
 import TitleInputTextField from "~/components/input/title-input-text-field/title-input-text-field"
-import { useEncodedLocalStorageState } from "~/components/local-storage/functions/local-storage-hook"
+import Notice from "~/components/notice/notice"
 import ThemeSprites from "~/components/sprites/theme-sprites"
-import { themeCodePreviewContent } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content"
+import { useThemeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content-hook"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
-import ThemeColorCollection from "~/components/themes/theme-color-collection/theme-color-collection"
-import ThemeEditorColorMenu from "~/components/themes/theme-editor-color-menu/theme-editor-color-menu"
+import ThemeEditorColors from "~/components/themes/theme-editor-colors/theme-editor-colors"
+import { useEditorColors } from "~/components/themes/theme-editor-colors/theme-editor-colors-hook"
 import ThemeEditorMenu from "~/components/themes/theme-editor-menu/theme-editor-menu"
 import ThemeEditorTitle from "~/components/themes/theme-editor-title/theme-editor-title"
 import { generateThemeViaModule } from "~/components/themes/theme-utility/functions/theme-utility-functions"
@@ -16,7 +16,7 @@ import WorkContentTextBlock from "~/components/work/work-content/components/work
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
-import { Color, ColorValue } from "~/utils/colors/models/color"
+import { Color } from "~/utils/colors/models/color"
 import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { range } from "~/utils/range/range"
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
@@ -43,22 +43,6 @@ interface Props {
 	data?: PageData
 }
 
-function useEditorColors(initialColors: Color[]): [colors: Color[], setColors: (newColors: Color[]) => void] {
-	const encodeColors = (colors: Color[]) => JSON.stringify(colors)
-	const decodeColors = (value: string) => {
-		try {
-			const colorValues = JSON.parse(value) as ColorValue[]
-			const colors = colorValues.map(colorValue => Color.fromValue(colorValue))
-
-			return colors
-		} catch {
-			return []
-		}
-	}
-
-	return useEncodedLocalStorageState<Color[]>("theme-editor-colors", encodeColors, decodeColors, initialColors)
-}
-
 // Page
 
 export const getServerSideProps: GetServerSideProps<Props, {}> = async () => {
@@ -70,19 +54,12 @@ const EditorPage: Page<PageProps & Props> = () => {
 	const [themeDescription, setThemeDescription] = useState("")
 	const [themeColors, setThemeColors] = useEditorColors(defaultColors)
 
-	const onColorCollectionSet = (index: number, newColor: Color) => {
-		const newColors = [...themeColors]
-		newColors[index] = newColor
-
-		setThemeColors(newColors)
-	}
-
 	const keyForColors = (colors: Color[]): string => colors.map(color => color.key).join("/")
 
 	const [lastUsedColorKey, setLastUsedColorKey] = useState<string | undefined>(undefined)
 	const [generatedTheme, setGeneratedTheme] = useState<IntermediateTheme | undefined>(undefined)
 	const [themeUtility, isLoadingThemeUtility, loadThemeUtility] = useDeferredThemeUtility()
-	const themePreviewContent = useMemo(() => themeCodePreviewContent(), [])
+	const themePreviewContents = useThemeCodePreviewContents()
 
 	useEffect(() => {
 		loadThemeUtility()
@@ -119,8 +96,12 @@ const EditorPage: Page<PageProps & Props> = () => {
 			<ThemeSprites />
 			<section className={styles.page}>
 				<ThemeEditorMenu theme={generatedTheme} />
+				<Notice className={styles.notice}>
+					The Editor is currently in <em>Beta</em>. You can create a palette, edit colours, view generated previews in real-time, and download a
+					preview. Submissions to the gallery and additional formats are coming soon.
+				</Notice>
 				<ThemeEditorTitle className={styles.title} />
-				<div className={styles.inputs}>
+				<section className={styles.inputs}>
 					<TitleInputTextField
 						className={className(styles.input, styles.nameInput)}
 						value={themeName}
@@ -135,22 +116,23 @@ const EditorPage: Page<PageProps & Props> = () => {
 						name={"Description"}
 						placeholder="Enter theme description…"
 					/>
-				</div>
-				<div className={styles.tutorial}>
+				</section>
+				<section className={styles.tutorial}>
 					<WorkContentTextBlock>
 						Choose a short and fitting name for your theme. Good names give a hint of the included colours and communicate the intention behind the
 						selected line-up. The description should give a brief introduction to where the theme comes from and for what it might be best used.
 					</WorkContentTextBlock>
-				</div>
-				<ThemeColorCollection className={styles.colors} colors={themeColors} setColor={onColorCollectionSet} editable />
-				<ThemeEditorColorMenu className={styles.colorMenu} getColors={() => themeColors} onChangeColors={newColors => setThemeColors(newColors)} />
-				<div className={styles.tutorial}>
+				</section>
+				<section className={styles.colorsAndPreview}>
+					<ThemeEditorColors className={styles.colors} colors={themeColors} onColorCollectionSet={setThemeColors} />
+					<ThemeCodePreviews className={styles.previews} theme={generatedTheme} content={themePreviewContents} />
+				</section>
+				<section className={styles.tutorial}>
 					<WorkContentTextBlock>
 						Click each colour cell to edit and specify input colours. Themes are created from a sequence of *ten base colours*. An intermediate theme
 						is generated and updated in real-time and previewed directly in the code display.
 					</WorkContentTextBlock>
-				</div>
-				<ThemeCodePreviews className={styles.previews} theme={generatedTheme} content={themePreviewContent} />
+				</section>
 			</section>
 		</>
 	)

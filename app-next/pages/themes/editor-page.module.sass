@@ -5,8 +5,11 @@ $inputSpacing: 3.5rem
 .page
 	padding-bottom: $pageSpacing
 
+	.notice
+		margin: $pageContentSpacing auto 0 auto
+
 	.title
-		margin-top: $pageSpacing
+		margin-top: $pageContentSpacing
 
 	.inputs
 		margin-top: $pageSpacing
@@ -18,13 +21,21 @@ $inputSpacing: 3.5rem
 	.tutorial
 		margin-top: $pageContentSpacing
 
-	.colors
-		margin-top: $pageContentSpacing
-
-	.colorMenu
+	.colorsAndPreview
 		@include inlayed
-		width: fit-content
-		margin: $pageSubContentSpacing auto 0 auto
-
-	.previews
 		margin-top: $pageContentSpacing
+		display: flex
+		max-height: 76rem
+
+		> *
+			max-height: 100%
+
+		.colors
+			flex: 1 1 auto
+			width: 40%
+
+		.previews
+			flex: 1 1 auto
+			$spacing: 3rem
+			width: calc(60% - #{$spacing})
+			margin-left: $spacing

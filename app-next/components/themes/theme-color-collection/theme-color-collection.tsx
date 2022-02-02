@@ -21,6 +21,7 @@ interface Props extends PropsWithClassName {
 	colors: Color[]
 	setColor?: (index: number, color: Color) => void
 	editable?: boolean
+	compact?: boolean
 }
 
 function mappedColorAndLabel(colors: Color[], labels: string[], index: number): [color: Color, label: string] {
@@ -76,7 +77,7 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 	const onColorInputChange = (value: string) => setColorInputValue(value)
 
 	return (
-		<section className={className(styles.collection, props.className)}>
+		<div className={className(styles.collection, props.editable ?? styles.isEditable, props.compact && styles.isCompact, props.className)}>
 			<ol>
 				{range(0, 10).map(index => {
 					const [color, label] = mappedColorAndLabel(colors, labels, index)
@@ -98,7 +99,7 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 					onChange={event => onColorInputChange(event.target.value)}
 				/>
 			)}
-		</section>
+		</div>
 	)
 }
 
