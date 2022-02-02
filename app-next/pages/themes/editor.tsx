@@ -1,12 +1,12 @@
 import type { GetServerSideProps } from "next"
-import { useEffect, useMemo, useState } from "react"
+import { useEffect, useState } from "react"
 import InputTextArea from "~/components/input/input-text-area/input-text-area"
 import TitleInputTextField from "~/components/input/title-input-text-field/title-input-text-field"
-import { useEncodedLocalStorageState } from "~/components/local-storage/functions/local-storage-hook"
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import { useThemeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content-hook"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
 import ThemeEditorColors from "~/components/themes/theme-editor-colors/theme-editor-colors"
+import { useEditorColors } from "~/components/themes/theme-editor-colors/theme-editor-colors-hook"
 import ThemeEditorMenu from "~/components/themes/theme-editor-menu/theme-editor-menu"
 import ThemeEditorTitle from "~/components/themes/theme-editor-title/theme-editor-title"
 import { generateThemeViaModule } from "~/components/themes/theme-utility/functions/theme-utility-functions"
@@ -15,7 +15,7 @@ import WorkContentTextBlock from "~/components/work/work-content/components/work
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
-import { Color, ColorValue } from "~/utils/colors/models/color"
+import { Color } from "~/utils/colors/models/color"
 import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { range } from "~/utils/range/range"
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
@@ -40,22 +40,6 @@ interface PageData {}
 
 interface Props {
 	data?: PageData
-}
-
-function useEditorColors(initialColors: Color[]): [colors: Color[], setColors: (newColors: Color[]) => void] {
-	const encodeColors = (colors: Color[]) => JSON.stringify(colors)
-	const decodeColors = (value: string) => {
-		try {
-			const colorValues = JSON.parse(value) as ColorValue[]
-			const colors = colorValues.map(colorValue => Color.fromValue(colorValue))
-
-			return colors
-		} catch {
-			return []
-		}
-	}
-
-	return useEncodedLocalStorageState<Color[]>("theme-editor-colors", encodeColors, decodeColors, initialColors)
 }
 
 // Page
