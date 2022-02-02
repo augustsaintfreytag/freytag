@@ -56,12 +56,7 @@ const ThemesPage: Page<PageProps & Props> = props => {
 			<ThemesMeta coverAsset={props.data?.preview} />
 			<ThemeSprites />
 			<section className={styles.page}>
-				<ImageCover
-					className={styles.cover}
-					src={props.data?.cover}
-					description="The cover artwork studio page. It shows a ringed planet on a vibrant 
-					backdrop of light to dark purple with the text 'Theme Studio' repeating itself over it."
-				/>
+				<ImageCover className={styles.cover} src={props.data?.cover} />
 				<ThemesTitle className={styles.title} />
 				<ThemesReiteration />
 				<section className={styles.list}>
