@@ -33,3 +33,7 @@ export function cockpitHostClient(): string | undefined {
 export function cockpitHostServer(): string | undefined {
 	return process.env.NEXT_PUBLIC_COCKPIT_HOST_SERVER
 }
+
+export function dropshipHostClient(): string | undefined {
+	return process.env.NEXT_PUBLIC_DROPSHIP_HOST_CLIENT
+}
