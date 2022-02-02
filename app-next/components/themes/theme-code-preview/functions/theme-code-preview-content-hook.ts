@@ -1,7 +1,7 @@
 import { useMemo } from "react"
 import { ThemeCodePreviewContent } from "~/components/themes/theme-code-previews/theme-code-previews"
+import { formattedTruncatedTokenizedString } from "~/utils/tokenized-string/functions/tokenized-string-formatting"
 import { themeCodePreviewContents } from "./theme-code-preview-content"
-import { formattedTruncatedTokenizedString } from "./tokenized-string-formatting"
 
 const themePreviewNumberOfBlocks = 3
 const themePreviewContentNumberOfLines = 38

@@ -1,5 +1,5 @@
-import { ThemeFormatKey } from "~/components/themes/theme-code-preview/library/theme-format-key"
-import { SyntaxToken, SyntaxTokenValue, TokenizedString } from "../library/tokenized-string"
+import { ThemeFormatKey } from "~/utils/tokenized-string/library/theme-format-key"
+import { SyntaxToken, SyntaxTokenValue, TokenizedString } from "~/utils/tokenized-string/models/tokenized-string"
 
 // Form
 
