@@ -1,4 +1,4 @@
-import { SyntaxToken, TokenizedString } from "~/components/themes/theme-code-preview/library/tokenized-string"
+import { SyntaxToken, TokenizedString } from "~/utils/tokenized-string/models/tokenized-string"
 
 export function tokenizedStringByLines(tokenizedString: TokenizedString): SyntaxToken[][] {
 	const lines: SyntaxToken[][] = []

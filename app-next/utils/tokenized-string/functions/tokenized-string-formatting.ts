@@ -1,6 +1,6 @@
 import { range } from "~/utils/range/range"
+import { SyntaxToken, TokenizedString } from "~/utils/tokenized-string/models/tokenized-string"
 import { ThemeFormatKey } from "../library/theme-format-key"
-import { SyntaxToken, TokenizedString } from "../library/tokenized-string"
 import { combineTokenizedStrings } from "./tokenized-string-combine"
 import { truncatedTokenizedString } from "./tokenized-string-truncate"
 

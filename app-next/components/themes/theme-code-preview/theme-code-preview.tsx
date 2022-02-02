@@ -1,12 +1,12 @@
 import { CSSProperties, FunctionComponent } from "react"
 import FauxWindow from "~/components/faux-window/faux-window"
-import { tokenizedStringByLines } from "~/components/themes/theme-code-preview/functions/tokenized-string-line-split"
-import { colorFromIntermediateTheme, ThemeFormatKey } from "~/components/themes/theme-code-preview/library/theme-format-key"
-import { SyntaxToken, TokenizedString } from "~/components/themes/theme-code-preview/library/tokenized-string"
 import { PropsWithAnyChildren, PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { Color } from "~/utils/colors/models/color"
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
+import { tokenizedStringByLines } from "~/utils/tokenized-string/functions/tokenized-string-line-split"
+import { colorFromIntermediateTheme, ThemeFormatKey } from "~/utils/tokenized-string/library/theme-format-key"
+import { SyntaxToken, TokenizedString } from "~/utils/tokenized-string/models/tokenized-string"
 import styles from "./theme-code-preview.module.sass"
 
 // Code Components

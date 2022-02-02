@@ -1,4 +1,4 @@
-import { SyntaxToken, TokenizedString } from "../library/tokenized-string"
+import { SyntaxToken, TokenizedString } from "~/utils/tokenized-string/models/tokenized-string"
 
 export function combineTokenizedStrings(...tokenizedStrings: TokenizedString[]): TokenizedString {
 	const tokens: SyntaxToken[] = []
