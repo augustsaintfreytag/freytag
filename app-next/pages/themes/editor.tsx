@@ -2,6 +2,7 @@ import type { GetServerSideProps } from "next"
 import { useEffect, useState } from "react"
 import InputTextArea from "~/components/input/input-text-area/input-text-area"
 import TitleInputTextField from "~/components/input/title-input-text-field/title-input-text-field"
+import Notice from "~/components/notice/notice"
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import { useThemeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content-hook"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
@@ -95,6 +96,10 @@ const EditorPage: Page<PageProps & Props> = () => {
 			<ThemeSprites />
 			<section className={styles.page}>
 				<ThemeEditorMenu theme={generatedTheme} />
+				<Notice className={styles.notice}>
+					The Editor is currently in <em>Beta</em>. You can create a palette, edit colours, view generated previews in real-time, and download a
+					preview. Submissions to the gallery and additional formats are coming soon.
+				</Notice>
 				<ThemeEditorTitle className={styles.title} />
 				<section className={styles.inputs}>
 					<TitleInputTextField
