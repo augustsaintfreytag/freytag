@@ -2,7 +2,7 @@
 
 - name: "SERVER - Stop application services"
   shell:
-    cmd: "docker-compose --file {{ app_root }}/server/docker/docker-compose.yml --project-name freytag --project-directory {{ app_root }} --env-file {{ app_root }}/server/docker/env/parameters.live.env down --remove-orphans"
+    cmd: "docker-compose --file {{ app_root }}/server/docker/docker-compose.yml --project-name freytag --project-directory {{ app_root }} --env-file {{ app_root }}/server/docker/env/parameters.production.env down --remove-orphans"
   become: yes
   ignore_errors: yes
   tags:

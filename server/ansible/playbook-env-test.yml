@@ -10,7 +10,7 @@
   tasks:
     - import_tasks: ./custom/tasks/set-environment.yml
       vars:
-        env_path: "../env/default.dev.env"
+        env_path: "../env/default.local.env"
         env_vars:
           - message
           - app_startup_cmd
