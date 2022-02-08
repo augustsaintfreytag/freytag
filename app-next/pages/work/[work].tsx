@@ -1,10 +1,9 @@
 import { GetServerSideProps } from "next"
 import { FunctionComponent, useMemo } from "react"
-import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
-import { ColorDescription } from "~/api/common/library/color-description"
-import { getServerSideResponseByQuery } from "~/api/props/functions/server-side-props"
-import { workShowcaseFromApi } from "~/api/records/work-showcase/functions/work-showcase-data-access"
-import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import { dateFromTimestamp } from "~/api/cockpit/data/functions/date-conversion"
+import { workShowcaseFromApi } from "~/api/cockpit/records/work-showcase/functions/work-showcase-data-access"
+import { WorkShowcase } from "~/api/cockpit/records/work-showcase/library/work-showcase"
+import { getServerSideResponseByQuery } from "~/api/common/props/functions/server-side-props"
 import Divider from "~/components/divider/divider"
 import WorkContentClosureBlock from "~/components/work/work-content/components/work-content-closure-block"
 import { workContentComponentForContent } from "~/components/work/work-content/functions/work-content-component-mapping"
@@ -15,6 +14,7 @@ import WorkReiteration from "~/components/work/work-reiteration/work-reiteration
 import WorkTitle from "~/components/work/work-title/work-title"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
+import { ColorDescription } from "~/utils/colors/library/color-description"
 import styles from "./work-detail-page.module.sass"
 
 // Sub Components
