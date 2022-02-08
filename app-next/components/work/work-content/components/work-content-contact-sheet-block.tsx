@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { FunctionComponent } from "react"
-import { ImageLink } from "~/api/records/asset/library/image-link"
+import { ImageLink } from "~/api/cockpit/records/asset/library/image-link"
 import AssetImage from "~/components/asset-image/asset-image"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import styles from "./work-content-contact-sheet-block.module.sass"

@@ -1,6 +1,5 @@
 import { FunctionComponent } from "react"
-import { ColorDescription } from "~/api/common/library/color-description"
-import { allLifeEventKinds } from "~/api/records/life-event/library/life-event-kind"
+import { allLifeEventKinds } from "~/api/cockpit/records/life-event/library/life-event-kind"
 import { colorForLifeEventKind } from "~/components/life/life-event/functions/life-event-kind-colors"
 import {
 	LifeTableFilterKind as FilterKind,
@@ -8,6 +7,7 @@ import {
 } from "~/components/life/life-table/library/life-table-filter-kind"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
+import { ColorDescription } from "~/utils/colors/library/color-description"
 import { propertiesWithStyleVariables } from "~/utils/style/functions/style-properties"
 import styles from "./life-table-filters.module.sass"
 

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
+import { LifeEventKind } from "~/api/cockpit/records/life-event/library/life-event-kind"
 import BlockTag from "~/components/block-tag/block-tag"
 import { useTagPropertiesForLifeEvent } from "~/components/block-tag/functions/life-event-block-tag-hook"
 import Markdown from "~/components/markdown/markdown"

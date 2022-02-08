@@ -1,5 +1,5 @@
-import { ColorDescription } from "~/api/common/library/color-description"
-import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
+import { LifeEventKind } from "~/api/cockpit/records/life-event/library/life-event-kind"
+import { ColorDescription } from "~/utils/colors/library/color-description"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
 const fallbackLifeEventKindColor: ColorDescription = "#1c1c1c"

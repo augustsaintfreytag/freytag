@@ -3,7 +3,7 @@ import {
 	allThemeEditorFormats,
 	ThemeEditorFormat,
 	themeFormatPurposeDescriptionForEditorFormat
-} from "~/api/records/themes/library/theme-editor-format"
+} from "~/api/cockpit/records/themes/library/theme-editor-format"
 import Reiteration from "~/components/reiteration/reiteration"
 
 interface Props {

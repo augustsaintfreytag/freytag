@@ -1,7 +1,7 @@
 import { FunctionComponent } from "react"
-import { ColorDescription } from "~/api/common/library/color-description"
 import { PropsWithAnyChildren, PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
+import { ColorDescription } from "~/utils/colors/library/color-description"
 import { propertiesWithStyleVariables } from "~/utils/style/functions/style-properties"
 import styles from "./faux-window.module.sass"
 

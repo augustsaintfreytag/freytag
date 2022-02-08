@@ -1,13 +1,13 @@
-import { assetUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
-import { ImageLink } from "~/api/records/asset/library/image-link"
-import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import { assetUrlFromComponent } from "~/api/cockpit/records/asset/functions/asset-source-provider"
+import { ImageLink } from "~/api/cockpit/records/asset/library/image-link"
+import { WorkShowcase } from "~/api/cockpit/records/work-showcase/library/work-showcase"
 import {
 	WorkShowcaseContentImages,
 	WorkShowcaseContentText,
 	WorkShowcaseContentTitleCase,
 	WorkShowcaseContentVideoEmbed
-} from "~/api/records/work-showcase/library/work-showcase-content"
-import { workContentImageAlignmentFromRawValue } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
+} from "~/api/cockpit/records/work-showcase/library/work-showcase-content"
+import { workContentImageAlignmentFromRawValue } from "~/api/cockpit/records/work-showcase/library/work-showcase-image-alignment"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import { Props as ContactSheetContentProps } from "~/components/work/work-content/components/work-content-contact-sheet-block"
 import { Props as HeadingContentProps } from "~/components/work/work-content/components/work-content-heading-block"

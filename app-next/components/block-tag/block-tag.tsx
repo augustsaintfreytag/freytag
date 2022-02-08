@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react"
-import { ColorDescription } from "~/api/common/library/color-description"
 import { BlockTagAppearance as Appearance } from "~/components/block-tag/library/block-tag-appearance"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
+import { ColorDescription } from "~/utils/colors/library/color-description"
 import { propertiesWithStyleVariables } from "~/utils/style/functions/style-properties"
 import styles from "./block-tag.module.sass"
 

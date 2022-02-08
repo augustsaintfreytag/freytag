@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { FunctionComponent, useMemo } from "react"
-import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
+import { LifeEventKind } from "~/api/cockpit/records/life-event/library/life-event-kind"
 import AssetImageSet from "~/components/asset-image/asset-image-set"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import { ViewportAssetImageFormats } from "~/components/asset-image/library/viewport-sources"

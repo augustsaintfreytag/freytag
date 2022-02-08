@@ -1,7 +1,7 @@
 import { CreativeWork, WithContext } from "schema-dts"
-import { UUID } from "~/api/common/library/uuid"
-import { thumbnailUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
+import { thumbnailUrlFromComponent } from "~/api/cockpit/records/asset/functions/asset-source-provider"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
+import { UUID } from "~/utils/uuid/uuid"
 
 export interface Props {
 	id: UUID
