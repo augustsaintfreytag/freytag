@@ -1,6 +1,6 @@
 import { GetServerSideProps } from "next"
-import { getServerSideResponse } from "~/api/props/functions/server-side-props"
-import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
+import { pageGraphicsFromApi } from "~/api/cockpit/records/page-graphics/functions/page-graphics-data-access"
+import { getServerSideResponse } from "~/api/common/props/functions/server-side-props"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import {

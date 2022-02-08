@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
-import { datesFromRecord } from "~/api/common/functions/date-conversion"
-import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import { datesFromRecord } from "~/api/cockpit/data/functions/date-conversion"
+import { WorkShowcase } from "~/api/cockpit/records/work-showcase/library/work-showcase"
 import LinkedMetaTag from "~/components/meta/components/linked-meta-tag"
 import { articleSchema, Props as ArticleSchemaProps } from "~/components/meta/functions/article-schema"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"

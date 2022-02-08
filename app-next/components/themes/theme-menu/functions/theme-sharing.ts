@@ -1,4 +1,4 @@
-import { Theme } from "~/api/records/themes/library/theme"
+import { Theme } from "~/api/cockpit/records/themes/library/theme"
 import { track } from "~/components/analytics/functions/track"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { appEnvironmentIsDevelopment } from "~/components/meta/library/app"

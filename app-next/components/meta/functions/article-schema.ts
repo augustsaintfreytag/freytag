@@ -1,5 +1,5 @@
 import { Article, WithContext } from "schema-dts"
-import { thumbnailUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
+import { thumbnailUrlFromComponent } from "~/api/cockpit/records/asset/functions/asset-source-provider"
 
 export interface Props {
 	dateCreated?: Date

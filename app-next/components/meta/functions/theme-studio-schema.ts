@@ -1,5 +1,5 @@
 import { WebApplication, WithContext } from "schema-dts"
-import { thumbnailUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
+import { thumbnailUrlFromComponent } from "~/api/cockpit/records/asset/functions/asset-source-provider"
 import { themeStudioCanonicalHref, themeStudioDescription } from "~/components/themes/thema-meta/theme-meta-data"
 import { URL } from "~/utils/routing/library/url"
 

@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
-import { datesFromRecord } from "~/api/common/functions/date-conversion"
-import { Theme } from "~/api/records/themes/library/theme"
+import { datesFromRecord } from "~/api/cockpit/data/functions/date-conversion"
+import { Theme } from "~/api/cockpit/records/themes/library/theme"
 import LinkedMetaTag from "~/components/meta/components/linked-meta-tag"
 import { pageTitle } from "~/components/meta/functions/page-title"
 import { Props as ThemeSchemaProps, themeSchema } from "~/components/meta/functions/theme-schema"

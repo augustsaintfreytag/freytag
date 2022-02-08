@@ -4,7 +4,7 @@ import {
 	themeFileDescriptionForEditorFormat,
 	themeFormatPurposeDescriptionForEditorFormat,
 	themeSymbolForEditorFormat
-} from "~/api/records/themes/library/theme-editor-format"
+} from "~/api/cockpit/records/themes/library/theme-editor-format"
 import { track } from "~/components/analytics/functions/track"
 import Sprite from "~/components/sprites/sprite"
 import { fileNameFromPath } from "~/components/themes/theme-downloads/functions/download-name-form"

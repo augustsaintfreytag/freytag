@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
-import { useRecordCreationStatistics } from "~/api/records/statistics/functions/record-creation-statistics-hook"
-import { Theme } from "~/api/records/themes/library/theme"
+import { useRecordCreationStatistics } from "~/api/cockpit/records/statistics/functions/record-creation-statistics-hook"
+import { Theme } from "~/api/cockpit/records/themes/library/theme"
 import ContentClosure from "~/components/content-closure/content-closure"
 import Time from "~/components/time/time"
 
