@@ -2,7 +2,7 @@
 
 - name: "SERVER - Build and pull application services"
   shell:
-    cmd: "docker-compose --file {{ app_root }}/server/docker/docker-compose.yml --env-file {{ app_root }}/server/docker/env/parameters.live.env build --pull"
+    cmd: "docker-compose --file {{ app_root }}/server/docker/docker-compose.yml --env-file {{ app_root }}/server/docker/env/parameters.production.env build --pull"
   become: yes
   tags:
     - app-services
@@ -11,7 +11,7 @@
 
 - name: "SERVER - Start application services"
   shell:
-    cmd: "docker-compose --file {{ app_root }}/server/docker/docker-compose.yml --project-name freytag --project-directory {{ app_root }} --env-file {{ app_root }}/server/docker/env/parameters.live.env up -d"
+    cmd: "docker-compose --file {{ app_root }}/server/docker/docker-compose.yml --project-name freytag --project-directory {{ app_root }} --env-file {{ app_root }}/server/docker/env/parameters.production.env up -d"
   become: yes
   tags:
     - app-services

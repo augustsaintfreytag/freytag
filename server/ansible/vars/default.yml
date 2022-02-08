@@ -4,7 +4,7 @@ host_root: "{{ playbook_dir }}/../.."
 
 # Server
 server_user: server
-server_shared_network: dropship_shared
+server_shared_network: dropship-shared
 
 # App
 app_version: "master"
@@ -14,7 +14,7 @@ app_sub_directory: "app-next"
 # Volumes
 cockpit_sync_directory: "/var/www/utility/cockpit"
 cockpit_sync_archive: "archive"
-cockpit_docker_volume: "freytag_data_cockpit"
+cockpit_docker_volume: "freytag_data-cockpit"
 
 # Listener
 listener_server_port: "8080"
