@@ -15,7 +15,7 @@ set +a
 # Modifier: Node Inspector
 
 if [[ $DEBUG == "1" ]]; then
-	APP_STARTUP_CMD="yarn dev-inspect-brk"
+	APP_STARTUP_CMD="yarn dev-inspect"
 fi
 
 # Modifier: Simulated Production
