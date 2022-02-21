@@ -1,0 +1,14 @@
+FROM msoap/shell2http as shell2http-builder
+FROM swift:slim
+
+COPY --from=shell2http-builder /app/shell2http /usr/local/bin/shell2http
+
+ARG COLOR_THEME_UTILITY_URL
+ADD ${COLOR_THEME_UTILITY_URL} /tmp/color-theme-utility.tar.gz
+RUN tar -xzf /tmp/color-theme-utility.tar.gz -C /tmp
+RUN rm /tmp/color-theme-utility.tar.gz
+RUN mv /tmp/ColorThemeUtility /usr/local/bin/color-theme-utility
+
+COPY ./server.sh /server/server.sh
+
+ENTRYPOINT ["/server/server.sh"]
