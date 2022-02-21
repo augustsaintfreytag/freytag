@@ -1,0 +1,9 @@
+FROM swift:slim
+
+ARG UTILITY_URL
+ADD ${UTILITY_URL} /tmp/color-theme-utility.tar.gz
+RUN tar -xzf /tmp/color-theme-utility.tar.gz -C /tmp
+RUN rm /tmp/color-theme-utility.tar.gz
+RUN mv /tmp/ColorThemeUtility /usr/local/bin/color-theme-utility
+
+ENTRYPOINT [ "/usr/local/bin/color-theme-utility" ]
