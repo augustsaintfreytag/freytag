@@ -12,7 +12,7 @@ enum PerformanceKey {
 }
 
 function moduleVersion(): string | undefined {
-	return process.env.NEXT_PUBLIC_COLOR_THEME_UTILITY_VERSION
+	return process.env.NEXT_PUBLIC_COLOR_THEME_ASSEMBLY_VERSION
 }
 
 function modulePath(): URL {
