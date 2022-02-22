@@ -9,7 +9,7 @@ version: "3.9"
 
 services:
   app:
-    image: node:16.13.0
+    image: node:16.14
     volumes:
       - ./${APP_ROOT}:/var/app:cached
       - data-app-node-modules:/var/app/node_modules
@@ -27,7 +27,7 @@ services:
     restart: unless-stopped
 
   app-dependencies:
-    image: node:16.13.0
+    image: node:16.14
     volumes:
       - ./${APP_ROOT}/package.json:/var/app/package.json
       - ./${APP_ROOT}/yarn.lock:/var/app/yarn.lock
