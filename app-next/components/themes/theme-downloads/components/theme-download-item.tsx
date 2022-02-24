@@ -1,10 +1,10 @@
 import { FunctionComponent } from "react"
 import {
-	ThemeEditorFormat,
-	themeFileDescriptionForEditorFormat,
+	themeFileDescriptionForFormat,
+	ThemeFormat,
 	themeFormatPurposeDescriptionForEditorFormat,
-	themeSymbolForEditorFormat
-} from "~/api/cockpit/records/themes/library/theme-editor-format"
+	themeSymbolForFormat
+} from "~/api/cockpit/records/themes/library/theme-format"
 import { track } from "~/components/analytics/functions/track"
 import Sprite from "~/components/sprites/sprite"
 import { fileNameFromPath } from "~/components/themes/theme-downloads/functions/download-name-form"
@@ -15,7 +15,7 @@ import styles from "./theme-download-item.module.sass"
 
 export interface Props extends PropsWithClassName {
 	name: string
-	format: ThemeEditorFormat
+	format: ThemeFormat
 	href: URL
 }
 
@@ -25,8 +25,8 @@ const ThemeDownloadItem: FunctionComponent<Props> = props => {
 	const itemPurpose = themeFormatPurposeDescriptionForEditorFormat(props.format)
 	const itemTitle = `Download Theme "${props.name}" for ${itemPurpose}`
 	const itemHeading = `Download for ${itemPurpose}`
-	const itemSymbol = themeSymbolForEditorFormat(props.format)
-	const itemFormat = themeFileDescriptionForEditorFormat(props.format)
+	const itemSymbol = themeSymbolForFormat(props.format)
+	const itemFormat = themeFileDescriptionForFormat(props.format)
 	const itemFileName = fileNameFromPath(props.name, props.href)
 
 	return (

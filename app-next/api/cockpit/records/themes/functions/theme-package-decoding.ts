@@ -1,8 +1,8 @@
 import { Theme, ThemePackage } from "~/api/cockpit/records/themes/library/theme"
-import { ThemeEditorFormat } from "~/api/cockpit/records/themes/library/theme-editor-format"
+import { ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
 
-export function themePackageFromTheme(theme: Theme, format: ThemeEditorFormat): ThemePackage | undefined {
+export function themePackageFromTheme(theme: Theme, format: ThemeFormat): ThemePackage | undefined {
 	return theme.packages?.filter(themePackage => {
 		return themePackage.value.format === format
 	})[0]?.value

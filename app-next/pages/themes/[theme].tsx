@@ -5,7 +5,7 @@ import { themeFromApi } from "~/api/cockpit/records/themes/functions/theme-data-
 import { intermediateThemeFileFromApi } from "~/api/cockpit/records/themes/functions/theme-file-data-access"
 import { themePackageFromTheme } from "~/api/cockpit/records/themes/functions/theme-package-decoding"
 import { Theme } from "~/api/cockpit/records/themes/library/theme"
-import { ThemeEditorFormat } from "~/api/cockpit/records/themes/library/theme-editor-format"
+import { ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { ApiError } from "~/api/common/errors/api-error"
 import { getAggregatingServerSideResponses, getServerSideResponseByQuery } from "~/api/common/props/functions/server-side-props"
 import { isServerSidePropsResponse } from "~/api/common/props/functions/server-side-response-guards"
@@ -56,7 +56,7 @@ async function getServerSideThemeFileProps(response?: ServerSideResponse<PageDat
 	const theme = response.props.data.theme!
 
 	try {
-		const themePackage = themePackageFromTheme(theme, ThemeEditorFormat.Intermediate)
+		const themePackage = themePackageFromTheme(theme, ThemeFormat.Intermediate)
 
 		if (!themePackage) {
 			throw new ApiError(`Theme package does not have an intermediate theme package or package URL.`)

@@ -1,7 +1,7 @@
 import { CockpitRecord } from "cockpit-access"
 import { AssetLink } from "~/api/cockpit/records/asset/library/asset-link"
 import { ImageLink } from "~/api/cockpit/records/asset/library/image-link"
-import { ThemeEditorFormat } from "./theme-editor-format"
+import { ThemeFormat } from "./theme-format"
 import { ThemeLightness } from "./theme-lightness"
 
 export interface Theme extends CockpitRecord {
@@ -16,7 +16,7 @@ export interface Theme extends CockpitRecord {
 }
 
 export interface ThemePackage {
-	format: ThemeEditorFormat
+	format: ThemeFormat
 	file: AssetLink
 }
 

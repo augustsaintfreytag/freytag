@@ -1,5 +1,5 @@
 import { Theme, ThemePackage } from "~/api/cockpit/records/themes/library/theme"
-import { allThemeEditorFormats, ThemeEditorFormat } from "~/api/cockpit/records/themes/library/theme-editor-format"
+import { allThemeFormats, ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { ThemeLightness } from "~/api/cockpit/records/themes/library/theme-lightness"
 import { Props as ThemePreviewProps } from "~/components/themes/theme-preview/components/theme-preview"
 import { Props as ThemeTagProps } from "~/components/themes/theme-tag/components/theme-tag"
@@ -33,7 +33,7 @@ export function themeTagPropsFromTheme(theme: Theme, summarizeFormats: boolean =
 	const themeFormats = themeFormatSet(themePackages)
 
 	if (!includeDefaults) {
-		themeFormats.delete(ThemeEditorFormat.Intermediate)
+		themeFormats.delete(ThemeFormat.Intermediate)
 	}
 
 	if (!summarizeFormats) {
@@ -60,29 +60,29 @@ function themeTagPropsForLightness(lightness: ThemeLightness): ThemeTagProps {
 	}
 }
 
-function themeTagPropsForIndividualPackage(themeFormat: ThemeEditorFormat): ThemeTagProps {
+function themeTagPropsForIndividualPackage(themeFormat: ThemeFormat): ThemeTagProps {
 	switch (themeFormat) {
-		case ThemeEditorFormat.Intermediate:
+		case ThemeFormat.Intermediate:
 			return Tags.intermediateThemeTag()
-		case ThemeEditorFormat.Xcode:
+		case ThemeFormat.Xcode:
 			return Tags.xcodeThemeTag()
 	}
 }
 
-function themeTagPropsForSummarizedPackages(themeFormats: Set<ThemeEditorFormat>): ThemeTagProps | undefined {
+function themeTagPropsForSummarizedPackages(themeFormats: Set<ThemeFormat>): ThemeTagProps | undefined {
 	if (themeFormats.size === 0) {
 		return undefined
 	}
 
-	if (themeFormats.size > 1 && themeFormats.size === allThemeEditorFormats.length) {
+	if (themeFormats.size > 1 && themeFormats.size === allThemeFormats.length) {
 		return Tags.formatThemeTag(Tags.allFormats)
 	}
 
 	return Tags.formatThemeTag(themeFormats.size)
 }
 
-export function themeFormatSet(themePackages: ThemePackage[]): Set<ThemeEditorFormat> {
-	const themeFormats = new Set<ThemeEditorFormat>()
+export function themeFormatSet(themePackages: ThemePackage[]): Set<ThemeFormat> {
+	const themeFormats = new Set<ThemeFormat>()
 
 	themePackages.forEach(themePackage => {
 		themeFormats.add(themePackage.format)
