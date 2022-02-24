@@ -1,7 +1,7 @@
 import { Theme } from "~/api/cockpit/records/themes/library/theme"
 import { track } from "~/components/analytics/functions/track"
+import { appEnvironmentIsDevelopment } from "~/components/app/app"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
-import { appEnvironmentIsDevelopment } from "~/components/meta/library/app"
 import { URL } from "~/utils/routing/library/url"
 
 // Sharing
