@@ -1,7 +1,6 @@
-FROM msoap/shell2http as shell2http-builder
 FROM swift:slim
 
-COPY --from=shell2http-builder /app/shell2http /usr/local/bin/shell2http
+# Color Theme Utility
 
 ARG COLOR_THEME_UTILITY_URL
 ADD ${COLOR_THEME_UTILITY_URL} /tmp/color-theme-utility.tar.gz
@@ -9,6 +8,11 @@ RUN tar -xzf /tmp/color-theme-utility.tar.gz -C /tmp
 RUN rm /tmp/color-theme-utility.tar.gz
 RUN mv /tmp/ColorThemeUtility /usr/local/bin/color-theme-utility
 
-COPY ./server.sh /server/server.sh
+# SSH
 
-ENTRYPOINT ["/server/server.sh"]
+RUN apt update && apt install -y openssh-server sudo
+RUN useradd -rm -d /home/server server -g root -G sudo
+RUN echo "server:server" | chpasswd
+RUN service ssh start
+
+CMD ["/usr/sbin/sshd", "-D"]

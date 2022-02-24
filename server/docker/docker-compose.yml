@@ -40,6 +40,8 @@ services:
       context: ./server/docker/images/theme-server
       args:
         - COLOR_THEME_UTILITY_URL=${COLOR_THEME_UTILITY_URL}
+    volumes:
+      - data-app-themes:/var/themes
     networks:
       - default
     ports:
@@ -65,6 +67,9 @@ volumes:
     driver: local
   data-app-build-framework:
     name: freytag-data-app-build-framework
+    driver: local
+  data-app-themes:
+    name: freytag-data-app-themes
     driver: local
 
 networks:

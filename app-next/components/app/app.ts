@@ -37,3 +37,11 @@ export function cockpitHostServer(): string | undefined {
 export function dropshipHostClient(): string | undefined {
 	return process.env.NEXT_PUBLIC_DROPSHIP_HOST_CLIENT
 }
+
+export function crossContainerCommunicationUser(): string | undefined {
+	return process.env.NEXT_PUBLIC_XCC_USER
+}
+
+export function crossContainerCommunicationPassword(): string | undefined {
+	return process.env.NEXT_PUBLIC_XCC_PASSWORD
+}
