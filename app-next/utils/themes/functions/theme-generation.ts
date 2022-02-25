@@ -46,7 +46,7 @@ export async function generateThemeCollection(properties: ThemeGenerationPropert
 	}
 
 	const commandForWritingManifest = () => {
-		const encodedManifest = JSON.stringify(generateManifest(properties, generatedThemeFormats), undefined, "\t")
+		const encodedManifest = generateManifest(properties, generatedThemeFormats).toJSON()
 		return `cat << EOF > ${rootPath}/manifest.json\n${encodedManifest}\nEOF`
 	}
 
@@ -77,12 +77,7 @@ export function generateManifest(properties: ThemeGenerationProperties, formats:
 		}
 	}
 
-	return {
-		id: properties.id,
-		name: properties.name,
-		dateCreated: new Date(),
-		packages
-	}
+	return new ThemeManifest(properties.id, properties.name, new Date(), packages)
 }
 
 // Name Form
