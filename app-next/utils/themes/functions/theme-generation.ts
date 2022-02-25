@@ -1,13 +1,12 @@
 import { ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { executeRemoteCommand, executeRemoteCommands } from "~/utils/commands/functions/command-execution"
+import { themeHost, themesOutputPath } from "~/utils/themes/library/theme-config"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { ThemeManifest, ThemeManifestPackage } from "~/utils/themes/library/theme-manifest"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
 // Configuration
 
-export const themeHost = "color-theme-utility"
-export const themesOutputPath = "/var/themes"
 export const themesVendor = "color-theme-utility"
 export const themesDefaultVersion = "1.0.0"
 
