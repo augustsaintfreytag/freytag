@@ -10,7 +10,8 @@ RUN mv /tmp/ColorThemeUtility /usr/local/bin/color-theme-utility
 
 # SSH
 
-RUN apt update && apt install -y openssh-server sudo
+RUN apt update
+RUN apt install -y openssh-server sudo zip
 RUN useradd -rm -d /home/server server -g root -G sudo
 RUN echo "server:server" | chpasswd
 RUN service ssh start
