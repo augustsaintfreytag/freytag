@@ -1,8 +1,8 @@
 import { ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { executeRemoteCommand, executeRemoteCommands } from "~/utils/commands/functions/command-execution"
+import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { ThemeManifest, ThemeManifestPackage } from "~/utils/themes/library/theme-manifest"
 import { Dictionary } from "~/utils/types/library/dictionary"
-import { UUID } from "~/utils/uuid/uuid"
 
 // Configuration
 
@@ -14,15 +14,6 @@ export const themesDefaultVersion = "1.0.0"
 const generatedThemeFormats: ThemeFormat[] = [ThemeFormat.Intermediate, ThemeFormat.Xcode, ThemeFormat.VisualStudioCode]
 const archivedThemeFormats: ThemeFormat[] = [ThemeFormat.VisualStudioCode]
 
-// Library
-
-interface ThemeGenerationProperties {
-	id: UUID
-	name: string
-	description: string
-	colors: string
-}
-
 // Generation
 
 export async function makeThemeOutputDirectory(identifier: string): Promise<void> {
@@ -33,7 +24,9 @@ export async function clearThemeOutputDirectory(): Promise<void> {
 	await executeRemoteCommand(themeHost, `rm -rf ${themesOutputPath}/* &> /dev/null`)
 }
 
-/** Generate a collection of themes to the configured output, including a manifest. */
+/** Generate a collection of themes to the configured output, including a manifest.
+ *  Creates and outputs themes of formats specified with `generatedThemeFormats`.
+ */
 export async function generateThemeCollection(properties: ThemeGenerationProperties): Promise<void> {
 	const { id, name, description, colors } = properties
 	const rootPath = `${themesOutputPath}/${id}`
