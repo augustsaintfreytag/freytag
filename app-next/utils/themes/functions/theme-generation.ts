@@ -1,5 +1,5 @@
 import { ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
-import { executeLocalCommand, executeLocalCommands, executeRemoteCommands } from "~/utils/commands/functions/command-execution"
+import { executeRemoteCommand, executeRemoteCommands } from "~/utils/commands/functions/command-execution"
 import { ThemeManifest, ThemeManifestPackage } from "~/utils/themes/library/theme-manifest"
 import { Dictionary } from "~/utils/types/library/dictionary"
 import { UUID } from "~/utils/uuid/uuid"
@@ -26,11 +26,11 @@ interface ThemeGenerationProperties {
 // Generation
 
 export async function makeThemeOutputDirectory(identifier: string): Promise<void> {
-	await executeLocalCommands([`mkdir -p ${themesOutputPath}/${identifier}`, `chmod -R 777 ${themesOutputPath}/${identifier}`])
+	await executeRemoteCommands(themeHost, [`mkdir -p ${themesOutputPath}/${identifier}`, `chmod -R 777 ${themesOutputPath}/${identifier}`])
 }
 
 export async function clearThemeOutputDirectory(): Promise<void> {
-	await executeLocalCommand(`rm -rf ${themesOutputPath}/* &> /dev/null`)
+	await executeRemoteCommand(themeHost, `rm -rf ${themesOutputPath}/* &> /dev/null`)
 }
 
 /** Generate a collection of themes to the configured output, including a manifest. */
