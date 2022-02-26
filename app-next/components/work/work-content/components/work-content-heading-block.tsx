@@ -7,10 +7,10 @@ export interface Props {
 }
 
 const WorkContentHeadingBlock: FunctionComponent<Props> = props => (
-	<section className={styles.block}>
+	<div className={styles.block}>
 		<ContentAnchor anchor={props.text} />
 		<h2>{props.text}</h2>
-	</section>
+	</div>
 )
 
 export default WorkContentHeadingBlock

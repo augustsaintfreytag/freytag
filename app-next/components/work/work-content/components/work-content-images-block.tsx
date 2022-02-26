@@ -33,11 +33,11 @@ const WorkContentImageColumnBlock: FunctionComponent<Props> = props => {
 	const contentFormats = contentImageFormats(contentAlignment, contentHasMultipleImages)
 
 	return (
-		<section className={className(styles.block, contentStyle, alignmentStyle)}>
+		<div className={className(styles.block, contentStyle, alignmentStyle)}>
 			{props.collection.map(elementProps => (
 				<WorkImageFigure key={elementProps.src} formats={contentFormats} {...elementProps} />
 			))}
-		</section>
+		</div>
 	)
 }
 

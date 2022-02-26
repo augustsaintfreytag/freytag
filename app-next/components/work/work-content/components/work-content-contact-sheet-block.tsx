@@ -15,7 +15,7 @@ export interface Props {
 }
 
 const WorkContentContactSheetBlock: FunctionComponent<Props> = props => (
-	<section className={styles.block}>
+	<div className={styles.block}>
 		<div className={styles.inlay}>
 			<ol>
 				{props.images.map(definition => (
@@ -29,7 +29,7 @@ const WorkContentContactSheetBlock: FunctionComponent<Props> = props => (
 				))}
 			</ol>
 		</div>
-	</section>
+	</div>
 )
 
 export default WorkContentContactSheetBlock
