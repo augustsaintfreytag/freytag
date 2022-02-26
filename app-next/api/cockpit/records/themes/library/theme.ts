@@ -11,7 +11,7 @@ export interface Theme extends CockpitRecord {
 	description: string
 	cover?: ImageLink
 	colors: string
-	lightness: ThemeAppearance
+	appearance: ThemeAppearance
 	packages?: ThemePackageRecord[]
 }
 
