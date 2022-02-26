@@ -90,7 +90,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 	const packages = themePackagesFromTheme(theme)
 	const downloads =
 		packages.map(themePackage => {
-			const name = themePackage.format
+			const name = theme.name
 			const format = themePackage.format
 			const path = themePackage.file.path
 			const href = routedAssetUrlFromComponent(path)
