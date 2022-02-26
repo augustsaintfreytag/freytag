@@ -1,13 +1,12 @@
 import { ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { executeRemoteCommand, executeRemoteCommands } from "~/utils/commands/functions/command-execution"
+import { themeHost, themesOutputPath } from "~/utils/themes/library/theme-config"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { ThemeManifest, ThemeManifestPackage } from "~/utils/themes/library/theme-manifest"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
 // Configuration
 
-export const themeHost = "color-theme-utility"
-export const themesOutputPath = "/var/themes"
 export const themesVendor = "color-theme-utility"
 export const themesDefaultVersion = "1.0.0"
 
@@ -46,7 +45,7 @@ export async function generateThemeCollection(properties: ThemeGenerationPropert
 	}
 
 	const commandForWritingManifest = () => {
-		const encodedManifest = JSON.stringify(generateManifest(properties, generatedThemeFormats), undefined, "\t")
+		const encodedManifest = generateManifest(properties, generatedThemeFormats).toJSON()
 		return `cat << EOF > ${rootPath}/manifest.json\n${encodedManifest}\nEOF`
 	}
 
@@ -77,12 +76,7 @@ export function generateManifest(properties: ThemeGenerationProperties, formats:
 		}
 	}
 
-	return {
-		id: properties.id,
-		name: properties.name,
-		dateCreated: new Date(),
-		packages
-	}
+	return new ThemeManifest(properties.id, properties.name, new Date(), packages)
 }
 
 // Name Form
