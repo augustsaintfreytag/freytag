@@ -1,30 +1,20 @@
+import { ThemeAppearance } from "~/api/cockpit/records/themes/library/theme-appearance"
+import { ThemeFormat, themeFormatNameForFormat, themeSymbolForFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { Props as ThemeTagProps } from "../components/theme-tag"
+
+// Symbols
 
 enum ThemeSymbols {
 	LightMode = "#Light Mode Symbol",
 	DarkMode = "#Dark Mode Symbol",
-	Format = "#Format Symbol",
-	IntermediateFormat = "#Intermediate Format",
-	XcodeFormat = "#Xcode Format",
-	VSCodeFormat = "#VSCode Format",
-	TerminalFormat = "#Terminal Format"
-}
-
-// Lightness
-
-export function lightThemeTag(): ThemeTagProps {
-	return { name: "Light", symbol: ThemeSymbols.LightMode }
-}
-
-export function darkThemeTag(): ThemeTagProps {
-	return { name: "Dark", symbol: ThemeSymbols.DarkMode }
+	Format = "#Format Symbol"
 }
 
 // Formats
 
-export function formatThemeTag(numberOfFormats: number): ThemeTagProps {
+export function themeTagPropsForAnyFormats(numberOfFormats?: number): ThemeTagProps {
 	const designation = numberOfFormats === 1 ? "Format" : "Formats"
-	const description = numberOfFormats === allFormats ? "All" : String(numberOfFormats)
+	const description = numberOfFormats === undefined ? "All" : String(numberOfFormats)
 
 	return {
 		name: `${description} ${designation}`,
@@ -32,20 +22,18 @@ export function formatThemeTag(numberOfFormats: number): ThemeTagProps {
 	}
 }
 
-export const allFormats = -1
-
-export function intermediateThemeTag(): ThemeTagProps {
-	return { name: "Intermediate", symbol: ThemeSymbols.IntermediateFormat }
+export function themeTagPropsForAppearance(appearance: ThemeAppearance): ThemeTagProps {
+	switch (appearance) {
+		case ThemeAppearance.Light:
+			return { name: "Light", symbol: ThemeSymbols.LightMode }
+		case ThemeAppearance.Dark:
+			return { name: "Dark", symbol: ThemeSymbols.DarkMode }
+	}
 }
 
-export function xcodeThemeTag(): ThemeTagProps {
-	return { name: "Xcode", symbol: ThemeSymbols.XcodeFormat }
-}
-
-export function vsCodeThemeTag(): ThemeTagProps {
-	return { name: "Visual Studio Code", symbol: ThemeSymbols.VSCodeFormat }
-}
-
-export function terminalThemeTag(): ThemeTagProps {
-	return { name: "Terminal", symbol: ThemeSymbols.TerminalFormat }
+export function themeTagPropsForFormat(format: ThemeFormat): ThemeTagProps {
+	return {
+		name: themeFormatNameForFormat(format),
+		symbol: themeSymbolForFormat(format)
+	}
 }

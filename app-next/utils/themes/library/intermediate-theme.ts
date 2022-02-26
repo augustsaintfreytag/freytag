@@ -3,6 +3,7 @@ import { ColorValue } from "~/utils/colors/models/color"
 export interface IntermediateTheme {
 	_format: string
 	_version: string
+	_name: string
 
 	foreground: ColorValue
 	background: ColorValue
