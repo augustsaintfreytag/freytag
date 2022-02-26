@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { allThemeFormats, ThemeFormat, themeFormatPurposeDescriptionForEditorFormat } from "~/api/cockpit/records/themes/library/theme-format"
+import { allThemeFormats, ThemeFormat, themeFormatPurposeDescriptionForFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import Reiteration from "~/components/reiteration/reiteration"
 
 interface Props {
@@ -16,7 +16,7 @@ const ThemeReiteration: FunctionComponent<Props> = props => (
 			.filter(format => props.formats.has(format))
 			.map(format => (
 				<p key={format}>
-					Download "{props.name}" theme for {themeFormatPurposeDescriptionForEditorFormat(format)}
+					Download "{props.name}" theme for {themeFormatPurposeDescriptionForFormat(format)}
 				</p>
 			))}
 	</Reiteration>

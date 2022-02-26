@@ -1,8 +1,8 @@
 import { CockpitRecord } from "cockpit-access"
 import { AssetLink } from "~/api/cockpit/records/asset/library/asset-link"
 import { ImageLink } from "~/api/cockpit/records/asset/library/image-link"
-import { ThemeFormat } from "./theme-format"
-import { ThemeLightness } from "./theme-lightness"
+import { ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
+import { ThemeAppearance } from "./theme-appearance"
 
 export interface Theme extends CockpitRecord {
 	display: boolean
@@ -11,7 +11,7 @@ export interface Theme extends CockpitRecord {
 	description: string
 	cover?: ImageLink
 	colors: string
-	lightness: ThemeLightness
+	lightness: ThemeAppearance
 	packages?: ThemePackageRecord[]
 }
 

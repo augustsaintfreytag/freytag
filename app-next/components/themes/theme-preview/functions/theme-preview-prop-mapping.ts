@@ -1,6 +1,5 @@
 import { Theme, ThemePackage } from "~/api/cockpit/records/themes/library/theme"
 import { allThemeFormats, ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
-import { ThemeLightness } from "~/api/cockpit/records/themes/library/theme-lightness"
 import { Props as ThemePreviewProps } from "~/components/themes/theme-preview/components/theme-preview"
 import { Props as ThemeTagProps } from "~/components/themes/theme-tag/components/theme-tag"
 import * as Tags from "~/components/themes/theme-tag/functions/theme-tag-models"
@@ -27,7 +26,7 @@ export function themePreviewPropsFromTheme(theme: Theme): ThemePreviewProps {
 export function themeTagPropsFromTheme(theme: Theme, summarizeFormats: boolean = false, includeDefaults: boolean = true): ThemeTagProps[] {
 	const props: ThemeTagProps[] = []
 
-	props.push(themeTagPropsForLightness(theme.lightness))
+	props.push(themeTagPropsForAppearance(theme.lightness))
 
 	const themePackages = themePackagesFromTheme(theme)
 	const themeFormats = themeFormatSet(themePackages)
