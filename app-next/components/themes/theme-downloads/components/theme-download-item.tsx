@@ -2,12 +2,12 @@ import { FunctionComponent } from "react"
 import {
 	themeFileDescriptionForFormat,
 	ThemeFormat,
-	themeFormatPurposeDescriptionForEditorFormat,
+	themeFormatPurposeDescriptionForFormat,
+	themeResourceName,
 	themeSymbolForFormat
 } from "~/api/cockpit/records/themes/library/theme-format"
 import { track } from "~/components/analytics/functions/track"
 import Sprite from "~/components/sprites/sprite"
-import { fileNameFromPath } from "~/components/themes/theme-downloads/functions/download-name-form"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"
@@ -22,12 +22,12 @@ export interface Props extends PropsWithClassName {
 const trackClick = (name: string, href: URL) => track("Theme Download", { name, href })
 
 const ThemeDownloadItem: FunctionComponent<Props> = props => {
-	const itemPurpose = themeFormatPurposeDescriptionForEditorFormat(props.format)
+	const itemPurpose = themeFormatPurposeDescriptionForFormat(props.format)
 	const itemTitle = `Download Theme "${props.name}" for ${itemPurpose}`
 	const itemHeading = `Download for ${itemPurpose}`
 	const itemSymbol = themeSymbolForFormat(props.format)
 	const itemFormat = themeFileDescriptionForFormat(props.format)
-	const itemFileName = fileNameFromPath(props.name, props.href)
+	const itemFileName = themeResourceName(props.name, props.format)
 
 	return (
 		<a href={props.href} title={itemTitle} onClick={() => trackClick(props.name, props.href)} download={itemFileName}>
