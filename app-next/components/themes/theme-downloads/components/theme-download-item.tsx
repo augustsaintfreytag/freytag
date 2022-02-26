@@ -16,7 +16,8 @@ import styles from "./theme-download-item.module.sass"
 export interface Props extends PropsWithClassName {
 	name: string
 	format: ThemeFormat
-	href: URL
+	href?: URL
+	onClick?: () => void
 }
 
 const trackClick = (name: string, href: URL) => track("Theme Download", { name, href })
@@ -29,8 +30,16 @@ const ThemeDownloadItem: FunctionComponent<Props> = props => {
 	const itemFormat = themeFileDescriptionForFormat(props.format)
 	const itemFileName = themeResourceName(props.name, props.format)
 
+	const onClick = () => {
+		if (props.href) {
+			trackClick(props.name, props.href)
+		}
+
+		props.onClick?.()
+	}
+
 	return (
-		<a href={props.href} title={itemTitle} onClick={() => trackClick(props.name, props.href)} download={itemFileName}>
+		<a href={props.href} title={itemTitle} onClick={onClick} download={itemFileName}>
 			<button className={className(styles.item, props.className)}>
 				<Sprite className={styles.symbol} href={itemSymbol} />
 				<div className={styles.text}>
