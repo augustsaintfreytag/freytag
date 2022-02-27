@@ -9,15 +9,11 @@ interface Props {
 
 const ThemeDownloadList: FunctionComponent<Props> = props => (
 	<ul className={styles.block}>
-		{props.items.map(item => {
-			const { format, href } = item
-
-			return (
-				<li key={`${format}-${href}`}>
-					<ThemeDownloadItem name={props.name} format={format} href={href} />
-				</li>
-			)
-		})}
+		{props.items.map(item => (
+			<li key={`${item.format}-${item.href}`}>
+				<ThemeDownloadItem {...item} />
+			</li>
+		))}
 	</ul>
 )
 
