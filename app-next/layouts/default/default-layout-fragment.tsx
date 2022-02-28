@@ -2,11 +2,11 @@ import Head from "next/head"
 import { useRouter } from "next/router"
 import { FunctionComponent } from "react"
 import Analytics from "~/components/analytics/analytics"
-import { appEnvironmentIsDevelopment } from "~/components/app/app"
 import Footer from "~/components/footer/footer"
 import Header from "~/components/header/header"
 import { brandTitle } from "~/components/meta/components/brand-meta-data"
 import { PropsWithAnyChildren } from "~/types/props"
+import { appEnvironmentIsDevelopment } from "~/utils/app/app"
 import { useSensitiveDataDisplay } from "~/utils/render/sensitive-data-hook"
 
 type Props = PropsWithAnyChildren & {

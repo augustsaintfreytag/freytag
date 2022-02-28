@@ -1,5 +1,5 @@
 import { exec } from "child_process"
-import { crossContainerCommunicationPassword, crossContainerCommunicationUser } from "~/components/app/app"
+import { crossContainerCommunicationPassword, crossContainerCommunicationUser } from "~/utils/app/app"
 
 export async function executeLocalCommands(commands: string[]): Promise<string> {
 	return executeLocalCommand(joinedCommands(commands))

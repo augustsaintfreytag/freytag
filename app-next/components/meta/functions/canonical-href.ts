@@ -1,4 +1,4 @@
-import { appHost, appProtocol } from "~/components/app/app"
+import { appHost, appProtocol } from "~/utils/app/app"
 import { URL } from "~/utils/routing/library/url"
 
 export function canonicalHref(component?: string): URL {
