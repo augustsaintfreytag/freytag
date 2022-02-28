@@ -14,5 +14,5 @@ export function useEditorColors(initialColors: Color[]): [colors: Color[], setCo
 		}
 	}
 
-	return useEncodedLocalStorageState<Color[]>("theme-editor-colors", encodeColors, decodeColors, initialColors)
+	return useEncodedLocalStorageState<Color[]>("themes.editor.colors", encodeColors, decodeColors, initialColors)
 }
