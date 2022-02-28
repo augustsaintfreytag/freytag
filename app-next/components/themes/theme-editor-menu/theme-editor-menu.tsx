@@ -6,6 +6,7 @@ import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
 
 const itemProps = {
 	returnToGallery: { symbol: "#Gallery Symbol", short: "Gallery", full: "Return to Gallery" },
+	resetDraft: { symbol: "#Reset Symbol", short: "Reset", full: "New Draft" },
 	saveDraft: { symbol: "#Save Symbol", short: "Save", full: "Save Draft" },
 	loadDraft: { symbol: "#Load Symbol", short: "Load", full: "Load Draft" },
 	downloadTheme: { symbol: "#Cloud Symbol", short: "Download", full: "Download Preview" },
@@ -23,8 +24,9 @@ const ThemeEditorMenu: FunctionComponent<Props> = props => {
 	return (
 		<Menu>
 			<MenuItem symbol={itemProps.returnToGallery.symbol} text={itemProps.returnToGallery} href="/themes#gallery" />
-			<MenuItem symbol={itemProps.saveDraft.symbol} text={itemProps.saveDraft} href="#" disabled />
-			<MenuItem symbol={itemProps.loadDraft.symbol} text={itemProps.loadDraft} href="#" disabled />
+			<MenuItem symbol={itemProps.resetDraft.symbol} text={itemProps.resetDraft} />
+			<MenuItem symbol={itemProps.saveDraft.symbol} text={itemProps.saveDraft} disabled />
+			<MenuItem symbol={itemProps.loadDraft.symbol} text={itemProps.loadDraft} disabled />
 			<MenuItem
 				symbol={itemProps.downloadTheme.symbol}
 				text={itemProps.downloadTheme}
@@ -32,7 +34,7 @@ const ThemeEditorMenu: FunctionComponent<Props> = props => {
 				download={themeFileName}
 				disabled={!themeFileURL}
 			/>
-			<MenuItem symbol={itemProps.submitDraft.symbol} text={itemProps.submitDraft} href="#" disabled />
+			<MenuItem symbol={itemProps.submitDraft.symbol} text={itemProps.submitDraft} disabled />
 		</Menu>
 	)
 }
