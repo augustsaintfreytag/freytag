@@ -1,55 +1,29 @@
-export function appEnvironmentIsProduction(): boolean {
-	return process.env.NODE_ENV === "production"
-}
+export const appEnvironmentIsProduction = () => process.env.NODE_ENV === "production"
 
-export function appEnvironmentIsDevelopment(): boolean {
-	return process.env.NODE_ENV !== "production"
-}
+export const appEnvironmentIsDevelopment = () => process.env.NODE_ENV !== "production"
 
-export function appProtocol(): string | undefined {
-	return process.env.NEXT_PUBLIC_APP_PROTOCOL
-}
+export const appProtocol = () => process.env.NEXT_PUBLIC_APP_PROTOCOL
 
-export function appHost(): string | undefined {
-	return process.env.NEXT_PUBLIC_APP_HOST_CLIENT
-}
+export const appHost = () => process.env.NEXT_PUBLIC_APP_HOST_CLIENT
 
-export function appLocale(): string | undefined {
-	return process.env.NEXT_PUBLIC_APP_LOCALE
-}
+export const appLocale = () => process.env.NEXT_PUBLIC_APP_LOCALE
 
-export function appDataHost(): string | undefined {
-	return process.env.NEXT_PUBLIC_APP_DATA_HOST
-}
+export const appDataHost = () => process.env.NEXT_PUBLIC_APP_DATA_HOST
 
-export function cockpitToken(): string | undefined {
-	return process.env.NEXT_PUBLIC_COCKPIT_ACCESS_TOKEN
-}
+export const cockpitToken = () => process.env.NEXT_PUBLIC_COCKPIT_ACCESS_TOKEN
 
-export function cockpitProtocol(): string | undefined {
-	return process.env.NEXT_PUBLIC_COCKPIT_PROTOCOL
-}
+export const cockpitProtocol = () => process.env.NEXT_PUBLIC_COCKPIT_PROTOCOL
 
-export function cockpitHostClient(): string | undefined {
-	return process.env.NEXT_PUBLIC_COCKPIT_HOST_CLIENT
-}
+export const cockpitHostClient = () => process.env.NEXT_PUBLIC_COCKPIT_HOST_CLIENT
 
-export function cockpitHostServer(): string | undefined {
-	return process.env.NEXT_PUBLIC_COCKPIT_HOST_SERVER
-}
+export const cockpitHostServer = () => process.env.NEXT_PUBLIC_COCKPIT_HOST_SERVER
 
-export function dropshipHostClient(): string | undefined {
-	return process.env.NEXT_PUBLIC_DROPSHIP_HOST_CLIENT
-}
+export const dropshipHostClient = () => process.env.NEXT_PUBLIC_DROPSHIP_HOST_CLIENT
 
-export function xccUser(): string | undefined {
-	return process.env.NEXT_PUBLIC_XCC_USER
-}
+export const xccUser = () => process.env.NEXT_PUBLIC_XCC_USER
 
-export function xccPassword(): string | undefined {
-	return process.env.NEXT_PUBLIC_XCC_PASSWORD
-}
+export const xccPassword = () => process.env.NEXT_PUBLIC_XCC_PASSWORD
 
-export function xccColorThemeUtilityHost(): string | undefined {
-	return process.env.NEXT_PUBLIC_XCC_COLOR_THEME_UTILITY_HOST
-}
+export const xccColorThemeUtilityHost = () => process.env.NEXT_PUBLIC_XCC_COLOR_THEME_UTILITY_HOST
+
+export const xccColorThemeOutputPath = () => process.env.NEXT_PUBLIC_XCC_COLOR_THEME_OUTPUT_PATH

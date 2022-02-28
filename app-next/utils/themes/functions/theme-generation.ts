@@ -1,26 +1,25 @@
 import { ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { executeRemoteCommand, executeRemoteCommands } from "~/utils/commands/functions/command-execution"
-import { themeHost, themesOutputPath } from "~/utils/themes/library/theme-config"
+import {
+	archivedThemeFormats,
+	generatedThemeFormats,
+	themesDefaultVersion,
+	themesHost,
+	themesOutputPath,
+	themesVendor
+} from "~/utils/themes/functions/theme-configuration"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { ThemeManifest, ThemeManifestPackage } from "~/utils/themes/library/theme-manifest"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
-// Configuration
-
-export const themesVendor = "color-theme-utility"
-export const themesDefaultVersion = "1.0.0"
-
-const generatedThemeFormats: ThemeFormat[] = [ThemeFormat.Intermediate, ThemeFormat.Xcode, ThemeFormat.VisualStudioCode]
-const archivedThemeFormats: ThemeFormat[] = [ThemeFormat.VisualStudioCode]
-
 // Generation
 
 export async function makeThemeOutputDirectory(identifier: string): Promise<void> {
-	await executeRemoteCommands(themeHost, [`mkdir -p ${themesOutputPath}/${identifier}`, `chmod -R 777 ${themesOutputPath}/${identifier}`])
+	await executeRemoteCommands(themesHost(), [`mkdir -p ${themesOutputPath}/${identifier}`, `chmod -R 777 ${themesOutputPath}/${identifier}`])
 }
 
 export async function clearThemeOutputDirectory(): Promise<void> {
-	await executeRemoteCommand(themeHost, `rm -rf ${themesOutputPath}/* &> /dev/null`)
+	await executeRemoteCommand(themesHost(), `rm -rf ${themesOutputPath}/* &> /dev/null`)
 }
 
 /** Generate a collection of themes to the configured output, including a manifest.
@@ -56,7 +55,7 @@ export async function generateThemeCollection(properties: ThemeGenerationPropert
 		commandForWritingManifest()
 	]
 
-	await executeRemoteCommands(themeHost, commands)
+	await executeRemoteCommands(themesHost, commands)
 }
 
 export function generateManifest(properties: ThemeGenerationProperties, formats: ThemeFormat[]): ThemeManifest {
