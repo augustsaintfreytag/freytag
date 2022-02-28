@@ -16,7 +16,7 @@ export interface ThemeManifestKindGenerated {
 export type ThemeManifestState = ThemeManifestKindNone | ThemeManifestKindPending | ThemeManifestKindGenerated
 
 export enum ThemeManifestStateKind {
-	None,
-	Pending,
-	Generated
+	None = "none",
+	Pending = "pending",
+	Generated = "generated"
 }
