@@ -25,8 +25,12 @@ export async function clearThemeOutputDirectory(): Promise<void> {
 /** Generate a collection of themes to the configured output, including a manifest.
  *  Creates and outputs themes of formats specified with `generatedThemeFormats`.
  */
-export async function generateThemeCollection(properties: ThemeGenerationProperties): Promise<void> {
+export async function generateThemeCollection(properties: ThemeGenerationProperties): Promise<ThemeManifest> {
 	const { id, name, description, colors } = properties
+	const manifest = generateManifest(properties, generatedThemeFormats)
+
+	const encodedColors = colors.map(color => color.hex).join(",")
+	const encodedManifest = manifest.toJSON()
 	const rootPath = `${themesOutputPath}/${id}`
 
 	const commandForMakeThemeDirectoryForFormat = (format: ThemeFormat) => {
@@ -34,7 +38,7 @@ export async function generateThemeCollection(properties: ThemeGenerationPropert
 	}
 
 	const commandForGenerateThemeWithFormat = (format: ThemeFormat) => {
-		return `color-theme-utility generate-theme -f ${format} -c "${colors}" --name "${name}" --description "${description}" -o "${rootPath}/${format}"`
+		return `color-theme-utility generate-theme -f ${format} -c "${encodedColors}" --name "${name}" --description "${description}" -o "${rootPath}/${format}"`
 	}
 
 	const commandForArchiveThemeWithFormat = (format: ThemeFormat) => {
@@ -44,7 +48,6 @@ export async function generateThemeCollection(properties: ThemeGenerationPropert
 	}
 
 	const commandForWritingManifest = () => {
-		const encodedManifest = generateManifest(properties, generatedThemeFormats).toJSON()
 		return `cat << EOF > ${rootPath}/manifest.json\n${encodedManifest}\nEOF`
 	}
 
@@ -55,7 +58,8 @@ export async function generateThemeCollection(properties: ThemeGenerationPropert
 		commandForWritingManifest()
 	]
 
-	await executeRemoteCommands(themesHost, commands)
+	await executeRemoteCommands(themesHost(), commands)
+	return manifest
 }
 
 export function generateManifest(properties: ThemeGenerationProperties, formats: ThemeFormat[]): ThemeManifest {
