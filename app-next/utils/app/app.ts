@@ -18,6 +18,10 @@ export function appLocale(): string | undefined {
 	return process.env.NEXT_PUBLIC_APP_LOCALE
 }
 
+export function appDataHost(): string | undefined {
+	return process.env.NEXT_PUBLIC_APP_DATA_HOST
+}
+
 export function cockpitToken(): string | undefined {
 	return process.env.NEXT_PUBLIC_COCKPIT_ACCESS_TOKEN
 }
@@ -44,4 +48,8 @@ export function xccUser(): string | undefined {
 
 export function xccPassword(): string | undefined {
 	return process.env.NEXT_PUBLIC_XCC_PASSWORD
+}
+
+export function xccColorThemeUtilityHost(): string | undefined {
+	return process.env.NEXT_PUBLIC_XCC_COLOR_THEME_UTILITY_HOST
 }

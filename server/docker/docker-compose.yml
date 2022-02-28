@@ -38,6 +38,13 @@ services:
     working_dir: /var/app
     command: yarn
 
+  app-content:
+    image: "flashspys/nginx-static"
+    volumes:
+      - data-app-themes:/static/themes
+    networks:
+      - default
+
   color-theme-utility:
     build:
       context: ./server/docker/images/color-theme-utility
