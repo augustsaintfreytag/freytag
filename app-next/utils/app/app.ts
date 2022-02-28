@@ -38,10 +38,10 @@ export function dropshipHostClient(): string | undefined {
 	return process.env.NEXT_PUBLIC_DROPSHIP_HOST_CLIENT
 }
 
-export function crossContainerCommunicationUser(): string | undefined {
+export function xccUser(): string | undefined {
 	return process.env.NEXT_PUBLIC_XCC_USER
 }
 
-export function crossContainerCommunicationPassword(): string | undefined {
+export function xccPassword(): string | undefined {
 	return process.env.NEXT_PUBLIC_XCC_PASSWORD
 }
