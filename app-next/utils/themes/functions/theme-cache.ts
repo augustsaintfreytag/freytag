@@ -1,7 +1,7 @@
 import { ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { executeLocalCommand } from "~/utils/commands/functions/command-execution"
 import { URL } from "~/utils/routing/library/url"
-import { themesOutputPath } from "~/utils/themes/library/theme-config"
+import { themesOutputPath } from "~/utils/themes/functions/theme-configuration"
 import { ThemeManifest } from "~/utils/themes/library/theme-manifest"
 import { Dictionary } from "~/utils/types/library/dictionary"
 import { UUID } from "~/utils/uuid/uuid"
@@ -29,7 +29,7 @@ export function cachedThemeResourcePath(id: UUID, format: ThemeFormat): URL | un
 	}
 
 	const { group, resource } = formatPackage
-	return `${themesOutputPath}/${group}/${resource}`
+	return `${themesOutputPath()}/${group}/${resource}`
 }
 
 // Cache Population
