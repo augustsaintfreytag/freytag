@@ -1,5 +1,5 @@
 import { exec } from "child_process"
-import { crossContainerCommunicationPassword, crossContainerCommunicationUser } from "~/components/app/app"
+import { xccPassword, xccUser } from "~/utils/app/app"
 
 export async function executeLocalCommands(commands: string[]): Promise<string> {
 	return executeLocalCommand(joinedCommands(commands))
@@ -23,7 +23,7 @@ export async function executeRemoteCommands(host: string, commands: string[]): P
 }
 
 export async function executeRemoteCommand(host: string, command: string): Promise<string> {
-	const [user, password] = [crossContainerCommunicationUser(), crossContainerCommunicationPassword()]
+	const [user, password] = [xccUser(), xccPassword()]
 
 	if (!user || !password) {
 		throw new Error("Can not execute command without cross-container credentials (XCC params in environment).")

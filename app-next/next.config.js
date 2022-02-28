@@ -25,6 +25,10 @@ module.exports = {
 			{
 				source: "/ps.js",
 				destination: "http://plausible:8000/js/plausible.js"
+			},
+			{
+				source: "/content/:path*",
+				destination: "http://app-content/:path*"
 			}
 		]
 	}

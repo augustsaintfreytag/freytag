@@ -38,17 +38,20 @@ services:
     working_dir: /var/app
     command: yarn
 
+  app-content:
+    image: "flashspys/nginx-static"
+    volumes:
+      - data-app-themes:/static/themes
+    networks:
+      - default
+
   color-theme-utility:
     build:
-      context: ./server/docker/images/theme-server
+      context: ./server/docker/images/color-theme-utility
       args:
         - COLOR_THEME_UTILITY_URL=${COLOR_THEME_UTILITY_URL}
     volumes:
       - data-app-themes:/var/themes
-    networks:
-      - default
-    ports:
-      - 8080:80
 
   cockpit:
     image: agentejo/cockpit:latest
