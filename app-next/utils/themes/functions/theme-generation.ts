@@ -1,4 +1,4 @@
-import { ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
+import { ThemeFormat, themeFormatIdentifierForFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { executeRemoteCommand, executeRemoteCommands } from "~/utils/commands/functions/command-execution"
 import {
 	archivedThemeFormats,
@@ -15,11 +15,11 @@ import { Dictionary } from "~/utils/types/library/dictionary"
 // Generation
 
 export async function makeThemeOutputDirectory(identifier: string): Promise<void> {
-	await executeRemoteCommands(themesHost(), [`mkdir -p ${themesOutputPath}/${identifier}`, `chmod -R 777 ${themesOutputPath}/${identifier}`])
+	await executeRemoteCommands(themesHost(), [`mkdir -p ${themesOutputPath()}/${identifier}`, `chmod -R 777 ${themesOutputPath()}/${identifier}`])
 }
 
 export async function clearThemeOutputDirectory(): Promise<void> {
-	await executeRemoteCommand(themesHost(), `rm -rf ${themesOutputPath}/* &> /dev/null`)
+	await executeRemoteCommand(themesHost(), `rm -rf ${themesOutputPath()}/* &> /dev/null`)
 }
 
 /** Generate a collection of themes to the configured output, including a manifest.
@@ -29,20 +29,29 @@ export async function generateThemeCollection(properties: ThemeGenerationPropert
 	const { id, name, description, colors } = properties
 	const manifest = generateManifest(properties, generatedThemeFormats)
 
-	const encodedColors = colors.map(color => color.hex).join(",")
 	const encodedManifest = manifest.toJSON()
-	const rootPath = `${themesOutputPath}/${id}`
+	const encodedColors = colors.map(color => color.hex).join(",")
+	const rootPath = `${themesOutputPath()}/${id}`
+
+	const commandForClearThemeDirectory = () => {
+		return `rm -rf "${rootPath}" &> /dev/null`
+	}
 
 	const commandForMakeThemeDirectoryForFormat = (format: ThemeFormat) => {
-		return `mkdir -p ${rootPath}/${format}`
+		const formatIdentifier = themeFormatIdentifierForFormat(format)
+		return `mkdir -p "${rootPath}/${formatIdentifier}"`
 	}
 
 	const commandForGenerateThemeWithFormat = (format: ThemeFormat) => {
-		return `color-theme-utility generate-theme -f ${format} -c "${encodedColors}" --name "${name}" --description "${description}" -o "${rootPath}/${format}"`
+		const formatIdentifier = themeFormatIdentifierForFormat(format)
+		return `color-theme-utility generate-theme -f ${formatIdentifier} -c "${encodedColors}" --name "${name}" --description "${description}" -o "${rootPath}/${formatIdentifier}"`
 	}
 
 	const commandForArchiveThemeWithFormat = (format: ThemeFormat) => {
-		const themePath = `${rootPath}/${format}/${themeFileName(name, format)}`
+		const formatIdentifier = themeFormatIdentifierForFormat(format)
+		const themeResource = themeFileName(name, format)
+		const themePath = `${rootPath}/${formatIdentifier}/${themeResource}`
+
 		console.log(`Running archival for assumed theme path '${themePath}'.`)
 		return `zip -rm ${themePath}.zip ${themePath}`
 	}
@@ -52,6 +61,7 @@ export async function generateThemeCollection(properties: ThemeGenerationPropert
 	}
 
 	const commands = [
+		commandForClearThemeDirectory(),
 		...generatedThemeFormats.map(commandForMakeThemeDirectoryForFormat),
 		...generatedThemeFormats.map(commandForGenerateThemeWithFormat),
 		...archivedThemeFormats.map(commandForArchiveThemeWithFormat),
@@ -74,7 +84,7 @@ export function generateManifest(properties: ThemeGenerationProperties, formats:
 
 		packages[format] = {
 			format: format,
-			group: format,
+			group: themeFormatIdentifierForFormat(format),
 			resource: resourceName
 		}
 	}
@@ -93,7 +103,7 @@ export function themeFileName(name: string, format: ThemeFormat): string {
 		case ThemeFormat.TextMate:
 			return `${name}.tmtheme`
 		case ThemeFormat.VisualStudioCode:
-			return `${themesVendor}.${normalizedThemeFileName(name)}-${themesDefaultVersion}`
+			return `${themesVendor()}.${normalizedThemeFileName(name)}-${themesDefaultVersion()}`
 	}
 }
 
