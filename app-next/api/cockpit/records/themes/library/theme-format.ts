@@ -61,29 +61,6 @@ export function themeFormatPurposeDescriptionForFormat(format: ThemeFormat): str
 	}
 }
 
-export function themeFileEndingForFormat(format: ThemeFormat): string | undefined {
-	switch (format) {
-		case ThemeFormat.Intermediate:
-			return "intertheme"
-		case ThemeFormat.Xcode:
-			return "xccolortheme"
-		case ThemeFormat.TextMate:
-			return "tmtheme"
-		default:
-			return undefined
-	}
-}
-
-export function themeResourceName(name: string, format: ThemeFormat): string {
-	const fileEnding = themeFileEndingForFormat(format)
-
-	if (!fileEnding) {
-		return name
-	}
-
-	return `${name}.${fileEnding}`
-}
-
 export function themeFileDescriptionForFormat(format: ThemeFormat): string {
 	switch (format) {
 		case ThemeFormat.Intermediate:
