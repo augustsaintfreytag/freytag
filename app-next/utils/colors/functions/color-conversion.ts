@@ -56,6 +56,10 @@ export function colorFromHexDescription(value: string): Color | undefined {
 	return new Color(red, green, blue)
 }
 
+export function colorsFromHexDescriptions(values: string[]): Color[] {
+	return values.map(value => colorFromHexDescription(value)).filter(color => color) as Color[]
+}
+
 // Cockpit Value
 
 const colorValueMatchExpression = new RegExp("rgb\\((\\d+), ?(\\d+), ?(\\d+)\\)")
