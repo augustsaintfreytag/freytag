@@ -16,6 +16,19 @@ export function themeFormatFromRawValue(value: string): ThemeFormat | undefined 
 
 // Format Data
 
+export function themeFormatIdentifierForFormat(format: ThemeFormat): string {
+	switch (format) {
+		case ThemeFormat.Intermediate:
+			return "intermediate"
+		case ThemeFormat.Xcode:
+			return "xcode"
+		case ThemeFormat.TextMate:
+			return "textmate"
+		case ThemeFormat.VisualStudioCode:
+			return "vscode"
+	}
+}
+
 export function themeFormatNameForFormat(format: ThemeFormat): string {
 	switch (format) {
 		case ThemeFormat.Intermediate:
