@@ -1,7 +1,6 @@
+import { readFile } from "fs/promises"
 import { ThemeFormat, themeFormatIdentifierForFormat } from "~/api/cockpit/records/themes/library/theme-format"
-import { executeLocalCommand } from "~/utils/commands/functions/command-execution"
-import { archivedThemeFormats, themesOutputPath } from "~/utils/themes/functions/theme-configuration"
-import { themeFileName } from "~/utils/themes/functions/theme-resources"
+import { themesOutputPath } from "~/utils/themes/functions/theme-configuration"
 import { depositedThemeFileName } from "~/utils/themes/functions/theme-resources"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { ThemeManifest, ThemeManifestPackage } from "~/utils/themes/library/theme-manifest"
@@ -28,8 +27,10 @@ export function generateManifest(properties: ThemeGenerationProperties, formats:
 
 export async function readThemeManifestFile(id: UUID): Promise<ThemeManifest | undefined> {
 	try {
-		const output = await executeLocalCommand(`cat `)
-		return ThemeManifest.fromJSON(output)
+		const path = `${themesOutputPath()}/${id}/manifest.json`
+		const contents = await readFile(path, "utf8")
+
+		return ThemeManifest.fromJSON(contents)
 	} catch (error) {
 		console.warn(`Could not read theme manifest for id '${id}' from output path at '${themesOutputPath()}'.`)
 		return undefined
