@@ -2,6 +2,7 @@ import { ThemeFormat, themeFormatIdentifierForFormat } from "~/api/cockpit/recor
 import { executeLocalCommand } from "~/utils/commands/functions/command-execution"
 import { archivedThemeFormats, themesOutputPath } from "~/utils/themes/functions/theme-configuration"
 import { themeFileName } from "~/utils/themes/functions/theme-resources"
+import { depositedThemeFileName } from "~/utils/themes/functions/theme-resources"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { ThemeManifest, ThemeManifestPackage } from "~/utils/themes/library/theme-manifest"
 import { Dictionary } from "~/utils/types/library/dictionary"
@@ -13,16 +14,10 @@ export function generateManifest(properties: ThemeGenerationProperties, formats:
 	const packages: Dictionary<ThemeFormat, ThemeManifestPackage> = {}
 
 	for (const format of formats) {
-		let resourceName = themeFileName(properties.name, format)
-
-		if (archivedThemeFormats.includes(format)) {
-			resourceName += ".zip"
-		}
-
 		packages[format] = {
 			format: format,
 			group: themeFormatIdentifierForFormat(format),
-			resource: resourceName
+			resource: depositedThemeFileName(properties.name, format)
 		}
 	}
 
