@@ -1,11 +1,49 @@
 import { randomUUID } from "crypto"
 import type { NextApiRequest, NextApiResponse } from "next"
 import { colorsFromHexDescriptions } from "~/utils/colors/functions/color-conversion"
+import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { generateThemeCollection } from "~/utils/themes/functions/theme-generation"
+import { readThemeManifestFile } from "~/utils/themes/functions/theme-manifest"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { UUID } from "~/utils/uuid/uuid"
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
+	switch (req.method) {
+		case "GET":
+			getThemeManifest(req, res)
+			return
+		case "PUT":
+			generateThemes(req, res)
+			return
+		default:
+			res.status(405).end(`Method ${req.method} not supported.`)
+	}
+}
+
+async function getThemeManifest(req: NextApiRequest, res: NextApiResponse) {
+	const themeId = String(req.query["theme"])
+
+	if (!themeId) {
+		res.status(400).end(`Missing theme identifier.`)
+		return
+	}
+
+	// const cachedManifest = cachedThemeManifest(themeId)
+	startPerformanceMeasure("theme-read-from-file")
+	const manifest = await readThemeManifestFile(themeId)
+	stopPerformanceMeasure("theme-read-from-file")
+
+	console.log(`Read theme manifest for theme "${themeId}" from file in ${performanceMeasureDuration("theme-read-from-file")}.`)
+
+	if (!manifest) {
+		res.status(404).end("Theme manifest not cached or found.")
+		return
+	}
+
+	res.json(manifest.toJSON())
+}
+
+async function generateThemes(req: NextApiRequest, res: NextApiResponse) {
 	const body = req.body
 
 	if (!isRequestBody(body)) {
@@ -14,7 +52,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
 	}
 
 	const properties: ThemeGenerationProperties = {
-		id: body.id ?? randomUUID(),
+		id: body.id ?? randomUUID().toLowerCase(),
 		name: body.name,
 		description: body.description,
 		colors: colorsFromHexDescriptions(body.colors)
