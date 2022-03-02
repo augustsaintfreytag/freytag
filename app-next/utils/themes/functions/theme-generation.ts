@@ -2,10 +2,10 @@ import { ThemeFormat, themeFormatIdentifierForFormat } from "~/api/cockpit/recor
 import { Color } from "~/utils/colors/models/color"
 import { executeRemoteCommands } from "~/utils/commands/functions/command-execution"
 import { archivedThemeFormats, generatedThemeFormats, themesHost, themesOutputPath } from "~/utils/themes/functions/theme-configuration"
+import { generateManifest } from "~/utils/themes/functions/theme-manifest"
 import { themeFileName } from "~/utils/themes/functions/theme-resources"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
-import { ThemeManifest, ThemeManifestPackage } from "~/utils/themes/library/theme-manifest"
-import { Dictionary } from "~/utils/types/library/dictionary"
+import { ThemeManifest } from "~/utils/themes/library/theme-manifest"
 
 // Commands
 
@@ -59,24 +59,4 @@ export async function generateThemeCollection(properties: ThemeGenerationPropert
 
 	await executeRemoteCommands(themesHost(), commands)
 	return manifest
-}
-
-export function generateManifest(properties: ThemeGenerationProperties, formats: ThemeFormat[]): ThemeManifest {
-	const packages: Dictionary<ThemeFormat, ThemeManifestPackage> = {}
-
-	for (const format of formats) {
-		let resourceName = themeFileName(properties.name, format)
-
-		if (archivedThemeFormats.includes(format)) {
-			resourceName += ".zip"
-		}
-
-		packages[format] = {
-			format: format,
-			group: themeFormatIdentifierForFormat(format),
-			resource: resourceName
-		}
-	}
-
-	return new ThemeManifest(properties.id, properties.name, new Date(), packages)
 }
