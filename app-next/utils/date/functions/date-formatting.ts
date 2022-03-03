@@ -6,7 +6,8 @@ const intervalRangeSymbol = "–"
 
 export enum DateFormatStyle {
 	MonthAndYear,
-	DayMonthAndYear
+	DayMonthAndYear,
+	DayMonthYearAndTime
 }
 
 // Formatting
@@ -42,11 +43,17 @@ export function formattedOpenDateInterval(interval: OpenDateInterval): string {
 }
 
 export function formattedDate(date: Date, style: DateFormatStyle = DateFormatStyle.MonthAndYear): string {
+	const monthAndYear = () => `${formattedComponent(date.getMonth() + 1)}/${date.getFullYear()}`
+	const dayMonthAndYear = () => `${formattedComponent(date.getDate())}/${monthAndYear()}`
+	const dayMonthYearAndTime = () => `${dayMonthAndYear()} ${formattedComponent(date.getHours())}:${formattedComponent(date.getMinutes())}`
+
 	switch (style) {
 		case DateFormatStyle.MonthAndYear:
-			return `${formattedComponent(date.getMonth() + 1)}/${date.getFullYear()}`
+			return monthAndYear()
 		case DateFormatStyle.DayMonthAndYear:
-			return `${formattedComponent(date.getDate())}/${formattedComponent(date.getMonth() + 1)}/${date.getFullYear()}`
+			return dayMonthAndYear()
+		case DateFormatStyle.DayMonthYearAndTime:
+			return dayMonthYearAndTime()
 	}
 }
 
