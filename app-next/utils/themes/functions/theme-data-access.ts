@@ -30,17 +30,23 @@ export async function generateThemeViaApi(properties: ThemeGenerationProperties)
 
 	stopPerformanceMeasure(PerformanceKey.GenerateThemes)
 
-	try {
-		console.log(`Generated themes via API in ${performanceMeasureDuration(PerformanceKey.GenerateThemes)}.`)
-		return (await response.json()) as ThemeManifest
-	} catch (error) {
-		throw new Error(`Could not decode generate theme response as valid manifest. ${String(error)}`)
+	console.log(`Generated themes via API in ${performanceMeasureDuration(PerformanceKey.GenerateThemes)}.`)
+	const manifest = ThemeManifest.fromJSON(await response.text())
+
+	if (!manifest) {
+		throw new Error(`Could not decode generate theme response as valid manifest.`)
 	}
+
+	return manifest
 }
 
 export async function themeManifestViaApi(id: UUID): Promise<ThemeManifest> {
 	const response = await fetch(`/api/themes/${id}`)
-	const manifest = (await response.json()) as ThemeManifest
+	const manifest = ThemeManifest.fromJSON(await response.text())
+
+	if (!manifest) {
+		throw new Error(`Could not decode theme manifest response as valid manifest.`)
+	}
 
 	return manifest
 }
