@@ -10,6 +10,10 @@ import { UUID } from "~/utils/uuid/uuid"
 // Generation
 
 export function generateManifest(properties: ThemeGenerationProperties, formats: ThemeFormat[]): ThemeManifest {
+	if (!properties.id) {
+		throw new TypeError(`Generating theme manifest requires an id in generation properties, none supplied.`)
+	}
+
 	const packages: Dictionary<ThemeFormat, ThemeManifestPackage> = {}
 
 	for (const format of formats) {
