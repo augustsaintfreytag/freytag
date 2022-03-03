@@ -1,7 +1,6 @@
 import { randomUUID } from "crypto"
 import type { NextApiRequest, NextApiResponse } from "next"
 import { colorsFromHexDescriptions } from "~/utils/colors/functions/color-conversion"
-import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { generateThemeCollection } from "~/utils/themes/functions/theme-generation"
 import { readThemeManifestFile } from "~/utils/themes/functions/theme-manifest"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
@@ -10,10 +9,10 @@ import { UUID } from "~/utils/uuid/uuid"
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 	switch (req.method) {
 		case "GET":
-			getThemeManifest(req, res)
+			await getThemeManifest(req, res)
 			return
 		case "PUT":
-			generateThemes(req, res)
+			await generateThemes(req, res)
 			return
 		default:
 			res.status(405).end(`Method ${req.method} not supported.`)
@@ -28,12 +27,7 @@ async function getThemeManifest(req: NextApiRequest, res: NextApiResponse) {
 		return
 	}
 
-	// const cachedManifest = cachedThemeManifest(themeId)
-	startPerformanceMeasure("theme-read-from-file")
 	const manifest = await readThemeManifestFile(themeId)
-	stopPerformanceMeasure("theme-read-from-file")
-
-	console.log(`Read theme manifest for theme "${themeId}" from file in ${performanceMeasureDuration("theme-read-from-file")}.`)
 
 	if (!manifest) {
 		res.status(404).end("Theme manifest not cached or found.")
@@ -61,7 +55,9 @@ async function generateThemes(req: NextApiRequest, res: NextApiResponse) {
 	try {
 		const manifest = await generateThemeCollection(properties)
 		res.json(manifest.toJSON())
+		console.log(`Generated theme and manifest for '${manifest.id}' ('${manifest.name}').`)
 	} catch (error) {
+		console.error(error)
 		res.status(500).end(String(error))
 	}
 }
