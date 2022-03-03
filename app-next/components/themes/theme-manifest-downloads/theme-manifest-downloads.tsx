@@ -6,6 +6,7 @@ import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"
 import { generatedThemeFormats } from "~/utils/themes/functions/theme-configuration"
+import { descriptionForThemeManifestState } from "~/utils/themes/functions/theme-manifest-formatting"
 import { publicThemeFilePathFromManifest } from "~/utils/themes/functions/theme-resources"
 import { ThemeManifest } from "~/utils/themes/library/theme-manifest"
 import { ThemeManifestState, ThemeManifestStateKind } from "~/utils/themes/library/theme-manifest-state"
@@ -81,7 +82,7 @@ const ThemeManifestDownloads: FunctionComponent<Props> = props => {
 				<ThemeDownloadList name={"Untitled"} items={itemProps} />
 				<a ref={anchorRef} download />
 			</div>
-			<div className={styles.state}>Manifest state: "{props.state.kind}"</div>
+			<div className={styles.state}>{descriptionForThemeManifestState(props.state)}</div>
 		</section>
 	)
 }
