@@ -1,10 +1,16 @@
 import { randomUUID } from "crypto"
 import type { NextApiRequest, NextApiResponse } from "next"
 import { colorsFromHexDescriptions } from "~/utils/colors/functions/color-conversion"
+import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { generateThemeCollection } from "~/utils/themes/functions/theme-generation"
 import { readThemeManifestFile } from "~/utils/themes/functions/theme-manifest"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { UUID } from "~/utils/uuid/uuid"
+
+enum PerformanceKey {
+	ReadManifest = "read-manifest",
+	GenerateThemes = "generate-themes"
+}
 
 export default async (req: NextApiRequest, res: NextApiResponse) => {
 	switch (req.method) {
@@ -53,9 +59,14 @@ async function generateThemes(req: NextApiRequest, res: NextApiResponse) {
 	}
 
 	try {
+		startPerformanceMeasure(PerformanceKey.GenerateThemes)
 		const manifest = await generateThemeCollection(properties)
+		stopPerformanceMeasure(PerformanceKey.GenerateThemes)
 		res.json(manifest.toJSON())
-		console.log(`Generated theme and manifest for '${manifest.id}' ('${manifest.name}').`)
+
+		console.log(
+			`Generated theme and manifest for '${manifest.id}' ('${manifest.name}') in ${performanceMeasureDuration(PerformanceKey.GenerateThemes)}.`
+		)
 	} catch (error) {
 		console.error(error)
 		res.status(500).end(String(error))
