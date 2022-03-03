@@ -3,7 +3,10 @@ import { xccColorThemeOutputPath, xccColorThemeUtilityHost } from "~/utils/app/a
 import { AppConfigurationError } from "~/utils/app/app-configuration-error"
 
 export const themesVendor = () => "color-theme-utility"
+
 export const themesDefaultVersion = () => "1.0.0"
+
+export const themesPublicContentPath = () => "/content"
 
 export const themesHost = () => {
 	const host = xccColorThemeUtilityHost()
@@ -24,4 +27,5 @@ export const themesOutputPath = () => {
 }
 
 export const generatedThemeFormats: ThemeFormat[] = [ThemeFormat.Intermediate, ThemeFormat.Xcode, ThemeFormat.VisualStudioCode]
+
 export const archivedThemeFormats: ThemeFormat[] = [ThemeFormat.VisualStudioCode]
