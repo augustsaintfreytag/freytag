@@ -3,7 +3,6 @@ import {
 	themeFileDescriptionForFormat,
 	ThemeFormat,
 	themeFormatPurposeDescriptionForFormat,
-	themeResourceName,
 	themeSymbolForFormat
 } from "~/api/cockpit/records/themes/library/theme-format"
 import { track } from "~/components/analytics/functions/track"
@@ -11,6 +10,7 @@ import Sprite from "~/components/sprites/sprite"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"
+import { themeFileName } from "~/utils/themes/functions/theme-resources"
 import styles from "./theme-download-item.module.sass"
 
 export interface Props extends PropsWithClassName {
@@ -28,7 +28,7 @@ const ThemeDownloadItem: FunctionComponent<Props> = props => {
 	const itemHeading = `Download for ${itemPurpose}`
 	const itemSymbol = themeSymbolForFormat(props.format)
 	const itemFormat = themeFileDescriptionForFormat(props.format)
-	const itemFileName = themeResourceName(props.name, props.format)
+	const itemFileName = themeFileName(props.name, props.format)
 
 	const onClick = () => {
 		if (props.href) {

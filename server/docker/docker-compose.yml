@@ -11,8 +11,9 @@ services:
   app:
     build:
       context: ./server/docker/images/app
+    image: freytag/app
     volumes:
-      - ./${APP_ROOT}:/var/app:cached
+      - ./${APP_ROOT}:/var/app:delegated
       - data-app-node-modules:/var/app/node_modules
       - data-app-build-framework:/var/app/.next
       - data-app-themes:/var/themes
@@ -32,8 +33,8 @@ services:
     build:
       context: ./server/docker/images/app
     volumes:
-      - ./${APP_ROOT}/package.json:/var/app/package.json
-      - ./${APP_ROOT}/yarn.lock:/var/app/yarn.lock
+      - ./${APP_ROOT}/package.json:/var/app/package.json:delegated
+      - ./${APP_ROOT}/yarn.lock:/var/app/yarn.lock:delegated
       - data-app-node-modules:/var/app/node_modules
     working_dir: /var/app
     command: yarn
@@ -44,14 +45,19 @@ services:
       - data-app-themes:/static/themes
     networks:
       - default
+    restart: unless-stopped
 
   color-theme-utility:
     build:
       context: ./server/docker/images/color-theme-utility
       args:
         - COLOR_THEME_UTILITY_URL=${COLOR_THEME_UTILITY_URL}
+    image: freytag/color-theme-utility
     volumes:
       - data-app-themes:/var/themes
+    networks:
+      - default
+    restart: unless-stopped
 
   cockpit:
     image: agentejo/cockpit:latest
