@@ -1,9 +1,12 @@
 import { randomUUID } from "crypto"
 import type { NextApiRequest, NextApiResponse } from "next"
 import { colorsFromHexDescriptions } from "~/utils/colors/functions/color-conversion"
+import { TimeIntervalValue } from "~/utils/date/library/intervals"
 import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
+import { registerRoutineIfNotExists } from "~/utils/routine/routine"
 import { generateThemeCollection } from "~/utils/themes/functions/theme-generation"
 import { readThemeManifestFile } from "~/utils/themes/functions/theme-manifest"
+import { trimThemeCollections } from "~/utils/themes/functions/theme-trim"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { UUID } from "~/utils/uuid/uuid"
 
@@ -71,6 +74,8 @@ async function generateThemes(req: NextApiRequest, res: NextApiResponse) {
 		console.error(error)
 		res.status(500).end(String(error))
 	}
+
+	registerRoutineIfNotExists("trim-themes", TimeIntervalValue.Hour, trimThemeCollections)
 }
 
 // Library
