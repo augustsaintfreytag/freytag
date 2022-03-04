@@ -1,4 +1,4 @@
-import { rm } from "fs/promises"
+import { readdir, rm } from "fs/promises"
 import { TimeIntervalValue } from "~/utils/date/library/intervals"
 import { themesOutputPath } from "~/utils/themes/functions/theme-configuration"
 import { readThemeManifestCache } from "~/utils/themes/functions/theme-manifest"
@@ -18,6 +18,13 @@ export async function trimThemeCollections() {
 	}
 
 	console.log(`Removed ${expiredThemeIds.size} expired theme collections in trim operation.`)
+}
+
+export async function clearThemeCollections() {
+	const directoryNames = await readdir(themesOutputPath())
+	const directoryPaths = directoryNames.map(name => `${themesOutputPath()}/${name}`)
+
+	await Promise.all(directoryPaths.map(path => rm(path, { recursive: true, force: true })))
 }
 
 async function expiredThemeCollections(): Promise<Set<UUID>> {
