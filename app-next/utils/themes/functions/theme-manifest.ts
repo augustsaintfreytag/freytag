@@ -1,4 +1,4 @@
-import { readFile } from "fs/promises"
+import { readdir, readFile } from "fs/promises"
 import { ThemeFormat, themeFormatIdentifierForFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { themesOutputPath } from "~/utils/themes/functions/theme-configuration"
 import { depositedThemeFileName } from "~/utils/themes/functions/theme-resources"
@@ -39,4 +39,22 @@ export async function readThemeManifestFile(id: UUID): Promise<ThemeManifest | u
 		console.warn(`Could not read theme manifest for id '${id}' from output path at '${themesOutputPath()}'.`)
 		return undefined
 	}
+}
+
+export async function readThemeManifestCache(): Promise<Dictionary<UUID, ThemeManifest>> {
+	const cache: Dictionary<UUID, ThemeManifest> = {}
+	const directoryNames = await readdir(themesOutputPath())
+
+	for (const directoryName of directoryNames) {
+		const themeManifest = await readThemeManifestFile(directoryName)
+
+		if (!themeManifest) {
+			console.warn(`Could not read theme manifest for id '${directoryName}'.`)
+			continue
+		}
+
+		cache[directoryName] = themeManifest
+	}
+
+	return cache
 }
