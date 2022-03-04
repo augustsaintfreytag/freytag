@@ -1,4 +1,5 @@
 import { readdir, readFile } from "fs/promises"
+import hashValue from "object-hash"
 import { ThemeFormat, themeFormatIdentifierForFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { themesOutputPath } from "~/utils/themes/functions/theme-configuration"
 import { depositedThemeFileName } from "~/utils/themes/functions/theme-resources"
@@ -14,6 +15,7 @@ export function generateManifest(properties: ThemeGenerationProperties, formats:
 		throw new TypeError(`Generating theme manifest requires an id in generation properties, none supplied.`)
 	}
 
+	const hash = generateThemeContentHash(properties)
 	const packages: Dictionary<ThemeFormat, ThemeManifestPackage> = {}
 
 	for (const format of formats) {
@@ -24,7 +26,15 @@ export function generateManifest(properties: ThemeGenerationProperties, formats:
 		}
 	}
 
-	return new ThemeManifest(properties.id, properties.name, new Date(), packages)
+	return new ThemeManifest(properties.id, properties.name, hash, new Date(), packages)
+}
+
+function generateThemeContentHash(properties: ThemeGenerationProperties): string {
+	return hashValue({
+		name: properties.name,
+		description: properties.description,
+		colors: properties.colors
+	})
 }
 
 // Read
