@@ -2,6 +2,7 @@ import { FunctionComponent } from "react"
 import { useFileObjectURL } from "~/components/file-object/file-object-url-hook"
 import MenuItem from "~/components/menu/components/menu-item"
 import Menu from "~/components/menu/menu"
+import { PropsWithClassName } from "~/types/props"
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
 
 const itemProps = {
@@ -13,7 +14,7 @@ const itemProps = {
 	submitDraft: { symbol: "#Submit Symbol", short: "Submit", full: "Submit Theme" }
 }
 
-interface Props {
+interface Props extends PropsWithClassName {
 	theme?: IntermediateTheme
 }
 
@@ -22,7 +23,7 @@ const ThemeEditorMenu: FunctionComponent<Props> = props => {
 	const themeFileURL = useFileObjectURL(themeFileName, "application/json", props.theme)
 
 	return (
-		<Menu>
+		<Menu className={props.className}>
 			<MenuItem symbol={itemProps.returnToGallery.symbol} text={itemProps.returnToGallery} href="/themes#gallery" />
 			<MenuItem symbol={itemProps.resetDraft.symbol} text={itemProps.resetDraft} />
 			<MenuItem symbol={itemProps.saveDraft.symbol} text={itemProps.saveDraft} disabled />

@@ -126,7 +126,7 @@ const EditorPage: Page<PageProps & Props> = () => {
 		<>
 			<ThemeSprites />
 			<section className={styles.page}>
-				<ThemeEditorMenu theme={generatedTheme} />
+				<ThemeEditorMenu className={styles.menu} theme={generatedTheme} />
 				<Notice className={styles.notice}>
 					The Editor is currently in <em>Beta</em>. You can create a palette, edit colours, view generated previews in real-time, and download a
 					preview. Submissions to the gallery and additional formats are coming soon.
