@@ -1,4 +1,4 @@
-import { TimeInterval } from "~/utils/date/library/intervals"
+import { TimeInterval, TimeIntervalValue } from "~/utils/date/library/intervals"
 import { isServerSide } from "~/utils/render/initial-render-hook"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
@@ -24,7 +24,7 @@ const routines: Dictionary<RoutineKey, Routine> = {}
 
 export function registerRoutine(key: RoutineKey, interval: TimeInterval, block: () => void) {
 	if (routines[key]) {
-		throw new Error(`Routine with key '${key}' is already registered.`)
+		console.log(`Routine ${key} already registered, overwriting previous routine. Consider using 'registerRoutineIfNotExists' for this entry.`)
 	}
 
 	routines[key] = {
@@ -33,6 +33,8 @@ export function registerRoutine(key: RoutineKey, interval: TimeInterval, block: 
 		nextRun: new Date(Date.now() + interval),
 		block
 	}
+
+	console.log(`Registered new routine '${key}' with desired interval ${formattedRoutineTimeInterval(interval)}.`)
 }
 
 export function registerRoutineIfNotExists(key: RoutineKey, interval: TimeInterval, block: () => void) {
@@ -73,12 +75,21 @@ function checkRoutines() {
 	}
 }
 
+// Formatting
+
+function formattedRoutineTimeInterval(interval: TimeInterval): string {
+	const value = Math.ceil(interval / TimeIntervalValue.Minute)
+	return `${value} minutes`
+}
+
+// Init
+
 function initRoutines() {
 	if (!isServerSide() || checkRoutineInterval) {
 		return
 	}
 
-	checkRoutineInterval = setInterval(checkRoutines, 2e3)
+	checkRoutineInterval = setInterval(checkRoutines, TimeIntervalValue.Minute)
 }
 
 initRoutines()
