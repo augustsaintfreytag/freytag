@@ -15,15 +15,17 @@
 		.symbol
 			@include size($itemSize)
 			overflow: visible
-			
 			transform: translateY(-1px)
 
 			@include anyMozilla
 				transform: translateY(0)
 
 		.text
-			margin-left: 0.75rem
+			$itemSpacing: 0.75rem
+			width: calc(100% - #{$itemSize} - #{$itemSpacing})
+			margin-left: $itemSpacing
 			line-height: $itemSize
+			@include ellipsized
 
 		&.plain
 			cursor: default

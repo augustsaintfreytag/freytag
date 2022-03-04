@@ -7,7 +7,7 @@ interface Props extends PropsWithAnyChildren, PropsWithClassName {}
 
 const Menu: FunctionComponent<Props> = props => (
 	<menu className={className(styles.menu, props.className)}>
-		<div>{props.children}</div>
+		<div className={styles.inlay}>{props.children}</div>
 	</menu>
 )
 
