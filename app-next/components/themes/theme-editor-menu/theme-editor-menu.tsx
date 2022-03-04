@@ -25,7 +25,7 @@ const ThemeEditorMenu: FunctionComponent<Props> = props => {
 	return (
 		<Menu className={props.className}>
 			<MenuItem symbol={itemProps.returnToGallery.symbol} text={itemProps.returnToGallery} href="/themes#gallery" />
-			<MenuItem symbol={itemProps.resetDraft.symbol} text={itemProps.resetDraft} />
+			<MenuItem symbol={itemProps.resetDraft.symbol} text={itemProps.resetDraft} disabled />
 			<MenuItem symbol={itemProps.saveDraft.symbol} text={itemProps.saveDraft} disabled />
 			<MenuItem symbol={itemProps.loadDraft.symbol} text={itemProps.loadDraft} disabled />
 			<MenuItem
