@@ -1,4 +1,5 @@
-import { readFile } from "fs/promises"
+import { readdir, readFile } from "fs/promises"
+import hashValue from "object-hash"
 import { ThemeFormat, themeFormatIdentifierForFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { themesOutputPath } from "~/utils/themes/functions/theme-configuration"
 import { depositedThemeFileName } from "~/utils/themes/functions/theme-resources"
@@ -14,6 +15,7 @@ export function generateManifest(properties: ThemeGenerationProperties, formats:
 		throw new TypeError(`Generating theme manifest requires an id in generation properties, none supplied.`)
 	}
 
+	const hash = generateThemeContentHash(properties)
 	const packages: Dictionary<ThemeFormat, ThemeManifestPackage> = {}
 
 	for (const format of formats) {
@@ -24,7 +26,15 @@ export function generateManifest(properties: ThemeGenerationProperties, formats:
 		}
 	}
 
-	return new ThemeManifest(properties.id, properties.name, new Date(), packages)
+	return new ThemeManifest(properties.id, properties.name, hash, new Date(), packages)
+}
+
+function generateThemeContentHash(properties: ThemeGenerationProperties): string {
+	return hashValue({
+		name: properties.name,
+		description: properties.description,
+		colors: properties.colors
+	})
 }
 
 // Read
@@ -39,4 +49,22 @@ export async function readThemeManifestFile(id: UUID): Promise<ThemeManifest | u
 		console.warn(`Could not read theme manifest for id '${id}' from output path at '${themesOutputPath()}'.`)
 		return undefined
 	}
+}
+
+export async function readThemeManifestCache(): Promise<Dictionary<UUID, ThemeManifest>> {
+	const cache: Dictionary<UUID, ThemeManifest> = {}
+	const directoryNames = await readdir(themesOutputPath())
+
+	for (const directoryName of directoryNames) {
+		const themeManifest = await readThemeManifestFile(directoryName)
+
+		if (!themeManifest) {
+			console.warn(`Could not read theme manifest for id '${directoryName}'.`)
+			continue
+		}
+
+		cache[directoryName] = themeManifest
+	}
+
+	return cache
 }

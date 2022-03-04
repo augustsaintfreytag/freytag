@@ -11,10 +11,14 @@
 		"build": "next build",
 		"start": "next start"
 	},
+	"prisma": {
+		"schema": "api/prisma/schema.prisma"
+	},
 	"dependencies": {
 		"breakpoint-sass": "2.7.1",
 		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git",
 		"next": "^11.1.2",
+		"object-hash": "^3.0.0",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
 		"react-markdown": "6.0.2",
@@ -25,6 +29,7 @@
 	},
 	"devDependencies": {
 		"@types/node": "^15.6.0",
+		"@types/object-hash": "^2.2.1",
 		"@types/react": "^17.0.6",
 		"@types/react-dom": "^17.0.7",
 		"prettier": "^2.3.2",
