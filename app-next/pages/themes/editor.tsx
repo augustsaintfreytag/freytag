@@ -71,6 +71,10 @@ const EditorPage: Page<PageProps & Props> = () => {
 		loadThemeUtility()
 	}, [])
 
+	useEffect(() => {
+		setThemeManifestStateTo.none()
+	}, [themeProperties.hash])
+
 	return (
 		<>
 			<ThemeSprites />
