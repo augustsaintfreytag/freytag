@@ -26,7 +26,10 @@ export function themeFileName(name: string, format: ThemeFormat): string {
 }
 
 function normalizedThemeFileName(name: string): string {
-	return name.toLowerCase().replaceAll(" ", "-")
+	return name
+		.toLowerCase()
+		.replaceAll(" ", "-")
+		.replaceAll(/[^a-zA-Z0-9]/g, "")
 }
 
 // Deposited Resources
