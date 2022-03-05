@@ -1,16 +1,22 @@
+import { useEffect, useState } from "react"
 import { useLocalStorageState } from "~/components/local-storage/functions/local-storage-hook"
 import { useEditorColors } from "~/components/themes/theme-editor-colors/theme-editor-colors-hook"
 import { Color } from "~/utils/colors/models/color"
+import { HashValue, hashValue } from "~/utils/hash/hash"
 import { range } from "~/utils/range/range"
 import { UUID } from "~/utils/uuid/uuid"
 
 // Library
 
-interface Properties {
+interface InputProperties {
 	id?: UUID
 	name: string
 	description: string
 	colors: Color[]
+}
+
+interface OutputProperties extends InputProperties {
+	hash: HashValue
 }
 
 enum LocalStorageKey {
@@ -27,7 +33,7 @@ function defaultColors(): Color[] {
 	return colors
 }
 
-function defaultProperties(): Properties {
+function defaultProperties(): InputProperties {
 	return {
 		name: "",
 		description: "",
@@ -42,25 +48,40 @@ interface SetPropertiesBlock {
 	colors: (colors: Color[]) => void
 }
 
-export function useThemeEditorProperties(initialProperties: Properties = defaultProperties()): [Properties, SetPropertiesBlock] {
+function hashValueFromProperties(properties: InputProperties): HashValue {
+	const colorString = properties.colors.map(color => color.key).join()
+	const mergedString = properties.id ?? "" + properties.name + properties.description + colorString
+
+	return hashValue(mergedString)
+}
+
+export function useThemeEditorProperties(initialProperties: InputProperties = defaultProperties()): [OutputProperties, SetPropertiesBlock] {
 	const [themeId, setThemeId] = useLocalStorageState<UUID | undefined>(LocalStorageKey.Id, initialProperties.id)
 	const [themeName, setThemeName] = useLocalStorageState(LocalStorageKey.Name, initialProperties.name)
 	const [themeDescription, setThemeDescription] = useLocalStorageState(LocalStorageKey.Description, initialProperties.description)
 	const [themeColors, setThemeColors] = useEditorColors(LocalStorageKey.Colors, initialProperties.colors)
+	const themeColorKey = themeColors.map(color => color.key).join()
 
-	const propertiesBlock: Properties = {
-		id: themeId,
-		name: themeName,
-		description: themeDescription,
-		colors: themeColors
-	}
+	const hashForProperties = () => hashValueFromProperties({ id: themeId, name: themeName, description: themeDescription, colors: themeColors })
+	const [propertiesHash, setPropertiesHash] = useState<string>(hashForProperties())
 
-	const setPropertiesBlock: SetPropertiesBlock = {
-		id: setThemeId,
-		name: setThemeName,
-		description: setThemeDescription,
-		colors: setThemeColors
-	}
+	useEffect(() => {
+		setPropertiesHash(hashForProperties())
+	}, [themeId, themeName, themeDescription, themeColorKey])
 
-	return [propertiesBlock, setPropertiesBlock]
+	return [
+		{
+			hash: propertiesHash,
+			id: themeId,
+			name: themeName,
+			description: themeDescription,
+			colors: themeColors
+		},
+		{
+			id: setThemeId,
+			name: setThemeName,
+			description: setThemeDescription,
+			colors: setThemeColors
+		}
+	]
 }
