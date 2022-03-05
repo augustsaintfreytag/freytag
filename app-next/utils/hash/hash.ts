@@ -1,9 +1,15 @@
-export function hashValue(input: string): string {
-	let value = 0
+export type HashValue = string
 
-	for (let i = 0; i < input.length; i++) {
-		value = (Math.imul(31, value) + input.charCodeAt(i)) | 0
+/** Computes a fast djb2 hash value from the given string.
+ *  Returns the resulting hash value as a hexadecimal string.
+ */
+export function hashValue(string: string): HashValue {
+	const length = string.length
+	let hash = 5381
+
+	for (let index = 0; index < length; index++) {
+		hash = (hash * 33) ^ string.charCodeAt(index)
 	}
 
-	return value.toString(16)
+	return (hash >>> 0).toString(16)
 }
