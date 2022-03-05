@@ -1,5 +1,5 @@
 import type { GetServerSideProps } from "next"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
 import Divider from "~/components/divider/divider"
 import InputTextArea from "~/components/input/input-text-area/input-text-area"
 import InputTextField from "~/components/input/input-text-field/input-text-field"
@@ -14,18 +14,16 @@ import { useEditorColors } from "~/components/themes/theme-editor-colors/theme-e
 import ThemeEditorMenu from "~/components/themes/theme-editor-menu/theme-editor-menu"
 import ThemeEditorTitle from "~/components/themes/theme-editor-title/theme-editor-title"
 import ThemeManifestDownloads from "~/components/themes/theme-manifest-downloads/theme-manifest-downloads"
-import { generateThemeViaModule } from "~/components/themes/theme-utility/functions/theme-utility-functions"
+import { useGeneratedThemeViaThemeUtility } from "~/components/themes/theme-utility/functions/theme-utility-generation-hook"
 import { useDeferredThemeUtility } from "~/components/themes/theme-utility/functions/theme-utility-hook"
 import WorkContentTextBlock from "~/components/work/work-content/components/work-content-text-block"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
 import { Color } from "~/utils/colors/models/color"
-import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { range } from "~/utils/range/range"
 import { generateThemeViaApi } from "~/utils/themes/functions/theme-data-access"
 import { useThemeManifestState } from "~/utils/themes/functions/theme-manifest-state-hook"
-import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { ThemeManifestStateKind } from "~/utils/themes/library/theme-manifest-state"
 import { UUID } from "~/utils/uuid/uuid"
@@ -39,10 +37,6 @@ const defaultColors = (() => {
 
 	return colors
 })()
-
-enum PerformanceKey {
-	GenerateTheme = "generate-theme-via-module"
-}
 
 // Library
 
@@ -64,11 +58,9 @@ const EditorPage: Page<PageProps & Props> = () => {
 	const [themeDescription, setThemeDescription] = useLocalStorageState("themes.editor.description", "")
 	const [themeColors, setThemeColors] = useEditorColors(defaultColors)
 
-	const keyForColors = (colors: Color[]): string => colors.map(color => color.key).join("/")
-
-	const [lastUsedColorKey, setLastUsedColorKey] = useState<string | undefined>(undefined)
-	const [generatedTheme, setGeneratedTheme] = useState<IntermediateTheme | undefined>(undefined)
 	const [themeUtility, isLoadingThemeUtility, loadThemeUtility] = useDeferredThemeUtility()
+	const generatedTheme = useGeneratedThemeViaThemeUtility(themeUtility, isLoadingThemeUtility, themeColors)
+
 	const themePreviewContents = useThemeCodePreviewContents()
 	const [themeManifestState, setThemeManifestStateTo] = useThemeManifestState({ kind: ThemeManifestStateKind.None })
 
@@ -95,32 +87,6 @@ const EditorPage: Page<PageProps & Props> = () => {
 	useEffect(() => {
 		loadThemeUtility()
 	}, [])
-
-	useEffect(() => {
-		if (!themeUtility) {
-			return
-		}
-
-		const currentColorKey = keyForColors(themeColors)
-		if (currentColorKey === lastUsedColorKey) {
-			return
-		}
-
-		;(async () => {
-			startPerformanceMeasure(PerformanceKey.GenerateTheme)
-			const theme = await generateThemeViaModule(themeUtility, themeColors)
-			stopPerformanceMeasure(PerformanceKey.GenerateTheme)
-
-			console.log(`Generated theme from all colors via WebAssembly module in ${performanceMeasureDuration(PerformanceKey.GenerateTheme)}.`)
-
-			if (!theme) {
-				console.error(`Could not generate theme from colors '${themeColors.map(color => color.hex)}'.`)
-			}
-
-			setLastUsedColorKey(currentColorKey)
-			setGeneratedTheme(theme)
-		})()
-	}, [isLoadingThemeUtility, themeColors])
 
 	return (
 		<>
