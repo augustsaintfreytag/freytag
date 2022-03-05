@@ -13,7 +13,11 @@ function keyForColors(colors: Color[]): string {
 	return colors.map(color => color.key).join("/")
 }
 
-export function useGeneratedThemeViaThemeUtility(utility: WebAssemblyModule | undefined, isLoadingUtility: boolean, colors: Color[]) {
+export function useGeneratedThemeViaThemeUtility(
+	utility: WebAssemblyModule | undefined,
+	isLoadingUtility: boolean,
+	colors: Color[]
+): IntermediateTheme | undefined {
 	const [generatedTheme, setGeneratedTheme] = useState<IntermediateTheme | undefined>(undefined)
 	const [lastUsedColorKey, setLastUsedColorKey] = useState<string | undefined>(undefined)
 
