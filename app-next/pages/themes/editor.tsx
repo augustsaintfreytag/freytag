@@ -101,12 +101,13 @@ const EditorPage: Page<PageProps & Props> = () => {
 						placeholder="Enter theme description…"
 					/>
 					<InputTextField
-						className={className(styles.input, styles.nameInput)}
+						className={className(styles.input, styles.idInput)}
 						value={themeProperties.id ?? "<None>"}
 						name="Identifier"
 						placeholder="Auto-generated theme identifier…"
 						readOnly
 					/>
+					<InputTextField className={className(styles.input)} value={themeProperties.hash} name="Hash" readOnly />
 				</section>
 				<section className={styles.tutorial}>
 					<WorkContentTextBlock>
