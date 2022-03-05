@@ -9,6 +9,7 @@ export interface Props extends PropsWithClassName {
 	placeholder?: string
 	value?: string
 	setValue?: (value: string) => void
+	readOnly?: boolean
 }
 
 const InputTextField: FunctionComponent<Props> = props => (
@@ -22,6 +23,7 @@ const InputTextField: FunctionComponent<Props> = props => (
 				const newValue = event.target.value
 				props.setValue?.(newValue)
 			}}
+			readOnly={props.readOnly}
 		/>
 	</InputEnclosure>
 )

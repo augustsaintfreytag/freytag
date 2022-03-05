@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import WebAssemblyModule, { fetchWebAssemblyModuleData, instantiateWebAssemblyModule } from "webassembly-module"
-import { dropshipHostClient } from "~/components/app/app"
+import { dropshipHostClient } from "~/utils/app/app"
 import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { URL } from "~/utils/routing/library/url"
 

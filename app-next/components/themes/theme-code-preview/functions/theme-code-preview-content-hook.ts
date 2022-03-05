@@ -4,7 +4,7 @@ import { formattedTruncatedTokenizedString } from "~/utils/tokenized-string/func
 import { themeCodePreviewContents } from "./theme-code-preview-content"
 
 const themePreviewNumberOfBlocks = 3
-const themePreviewContentNumberOfLines = 38
+const themePreviewContentNumberOfLines = 37
 
 export function useThemeCodePreviewContents(): ThemeCodePreviewContent[] {
 	return useMemo(() => {

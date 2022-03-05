@@ -3,22 +3,16 @@
 .menu	
 	background: $elementBackgroundColor
 	
-	> div
-		width: fit-content
-		margin: 0 auto
+	.inlay
+		display: flex
+		justify-content: center
 		
 		@include breakpoint($anyDesktop)
 			@include inlayed
+			gap: 0.85rem
+
+		@include breakpoint($anyMobile)
+			gap: 1.85rem
 
 		> *
-			display: inline-block
 			padding: 1.5rem 0.9rem
-
-			@include breakpoint($desktop)
-				@include horizontalListMargin(1rem)
-
-			@include breakpoint($tablet)
-				@include horizontalListMargin(1.85rem)
-
-			@include breakpoint($phone)
-				@include horizontalListMargin(1.85rem)

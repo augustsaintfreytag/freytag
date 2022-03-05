@@ -1,0 +1,13 @@
+@import "/styles/values/all"
+
+ul.block
+	@include inlayedText
+
+	> li
+		@include breakpoint($anyDesktop)
+			margin: 1rem 7.5%
+
+		@include breakpoint($anyMobile)
+			margin: 1rem 0
+
+		@include listMargin(1rem)

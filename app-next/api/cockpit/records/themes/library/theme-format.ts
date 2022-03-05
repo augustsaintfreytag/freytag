@@ -16,6 +16,19 @@ export function themeFormatFromRawValue(value: string): ThemeFormat | undefined 
 
 // Format Data
 
+export function themeFormatIdentifierForFormat(format: ThemeFormat): string {
+	switch (format) {
+		case ThemeFormat.Intermediate:
+			return "intermediate"
+		case ThemeFormat.Xcode:
+			return "xcode"
+		case ThemeFormat.TextMate:
+			return "textmate"
+		case ThemeFormat.VisualStudioCode:
+			return "vscode"
+	}
+}
+
 export function themeFormatNameForFormat(format: ThemeFormat): string {
 	switch (format) {
 		case ThemeFormat.Intermediate:
@@ -46,29 +59,6 @@ export function themeFormatPurposeDescriptionForFormat(format: ThemeFormat): str
 			console.warn(`Missing theme format purpose for value '${format}'.`)
 			return "Unknown"
 	}
-}
-
-export function themeFileEndingForFormat(format: ThemeFormat): string | undefined {
-	switch (format) {
-		case ThemeFormat.Intermediate:
-			return "intertheme"
-		case ThemeFormat.Xcode:
-			return "xccolortheme"
-		case ThemeFormat.TextMate:
-			return "tmtheme"
-		default:
-			return undefined
-	}
-}
-
-export function themeResourceName(name: string, format: ThemeFormat): string {
-	const fileEnding = themeFileEndingForFormat(format)
-
-	if (!fileEnding) {
-		return name
-	}
-
-	return `${name}.${fileEnding}`
 }
 
 export function themeFileDescriptionForFormat(format: ThemeFormat): string {

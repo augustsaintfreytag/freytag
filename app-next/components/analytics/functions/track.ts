@@ -1,4 +1,4 @@
-import { appEnvironmentIsDevelopment } from "~/components/app/app"
+import { appEnvironmentIsDevelopment } from "~/utils/app/app"
 import { Dictionary } from "~/utils/types/library/dictionary"
 
 // Library

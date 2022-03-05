@@ -5,7 +5,14 @@ type SetLocalStorageValue<Value> = (value: Value) => void
 type SetValueBlock<Value> = (newValue: Value) => void
 
 function setValueInLocalStorage<Value>(key: string, value: Value) {
-	withLocalStorage(localStorage => localStorage.setItem(key, JSON.stringify(value)))
+	withLocalStorage(localStorage => {
+		if (value === undefined || value === null) {
+			localStorage.removeItem(key)
+			return
+		}
+
+		localStorage.setItem(key, JSON.stringify(value))
+	})
 }
 
 function getValueFromLocalStorage<Value>(key: string): Value | undefined {
@@ -16,7 +23,11 @@ function getValueFromLocalStorage<Value>(key: string): Value | undefined {
 			return undefined
 		}
 
-		return JSON.parse(rawValue) as Value
+		try {
+			return JSON.parse(rawValue) as Value
+		} catch {
+			return undefined
+		}
 	})
 }
 

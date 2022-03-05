@@ -1,5 +1,5 @@
 import { Address, addressRegister, APIToken, Context, Protocol } from "cockpit-access"
-import { appEnvironmentIsDevelopment, cockpitHostClient, cockpitHostServer, cockpitProtocol, cockpitToken } from "~/components/app/app"
+import { appEnvironmentIsDevelopment, cockpitHostClient, cockpitHostServer, cockpitProtocol, cockpitToken } from "~/utils/app/app"
 import { URL } from "~/utils/routing/library/url"
 
 const protocol = cockpitProtocol()
