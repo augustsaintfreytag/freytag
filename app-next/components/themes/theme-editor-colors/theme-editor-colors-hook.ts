@@ -1,7 +1,7 @@
 import { useEncodedLocalStorageState } from "~/components/local-storage/functions/local-storage-hook"
 import { Color, ColorValue } from "~/utils/colors/models/color"
 
-export function useEditorColors(initialColors: Color[]): [colors: Color[], setColors: (newColors: Color[]) => void] {
+export function useEditorColors(localStorageKey: string, initialColors: Color[]): [colors: Color[], setColors: (newColors: Color[]) => void] {
 	const encodeColors = (colors: Color[]) => JSON.stringify(colors)
 	const decodeColors = (value: string) => {
 		try {
@@ -14,5 +14,5 @@ export function useEditorColors(initialColors: Color[]): [colors: Color[], setCo
 		}
 	}
 
-	return useEncodedLocalStorageState<Color[]>("themes.editor.colors", encodeColors, decodeColors, initialColors)
+	return useEncodedLocalStorageState<Color[]>(localStorageKey, encodeColors, decodeColors, initialColors)
 }
