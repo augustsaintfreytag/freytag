@@ -1,4 +1,5 @@
 import { exec } from "child_process"
+import escapeShell from "shell-escape"
 import { xccPassword, xccUser } from "~/utils/app/app"
 
 export async function executeLocalCommands(commands: string[]): Promise<string> {
@@ -29,10 +30,16 @@ export async function executeRemoteCommand(host: string, command: string): Promi
 		throw new Error("Can not execute command without cross-container credentials (XCC params in environment).")
 	}
 
-	const wrappedCommand = `sshpass -p ${password} ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no ${user}@${host} '${command}'`
+	const wrappedCommand = `echo ${escape(
+		command
+	)} | sshpass -p ${password} ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no ${user}@${host} /bin/bash`
 	return executeLocalCommand(wrappedCommand)
 }
 
 export function joinedCommands(commands: string[]): string {
 	return commands.join(" && ")
+}
+
+function escape(string: string): string {
+	return escapeShell([string])
 }
