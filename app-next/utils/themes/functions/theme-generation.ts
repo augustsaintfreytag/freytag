@@ -1,3 +1,4 @@
+import escapeShell from "shell-escape"
 import { ThemeFormat, themeFormatIdentifierForFormat } from "~/api/cockpit/records/themes/library/theme-format"
 import { Color } from "~/utils/colors/models/color"
 import { executeRemoteCommands } from "~/utils/commands/functions/command-execution"
@@ -6,6 +7,10 @@ import { generateManifest } from "~/utils/themes/functions/theme-manifest"
 import { themeFileName } from "~/utils/themes/functions/theme-resources"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { ThemeManifest } from "~/utils/themes/library/theme-manifest"
+
+function escape(string: string): string {
+	return escapeShell([string])
+}
 
 // Commands
 
@@ -26,7 +31,11 @@ function commandForGenerateThemeWithFormat(path: string, format: ThemeFormat, na
 	const formatIdentifier = themeFormatIdentifierForFormat(format)
 	const encodedColors = colors.map(color => color.hex).join(",")
 
-	return `color-theme-utility generate-theme -f ${formatIdentifier} -c "${encodedColors}" --name "${name}" --description "${description}" -o "${path}/${formatIdentifier}"`
+	return (
+		`color-theme-utility generate-theme ` +
+		`-f ${formatIdentifier} -c ${escape(encodedColors)} ` +
+		`--name ${escape(name)} --description ${escape(description)} -o ${path}/${formatIdentifier}`
+	)
 }
 
 function commandForArchiveThemeWithFormat(path: string, format: ThemeFormat, name: string): string {
@@ -39,7 +48,8 @@ function commandForArchiveThemeWithFormat(path: string, format: ThemeFormat, nam
 
 function commandForWritingManifest(path: string, manifest: ThemeManifest): string {
 	const encodedManifest = manifest.toJSON()
-	return `cat << EOF > ${path}/manifest.json\n${encodedManifest}\nEOF`
+	const manifestPath = `${path}/manifest.json`
+	return `cat << EOF > ${escape(manifestPath)}\n${encodedManifest}\nEOF`
 }
 
 // Generation

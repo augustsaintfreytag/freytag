@@ -1,12 +1,11 @@
 import { randomUUID } from "crypto"
 import type { NextApiRequest, NextApiResponse } from "next"
 import { colorsFromHexDescriptions } from "~/utils/colors/functions/color-conversion"
-import { TimeIntervalValue } from "~/utils/date/library/intervals"
 import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
-import { registerRoutineIfNotExists } from "~/utils/routine/routine"
+import { themeDescriptionMaxLength, themeTitleMaxLength } from "~/utils/themes/functions/theme-configuration"
 import { generateThemeCollection } from "~/utils/themes/functions/theme-generation"
 import { readThemeManifestFile } from "~/utils/themes/functions/theme-manifest"
-import { trimThemeCollections } from "~/utils/themes/functions/theme-trim"
+import { sanitizedThemeName } from "~/utils/themes/functions/theme-resources"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { UUID } from "~/utils/uuid/uuid"
 
@@ -55,9 +54,9 @@ async function generateThemes(req: NextApiRequest, res: NextApiResponse) {
 	}
 
 	const properties: ThemeGenerationProperties = {
-		id: body.id ?? randomUUID().toLowerCase(),
-		name: body.name,
-		description: body.description,
+		id: randomUUID().toLowerCase(),
+		name: truncatedThemeName(sanitizedThemeName(body.name)),
+		description: truncatedThemeDescription(body.description),
 		colors: colorsFromHexDescriptions(body.colors)
 	}
 
@@ -74,8 +73,14 @@ async function generateThemes(req: NextApiRequest, res: NextApiResponse) {
 		console.error(error)
 		res.status(500).end(String(error))
 	}
+}
 
-	registerRoutineIfNotExists("trim-themes", TimeIntervalValue.Hour, trimThemeCollections)
+function truncatedThemeName(name: string): string {
+	return name.substring(0, themeTitleMaxLength)
+}
+
+function truncatedThemeDescription(description: string): string {
+	return description.substring(0, themeDescriptionMaxLength)
 }
 
 // Library
