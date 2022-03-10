@@ -8,6 +8,14 @@ module.exports = {
 		locales: [locale],
 		defaultLocale: locale
 	},
+	webpackDevMiddleware(config) {
+		config.watchOptions = {
+			poll: 500,
+			aggregateTimeout: 250
+		}
+
+		return config
+	},
 	webpack(config) {
 		injectWebpackDefinitionsIntoSassLoader(config)
 		return config
