@@ -28,9 +28,9 @@ function commandForGenerateThemeWithFormat(path: string, format: ThemeFormat, na
 function commandForArchiveThemeWithFormat(path: string, format: ThemeFormat, name: string): string {
 	const formatIdentifier = themeFormatIdentifierForFormat(format)
 	const themeResource = themeFileName(name, format)
-	const themePath = `${path}/${formatIdentifier}/${themeResource}`
+	const themePath = `${path}/${formatIdentifier}`
 
-	return `zip -rm ${themePath}.zip ${themePath}`
+	return `pushd ${escape(themePath)} && zip -rm ${escape(`${themeResource}.zip`)} ${escape(themeResource)} && popd`
 }
 
 function commandForWritingManifest(path: string, manifest: ThemeManifest): string {
