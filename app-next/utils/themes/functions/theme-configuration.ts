@@ -8,6 +8,9 @@ export const themesDefaultVersion = () => "1.0.0"
 
 export const themesPublicContentPath = () => "/content"
 
+export const themeTitleMaxLength = 52
+export const themeDescriptionMaxLength = 4096
+
 export const themesHost = () => {
 	const host = xccColorThemeUtilityHost()
 	if (!host) {
@@ -29,3 +32,5 @@ export const themesOutputPath = () => {
 export const generatedThemeFormats: ThemeFormat[] = [ThemeFormat.Intermediate, ThemeFormat.Xcode, ThemeFormat.VisualStudioCode]
 
 export const archivedThemeFormats: ThemeFormat[] = [ThemeFormat.VisualStudioCode]
+
+export const normalizedThemeFormats: ThemeFormat[] = [ThemeFormat.VisualStudioCode]
