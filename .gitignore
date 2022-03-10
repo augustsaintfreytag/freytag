@@ -1,5 +1,5 @@
 # Dependencies
-/node_modules
+node_modules
 
 # Frameworks
 .next/
@@ -19,3 +19,6 @@ build/
 .env.development
 .env.production
 .env.test.local
+
+# Demo
+demo-*.ts*
