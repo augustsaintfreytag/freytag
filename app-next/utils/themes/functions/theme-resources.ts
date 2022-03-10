@@ -15,21 +15,25 @@ import { UUID } from "~/utils/uuid/uuid"
 export function themeFileName(name: string, format: ThemeFormat): string {
 	switch (format) {
 		case ThemeFormat.Intermediate:
-			return `${name}.intertheme`
+			return `${sanitizedThemeName(name)}.intertheme`
 		case ThemeFormat.Xcode:
-			return `${name}.xccolortheme`
+			return `${sanitizedThemeName(name)}.xccolortheme`
 		case ThemeFormat.TextMate:
-			return `${name}.tmtheme`
+			return `${sanitizedThemeName(name)}.tmtheme`
 		case ThemeFormat.VisualStudioCode:
-			return `${themesVendor()}.${normalizedThemeFileName(name)}-${themesDefaultVersion()}`
+			return `${themesVendor()}.${normalizedThemeName(name)}-${themesDefaultVersion()}`
 	}
 }
 
-function normalizedThemeFileName(name: string): string {
+export function sanitizedThemeName(name: string): string {
 	return name
-		.toLowerCase()
-		.replaceAll(" ", "-")
-		.replaceAll(/[^a-zA-Z0-9]/g, "")
+		.replaceAll(/\s+/g, " ")
+		.replaceAll(/[^0-9a-zA-Z #&@()+_,;.'\-\u00c0-\u017f]/g, "")
+		.trim()
+}
+
+export function normalizedThemeName(name: string): string {
+	return name.toLowerCase().replaceAll(/\s+/g, "-")
 }
 
 // Deposited Resources
@@ -60,5 +64,8 @@ export function publicThemeFilePathFromManifest(manifest: ThemeManifest, format:
 		return undefined
 	}
 
-	return `${themesPublicContentPath()}/themes/${manifest.id}/${resourcePackage.group}/${resourcePackage.resource}`
+	const group = resourcePackage.group
+	const resource = encodeURIComponent(resourcePackage.resource)
+
+	return `${themesPublicContentPath()}/themes/${manifest.id}/${group}/${resource}`
 }

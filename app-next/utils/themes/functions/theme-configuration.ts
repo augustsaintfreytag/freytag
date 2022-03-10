@@ -29,3 +29,5 @@ export const themesOutputPath = () => {
 export const generatedThemeFormats: ThemeFormat[] = [ThemeFormat.Intermediate, ThemeFormat.Xcode, ThemeFormat.VisualStudioCode]
 
 export const archivedThemeFormats: ThemeFormat[] = [ThemeFormat.VisualStudioCode]
+
+export const normalizedThemeFormats: ThemeFormat[] = [ThemeFormat.VisualStudioCode]
