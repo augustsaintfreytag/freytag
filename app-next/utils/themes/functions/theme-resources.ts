@@ -2,6 +2,7 @@ import { ThemeFormat, themeFormatIdentifierForFormat } from "~/api/cockpit/recor
 import { URL } from "~/utils/routing/library/url"
 import {
 	archivedThemeFormats,
+	themeNameSanitizationExpression,
 	themesDefaultVersion,
 	themesOutputPath,
 	themesPublicContentPath,
@@ -26,10 +27,7 @@ export function themeFileName(name: string, format: ThemeFormat): string {
 }
 
 export function sanitizedThemeName(name: string): string {
-	return name
-		.replaceAll(/\s+/g, " ")
-		.replaceAll(/[^0-9a-zA-Z #&@()+_,;.'\-\u00c0-\u017f]/g, "")
-		.trim()
+	return name.replaceAll(themeNameSanitizationExpression, "").replaceAll(/\s+/g, " ").trim()
 }
 
 export function normalizedThemeName(name: string): string {
