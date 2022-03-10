@@ -2,7 +2,7 @@ import { randomUUID } from "crypto"
 import type { NextApiRequest, NextApiResponse } from "next"
 import { colorsFromHexDescriptions } from "~/utils/colors/functions/color-conversion"
 import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
-import { themeDescriptionMaxLength, themeTitleMaxLength } from "~/utils/themes/functions/theme-configuration"
+import { themeDescriptionMaxLength, themeNameMaxLength } from "~/utils/themes/functions/theme-configuration"
 import { generateThemeCollection } from "~/utils/themes/functions/theme-generation"
 import { readThemeManifestFile } from "~/utils/themes/functions/theme-manifest"
 import { sanitizedThemeName } from "~/utils/themes/functions/theme-resources"
@@ -76,7 +76,7 @@ async function generateThemes(req: NextApiRequest, res: NextApiResponse) {
 }
 
 function truncatedThemeName(name: string): string {
-	return name.substring(0, themeTitleMaxLength)
+	return name.substring(0, themeNameMaxLength)
 }
 
 function truncatedThemeDescription(description: string): string {
