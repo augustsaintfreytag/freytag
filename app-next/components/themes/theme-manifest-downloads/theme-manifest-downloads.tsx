@@ -79,7 +79,7 @@ const ThemeManifestDownloads: FunctionComponent<Props> = props => {
 			<h2 className={styles.heading}>Download</h2>
 			<div className={styles.introduction}>Generate and download your theme in supported formats:</div>
 			<div className={styles.list}>
-				<ThemeDownloadList name={"Untitled"} items={itemProps} />
+				<ThemeDownloadList name={`${props.name} Editor Draft`} items={itemProps} />
 				<a ref={anchorRef} download />
 			</div>
 			<div className={styles.state}>{descriptionForThemeManifestState(props.state)}</div>
