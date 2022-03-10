@@ -16,4 +16,9 @@ RUN useradd -rm -d /home/server server -g root -G sudo
 RUN echo "server:server" | chpasswd
 RUN service ssh start
 
-CMD ["/usr/sbin/sshd", "-D"]
+# Root
+
+ADD start.sh /root/start.sh
+RUN chmod +x /root/start.sh
+
+CMD ["/root/start.sh"]
