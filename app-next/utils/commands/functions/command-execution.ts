@@ -30,9 +30,8 @@ export async function executeRemoteCommand(host: string, command: string): Promi
 		throw new Error("Can not execute command without cross-container credentials (XCC params in environment).")
 	}
 
-	const wrappedCommand = `echo ${escape(
-		command
-	)} | sshpass -p ${password} ssh -o LogLevel=ERROR -o StrictHostKeyChecking=no ${user}@${host} /bin/bash`
+	const sshOptions = "-o LogLevel=ERROR -o StrictHostKeyChecking=no"
+	const wrappedCommand = `echo ${escape(command)} | sshpass -p ${password} ssh ${sshOptions} ${user}@${host} /bin/bash`
 	return executeLocalCommand(wrappedCommand)
 }
 
