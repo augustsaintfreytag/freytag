@@ -10,12 +10,16 @@ import { ThemeManifest } from "~/utils/themes/library/theme-manifest"
 // Commands
 
 function commandForClearThemeDirectory(path: string): string {
-	return `rm -rf "${path}" &> /dev/null`
+	return `rm -rf ${path} &> /dev/null`
+}
+
+function commandForMakeThemeDirectory(path: string): string {
+	return `mkdir -m 775 ${path}`
 }
 
 function commandForMakeThemeDirectoryForFormat(path: string, format: ThemeFormat): string {
 	const formatIdentifier = themeFormatIdentifierForFormat(format)
-	return `mkdir -p "${path}/${formatIdentifier}"`
+	return `mkdir -m 775 ${path}/${formatIdentifier}`
 }
 
 function commandForGenerateThemeWithFormat(path: string, format: ThemeFormat, name: string, description: string, colors: Color[]): string {
@@ -51,6 +55,7 @@ export async function generateThemeCollection(properties: ThemeGenerationPropert
 
 	const commands = [
 		commandForClearThemeDirectory(basePath),
+		commandForMakeThemeDirectory(basePath),
 		...generatedThemeFormats.map(format => commandForMakeThemeDirectoryForFormat(basePath, format)),
 		...generatedThemeFormats.map(format => commandForGenerateThemeWithFormat(basePath, format, name, description, colors)),
 		...archivedThemeFormats.map(format => commandForArchiveThemeWithFormat(basePath, format, name)),
