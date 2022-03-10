@@ -19,6 +19,7 @@ import WorkContentTextBlock from "~/components/work/work-content/components/work
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
+import { themeDescriptionMaxLength, themeNameMaxLength } from "~/utils/themes/functions/theme-configuration"
 import { generateThemeViaApi } from "~/utils/themes/functions/theme-data-access"
 import { useThemeManifestState } from "~/utils/themes/functions/theme-manifest-state-hook"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
@@ -40,7 +41,7 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async () => {
 }
 
 const EditorPage: Page<PageProps & Props> = () => {
-	const [themeProperties, setThemeProperties] = useThemeEditorProperties()
+	const [themeProperties, setThemeProperties, sanitizeThemeProperties] = useThemeEditorProperties()
 	const [themeUtility, isLoadingThemeUtility, loadThemeUtility] = useDeferredThemeUtility()
 	const generatedTheme = useGeneratedThemeViaThemeUtility(themeUtility, isLoadingThemeUtility, themeProperties.colors)
 
@@ -92,6 +93,8 @@ const EditorPage: Page<PageProps & Props> = () => {
 						setValue={setThemeProperties.name}
 						name="Name"
 						placeholder="Enter theme title…"
+						maxLength={themeNameMaxLength}
+						onBlur={sanitizeThemeProperties}
 					/>
 					<InputTextArea
 						className={className(styles.input, styles.descriptionInput)}
@@ -99,6 +102,7 @@ const EditorPage: Page<PageProps & Props> = () => {
 						setValue={setThemeProperties.description}
 						name="Description"
 						placeholder="Enter theme description…"
+						maxLength={themeDescriptionMaxLength}
 					/>
 					<InputTextField
 						className={className(styles.input, styles.idInput)}
