@@ -1,22 +1,22 @@
 import type { GetServerSideProps } from "next"
 import { useMemo } from "react"
-import { RecordError } from "~/api/common/errors/record-error"
-import { getAggregatingServerSideResponses, getServerSideResponseByQuery } from "~/api/props/functions/server-side-props"
-import { isServerSidePropsResponse } from "~/api/props/functions/server-side-response-guards"
-import { serverSideNotFoundResponse } from "~/api/props/functions/server-side-response-presets"
-import { ServerSideResponse } from "~/api/props/library/server-side-response"
-import { routedAssetUrlFromComponent } from "~/api/records/asset/functions/asset-source-provider"
-import { themeFromApi } from "~/api/records/themes/functions/theme-data-access"
-import { intermediateThemeFileFromApi } from "~/api/records/themes/functions/theme-file-data-access"
-import { themePackageFromTheme } from "~/api/records/themes/functions/theme-package-decoding"
-import { Theme } from "~/api/records/themes/library/theme"
-import { ThemeEditorFormat } from "~/api/records/themes/library/theme-editor-format"
+import { routedAssetUrlFromComponent } from "~/api/cockpit/records/asset/functions/asset-source-provider"
+import { themeFromApi } from "~/api/cockpit/records/themes/functions/theme-data-access"
+import { intermediateThemeFileFromApi } from "~/api/cockpit/records/themes/functions/theme-file-data-access"
+import { themePackageFromTheme } from "~/api/cockpit/records/themes/functions/theme-package-decoding"
+import { Theme } from "~/api/cockpit/records/themes/library/theme"
+import { ThemeFormat } from "~/api/cockpit/records/themes/library/theme-format"
+import { ApiError } from "~/api/common/errors/api-error"
+import { getAggregatingServerSideResponses, getServerSideResponseByQuery } from "~/api/common/props/functions/server-side-props"
+import { isServerSidePropsResponse } from "~/api/common/props/functions/server-side-response-guards"
+import { serverSideNotFoundResponse } from "~/api/common/props/functions/server-side-response-presets"
+import { ServerSideResponse } from "~/api/common/props/library/server-side-response"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import ThemeMeta from "~/components/themes/thema-meta/theme-meta"
 import ThemeClosure from "~/components/themes/theme-closure/theme-closure"
-import { themeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/tokenized-string-formatting"
+import { themeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
 import ThemeColorCollection from "~/components/themes/theme-color-collection/theme-color-collection"
 import ThemeDownloads from "~/components/themes/theme-downloads/theme-downloads"
@@ -56,10 +56,10 @@ async function getServerSideThemeFileProps(response?: ServerSideResponse<PageDat
 	const theme = response.props.data.theme!
 
 	try {
-		const themePackage = themePackageFromTheme(theme, ThemeEditorFormat.Intermediate)
+		const themePackage = themePackageFromTheme(theme, ThemeFormat.Intermediate)
 
 		if (!themePackage) {
-			throw new RecordError(`Theme package does not have an intermediate theme package or package URL.`)
+			throw new ApiError(`Theme package does not have an intermediate theme package or package URL.`)
 		}
 
 		const intermediateThemeFile = await intermediateThemeFileFromApi(themePackage)
@@ -90,7 +90,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 	const packages = themePackagesFromTheme(theme)
 	const downloads =
 		packages.map(themePackage => {
-			const name = themePackage.format
+			const name = theme.name
 			const format = themePackage.format
 			const path = themePackage.file.path
 			const href = routedAssetUrlFromComponent(path)

@@ -1,9 +1,9 @@
-import { ResolvedCollectionLink } from "~/api/records/work-showcase/library/work-showcase"
-import { AnyWorkShowcaseContent, WorkShowcaseContentText } from "~/api/records/work-showcase/library/work-showcase-content"
+import { ResolvedCollectionLink } from "~/api/cockpit/records/work-showcase/library/work-showcase"
+import { AnyWorkShowcaseContent, WorkShowcaseContentText } from "~/api/cockpit/records/work-showcase/library/work-showcase-content"
 import {
 	WorkShowcaseTextContentFormat,
 	workShowcaseTextContentFormatFromRawValue
-} from "~/api/records/work-showcase/library/work-showcase-text-content-format"
+} from "~/api/cockpit/records/work-showcase/library/work-showcase-text-content-format"
 import { contentAnchorIdFromText } from "~/components/content-anchor/functions/content-anchor-form"
 import { ContentAnchorProperties } from "~/components/content-anchor/library/content-anchor-properties"
 import { WorkContentBlockKind, workContentBlockKindFromRawValue } from "~/components/work/work-content/library/work-content-block-kind"

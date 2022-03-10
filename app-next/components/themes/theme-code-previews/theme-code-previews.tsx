@@ -23,7 +23,7 @@ interface Props {
 	windowed?: boolean
 }
 
-const selectedContentKey = "theme-code-preview-format"
+const selectedContentKey = "themes.codePreviewFormat"
 
 const ThemeCodePreviews: FunctionComponent<Props> = props => {
 	const { theme, content } = props

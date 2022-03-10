@@ -1,5 +1,5 @@
 import { CockpitAssetPathForm, CockpitImageOptions, CockpitImageRequest } from "cockpit-access"
-import { imageRequest } from "~/api/common/library/image-request-preset"
+import { imageRequest } from "~/api/cockpit/data/library/image-request-preset"
 import { AssetImageCropValues, AssetImageFormat } from "~/components/asset-image/library/asset-image-format"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import { scaleFactors } from "~/components/asset-image/library/scale-values"

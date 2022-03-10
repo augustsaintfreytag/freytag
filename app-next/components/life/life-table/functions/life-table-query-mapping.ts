@@ -1,5 +1,5 @@
 import { NextRouter as Router } from "next/router"
-import { lifeEventKindFromRawValue } from "~/api/records/life-event/library/life-event-kind"
+import { lifeEventKindFromRawValue } from "~/api/cockpit/records/life-event/library/life-event-kind"
 import { LifeTableDataProps } from "~/components/life/life-table/functions/life-table-data-hook"
 import { lifeTableColumnFromRawValue } from "~/components/life/life-table/library/life-table-column"
 import { lifeTableSortModeFromRawValue } from "~/components/life/life-table/library/life-table-sort-mode"

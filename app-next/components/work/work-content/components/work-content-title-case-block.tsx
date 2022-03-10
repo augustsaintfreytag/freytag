@@ -48,14 +48,14 @@ const WorkContentTitleCaseBlock: FunctionComponent<Props> = props => {
 	}, [])
 
 	return (
-		<section className={className(styles.block, (props.heading || props.subHeading) && styles.titled)}>
+		<div className={className(styles.block, (props.heading || props.subHeading) && styles.titled)}>
 			{props.cover && <Cover content={props.cover} />}
 			{props.heading && <Heading content={props.heading} />}
 			{props.subHeading && <SubHeading content={props.subHeading} />}
 			{props.callToAction && (
 				<CallToAction name={actionName} className={styles.callToAction} href={props.callToAction.href} text={props.callToAction.label} />
 			)}
-		</section>
+		</div>
 	)
 }
 

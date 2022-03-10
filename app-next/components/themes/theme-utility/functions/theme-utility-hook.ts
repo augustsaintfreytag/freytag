@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from "react"
 import WebAssemblyModule, { fetchWebAssemblyModuleData, instantiateWebAssemblyModule } from "webassembly-module"
-import { dropshipHostClient } from "~/components/meta/library/app"
+import { dropshipHostClient } from "~/utils/app/app"
 import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { URL } from "~/utils/routing/library/url"
 
@@ -12,7 +12,7 @@ enum PerformanceKey {
 }
 
 function moduleVersion(): string | undefined {
-	return process.env.NEXT_PUBLIC_COLOR_THEME_UTILITY_VERSION
+	return process.env.NEXT_PUBLIC_COLOR_THEME_ASSEMBLY_VERSION
 }
 
 function modulePath(): URL {

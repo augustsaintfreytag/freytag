@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { WorkContentImageAlignment } from "~/api/records/work-showcase/library/work-showcase-image-alignment"
+import { WorkContentImageAlignment } from "~/api/cockpit/records/work-showcase/library/work-showcase-image-alignment"
 import { uniformViewportAssetImageFormats } from "~/components/asset-image/functions/asset-image-prop-mapping"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import { ViewportAssetImageFormats } from "~/components/asset-image/library/viewport-sources"
@@ -33,11 +33,11 @@ const WorkContentImageColumnBlock: FunctionComponent<Props> = props => {
 	const contentFormats = contentImageFormats(contentAlignment, contentHasMultipleImages)
 
 	return (
-		<section className={className(styles.block, contentStyle, alignmentStyle)}>
+		<div className={className(styles.block, contentStyle, alignmentStyle)}>
 			{props.collection.map(elementProps => (
 				<WorkImageFigure key={elementProps.src} formats={contentFormats} {...elementProps} />
 			))}
-		</section>
+		</div>
 	)
 }
 

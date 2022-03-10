@@ -74,7 +74,8 @@ export class Color implements ColorValue {
 	// Value
 
 	get key(): string {
-		return `${this.red},${this.green},${this.blue}`
+		const [red, green, blue] = [Color.round(this.red), Color.round(this.green), Color.round(this.blue)]
+		return `${red},${green},${blue}`
 	}
 
 	get rgb(): string {
@@ -96,6 +97,10 @@ export class Color implements ColorValue {
 		const formattedValue = boundedValue.toString(16).padStart(2, "0").toUpperCase()
 
 		return formattedValue
+	}
+
+	private static round(value: number): number {
+		return Math.round(value * 1000) / 1000
 	}
 
 	// Analysis

@@ -5,8 +5,8 @@ import Analytics from "~/components/analytics/analytics"
 import Footer from "~/components/footer/footer"
 import Header from "~/components/header/header"
 import { brandTitle } from "~/components/meta/components/brand-meta-data"
-import { appEnvironmentIsDevelopment } from "~/components/meta/library/app"
 import { PropsWithAnyChildren } from "~/types/props"
+import { appEnvironmentIsDevelopment } from "~/utils/app/app"
 import { useSensitiveDataDisplay } from "~/utils/render/sensitive-data-hook"
 
 type Props = PropsWithAnyChildren & {

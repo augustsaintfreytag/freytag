@@ -1,39 +1,29 @@
 import type { GetServerSideProps } from "next"
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import Divider from "~/components/divider/divider"
 import InputTextArea from "~/components/input/input-text-area/input-text-area"
+import InputTextField from "~/components/input/input-text-field/input-text-field"
 import TitleInputTextField from "~/components/input/title-input-text-field/title-input-text-field"
 import Notice from "~/components/notice/notice"
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import { useThemeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content-hook"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
 import ThemeEditorColors from "~/components/themes/theme-editor-colors/theme-editor-colors"
-import { useEditorColors } from "~/components/themes/theme-editor-colors/theme-editor-colors-hook"
 import ThemeEditorMenu from "~/components/themes/theme-editor-menu/theme-editor-menu"
+import { useThemeEditorProperties } from "~/components/themes/theme-editor-properties/theme-editor-properties-hook"
 import ThemeEditorTitle from "~/components/themes/theme-editor-title/theme-editor-title"
-import { generateThemeViaModule } from "~/components/themes/theme-utility/functions/theme-utility-functions"
+import ThemeManifestDownloads from "~/components/themes/theme-manifest-downloads/theme-manifest-downloads"
+import { useGeneratedThemeViaThemeUtility } from "~/components/themes/theme-utility/functions/theme-utility-generation-hook"
 import { useDeferredThemeUtility } from "~/components/themes/theme-utility/functions/theme-utility-hook"
 import WorkContentTextBlock from "~/components/work/work-content/components/work-content-text-block"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
-import { Color } from "~/utils/colors/models/color"
-import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
-import { range } from "~/utils/range/range"
-import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
+import { generateThemeViaApi } from "~/utils/themes/functions/theme-data-access"
+import { useThemeManifestState } from "~/utils/themes/functions/theme-manifest-state-hook"
+import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
+import { ThemeManifestStateKind } from "~/utils/themes/library/theme-manifest-state"
 import styles from "./editor-page.module.sass"
-
-// Configuration
-
-const defaultColors = (() => {
-	const colors = range(0, 10).map(_ => Color.white)
-	colors[0] = Color.black
-
-	return colors
-})()
-
-enum PerformanceKey {
-	GenerateTheme = "editor-generate-theme"
-}
 
 // Library
 
@@ -50,52 +40,46 @@ export const getServerSideProps: GetServerSideProps<Props, {}> = async () => {
 }
 
 const EditorPage: Page<PageProps & Props> = () => {
-	const [themeName, setThemeName] = useState("")
-	const [themeDescription, setThemeDescription] = useState("")
-	const [themeColors, setThemeColors] = useEditorColors(defaultColors)
-
-	const keyForColors = (colors: Color[]): string => colors.map(color => color.key).join("/")
-
-	const [lastUsedColorKey, setLastUsedColorKey] = useState<string | undefined>(undefined)
-	const [generatedTheme, setGeneratedTheme] = useState<IntermediateTheme | undefined>(undefined)
+	const [themeProperties, setThemeProperties] = useThemeEditorProperties()
 	const [themeUtility, isLoadingThemeUtility, loadThemeUtility] = useDeferredThemeUtility()
+	const generatedTheme = useGeneratedThemeViaThemeUtility(themeUtility, isLoadingThemeUtility, themeProperties.colors)
+
 	const themePreviewContents = useThemeCodePreviewContents()
+	const [themeManifestState, setThemeManifestStateTo] = useThemeManifestState({ kind: ThemeManifestStateKind.None })
+
+	const onRequestThemes = async () => {
+		console.log(`Requesting theme collection generation in editor.`)
+		setThemeManifestStateTo.pending()
+
+		try {
+			const properties: ThemeGenerationProperties = {
+				name: themeProperties.name,
+				description: themeProperties.description,
+				colors: themeProperties.colors
+			}
+
+			const themeManifest = await generateThemeViaApi(properties)
+			setThemeManifestStateTo.generated(themeManifest)
+
+			return themeManifest
+		} catch (error) {
+			console.error(`Could not generate theme server-side.`, error)
+		}
+	}
 
 	useEffect(() => {
 		loadThemeUtility()
 	}, [])
 
 	useEffect(() => {
-		if (!themeUtility) {
-			return
-		}
-
-		const currentColorKey = keyForColors(themeColors)
-		if (currentColorKey === lastUsedColorKey) {
-			return
-		}
-
-		;(async () => {
-			startPerformanceMeasure(PerformanceKey.GenerateTheme)
-			const theme = await generateThemeViaModule(themeUtility, themeColors)
-			stopPerformanceMeasure(PerformanceKey.GenerateTheme)
-
-			console.log(`Generated theme from all colors in ${performanceMeasureDuration(PerformanceKey.GenerateTheme)}.`)
-
-			if (!theme) {
-				console.error(`Could not generate theme from colors '${themeColors.map(color => color.hex)}'.`)
-			}
-
-			setLastUsedColorKey(currentColorKey)
-			setGeneratedTheme(theme)
-		})()
-	}, [isLoadingThemeUtility, themeColors])
+		setThemeManifestStateTo.none()
+	}, [themeProperties.hash])
 
 	return (
 		<>
 			<ThemeSprites />
 			<section className={styles.page}>
-				<ThemeEditorMenu theme={generatedTheme} />
+				<ThemeEditorMenu className={styles.menu} theme={generatedTheme} />
 				<Notice className={styles.notice}>
 					The Editor is currently in <em>Beta</em>. You can create a palette, edit colours, view generated previews in real-time, and download a
 					preview. Submissions to the gallery and additional formats are coming soon.
@@ -104,18 +88,26 @@ const EditorPage: Page<PageProps & Props> = () => {
 				<section className={styles.inputs}>
 					<TitleInputTextField
 						className={className(styles.input, styles.nameInput)}
-						value={themeName}
-						setValue={setThemeName}
-						name={"Name"}
+						value={themeProperties.name}
+						setValue={setThemeProperties.name}
+						name="Name"
 						placeholder="Enter theme title…"
 					/>
 					<InputTextArea
 						className={className(styles.input, styles.descriptionInput)}
-						value={themeDescription}
-						setValue={setThemeDescription}
-						name={"Description"}
+						value={themeProperties.description}
+						setValue={setThemeProperties.description}
+						name="Description"
 						placeholder="Enter theme description…"
 					/>
+					<InputTextField
+						className={className(styles.input, styles.idInput)}
+						value={themeProperties.id ?? "<None>"}
+						name="Identifier"
+						placeholder="Auto-generated theme identifier…"
+						readOnly
+					/>
+					<InputTextField className={className(styles.input)} value={themeProperties.hash} name="Hash" readOnly />
 				</section>
 				<section className={styles.tutorial}>
 					<WorkContentTextBlock>
@@ -124,7 +116,7 @@ const EditorPage: Page<PageProps & Props> = () => {
 					</WorkContentTextBlock>
 				</section>
 				<section className={styles.colorsAndPreview}>
-					<ThemeEditorColors className={styles.colors} colors={themeColors} onColorCollectionSet={setThemeColors} />
+					<ThemeEditorColors className={styles.colors} colors={themeProperties.colors} onColorCollectionSet={setThemeProperties.colors} />
 					<ThemeCodePreviews className={styles.previews} theme={generatedTheme} content={themePreviewContents} />
 				</section>
 				<section className={styles.tutorial}>
@@ -132,6 +124,13 @@ const EditorPage: Page<PageProps & Props> = () => {
 						Click each colour cell to edit and specify input colours. Themes are created from a sequence of *ten base colours*. An intermediate theme
 						is generated and updated in real-time and previewed directly in the code display.
 					</WorkContentTextBlock>
+				</section>
+				<Divider />
+				<ThemeManifestDownloads name={themeProperties.name} state={themeManifestState} onRequest={onRequestThemes} />
+				<Divider />
+				<section className={styles.closure}>
+					<WorkContentTextBlock>Themes can not be published to the gallery in this version of the Studio.</WorkContentTextBlock>
+					<WorkContentTextBlock>Formats can be downloaded ad-hoc through the provided options.</WorkContentTextBlock>
 				</section>
 			</section>
 		</>

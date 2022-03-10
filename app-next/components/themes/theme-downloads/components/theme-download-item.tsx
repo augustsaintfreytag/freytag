@@ -1,36 +1,45 @@
 import { FunctionComponent } from "react"
 import {
-	ThemeEditorFormat,
-	themeFileDescriptionForEditorFormat,
-	themeFormatPurposeDescriptionForEditorFormat,
-	themeSymbolForEditorFormat
-} from "~/api/records/themes/library/theme-editor-format"
+	themeFileDescriptionForFormat,
+	ThemeFormat,
+	themeFormatPurposeDescriptionForFormat,
+	themeSymbolForFormat
+} from "~/api/cockpit/records/themes/library/theme-format"
 import { track } from "~/components/analytics/functions/track"
 import Sprite from "~/components/sprites/sprite"
-import { fileNameFromPath } from "~/components/themes/theme-downloads/functions/download-name-form"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { URL } from "~/utils/routing/library/url"
+import { themeFileName } from "~/utils/themes/functions/theme-resources"
 import styles from "./theme-download-item.module.sass"
 
 export interface Props extends PropsWithClassName {
 	name: string
-	format: ThemeEditorFormat
-	href: URL
+	format: ThemeFormat
+	href?: URL
+	onClick?: () => void
 }
 
 const trackClick = (name: string, href: URL) => track("Theme Download", { name, href })
 
 const ThemeDownloadItem: FunctionComponent<Props> = props => {
-	const itemPurpose = themeFormatPurposeDescriptionForEditorFormat(props.format)
+	const itemPurpose = themeFormatPurposeDescriptionForFormat(props.format)
 	const itemTitle = `Download Theme "${props.name}" for ${itemPurpose}`
 	const itemHeading = `Download for ${itemPurpose}`
-	const itemSymbol = themeSymbolForEditorFormat(props.format)
-	const itemFormat = themeFileDescriptionForEditorFormat(props.format)
-	const itemFileName = fileNameFromPath(props.name, props.href)
+	const itemSymbol = themeSymbolForFormat(props.format)
+	const itemFormat = themeFileDescriptionForFormat(props.format)
+	const itemFileName = themeFileName(props.name, props.format)
+
+	const onClick = () => {
+		if (props.href) {
+			trackClick(props.name, props.href)
+		}
+
+		props.onClick?.()
+	}
 
 	return (
-		<a href={props.href} title={itemTitle} onClick={() => trackClick(props.name, props.href)} download={itemFileName}>
+		<a href={props.href} title={itemTitle} onClick={onClick} download={itemFileName}>
 			<button className={className(styles.item, props.className)}>
 				<Sprite className={styles.symbol} href={itemSymbol} />
 				<div className={styles.text}>

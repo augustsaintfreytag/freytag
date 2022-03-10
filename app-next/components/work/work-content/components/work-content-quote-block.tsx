@@ -7,9 +7,9 @@ export interface Props {
 }
 
 const WorkContentQuoteBlock: FunctionComponent<Props> = props => (
-	<section className={styles.block}>
+	<div className={styles.block}>
 		<QuotationMarkdown>{props.text}</QuotationMarkdown>
-	</section>
+	</div>
 )
 
 export default WorkContentQuoteBlock

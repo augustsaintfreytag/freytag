@@ -23,9 +23,9 @@ const ThemesTitle: FunctionComponent<Props> = props => {
 					<p>{themeStudioIntroduction()}</p>
 				</div>
 				<div className={styles.links}>
-					<DecoratedInternalLink className={styles.link} href="/work/theme-studio" text="What is this?" />
-					<DecoratedInternalLink className={styles.link} href="/work/theme-studio#next-steps" text="Next Steps" />
-					<DecoratedInternalLink className={styles.link} href="/work/theme-studio#faq" text="Install & Customise" />
+					<DecoratedInternalLink className={styles.link} href="/work/theme-studio" text="What's this?" />
+					<DecoratedInternalLink className={styles.link} href="/work/theme-studio#faq" text="Installation" />
+					<DecoratedInternalLink className={styles.link} href="/themes/editor" text="Open Editor" />
 				</div>
 			</main>
 		</section>

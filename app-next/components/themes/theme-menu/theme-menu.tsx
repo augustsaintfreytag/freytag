@@ -1,5 +1,5 @@
 import { FunctionComponent, useState } from "react"
-import { Theme } from "~/api/records/themes/library/theme"
+import { Theme } from "~/api/cockpit/records/themes/library/theme"
 import MenuItem from "~/components/menu/components/menu-item"
 import Menu from "~/components/menu/menu"
 import { navigatorHasSharingSupport, shareTheme } from "~/components/themes/theme-menu/functions/theme-sharing"

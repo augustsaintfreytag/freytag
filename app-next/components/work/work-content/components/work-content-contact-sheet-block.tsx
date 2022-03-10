@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { FunctionComponent } from "react"
-import { ImageLink } from "~/api/records/asset/library/image-link"
+import { ImageLink } from "~/api/cockpit/records/asset/library/image-link"
 import AssetImage from "~/components/asset-image/asset-image"
 import { AssetImageSize } from "~/components/asset-image/library/image-size"
 import styles from "./work-content-contact-sheet-block.module.sass"
@@ -15,7 +15,7 @@ export interface Props {
 }
 
 const WorkContentContactSheetBlock: FunctionComponent<Props> = props => (
-	<section className={styles.block}>
+	<div className={styles.block}>
 		<div className={styles.inlay}>
 			<ol>
 				{props.images.map(definition => (
@@ -29,7 +29,7 @@ const WorkContentContactSheetBlock: FunctionComponent<Props> = props => (
 				))}
 			</ol>
 		</div>
-	</section>
+	</div>
 )
 
 export default WorkContentContactSheetBlock

@@ -1,7 +1,7 @@
-import { UUID } from "~/api/common/library/uuid"
 import { canonicalHref } from "~/components/meta/functions/canonical-href"
 import { lines } from "~/utils/description/functions/lines"
 import { URL } from "~/utils/routing/library/url"
+import { UUID } from "~/utils/uuid/uuid"
 
 export function themeStudioName(): string {
 	return "Themes"

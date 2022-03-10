@@ -1,16 +1,16 @@
 import React from "react"
-import { ResolvedCollectionLink, WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import { ResolvedCollectionLink, WorkShowcase } from "~/api/cockpit/records/work-showcase/library/work-showcase"
 import {
 	AnyWorkShowcaseContent,
 	WorkShowcaseContentImages,
 	WorkShowcaseContentText,
 	WorkShowcaseContentTitleCase,
 	WorkShowcaseContentVideoEmbed
-} from "~/api/records/work-showcase/library/work-showcase-content"
+} from "~/api/cockpit/records/work-showcase/library/work-showcase-content"
 import {
 	WorkShowcaseTextContentFormat,
 	workShowcaseTextContentFormatFromRawValue
-} from "~/api/records/work-showcase/library/work-showcase-text-content-format"
+} from "~/api/cockpit/records/work-showcase/library/work-showcase-text-content-format"
 import Divider from "~/components/divider/divider"
 import WorkContentContactSheetBlock from "~/components/work/work-content/components/work-content-contact-sheet-block"
 import WorkContentHeadingBlock from "~/components/work/work-content/components/work-content-heading-block"
