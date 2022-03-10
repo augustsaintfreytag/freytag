@@ -12,6 +12,8 @@ export interface Props extends PropsWithClassName {
 	pattern?: string
 	maxLength?: number
 	readOnly?: boolean
+	onFocus?: () => void
+	onBlur?: (event: React.FocusEvent<HTMLInputElement>) => void
 }
 
 const InputTextField: FunctionComponent<Props> = props => (
@@ -28,6 +30,8 @@ const InputTextField: FunctionComponent<Props> = props => (
 			pattern={props.pattern}
 			maxLength={props.maxLength}
 			readOnly={props.readOnly}
+			onFocus={props.onFocus}
+			onBlur={props.onBlur}
 		/>
 	</InputEnclosure>
 )
