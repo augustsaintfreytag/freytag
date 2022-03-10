@@ -6,7 +6,7 @@ import { UUID } from "~/utils/uuid/uuid"
 
 const themeCollectionLifetime = TimeIntervalValue.Hour * 12
 
-export async function trimThemeCollections() {
+export async function trimThemeCollections(): Promise<{ expiredIds: UUID[]; numberOfExpiredIds: number }> {
 	const basePath = themesOutputPath()
 	const expiredThemeIds = await expiredThemeCollections()
 	const themePaths = Array.from(expiredThemeIds).map(id => `${basePath}/${id}`)
@@ -18,13 +18,16 @@ export async function trimThemeCollections() {
 	}
 
 	console.log(`Removed ${expiredThemeIds.size} expired theme collections in trim operation.`)
+	return { expiredIds: Array.from(expiredThemeIds), numberOfExpiredIds: expiredThemeIds.size }
 }
 
-export async function clearThemeCollections() {
+export async function clearThemeCollections(): Promise<{ numberOfRemovedIds: number }> {
 	const directoryNames = await readdir(themesOutputPath())
 	const directoryPaths = directoryNames.map(name => `${themesOutputPath()}/${name}`)
 
 	await Promise.all(directoryPaths.map(path => rm(path, { recursive: true, force: true })))
+
+	return { numberOfRemovedIds: directoryPaths.length }
 }
 
 async function expiredThemeCollections(): Promise<Set<UUID>> {
