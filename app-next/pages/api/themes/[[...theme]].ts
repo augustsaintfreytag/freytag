@@ -60,6 +60,11 @@ async function generateThemes(req: NextApiRequest, res: NextApiResponse) {
 		colors: colorsFromHexDescriptions(body.colors)
 	}
 
+	if (!properties.name || properties.colors.length !== 10) {
+		res.status(400).end("Invalid request body parameters.")
+		return
+	}
+
 	try {
 		startPerformanceMeasure(PerformanceKey.GenerateThemes)
 		const manifest = await generateThemeCollection(properties)
