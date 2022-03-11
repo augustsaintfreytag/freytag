@@ -52,7 +52,7 @@ const ThemeManifestDownloads: FunctionComponent<Props> = props => {
 			return
 		}
 
-		if (props.state.kind === ThemeManifestStateKind.None) {
+		if (props.state.kind === ThemeManifestStateKind.None || props.state.kind === ThemeManifestStateKind.Error) {
 			const generatedManifest = await props.onRequest?.()
 
 			if (!generatedManifest) {
