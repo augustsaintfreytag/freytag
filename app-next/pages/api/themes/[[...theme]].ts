@@ -61,7 +61,7 @@ async function generateThemes(req: NextApiRequest, res: NextApiResponse) {
 	}
 
 	if (!properties.name || properties.colors.length !== 10) {
-		res.status(400).end("Invalid request body parameters.")
+		res.status(422).end("Invalid request body parameters.")
 		return
 	}
 
@@ -85,7 +85,7 @@ function truncatedThemeName(name: string): string {
 }
 
 function truncatedThemeDescription(description: string): string {
-	return description.substring(0, themeDescriptionMaxLength)
+	return description.trim().substring(0, themeDescriptionMaxLength)
 }
 
 // Library
