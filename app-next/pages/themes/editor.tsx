@@ -19,7 +19,13 @@ import WorkContentTextBlock from "~/components/work/work-content/components/work
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
-import { themeDescriptionMaxLength, themeNameMaxLength } from "~/utils/themes/functions/theme-configuration"
+import {
+	themeDescriptionMaxLength,
+	themeDescriptionMinLength,
+	themeNameMaxLength,
+	themeNameMinLength,
+	themeNameValidationExpression
+} from "~/utils/themes/functions/theme-configuration"
 import { generateThemeViaApi } from "~/utils/themes/functions/theme-data-access"
 import { useThemeManifestState } from "~/utils/themes/functions/theme-manifest-state-hook"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
@@ -64,6 +70,7 @@ const EditorPage: Page<PageProps & Props> = () => {
 
 			return themeManifest
 		} catch (error) {
+			setThemeManifestStateTo.error()
 			console.error(`Could not generate theme server-side.`, error)
 		}
 	}
@@ -93,6 +100,9 @@ const EditorPage: Page<PageProps & Props> = () => {
 						setValue={setThemeProperties.name}
 						name="Name"
 						placeholder="Enter theme title…"
+						required
+						pattern={themeNameValidationExpression.source}
+						minLength={themeNameMinLength}
 						maxLength={themeNameMaxLength}
 						onBlur={sanitizeThemeProperties}
 					/>
@@ -102,6 +112,8 @@ const EditorPage: Page<PageProps & Props> = () => {
 						setValue={setThemeProperties.description}
 						name="Description"
 						placeholder="Enter theme description…"
+						required
+						minLength={themeDescriptionMinLength}
 						maxLength={themeDescriptionMaxLength}
 					/>
 					<InputTextField
@@ -111,7 +123,6 @@ const EditorPage: Page<PageProps & Props> = () => {
 						placeholder="Auto-generated theme identifier…"
 						readOnly
 					/>
-					<InputTextField className={className(styles.input)} value={themeProperties.hash} name="Hash" readOnly />
 				</section>
 				<section className={styles.tutorial}>
 					<WorkContentTextBlock>
