@@ -17,3 +17,11 @@ $verticalSpacing: 0.85rem
 
 		@include elementFont
 		font-size: 1rem
+
+	&.isReadOnly
+		input
+			color: $textColorFaded
+
+	&:not(.isValid)
+		input
+			animation: blinkBackgroundForError 1s cubic-bezier(0.550, 0.055, 0.675, 0.190) both

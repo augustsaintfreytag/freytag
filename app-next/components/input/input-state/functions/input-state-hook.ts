@@ -12,15 +12,15 @@ function inputContextDescriptionForState(state: ValidityState | undefined, isUse
 
 type SetValueBlock = (newValue: string) => void
 
-export function useInputState(setValue?: SetValueBlock) {
-	const inputRef = useRef<HTMLInputElement>(null)
+export function useInputState<InputElement extends HTMLInputElement | HTMLTextAreaElement>(setValue?: SetValueBlock) {
+	const inputRef = useRef<InputElement>(null)
 
 	const [inputIsUsed, setInputIsUsed] = useState(false)
 	const [inputIsValid, setInputIsValid] = useState(true)
 	const inputValidity = inputRef.current?.validity
 	const setInputIsUsedOnInput = useDebouncedCallback(() => setInputIsUsed(true), 500)
 
-	const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+	const onInputChange = (event: React.ChangeEvent<InputElement>) => {
 		const newValue = event.target.value
 		setValue?.(newValue)
 

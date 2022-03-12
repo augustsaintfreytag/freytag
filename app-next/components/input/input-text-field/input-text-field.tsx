@@ -21,7 +21,7 @@ export interface Props extends PropsWithClassName {
 }
 
 const InputTextField: FunctionComponent<Props> = props => {
-	const { inputRef, inputIsValid, inputOnChange, inputContext } = useInputState(props.setValue)
+	const { inputRef, inputIsValid, inputOnChange, inputContext } = useInputState<HTMLInputElement>(props.setValue)
 	const inputClassName = className(styles.block, props.readOnly && styles.isReadOnly, inputIsValid && styles.isValid, props.className)
 
 	return (
