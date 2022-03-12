@@ -21,7 +21,6 @@ import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
 import {
 	themeDescriptionMaxLength,
-	themeDescriptionMinLength,
 	themeNameMaxLength,
 	themeNameMinLength,
 	themeNameValidationExpression
@@ -112,8 +111,6 @@ const EditorPage: Page<PageProps & Props> = () => {
 						setValue={setThemeProperties.description}
 						name="Description"
 						placeholder="Enter theme description…"
-						required
-						minLength={themeDescriptionMinLength}
 						maxLength={themeDescriptionMaxLength}
 					/>
 					<InputTextField
