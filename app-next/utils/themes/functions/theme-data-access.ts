@@ -1,3 +1,4 @@
+import { ApiError } from "~/api/common/errors/api-error"
 import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
 import { ThemeManifest } from "~/utils/themes/library/theme-manifest"
@@ -30,11 +31,15 @@ export async function generateThemeViaApi(properties: ThemeGenerationProperties)
 
 	stopPerformanceMeasure(PerformanceKey.GenerateThemes)
 
+	if (response.status !== 200) {
+		throw new ApiError(`Failed to generate theme with given values.`, response.status)
+	}
+
 	console.log(`Generated themes via API in ${performanceMeasureDuration(PerformanceKey.GenerateThemes)}.`)
 	const manifest = ThemeManifest.fromJSON(await response.text())
 
 	if (!manifest) {
-		throw new Error(`Could not decode generate theme response as valid manifest.`)
+		throw new ApiError(`Could not decode generate theme response as valid manifest.`)
 	}
 
 	return manifest
