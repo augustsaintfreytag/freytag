@@ -13,10 +13,16 @@ export interface ThemeManifestKindGenerated {
 	manifest: ThemeManifest
 }
 
-export type ThemeManifestState = ThemeManifestKindNone | ThemeManifestKindPending | ThemeManifestKindGenerated
+export interface ThemeManifestKindError {
+	kind: ThemeManifestStateKind.Error
+	message?: string
+}
+
+export type ThemeManifestState = ThemeManifestKindNone | ThemeManifestKindPending | ThemeManifestKindGenerated | ThemeManifestKindError
 
 export enum ThemeManifestStateKind {
 	None = "none",
 	Pending = "pending",
-	Generated = "generated"
+	Generated = "generated",
+	Error = "error"
 }

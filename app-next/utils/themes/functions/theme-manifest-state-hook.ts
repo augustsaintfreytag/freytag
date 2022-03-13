@@ -6,6 +6,7 @@ type SetStateBlock = {
 	none: () => void
 	pending: () => void
 	generated: (manifest: ThemeManifest) => void
+	error: (message?: string) => void
 }
 
 export function useThemeManifestState(initialState: ThemeManifestState): [ThemeManifestState, SetStateBlock] {
@@ -20,6 +21,9 @@ export function useThemeManifestState(initialState: ThemeManifestState): [ThemeM
 		},
 		generated: (manifest: ThemeManifest) => {
 			setState({ kind: ThemeManifestStateKind.Generated, manifest })
+		},
+		error: (message?: string) => {
+			setState({ kind: ThemeManifestStateKind.Error, message })
 		}
 	}
 

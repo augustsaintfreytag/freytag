@@ -12,8 +12,11 @@ const TitleInputTextField: FunctionComponent<Props> = props => (
 		placeholder={props.placeholder}
 		value={props.value}
 		setValue={props.setValue}
+		required={props.required}
+		minLength={props.minLength}
 		maxLength={props.maxLength}
 		pattern={props.pattern}
+		onValidation={props.onValidation}
 		onFocus={props.onFocus}
 		onBlur={props.onBlur}
 	/>

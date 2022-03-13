@@ -1,10 +1,14 @@
 import type { GetServerSideProps } from "next"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
+import { ApiError } from "~/api/common/errors/api-error"
+import ContentAnchor, { ContentAnchorElement } from "~/components/content-anchor/components/content-anchor"
 import Divider from "~/components/divider/divider"
+import { useInputValidityReport } from "~/components/input/input-state/functions/input-validity-report-hook"
 import InputTextArea from "~/components/input/input-text-area/input-text-area"
 import InputTextField from "~/components/input/input-text-field/input-text-field"
 import TitleInputTextField from "~/components/input/title-input-text-field/title-input-text-field"
 import Notice from "~/components/notice/notice"
+import { dispatchPageEvent } from "~/components/page-event/functions/page-event-hook"
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import { useThemeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content-hook"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
@@ -19,7 +23,13 @@ import WorkContentTextBlock from "~/components/work/work-content/components/work
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
-import { themeDescriptionMaxLength, themeNameMaxLength } from "~/utils/themes/functions/theme-configuration"
+import {
+	themeDescriptionMaxLength,
+	themeDescriptionMinLength,
+	themeNameMaxLength,
+	themeNameMinLength,
+	themeNameValidationExpression
+} from "~/utils/themes/functions/theme-configuration"
 import { generateThemeViaApi } from "~/utils/themes/functions/theme-data-access"
 import { useThemeManifestState } from "~/utils/themes/functions/theme-manifest-state-hook"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
@@ -47,9 +57,20 @@ const EditorPage: Page<PageProps & Props> = () => {
 
 	const themePreviewContents = useThemeCodePreviewContents()
 	const [themeManifestState, setThemeManifestStateTo] = useThemeManifestState({ kind: ThemeManifestStateKind.None })
+	const [inputValidityReport, setInputValidityReport, allInputsValid] = useInputValidityReport()
+	const inputsAnchorRef = useRef<ContentAnchorElement>(null)
+
+	const onRequestThemesError = () => {
+		inputsAnchorRef.current?.scrollIntoView()
+		setTimeout(() => dispatchPageEvent("validateInputs"), 150)
+	}
 
 	const onRequestThemes = async () => {
-		console.log(`Requesting theme collection generation in editor.`)
+		if (!allInputsValid()) {
+			onRequestThemesError()
+			return
+		}
+
 		setThemeManifestStateTo.pending()
 
 		try {
@@ -65,6 +86,13 @@ const EditorPage: Page<PageProps & Props> = () => {
 			return themeManifest
 		} catch (error) {
 			console.error(`Could not generate theme server-side.`, error)
+
+			if (error instanceof ApiError) {
+				setThemeManifestStateTo.error(`Invalid input`)
+				onRequestThemesError()
+			}
+
+			setThemeManifestStateTo.error()
 		}
 	}
 
@@ -87,13 +115,18 @@ const EditorPage: Page<PageProps & Props> = () => {
 				</Notice>
 				<ThemeEditorTitle className={styles.title} />
 				<section className={styles.inputs}>
+					<ContentAnchor ref={inputsAnchorRef} anchor="inputs" />
 					<TitleInputTextField
 						className={className(styles.input, styles.nameInput)}
 						value={themeProperties.name}
 						setValue={setThemeProperties.name}
 						name="Name"
 						placeholder="Enter theme title…"
+						required
+						pattern={themeNameValidationExpression.source}
+						minLength={themeNameMinLength}
 						maxLength={themeNameMaxLength}
+						onValidation={state => setInputValidityReport("name", state)}
 						onBlur={sanitizeThemeProperties}
 					/>
 					<InputTextArea
@@ -102,16 +135,18 @@ const EditorPage: Page<PageProps & Props> = () => {
 						setValue={setThemeProperties.description}
 						name="Description"
 						placeholder="Enter theme description…"
+						required
+						minLength={themeDescriptionMinLength}
 						maxLength={themeDescriptionMaxLength}
+						onValidation={state => setInputValidityReport("description", state)}
 					/>
 					<InputTextField
 						className={className(styles.input, styles.idInput)}
-						value={themeProperties.id ?? "<None>"}
+						value={themeProperties.id ?? "<None generated>"}
 						name="Identifier"
 						placeholder="Auto-generated theme identifier…"
 						readOnly
 					/>
-					<InputTextField className={className(styles.input)} value={themeProperties.hash} name="Hash" readOnly />
 				</section>
 				<section className={styles.tutorial}>
 					<WorkContentTextBlock>

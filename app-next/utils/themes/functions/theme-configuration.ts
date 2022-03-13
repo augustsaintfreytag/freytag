@@ -8,10 +8,14 @@ export const themesDefaultVersion = () => "1.0.0"
 
 export const themesPublicContentPath = () => "/content"
 
+export const themeNameMinLength = 3
 export const themeNameMaxLength = 52
+
+export const themeDescriptionMinLength = 36
 export const themeDescriptionMaxLength = 4096
 
 export const themeNameSanitizationExpression = /[^0-9a-zA-Z #&@()+_,;.'\-\u00c0-\u017f]/g
+export const themeNameValidationExpression = /^[0-9a-zA-Z #&@()+_,;.'\-\u00c0-\u017f]*$/
 
 export const themesHost = () => {
 	const host = xccColorThemeUtilityHost()
