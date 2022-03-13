@@ -1,10 +1,13 @@
 import type { GetServerSideProps } from "next"
-import { useEffect } from "react"
+import { useEffect, useRef } from "react"
+import { ApiError } from "~/api/common/errors/api-error"
+import ContentAnchor, { ContentAnchorElement } from "~/components/content-anchor/components/content-anchor"
 import Divider from "~/components/divider/divider"
 import InputTextArea from "~/components/input/input-text-area/input-text-area"
 import InputTextField from "~/components/input/input-text-field/input-text-field"
 import TitleInputTextField from "~/components/input/title-input-text-field/title-input-text-field"
 import Notice from "~/components/notice/notice"
+import { dispatchPageEvent } from "~/components/page-event/functions/page-event-hook"
 import ThemeSprites from "~/components/sprites/theme-sprites"
 import { useThemeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content-hook"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
@@ -21,6 +24,7 @@ import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
 import {
 	themeDescriptionMaxLength,
+	themeDescriptionMinLength,
 	themeNameMaxLength,
 	themeNameMinLength,
 	themeNameValidationExpression
@@ -52,9 +56,9 @@ const EditorPage: Page<PageProps & Props> = () => {
 
 	const themePreviewContents = useThemeCodePreviewContents()
 	const [themeManifestState, setThemeManifestStateTo] = useThemeManifestState({ kind: ThemeManifestStateKind.None })
+	const inputsAnchorRef = useRef<ContentAnchorElement>(null)
 
 	const onRequestThemes = async () => {
-		console.log(`Requesting theme collection generation in editor.`)
 		setThemeManifestStateTo.pending()
 
 		try {
@@ -69,8 +73,19 @@ const EditorPage: Page<PageProps & Props> = () => {
 
 			return themeManifest
 		} catch (error) {
-			setThemeManifestStateTo.error()
+			// TODO: Add client-side validation of inputs here.
+			// Maybe expose a function from editor to inputs as `reportValidity` that is set on value change.
+
 			console.error(`Could not generate theme server-side.`, error)
+
+			if (error instanceof ApiError) {
+				setThemeManifestStateTo.error(`Invalid input`)
+				inputsAnchorRef.current?.scrollIntoView()
+
+				setTimeout(() => dispatchPageEvent("validateInputs"), 100)
+			}
+
+			setThemeManifestStateTo.error()
 		}
 	}
 
@@ -93,6 +108,7 @@ const EditorPage: Page<PageProps & Props> = () => {
 				</Notice>
 				<ThemeEditorTitle className={styles.title} />
 				<section className={styles.inputs}>
+					<ContentAnchor ref={inputsAnchorRef} anchor="inputs" />
 					<TitleInputTextField
 						className={className(styles.input, styles.nameInput)}
 						value={themeProperties.name}
@@ -111,11 +127,13 @@ const EditorPage: Page<PageProps & Props> = () => {
 						setValue={setThemeProperties.description}
 						name="Description"
 						placeholder="Enter theme description…"
+						required
+						minLength={themeDescriptionMinLength}
 						maxLength={themeDescriptionMaxLength}
 					/>
 					<InputTextField
 						className={className(styles.input, styles.idInput)}
-						value={themeProperties.id ?? "<None>"}
+						value={themeProperties.id ?? "<None generated>"}
 						name="Identifier"
 						placeholder="Auto-generated theme identifier…"
 						readOnly

@@ -1,5 +1,5 @@
 import { FunctionComponent } from "react"
-import { useInputState } from "~/components/input/input-state/functions/input-state-hook"
+import { useInputStateWithHighlight } from "~/components/input/input-state/functions/input-state-hook"
 import { className } from "~/utils/class-names/class-name"
 import InputEnclosure from "../input-enclosure/input-enclosure"
 import { Props as RawProps } from "../input-text-field/input-text-field"
@@ -8,8 +8,15 @@ import styles from "./input-text-area.module.sass"
 type Props = RawProps
 
 const InputTextArea: FunctionComponent<Props> = props => {
-	const { inputRef, inputIsValid, inputOnChange, inputContext } = useInputState<HTMLTextAreaElement>(props.setValue)
-	const inputClassName = className(styles.block, props.readOnly && styles.isReadOnly, inputIsValid && styles.isValid, props.className)
+	const { inputRef, inputIsValid, onInputChange, inputContext, inputIsHighlighting } = useInputStateWithHighlight<HTMLTextAreaElement>(props.setValue)
+
+	const inputClassName = className(
+		styles.block,
+		props.readOnly && styles.isReadOnly,
+		inputIsHighlighting && styles.isHighlighting,
+		inputIsValid && styles.isValid,
+		props.className
+	)
 
 	return (
 		<InputEnclosure className={inputClassName} name={props.name} context={inputContext}>
@@ -18,7 +25,7 @@ const InputTextArea: FunctionComponent<Props> = props => {
 				id={props.name}
 				placeholder={props.placeholder}
 				value={props.value}
-				onChange={inputOnChange}
+				onChange={onInputChange}
 				required={props.required}
 				minLength={props.minLength}
 				maxLength={props.maxLength}
