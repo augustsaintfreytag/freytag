@@ -1,5 +1,6 @@
-import { FunctionComponent } from "react"
+import React, { FunctionComponent, useEffect } from "react"
 import { useInputState } from "~/components/input/input-state/functions/input-state-hook"
+import { useAutoResettingState } from "~/components/state/functions/auto-resetting-state-hook"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import InputEnclosure from "../input-enclosure/input-enclosure"
@@ -11,6 +12,7 @@ export interface Props extends PropsWithClassName {
 	hint?: string
 	value?: string
 	setValue?: (value: string) => void
+	highlighted?: boolean
 	required?: boolean
 	pattern?: string
 	minLength?: number
@@ -20,9 +22,21 @@ export interface Props extends PropsWithClassName {
 	onBlur?: (event: React.FocusEvent<HTMLElement>) => void
 }
 
+export function InputHighlightEvent(): Event {
+	return new Event("inputHighlight")
+}
+
 const InputTextField: FunctionComponent<Props> = props => {
-	const { inputRef, inputIsValid, inputOnChange, inputContext } = useInputState<HTMLInputElement>(props.setValue)
-	const inputClassName = className(styles.block, props.readOnly && styles.isReadOnly, inputIsValid && styles.isValid, props.className)
+	const { inputRef, inputIsValid, onInputChange, inputContext } = useInputState<HTMLInputElement>(props.setValue)
+	const [isHighlighting, setIsHighlighting] = useAutoResettingState(false)
+
+	useEffect(() => {
+		if (!inputIsValid) {
+			setIsHighlighting(true)
+		}
+	}, [inputIsValid])
+
+	const inputClassName = className(styles.block, props.readOnly && styles.isReadOnly, isHighlighting && styles.isHighlighting, props.className)
 
 	return (
 		<InputEnclosure className={inputClassName} name={props.name} context={inputContext}>
@@ -31,7 +45,7 @@ const InputTextField: FunctionComponent<Props> = props => {
 				id={props.name}
 				type="text"
 				value={props.value}
-				onChange={inputOnChange}
+				onChange={onInputChange}
 				placeholder={props.placeholder}
 				required={props.required}
 				pattern={props.pattern}

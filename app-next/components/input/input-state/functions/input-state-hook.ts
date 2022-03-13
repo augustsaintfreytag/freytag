@@ -41,7 +41,8 @@ export function useInputState<InputElement extends HTMLInputElement | HTMLTextAr
 		inputRef,
 		inputIsValid,
 		inputIsUsed,
-		inputOnChange: onInputChange,
+		setInputIsUsed,
+		onInputChange,
 		inputContext
 	}
 }

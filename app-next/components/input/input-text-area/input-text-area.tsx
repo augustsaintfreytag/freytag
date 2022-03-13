@@ -8,7 +8,7 @@ import styles from "./input-text-area.module.sass"
 type Props = RawProps
 
 const InputTextArea: FunctionComponent<Props> = props => {
-	const { inputRef, inputIsValid, inputOnChange, inputContext } = useInputState<HTMLTextAreaElement>(props.setValue)
+	const { inputRef, inputIsValid, onInputChange, inputContext } = useInputState<HTMLTextAreaElement>(props.setValue)
 	const inputClassName = className(styles.block, props.readOnly && styles.isReadOnly, inputIsValid && styles.isValid, props.className)
 
 	return (
@@ -18,7 +18,7 @@ const InputTextArea: FunctionComponent<Props> = props => {
 				id={props.name}
 				placeholder={props.placeholder}
 				value={props.value}
-				onChange={inputOnChange}
+				onChange={onInputChange}
 				required={props.required}
 				minLength={props.minLength}
 				maxLength={props.maxLength}
