@@ -62,6 +62,7 @@ const ThemeManifestDownloads: FunctionComponent<Props> = props => {
 
 			console.log(`Initiating theme download from newly generated collection.`)
 			downloadResourceViaManifest(generatedManifest, format)
+
 			return
 		}
 	}
