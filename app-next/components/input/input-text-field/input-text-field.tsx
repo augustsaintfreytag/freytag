@@ -1,7 +1,5 @@
-import React, { FunctionComponent, useEffect } from "react"
-import { useInputState } from "~/components/input/input-state/functions/input-state-hook"
-import { usePageEvent } from "~/components/page-event/functions/page-event-hook"
-import { useAutoResettingState } from "~/components/state/functions/auto-resetting-state-hook"
+import React, { FunctionComponent } from "react"
+import { useInputStateWithHighlight } from "~/components/input/input-state/functions/input-state-hook"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import InputEnclosure from "../input-enclosure/input-enclosure"
@@ -28,25 +26,13 @@ export function InputHighlightEvent(): Event {
 }
 
 const InputTextField: FunctionComponent<Props> = props => {
-	const { inputRef, inputIsValid, onInputChange, inputContext, setInputIsUsed } = useInputState<HTMLInputElement>(props.setValue)
-	const [isHighlighting, setIsHighlighting] = useAutoResettingState(false)
-
-	useEffect(() => {
-		if (!inputIsValid) {
-			setIsHighlighting(true)
-		}
-	}, [inputIsValid])
-
-	usePageEvent("validateInputs", () => {
-		setInputIsUsed(true)
-		setIsHighlighting(true)
-	})
+	const { inputRef, inputIsValid, onInputChange, inputContext, inputIsHighlighting } = useInputStateWithHighlight<HTMLInputElement>(props.setValue)
 
 	const inputClassName = className(
 		styles.block,
 		props.readOnly && styles.isReadOnly,
 		inputIsValid && styles.isValid,
-		isHighlighting && styles.isHighlighting,
+		inputIsHighlighting && styles.isHighlighting,
 		props.className
 	)
 
