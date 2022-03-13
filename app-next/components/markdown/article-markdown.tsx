@@ -1,4 +1,4 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent, useMemo } from "react"
 import ReactMarkdown from "react-markdown"
 import { mappedAnchorMarkdownElement } from "~/components/markdown/functions/markdown-anchor-mapping"
 import { mappedCodeMarkdownElement } from "~/components/markdown/functions/markdown-code-mapping"
@@ -23,10 +23,13 @@ const components: MarkdownComponents = {
 }
 
 const ArticleMarkdown: FunctionComponent<Props> = props => {
-	return (
-		<ReactMarkdown components={components} skipHtml>
-			{props.children ?? ""}
-		</ReactMarkdown>
+	return useMemo(
+		() => (
+			<ReactMarkdown components={components} skipHtml>
+				{props.children ?? ""}
+			</ReactMarkdown>
+		),
+		[props.children]
 	)
 }
 
