@@ -11,6 +11,10 @@ export function descriptionForThemeManifestState(state: ThemeManifestState): str
 			const creationDate = state.manifest.dateCreated
 			return `Cached, themes generated ${formattedDate(creationDate, DateFormatStyle.DayMonthYearAndTime)}.`
 		case ThemeManifestStateKind.Error:
-			return `Not cached, error while generating.`
+			if (!state.message) {
+				return `Not cached, error while generating.`
+			}
+
+			return `Not cached, error: ${state.message}.`
 	}
 }
