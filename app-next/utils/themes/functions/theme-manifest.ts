@@ -1,6 +1,6 @@
 import { readdir, readFile } from "fs/promises"
-import hashValue from "object-hash"
 import { ThemeFormat, themeFormatIdentifierForFormat } from "~/api/cockpit/records/themes/library/theme-format"
+import { hashValue } from "~/utils/hash/hash"
 import { themesOutputPath } from "~/utils/themes/functions/theme-configuration"
 import { depositedThemeFileName } from "~/utils/themes/functions/theme-resources"
 import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
@@ -30,11 +30,13 @@ export function generateManifest(properties: ThemeGenerationProperties, formats:
 }
 
 function generateThemeContentHash(properties: ThemeGenerationProperties): string {
-	return hashValue({
-		name: properties.name,
-		description: properties.description,
-		colors: properties.colors
-	})
+	return hashValue(
+		JSON.stringify({
+			name: properties.name,
+			description: properties.description,
+			colors: properties.colors
+		})
+	)
 }
 
 // Read
