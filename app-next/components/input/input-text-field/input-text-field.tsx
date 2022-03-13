@@ -17,6 +17,7 @@ export interface Props extends PropsWithClassName {
 	minLength?: number
 	maxLength?: number
 	readOnly?: boolean
+	onValidation?: (state: boolean) => void
 	onFocus?: () => void
 	onBlur?: (event: React.FocusEvent<HTMLElement>) => void
 }
@@ -26,7 +27,10 @@ export function InputHighlightEvent(): Event {
 }
 
 const InputTextField: FunctionComponent<Props> = props => {
-	const { inputRef, inputIsValid, onInputChange, inputContext, inputIsHighlighting } = useInputStateWithHighlight<HTMLInputElement>(props.setValue)
+	const { inputRef, inputIsValid, onInputChange, inputContext, inputIsHighlighting } = useInputStateWithHighlight<HTMLInputElement>(
+		props.setValue,
+		props.onValidation
+	)
 
 	const inputClassName = className(
 		styles.block,

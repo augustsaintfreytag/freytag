@@ -8,7 +8,10 @@ import styles from "./input-text-area.module.sass"
 type Props = RawProps
 
 const InputTextArea: FunctionComponent<Props> = props => {
-	const { inputRef, inputIsValid, onInputChange, inputContext, inputIsHighlighting } = useInputStateWithHighlight<HTMLTextAreaElement>(props.setValue)
+	const { inputRef, inputIsValid, onInputChange, inputContext, inputIsHighlighting } = useInputStateWithHighlight<HTMLTextAreaElement>(
+		props.setValue,
+		props.onValidation
+	)
 
 	const inputClassName = className(
 		styles.block,
