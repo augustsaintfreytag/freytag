@@ -1,5 +1,7 @@
-import { FunctionComponent } from "react"
+import { FunctionComponent, useEffect } from "react"
 import { useInputState } from "~/components/input/input-state/functions/input-state-hook"
+import { usePageEvent } from "~/components/page-event/functions/page-event-hook"
+import { useAutoResettingState } from "~/components/state/functions/auto-resetting-state-hook"
 import { className } from "~/utils/class-names/class-name"
 import InputEnclosure from "../input-enclosure/input-enclosure"
 import { Props as RawProps } from "../input-text-field/input-text-field"
@@ -8,8 +10,27 @@ import styles from "./input-text-area.module.sass"
 type Props = RawProps
 
 const InputTextArea: FunctionComponent<Props> = props => {
-	const { inputRef, inputIsValid, onInputChange, inputContext } = useInputState<HTMLTextAreaElement>(props.setValue)
-	const inputClassName = className(styles.block, props.readOnly && styles.isReadOnly, inputIsValid && styles.isValid, props.className)
+	const { inputRef, inputIsValid, onInputChange, inputContext, setInputIsUsed } = useInputState<HTMLTextAreaElement>(props.setValue)
+	const [isHighlighting, setIsHighlighting] = useAutoResettingState(false)
+
+	useEffect(() => {
+		if (!inputIsValid) {
+			setIsHighlighting(true)
+		}
+	}, [inputIsValid])
+
+	usePageEvent("validateInputs", () => {
+		setInputIsUsed(true)
+		setIsHighlighting(true)
+	})
+
+	const inputClassName = className(
+		styles.block,
+		props.readOnly && styles.isReadOnly,
+		isHighlighting && styles.isHighlighting,
+		inputIsValid && styles.isValid,
+		props.className
+	)
 
 	return (
 		<InputEnclosure className={inputClassName} name={props.name} context={inputContext}>

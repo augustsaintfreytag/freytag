@@ -1,5 +1,6 @@
 import React, { FunctionComponent, useEffect } from "react"
 import { useInputState } from "~/components/input/input-state/functions/input-state-hook"
+import { usePageEvent } from "~/components/page-event/functions/page-event-hook"
 import { useAutoResettingState } from "~/components/state/functions/auto-resetting-state-hook"
 import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
@@ -27,7 +28,7 @@ export function InputHighlightEvent(): Event {
 }
 
 const InputTextField: FunctionComponent<Props> = props => {
-	const { inputRef, inputIsValid, onInputChange, inputContext } = useInputState<HTMLInputElement>(props.setValue)
+	const { inputRef, inputIsValid, onInputChange, inputContext, setInputIsUsed } = useInputState<HTMLInputElement>(props.setValue)
 	const [isHighlighting, setIsHighlighting] = useAutoResettingState(false)
 
 	useEffect(() => {
@@ -36,7 +37,18 @@ const InputTextField: FunctionComponent<Props> = props => {
 		}
 	}, [inputIsValid])
 
-	const inputClassName = className(styles.block, props.readOnly && styles.isReadOnly, isHighlighting && styles.isHighlighting, props.className)
+	usePageEvent("validateInputs", () => {
+		setInputIsUsed(true)
+		setIsHighlighting(true)
+	})
+
+	const inputClassName = className(
+		styles.block,
+		props.readOnly && styles.isReadOnly,
+		inputIsValid && styles.isValid,
+		isHighlighting && styles.isHighlighting,
+		props.className
+	)
 
 	return (
 		<InputEnclosure className={inputClassName} name={props.name} context={inputContext}>
