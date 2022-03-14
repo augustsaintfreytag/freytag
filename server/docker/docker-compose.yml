@@ -45,6 +45,16 @@ services:
       - default
     restart: unless-stopped
 
+  cron:
+    build:
+      context: ./server/docker/images/cron
+    image: freytag/cron
+    volumes:
+      - ./server/cron/crontab:/etc/crontab:ro
+    networks:
+      - default
+    restart: unless-stopped
+
   color-theme-utility:
     build:
       context: ./server/docker/images/color-theme-utility
