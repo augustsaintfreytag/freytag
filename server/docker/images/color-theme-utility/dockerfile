@@ -1,4 +1,5 @@
 FROM swift:slim
+LABEL maintainer "August Saint Freytag <me@augustfreytag.com>"
 
 # Color Theme Utility
 
@@ -18,7 +19,8 @@ RUN service ssh start
 
 # Root
 
-ADD start.sh /root/start.sh
-RUN chmod +x /root/start.sh
+ADD entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-CMD ["/root/start.sh"]
+ENTRYPOINT [ "/entrypoint.sh" ]
+CMD ["/usr/sbin/sshd", "-D"]
