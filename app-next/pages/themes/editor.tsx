@@ -61,7 +61,7 @@ const EditorPage: Page<PageProps & Props> = () => {
 	const inputsAnchorRef = useRef<ContentAnchorElement>(null)
 
 	const onRequestThemesError = () => {
-		inputsAnchorRef.current?.scrollIntoView()
+		inputsAnchorRef.current?.scrollIntoView({ behavior: "smooth" })
 		setTimeout(() => dispatchPageEvent("validateInputs"), 150)
 	}
 
