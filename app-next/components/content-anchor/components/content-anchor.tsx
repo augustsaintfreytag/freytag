@@ -10,7 +10,12 @@ type Props = {
 
 const ContentAnchor = forwardRef<ContentAnchorElement, Props>((props, ref) => {
 	const identifier = contentAnchorIdFromText(props.anchor)
-	return <span className={styles.anchor} ref={ref} id={identifier}></span>
+
+	return (
+		<span className={styles.enclosure}>
+			<span className={styles.anchor} ref={ref} id={identifier}></span>
+		</span>
+	)
 })
 
 export default ContentAnchor
