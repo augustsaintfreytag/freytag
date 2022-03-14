@@ -30,6 +30,7 @@ services:
   app-dependencies:
     build:
       context: ./server/docker/images/app
+    image: freytag/app-dependencies
     volumes:
       - ./${APP_ROOT}/package.json:/var/app/package.json:ro
       - ./${APP_ROOT}/yarn.lock:/var/app/yarn.lock:ro
@@ -38,9 +39,19 @@ services:
     command: yarn
 
   app-content:
-    image: "flashspys/nginx-static"
+    image: flashspys/nginx-static
     volumes:
       - data-app-themes:/static/themes:ro
+    networks:
+      - default
+    restart: unless-stopped
+
+  cron:
+    build:
+      context: ./server/docker/images/cron
+    image: freytag/cron
+    volumes:
+      - ./server/cron/crontab:/etc/crontab:ro
     networks:
       - default
     restart: unless-stopped
