@@ -14,7 +14,7 @@ app_sub_directory: "app-next"
 # Volumes
 cockpit_sync_directory: "/var/www/utility/cockpit"
 cockpit_sync_archive: "archive"
-cockpit_docker_volume: "freytag_data-cockpit"
+cockpit_docker_volume: "freytag-data-cockpit"
 
 # Listener
 listener_server_port: "8080"

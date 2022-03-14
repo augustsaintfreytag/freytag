@@ -7,7 +7,7 @@ BASE_DIR=$(dirname "$0" | xargs -0 realpath)
 COMMIT_MESSAGE=$1
 TRAILING_ARGS=$2
 
-COCKPIT_VOLUME_NAME="freytag_data-cockpit"
+COCKPIT_VOLUME_NAME="freytag-data-cockpit"
 COCKPIT_ARCHIVE_DIR="$BASE_DIR/../../utility/cockpit/archive"
 ANSIBLE_DIR="$BASE_DIR/../server/ansible"
 
