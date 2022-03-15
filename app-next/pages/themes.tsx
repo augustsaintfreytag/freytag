@@ -1,8 +1,8 @@
 import type { GetServerSideProps } from "next"
-import { getServerSideResponse, getServerSideResponses } from "~/api/props/functions/server-side-props"
-import { pageGraphicsFromApi } from "~/api/records/page-graphics/functions/page-graphics-data-access"
-import { themesFromApi } from "~/api/records/themes/functions/theme-data-access"
-import { Theme } from "~/api/records/themes/library/theme"
+import { pageGraphicsFromApi } from "~/api/cockpit/records/page-graphics/functions/page-graphics-data-access"
+import { themesFromApi } from "~/api/cockpit/records/themes/functions/theme-data-access"
+import { Theme } from "~/api/cockpit/records/themes/library/theme"
+import { getServerSideResponse, getServerSideResponses } from "~/api/common/props/functions/server-side-props"
 import ContentAnchor from "~/components/content-anchor/components/content-anchor"
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
@@ -56,12 +56,7 @@ const ThemesPage: Page<PageProps & Props> = props => {
 			<ThemesMeta coverAsset={props.data?.preview} />
 			<ThemeSprites />
 			<section className={styles.page}>
-				<ImageCover
-					className={styles.cover}
-					src={props.data?.cover}
-					description="The cover artwork studio page. It shows a ringed planet on a vibrant 
-					backdrop of light to dark purple with the text 'Theme Studio' repeating itself over it."
-				/>
+				<ImageCover className={styles.cover} src={props.data?.cover} />
 				<ThemesTitle className={styles.title} />
 				<ThemesReiteration />
 				<section className={styles.list}>

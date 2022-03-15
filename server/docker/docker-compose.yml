@@ -1,57 +1,100 @@
 # Variables
 
-# "APP_STARTUP_CMD"                     Start-up command invoked for App service after setting up dependencies. Example "yarn dev"
+# "APP_ROOT"                           The root directory to mount for the app.
+# "APP_STARTUP_CMD"                    Start-up command invoked for app service after setting up dependencies. Example "yarn dev"
 
 version: "3.9"
 
 services:
   app:
-    container_name: freytag_app
-    image: node:16.13.0
+    build:
+      context: ./server/docker/images/app
+    image: freytag/app
     volumes:
-      - ./${APP_ROOT}:/var/app:cached
-      - data_app_node_modules:/var/app/node_modules
-      - data_app_build_framework:/var/app/.next
+      - ./${APP_ROOT}:/var/app
+      - data-app-node-modules:/var/app/node_modules
+      - data-app-build-framework:/var/app/.next
+      - data-app-themes:/var/themes
     working_dir: /var/app
     command: ${APP_STARTUP_CMD}
     networks:
-      - dropship_shared
+      - default
+      - dropship-shared
     ports:
       - 9229:9229
     depends_on:
-      app_dependencies:
+      app-dependencies:
         condition: service_completed_successfully
     restart: unless-stopped
 
-  app_dependencies:
-    container_name: freytag_app_dependencies
-    image: node:16.13.0
+  app-dependencies:
+    build:
+      context: ./server/docker/images/app
+    image: freytag/app-dependencies
     volumes:
-      - ./${APP_ROOT}/package.json:/var/app/package.json
-      - ./${APP_ROOT}/yarn.lock:/var/app/yarn.lock
-      - data_app_node_modules:/var/app/node_modules
+      - ./${APP_ROOT}/package.json:/var/app/package.json:ro
+      - ./${APP_ROOT}/yarn.lock:/var/app/yarn.lock:ro
+      - data-app-node-modules:/var/app/node_modules
     working_dir: /var/app
     command: yarn
 
+  app-content:
+    image: flashspys/nginx-static
+    volumes:
+      - data-app-themes:/static/themes:ro
+    networks:
+      - default
+    restart: unless-stopped
+
+  cron:
+    build:
+      context: ./server/docker/images/cron
+    image: freytag/cron
+    volumes:
+      - ./server/cron/crontab:/etc/crontab:ro
+    networks:
+      - default
+    restart: unless-stopped
+
+  color-theme-utility:
+    build:
+      context: ./server/docker/images/color-theme-utility
+      args:
+        - COLOR_THEME_UTILITY_URL=${COLOR_THEME_UTILITY_URL}
+    image: freytag/color-theme-utility
+    volumes:
+      - data-app-themes:/var/themes
+    networks:
+      - default
+    restart: unless-stopped
+
   cockpit:
-    container_name: freytag_cockpit
     image: agentejo/cockpit:latest
     volumes:
-      - data_cockpit:/var/www/html/storage
+      - data-cockpit:/var/www/html/storage
     networks:
-      - dropship_shared
+      - default
+      - dropship-shared
     environment:
       - COCKPIT_SESSION_NAME=cockpit
     restart: unless-stopped
 
 volumes:
-  data_cockpit:
+  data-cockpit:
+    name: freytag-data-cockpit
     driver: local
-  data_app_node_modules:
+  data-app-node-modules:
+    name: freytag-data-app-node-modules
     driver: local
-  data_app_build_framework:
+  data-app-build-framework:
+    name: freytag-data-app-build-framework
+    driver: local
+  data-app-themes:
+    name: freytag-data-app-themes
     driver: local
 
 networks:
-  dropship_shared:
+  default:
+    name: freytag-default
+  dropship-shared:
     external: true

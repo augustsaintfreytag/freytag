@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
-import { dateFromTimestamp } from "~/api/common/functions/date-conversion"
-import { Theme } from "~/api/records/themes/library/theme"
+import { dateFromTimestamp } from "~/api/cockpit/data/functions/date-conversion"
+import { Theme } from "~/api/cockpit/records/themes/library/theme"
 import ContentClosure from "~/components/content-closure/content-closure"
 import ExternalTwitterLink from "~/components/link/external-twitter-link"
 import Time, { TimeProperties } from "~/components/time/time"

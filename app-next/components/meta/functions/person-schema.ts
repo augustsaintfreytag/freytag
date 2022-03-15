@@ -1,6 +1,6 @@
 import { Person, WithContext } from "schema-dts"
 import { socialGitLabUrl, socialInstagramUrl, socialMediumUrl, socialTwitterUrl, socialVimeoUrl } from "~/components/meta/functions/social-media"
-import { cockpitHostClient, cockpitProtocol } from "~/components/meta/library/app"
+import { cockpitHostClient, cockpitProtocol } from "~/utils/app/app"
 import { URL } from "~/utils/routing/library/url"
 
 function globalImageUrl(path: string): URL {

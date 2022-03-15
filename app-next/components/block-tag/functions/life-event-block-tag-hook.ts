@@ -1,7 +1,7 @@
 import { useMemo } from "react"
-import { ColorDescription } from "~/api/common/library/color-description"
-import { LifeEventKind } from "~/api/records/life-event/library/life-event-kind"
+import { LifeEventKind } from "~/api/cockpit/records/life-event/library/life-event-kind"
 import { colorForLifeEventKind } from "~/components/life/life-event/functions/life-event-kind-colors"
+import { ColorDescription } from "~/utils/colors/library/color-description"
 
 interface TagProperties {
 	name: string

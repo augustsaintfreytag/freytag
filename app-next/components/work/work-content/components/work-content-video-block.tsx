@@ -9,9 +9,9 @@ export interface Props {
 
 const WorkContentVideoBlock: FunctionComponent<Props> = props => {
 	return (
-		<section className={styles.block}>
+		<div className={styles.block}>
 			<VideoEmbed code={props.code} aspect={props.aspect} />
-		</section>
+		</div>
 	)
 }
 

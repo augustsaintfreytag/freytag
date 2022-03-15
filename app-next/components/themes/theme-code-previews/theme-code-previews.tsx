@@ -1,26 +1,29 @@
 import { FunctionComponent } from "react"
+import ActionButtonStack from "~/components/action-button/action-button-stack"
 import RadioActionButton from "~/components/action-button/radio-action-button"
 import { useLocalStorageState } from "~/components/local-storage/functions/local-storage-hook"
 import { SpriteReference } from "~/components/sprites/sprite"
-import { TokenizedString } from "~/components/themes/theme-code-preview/library/tokenized-string"
 import ThemeCodePreview from "~/components/themes/theme-code-preview/theme-code-preview"
-import { PropsWithClassName } from "~/types/props"
 import { className } from "~/utils/class-names/class-name"
 import { IntermediateTheme } from "~/utils/themes/library/intermediate-theme"
+import { TokenizedString } from "~/utils/tokenized-string/models/tokenized-string"
 import styles from "./theme-code-previews.module.sass"
 
-export interface CodeContent {
+export interface ThemeCodePreviewContent {
 	name: string
 	symbol: SpriteReference
 	content: TokenizedString
 }
 
-interface Props extends PropsWithClassName {
+interface Props {
+	className?: string
+	contentClassName?: string
 	theme?: IntermediateTheme
-	content: CodeContent[]
+	content: ThemeCodePreviewContent[]
+	windowed?: boolean
 }
 
-const selectedContentKey = "theme-code-preview-format"
+const selectedContentKey = "themes.codePreviewFormat"
 
 const ThemeCodePreviews: FunctionComponent<Props> = props => {
 	const { theme, content } = props
@@ -28,9 +31,11 @@ const ThemeCodePreviews: FunctionComponent<Props> = props => {
 	const selectedContent = content[selectedContentIndex]
 
 	return (
-		<section className={className(styles.previews, props.className)}>
-			<div className={styles.content}>{selectedContent && <ThemeCodePreview theme={theme} content={selectedContent.content} />}</div>
-			<div className={styles.selector}>
+		<div className={className(styles.previews, props.className)}>
+			<div className={className(styles.content, props.contentClassName)}>
+				{selectedContent && <ThemeCodePreview className={styles.preview} theme={theme} content={selectedContent.content} windowed={props.windowed} />}
+			</div>
+			<ActionButtonStack className={styles.selector}>
 				{content.map((item, index) => (
 					<RadioActionButton
 						key={item.name}
@@ -41,8 +46,8 @@ const ThemeCodePreviews: FunctionComponent<Props> = props => {
 						onClick={() => setSelectedContentIndex(index)}
 					/>
 				))}
-			</div>
-		</section>
+			</ActionButtonStack>
+		</div>
 	)
 }
 

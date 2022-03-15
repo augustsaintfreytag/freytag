@@ -1,11 +1,11 @@
 import { FunctionComponent, useState } from "react"
-import { Theme } from "~/api/records/themes/library/theme"
-import ThemeMenuItem from "~/components/themes/theme-menu/components/theme-menu-item"
+import { Theme } from "~/api/cockpit/records/themes/library/theme"
+import MenuItem from "~/components/menu/components/menu-item"
+import Menu from "~/components/menu/menu"
 import { navigatorHasSharingSupport, shareTheme } from "~/components/themes/theme-menu/functions/theme-sharing"
 import { ThemeMenuSprite } from "~/components/themes/theme-menu/library/theme-menu-sprite"
 import { useAfterInitialRender } from "~/utils/render/initial-render-hook"
 import { URL } from "~/utils/routing/library/url"
-import styles from "./theme-menu.module.sass"
 
 const itemTexts = {
 	returnToGallery: { short: "Gallery", full: "Return to Gallery" },
@@ -41,20 +41,13 @@ const ThemeMenu: FunctionComponent<Props> = props => {
 	})
 
 	return (
-		<section className={styles.menu}>
-			<nav>
-				<ThemeMenuItem symbol={ThemeMenuSprite.Gallery} text={itemTexts.returnToGallery} href="/themes#gallery" />
-				<ThemeMenuItem symbol={ThemeMenuSprite.ShareTheme} text={itemTexts.shareTheme} onClick={() => shareTheme(theme)} disabled={!allowsSharing} />
-				<ThemeMenuItem symbol={ThemeMenuSprite.CustomizeTheme} text={itemTexts.customizeTheme} disabled />
-				<ThemeMenuItem
-					symbol={ThemeMenuSprite.PreviousTheme}
-					text={itemTexts.previousTheme}
-					href={themeHref(previousTheme)}
-					disabled={!previousTheme}
-				/>
-				<ThemeMenuItem symbol={ThemeMenuSprite.NextTheme} text={itemTexts.nextTheme} href={themeHref(nextTheme)} disabled={!nextTheme} />
-			</nav>
-		</section>
+		<Menu>
+			<MenuItem symbol={ThemeMenuSprite.Gallery} text={itemTexts.returnToGallery} href="/themes#gallery" />
+			<MenuItem symbol={ThemeMenuSprite.ShareTheme} text={itemTexts.shareTheme} onClick={() => shareTheme(theme)} disabled={!allowsSharing} />
+			<MenuItem symbol={ThemeMenuSprite.CustomizeTheme} text={itemTexts.customizeTheme} disabled />
+			<MenuItem symbol={ThemeMenuSprite.PreviousTheme} text={itemTexts.previousTheme} href={themeHref(previousTheme)} disabled={!previousTheme} />
+			<MenuItem symbol={ThemeMenuSprite.NextTheme} text={itemTexts.nextTheme} href={themeHref(nextTheme)} disabled={!nextTheme} />
+		</Menu>
 	)
 }
 

@@ -4,6 +4,10 @@ export interface ColorValue {
 	blue: number
 }
 
+export function isColorValue(value: any): value is ColorValue {
+	return value && typeof value === "object" && value.red && value.green && value.blue
+}
+
 export class Color implements ColorValue {
 	red: number
 	green: number
@@ -27,8 +31,24 @@ export class Color implements ColorValue {
 		return new Color(this.randomComponent(), this.randomComponent(), this.randomComponent())
 	}
 
-	static randomComponent(): number {
+	static get randomLight(): Color {
+		return new Color(this.randomLightComponent(), this.randomLightComponent(), this.randomLightComponent())
+	}
+
+	static get randomDark(): Color {
+		return new Color(this.randomDarkComponent(), this.randomDarkComponent(), this.randomDarkComponent())
+	}
+
+	private static randomComponent(): number {
 		return Math.round(Math.random() * 1000) / 1000
+	}
+
+	private static randomLightComponent(): number {
+		return Math.round(500 + Math.random() * 500) / 1000
+	}
+
+	private static randomDarkComponent(): number {
+		return Math.round(Math.random() * 500) / 1000
 	}
 
 	// Init
@@ -47,10 +67,15 @@ export class Color implements ColorValue {
 		return new Color(value.red, value.green, value.blue)
 	}
 
+	get jittered(): Color {
+		return new Color(this.red + (Math.random() - 0.5) / 10, this.green + (Math.random() - 0.5) / 10, this.blue + (Math.random() - 0.5) / 10)
+	}
+
 	// Value
 
 	get key(): string {
-		return `${this.red},${this.green},${this.blue}`
+		const [red, green, blue] = [Color.round(this.red), Color.round(this.green), Color.round(this.blue)]
+		return `${red},${green},${blue}`
 	}
 
 	get rgb(): string {
@@ -72,6 +97,10 @@ export class Color implements ColorValue {
 		const formattedValue = boundedValue.toString(16).padStart(2, "0").toUpperCase()
 
 		return formattedValue
+	}
+
+	private static round(value: number): number {
+		return Math.round(value * 1000) / 1000
 	}
 
 	// Analysis

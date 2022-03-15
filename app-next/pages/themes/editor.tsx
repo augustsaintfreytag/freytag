@@ -1,193 +1,181 @@
-import { ChangeEvent, forwardRef, FunctionComponent, useRef, useState } from "react"
-import { ColorDescription } from "~/api/common/library/color-description"
-import ExternalLink from "~/components/link/external-link"
-import { themeColorNames } from "~/components/themes/theme-color-collection/library/theme-color-labels"
+import type { GetServerSideProps } from "next"
+import { useEffect, useRef } from "react"
+import { ApiError } from "~/api/common/errors/api-error"
+import ContentAnchor, { ContentAnchorElement } from "~/components/content-anchor/components/content-anchor"
+import Divider from "~/components/divider/divider"
+import { useInputValidityReport } from "~/components/input/input-state/functions/input-validity-report-hook"
+import InputTextArea from "~/components/input/input-text-area/input-text-area"
+import InputTextField from "~/components/input/input-text-field/input-text-field"
+import TitleInputTextField from "~/components/input/title-input-text-field/title-input-text-field"
+import Notice from "~/components/notice/notice"
+import { dispatchPageEvent } from "~/components/page-event/functions/page-event-hook"
+import ThemeSprites from "~/components/sprites/theme-sprites"
+import { useThemeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content-hook"
+import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
+import ThemeEditorColors from "~/components/themes/theme-editor-colors/theme-editor-colors"
+import ThemeEditorMenu from "~/components/themes/theme-editor-menu/theme-editor-menu"
+import { useThemeEditorProperties } from "~/components/themes/theme-editor-properties/theme-editor-properties-hook"
+import ThemeEditorTitle from "~/components/themes/theme-editor-title/theme-editor-title"
+import ThemeManifestDownloads from "~/components/themes/theme-manifest-downloads/theme-manifest-downloads"
+import { useGeneratedThemeViaThemeUtility } from "~/components/themes/theme-utility/functions/theme-utility-generation-hook"
+import { useDeferredThemeUtility } from "~/components/themes/theme-utility/functions/theme-utility-hook"
+import WorkContentTextBlock from "~/components/work/work-content/components/work-content-text-block"
+import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
-import { colorFromHexDescription } from "~/utils/colors/functions/color-conversion"
-import { Color } from "~/utils/colors/models/color"
-import { range } from "~/utils/range/range"
+import {
+	themeDescriptionMaxLength,
+	themeDescriptionMinLength,
+	themeNameMaxLength,
+	themeNameMinLength,
+	themeNameValidationExpression
+} from "~/utils/themes/functions/theme-configuration"
+import { generateThemeViaApi } from "~/utils/themes/functions/theme-data-access"
+import { useThemeManifestState } from "~/utils/themes/functions/theme-manifest-state-hook"
+import { ThemeGenerationProperties } from "~/utils/themes/library/theme-generation-properties"
+import { ThemeManifestStateKind } from "~/utils/themes/library/theme-manifest-state"
 import styles from "./editor-page.module.sass"
-
-// Color Picker Component
-
-interface ColorPickerProps {
-	name: string
-	color?: Color
-	setColor?: (newColor: Color) => void
-}
-
-const ColorPicker: FunctionComponent<ColorPickerProps> = props => {
-	function onColorValueChange(event: ChangeEvent<HTMLInputElement>) {
-		const newHexValue = event.target.value
-		const newColor = colorFromHexDescription(newHexValue)
-
-		if (!newColor) {
-			console.warn(`Could not get modeled color from hex description '${newHexValue}'.`)
-			return
-		}
-
-		props.setColor?.(newColor)
-	}
-
-	return (
-		<div className={styles.picker}>
-			<div>{props.name}</div>
-			<input type="color" value={props.color?.hex} onChange={onColorValueChange} />
-		</div>
-	)
-}
-
-// Code Component
-
-interface EditableCodeDisplayProps {
-	code: string
-	setCode?: (newCode: string) => void
-}
-
-const EditableCodeDisplay = forwardRef<HTMLInputElement, EditableCodeDisplayProps>((props, ref) => (
-	<input
-		ref={ref}
-		type="text"
-		value={props.code}
-		onChange={event => {
-			const newContent = event.target.value
-			props.setCode?.(newContent)
-		}}
-	/>
-))
 
 // Library
 
-interface Props {}
+interface PageData {}
 
-// Functions
-
-function encodedColorSequence(sequence: Color[]): string {
-	const hexDescriptions = sequence.map(color => color.hex)
-	return JSON.stringify(hexDescriptions)
-}
-
-function straightColorSequence(sequence: Color[]): string {
-	const hexDescriptions = sequence.map(color => color.hex.substring(1))
-	return hexDescriptions.join(", ")
+interface Props {
+	data?: PageData
 }
 
 // Page
 
-const numberOfManagedColors = 10
+export const getServerSideProps: GetServerSideProps<Props, {}> = async () => {
+	return { props: {} }
+}
 
 const EditorPage: Page<PageProps & Props> = () => {
-	const [colorSequence, setColorSequence] = useState<Color[]>(range(0, numberOfManagedColors).map(() => Color.black))
-	const [editableStraightSequence, setEditableStraightSequence] = useState<string>(straightColorSequence(colorSequence))
-	const [editableEncodedSequence, setEditableEncodedSequence] = useState<string>(encodedColorSequence(colorSequence))
+	const [themeProperties, setThemeProperties, sanitizeThemeProperties] = useThemeEditorProperties()
+	const [themeUtility, isLoadingThemeUtility, loadThemeUtility] = useDeferredThemeUtility()
+	const generatedTheme = useGeneratedThemeViaThemeUtility(themeUtility, isLoadingThemeUtility, themeProperties.colors)
 
-	const straightSequenceRef = useRef<HTMLInputElement>(null)
-	const encodedSequenceRef = useRef<HTMLInputElement>(null)
+	const themePreviewContents = useThemeCodePreviewContents()
+	const [themeManifestState, setThemeManifestStateTo] = useThemeManifestState({ kind: ThemeManifestStateKind.None })
+	const [inputValidityReport, setInputValidityReport, allInputsValid] = useInputValidityReport()
+	const inputsAnchorRef = useRef<ContentAnchorElement>(null)
 
-	function overwriteColorSequence(colorSequence: Color[]) {
-		setColorSequence(colorSequence)
-
-		if (straightSequenceRef.current !== document.activeElement) {
-			setEditableStraightSequence(straightColorSequence(colorSequence))
-		}
-
-		if (encodedSequenceRef.current !== document.activeElement) {
-			setEditableEncodedSequence(encodedColorSequence(colorSequence))
-		}
+	const onRequestThemesError = () => {
+		inputsAnchorRef.current?.scrollIntoView({ behavior: "smooth" })
+		setTimeout(() => dispatchPageEvent("validateInputs"), 150)
 	}
 
-	function setColorSequenceFromHexDescriptions(colorDescriptions: ColorDescription[]) {
-		const colors = colorDescriptions.map(colorDescription => colorFromHexDescription(colorDescription)).filter(color => color) as Color[]
-
-		if (colors.length !== numberOfManagedColors) {
-			console.error(`Could not set color sequence from hex descriptions. Expected ${numberOfManagedColors} colors, but got ${colors.length}.`)
+	const onRequestThemes = async () => {
+		if (!allInputsValid()) {
+			onRequestThemesError()
 			return
 		}
 
-		overwriteColorSequence(colors)
+		setThemeManifestStateTo.pending()
+
+		try {
+			const properties: ThemeGenerationProperties = {
+				name: themeProperties.name,
+				description: themeProperties.description,
+				colors: themeProperties.colors
+			}
+
+			const themeManifest = await generateThemeViaApi(properties)
+			setThemeManifestStateTo.generated(themeManifest)
+
+			return themeManifest
+		} catch (error) {
+			console.error(`Could not generate theme server-side.`, error)
+
+			if (error instanceof ApiError) {
+				setThemeManifestStateTo.error(`Invalid input`)
+				onRequestThemesError()
+			}
+
+			setThemeManifestStateTo.error()
+		}
 	}
 
-	function setColorInSequence(color: Color, index: number) {
-		const mutableColorSequence = [...colorSequence]
-		mutableColorSequence[index] = color
+	useEffect(() => {
+		loadThemeUtility()
+	}, [])
 
-		overwriteColorSequence(mutableColorSequence)
-	}
+	useEffect(() => {
+		setThemeManifestStateTo.none()
+	}, [themeProperties.hash])
 
 	return (
-		<section className={styles.page}>
-			<header>
-				<h1>Prototype Editor</h1>
-				<div className={styles.introduction}>
-					This editor is a makeshift application to allow editing and inspecting theme data used in conjunction with the{" "}
-					<ExternalLink href="https://gitlab.com/apricum/color-theme-utility" untracked>
-						Color Theme Utility
-					</ExternalLink>
-					.
-				</div>
-			</header>
-			<main>
-				<div className={className(styles.block, styles.colors)}>
-					<header>
-						<h2>Colors</h2>
-					</header>
-					<main>
-						{range(0, numberOfManagedColors).map(index => (
-							<ColorPicker
-								key={index}
-								name={themeColorNames[index]}
-								color={colorSequence[index]}
-								setColor={newColor => {
-									setColorInSequence(newColor, index)
-								}}
-							/>
-						))}
-					</main>
-				</div>
-				<div className={className(styles.block, styles.colors)}>
-					<header>
-						<h2>Buffers</h2>
-					</header>
-					<main>
-						<ColorPicker name={"Buffer 01"} />
-						<ColorPicker name={"Buffer 02"} />
-						<ColorPicker name={"Buffer 03"} />
-					</main>
-				</div>
-				<div className={className(styles.block, styles.straightSequence)}>
-					<header>
-						<h2>Straight Sequence</h2>
-					</header>
-					<main>
-						<EditableCodeDisplay
-							ref={straightSequenceRef}
-							code={editableStraightSequence}
-							setCode={newValue => {
-								setEditableStraightSequence(newValue)
-								setColorSequenceFromHexDescriptions(newValue.split(",").map(element => element.trim()))
-							}}
-						/>
-					</main>
-				</div>
-				<div className={className(styles.block, styles.encodedSequence)}>
-					<header>
-						<h2>Encoded Sequence</h2>
-					</header>
-					<main>
-						<EditableCodeDisplay
-							ref={encodedSequenceRef}
-							code={editableEncodedSequence}
-							setCode={newValue => {
-								setEditableEncodedSequence(newValue)
-								setColorSequenceFromHexDescriptions(JSON.parse(newValue))
-							}}
-						/>
-					</main>
-				</div>
-			</main>
-		</section>
+		<>
+			<ThemeSprites />
+			<section className={styles.page}>
+				<ThemeEditorMenu className={styles.menu} theme={generatedTheme} />
+				<Notice className={styles.notice}>
+					The Editor is currently in <em>Beta</em>. You can create a palette, edit colours, view generated previews in real-time, and download a
+					preview. Submissions to the gallery and additional formats are coming soon.
+				</Notice>
+				<ThemeEditorTitle className={styles.title} />
+				<section className={styles.inputs}>
+					<ContentAnchor ref={inputsAnchorRef} anchor="inputs" />
+					<TitleInputTextField
+						className={className(styles.input, styles.nameInput)}
+						value={themeProperties.name}
+						setValue={setThemeProperties.name}
+						name="Name"
+						placeholder="Enter theme title…"
+						required
+						pattern={themeNameValidationExpression.source}
+						minLength={themeNameMinLength}
+						maxLength={themeNameMaxLength}
+						onValidation={state => setInputValidityReport("name", state)}
+						onBlur={sanitizeThemeProperties}
+					/>
+					<InputTextArea
+						className={className(styles.input, styles.descriptionInput)}
+						value={themeProperties.description}
+						setValue={setThemeProperties.description}
+						name="Description"
+						placeholder="Enter theme description…"
+						required
+						minLength={themeDescriptionMinLength}
+						maxLength={themeDescriptionMaxLength}
+						onValidation={state => setInputValidityReport("description", state)}
+					/>
+					<InputTextField
+						className={className(styles.input, styles.idInput)}
+						value={themeProperties.id ?? "<None generated>"}
+						name="Identifier"
+						placeholder="Auto-generated theme identifier…"
+						readOnly
+					/>
+				</section>
+				<section className={styles.tutorial}>
+					<WorkContentTextBlock>
+						Choose a short and fitting name for your theme. Good names give a hint of the included colours and communicate the intention behind the
+						selected line-up. The description should give a brief introduction to where the theme comes from and for what it might be best used.
+					</WorkContentTextBlock>
+				</section>
+				<section className={styles.colorsAndPreview}>
+					<ThemeEditorColors className={styles.colors} colors={themeProperties.colors} onColorCollectionSet={setThemeProperties.colors} />
+					<ThemeCodePreviews className={styles.previews} theme={generatedTheme} content={themePreviewContents} />
+				</section>
+				<section className={styles.tutorial}>
+					<WorkContentTextBlock>
+						Click each colour cell to edit and specify input colours. Themes are created from a sequence of *ten base colours*. An intermediate theme
+						is generated and updated in real-time and previewed directly in the code display.
+					</WorkContentTextBlock>
+				</section>
+				<Divider />
+				<ThemeManifestDownloads name={themeProperties.name} state={themeManifestState} onRequest={onRequestThemes} />
+				<Divider />
+				<section className={styles.closure}>
+					<WorkContentTextBlock>Themes can not be published to the gallery in this version of the Studio.</WorkContentTextBlock>
+					<WorkContentTextBlock>Formats can be downloaded ad-hoc through the provided options.</WorkContentTextBlock>
+				</section>
+			</section>
+		</>
 	)
 }
+
+EditorPage.layout = DefaultLayout
 
 export default EditorPage

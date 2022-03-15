@@ -1,6 +1,6 @@
-import { intervalFromFragment } from "~/api/common/functions/date-conversion"
-import { LifeEvent } from "~/api/records/life-event/library/life-event"
-import { lifeEventKindFromRawValue } from "~/api/records/life-event/library/life-event-kind"
+import { intervalFromFragment } from "~/api/cockpit/data/functions/date-conversion"
+import { LifeEvent } from "~/api/cockpit/records/life-event/library/life-event"
+import { lifeEventKindFromRawValue } from "~/api/cockpit/records/life-event/library/life-event-kind"
 import { LifeTableItemData } from "~/components/life/life-table/models/life-table-item-data"
 
 export function lifeTableItemDataFromEvents(lifeEvents: LifeEvent[]): LifeTableItemData[] {

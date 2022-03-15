@@ -1,8 +1,8 @@
 import { FunctionComponent } from "react"
-import { UUID } from "~/api/common/library/uuid"
 import ThemeTag, { Props as ThemeTagProps } from "~/components/themes/theme-tag/components/theme-tag"
 import Typo from "~/components/typo/typo"
 import { Color } from "~/utils/colors/models/color"
+import { UUID } from "~/utils/uuid/uuid"
 import styles from "./theme-preview.module.sass"
 
 export interface Props {

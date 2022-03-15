@@ -1,6 +1,6 @@
-import { intervalFromFragment } from "~/api/common/functions/date-conversion"
-import { LifeEventKind, lifeEventKindFromRawValue } from "~/api/records/life-event/library/life-event-kind"
-import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import { intervalFromFragment } from "~/api/cockpit/data/functions/date-conversion"
+import { LifeEventKind, lifeEventKindFromRawValue } from "~/api/cockpit/records/life-event/library/life-event-kind"
+import { WorkShowcase } from "~/api/cockpit/records/work-showcase/library/work-showcase"
 import { OpenDateInterval } from "~/utils/date/library/intervals"
 
 // Link Props

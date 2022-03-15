@@ -1,0 +1,27 @@
+@import "/styles/values/all"
+
+.block
+	.heading
+		@include inlayedText
+		@include elementHeadingFont
+		font-size: $elementHeadingFontSize
+		text-align: center
+		margin-top: 2rem
+
+	.introduction
+		@include inlayedText
+		@include elementSubHeadingFont
+		font-size: $elementSubHeadingFontSize
+		text-align: center
+		margin-top: 3rem
+
+	.list
+		margin-top: 2rem
+	
+	.state
+		@include inlayedText
+		@include elementSubHeadingFont
+		color: $textColorSuperFaded
+		font-size: $elementSubHeadingFontSize
+		text-align: center
+		margin-top: 2rem

@@ -1,7 +1,7 @@
-import { UUID } from "~/api/common/library/uuid"
-import { LifeEventKind, lifeEventKindFromRawValue } from "~/api/records/life-event/library/life-event-kind"
-import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import { LifeEventKind, lifeEventKindFromRawValue } from "~/api/cockpit/records/life-event/library/life-event-kind"
+import { WorkShowcase } from "~/api/cockpit/records/work-showcase/library/work-showcase"
 import { URL } from "~/utils/routing/library/url"
+import { UUID } from "~/utils/uuid/uuid"
 
 interface ImageProps {
 	trailing: URL

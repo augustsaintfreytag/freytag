@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react"
-import { useRecordCreationStatistics } from "~/api/records/statistics/functions/record-creation-statistics-hook"
-import { WorkShowcase } from "~/api/records/work-showcase/library/work-showcase"
+import { useRecordCreationStatistics } from "~/api/cockpit/records/statistics/functions/record-creation-statistics-hook"
+import { WorkShowcase } from "~/api/cockpit/records/work-showcase/library/work-showcase"
 import ContentClosure from "~/components/content-closure/content-closure"
 import { denominatorDescription } from "~/utils/description/functions/denominator-description"
 

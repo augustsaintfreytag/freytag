@@ -8,6 +8,15 @@ module.exports = {
 		locales: [locale],
 		defaultLocale: locale
 	},
+	webpackDevMiddleware(config) {
+		config.watchOptions = {
+			poll: 1000,
+			aggregateTimeout: 250,
+			ignored: "**/node_modules/"
+		}
+
+		return config
+	},
 	webpack(config) {
 		injectWebpackDefinitionsIntoSassLoader(config)
 		return config
@@ -25,6 +34,10 @@ module.exports = {
 			{
 				source: "/ps.js",
 				destination: "http://plausible:8000/js/plausible.js"
+			},
+			{
+				source: "/content/:path*",
+				destination: "http://app-content/:path*"
 			}
 		]
 	}

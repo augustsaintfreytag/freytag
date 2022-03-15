@@ -1,0 +1,24 @@
+@import "/styles/values/all"
+	
+$captionSpacing: 0.5rem
+$horizontalSpacing: 1.25rem
+$verticalSpacing: 0.85rem
+
+.block
+	label
+		display: block
+		margin-top: $captionSpacing
+		margin-left: $horizontalSpacing
+		line-height: $captionLineHeight
+		color: $textColorFaded
+
+		@include breakpoint($anyDesktop)
+			font-size: $captionFontSize
+
+		@include breakpoint($anyMobile)
+			font-size: $captionFontSizeMobile
+
+		.name
+
+		.context
+			color: $textErrorColor

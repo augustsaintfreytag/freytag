@@ -9,7 +9,7 @@ export interface Props extends PropsWithAnyTextChildren {
 
 const WorkContentTextBlock: FunctionComponent<Props> = props => {
 	const content = props.text ?? String(props.children) ?? ""
-	return <section className={styles.block}>{content && <ArticleMarkdown>{content}</ArticleMarkdown>}</section>
+	return <div className={styles.block}>{content && <ArticleMarkdown>{content}</ArticleMarkdown>}</div>
 }
 
 export default WorkContentTextBlock

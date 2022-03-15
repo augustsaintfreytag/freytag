@@ -1,0 +1,18 @@
+@import "/styles/values/all"
+
+.menu	
+	background: $elementBackgroundColor
+	
+	.inlay
+		display: flex
+		justify-content: center
+		
+		@include breakpoint($anyDesktop)
+			@include inlayed
+			gap: 0.85rem
+
+		@include breakpoint($anyMobile)
+			gap: 1.85rem
+
+		> *
+			padding: 1.5rem 0.9rem
