@@ -7,7 +7,7 @@ server_user: server
 server_shared_network: dropship-shared
 
 # App
-app_version: "master"
+app_version: "fix/deployment-configuration"
 app_root: "/var/www/freytag"
 app_sub_directory: "app-next"
 
@@ -21,6 +21,8 @@ listener_server_port: "8080"
 
 # Dependencies
 dep_swift_release: "https://swift.org/builds/swift-5.5.3-release/ubuntu1804/swift-5.5.3-RELEASE/swift-5.5.3-RELEASE-ubuntu18.04.tar.gz"
+dep_swift_resource: "swift-5.5.3-RELEASE-ubuntu18.04"
+
 dep_listener_service: "https://gitlab.com/apricum/gitlab-listener/-/raw/master/System/gitlab-listener.service"
 dep_listener_release: "http://drop.augustfreytag.com/gitlab-listener-0.5.2-linux-x86-64.tar.gz"
 dep_cockpit_sync_release: "http://drop.augustfreytag.com/cockpit-sync-1.2.1-linux-x86-64.tar.gz"

@@ -5,7 +5,7 @@
   gather_facts: no
 
   vars_files:
-    - vars/default.yml
+    - vars/foundation.yml
 
   tasks:
     - import_tasks: ./custom/tasks/set-environment.yml
