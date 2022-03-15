@@ -9,9 +9,6 @@
     ansible_user: "{{ server_user }}"
 
   tasks:
-    - import_tasks: ./shared/tasks/set-up-ansible.yml
-    - import_tasks: ./shared/tasks/set-up-docker.yml
-    - import_tasks: ./shared/tasks/set-up-firewall.yml
     - import_tasks: ./shared/tasks/set-up-swift.yml
     - import_tasks: ./shared/tasks/set-up-cockpit-sync.yml
-    - import_tasks: ./shared/tasks/set-up-listener.yml
+    #- import_tasks: ./shared/tasks/set-up-listener.yml
