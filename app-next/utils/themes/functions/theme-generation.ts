@@ -27,15 +27,32 @@ function commandForMakeThemeDirectoryForFormat(path: string, format: ThemeFormat
 	return `mkdir -m 775 ${path}/${formatIdentifier}`
 }
 
-function commandForGenerateThemeWithFormat(path: string, format: ThemeFormat, name: string, description: string, colors: Color[]): string {
+function commandForGenerateThemeWithFormat(
+	path: string,
+	format: ThemeFormat,
+	name: string | undefined,
+	description: string | undefined,
+	colors: Color[]
+): string {
 	const formatIdentifier = themeFormatIdentifierForFormat(format)
 	const encodedColors = colors.map(color => color.hex).join(",")
+	const commandComponents: string[] = []
 
-	return (
-		`color-theme-utility generate-theme ` +
-		`-f ${formatIdentifier} -c ${escape(encodedColors)} ` +
-		`--name ${escape(name)} --description ${escape(description)} -o ${path}/${formatIdentifier}`
-	)
+	commandComponents.push(`color-theme-utility generate-theme`)
+	commandComponents.push(`-f ${formatIdentifier}`)
+	commandComponents.push(`-c ${escape(encodedColors)}`)
+
+	if (name) {
+		commandComponents.push(`--name ${escape(name)}`)
+	}
+
+	if (description) {
+		commandComponents.push(`--description ${escape(description)}`)
+	}
+
+	commandComponents.push(`-o ${path}/${formatIdentifier}`)
+
+	return commandComponents.join(" ")
 }
 
 function commandForArchiveThemeWithFormat(path: string, format: ThemeFormat, name: string): string {

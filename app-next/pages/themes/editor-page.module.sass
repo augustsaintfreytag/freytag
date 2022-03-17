@@ -15,8 +15,9 @@ $inputSpacing: 3.5rem
 		margin-top: $pageSpacing
 
 		.input
-			width: 38rem
-			margin: $inputSpacing auto 0 auto
+			@include inlayed
+			margin-top: $inputSpacing
+			width: min(100%, 38rem)
 
 	.tutorial
 		margin-top: $pageContentSpacing

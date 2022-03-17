@@ -84,8 +84,18 @@ function truncatedThemeName(name: string): string {
 	return name.substring(0, themeNameMaxLength)
 }
 
-function truncatedThemeDescription(description: string): string {
-	return description.trim().substring(0, themeDescriptionMaxLength)
+function truncatedThemeDescription(description?: string): string | undefined {
+	if (!description) {
+		return undefined
+	}
+
+	const trimmedDescription = description.trim().substring(0, themeDescriptionMaxLength)
+
+	if (!trimmedDescription) {
+		return undefined
+	}
+
+	return trimmedDescription
 }
 
 // Library
@@ -93,10 +103,16 @@ function truncatedThemeDescription(description: string): string {
 interface RequestBody {
 	id?: UUID
 	name: string
-	description: string
+	description?: string
 	colors: string[]
 }
 
 function isRequestBody(value: any): value is RequestBody {
-	return typeof value === "object" && typeof value.name === "string" && typeof value.description === "string" && typeof value.colors === "object"
+	return (
+		typeof value === "object" &&
+		typeof value.name === "string" &&
+		(typeof value.description === "undefined" || typeof value.description === "string") &&
+		typeof value.colors === "object" &&
+		Array.isArray(value.colors)
+	)
 }

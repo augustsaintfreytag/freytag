@@ -5,9 +5,14 @@
 	align-items: center
 	gap: 1.75rem
 	width: fit-content
-	max-width: 30rem
+	max-width: 35rem
 	padding: 1.85rem 2.85rem
 	border: solid 1px $elementBorderColor
+	box-sizing: border-box
+
+	@include breakpoint($phone)
+		padding: 1.4rem 1.85rem
+		max-width: min(90%, 28rem)
 
 	.symbol
 		$size: 1.75rem

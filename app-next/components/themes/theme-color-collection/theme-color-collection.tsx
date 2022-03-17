@@ -46,7 +46,7 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 	const colorInput = useRef<HTMLInputElement>(null)
 	const colorButtons = range(0, colors.length).map(() => useRef<HTMLButtonElement>(null))
 	const [colorInputIndex, setColorInputIndex] = useState<number | undefined>(undefined)
-	const [colorInputValue, setColorInputValue] = useState<string>("")
+	const [colorInputValue, setColorInputValue] = useState<string>(Color.white.hex)
 
 	useEffect(
 		useDebouncedCallback(() => {
