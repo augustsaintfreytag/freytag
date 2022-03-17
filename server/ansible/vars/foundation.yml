@@ -7,7 +7,7 @@ server_user: server
 server_shared_network: dropship-shared
 
 # App
-app_version: "fix/deployment-configuration"
+app_version: "master"
 app_root: "/var/www/freytag"
 app_sub_directory: "app-next"
 
