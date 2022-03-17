@@ -38,12 +38,10 @@
 					@include horizontalListMargin(1.5rem)
 
 				@include breakpoint($phone)
-					display: block
-					width: fit-content
-					margin: 0 auto
-					@include listMargin(0.5rem)
+					display: inline-block
+					@include horizontalListMargin(1.5rem)
 
-					&:not(:first-child)
+					&:not(:first-child, :last-child)
 						display: none
 						
 
