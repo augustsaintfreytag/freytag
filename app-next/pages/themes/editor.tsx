@@ -25,7 +25,6 @@ import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
 import {
 	themeDescriptionMaxLength,
-	themeDescriptionMinLength,
 	themeNameMaxLength,
 	themeNameMinLength,
 	themeNameValidationExpression
@@ -57,7 +56,7 @@ const EditorPage: Page<PageProps & Props> = () => {
 
 	const themePreviewContents = useThemeCodePreviewContents()
 	const [themeManifestState, setThemeManifestStateTo] = useThemeManifestState({ kind: ThemeManifestStateKind.None })
-	const [inputValidityReport, setInputValidityReport, allInputsValid] = useInputValidityReport()
+	const [_, setInputValidityReport, allInputsValid] = useInputValidityReport()
 	const inputsAnchorRef = useRef<ContentAnchorElement>(null)
 
 	const onRequestThemesError = () => {
@@ -127,7 +126,6 @@ const EditorPage: Page<PageProps & Props> = () => {
 						minLength={themeNameMinLength}
 						maxLength={themeNameMaxLength}
 						onValidation={state => setInputValidityReport("name", state)}
-						onBlur={sanitizeThemeProperties}
 					/>
 					<InputTextArea
 						className={className(styles.input, styles.descriptionInput)}
@@ -135,8 +133,6 @@ const EditorPage: Page<PageProps & Props> = () => {
 						setValue={setThemeProperties.description}
 						name="Description"
 						placeholder="Enter theme description…"
-						required
-						minLength={themeDescriptionMinLength}
 						maxLength={themeDescriptionMaxLength}
 						onValidation={state => setInputValidityReport("description", state)}
 					/>
