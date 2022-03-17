@@ -7,12 +7,15 @@
 		display: flex
 		justify-content: center
 		
-		@include breakpoint($anyDesktop)
+		@include breakpoint($desktop)
 			@include inlayed
-			gap: 0.85rem
+			> *
+				padding: 1.5rem 1.4rem
 
-		@include breakpoint($anyMobile)
-			gap: 1.85rem
+		@include breakpoint($tablet)
+			> *
+				padding: 1.5rem 1.35rem
 
-		> *
-			padding: 1.5rem 0.9rem
+		@include breakpoint($phone)
+			> *
+				padding: 1.5rem 1.5rem
