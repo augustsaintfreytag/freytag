@@ -13,7 +13,7 @@ import styles from "./theme-color-collection.module.sass"
 
 // Configuration
 
-const colorChangeDebounceTime: TimeInterval = 20
+const colorChangeDebounceInterval: TimeInterval = 10
 
 // Collection
 
@@ -48,17 +48,18 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 	const [colorInputIndex, setColorInputIndex] = useState<number | undefined>(undefined)
 	const [colorInputValue, setColorInputValue] = useState<string>(Color.white.hex)
 
-	useEffect(
-		useDebouncedCallback(() => {
-			if (colorInputIndex === undefined) {
-				return
-			}
+	const changeColorForActiveInputIndex = useDebouncedCallback(() => {
+		if (colorInputIndex === undefined) {
+			return
+		}
 
-			const newColor = colorFromHexDescription(colorInputValue)!
-			props.setColor?.(colorInputIndex, newColor)
-		}, colorChangeDebounceTime),
-		[colorInputValue]
-	)
+		const newColor = colorFromHexDescription(colorInputValue)!
+		props.setColor?.(colorInputIndex, newColor)
+	}, colorChangeDebounceInterval)
+
+	useEffect(() => {
+		changeColorForActiveInputIndex()
+	}, [colorInputValue])
 
 	const focusColorInput = (index: number) => {
 		const input = colorInput
@@ -73,8 +74,6 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 
 		focusColorInput(index)
 	}
-
-	const onColorInputChange = (value: string) => setColorInputValue(value)
 
 	return (
 		<div className={className(styles.collection, props.editable ?? styles.isEditable, props.compact && styles.isCompact, props.className)}>
@@ -96,7 +95,7 @@ const ThemeColorCollection: FunctionComponent<Props> = props => {
 					ref={colorInput}
 					className={styles.colorInput}
 					value={colorInputValue}
-					onChange={event => onColorInputChange(event.target.value)}
+					onChange={event => setColorInputValue(event.target.value)}
 				/>
 			)}
 		</div>
