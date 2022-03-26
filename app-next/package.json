@@ -5,14 +5,11 @@
 	"private": true,
 	"scripts": {
 		"dev": "next dev",
-		"dev-inspect": "node --inspect=0.0.0.0:9229 node_modules/.bin/next dev",
-		"dev-inspect-brk": "node --inspect-brk=0.0.0.0:9229 node_modules/.bin/next dev",
+		"dev-inspect": "node --inspect=0.0.0.0:9229 next dev",
+		"dev-inspect-brk": "node --inspect-brk=0.0.0.0:9229 next dev",
 		"live": "next build && next start",
 		"build": "next build",
 		"start": "next start"
-	},
-	"prisma": {
-		"schema": "api/prisma/schema.prisma"
 	},
 	"dependencies": {
 		"breakpoint-sass": "2.7.1",
