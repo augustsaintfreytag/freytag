@@ -1,11 +1,20 @@
 # Dependencies
-node_modules
+**/node_modules
+
+# Yarn
+.pnp.*
+**/.yarn/*
+!**/.yarn/patches
+!**/.yarn/plugins
+!**/.yarn/releases
+!**/.yarn/sdks
+!**/.yarn/versions
 
 # Frameworks
-.next/
-.nuxt/
-out/
-build/
+.next
+.nuxt
+out
+build
 
 # Environment
 .vscode
