@@ -1,0 +1,11 @@
+{
+	"references": [
+		{
+			"path": "./app-common"
+		},
+		{
+			"path": "./app-next"
+		}
+	],
+	"files": []
+}
