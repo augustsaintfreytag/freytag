@@ -66,7 +66,7 @@ services:
       context: ./server/docker/images/cron
     image: freytag/cron
     volumes:
-      - ./server/cron/crontab:/etc/crontab:ro
+      - ./server/crontabs:/etc/crontabs:ro
     networks:
       - default
     restart: unless-stopped
