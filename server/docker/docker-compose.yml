@@ -11,9 +11,17 @@ services:
       context: ./server/docker/images/app
     image: freytag/app
     volumes:
-      - ./${APP_ROOT}:/var/app
-      - data-app-node-modules:/var/app/node_modules
-      - data-app-build-framework:/var/app/.next
+      - ./package.json:/var/app/package.json:ro
+      - ./yarn.lock:/var/app/yarn.lock:ro
+      - ./.yarnrc.yml:/var/app/.yarnrc.yml:ro
+      - ./.pnp.cjs:/var/app/.pnp.cjs:ro
+      - ./.pnp.loader.mjs:/var/app/.pnp.loader.mjs:ro
+      - ./app-common:/var/app/app-common:ro
+      - ./app-next:/var/app/app-next
+      - data-app-module-cache:/var/app/.yarn
+      - ./.yarn/releases:/var/app/.yarn/releases:ro
+      - ./.yarn/plugins:/var/app/.yarn/plugins:ro
+      - data-app-framework-cache:/var/app/app-next/.next
       - data-app-themes:/var/themes
     working_dir: /var/app
     command: ${APP_STARTUP_CMD}
@@ -32,9 +40,16 @@ services:
       context: ./server/docker/images/app
     image: freytag/app-dependencies
     volumes:
-      - ./${APP_ROOT}/package.json:/var/app/package.json:ro
-      - ./${APP_ROOT}/yarn.lock:/var/app/yarn.lock:ro
-      - data-app-node-modules:/var/app/node_modules
+      - ./package.json:/var/app/package.json:ro
+      - ./yarn.lock:/var/app/yarn.lock:ro
+      - ./.yarnrc.yml:/var/app/.yarnrc.yml:ro
+      - ./.pnp.cjs:/var/app/.pnp.cjs:ro
+      - ./.pnp.loader.mjs:/var/app/.pnp.loader.mjs:ro
+      - ./app-common:/var/app/app-common:ro
+      - ./app-next:/var/app/app-next:ro
+      - data-app-module-cache:/var/app/.yarn
+      - ./.yarn/releases:/var/app/.yarn/releases:ro
+      - ./.yarn/plugins:/var/app/.yarn/plugins:ro
     working_dir: /var/app
     command: yarn
 
@@ -83,11 +98,11 @@ volumes:
   data-cockpit:
     name: freytag-data-cockpit
     driver: local
-  data-app-node-modules:
-    name: freytag-data-app-node-modules
+  data-app-module-cache:
+    name: freytag-data-app-module-cache
     driver: local
-  data-app-build-framework:
-    name: freytag-data-app-build-framework
+  data-app-framework-cache:
+    name: freytag-data-app-framework-cache
     driver: local
   data-app-themes:
     name: freytag-data-app-themes
