@@ -16,9 +16,6 @@
 out
 build
 
-# Environment
-.vscode
-
 # Development
 *.log
 
