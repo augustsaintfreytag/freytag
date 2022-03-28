@@ -1,16 +1,8 @@
 {
 	"name": "common",
 	"description": "Common components, styles, and other materials.",
-	"private": true,
 	"license": "UNLICENSED",
-	"peerDependencies": {
-		"@types/node": "*",
-		"@types/react": "*",
-		"breakpoint-sass": "*",
-		"prettier": "*",
-		"prettier-plugin-organize-imports": "*",
-		"react": "*",
-		"sass": "*",
-		"typescript": "*"
-	}
+	"private": true,
+	"version": "1.0.0",
+	"peerDependencies": {}
 }
