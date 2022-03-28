@@ -15,7 +15,7 @@ module.exports = {
 		config.watchOptions = {
 			poll: 2000,
 			aggregateTimeout: 250,
-			ignored: "**/.yarn/"
+			ignored: ["**/node_modules", "**/.yarn"]
 		}
 
 		return config
