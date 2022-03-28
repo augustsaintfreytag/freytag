@@ -10,9 +10,9 @@ module.exports = {
 	},
 	webpackDevMiddleware(config) {
 		config.watchOptions = {
-			poll: 1000,
+			poll: 2000,
 			aggregateTimeout: 250,
-			ignored: "**/node_modules/"
+			ignored: "**/.yarn/"
 		}
 
 		return config
