@@ -1,0 +1,24 @@
+{
+	"name": "freytag",
+	"description": "Unified playspace for projects of August Saint Freytag.",
+	"version": "0.1.0",
+	"license": "UNLICENSED",
+	"repository": "git@gitlab.com:apricum/freytag.git",
+	"author": "August Saint Freytag <me@augustfreytag.com>",
+	"private": true,
+	"workspaces": [
+		"app-common",
+		"app-next"
+	],
+	"packageManager": "yarn@3.2.0",
+	"devDependencies": {
+		"@types/node": "^17.0.23",
+		"@types/react": "^17.0.43",
+		"@types/react-dom": "^17.0.14",
+		"@types/shell-escape": "^0.2.0",
+		"@yarnpkg/sdks": "^2.6.0",
+		"prettier": "^2.3.2",
+		"prettier-plugin-organize-imports": "^2.1.0",
+		"typescript": "^4.3.5"
+	}
+}

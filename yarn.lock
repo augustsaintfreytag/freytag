@@ -1323,12 +1323,6 @@ __metadata:
     react: 17.0.2
     sass: 1.35.2
     typescript: ^4.3.5
-  peerDependencies:
-    "@types/node": "*"
-    "@types/react": "*"
-    "@types/react-dom": "*"
-    "@types/shell-escape": "*"
-    typescript: "*"
   languageName: unknown
   linkType: soft
 
@@ -3162,24 +3156,25 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "next@workspace:app-next"
   dependencies:
+    "@types/node": ^17.0.23
+    "@types/react": ^17.0.43
+    "@types/react-dom": ^17.0.14
+    "@types/shell-escape": ^0.2.0
     breakpoint-sass: 2.7.1
     cockpit-access: "https://gitlab.com/apricum/cockpit-access.git"
     common: "workspace:*"
     next: ^11.1.2
+    prettier: ^2.3.2
+    prettier-plugin-organize-imports: ^2.1.0
     react: 17.0.2
     react-dom: 17.0.2
     react-markdown: 6.0.2
     sass: 1.35.2
     shell-escape: ^0.2.0
+    typescript: ^4.3.5
     use-async-effect: ^2.2.5
     use-debounce: ^7.0.1
     webassembly-module: "https://gitlab.com/apricum/webassembly-module.git"
-  peerDependencies:
-    "@types/node": "*"
-    "@types/react": "*"
-    "@types/react-dom": "*"
-    "@types/shell-escape": "*"
-    typescript: "*"
   languageName: unknown
   linkType: soft
 
