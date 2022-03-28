@@ -4,6 +4,9 @@ const locale = process.env.NEXT_PUBLIC_APP_LOCALE
 const cockpitToken = process.env.NEXT_PUBLIC_COCKPIT_ACCESS_TOKEN
 
 module.exports = {
+	experimental: {
+		externalDir: true
+	},
 	i18n: {
 		locales: [locale],
 		defaultLocale: locale
