@@ -2,8 +2,6 @@
 	"extends": "../tsconfig.packages.json",
 	"compilerOptions": {
 		"baseUrl": ".",
-		"jsx": "preserve",
-		"lib": ["dom", "dom.iterable", "esnext"],
 		"paths": {
 			"~/*": ["./*"]
 		}
