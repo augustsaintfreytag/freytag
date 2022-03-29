@@ -14,14 +14,11 @@ services:
       - ./package.json:/var/app/package.json:ro
       - ./tsconfig.json:/var/app/tsconfig.json:ro
       - ./tsconfig.packages.json:/var/app/tsconfig.packages.json:ro
-      - ./app-common:/var/app/app-common:ro
-      - ./app-next:/var/app/app-next:ro
+      - ./app-common:/var/app/app-common
+      - ./app-next:/var/app/app-next
       - ./yarn.lock:/var/app/yarn.lock:ro
       - ./.yarnrc.yml:/var/app/.yarnrc.yml:ro
       - data-app-modules:/var/app/node_modules:ro
-      - data-app-module-cache:/var/app/.yarn:ro
-      - ./.yarn/releases:/var/app/.yarn/releases:ro
-      - ./.yarn/plugins:/var/app/.yarn/plugins:ro
       - data-app-framework-cache:/var/app/app-next/.next
       - data-app-themes:/var/themes:ro
     working_dir: /var/app
@@ -47,9 +44,6 @@ services:
       - ./yarn.lock:/var/app/yarn.lock
       - ./.yarnrc.yml:/var/app/.yarnrc.yml:ro
       - data-app-modules:/var/app/node_modules
-      - data-app-module-cache:/var/app/.yarn
-      - ./.yarn/releases:/var/app/.yarn/releases:ro
-      - ./.yarn/plugins:/var/app/.yarn/plugins:ro
     working_dir: /var/app
     command: yarn
 
@@ -100,9 +94,6 @@ volumes:
     driver: local
   data-app-modules:
     name: freytag-data-app-modules
-    driver: local
-  data-app-module-cache:
-    name: freytag-data-app-module-cache
     driver: local
   data-app-framework-cache:
     name: freytag-data-app-framework-cache
