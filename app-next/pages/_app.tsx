@@ -1,8 +1,8 @@
+import "@common/styles/globals/globals.sass"
 import type { AppProps as NextAppProps } from "next/app"
 import { Fragment, FunctionComponent } from "react"
 import "~/api/cockpit/config/configuration"
 import CommonSprites from "~/components/sprites/common-sprites"
-import "~/styles/base/globals.sass"
 import type { Page } from "~/types/page"
 
 type AppProps = NextAppProps & {

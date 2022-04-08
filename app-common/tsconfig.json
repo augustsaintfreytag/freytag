@@ -1,13 +1,6 @@
 {
 	"extends": "../tsconfig.packages.json",
-	"compilerOptions": {
-		"baseUrl": ".",
-		"paths": {
-			"~/*": ["./*"],
-			"@common/*": ["../app-common/*"]
-		}
-	},
-
+	"compilerOptions": {},
 	"include": ["**/*.ts", "**/*.tsx"],
 	"exclude": ["**/node_modules", "**/.yarn"]
 }

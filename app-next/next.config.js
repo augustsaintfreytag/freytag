@@ -13,7 +13,7 @@ module.exports = {
 	},
 	webpackDevMiddleware(config) {
 		config.watchOptions = {
-			poll: 2000,
+			poll: 1500,
 			aggregateTimeout: 250,
 			ignored: ["**/node_modules", "**/.yarn"]
 		}
@@ -27,6 +27,10 @@ module.exports = {
 	rewrites() {
 		return [
 			{
+				source: "/content/:path*",
+				destination: "http://app-content/:path*"
+			},
+			{
 				source: "/cockpit/:path*",
 				destination: `http://cockpit/:path*?token=${cockpitToken}`
 			},
@@ -37,10 +41,6 @@ module.exports = {
 			{
 				source: "/ps.js",
 				destination: "http://plausible:8000/js/plausible.js"
-			},
-			{
-				source: "/content/:path*",
-				destination: "http://app-content/:path*"
 			}
 		]
 	}

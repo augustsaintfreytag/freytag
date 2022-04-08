@@ -1,10 +1,10 @@
 import { Person, WithContext } from "schema-dts"
 import { socialGitLabUrl, socialInstagramUrl, socialMediumUrl, socialTwitterUrl, socialVimeoUrl } from "~/components/meta/functions/social-media"
-import { cockpitHostClient, cockpitProtocol } from "~/utils/app/app"
+import { publicCockpitPath } from "~/utils/app/app"
 import { URL } from "~/utils/routing/library/url"
 
 function globalImageUrl(path: string): URL {
-	return `${cockpitProtocol()}://${cockpitHostClient()}${path}`
+	return `${publicCockpitPath()}/${path}`
 }
 
 const profileImages = [
