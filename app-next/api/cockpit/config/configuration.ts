@@ -1,15 +1,9 @@
 import { Address, addressRegister, APIToken, Context, Protocol } from "cockpit-access"
-import { appEnvironmentIsDevelopment, cockpitHostClient, cockpitHostServer, cockpitProtocol, cockpitToken } from "~/utils/app/app"
+import { appEnvironmentIsDevelopment, cockpitToken, internalCockpitPath, publicCockpitPath } from "~/utils/app/app"
+import { AppConfigurationError } from "~/utils/app/app-configuration-error"
 import { URL } from "~/utils/routing/library/url"
 
-const protocol = cockpitProtocol()
-const hostClient = cockpitHostClient()
-const hostServer = cockpitHostServer()
-const token = cockpitToken()
-
-if (!protocol || !hostClient || !hostServer || !token) {
-	throw new Error(`Missing cockpit access parameters from environment, protocol, host or token not defined.`)
-}
+// Functions
 
 function isServerSideContext(context?: Context): boolean {
 	if (context === undefined) {
@@ -19,7 +13,15 @@ function isServerSideContext(context?: Context): boolean {
 	return context === Context.Server
 }
 
-function clientDependentProtocol(): string | undefined {
+function pathComponents(path: string): [string, string] {
+	const splitIndex = path.indexOf("://")
+	const protocol = path.substring(0, splitIndex)
+	const host = path.substring(splitIndex + 3)
+
+	return [protocol, host]
+}
+
+function existingClientProtocol(): string | undefined {
 	if (typeof window === "undefined" || !window.location.protocol) {
 		return undefined
 	}
@@ -32,20 +34,33 @@ function clientDependentProtocol(): string | undefined {
 	return "https"
 }
 
+// Execution
+
+const internalPath = internalCockpitPath()
+const publicPath = publicCockpitPath()
+const token = cockpitToken()
+
+if (!internalPath || !publicPath || !token) {
+	throw new AppConfigurationError(`Missing cockpit access parameters from environment, protocol, host or token not defined.`)
+}
+
+const [publicProtocol, publicHost] = pathComponents(publicPath)
+const [internalProtocol, internalHost] = pathComponents(internalPath)
+
 const defaultAddress: Address = {
 	protocol: (context?: Context): Protocol => {
 		if (isServerSideContext(context)) {
-			return "http"
+			return internalProtocol
 		}
 
-		return clientDependentProtocol() || protocol
+		return existingClientProtocol() ?? publicProtocol
 	},
 	host: (context?: Context): URL => {
 		if (isServerSideContext(context)) {
-			return hostServer
+			return internalHost
 		}
 
-		return hostClient
+		return publicHost
 	},
 	token: (): APIToken => {
 		return token
