@@ -14,7 +14,7 @@
 	"packageManager": "yarn@3.2.0",
 	"dependencies": {
 		"breakpoint-sass": "2.7.1",
-		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git",
+		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git#a6b0201d07c5ff0bc22b26d44f017df6c57805b6",
 		"next": "^11.1.2",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
@@ -24,7 +24,7 @@
 		"shell-escape": "^0.2.0",
 		"use-async-effect": "^2.2.5",
 		"use-debounce": "^7.0.1",
-		"webassembly-module": "https://gitlab.com/apricum/webassembly-module.git"
+		"webassembly-module": "https://gitlab.com/apricum/webassembly-module.git#e9c8d316d185d1f3bff14dee6f8d82e7111ba0b9"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.23",
