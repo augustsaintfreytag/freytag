@@ -7,8 +7,5 @@ RUN echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources
 RUN apt update
 RUN apt install -y tree sshpass yarn
 
-RUN groupadd -r node && useradd -r -g node node
-USER node
-
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["node"]
