@@ -43,7 +43,7 @@ services:
       - ./yarn.lock:/var/app/yarn.lock
       - data-app-modules:/var/app/node_modules
     working_dir: /var/app
-    command: yarn --verbose
+    command: yarn install --verbose --unsafe-perm
 
   app-content:
     image: flashspys/nginx-static
