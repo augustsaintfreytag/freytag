@@ -1,5 +1,14 @@
-@import "/styles/values/fonts"
-@import "/styles/base/api"
+@import "@common/styles/globals/api"
+@import "@common/styles/values/fonts"
+
+// Font Paths
+
+@function fontPathComponent($identifier)
+	@return "/storage/uploads/fonts/" + $identifier
+
+@function fontPath($identifier)
+	$pathComponent: fontPathComponent($identifier)
+	@return cockpitAssetPath($pathComponent)
 
 // Font Names
 
@@ -18,14 +27,14 @@ $rationalTWFontFamily: "Rational TW"
 	src: url($url) format("woff2"), local("-apple-system"), local("monospace")
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-regular.woff2")
+	$fontUrl: fontPath("work-sans-regular.woff2")
 
 	font-family: $workSansFontFamily
 	font-weight: 400
 	@include fontSrc($fontUrl)
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-italic.woff2")
+	$fontUrl: fontPath("work-sans-italic.woff2")
 
 	font-family: $workSansFontFamily
 	font-weight: 400
@@ -33,7 +42,7 @@ $rationalTWFontFamily: "Rational TW"
 	@include fontSrc($fontUrl)
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/work-sans-semibold.woff2")
+	$fontUrl: fontPath("work-sans-semibold.woff2")
 
 	font-family: $workSansFontFamily
 	font-weight: 600
@@ -41,35 +50,35 @@ $rationalTWFontFamily: "Rational TW"
 	@include fontSrc($fontUrl)
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-book.woff2")
+	$fontUrl: fontPath("maison-neue-book.woff2")
 
 	font-family: $maisonFontFamily
 	font-weight: 400
 	@include fontSrc($fontUrl)
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-bold.woff2")
+	$fontUrl: fontPath("maison-neue-bold.woff2")
 
 	font-family: $maisonFontFamily
 	font-weight: 700
 	@include fontSrc($fontUrl)
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/maison-neue-black.woff2")
+	$fontUrl: fontPath("maison-neue-black.woff2")
 
 	font-family: $maisonFontFamily
 	font-weight: 800
 	@include fontSrc($fontUrl)
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/rational-tw-book.woff2")
+	$fontUrl: fontPath("rational-tw-book.woff2")
 
 	font-family: $rationalTWFontFamily
 	font-weight: 400
 	@include monospaceFontSrc($fontUrl)
 
 @font-face
-	$fontUrl: assetUrl("/storage/uploads/fonts/rational-tw-semibold.woff2")
+	$fontUrl: fontPath("rational-tw-semibold.woff2")
 
 	font-family: $rationalTWFontFamily
 	font-weight: 600

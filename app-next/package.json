@@ -1,8 +1,9 @@
 {
-	"name": "freytag-next",
-	"version": "0.1.0",
+	"name": "next",
+	"description": "Personal portfolio and work showcase site for August Saint Freytag",
 	"license": "UNLICENSED",
 	"private": true,
+	"version": "1.0.0",
 	"scripts": {
 		"dev": "next dev",
 		"dev-inspect": "node --inspect=0.0.0.0:9229 next dev",
@@ -11,28 +12,18 @@
 		"build": "next build",
 		"start": "next start"
 	},
-	"dependencies": {
-		"breakpoint-sass": "2.7.1",
-		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git",
-		"next": "^11.1.2",
-		"react": "17.0.2",
-		"react-dom": "17.0.2",
-		"react-markdown": "6.0.2",
-		"sass": "1.35.2",
-		"shell-escape": "^0.2.0",
-		"use-async-effect": "^2.2.5",
-		"use-debounce": "^7.0.1",
-		"webassembly-module": "https://gitlab.com/apricum/webassembly-module.git"
-	},
-	"devDependencies": {
-		"@types/node": "^15.6.0",
-		"@types/react": "^17.0.6",
-		"@types/react-dom": "^17.0.7",
-		"@types/shell-escape": "^0.2.0",
-		"prettier": "^2.3.2",
-		"prettier-plugin-organize-imports": "^2.1.0",
-		"schema-dts": "^0.8.3",
-		"typescript": "^4.3.5"
-	},
-	"packageManager": "yarn@3.2.0"
+	"peerDependencies": {
+		"@types/node": "*",
+		"@types/react": "*",
+		"@types/react-dom": "*",
+		"breakpoint-sass": "*",
+		"cockpit-access": "*",
+		"next": "*",
+		"react": "*",
+		"react-dom": "*",
+		"sass": "*",
+		"schema-dts": "*",
+		"typescript": "*",
+		"webassembly-module": "*"
+	}
 }

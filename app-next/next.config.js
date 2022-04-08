@@ -4,15 +4,18 @@ const locale = process.env.NEXT_PUBLIC_APP_LOCALE
 const cockpitToken = process.env.NEXT_PUBLIC_COCKPIT_ACCESS_TOKEN
 
 module.exports = {
+	experimental: {
+		externalDir: true
+	},
 	i18n: {
 		locales: [locale],
 		defaultLocale: locale
 	},
 	webpackDevMiddleware(config) {
 		config.watchOptions = {
-			poll: 1000,
+			poll: 1500,
 			aggregateTimeout: 250,
-			ignored: "**/node_modules/"
+			ignored: ["**/node_modules", "**/.yarn"]
 		}
 
 		return config
@@ -24,6 +27,10 @@ module.exports = {
 	rewrites() {
 		return [
 			{
+				source: "/content/:path*",
+				destination: "http://app-content/:path*"
+			},
+			{
 				source: "/cockpit/:path*",
 				destination: `http://cockpit/:path*?token=${cockpitToken}`
 			},
@@ -34,10 +41,6 @@ module.exports = {
 			{
 				source: "/ps.js",
 				destination: "http://plausible:8000/js/plausible.js"
-			},
-			{
-				source: "/content/:path*",
-				destination: "http://app-content/:path*"
 			}
 		]
 	}
