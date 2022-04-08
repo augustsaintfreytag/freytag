@@ -45,7 +45,7 @@ services:
       - ./.yarnrc.yml:/var/app/.yarnrc.yml:ro
       - data-app-modules:/var/app/node_modules
     working_dir: /var/app
-    command: yarn
+    command: yarn --verbose
 
   app-content:
     image: flashspys/nginx-static
