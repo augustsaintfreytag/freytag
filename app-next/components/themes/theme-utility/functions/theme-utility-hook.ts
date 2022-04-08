@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useState } from "react"
 import WebAssemblyModule, { fetchWebAssemblyModuleData, instantiateWebAssemblyModule } from "webassembly-module"
-import { dropshipHostClient } from "~/utils/app/app"
+import { publicDropshipPath } from "~/utils/app/app"
+import { AppConfigurationError } from "~/utils/app/app-configuration-error"
 import { performanceMeasureDuration, startPerformanceMeasure, stopPerformanceMeasure } from "~/utils/performance/performance"
 import { URL } from "~/utils/routing/library/url"
 
@@ -16,10 +17,14 @@ function moduleVersion(): string | undefined {
 }
 
 function modulePath(): URL {
-	const dropshipHost = dropshipHostClient()
+	const basePath = publicDropshipPath()
 	const moduleName = `color-theme-assembly-${moduleVersion()}.min.wasm`
 
-	return `https://${dropshipHost}/${moduleName}`
+	if (!basePath) {
+		throw new AppConfigurationError(`Missing public dropship path for creating theme utility loading path.`)
+	}
+
+	return `${basePath}/${moduleName}`
 }
 
 async function setUpModule() {
