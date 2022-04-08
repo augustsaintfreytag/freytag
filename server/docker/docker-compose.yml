@@ -17,7 +17,6 @@ services:
       - ./app-common:/var/app/app-common
       - ./app-next:/var/app/app-next
       - ./yarn.lock:/var/app/yarn.lock:ro
-      - ./.yarnrc.yml:/var/app/.yarnrc.yml:ro
       - data-app-modules:/var/app/node_modules:ro
       - data-app-framework-cache:/var/app/app-next/.next
       - data-app-themes:/var/themes:ro
@@ -36,13 +35,12 @@ services:
   app-dependencies:
     build:
       context: ./server/docker/images/app
-    image: freytag/app-dependencies
+    image: freytag/app
     volumes:
       - ./package.json:/var/app/package.json:ro
       - ./app-common:/var/app/app-common:ro
       - ./app-next:/var/app/app-next:ro
       - ./yarn.lock:/var/app/yarn.lock
-      - ./.yarnrc.yml:/var/app/.yarnrc.yml:ro
       - data-app-modules:/var/app/node_modules
     working_dir: /var/app
     command: yarn --verbose
