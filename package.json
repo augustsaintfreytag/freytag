@@ -11,7 +11,6 @@
 		"app-next",
 		"app-podcast"
 	],
-	"packageManager": "yarn@3.2.0",
 	"dependencies": {
 		"breakpoint-sass": "2.7.1",
 		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git#652181979177316d89cd2b0b825f8430f65c99e7",
