@@ -13,7 +13,7 @@
 	],
 	"dependencies": {
 		"breakpoint-sass": "2.7.1",
-		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git#0c6059a41df76bd2720d0e2e9a8bfb8ea836921d",
+		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git#e0ba9815da197023be89fafa20e84935f45d0283",
 		"next": "^11.1.2",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
@@ -23,7 +23,7 @@
 		"shell-escape": "^0.2.0",
 		"use-async-effect": "^2.2.5",
 		"use-debounce": "^7.0.1",
-		"webassembly-module": "https://gitlab.com/apricum/webassembly-module.git#2d6285ce56ed3372ca9ee367e16f356d1a9b73fc"
+		"webassembly-module": "https://gitlab.com/apricum/webassembly-module.git#28c640d00921bd0ff58a08a2d0c0edb64c467ec6"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.23",

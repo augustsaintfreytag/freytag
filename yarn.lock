@@ -544,9 +544,9 @@ classnames@2.2.6:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
-"cockpit-access@https://gitlab.com/apricum/cockpit-access.git#0c6059a41df76bd2720d0e2e9a8bfb8ea836921d":
+"cockpit-access@https://gitlab.com/apricum/cockpit-access.git#e0ba9815da197023be89fafa20e84935f45d0283":
   version "2.0.2"
-  resolved "https://gitlab.com/apricum/cockpit-access.git#0c6059a41df76bd2720d0e2e9a8bfb8ea836921d"
+  resolved "https://gitlab.com/apricum/cockpit-access.git#e0ba9815da197023be89fafa20e84935f45d0283"
   dependencies:
     isomorphic-fetch "^3.0.0"
 
@@ -2419,9 +2419,9 @@ watchpack@2.1.1:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
 
-"webassembly-module@https://gitlab.com/apricum/webassembly-module.git#2d6285ce56ed3372ca9ee367e16f356d1a9b73fc":
+"webassembly-module@https://gitlab.com/apricum/webassembly-module.git#28c640d00921bd0ff58a08a2d0c0edb64c467ec6":
   version "0.1.1"
-  resolved "https://gitlab.com/apricum/webassembly-module.git#2d6285ce56ed3372ca9ee367e16f356d1a9b73fc"
+  resolved "https://gitlab.com/apricum/webassembly-module.git#28c640d00921bd0ff58a08a2d0c0edb64c467ec6"
   dependencies:
     "@wasmer/wasi" "^0.10.0"
     "@wasmer/wasmfs" "^0.10.0"
