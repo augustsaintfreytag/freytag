@@ -3,8 +3,11 @@
 
 // Font Paths
 
-@function fontPathComponent($identifier)
+@function cockpitFontPathComponent($identifier)
 	@return "/storage/uploads/fonts/" + $identifier
+
+@function dropshipFontPathComponent($identifier)
+	@return "/fonts/" + $identifier
 
 @function fontPath($identifier)
 	$pathComponent: fontPathComponent($identifier)
