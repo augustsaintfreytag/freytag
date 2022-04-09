@@ -544,9 +544,9 @@ classnames@2.2.6:
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.6.tgz#43935bffdd291f326dad0a205309b38d00f650ce"
   integrity sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
 
-"cockpit-access@https://gitlab.com/apricum/cockpit-access.git#fix/deferred-install-reliability":
+"cockpit-access@https://gitlab.com/apricum/cockpit-access.git#master":
   version "2.0.2"
-  resolved "https://gitlab.com/apricum/cockpit-access.git#bb697f079919148f4dad24e7baf0746a8d288711"
+  resolved "https://gitlab.com/apricum/cockpit-access.git#89c5a8b2bf72029728df7893b6e79eca20177798"
   dependencies:
     isomorphic-fetch "^3.0.0"
 
@@ -2419,9 +2419,9 @@ watchpack@2.1.1:
     glob-to-regexp "^0.4.1"
     graceful-fs "^4.1.2"
 
-"webassembly-module@https://gitlab.com/apricum/webassembly-module.git#fix/deferred-install-reliability":
+"webassembly-module@https://gitlab.com/apricum/webassembly-module.git#master":
   version "0.1.1"
-  resolved "https://gitlab.com/apricum/webassembly-module.git#97e88216dbf88a32b9d720276c132b2ef7fa6a84"
+  resolved "https://gitlab.com/apricum/webassembly-module.git#18770df0dca07f2dfc21063eb476a4b1530fa59b"
   dependencies:
     "@wasmer/wasi" "^0.10.0"
     "@wasmer/wasmfs" "^0.10.0"
