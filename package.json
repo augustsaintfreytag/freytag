@@ -11,10 +11,9 @@
 		"app-next",
 		"app-podcast"
 	],
-	"packageManager": "yarn@3.2.0",
 	"dependencies": {
 		"breakpoint-sass": "2.7.1",
-		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git",
+		"cockpit-access": "https://gitlab.com/apricum/cockpit-access.git#master",
 		"next": "^11.1.2",
 		"react": "17.0.2",
 		"react-dom": "17.0.2",
@@ -24,7 +23,7 @@
 		"shell-escape": "^0.2.0",
 		"use-async-effect": "^2.2.5",
 		"use-debounce": "^7.0.1",
-		"webassembly-module": "https://gitlab.com/apricum/webassembly-module.git"
+		"webassembly-module": "https://gitlab.com/apricum/webassembly-module.git#master"
 	},
 	"devDependencies": {
 		"@types/node": "^17.0.23",
