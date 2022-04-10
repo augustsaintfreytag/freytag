@@ -20,6 +20,7 @@ $inputSpacing: 3.5rem
 			width: min(100%, 38rem)
 
 	.tutorial
+		@include inlayedText
 		margin-top: $pageContentSpacing
 
 	.colorsAndPreview
@@ -61,6 +62,8 @@ $inputSpacing: 3.5rem
 				max-width: $inlayWidthPhone
 
 	.closure
+		@include inlayedText
+		
 		> *
 			@include listMargin(0.5rem)
 			text-align: center

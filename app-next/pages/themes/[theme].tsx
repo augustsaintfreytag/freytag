@@ -14,6 +14,7 @@ import { ServerSideResponse } from "~/api/common/props/library/server-side-respo
 import Divider from "~/components/divider/divider"
 import ImageCover from "~/components/image-cover/image-cover"
 import ThemeSprites from "~/components/sprites/theme-sprites"
+import TextBlock from "~/components/text-block/text-block"
 import ThemeMeta from "~/components/themes/thema-meta/theme-meta"
 import ThemeClosure from "~/components/themes/theme-closure/theme-closure"
 import { themeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content"
@@ -28,7 +29,6 @@ import {
 } from "~/components/themes/theme-preview/functions/theme-preview-prop-mapping"
 import ThemeReiteration from "~/components/themes/theme-reiteration/theme-reiteration"
 import ThemeTitle from "~/components/themes/theme-title/theme-title"
-import WorkContentTextBlock from "~/components/work/work-content/components/work-content-text-block"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { colorsFromEncodedData } from "~/utils/colors/functions/color-conversion"
@@ -116,7 +116,7 @@ const ThemePage: Page<PageProps & Props> = props => {
 					<ThemeReiteration name={theme.name} formats={themeFormatSet(packages)} />
 					<ThemeColorCollection className={styles.colors} colors={colors ?? []} />
 					<div className={styles.abstract}>
-						<WorkContentTextBlock>{theme.description}</WorkContentTextBlock>
+						<TextBlock>{theme.description}</TextBlock>
 					</div>
 					<ThemeCodePreviews
 						className={styles.previews}
