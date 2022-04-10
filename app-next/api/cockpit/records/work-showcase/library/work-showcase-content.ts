@@ -29,6 +29,12 @@ export interface WorkShowcaseContentVideoEmbed extends CockpitRecord {
 	videoAspectValue?: string
 }
 
+export interface WorkShowcaseContentEmbed extends CockpitRecord {
+	identifierItem: string
+	identifierParent: string
+	code?: string
+}
+
 export interface WorkShowcaseContentTitleCase extends CockpitRecord {
 	identifierItem: string
 	identifierParent: string
@@ -43,5 +49,6 @@ export interface WorkShowcaseContentTitleCase extends CockpitRecord {
 export type AnyWorkShowcaseContent =
 	| WorkShowcaseContentText
 	| WorkShowcaseContentImages
+	| WorkShowcaseContentEmbed
 	| WorkShowcaseContentVideoEmbed
 	| WorkShowcaseContentTitleCase

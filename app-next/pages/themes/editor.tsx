@@ -10,6 +10,7 @@ import TitleInputTextField from "~/components/input/title-input-text-field/title
 import Notice from "~/components/notice/notice"
 import { dispatchPageEvent } from "~/components/page-event/functions/page-event-hook"
 import ThemeSprites from "~/components/sprites/theme-sprites"
+import TextBlock from "~/components/text-block/text-block"
 import { useThemeCodePreviewContents } from "~/components/themes/theme-code-preview/functions/theme-code-preview-content-hook"
 import ThemeCodePreviews from "~/components/themes/theme-code-previews/theme-code-previews"
 import ThemeEditorColors from "~/components/themes/theme-editor-colors/theme-editor-colors"
@@ -19,7 +20,6 @@ import ThemeEditorTitle from "~/components/themes/theme-editor-title/theme-edito
 import ThemeManifestDownloads from "~/components/themes/theme-manifest-downloads/theme-manifest-downloads"
 import { useGeneratedThemeViaThemeUtility } from "~/components/themes/theme-utility/functions/theme-utility-generation-hook"
 import { useDeferredThemeUtility } from "~/components/themes/theme-utility/functions/theme-utility-hook"
-import WorkContentTextBlock from "~/components/work/work-content/components/work-content-text-block"
 import DefaultLayout from "~/layouts/default/default-layout"
 import type { Page, PageProps } from "~/types/page"
 import { className } from "~/utils/class-names/class-name"
@@ -145,27 +145,27 @@ const EditorPage: Page<PageProps & Props> = () => {
 					/>
 				</section>
 				<section className={styles.tutorial}>
-					<WorkContentTextBlock>
+					<TextBlock>
 						Choose a short and fitting name for your theme. Good names give a hint of the included colours and communicate the intention behind the
 						selected line-up. The description should give a brief introduction to where the theme comes from and for what it might be best used.
-					</WorkContentTextBlock>
+					</TextBlock>
 				</section>
 				<section className={styles.colorsAndPreview}>
 					<ThemeEditorColors className={styles.colors} colors={themeProperties.colors} onColorCollectionSet={setThemeProperties.colors} />
 					<ThemeCodePreviews className={styles.previews} theme={generatedTheme} content={themePreviewContents} />
 				</section>
 				<section className={styles.tutorial}>
-					<WorkContentTextBlock>
+					<TextBlock>
 						Click each colour cell to edit and specify input colours. Themes are created from a sequence of *ten base colours*. An intermediate theme
 						is generated and updated in real-time and previewed directly in the code display.
-					</WorkContentTextBlock>
+					</TextBlock>
 				</section>
 				<Divider />
 				<ThemeManifestDownloads name={themeProperties.name} state={themeManifestState} onRequest={onRequestThemes} />
 				<Divider />
 				<section className={styles.closure}>
-					<WorkContentTextBlock>Themes can not be published to the gallery in this version of the Studio.</WorkContentTextBlock>
-					<WorkContentTextBlock>Formats can be downloaded ad-hoc through the provided options.</WorkContentTextBlock>
+					<TextBlock>Themes can not be published to the gallery in this version of the Studio.</TextBlock>
+					<TextBlock>Formats can be downloaded ad-hoc through the provided options.</TextBlock>
 				</section>
 			</section>
 		</>
