@@ -2,6 +2,7 @@ import React from "react"
 import { ResolvedCollectionLink, WorkShowcase } from "~/api/cockpit/records/work-showcase/library/work-showcase"
 import {
 	AnyWorkShowcaseContent,
+	WorkShowcaseContentEmbed,
 	WorkShowcaseContentImages,
 	WorkShowcaseContentText,
 	WorkShowcaseContentTitleCase,
@@ -13,6 +14,7 @@ import {
 } from "~/api/cockpit/records/work-showcase/library/work-showcase-text-content-format"
 import Divider from "~/components/divider/divider"
 import WorkContentContactSheetBlock from "~/components/work/work-content/components/work-content-contact-sheet-block"
+import WorkContentEmbedBlock from "~/components/work/work-content/components/work-content-embed-block"
 import WorkContentHeadingBlock from "~/components/work/work-content/components/work-content-heading-block"
 import WorkContentImageColumnBlock from "~/components/work/work-content/components/work-content-images-block"
 import WorkContentQuoteBlock from "~/components/work/work-content/components/work-content-quote-block"
@@ -54,6 +56,10 @@ function imagesContentComponentFromContent(showcase: WorkShowcase, block: WorkSh
 	return <WorkContentImageColumnBlock key={block._id} {...imagesContentPropsFromContent(showcase, block)} />
 }
 
+function embedContentComponentFromContent(block: WorkShowcaseContentEmbed): AnyElement {
+	return <WorkContentEmbedBlock key={block._id} code={block.code} />
+}
+
 function videoEmbedContentComponentFromContent(block: WorkShowcaseContentVideoEmbed): AnyElement {
 	return <WorkContentVideoBlock key={block._id} {...videoEmbedContentPropsFromContent(block)} />
 }
@@ -91,6 +97,8 @@ export function workContentComponentForContent(
 			return typedTextContentComponentFromContent(blockLink.value as WorkShowcaseContentText)
 		case Kind.Images:
 			return imagesContentComponentFromContent(showcase, blockLink.value as WorkShowcaseContentImages)
+		case Kind.ContentEmbed:
+			return embedContentComponentFromContent(blockLink.value as WorkShowcaseContentEmbed)
 		case Kind.VideoEmbed:
 			return videoEmbedContentComponentFromContent(blockLink.value as WorkShowcaseContentVideoEmbed)
 		case Kind.TitleCase:
