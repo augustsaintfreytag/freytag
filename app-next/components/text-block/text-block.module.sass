@@ -5,7 +5,7 @@
 
 	@include wrappingFont
 
-	> p, > ul, > pre, > code
+	> p, > ul, > ol, > pre, > code
 		// Common Blocks
 		@include listMargin($paragraphSpacing)
 
@@ -69,7 +69,15 @@
 		&:not(:first-child)
 			margin-top: 3rem
 
-	ul
+	ul, ol
 		padding-left: 2.5rem
-		list-style: square
 		line-height: $paragraphLineHeight
+
+		> li
+			@include listMargin(0.85rem)
+
+	ul
+		list-style: square
+
+	ol
+		list-style: decimal
