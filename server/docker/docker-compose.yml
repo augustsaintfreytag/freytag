@@ -10,6 +10,8 @@ services:
     build:
       context: ./server/docker/images/app
     image: freytag/app
+    working_dir: /var/app
+    command: ${APP_STARTUP_CMD}
     volumes:
       - ./package.json:/var/app/package.json:ro
       - ./tsconfig.json:/var/app/tsconfig.json:ro
@@ -20,8 +22,6 @@ services:
       - data-app-modules:/var/app/node_modules:ro
       - data-app-framework-cache:/var/app/app-next/.next
       - data-app-themes:/var/themes:ro
-    working_dir: /var/app
-    command: ${APP_STARTUP_CMD}
     networks:
       - default
       - dropship-shared
@@ -36,14 +36,14 @@ services:
     build:
       context: ./server/docker/images/app
     image: freytag/app
+    working_dir: /var/app
+    command: yarn install --unsafe-perm
     volumes:
       - ./package.json:/var/app/package.json:ro
       - ./app-common:/var/app/app-common:ro
       - ./app-next:/var/app/app-next:ro
       - ./yarn.lock:/var/app/yarn.lock
       - data-app-modules:/var/app/node_modules
-    working_dir: /var/app
-    command: yarn install --verbose --unsafe-perm
 
   app-content:
     image: flashspys/nginx-static
